@@ -53,10 +53,14 @@
       "security": "CLEAR"
     },
     "openai/codex-plugin-cc": {
-      "status": "audited",
+      "status": "contributed",
       "score": 93,
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        168,
+        169
+      ]
     },
     "deanpeters/Product-Manager-Skills": {
       "status": "audited",
