@@ -42,7 +42,7 @@
     },
     "thedotmack/claude-mem": {
       "status": "audited",
-      "score": 44,
+      "score": 97,
       "strategy": "batched",
       "security": "BLOCKED"
     },
