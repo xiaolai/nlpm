@@ -60,7 +60,7 @@
     },
     "deanpeters/Product-Manager-Skills": {
       "status": "audited",
-      "score": 92,
+      "score": 89,
       "strategy": "batched",
       "security": "CLEAR"
     }
