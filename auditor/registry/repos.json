@@ -54,9 +54,9 @@
     },
     "openai/codex-plugin-cc": {
       "status": "audited",
-      "score": 75,
+      "score": 93,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "REVIEW"
     },
     "deanpeters/Product-Manager-Skills": {
       "status": "audited",
