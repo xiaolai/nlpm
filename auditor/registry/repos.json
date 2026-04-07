@@ -39,6 +39,30 @@
       "score": 97,
       "strategy": "single",
       "security": "CLEAR"
+    },
+    "thedotmack/claude-mem": {
+      "status": "audited",
+      "score": 44,
+      "strategy": "batched",
+      "security": "BLOCKED"
+    },
+    "tech-leads-club/agent-skills": {
+      "status": "audited",
+      "score": 82,
+      "strategy": "progressive",
+      "security": "CLEAR"
+    },
+    "openai/codex-plugin-cc": {
+      "status": "audited",
+      "score": 75,
+      "strategy": "single",
+      "security": "CLEAR"
+    },
+    "deanpeters/Product-Manager-Skills": {
+      "status": "audited",
+      "score": 92,
+      "strategy": "batched",
+      "security": "CLEAR"
     }
   },
   "metadata": {

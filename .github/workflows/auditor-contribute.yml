@@ -186,7 +186,21 @@ jobs:
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "contribute: $TARGET_REPO ($PR_COUNT PRs)"
-            git push
+
+            for ATTEMPT in 1 2 3 4 5; do
+              if git push 2>/dev/null; then break; fi
+              echo "Push attempt $ATTEMPT failed, resolving..."
+              git pull --no-rebase origin main --no-edit 2>/dev/null || true
+              if git diff --name-only --diff-filter=U 2>/dev/null | grep -q "repos.json"; then
+                git checkout --theirs auditor/registry/repos.json
+                jq --arg name "$TARGET_REPO" '.repos[$name].status = "contributed"' \
+                   auditor/registry/repos.json > /tmp/reg-resolved.json && mv /tmp/reg-resolved.json auditor/registry/repos.json
+                git add auditor/registry/repos.json
+              fi
+              git diff --name-only --diff-filter=U 2>/dev/null | while read -r f; do git checkout --theirs "$f" && git add "$f"; done 2>/dev/null || true
+              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
+              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
+            done
           }
 
           gh issue edit "$ISSUE_NUM" --add-label "prs-submitted" --remove-label "contribute-approved" 2>/dev/null || true

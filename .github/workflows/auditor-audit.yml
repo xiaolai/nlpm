@@ -636,8 +636,47 @@ jobs:
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "audit: $TARGET_REPO ($SCORE/100, security:$SECURITY, $STRATEGY, $TOTAL artifacts)"
-            git pull --no-rebase origin main --no-edit || true
-            git push
+
+            # Retry push up to 5 times, resolving repos.json conflicts each time
+            for ATTEMPT in 1 2 3 4 5; do
+              echo "Push attempt $ATTEMPT..."
+              if git push 2>/dev/null; then
+                echo "Push succeeded on attempt $ATTEMPT"
+                break
+              fi
+
+              echo "Push failed, pulling and resolving conflicts..."
+              git pull --no-rebase origin main --no-edit 2>/dev/null || true
+
+              # If repos.json has merge conflicts, resolve by re-applying our update on remote version
+              if git diff --name-only --diff-filter=U 2>/dev/null | grep -q "repos.json"; then
+                echo "Resolving repos.json merge conflict..."
+                # Accept theirs as base, then re-apply our jq update
+                git checkout --theirs auditor/registry/repos.json
+                jq --arg name "$TARGET_REPO" \
+                   --arg score "$SCORE" \
+                   --arg strategy "$STRATEGY" \
+                   --arg security "$SECURITY" \
+                   '.repos[$name].status = "audited" | .repos[$name].score = ($score | tonumber) | .repos[$name].strategy = $strategy | .repos[$name].security = $security' \
+                   auditor/registry/repos.json > /tmp/reg-resolved.json && mv /tmp/reg-resolved.json auditor/registry/repos.json
+                git add auditor/registry/repos.json
+              fi
+
+              # Resolve any other conflicts by accepting theirs (audit reports don't conflict)
+              git diff --name-only --diff-filter=U 2>/dev/null | while read -r conflicted; do
+                echo "Auto-resolving conflict in: $conflicted"
+                git checkout --theirs "$conflicted" 2>/dev/null || true
+                git add "$conflicted" 2>/dev/null || true
+              done
+
+              # Complete the merge if needed
+              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
+
+              if [ "$ATTEMPT" -eq 5 ]; then
+                echo "ERROR: Failed to push after 5 attempts"
+                exit 1
+              fi
+            done
           }
 
           gh issue edit "$ISSUE_NUM" --add-label "audit-complete" --remove-label "audit-ready" 2>/dev/null || true
