@@ -8,7 +8,7 @@ Part of the [xiaolai Claude plugin marketplace](https://github.com/xiaolai/claud
 
 NLPM treats natural language artifacts as **programs that can be linted**. Just as ESLint scores JavaScript and ruff scores Python, NLPM scores the markdown files that drive AI behavior: skills, agents, commands, rules, hooks, prompts, CLAUDE.md, and memory files.
 
-Seven commands, each doing one thing:
+Eight commands, each doing one thing:
 
 | Command | What it does |
 |---------|-------------|
@@ -19,6 +19,7 @@ Seven commands, each doing one thing:
 | `/nlpm:trend` | Track quality score trends over time |
 | `/nlpm:test` | Run NL artifact tests against spec files (TDD) |
 | `/nlpm:init` | Initialize NLPM for a project |
+| `/nlpm:security-scan` | Scan plugins for security risks in executable artifacts |
 
 Claude-native -- no Codex, no external models, no API keys, no runtime dependencies.
 
@@ -116,7 +117,7 @@ This is advisory -- it does not block writes. For blocking enforcement, use a `P
 ## Architecture
 
 ```
-commands/           User-facing commands (7 + 2 shared partials)
+commands/           User-facing commands (8 + 2 shared partials)
   ls.md             Discover artifacts -> dispatches scanner
   score.md          Score quality -> dispatches scorer + vague-scanner in parallel
   check.md          Cross-component checks -> dispatches checker
@@ -124,18 +125,20 @@ commands/           User-facing commands (7 + 2 shared partials)
   trend.md          Track score history -> dispatches scorer + vague-scanner
   test.md           Run NL-TDD specs -> dispatches tester
   init.md           Configure project
+  security-scan.md  Scan plugins for security risks -> dispatches security-scanner
   shared/
     discover.md     Artifact path patterns (not user-invocable)
     classify.md     Type classification rules (not user-invocable)
 
-agents/             Dispatched by commands (5 agents)
+agents/             Dispatched by commands (6 agents)
   scanner.md        haiku -- fast artifact discovery
   scorer.md         sonnet -- 100-point quality scoring
   checker.md        sonnet -- cross-component consistency
   vague-scanner.md  haiku -- mechanical vague-word counting
   tester.md         sonnet -- evaluates artifacts against test specs
+  security-scanner.md sonnet -- security risk detection in executable artifacts
 
-skills/nlpm/        Knowledge base (12 skills)
+skills/nlpm/        Knowledge base (13 skills)
 
   Core (loaded by agents):
   conventions/      Claude Code schemas, hook events, naming patterns
@@ -143,6 +146,7 @@ skills/nlpm/        Knowledge base (12 skills)
   scoring/          Penalty tables with rule number cross-references
   rules/            The 50 Rules of Natural Language Programming (R01-R50)
   testing/          NL-TDD spec format, test patterns
+  security/         Security pattern database for executable artifact scanning
 
   Writing Reference (loaded on demand):
   writing-skills/   How to write SKILL.md files
@@ -181,18 +185,6 @@ scripts/
 
 **"Trend shows no history"** -- Run `/nlpm:score` first to create the baseline snapshot.
 
-## Roadmap
-
-| Version | Status | What it adds |
-|---------|--------|-------------|
-| v0.1.0 | Shipped | ls, score, init |
-| v0.2.0 | Shipped | check, fix, CLAUDE.md deep scoring, memory artifacts |
-| v0.3.0 | Shipped | settings.json validation, hook command safety |
-| v0.4.0 | Shipped | Trend tracking, /nlpm:trend command |
-| v0.5.0 | Shipped | NL-TDD: /nlpm:test, tester agent, testing skill |
-| v0.6.0 | Shipped | Expanded auto-fix, cross-plugin prep |
-| v0.7.0 | Current | Agent split (scorer/checker/vague-scanner), working hooks, self-test specs, git-aware scoring, rule overrides, deduplication |
-
 ## Case Studies
 
 - [When the Linter Met Its Match](case-studies/how-we-helped-gsd.md) -- Auditing the 48k-star `gsd-build/get-shit-done` project: 80 files scored, 5 PRs accepted, and the false-positive that improved NLPM itself.
@@ -209,7 +201,7 @@ discover (weekly) → audit → contribute PRs → track merges → write case s
                                          update NLPM rules → audit better
 ```
 
-6 workflows: `auditor-discover`, `auditor-audit`, `auditor-contribute`, `auditor-track`, `auditor-case-study`, `auditor-daily-report`. Human-in-the-loop via issue labels at 3 decision points.
+8 workflows: `auditor-discover`, `auditor-batch-processor`, `auditor-audit`, `auditor-contribute`, `auditor-track`, `auditor-case-study`, `auditor-daily-report`, `auditor-integration-test`. Human-in-the-loop via issue labels at 3 decision points.
 
 See [auditor/README.md](auditor/README.md) for full documentation.
 
