@@ -239,6 +239,12 @@
       "score": 84,
       "strategy": "progressive",
       "security": "BLOCKED"
+    },
+    "Orchestra-Research/AI-Research-SKILLs": {
+      "status": "audited",
+      "score": 89,
+      "strategy": "progressive",
+      "security": "REVIEW"
     }
   },
   "metadata": {
