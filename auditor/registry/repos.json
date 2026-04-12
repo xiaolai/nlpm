@@ -210,6 +210,18 @@
         }
       ]
     },
+    "agent-sh/agentsys": {
+      "status": "audited",
+      "score": 91,
+      "strategy": "batched",
+      "security": "CLEAR"
+    },
+    "OthmanAdi/planning-with-files": {
+      "status": "audited",
+      "score": 91,
+      "strategy": "batched",
+      "security": "REVIEW"
+    },
     "alirezarezvani/claude-skills": {
       "status": "audited",
       "score": 92,
