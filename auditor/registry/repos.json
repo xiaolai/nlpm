@@ -239,6 +239,12 @@
       "score": 84,
       "strategy": "progressive",
       "security": "BLOCKED"
+    },
+    "Imbad0202/academic-research-skills": {
+      "status": "audited",
+      "score": 20,
+      "strategy": "batched",
+      "security": "CLEAR"
     }
   },
   "metadata": {
