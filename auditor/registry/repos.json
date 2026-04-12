@@ -269,6 +269,12 @@
       "score": 89,
       "strategy": "progressive",
       "security": "REVIEW"
+    },
+    "CloudAI-X/claude-workflow-v2": {
+      "status": "audited",
+      "score": 93,
+      "strategy": "batched",
+      "security": "CLEAR"
     }
   },
   "metadata": {
