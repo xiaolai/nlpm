@@ -269,6 +269,12 @@
       "score": 89,
       "strategy": "progressive",
       "security": "REVIEW"
+    },
+    "EveryInc/compound-engineering-plugin": {
+      "status": "audited",
+      "score": 84,
+      "strategy": "progressive",
+      "security": "CLEAR"
     }
   },
   "metadata": {
