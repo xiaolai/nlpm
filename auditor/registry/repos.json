@@ -239,6 +239,12 @@
       "score": 84,
       "strategy": "progressive",
       "security": "BLOCKED"
+    },
+    "IvanMurzak/Unity-MCP": {
+      "status": "audited",
+      "score": 82,
+      "strategy": "progressive",
+      "security": "CLEAR"
     }
   },
   "metadata": {
