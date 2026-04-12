@@ -269,6 +269,12 @@
       "score": 89,
       "strategy": "progressive",
       "security": "REVIEW"
+    },
+    "ComposioHQ/awesome-claude-plugins": {
+      "status": "audited",
+      "score": 88,
+      "strategy": "progressive",
+      "security": "CLEAR"
     }
   },
   "metadata": {
