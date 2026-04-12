@@ -270,23 +270,41 @@
       "strategy": "progressive",
       "security": "REVIEW"
     },
+    "ChrisWiles/claude-code-showcase": {
+      "status": "audited",
+      "score": 81,
+      "strategy": "single",
+      "security": "CLEAR"
+    },
+    "CloudAI-X/claude-workflow-v2": {
+      "status": "audited",
+      "score": 93,
+      "strategy": "batched",
+      "security": "CLEAR"
+    },
+    "ComposioHQ/awesome-claude-plugins": {
+      "status": "audited",
+      "score": 88,
+      "strategy": "progressive",
+      "security": "CLEAR"
+    },
+    "EveryInc/compound-engineering-plugin": {
+      "status": "audited",
+      "score": 84,
+      "strategy": "progressive",
+      "security": "CLEAR"
+    },
     "Donchitos/Claude-Code-Game-Studios": {
       "status": "audited",
       "score": 82,
       "strategy": "progressive",
-      "security": "CLEAR",
-      "artifacts": 175,
-      "bugs": 2,
-      "quality_issues": 47,
-      "security_findings": 0,
-      "audit_date": "2026-04-12",
-      "report": "auditor/audits/Donchitos-Claude-Code-Game-Studios.md"
+      "security": "CLEAR"
     }
   },
   "metadata": {
     "last_discovery": null,
-    "total_discovered": 11,
-    "total_audited": 11,
+    "total_discovered": 10,
+    "total_audited": 10,
     "total_contributed": 6
   }
 }
