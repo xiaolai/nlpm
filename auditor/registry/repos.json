@@ -270,6 +270,18 @@
       "strategy": "progressive",
       "security": "REVIEW"
     },
+    "ChrisWiles/claude-code-showcase": {
+      "status": "audited",
+      "score": 81,
+      "strategy": "single",
+      "security": "CLEAR"
+    },
+    "CloudAI-X/claude-workflow-v2": {
+      "status": "audited",
+      "score": 93,
+      "strategy": "batched",
+      "security": "CLEAR"
+    },
     "ComposioHQ/awesome-claude-plugins": {
       "status": "audited",
       "score": 88,
