@@ -119,6 +119,59 @@ jobs:
           echo ""
 
           # ---------------------------------------------------------------
+          # Phase 3: Re-trigger stuck audit-ready issues
+          # (Issues labeled audit-ready but never completed — the label
+          #  event fired once but the audit workflow skipped/failed/cancelled.
+          #  Re-trigger via workflow_dispatch which is idempotent.)
+          # ---------------------------------------------------------------
+          echo "--- Phase 3: Re-trigger stuck audit-ready repos ---"
+          RETRIGGERED=0
+          RETRIGGER_LIMIT=$((AVAILABLE - PICKED))
+          [ "$RETRIGGER_LIMIT" -le 0 ] && RETRIGGER_LIMIT=0
+
+          if [ "$RETRIGGER_LIMIT" -gt 0 ]; then
+            while IFS=$'\t' read -r ISSUE_NUM TITLE; do
+              [ "$RETRIGGERED" -ge "$RETRIGGER_LIMIT" ] && break
+
+              REPO=$(echo "$TITLE" | sed 's/Audit candidate: //')
+
+              # Only re-trigger if NOT already in registry (not yet audited)
+              STATUS=$(jq -r --arg name "$REPO" '.repos[$name].status // "none"' auditor/registry/repos.json)
+              if [ "$STATUS" != "none" ]; then
+                echo "  SKIP #$ISSUE_NUM ($REPO): already in registry (status=$STATUS)"
+                continue
+              fi
+
+              # Check no audit workflow is currently running for this issue
+              ACTIVE=$(gh run list --workflow=auditor-audit.yml --status in_progress --json databaseId \
+                --jq 'length' 2>/dev/null || echo 0)
+              if [ "$ACTIVE" -ge "$BATCH_SIZE" ]; then
+                echo "  PAUSE: $ACTIVE audits running, at capacity"
+                break
+              fi
+
+              echo "  RETRIGGER #$ISSUE_NUM ($REPO) via workflow_dispatch"
+              if [ "$DRY_RUN" != "true" ]; then
+                gh workflow run auditor-audit.yml \
+                  -f repo="$REPO" \
+                  -f issue_number="$ISSUE_NUM" 2>/dev/null || {
+                  echo "    WARNING: failed to trigger audit for $REPO"
+                  continue
+                }
+              fi
+              RETRIGGERED=$((RETRIGGERED + 1))
+
+              # Small delay to avoid overwhelming the API
+              sleep 2
+            done < <(gh issue list --label "audit-ready" --state open --json number,title,labels \
+              --jq '.[] | select(.labels | map(.name) | (contains(["audit-complete"]) | not)) | "\(.number)\t\(.title)"' \
+              2>/dev/null | sort -t$'\t' -k1 -n)
+          fi
+
+          echo "Re-triggered: $RETRIGGERED stuck audit-ready repos"
+          echo ""
+
+          # ---------------------------------------------------------------
           # Summary
           # ---------------------------------------------------------------
           echo "--- Summary ---"
