@@ -300,6 +300,12 @@
       "strategy": "progressive",
       "security": "CLEAR"
     },
+    "xiaolai/grill-for-claude": {
+      "status": "audited",
+      "score": 97,
+      "strategy": "single",
+      "security": "CLEAR"
+    },
     "xiaolai/codex-toolkit-for-claude": {
       "status": "audited",
       "score": 96,
