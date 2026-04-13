@@ -329,12 +329,24 @@
       "score": 78,
       "strategy": "progressive",
       "security": "CLEAR"
+    },
+    "davepoon/buildwithclaude": {
+      "status": "audited",
+      "score": 77,
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "artifacts": 881,
+      "bugs": 8,
+      "quality_issues": 163,
+      "security_findings": 3,
+      "audit_date": "2026-04-13",
+      "report": "auditor/audits/davepoon-buildwithclaude.md"
     }
   },
   "metadata": {
     "last_discovery": null,
-    "total_discovered": 10,
-    "total_audited": 10,
+    "total_discovered": 11,
+    "total_audited": 11,
     "total_contributed": 6
   }
 }
