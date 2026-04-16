@@ -347,25 +347,35 @@ jobs:
             BATCH_DIR="/tmp/batches"
           fi
 
-          # Build newline-separated file list from all batches
-          FILE_LIST=""
-          for batch_file in "$BATCH_DIR"/batch-*.txt; do
-            [ ! -s "$batch_file" ] && continue
-            while IFS= read -r f; do
-              [ -n "$FILE_LIST" ] && FILE_LIST="${FILE_LIST}
-          ${f}" || FILE_LIST="${f}"
-            done < "$batch_file"
-          done
+          # Build newline-separated file list from all batches.
+          # Cap at MAX_FILES to keep $GITHUB_ENV under kernel ARG_MAX (~128KB):
+          # huge repos with hundreds of SKILL.md files were blowing out env and
+          # breaking subsequent `run:` steps with "Argument list too long".
+          MAX_FILES=100
+          TOTAL_AVAILABLE=$(cat "$BATCH_DIR"/batch-*.txt 2>/dev/null | wc -l | tr -d ' ')
+          FILE_LIST=$(cat "$BATCH_DIR"/batch-*.txt 2>/dev/null | head -n "$MAX_FILES")
+          AUDITED_COUNT=$(printf '%s\n' "$FILE_LIST" | grep -c '.' || echo 0)
+
+          if [ "$TOTAL_AVAILABLE" -gt "$MAX_FILES" ]; then
+            echo "NOTE: capping file list at $MAX_FILES of $TOTAL_AVAILABLE total files"
+            SAMPLED_NOTE="(sampled $AUDITED_COUNT of $TOTAL_AVAILABLE files — large repo)"
+          else
+            SAMPLED_NOTE=""
+          fi
 
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
+          echo "audited_count=$AUDITED_COUNT" >> "$GITHUB_OUTPUT"
+          echo "total_available=$TOTAL_AVAILABLE" >> "$GITHUB_OUTPUT"
+          echo "sampled_note=$SAMPLED_NOTE" >> "$GITHUB_OUTPUT"
 
           # Store file list in env (handles newlines)
           echo "AUDIT_FILE_LIST<<FILELIST_DELIM" >> "$GITHUB_ENV"
           echo "$FILE_LIST" >> "$GITHUB_ENV"
           echo "FILELIST_DELIM" >> "$GITHUB_ENV"
 
-          echo "Files to audit:"
-          echo "$FILE_LIST"
+          echo "Files to audit: $AUDITED_COUNT"
+          echo "$FILE_LIST" | head -20
+          [ "$AUDITED_COUNT" -gt 20 ] && echo "... and $((AUDITED_COUNT - 20)) more"
 
       - name: Clean stale report
         env:
