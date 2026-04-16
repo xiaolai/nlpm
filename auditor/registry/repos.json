@@ -565,10 +565,12 @@
       "stars": 3921,
       "artifacts": 135,
       "description": "Claude Code Guide - Setup, Commands, workflows, agents, skills & tips-n-tricks go from beginner to power user!",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 86,
       "audit_issue": 79,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "CLEAR"
     },
     "zubair-trabzada/geo-seo-claude": {
       "discovered": "2026-04-13T06:41:48Z",
