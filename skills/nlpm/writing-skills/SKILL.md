@@ -1,6 +1,6 @@
 ---
 name: writing-skills
-description: "How to write SKILL.md files that trigger reliably and teach effectively. Use when creating, improving, or reviewing Claude Code skills."
+description: "How to write SKILL.md files that trigger reliably and teach effectively — crafting trigger descriptions, structuring YAML frontmatter, organizing body sections, and using progressive disclosure. Use when creating, improving, or reviewing Claude Code skills, writing skill files, building custom skills, or writing skill descriptions."
 version: 0.1.0
 ---
 
@@ -12,12 +12,12 @@ version: 0.1.0
 
 The `description` field determines when Claude loads this skill. It is not a summary -- it is a **trigger mechanism**.
 
-**Bad** (score 55):
+**Bad:**
 ```yaml
 description: "Helpful skill for React development"
 ```
 
-**Good** (score 95):
+**Good:**
 ```yaml
 description: "Use when building React components, debugging re-renders, optimizing performance with useMemo/useCallback, or fixing hook dependency arrays"
 ```
@@ -113,7 +113,7 @@ skills/my-domain/my-skill/
 
 ## 4. Worked Example: Improving a Skill
 
-### Before (score 55/100)
+### Before
 
 ```yaml
 ---
@@ -147,7 +147,7 @@ Docker Compose is for multi-container applications.
 - No decision matrices
 - No scope note
 
-### After (score 92/100)
+### After
 
 ```yaml
 ---
@@ -164,50 +164,24 @@ version: 0.1.0
 
 ## 1. Image Size Optimization
 
-### Before (1.2 GB)
-` ` `dockerfile
-FROM node:20
-COPY . .
-RUN npm install
-RUN npm run build
-CMD ["node", "dist/index.js"]
-` ` `
-
-### After (148 MB -- 88% smaller)
-` ` `dockerfile
-FROM node:20-slim AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-
-FROM node:20-slim
-WORKDIR /app
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/node_modules ./node_modules
-CMD ["node", "dist/index.js"]
-` ` `
-
-Key changes: multi-stage build, slim base, copy only production artifacts.
+Problem/solution pair showing multi-stage builds, then a decision table for base image selection.
 
 ## 2. Base Image Selection
 
 | Use case | Base image | Size |
 |----------|-----------|------|
 | Node.js production | node:20-slim | 180 MB |
-| Node.js minimal | node:20-alpine | 130 MB |
 | Python production | python:3.12-slim | 150 MB |
 | Static files only | nginx:alpine | 40 MB |
 | From scratch (Go/Rust) | scratch | < 20 MB |
 ```
 
 **Changes made:**
-1. Description: 0 trigger phrases -> 8 trigger phrases (+37 points)
-2. Scope note added (+5 points)
-3. Replaced theory with problem/solution examples (+25 points)
-4. Added decision matrix (+10 points)
-5. Removed content Claude knows from training (-15 lines, +5 points for conciseness)
+1. Description: 0 trigger phrases -> 8 trigger phrases
+2. Scope note added
+3. Replaced theory with problem/solution examples
+4. Added decision matrix
+5. Removed content Claude knows from training (-15 lines)
 
 ## 5. Common Mistakes
 

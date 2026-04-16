@@ -1,6 +1,6 @@
 ---
 name: security
-description: Security pattern database for Claude Code plugin audits. Covers execution surfaces, supply chain, data exfiltration, and prompt injection.
+description: "Detects execution surface risks, supply chain vulnerabilities, data exfiltration vectors, and prompt injection patterns in Claude Code plugins. Use when auditing plugins for security risks, reviewing MCP server configurations, scanning hooks and scripts for vulnerabilities, or checking extensions before installation."
 version: 0.1.0
 ---
 
@@ -32,6 +32,15 @@ Examples:
 
 Exception: if a `.md` file is explicitly referenced as a script via `command:` in `hooks.json` or executed via `bash file.md`, treat it as executable and apply full severity.
 
+## Scanning Workflow
+
+1. **Classify files** — categorize each file by execution context (see table above)
+2. **Identify execution surfaces** — map hooks, scripts, MCP configs, commands, and install scripts
+3. **Scan each surface** — apply pattern tables below, matching regex against file contents
+4. **Apply context adjustments** — downgrade documentation findings to Low per the markdown rule
+5. **Validate findings** — verify each Critical/High finding is in an executable context before finalizing
+6. **Generate report** — produce the structured report (see Report Format section)
+
 ## Execution Surfaces
 
 Claude Code plugins have five execution surfaces that must be scanned:
@@ -61,9 +70,9 @@ Claude Code plugins have five execution surfaces that must be scanned:
 
 | Pattern | Regex | Why |
 |---------|-------|-----|
-| Subprocess with shell=True | `subprocess\.(call\|run\|Popen).*shell\s*=\s*True` | Python shell injection |
-| OS system calls | `os\.system\(` | Python shell execution |
-| Dynamic require/import | `require\(\s*\$`, `import\(\s*\$` | Dynamic code loading |
+| Subprocess with shell=True | `subprocess\.(call\|run\|Popen).*shell\s*=\s*True` | Unsanitized input reaches shell |
+| OS system calls | `os\.system\(` | No argument escaping; full shell interpretation |
+| Dynamic require/import | `require\(\s*\$`, `import\(\s*\$` | Attacker-controlled module path |
 | new Function with dynamic string | `new Function\(` with string concatenation or template literal | Arbitrary code execution from string; often used to deserialize data that could be imported directly |
 | File write outside repo | `> ~/`, `> /etc/`, `> /tmp/.*\.sh` | System modification |
 | Sudo usage | `sudo\s+` | Privilege escalation |
@@ -73,11 +82,11 @@ Claude Code plugins have five execution surfaces that must be scanned:
 
 | Pattern | Regex | Why |
 |---------|-------|-----|
-| Network calls | `curl\s+`, `wget\s+`, `fetch\(`, `requests\.(get\|post)` | Data exfiltration potential |
-| Environment access | `process\.env`, `os\.environ`, shell variable expansion | Sensitive data access |
-| File reads outside repo | Reading from home directory or system paths | Data access |
-| Runtime package install | `npm install`, `pip install`, `gem install` | Supply chain risk |
-| Shell exec functions | Functions that execute strings as shell commands | Shell execution |
+| Network calls | `curl\s+`, `wget\s+`, `fetch\(`, `requests\.(get\|post)` | Could exfiltrate repo data to external host |
+| Environment access | `process\.env`, `os\.environ`, shell variable expansion | May leak tokens, keys, or secrets |
+| File reads outside repo | Reading from home directory or system paths | Exposes credentials or configs outside project |
+| Runtime package install | `npm install`, `pip install`, `gem install` | Unvetted dependency pulled at runtime |
+| Shell exec functions | Functions that execute strings as shell commands | String-to-shell boundary; injection risk |
 
 ## MCP Configuration Risks
 
@@ -141,6 +150,14 @@ Scan `requirements.txt` / `pyproject.toml` for:
 | High | Likely dangerous: shell injection, data exfil, privilege escalation | Block contribution, report in audit |
 | Medium | Context-dependent: network calls, env access, runtime installs | Report in audit, flag for review |
 | Low | Minor concern: unpinned deps, broad permissions | Report as informational |
+
+## Finding Validation
+
+Before finalizing findings, verify each Critical or High result:
+- Confirm the file is in an executable context (not documentation)
+- Check if the pattern is inside a comment, string literal, or example block
+- Verify the pattern is reachable at runtime (not dead code behind a feature flag)
+- Cross-reference with the project's test suite — a pattern in test fixtures is lower risk
 
 ## Report Format
 

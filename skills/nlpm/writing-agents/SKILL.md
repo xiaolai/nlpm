@@ -1,6 +1,6 @@
 ---
 name: writing-agents
-description: "How to write Claude Code agents that trigger reliably, use the right model, and produce consistent output. Use when creating, improving, or reviewing agent definitions."
+description: "How to write Claude Code agent definitions — trigger examples, model selection, tool permissions, output format specs, and system prompt structure. Use when creating, improving, or reviewing agents, configuring sub-agent dispatch, writing agent prompts, agent YAML, or setting up agentic workflows."
 version: 0.1.0
 ---
 
@@ -34,7 +34,7 @@ assistant: "I'll use the reviewer agent."
 </example>
 ```
 
-**Problems**: generic context, generic query, no decision logic shown.
+**Why it fails**: generic context with no decision logic shown.
 
 ### Good Example (specific scenario -- 92% trigger accuracy)
 
@@ -228,7 +228,7 @@ Total agent body: aim for 25-45 lines. Over 60 lines means the agent is doing to
 
 ## 6. Worked Example
 
-### Before (score 52/100)
+### Before
 
 ```yaml
 ---
@@ -253,7 +253,7 @@ Look at the files and find problems. Report what you find.
 - No boundaries: scope creep (-10)
 - No error handling: silent failures (-10)
 
-### After (score 95/100)
+### After
 
 ```yaml
 ---
@@ -316,14 +316,7 @@ assistant: "I'll dispatch the code-checker to analyze the payment module for pot
 </example>
 ```
 
-**Changes made:**
-1. Description: 0 -> 6 trigger phrases (+30)
-2. Model: opus -> sonnet (appropriate for analysis, -20x cost) (+10)
-3. Tools: 7 -> 3 (read-only analysis needs read-only tools) (+10)
-4. Added 2 examples (+15)
-5. Defined output format (+15)
-6. Added boundaries (+10)
-7. Added error handling (+5)
+Key improvements: added trigger-rich description, downgraded to sonnet with read-only tools, and added examples, output format, boundaries, and error handling.
 
 ## 7. Common Mistakes
 

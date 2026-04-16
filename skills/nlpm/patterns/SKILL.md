@@ -1,12 +1,19 @@
 ---
 name: patterns
-description: "Use when writing or reviewing NL artifacts and need to check for anti-patterns — vague quantifiers, prohibitions without alternatives, oversized skills, write-on-read-only agents, monolithic prompts, or linter-duplicating rules."
+description: "Use when writing or reviewing NL artifacts (skills, agents, prompts, rules, hooks) and need to check for anti-patterns — vague quantifiers, prohibitions without alternatives, oversized skills, write-on-read-only agents, monolithic prompts, or linter-duplicating rules. Also useful for prompt review, skill file review, or prompt quality checks."
 version: 0.1.0
 ---
 
 # NL Programming Patterns
 
 Best practices and anti-patterns for writing Claude Code plugin components. Each pattern includes a rationale and a concrete example. Use this skill when authoring or reviewing skills, agents, commands, rules, or hooks.
+
+### Quick Review Checklist
+
+When reviewing an artifact, check in this order:
+1. Scan for anti-patterns A1–A9 — fix any violations
+2. Verify patterns P1–P9 are applied where applicable
+3. Cross-reference with `nlpm:scoring` rubric for penalty impact
 
 ---
 
@@ -52,7 +59,7 @@ assistant: <what this agent does in response>
 
 ### P3: Imperative + Rationale Rules (R03, R21)
 
-Write rules as "**Do X** because Y" not "Don't do Z". The Pink Elephant effect: telling someone not to think of a pink elephant makes them think of it. Prohibitions without alternatives are hard to follow under inference load.
+Write rules as "**Do X** because Y" not "Don't do Z". Prohibitions without alternatives are hard to follow under inference load.
 
 **Good:**
 ```markdown
@@ -233,10 +240,7 @@ File discovery, JSON parsing, pattern matching, line counting — these are haik
 
 ### A9: Hardcoded Paths (R30)
 
-Absolute paths in hooks, scripts, or plugin configs break when:
-- A different user installs the plugin
-- The project is moved
-- CI/CD runs in a container
+Absolute paths in hooks, scripts, or plugin configs break across environments.
 
 **Fix:** Use `${CLAUDE_PLUGIN_ROOT}` for paths within a plugin. Use relative paths where the base is well-defined.
 
