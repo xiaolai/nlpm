@@ -445,10 +445,12 @@
       "stars": 720,
       "artifacts": 6,
       "description": "A Claude Code Plugin that provides an autonomous AI copywriter.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 90,
       "audit_issue": 67,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR"
     },
     "numman-ali/n-skills": {
       "discovered": "2026-04-13T06:41:48Z",
