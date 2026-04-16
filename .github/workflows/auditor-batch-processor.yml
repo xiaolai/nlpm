@@ -137,6 +137,12 @@ jobs:
             echo "  PICK #$ISSUE_NUM ($REPO) → audit-ready"
             if [ "$DRY_RUN" != "true" ]; then
               gh issue edit "$ISSUE_NUM" --add-label "audit-ready" --remove-label "audit-candidate" 2>/dev/null || true
+              # GITHUB_TOKEN label events don't trigger other workflows (anti-recursion).
+              # Explicitly dispatch the audit workflow.
+              gh workflow run auditor-audit.yml \
+                -f repo="$REPO" \
+                -f issue_number="$ISSUE_NUM" 2>/dev/null || echo "    WARNING: failed to dispatch audit for $REPO"
+              sleep 2
             fi
             PICKED=$((PICKED + 1))
           done < <(gh issue list --label "audit-candidate" --state open --json number,title \
