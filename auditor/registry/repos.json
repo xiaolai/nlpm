@@ -621,11 +621,21 @@
       "score": 93,
       "strategy": "batched",
       "security": "BLOCKED"
+    },
+    "wshobson/agents": {
+      "discovered": "2026-04-17T12:24:03Z",
+      "stars": 33764,
+      "artifacts": 509,
+      "description": "Intelligent automation and multi-agent orchestration for Claude Code",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 82,
+      "prs": []
     }
   },
   "metadata": {
     "last_discovery": "2026-04-13T06:41:48Z",
-    "total_discovered": 32,
+    "total_discovered": 33,
     "total_audited": 10,
     "total_contributed": 6
   }
