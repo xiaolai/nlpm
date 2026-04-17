@@ -429,10 +429,12 @@
       "stars": 1917,
       "artifacts": 7868,
       "description": "340 plugins + 1367 agent skills for Claude Code. Open-source marketplace with CCPI package manager, interactive tutorials, and production orchestration patterns.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 73,
       "audit_issue": 65,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "REVIEW"
     },
     "mukul975/Anthropic-Cybersecurity-Skills": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -557,10 +559,12 @@
       "stars": 3612,
       "artifacts": 48,
       "description": "Claude Autoresearch Skill — Autonomous goal-directed iteration for Claude Code. Inspired by Karpathy's autoresearch. Modify → Verify → Keep/Discard → Repeat forever.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 76,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "CLEAR"
     },
     "wanshuiyin/Auto-claude-code-research-in-sleep": {
       "discovered": "2026-04-13T06:41:48Z",
