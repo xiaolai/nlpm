@@ -627,12 +627,19 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "audited",
+      "status": "contributed",
       "score": 76,
       "audit_issue": 82,
       "prs": [],
       "strategy": "progressive",
-      "security": "UNKNOWN"
+      "security": "UNKNOWN",
+      "pipeline_prs": [
+        488,
+        489,
+        490,
+        491,
+        492
+      ]
     }
   },
   "metadata": {
