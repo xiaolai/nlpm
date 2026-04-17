@@ -627,12 +627,15 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "audited",
+      "status": "contributed",
       "score": 20,
       "audit_issue": 82,
       "prs": [],
       "strategy": "progressive",
-      "security": "UNKNOWN"
+      "security": "UNKNOWN",
+      "contribution_type": "discussion",
+      "discussion_url": "https://github.com/wshobson/agents/discussions/487",
+      "discussion_filed": "2026-04-17"
     }
   },
   "metadata": {
