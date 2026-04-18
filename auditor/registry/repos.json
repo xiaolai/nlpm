@@ -714,19 +714,6 @@
       "star_velocity": 2.0,
       "star_anomaly": 2.67
     },
-    "microsoft/apm": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1826,
-      "artifacts": 21,
-      "description": "Agent Package Manager",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 85,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 219.0,
-      "star_anomaly": 2.52
-    },
     "LerianStudio/ring": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 174,
@@ -779,32 +766,6 @@
       "star_velocity": 669.33,
       "star_anomaly": 0.46
     },
-    "CherryHQ/cherry-studio": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 43724,
-      "artifacts": 91,
-      "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 90,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 74.67,
-      "star_anomaly": 1.19
-    },
-    "HKUDS/nanobot": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 39822,
-      "artifacts": 9,
-      "description": "\"\ud83d\udc08 nanobot: The Ultra-Lightweight Personal AI Agent\"",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 91,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 143.5,
-      "star_anomaly": 1.3
-    },
     "Yeachan-Heo/oh-my-claudecode": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 29671,
@@ -830,19 +791,6 @@
       "source": "claudepot",
       "star_velocity": 702.0,
       "star_anomaly": 0.84
-    },
-    "qwibitai/nanoclaw": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 27457,
-      "artifacts": 36,
-      "description": "A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other messaging apps,, has memory, scheduled jobs, and runs directly on Anthropic's Agents SDK",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 94,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 56.0,
-      "star_anomaly": 0.97
     },
     "luongnv89/claude-howto": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -870,45 +818,6 @@
       "star_velocity": 30.0,
       "star_anomaly": 0.81
     },
-    "iOfficeAI/AionUi": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 22091,
-      "artifacts": 37,
-      "description": "Free, local, open-source 24/7 Cowork app and OpenClaw for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | \ud83c\udf1f Star if you like it!",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 97,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 82.67,
-      "star_anomaly": 0.94
-    },
-    "slopus/happy": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 18619,
-      "artifacts": 10,
-      "description": "Mobile and Web client for Codex and Claude Code, with realtime voice, encryption and fully featured",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 98,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 120.0,
-      "star_anomaly": 0.8
-    },
-    "yusufkaraaslan/Skill_Seekers": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 12745,
-      "artifacts": 8,
-      "description": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 99,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 90.0,
-      "star_anomaly": 1.69
-    },
     "superset-sh/superset": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 9749,
@@ -921,45 +830,6 @@
       "source": "claudepot",
       "star_velocity": 49.67,
       "star_anomaly": 0.74
-    },
-    "mksglu/context-mode": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 7491,
-      "artifacts": 8,
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 12 platforms",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 101,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 81.0,
-      "star_anomaly": 1.15
-    },
-    "op7418/CodePilot": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 5333,
-      "artifacts": 9,
-      "description": "A multi-model AI agent desktop client \u2014 connect any AI provider, extend with MCP & skills, control from your phone. Built with Electron + Next.js.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 102,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 26.67,
-      "star_anomaly": 1.28
-    },
-    "PeonPing/peon-ping": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 4490,
-      "artifacts": 163,
-      "description": "Warcraft III Peon voice notifications (+ more!) for Claude Code, Codex, IDEs, and any AI agent. Stop babysitting your terminal. Employ a Peon today.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 103,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 11.0,
-      "star_anomaly": 0.85
     },
     "FlorianBruniaux/claude-code-ultimate-guide": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -986,19 +856,6 @@
       "source": "claudepot",
       "star_velocity": 55.0,
       "star_anomaly": 0.28
-    },
-    "matt1398/claude-devtools": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 3118,
-      "artifacts": 7,
-      "description": "The missing DevTools for Claude Code \u2014 inspect session logs, tool calls, token usage, subagents, and context window in a visual UI. Free, open source.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 106,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 13.33,
-      "star_anomaly": 0.93
     },
     "gotalab/cc-sdd": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1039,19 +896,6 @@
       "star_velocity": 8.0,
       "star_anomaly": 0.57
     },
-    "nexu-io/nexu": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 2606,
-      "artifacts": 23,
-      "description": "The simplest desktop client for OpenClaw \ud83e\udd9e \u2014 bridge your Agent to WeChat, Feishu, Slack & Discord in one click. Works with Claude Code, Codex & any LLM. BYOK, Oauth, local-first, chat from your phone 24/7.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 110,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 19.33,
-      "star_anomaly": 0.88
-    },
     "Q00/ouroboros": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 2415,
@@ -1078,19 +922,6 @@
       "star_velocity": 4.33,
       "star_anomaly": 1.08
     },
-    "asheshgoplani/agent-deck": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 2093,
-      "artifacts": 5,
-      "description": "Terminal session manager for AI coding agents. One TUI for Claude, Gemini, OpenCode, Codex, and more.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 113,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 14.2,
-      "star_anomaly": 0.9
-    },
     "rohitg00/pro-workflow": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1912,
@@ -1103,32 +934,6 @@
       "source": "claudepot",
       "star_velocity": 6.67,
       "star_anomaly": 0.85
-    },
-    "shuvonsec/claude-bug-bounty": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1782,
-      "artifacts": 31,
-      "description": "AI-powered bug bounty hunting from your terminal - recon, 20 vuln classes,   autonomous hunting, and report generation. All inside Claude Code.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 115,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 12.0,
-      "star_anomaly": 0.79
-    },
-    "stickerdaniel/linkedin-mcp-server": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1593,
-      "artifacts": 8,
-      "description": "Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI assistant access to profiles, companies, jobs, and messages.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 116,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 15.0,
-      "star_anomaly": 0.45
     },
     "foryourhealth111-pixel/Vibe-Skills": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1143,19 +948,6 @@
       "star_velocity": 27.33,
       "star_anomaly": 0.86
     },
-    "AgentsMesh/AgentsMesh": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1540,
-      "artifacts": 6,
-      "description": "The AI Agent Workforce Platform \u2014 where teams scale beyond headcount. Give every team member an AI agent squad.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 118,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 22.33,
-      "star_anomaly": 1.04
-    },
     "feiskyer/claude-code-settings": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1434,
@@ -1168,45 +960,6 @@
       "source": "claudepot",
       "star_velocity": 0.0,
       "star_anomaly": 0.0
-    },
-    "poco-ai/poco-claw": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1287,
-      "artifacts": 10,
-      "description": "A more beautiful and easier-to-use alternative to OpenClaw. It features a nicer Web UI, built-in IM support, and a sandboxed runtime for improved safety. Under the hood, it is powered by a Claude Code\u2013based agent.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 120,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 1.88,
-      "star_anomaly": 0.0
-    },
-    "m0n0x41d/haft": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1272,
-      "artifacts": 12,
-      "description": "Engineering decisions  engine that know when they're stale. Frame, compare, decide \u2014 with evidence decay and parity enforcement. For Claude Code, Cursor, Gemini CLI, Codex and more.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 121,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 0.0,
-      "star_anomaly": 0.0
-    },
-    "zilliztech/memsearch": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1248,
-      "artifacts": 5,
-      "description": "A Markdown-first memory system, a standalone library for any AI agent. Inspired by OpenClaw.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 122,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 11.0,
-      "star_anomaly": 1.01
     },
     "wuji-labs/nopua": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1260,32 +1013,6 @@
       "star_velocity": 1.0,
       "star_anomaly": 0.47
     },
-    "Priivacy-ai/spec-kitty": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1084,
-      "artifacts": 19,
-      "description": "Spec-Driven Development for serious software developers. Spec Coding with with Claude, Cursor, Gemini, Codex. Kanban dashboard, git worktrees, auto-merge and more.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 127,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 8.67,
-      "star_anomaly": 1.65
-    },
-    "d-kimuson/claude-code-viewer": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1070,
-      "artifacts": 8,
-      "description": "A full-featured web-based Claude Code client that provides complete interactive functionality for managing Claude Code projects",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 128,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 0.0,
-      "star_anomaly": 0.0
-    },
     "aaron-he-zhu/seo-geo-claude-skills": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1050,
@@ -1298,19 +1025,6 @@
       "source": "claudepot",
       "star_velocity": 19.0,
       "star_anomaly": 1.07
-    },
-    "kbwo/ccmanager": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 1006,
-      "artifacts": 10,
-      "description": "Coding Agent Session Manager for Claude Code / Gemini CLI / Codex CLI / Cursor Agent / Copilot CLI / Cline CLI / OpenCode / Kimi CLI",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 130,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 7.0,
-      "star_anomaly": 1.17
     },
     "jnMetaCode/superpowers-zh": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1338,71 +1052,6 @@
       "star_velocity": 0.0,
       "star_anomaly": 0.0
     },
-    "tddworks/ClaudeBar": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 973,
-      "artifacts": 6,
-      "description": "A macOS menu bar application that monitors AI coding assistant usage quotas. Keep track of your Claude, Codex, Antigravity ,and Gemini usage at a glance.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 133,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 0.0,
-      "star_anomaly": 0.0
-    },
-    "nrslib/takt": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 963,
-      "artifacts": 7,
-      "description": "TAKT Agent Koordination Topology - Define how AI agents coordinate, where humans intervene, and what gets recorded \u2014 in YAML",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 134,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 5.33,
-      "star_anomaly": 0.0
-    },
-    "Natively-AI-assistant/natively-cluely-ai-assistant": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 949,
-      "artifacts": 9,
-      "description": "Natively - Free open-source AI interview copilot & meeting assistant. The best Cluely alternative, Final Round AI alternative, and Interview Coder alternative. Real-time transcription, undetectable stealth mode, local RAG, BYOK. No subscriptions. No data breaches.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 135,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 17.0,
-      "star_anomaly": 1.55
-    },
-    "Windy3f3f3f3f/claude-code-from-scratch": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 890,
-      "artifacts": 5,
-      "description": "Build your own Claude Code from scratch.  \ud83d\udd0d Claude Code \u5f00\u6e90\u4e86 50 \u4e07\u884c\u4ee3\u7801\uff0c\u8bfb\u4e0d\u52a8\uff1f\u7528 ~4000 \u884c TypeScript / Python \u4ece\u96f6\u590d\u73b0\u6838\u5fc3\u67b6\u6784\uff0c11 \u7ae0\u5206\u6b65\u6559\u7a0b\u5e26\u4f60\u7406\u89e3 coding agent \u7cbe\u9ad3",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 136,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 17.33,
-      "star_anomaly": 0.0
-    },
-    "OpenCoworkAI/open-cowork": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 862,
-      "artifacts": 5,
-      "description": "Open-source AI agent desktop app for Windows & macOS. One-click install Claude Code, MCP tools, and Skills \u2014 with sandbox isolation, multi-model support, and Feishu/Slack integration.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 137,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 5.33,
-      "star_anomaly": 1.27
-    },
     "ReScienceLab/opc-skills": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 776,
@@ -1416,19 +1065,6 @@
       "star_velocity": 11.0,
       "star_anomaly": 0.75
     },
-    "xintaofei/codeg": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 751,
-      "artifacts": 14,
-      "description": "Aggregate and browse AI coding agent sessions (Claude Code, Codex, Gemini CLI, etc.) in one place. Desktop app, self-hosted server, or Docker.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 139,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 7.0,
-      "star_anomaly": 0.43
-    },
     "avifenesh/agentsys": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 741,
@@ -1441,19 +1077,6 @@
       "source": "claudepot",
       "star_velocity": 4.0,
       "star_anomaly": 0.9
-    },
-    "openyak/openyak": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 710,
-      "artifacts": 153,
-      "description": "OpenYak \u2014 open-source local AI agent for Windows, macOS, and Linux. A private, BYOK alternative to Claude Code, Claude for Work, and OpenAI Codex with 20+ tools, 100+ models via OpenRouter, MCP, and Ollama. Free, MIT-licensed, no telemetry.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 141,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 0.0,
-      "star_anomaly": 0.0
     },
     "caliber-ai-org/ai-setup": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1494,19 +1117,6 @@
       "star_velocity": 3.67,
       "star_anomaly": 0.62
     },
-    "happier-dev/happier": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 674,
-      "artifacts": 181,
-      "description": "Web, Desktop & Mobile client for Codex, Claude Code, OpenCode, Kimi, Augment Code, Qwen, fully end-to-end encrypted",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 145,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 4.67,
-      "star_anomaly": 0.63
-    },
     "first-fluke/oh-my-agent": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 663,
@@ -1532,45 +1142,6 @@
       "source": "claudepot",
       "star_velocity": 4.33,
       "star_anomaly": 0.62
-    },
-    "xvirobotics/metabot": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 628,
-      "artifacts": 6,
-      "description": "\u6784\u5efa\u53d7\u76d1\u7763\u7684\u3001\u81ea\u6211\u8fdb\u5316\u7684 Agent \u7ec4\u7ec7\u7684\u57fa\u7840\u8bbe\u65bd | Infrastructure for supervised, self-improving agent organization. \u4ece\u98de\u4e66/Telegram \u8fd0\u884c Claude Code\uff0c\u5171\u4eab\u8bb0\u5fc6\u3001Agent \u5de5\u5382\u3001\u5b9a\u65f6\u4efb\u52a1\u3001\u901a\u4fe1\u603b\u7ebf\u3002",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 148,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 6.5,
-      "star_anomaly": 1.06
-    },
-    "K9i-0/ccpocket": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 597,
-      "artifacts": 18,
-      "description": "Mobile client for Codex and Claude \u2014 control coding agents from your phone via WebSocket bridge",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 149,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 3.25,
-      "star_anomaly": 0.51
-    },
-    "jau123/MeiGen-AI-Design-MCP": {
-      "discovered": "2026-04-18T22:52:00Z",
-      "stars": 583,
-      "artifacts": 9,
-      "description": "MeiGen-AI-Design-MCP \u2014 Turn Claude Code / OpenClaw into your local Lovart. Local ComfyUI, 1,400+ prompt library, multi-direction parallel generation.",
-      "status": "discovered",
-      "score": null,
-      "audit_issue": 150,
-      "prs": [],
-      "source": "claudepot",
-      "star_velocity": 0.0,
-      "star_anomaly": 0.0
     },
     "alinaqi/claude-bootstrap": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1627,7 +1198,7 @@
   },
   "metadata": {
     "last_discovery": "2026-04-18T22:52:00Z",
-    "total_discovered": 105,
+    "total_discovered": 72,
     "total_audited": 10,
     "total_contributed": 6
   }
