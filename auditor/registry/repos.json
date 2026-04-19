@@ -719,13 +719,15 @@
       "stars": 174,
       "artifacts": 194,
       "description": "89 skills and 38 specialized agents that enforce proven engineering practices for AI-assisted development. TDD, systematic debugging, parallel code review, and 10-gate development cycles — as a Claude Code plugin marketplace.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 86,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 1.67,
-      "star_anomaly": 2.22
+      "star_anomaly": 2.22,
+      "strategy": "progressive",
+      "security": "UNKNOWN"
     },
     "NousResearch/hermes-agent": {
       "discovered": "2026-04-18T22:52:00Z",
