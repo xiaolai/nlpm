@@ -857,7 +857,9 @@
       "prs": [],
       "source": "claudepot",
       "star_velocity": 55.0,
-      "star_anomaly": 0.28
+      "star_anomaly": 0.28,
+      "strategy": "single",
+      "security": "BLOCKED"
     },
     "gotalab/cc-sdd": {
       "discovered": "2026-04-18T22:52:00Z",
