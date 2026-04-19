@@ -745,26 +745,30 @@
       "stars": 51912,
       "artifacts": 11,
       "description": "omo; the best agent harness - previously oh-my-opencode",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 74,
       "audit_issue": 88,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "single",
+      "security": "REVIEW"
     },
     "shanraisshan/claude-code-best-practice": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 46008,
       "artifacts": 44,
       "description": "from vibe coding to agentic engineering - practice makes claude perfect",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 89,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 669.33,
-      "star_anomaly": 0.46
+      "star_anomaly": 0.46,
+      "strategy": "batched",
+      "security": "CLEAR"
     },
     "Yeachan-Heo/oh-my-claudecode": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -786,26 +790,30 @@
       "stars": 28660,
       "artifacts": 31,
       "description": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 93,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 702.0,
-      "star_anomaly": 0.84
+      "star_anomaly": 0.84,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "luongnv89/claude-howto": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 27150,
       "artifacts": 186,
       "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 77,
       "audit_issue": 95,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 381.6,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "progressive",
+      "security": "REVIEW"
     },
     "davila7/claude-code-templates": {
       "discovered": "2026-04-18T22:52:00Z",
