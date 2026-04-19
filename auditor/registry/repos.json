@@ -745,13 +745,15 @@
       "stars": 51912,
       "artifacts": 11,
       "description": "omo; the best agent harness - previously oh-my-opencode",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 74,
       "audit_issue": 88,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "single",
+      "security": "REVIEW"
     },
     "shanraisshan/claude-code-best-practice": {
       "discovered": "2026-04-18T22:52:00Z",
