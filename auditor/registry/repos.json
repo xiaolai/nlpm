@@ -923,13 +923,15 @@
       "stars": 2710,
       "artifacts": 48,
       "description": "An improved implementation of the Ralph Wiggum technique for autonomous AI agent orchestration",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 91,
       "audit_issue": 109,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 8.0,
-      "star_anomaly": 0.57
+      "star_anomaly": 0.57,
+      "strategy": "single",
+      "security": "CLEAR"
     },
     "Q00/ouroboros": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -951,39 +953,45 @@
       "stars": 2210,
       "artifacts": 31,
       "description": "Shared starter template configuration and CLAUDE.md memory bank system for Claude Code",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 49,
       "audit_issue": 112,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 4.33,
-      "star_anomaly": 1.08
+      "star_anomaly": 1.08,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "rohitg00/pro-workflow": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1912,
       "artifacts": 58,
       "description": "Claude Code learns from your corrections: self-correcting memory that compounds over 50+ sessions. Context engineering, parallel worktrees, agent teams, and 17 battle-tested skills.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 90,
       "audit_issue": 114,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 6.67,
-      "star_anomaly": 0.85
+      "star_anomaly": 0.85,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "foryourhealth111-pixel/Vibe-Skills": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1570,
       "artifacts": 393,
       "description": "VibeSkills is a new kind of super skill that organizes 340+ governed skills into one stable AI work system.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 30,
       "audit_issue": 117,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 27.33,
-      "star_anomaly": 0.86
+      "star_anomaly": 0.86,
+      "strategy": "progressive",
+      "security": "UNKNOWN"
     },
     "feiskyer/claude-code-settings": {
       "discovered": "2026-04-18T22:52:00Z",
