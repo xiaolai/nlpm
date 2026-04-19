@@ -758,13 +758,15 @@
       "stars": 46008,
       "artifacts": 44,
       "description": "from vibe coding to agentic engineering - practice makes claude perfect",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 89,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 669.33,
-      "star_anomaly": 0.46
+      "star_anomaly": 0.46,
+      "strategy": "batched",
+      "security": "CLEAR"
     },
     "Yeachan-Heo/oh-my-claudecode": {
       "discovered": "2026-04-18T22:52:00Z",
