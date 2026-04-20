@@ -1075,13 +1075,15 @@
       "stars": 1128,
       "artifacts": 71,
       "description": "A universal CLI toolkit for AI agent skills, enabling structured AI-assisted development across tools like Cursor, Claude Code, Codex, and more.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 125,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 5.4,
-      "star_anomaly": 0.86
+      "star_anomaly": 0.86,
+      "strategy": "progressive",
+      "security": "CLEAR"
     },
     "study8677/antigravity-workspace-template": {
       "discovered": "2026-04-18T22:52:00Z",
