@@ -473,12 +473,16 @@
       "stars": 974,
       "artifacts": 10,
       "description": "Curated plugin marketplace for AI agents - works with Claude Code, Codex, and openskills",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 68,
       "prs": [],
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        22,
+        23
+      ]
     },
     "nyldn/claude-octopus": {
       "discovered": "2026-04-13T06:41:48Z",
