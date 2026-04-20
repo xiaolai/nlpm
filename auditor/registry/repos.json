@@ -377,12 +377,16 @@
       "stars": 2377,
       "artifacts": 28,
       "description": "Comprehensive paid advertising audit & optimization skill for Claude Code. 225+ checks across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft & Apple Search Ads with weighted scoring, parallel agents, industry templates, and AI creative generation.",
-      "status": "audited",
+      "status": "contributed",
       "score": 99,
       "audit_issue": 60,
       "prs": [],
       "strategy": "batched",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        19,
+        20
+      ]
     },
     "JuliusBrussee/caveman": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -473,36 +477,52 @@
       "stars": 974,
       "artifacts": 10,
       "description": "Curated plugin marketplace for AI agents - works with Claude Code, Codex, and openskills",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 68,
       "prs": [],
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        22,
+        23
+      ]
     },
     "nyldn/claude-octopus": {
       "discovered": "2026-04-13T06:41:48Z",
       "stars": 2575,
       "artifacts": 212,
       "description": "Put up to 8 AI models on every coding task — blind spots surface before you ship. Claude Code plugin.",
-      "status": "audited",
+      "status": "contributed",
       "score": 79,
       "audit_issue": 69,
       "prs": [],
       "strategy": "progressive",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        293,
+        294,
+        295,
+        296,
+        297
+      ]
     },
     "rohitg00/awesome-claude-code-toolkit": {
       "discovered": "2026-04-13T06:41:48Z",
       "stars": 1214,
       "artifacts": 557,
       "description": "The most comprehensive toolkit for Claude Code -- 135 agents, 35 curated skills (+400,000 via SkillKit), 42 commands, 176+ plugins, 20 hooks, 15 rules, 7 templates, 14 MCP configs, 26 companion apps, 52 ecosystem entries, and more.",
-      "status": "audited",
+      "status": "contributed",
       "score": 46,
       "audit_issue": 70,
       "prs": [],
       "strategy": "progressive",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        318,
+        319,
+        320
+      ]
     },
     "sangrokjung/claude-forge": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -625,12 +645,17 @@
       "stars": 7505,
       "artifacts": 8,
       "description": "45 tips for getting the most out of Claude Code, from basics to advanced - includes a custom status line script, cutting the system prompt in half, using Gemini CLI as Claude Code's minion, and Claude Code running itself in a container. Also includes the dx plugin.",
-      "status": "audited",
+      "status": "contributed",
       "score": 94,
       "audit_issue": 78,
       "prs": [],
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        17,
+        18,
+        19
+      ]
     },
     "zebbern/claude-code-guide": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1075,13 +1100,15 @@
       "stars": 1128,
       "artifacts": 71,
       "description": "A universal CLI toolkit for AI agent skills, enabling structured AI-assisted development across tools like Cursor, Claude Code, Codex, and more.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 125,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 5.4,
-      "star_anomaly": 0.86
+      "star_anomaly": 0.86,
+      "strategy": "progressive",
+      "security": "CLEAR"
     },
     "study8677/antigravity-workspace-template": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1250,7 +1277,7 @@
       "stars": 653,
       "artifacts": 63,
       "description": "Empower agents with professional capabilities in specific fields (such as full-stack development, complex logic planning, multimedia processing, etc.) through modular Skills definitions, allowing agents to solve complex problems systematically like human experts.",
-      "status": "audited",
+      "status": "contributed",
       "score": 86,
       "security": "REVIEW",
       "audit_issue": 147,
@@ -1263,59 +1290,70 @@
       "source": "claudepot",
       "star_velocity": 4.33,
       "star_anomaly": 0.62,
-      "strategy": "progressive"
+      "strategy": "progressive",
+      "pipeline_prs": [
+        6
+      ]
     },
     "alinaqi/claude-bootstrap": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 576,
       "artifacts": 78,
       "description": "Opinionated project initialization for Claude Code. Security-first, spec-driven, AI-native.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 80,
       "audit_issue": 151,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "progressive",
+      "security": "BLOCKED"
     },
     "JuliusBrussee/cavekit": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 564,
       "artifacts": 50,
       "description": "A Claude Code plugin that turns natural language into blueprints, blueprints into parallel build plans, and build plans into working software with automated iteration, validation, and cross-model peer review.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 97,
       "audit_issue": 152,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 40.6,
-      "star_anomaly": 0.75
+      "star_anomaly": 0.75,
+      "strategy": "single",
+      "security": "CLEAR"
     },
     "a5c-ai/babysitter": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 562,
       "artifacts": 4184,
       "description": "Babysitter enforces obedience on agentic workforces and enables them to manage extremely complex tasks and workflows through deterministic, hallucination-free self-orchestration",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 70,
       "audit_issue": 153,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "progressive",
+      "security": "REVIEW"
     },
     "wecode-ai/Wegent": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 521,
       "artifacts": 11,
       "description": "An open-source AI-native operating system to define, organize, and run intelligent agent teams",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 81,
       "audit_issue": 154,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "single",
+      "security": "BLOCKED"
     }
   },
   "metadata": {
