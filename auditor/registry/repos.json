@@ -625,12 +625,17 @@
       "stars": 7505,
       "artifacts": 8,
       "description": "45 tips for getting the most out of Claude Code, from basics to advanced - includes a custom status line script, cutting the system prompt in half, using Gemini CLI as Claude Code's minion, and Claude Code running itself in a container. Also includes the dx plugin.",
-      "status": "audited",
+      "status": "contributed",
       "score": 94,
       "audit_issue": 78,
       "prs": [],
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        17,
+        18,
+        19
+      ]
     },
     "zebbern/claude-code-guide": {
       "discovered": "2026-04-13T06:41:48Z",
