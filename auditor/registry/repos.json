@@ -1177,13 +1177,15 @@
       "stars": 687,
       "artifacts": 30,
       "description": "Build Claude Code–style deep agents in Python: tool-calling, sandboxed execution, multi-agent teams, skills, checkpoints, and unlimited context — all on Pydantic AI.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 93,
       "audit_issue": 144,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 3.67,
-      "star_anomaly": 0.62
+      "star_anomaly": 0.62,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "first-fluke/oh-my-agent": {
       "discovered": "2026-04-18T22:52:00Z",
