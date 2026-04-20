@@ -1110,13 +1110,15 @@
       "stars": 776,
       "artifacts": 28,
       "description": "Agent Skills for Solopreneurs",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 138,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 11.0,
-      "star_anomaly": 0.75
+      "star_anomaly": 0.75,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "avifenesh/agentsys": {
       "discovered": "2026-04-18T22:52:00Z",
