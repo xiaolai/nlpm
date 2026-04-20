@@ -377,12 +377,16 @@
       "stars": 2377,
       "artifacts": 28,
       "description": "Comprehensive paid advertising audit & optimization skill for Claude Code. 225+ checks across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft & Apple Search Ads with weighted scoring, parallel agents, industry templates, and AI creative generation.",
-      "status": "audited",
+      "status": "contributed",
       "score": 99,
       "audit_issue": 60,
       "prs": [],
       "strategy": "batched",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        19,
+        20
+      ]
     },
     "JuliusBrussee/caveman": {
       "discovered": "2026-04-13T06:41:48Z",
