@@ -1151,13 +1151,15 @@
       "stars": 698,
       "artifacts": 24,
       "description": "Continuously sync your AI setups with one command. Codebase tailor suited agent skills, MCPs and config files for Claude Code, Cursor, and Codex.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 142,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 5.67,
-      "star_anomaly": 1.29
+      "star_anomaly": 1.29,
+      "strategy": "batched",
+      "security": "CLEAR"
     },
     "OpenRaiser/NanoResearch": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1179,26 +1181,30 @@
       "stars": 687,
       "artifacts": 30,
       "description": "Build Claude Code–style deep agents in Python: tool-calling, sandboxed execution, multi-agent teams, skills, checkpoints, and unlimited context — all on Pydantic AI.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 93,
       "audit_issue": 144,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 3.67,
-      "star_anomaly": 0.62
+      "star_anomaly": 0.62,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "first-fluke/oh-my-agent": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 663,
       "artifacts": 198,
       "description": "Portable multi-agent harness for .agents-based skills, workflows, and standards-aware agent teams across Antigravity, Claude Code, Codex, Cursor, OpenCode, and more.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 86,
       "audit_issue": 146,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 11.33,
-      "star_anomaly": 1.31
+      "star_anomaly": 1.31,
+      "strategy": "batched",
+      "security": "BLOCKED"
     },
     "guanyang/antigravity-skills": {
       "discovered": "2026-04-18T22:52:00Z",

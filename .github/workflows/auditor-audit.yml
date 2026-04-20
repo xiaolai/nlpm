@@ -11,11 +11,16 @@ on:
       issue_number:
         description: 'Tracking issue number'
         required: true
+      echo_retry:
+        description: 'Internal: marks this run as a prompt-echo retry (prevents retry loops)'
+        required: false
+        default: 'false'
 
 permissions:
   contents: write
   issues: write
   id-token: write
+  actions: write  # needed to self-dispatch on prompt-echo retry
 
 concurrency:
   group: nlpm-audit-${{ github.event.inputs.repo || github.event.issue.number || github.run_id }}
@@ -530,6 +535,7 @@ jobs:
       - name: Validate audit report
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           SLUG="${TARGET_REPO//\//-}"
           REPORT="auditor/audits/${SLUG}.md"
@@ -550,6 +556,20 @@ jobs:
             echo "ERROR: Claude echoed the prompt instead of executing the audit!"
             echo "Removing invalid report"
             rm -f "$REPORT"
+
+            # Auto-retry once: dispatch ourselves with echo_retry=true. The retry runs
+            # with the same inputs; prompt echo is usually non-deterministic, so a second
+            # attempt typically succeeds. We only retry once to avoid loops.
+            if [ "${{ inputs.echo_retry || 'false' }}" != "true" ]; then
+              echo "Dispatching auto-retry (echo_retry=true)..."
+              gh workflow run auditor-audit.yml \
+                -f repo="$TARGET_REPO" \
+                -f issue_number="${{ steps.target.outputs.issue }}" \
+                -f echo_retry=true 2>/dev/null || echo "WARNING: failed to dispatch retry"
+            else
+              echo "This run was already a retry — giving up."
+            fi
+
             exit 1
           fi
 

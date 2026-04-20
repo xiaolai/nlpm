@@ -61,6 +61,12 @@ jobs:
               echo "  PROMOTE #$ISSUE_NUM ($REPO): security=$SECURITY → contribute-approved"
               if [ "$DRY_RUN" != "true" ]; then
                 gh issue edit "$ISSUE_NUM" --add-label "contribute-approved" 2>/dev/null || true
+                # GITHUB_TOKEN label events don't trigger other workflows (anti-recursion).
+                # Dispatch the contribute workflow explicitly, same pattern as audit + case-study.
+                gh workflow run auditor-contribute.yml \
+                  -f repo="$REPO" \
+                  -f issue_number="$ISSUE_NUM" 2>/dev/null || echo "    WARNING: failed to dispatch contribute for $REPO"
+                sleep 2
               fi
               PROMOTED=$((PROMOTED + 1))
             else
@@ -71,6 +77,53 @@ jobs:
             2>/dev/null)
 
           echo "Promoted: $PROMOTED issues to contribute-approved"
+          echo ""
+
+          # ---------------------------------------------------------------
+          # Phase 1.2: Drain contribute-approved backlog
+          # (Phase 1 only dispatches for NEWLY-promoted issues. Issues that
+          #  were previously labeled contribute-approved via GITHUB_TOKEN had
+          #  their label event suppressed — the contribute workflow never
+          #  fired for them. Find those and dispatch now.
+          #  Rate limit: max 5 contribute workflows running concurrently.)
+          # ---------------------------------------------------------------
+          echo "--- Phase 1.2: Drain contribute-approved backlog ---"
+          DRAIN_LIMIT=5
+          DRAINED=0
+          DRAIN_FAILURES=0
+
+          while IFS=$'\t' read -r ISSUE_NUM TITLE; do
+            [ "$DRAINED" -ge "$DRAIN_LIMIT" ] && { echo "  STOP: drain limit $DRAIN_LIMIT reached"; break; }
+            [ "$DRAIN_FAILURES" -ge 3 ] && { echo "  ABORT: $DRAIN_FAILURES consecutive failures"; break; }
+
+            # Cap by currently-running contribute workflows
+            ACTIVE=$(gh run list --workflow=auditor-contribute.yml --status in_progress --json databaseId --jq 'length' 2>/dev/null || echo 0)
+            if [ "$ACTIVE" -ge "$DRAIN_LIMIT" ]; then
+              echo "  PAUSE: $ACTIVE contribute workflows already running, at capacity"
+              break
+            fi
+
+            REPO=$(echo "$TITLE" | sed 's/Audit candidate: //')
+            echo "  DISPATCH #$ISSUE_NUM ($REPO) via workflow_dispatch"
+            if [ "$DRY_RUN" != "true" ]; then
+              if gh workflow run auditor-contribute.yml \
+                -f repo="$REPO" \
+                -f issue_number="$ISSUE_NUM" 2>&1; then
+                DRAINED=$((DRAINED + 1))
+                DRAIN_FAILURES=0
+                sleep 2
+              else
+                echo "    FAILED to dispatch contribute for $REPO"
+                DRAIN_FAILURES=$((DRAIN_FAILURES + 1))
+              fi
+            else
+              DRAINED=$((DRAINED + 1))
+            fi
+          done < <(gh issue list --label "contribute-approved" --state open --json number,title,labels \
+            --jq '.[] | select(.labels | map(.name) | (contains(["prs-submitted"]) | not)) | "\(.number)\t\(.title)"' \
+            2>/dev/null | sort -t$'\t' -k1 -n)
+
+          echo "Drained: $DRAINED contribute-approved issues (failures: $DRAIN_FAILURES)"
           echo ""
 
           # ---------------------------------------------------------------
