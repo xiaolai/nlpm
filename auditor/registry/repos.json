@@ -509,12 +509,19 @@
       "stars": 648,
       "artifacts": 89,
       "description": "Supercharge Claude Code with 11 AI agents, 36 commands & 15 skills — the claude-code plugin framework inspired by oh-my-zsh. 6-layer security hooks included. 5-min install.",
-      "status": "audited",
+      "status": "contributed",
       "score": 82,
       "audit_issue": 71,
       "prs": [],
       "strategy": "progressive",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        32,
+        33,
+        34,
+        35,
+        36
+      ]
     },
     "santifer/career-ops": {
       "discovered": "2026-04-13T06:41:48Z",
