@@ -1183,7 +1183,7 @@
       "stars": 698,
       "artifacts": 24,
       "description": "Continuously sync your AI setups with one command. Codebase tailor suited agent skills, MCPs and config files for Claude Code, Cursor, and Codex.",
-      "status": "audited",
+      "status": "contributed",
       "score": 100,
       "audit_issue": 142,
       "prs": [],
@@ -1191,7 +1191,14 @@
       "star_velocity": 5.67,
       "star_anomaly": 1.29,
       "strategy": "batched",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        178,
+        179,
+        180,
+        181,
+        182
+      ]
     },
     "OpenRaiser/NanoResearch": {
       "discovered": "2026-04-18T22:52:00Z",
