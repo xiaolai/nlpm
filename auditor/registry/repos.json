@@ -1069,15 +1069,22 @@
     "aaron-he-zhu/seo-geo-claude-skills": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1050,
-      "artifacts": 16,
+      "artifacts": 38,
       "description": "20 SEO & GEO skills for Claude Code, Cursor, Codex, and 35+ AI agents. Keyword research, content writing, technical audits, rank tracking. CORE-EEAT + CITE frameworks.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 91,
+      "security": "CLEAR",
       "audit_issue": 129,
+      "audit_date": "2026-04-20",
+      "audit_report": "auditor/audits/aaron-he-zhu-seo-geo-claude-skills.md",
+      "bugs": 3,
+      "quality_issues": 21,
+      "security_findings": 2,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 19.0,
-      "star_anomaly": 1.07
+      "star_anomaly": 1.07,
+      "strategy": "batched"
     },
     "jnMetaCode/superpowers-zh": {
       "discovered": "2026-04-18T22:52:00Z",
