@@ -1263,13 +1263,15 @@
       "stars": 576,
       "artifacts": 78,
       "description": "Opinionated project initialization for Claude Code. Security-first, spec-driven, AI-native.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 80,
       "audit_issue": 151,
       "prs": [],
       "source": "claudepot",
       "star_velocity": 0.0,
-      "star_anomaly": 0.0
+      "star_anomaly": 0.0,
+      "strategy": "progressive",
+      "security": "BLOCKED"
     },
     "JuliusBrussee/cavekit": {
       "discovered": "2026-04-18T22:52:00Z",
