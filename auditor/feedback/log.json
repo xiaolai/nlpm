@@ -85,6 +85,11 @@
       "total_hits": 1,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0
+    },
+    "R10": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0
     }
   },
   "metadata": {
