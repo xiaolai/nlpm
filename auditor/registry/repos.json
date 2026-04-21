@@ -83,7 +83,7 @@
       "security": "BLOCKED"
     },
     "tech-leads-club/agent-skills": {
-      "status": "contributed",
+      "status": "tracked",
       "score": 93,
       "strategy": "progressive",
       "security": "CLEAR",
@@ -95,31 +95,31 @@
       ],
       "prs": [
         {
-          "closedAt": null,
+          "closedAt": "2026-04-20T12:06:15Z",
           "mergedAt": null,
           "number": 90,
-          "state": "OPEN",
+          "state": "CLOSED",
           "title": "fix: add missing version field to MCP plugin.json"
         },
         {
-          "closedAt": null,
+          "closedAt": "2026-04-20T12:09:44Z",
           "mergedAt": null,
           "number": 91,
-          "state": "OPEN",
+          "state": "CLOSED",
           "title": "fix(security): make Chromium --no-sandbox conditional on env var"
         },
         {
-          "closedAt": null,
+          "closedAt": "2026-04-20T12:09:32Z",
           "mergedAt": null,
           "number": 92,
-          "state": "OPEN",
+          "state": "CLOSED",
           "title": "docs(security): warn against building inline exec strings from untrusted input"
         },
         {
-          "closedAt": null,
+          "closedAt": "2026-04-20T12:09:40Z",
           "mergedAt": null,
           "number": 93,
-          "state": "OPEN",
+          "state": "CLOSED",
           "title": "fix(security): allow VERCEL_DEPLOY_ENDPOINT to override hard-coded deploy server URL"
         }
       ]
@@ -239,6 +239,43 @@
         39,
         40,
         41
+      ],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 37,
+          "state": "OPEN",
+          "title": "fix: add missing model declarations to 9 skill-source frontmatter files"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 38,
+          "state": "OPEN",
+          "title": "fix: add missing allowed-tools declaration to knowledge-guide agent"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 39,
+          "state": "OPEN",
+          "title": "fix: validate KEY against allowlist in read_config.sh"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 40,
+          "state": "OPEN",
+          "title": "fix: scope git add to vault directories in auto-commit.sh"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 41,
+          "state": "OPEN",
+          "title": "fix: require execute permission before running reconcile.sh"
+        }
       ]
     },
     "affaan-m/everything-claude-code": {
@@ -336,6 +373,43 @@
         46,
         47,
         48
+      ],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 44,
+          "state": "OPEN",
+          "title": "fix(b2b-project-shipper): correct agent name to match plugin directory"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 45,
+          "state": "OPEN",
+          "title": "fix(accessibility-expert): replace placeholder description in plugin.json"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 46,
+          "state": "OPEN",
+          "title": "fix(desktop-app-dev): reformat malformed single-line frontmatter to valid YAML"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 47,
+          "state": "OPEN",
+          "title": "fix(growth-hacker): add missing YAML frontmatter"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 48,
+          "state": "OPEN",
+          "title": "fix(changelog-generator): add missing YAML frontmatter"
+        }
       ]
     },
     "ccplugins/awesome-claude-code-plugins": {
@@ -349,6 +423,43 @@
         195,
         196,
         197
+      ],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 193,
+          "state": "OPEN",
+          "title": "fix: correct agent name mismatch in enterprise-integrator-architect"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 194,
+          "state": "OPEN",
+          "title": "fix: correct agent name mismatch in ceo-quality-controller-agent"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 195,
+          "state": "OPEN",
+          "title": "fix: remove erroneous numeric prefix from problem-solver-specialist name"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 196,
+          "state": "OPEN",
+          "title": "fix: add missing tools declarations to agent-sdk-verifier agents"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 197,
+          "state": "OPEN",
+          "title": "fix: validate $ARGUMENTS path before shell interpolation in optimize command"
+        }
       ]
     },
     "czlonkowski/n8n-skills": {
@@ -356,7 +467,8 @@
       "score": 93,
       "strategy": "single",
       "security": "CLEAR",
-      "pipeline_prs": []
+      "pipeline_prs": [],
+      "prs": []
     },
     "coreyhaines31/marketingskills": {
       "status": "contributed",
@@ -365,6 +477,15 @@
       "security": "CLEAR",
       "pipeline_prs": [
         247
+      ],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 247,
+          "state": "OPEN",
+          "title": "fix: validate https:// scheme for hooks send webhook URL in zapier.js"
+        }
       ]
     },
     "dontbesilent2025/dbskill": {
@@ -405,7 +526,22 @@
       "status": "contributed",
       "score": 99,
       "audit_issue": 60,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 19,
+          "state": "OPEN",
+          "title": "fix: remove --break-system-packages silent fallback in install.sh"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 20,
+          "state": "OPEN",
+          "title": "fix: replace curl-pipe-sh guidance with plugin install command in install.sh"
+        }
+      ],
       "strategy": "batched",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -454,10 +590,46 @@
       "stars": 38367,
       "artifacts": 24,
       "description": "A curated list of awesome skills, hooks, slash-commands, agent orchestrators, applications, and plugins for Claude Code by Anthropic",
-      "status": "contributed",
+      "status": "complete",
       "score": 89,
       "audit_issue": 64,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": "2025-06-09T01:15:59Z",
+          "mergedAt": "2025-06-09T01:15:59Z",
+          "number": 3,
+          "state": "MERGED",
+          "title": "Add CC Usage tool to Additional Tooling"
+        },
+        {
+          "closedAt": "2025-06-10T13:18:25Z",
+          "mergedAt": "2025-06-10T13:18:25Z",
+          "number": 4,
+          "state": "MERGED",
+          "title": "feat: Add ASCII-art logo"
+        },
+        {
+          "closedAt": "2025-06-15T19:02:59Z",
+          "mergedAt": "2025-06-15T19:02:59Z",
+          "number": 5,
+          "state": "MERGED",
+          "title": "Adding wrapper tools that i found to be useful."
+        },
+        {
+          "closedAt": "2025-06-13T18:33:50Z",
+          "mergedAt": "2025-06-13T18:33:50Z",
+          "number": 6,
+          "state": "MERGED",
+          "title": "Improve README formatting and organization"
+        },
+        {
+          "closedAt": "2025-06-14T01:26:50Z",
+          "mergedAt": "2025-06-14T01:26:50Z",
+          "number": 7,
+          "state": "MERGED",
+          "title": "slash-command: wcygan megalist"
+        }
+      ],
       "strategy": "batched",
       "security": "CLEAR",
       "pipeline_prs": [
@@ -466,7 +638,9 @@
         5,
         6,
         7
-      ]
+      ],
+      "case_study_candidate": true,
+      "case_study": "case-studies/2026-04-21-hesreallyhim-awesome-claude-code.md"
     },
     "jeremylongshore/claude-code-plugins-plus-skills": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -476,7 +650,43 @@
       "status": "contributed",
       "score": 73,
       "audit_issue": 65,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 535,
+          "state": "OPEN",
+          "title": "fix: add missing YAML frontmatter to .claude/agents/skill-auditor.md"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 536,
+          "state": "OPEN",
+          "title": "fix: add missing YAML frontmatter to schema-optimization pipeline agents"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 537,
+          "state": "OPEN",
+          "title": "fix: replace unevaluated shell substitution in backup-strategy.md frontmatter"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 538,
+          "state": "OPEN",
+          "title": "fix: replace silent global pnpm install in quick-test.sh with prerequisite check"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 539,
+          "state": "OPEN",
+          "title": "fix: guard webhook curl call with env var presence check in fairdb-setup-backup"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -495,7 +705,43 @@
       "status": "contributed",
       "score": 79,
       "audit_issue": 66,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 44,
+          "state": "OPEN",
+          "title": "fix: replace word-split tags with domain-specific cybersecurity tags"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 45,
+          "state": "OPEN",
+          "title": "fix: fill stub workflow in performing-ssl-tls-security-assessment"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 46,
+          "state": "OPEN",
+          "title": "fix: fill stub workflow in detecting-aws-cloudtrail-anomalies"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 47,
+          "state": "OPEN",
+          "title": "fix: fill stub workflow in analyzing-office365-audit-logs-for-compromise"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 48,
+          "state": "OPEN",
+          "title": "fix: fill stub workflow in performing-red-team-with-covenant"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -526,7 +772,22 @@
       "status": "contributed",
       "score": 96,
       "audit_issue": 68,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 22,
+          "state": "OPEN",
+          "title": "fix(security): replace execSync with execFileSync to prevent shell injection"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 23,
+          "state": "OPEN",
+          "title": "fix(security): pin yaml devDependency to exact version 2.8.3"
+        }
+      ],
       "strategy": "single",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -539,10 +800,46 @@
       "stars": 2575,
       "artifacts": 212,
       "description": "Put up to 8 AI models on every coding task — blind spots surface before you ship. Claude Code plugin.",
-      "status": "contributed",
+      "status": "tracked",
       "score": 79,
       "audit_issue": 69,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": "2026-04-21T03:40:37Z",
+          "mergedAt": null,
+          "number": 293,
+          "state": "CLOSED",
+          "title": "fix: add missing tools declarations to all agents/droids subagents"
+        },
+        {
+          "closedAt": "2026-04-21T03:40:39Z",
+          "mergedAt": null,
+          "number": 294,
+          "state": "CLOSED",
+          "title": "fix: add missing tools declaration to agents/personas/python-pro.md"
+        },
+        {
+          "closedAt": "2026-04-21T03:40:40Z",
+          "mergedAt": null,
+          "number": 295,
+          "state": "CLOSED",
+          "title": "fix: add implementation-status caveat to skill-extract description"
+        },
+        {
+          "closedAt": "2026-04-21T03:40:42Z",
+          "mergedAt": null,
+          "number": 296,
+          "state": "CLOSED",
+          "title": "fix: add jq fallback for JSON parsing in user-prompt-submit.sh"
+        },
+        {
+          "closedAt": "2026-04-21T03:40:44Z",
+          "mergedAt": null,
+          "number": 297,
+          "state": "CLOSED",
+          "title": "fix: reject non-HTTPS webhook URLs in telemetry-webhook.sh"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -561,7 +858,29 @@
       "status": "contributed",
       "score": 46,
       "audit_issue": 70,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 318,
+          "state": "OPEN",
+          "title": "fix: add missing YAML frontmatter to all 82 command files"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 319,
+          "state": "OPEN",
+          "title": "fix(hooks): add path traversal guard to file_path hook scripts"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 320,
+          "state": "OPEN",
+          "title": "fix(hooks): verify tmux socket existence in block-dev-server.js"
+        }
+      ],
       "strategy": "progressive",
       "security": "CLEAR",
       "pipeline_prs": [
@@ -578,7 +897,43 @@
       "status": "contributed",
       "score": 82,
       "audit_issue": 71,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 32,
+          "state": "OPEN",
+          "title": "fix(agents): add Task to verify-agent tools array"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 33,
+          "state": "OPEN",
+          "title": "fix(commands): add missing YAML frontmatter to three commands"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 34,
+          "state": "OPEN",
+          "title": "fix(agents): add tools array to observer agent frontmatter"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 35,
+          "state": "OPEN",
+          "title": "fix(scripts): pin md-to-docx Python dependencies to exact versions"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 36,
+          "state": "OPEN",
+          "title": "fix(scripts): pin PyMuPDF to exact version in pdf-enhance"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -606,10 +961,46 @@
       "stars": 32502,
       "artifacts": 4427,
       "description": "Installable GitHub library of 1,400+ agentic skills for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and more. Includes installer CLI, bundles, workflows, and official/community skill collections.",
-      "status": "contributed",
+      "status": "tracked",
       "score": 82,
       "audit_issue": 73,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": "2026-04-20T17:49:09Z",
+          "mergedAt": "2026-04-20T17:49:09Z",
+          "number": 534,
+          "state": "MERGED",
+          "title": "fix(prompt-engineer): add missing Step 2 to workflow sequence"
+        },
+        {
+          "closedAt": "2026-04-20T17:51:15Z",
+          "mergedAt": "2026-04-20T17:51:15Z",
+          "number": 535,
+          "state": "MERGED",
+          "title": "fix(youtube-summarizer): close unclosed code fence in Step 5 output section"
+        },
+        {
+          "closedAt": "2026-04-20T17:53:21Z",
+          "mergedAt": "2026-04-20T17:53:21Z",
+          "number": 536,
+          "state": "MERGED",
+          "title": "fix(seo-bundle): remove duplicate --- separator after frontmatter"
+        },
+        {
+          "closedAt": "2026-04-20T17:55:31Z",
+          "mergedAt": "2026-04-20T17:55:30Z",
+          "number": 537,
+          "state": "MERGED",
+          "title": "fix(blog-writing-guide): add missing date_added to frontmatter"
+        },
+        {
+          "closedAt": "2026-04-20T17:57:42Z",
+          "mergedAt": "2026-04-20T17:57:42Z",
+          "number": 538,
+          "state": "MERGED",
+          "title": "fix(security-engineer): correct risk label in ethical-hacking-methodology"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -618,7 +1009,8 @@
         536,
         537,
         538
-      ]
+      ],
+      "case_study_candidate": true
     },
     "team-attention/plugins-for-claude-natives": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -628,7 +1020,43 @@
       "status": "contributed",
       "score": 92,
       "audit_issue": 74,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 22,
+          "state": "OPEN",
+          "title": "fix(interactive-review): correct skill path in directory structure diagram"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 23,
+          "state": "OPEN",
+          "title": "fix(agent-council): remove orphaned root-level SKILL.md duplicate"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 24,
+          "state": "OPEN",
+          "title": "fix(say-summary): add missing matcher field to Stop hook"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 25,
+          "state": "OPEN",
+          "title": "fix(doubt): sanitize session_id before using it in file paths"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 26,
+          "state": "OPEN",
+          "title": "fix(session-wrap): pass SESSION_FILE to jq via --arg to prevent injection"
+        }
+      ],
       "strategy": "batched",
       "security": "CLEAR",
       "pipeline_prs": [
@@ -647,7 +1075,22 @@
       "status": "contributed",
       "score": 94,
       "audit_issue": 75,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 104,
+          "state": "OPEN",
+          "title": "fix(security): escape SQL identifiers in migrate.ts and searchDocs.ts"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 105,
+          "state": "OPEN",
+          "title": "fix(security): pin production dependency versions to lock-file values"
+        }
+      ],
       "strategy": "single",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -663,7 +1106,43 @@
       "status": "contributed",
       "score": 88,
       "audit_issue": 76,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 74,
+          "state": "OPEN",
+          "title": "fix: add missing name field to docs-manager OpenCode agent"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 75,
+          "state": "OPEN",
+          "title": "fix: add missing name field to all 10 OpenCode commands"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 76,
+          "state": "OPEN",
+          "title": "fix: add allowed-tools declaration to all 20 Claude commands"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 77,
+          "state": "OPEN",
+          "title": "fix: eliminate shell variable interpolation in python3 sync scripts"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 78,
+          "state": "OPEN",
+          "title": "fix: add path safety guard to sync_dir before rm -rf"
+        }
+      ],
       "strategy": "batched",
       "security": "CLEAR",
       "pipeline_prs": [
@@ -694,7 +1173,29 @@
       "status": "contributed",
       "score": 94,
       "audit_issue": 78,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 17,
+          "state": "OPEN",
+          "title": "fix(command): add allowed-tools and parameterize hardcoded path in upgrade-patches"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 18,
+          "state": "OPEN",
+          "title": "fix(security): pin cc-safe to version 0.1.13 in setup.sh"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 19,
+          "state": "OPEN",
+          "title": "fix(security): add SHA-256 checksum verification for curl-downloaded context-bar.sh"
+        }
+      ],
       "strategy": "single",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -1149,7 +1650,29 @@
       "status": "contributed",
       "score": 96,
       "audit_issue": 125,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 66,
+          "state": "OPEN",
+          "title": "fix(security): validate FEATURE arg in check-status.sh to prevent path traversal"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 67,
+          "state": "OPEN",
+          "title": "fix(security): pin root devDependencies to exact versions"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 68,
+          "state": "OPEN",
+          "title": "fix(security): pin packages/cli runtime dependencies to exact versions"
+        }
+      ],
       "source": "claudepot",
       "star_velocity": 5.4,
       "star_anomaly": 0.86,
@@ -1264,7 +1787,43 @@
       "status": "contributed",
       "score": 100,
       "audit_issue": 142,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 178,
+          "state": "OPEN",
+          "title": "fix(skills): align llm-provider stream() signature across platforms"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 179,
+          "state": "OPEN",
+          "title": "fix(skills): correct adding-a-command export pattern in .cursor/ skill"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 180,
+          "state": "OPEN",
+          "title": "fix(skills): correct writers-pattern sync/export signature across platforms"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 181,
+          "state": "OPEN",
+          "title": "fix(skills): correct scoring-checks function signature across platforms"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 182,
+          "state": "OPEN",
+          "title": "docs(telemetry): document PostHog analytics and opt-out mechanisms in README"
+        }
+      ],
       "source": "claudepot",
       "star_velocity": 5.67,
       "star_anomaly": 1.29,
@@ -1337,7 +1896,15 @@
       "bugs": 3,
       "quality_issues": 8,
       "security_findings": 3,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 6,
+          "state": "OPEN",
+          "title": "fix: add missing YAML frontmatter to skill-creator agent files"
+        }
+      ],
       "source": "claudepot",
       "star_velocity": 4.33,
       "star_anomaly": 0.62,
@@ -1385,7 +1952,22 @@
       "status": "contributed",
       "score": 70,
       "audit_issue": 153,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 141,
+          "state": "OPEN",
+          "title": "fix(scripts): validate TAG format before git push in rollback-release.sh"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 142,
+          "state": "OPEN",
+          "title": "fix(hooks): replace npx -y auto-install fallback with graceful no-op"
+        }
+      ],
       "source": "claudepot",
       "star_velocity": 0.0,
       "star_anomaly": 0.0,
