@@ -358,10 +358,17 @@
       "security": "CLEAR"
     },
     "ComposioHQ/awesome-claude-plugins": {
-      "status": "audited",
+      "status": "contributed",
       "score": 88,
       "strategy": "progressive",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        182,
+        183,
+        184,
+        185,
+        186
+      ]
     },
     "EveryInc/compound-engineering-plugin": {
       "status": "audited",
