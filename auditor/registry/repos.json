@@ -365,10 +365,11 @@
       "security": "CLEAR"
     },
     "Donchitos/Claude-Code-Game-Studios": {
-      "status": "audited",
+      "status": "contributed",
       "score": 82,
       "strategy": "progressive",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": []
     },
     "xiaolai/grill-for-claude": {
       "status": "audited",
