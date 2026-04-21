@@ -1100,7 +1100,7 @@
       "stars": 1128,
       "artifacts": 71,
       "description": "A universal CLI toolkit for AI agent skills, enabling structured AI-assisted development across tools like Cursor, Claude Code, Codex, and more.",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 125,
       "prs": [],
@@ -1108,7 +1108,12 @@
       "star_velocity": 5.4,
       "star_anomaly": 0.86,
       "strategy": "progressive",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        66,
+        67,
+        68
+      ]
     },
     "study8677/antigravity-workspace-template": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -1315,7 +1320,7 @@
       "stars": 564,
       "artifacts": 50,
       "description": "A Claude Code plugin that turns natural language into blueprints, blueprints into parallel build plans, and build plans into working software with automated iteration, validation, and cross-model peer review.",
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "audit_issue": 152,
       "prs": [],
@@ -1323,7 +1328,8 @@
       "star_velocity": 40.6,
       "star_anomaly": 0.75,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": []
     },
     "a5c-ai/babysitter": {
       "discovered": "2026-04-18T22:52:00Z",
