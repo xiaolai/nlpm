@@ -1315,7 +1315,7 @@
       "stars": 564,
       "artifacts": 50,
       "description": "A Claude Code plugin that turns natural language into blueprints, blueprints into parallel build plans, and build plans into working software with automated iteration, validation, and cross-model peer review.",
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "audit_issue": 152,
       "prs": [],
@@ -1323,7 +1323,8 @@
       "star_velocity": 40.6,
       "star_anomaly": 0.75,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": []
     },
     "a5c-ai/babysitter": {
       "discovered": "2026-04-18T22:52:00Z",
