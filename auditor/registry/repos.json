@@ -1183,7 +1183,7 @@
       "stars": 38367,
       "artifacts": 24,
       "description": "A curated list of awesome skills, hooks, slash-commands, agent orchestrators, applications, and plugins for Claude Code by Anthropic",
-      "status": "complete",
+      "status": "tracked",
       "score": 89,
       "audit_issue": 64,
       "prs": [
@@ -1517,25 +1517,25 @@
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 318,
+          "number": 327,
           "state": "OPEN",
-          "title": "fix: add missing YAML frontmatter to all 82 command files",
+          "title": "fix: add missing YAML frontmatter to all 82 plugin command files",
           "outcome": "open"
         },
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 319,
+          "number": 328,
           "state": "OPEN",
-          "title": "fix(hooks): add path traversal guard to file_path hook scripts",
+          "title": "fix(hooks): validate file_path stays within project directory",
           "outcome": "open"
         },
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 320,
+          "number": 329,
           "state": "OPEN",
-          "title": "fix(hooks): verify tmux socket existence in block-dev-server.js",
+          "title": "fix(hooks): verify tmux socket exists before trusting TMUX env var",
           "outcome": "open"
         }
       ],
@@ -1864,25 +1864,25 @@
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 17,
+          "number": 21,
           "state": "OPEN",
-          "title": "fix(command): add allowed-tools and parameterize hardcoded path in upgrade-patches",
+          "title": "fix: replace hardcoded author path in upgrade-patches command",
           "outcome": "open"
         },
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 18,
+          "number": 22,
           "state": "OPEN",
-          "title": "fix(security): pin cc-safe to version 0.1.13 in setup.sh",
+          "title": "fix: add allowed-tools frontmatter to upgrade-patches command",
           "outcome": "open"
         },
         {
           "closedAt": null,
           "mergedAt": null,
-          "number": 19,
+          "number": 23,
           "state": "OPEN",
-          "title": "fix(security): add SHA-256 checksum verification for curl-downloaded context-bar.sh",
+          "title": "fix: pin cc-safe to known-good version in setup.sh",
           "outcome": "open"
         }
       ],
@@ -1903,12 +1903,22 @@
       "status": "contributed",
       "score": 86,
       "audit_issue": 79,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 19,
+          "state": "OPEN",
+          "title": "fix: add frontmatter to agents/README.md to prevent scanner misclassification",
+          "outcome": "open"
+        }
+      ],
       "strategy": "progressive",
       "security": "CLEAR",
       "pipeline_prs": [
         19
-      ]
+      ],
+      "rule_adopted": false
     },
     "zubair-trabzada/geo-seo-claude": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1918,7 +1928,48 @@
       "status": "contributed",
       "score": 88,
       "audit_issue": 80,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 50,
+          "state": "OPEN",
+          "title": "fix: correct broken skill reference geo-llms-txt -> geo-llmstxt",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 51,
+          "state": "OPEN",
+          "title": "fix: disable Flask debug mode by default in webapp entrypoint",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 52,
+          "state": "OPEN",
+          "title": "fix: validate URL scheme before fetching in fetch_page.py",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 53,
+          "state": "OPEN",
+          "title": "fix: validate crawled URLs stay within original domain in llmstxt_generator",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 54,
+          "state": "OPEN",
+          "title": "fix: pin rich <14.0.0 and add stdin size guard in generate_pdf_report",
+          "outcome": "open"
+        }
+      ],
       "strategy": "single",
       "security": "CLEAR",
       "pipeline_prs": [
@@ -1927,7 +1978,8 @@
         52,
         53,
         54
-      ]
+      ],
+      "rule_adopted": false
     },
     "gadievron/raptor": {
       "status": "audited",
@@ -1940,7 +1992,7 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "complete",
+      "status": "tracked",
       "score": 76,
       "audit_issue": 82,
       "prs": [
@@ -2007,7 +2059,32 @@
       "status": "contributed",
       "score": 76,
       "audit_issue": 83,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 2,
+          "state": "OPEN",
+          "title": "fix: add missing `name` field to proxy-analyzer agent frontmatter",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 3,
+          "state": "OPEN",
+          "title": "fix: add missing `name` field to reviewer agent frontmatter",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 4,
+          "state": "OPEN",
+          "title": "fix: add missing `name` field to ui-debugger agent frontmatter",
+          "outcome": "open"
+        }
+      ],
       "source": "claudepot",
       "star_velocity": 1.0,
       "star_anomaly": 3.0,
@@ -2017,7 +2094,8 @@
         2,
         3,
         4
-      ]
+      ],
+      "rule_adopted": false
     },
     "yonatangross/orchestkit": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -2679,12 +2757,12 @@
       "audit_issue": 153,
       "prs": [
         {
-          "closedAt": null,
-          "mergedAt": null,
+          "closedAt": "2026-04-22T15:44:43Z",
+          "mergedAt": "2026-04-22T15:44:43Z",
           "number": 141,
-          "state": "OPEN",
+          "state": "MERGED",
           "title": "fix(scripts): validate TAG format before git push in rollback-release.sh",
-          "outcome": "open"
+          "outcome": "merged"
         },
         {
           "closedAt": null,
