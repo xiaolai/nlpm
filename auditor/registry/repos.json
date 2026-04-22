@@ -976,10 +976,14 @@
       "rule_adopted": false
     },
     "dontbesilent2025/dbskill": {
-      "status": "audited",
+      "status": "contributed",
       "score": 90,
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        11,
+        12
+      ]
     },
     "diet103/claude-code-infrastructure-showcase": {
       "status": "audited",
@@ -1274,12 +1278,17 @@
       "stars": 720,
       "artifacts": 6,
       "description": "A Claude Code Plugin that provides an autonomous AI copywriter.",
-      "status": "audited",
+      "status": "contributed",
       "score": 90,
       "audit_issue": 67,
       "prs": [],
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        5,
+        6,
+        7
+      ]
     },
     "numman-ali/n-skills": {
       "discovered": "2026-04-13T06:41:48Z",
