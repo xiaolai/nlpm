@@ -648,6 +648,8 @@ jobs:
             exit 0
           fi
 
+          source auditor/scripts/compute-fingerprint.sh
+
           mkdir -p auditor
           : > /tmp/enriched.jsonl
           : > /tmp/disagreements-new.jsonl
@@ -669,11 +671,8 @@ jobs:
               continue
             fi
 
-            # Compute fingerprint: sha256 of "repo|file|rule_id|pattern|line"
-            # Stable across re-audits of the same file at the same line.
-            FINGERPRINT=$(printf '%s' "$line" | jq -r --arg repo "$TARGET_REPO" \
-              '"\($repo)|\(.file // "")|\(.rule_id // "")|\(.pattern // "")|\(.line // "null")"' \
-              | shasum -a 256 | awk '{print "sha256:" $1}')
+            # Fingerprint stability is contract-critical — see compute-fingerprint.sh.
+            FINGERPRINT=$(printf '%s' "$line" | compute_fingerprint "$TARGET_REPO")
 
             # Enrich the finding with provenance fields and append to global log
             ENRICHED=$(printf '%s' "$line" | jq -c \

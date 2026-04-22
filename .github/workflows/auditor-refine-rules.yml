@@ -273,17 +273,22 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Claude's step checked out a refine/rules-* branch and pushed it.
-          # The log commit must land on main, not on the refine branch —
-          # otherwise the event entry is trapped inside a PR that may never
-          # merge, and the branch carries phantom log rows that will conflict.
-          git fetch origin main --depth 1 2>/dev/null || true
-          git checkout main 2>/dev/null || true
-          git pull --ff-only origin main 2>/dev/null || true
-
+          # Set the auth'd remote URL FIRST — if the earlier "Configure git
+          # remote" step was skipped (because proposals == 0 or an open PR
+          # exists), the remote still has no credentials from actions/checkout's
+          # persist-credentials: false. This step runs with if: always(), so
+          # we can't assume any prior step set this up.
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          # Claude's step may have checked out a refine/rules-* branch. The
+          # log commit must land on main, not the refine branch — otherwise
+          # the event is trapped inside a PR that may never merge, and the
+          # branch carries phantom log rows that will conflict later.
+          git fetch origin main --depth 1 2>/dev/null || true
+          git checkout main 2>/dev/null || true
+          git pull --ff-only origin main 2>/dev/null || true
 
           source auditor/scripts/log-event.sh
           PROPOSALS="${{ steps.input.outputs.proposals || 0 }}"
@@ -298,7 +303,7 @@ jobs:
             git commit -m "log: refine-rules $(date +%Y-%m-%d)"
 
             for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
+              if git push origin main 2>/dev/null; then break; fi
               echo "Push attempt $ATTEMPT failed, resolving..."
               git pull --no-rebase origin main --no-edit 2>/dev/null || true
               bash auditor/scripts/resolve-merge-conflicts.sh || true

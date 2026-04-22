@@ -82,16 +82,17 @@ jobs:
 
       # Enrich the per-audit sidecar with fingerprints so Claude can stamp
       # each PR body with the fingerprints of findings it addresses. The
-      # fingerprint formula is identical to auditor-audit.yml's aggregate
-      # step — this is the only cross-workflow formula duplication, and
-      # it's a spec (SCHEMAS §fingerprint), not code. Drift here would
-      # silently break the PR → finding join in track.yml.
+      # fingerprint formula lives in auditor/scripts/compute-fingerprint.sh
+      # — sourced here and by auditor-audit.yml's aggregate step, so drift
+      # is impossible.
       - name: Prepare findings with fingerprints
         id: sidecar
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           SIDECAR: auditor/audits/${{ steps.report.outputs.slug }}.findings.jsonl
         run: |
+          source auditor/scripts/compute-fingerprint.sh
+
           OUT=/tmp/findings-with-fp.jsonl
           : > "$OUT"
 
@@ -109,10 +110,7 @@ jobs:
             [ -z "$line" ] && continue
             printf '%s' "$line" | jq -e . >/dev/null 2>&1 || continue
 
-            FP=$(printf '%s' "$line" | jq -r --arg repo "$TARGET_REPO" \
-              '"\($repo)|\(.file // "")|\(.rule_id // "")|\(.pattern // "")|\(.line // "null")"' \
-              | shasum -a 256 | awk '{print "sha256:" $1}')
-
+            FP=$(printf '%s' "$line" | compute_fingerprint "$TARGET_REPO")
             printf '%s' "$line" | jq -c --arg fp "$FP" '. + {fingerprint: $fp}' >> "$OUT"
           done < "$SIDECAR"
 

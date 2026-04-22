@@ -153,8 +153,22 @@ The audit workflow includes a security scan BEFORE the NL quality audit:
 | Script | Purpose |
 |--------|---------|
 | log-event.sh | Append lifecycle events to events.jsonl |
+| compute-fingerprint.sh | SCHEMAS §fingerprint formula, shared by audit + contribute |
 | guard-protected-paths.sh | Block stray edits to skills/, agents/ from automation commits |
 | resolve-merge-conflicts.sh | Auto-resolve conflicts on append-only log pushes |
 | parse-suppressions.py | Extract rule_overrides from NLPM config frontmatter |
 | parse-pr-metadata.py | Extract `nlpm-metadata` block from a PR body on stdin |
 | rule-health.py | Run SCHEMAS §Learning query, write feedback-summary.json |
+
+### Model pinning
+
+One workflow pins a specific Claude model ID; the rest use the
+claude-code-action default (currently Sonnet 4.6).
+
+| Workflow | Model | Why pinned |
+|----------|-------|------------|
+| auditor-classify | `claude-haiku-4-5-20251001` | Bounded-enum classification is Haiku's sweet spot and ~10× cheaper than Sonnet for the same task |
+
+When Anthropic retires the pinned model, update the ID and note the
+migration in the commit message. All other workflows pick up model
+upgrades automatically.

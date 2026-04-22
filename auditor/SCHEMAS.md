@@ -304,6 +304,50 @@ Rules cluster into four states on these metrics:
 - **dormant** — zero hits across many audits → delete or re-scope
 - **disputed** — high reach, high disagreement → revisit the underlying principle
 
+## Registry: `auditor/registry/repos.json`
+
+Not a log — a mutable state file, rewritten in place by the pipeline. Documented here because its `.repos[].prs[]` array is read by `rule-health.py` and `auditor-daily-report.yml` and the shape must stay consistent.
+
+### Top-level
+
+```json
+{
+  "repos": {
+    "owner/name": { /* repo record */ }
+  }
+}
+```
+
+### Repo record
+
+| Field | Type | Written by | Notes |
+|-------|------|------------|-------|
+| `status` | enum | discover → batch → audit → contribute → track | One of `discovered`, `audited`, `contributed`, `tracked`, `complete` |
+| `audit_issue` | int | discover | Issue number in this repo, tracks the pipeline for the target |
+| `stars` | int | discover | Star count at discovery time |
+| `pipeline_prs` | array | contribute | PR numbers the auditor opened in the target repo |
+| `prs` | array | track | Per-PR state snapshots — see below |
+| `case_study_candidate` | bool | track | `true` once any PR merged or was applied separately |
+| `rule_adopted` | bool | track | `true` if the maintainer's own comments indicate rule-adoption |
+
+### PR record (`repos[owner/name].prs[i]`)
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `number` | int | PR number in the target repo |
+| `state` | string | Raw GitHub state: `OPEN` / `CLOSED` / `MERGED` |
+| `mergedAt` | ISO 8601 \| null | |
+| `closedAt` | ISO 8601 \| null | |
+| `title` | string | |
+| `createdAt` | ISO 8601 | |
+| `updatedAt` | ISO 8601 | Used for stale_90d detection |
+| `outcome` | enum | Pipeline-derived: `merged`, `applied_separately`, `rejected`, `open` |
+| `fingerprints` | array | Finding fingerprints parsed from the PR body's `nlpm-metadata` block; `[]` for legacy PRs |
+| `rule_ids` | array | Parallel to `fingerprints`; `[]` for legacy PRs |
+| `stale_90d_emitted` | bool | Sticky flag — `true` once the `stale_90d` finding_outcome event was logged for this PR |
+
+New PR-record fields are additive. Readers must use `.field // default` (or the equivalent) to accommodate records written before the field existed.
+
 ## Versioning
 
 This schema is the contract between workflows and learning tooling. Changes follow these rules:

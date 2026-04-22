@@ -30,6 +30,10 @@ jobs:
           source auditor/scripts/log-event.sh
 
           # Outcome detection patterns. Case-insensitive grep.
+          # Both are passed to `grep -E "$VAR"` — regex alternation only; no shell
+          # interpolation of metachars. If you add a pattern containing `$`, backtick,
+          # or `\`, double-check it renders literally in grep.
+          #
           # "applied_separately" = PR closed unmerged, but maintainer comment indicates fix was applied
           APPLIED_PATTERNS='applied in|applied directly|applied to|applied as|merged into|fixed in release|fixed in v|fixed on main|included in|will be in|already in|already fixed'
           # "rule_adopted" = maintainer opened a hardening/backfill PR that goes beyond our scope.
@@ -39,6 +43,12 @@ jobs:
 
           # Re-check contributed + tracked + complete. Maintainers can backfill / adopt rules
           # weeks after the case study publishes; we want those signals captured retroactively.
+          #
+          # NOTE: the loop body runs in a subshell (pipe-to-while). Variables set inside the
+          # loop (RULE_ADOPTED, CURRENT_STATUS, per-PR state) do NOT survive past `done`.
+          # Aggregate summaries are computed by reading the mutated registry AFTER the loop,
+          # in the separate "Log and commit" step below. Do not try to accumulate counts
+          # here in shell variables — they will be lost.
           jq -c '.repos | to_entries[] | select(.value.status == "contributed" or .value.status == "tracked" or .value.status == "complete")' auditor/registry/repos.json | while read -r entry; do
             REPO=$(echo "$entry" | jq -r '.key')
             ISSUE_NUM=$(echo "$entry" | jq -r '.value.audit_issue')
@@ -134,7 +144,16 @@ jobs:
                 # the raw comment thread for a future classifier to turn into
                 # maintainer_rejected / maintainer_pushback events.
                 if [ -n "$OUTCOME" ] && [ "$OLD_OUTCOME" != "$OUTCOME" ] && [ "$PR_STATE" = "closed_unmerged" ]; then
-                  COMMENTS_HASH="sha256:$(printf '%s' "$COMMENTS_ARR" | shasum -a 256 | awk '{print $1}')"
+                  # Cap each comment body at 4000 chars before snapshotting.
+                  # Bounds prompt-injection blast radius in auditor-classify.yml
+                  # (Haiku sees these comments verbatim). 4000 chars is ~1000 tokens
+                  # — covers virtually every real maintainer reply while cutting
+                  # off any attempt to stuff a long injection payload.
+                  COMMENTS_CAPPED=$(printf '%s' "$COMMENTS_ARR" \
+                    | jq -c '[.[] | .body = (if ((.body // "") | length) > 4000 then (.body[:4000] + "…[truncated]") else (.body // "") end)]')
+                  # comments_hash is computed over the CAPPED payload so the
+                  # classifier's dedup key matches what it actually sees.
+                  COMMENTS_HASH="sha256:$(printf '%s' "$COMMENTS_CAPPED" | shasum -a 256 | awk '{print $1}')"
                   TS_NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
                   touch auditor/disagreements.jsonl
                   jq -cn \
@@ -145,7 +164,7 @@ jobs:
                     --arg ch "$COMMENTS_HASH" \
                     --argjson fingerprints "$FP_ARR" \
                     --argjson rule_ids "$RULE_ARR" \
-                    --argjson comments "$COMMENTS_ARR" \
+                    --argjson comments "$COMMENTS_CAPPED" \
                     '{event: $event, timestamp: $ts, pr: $pr, pr_state: $pr_state, comments_hash: $ch, fingerprints: $fingerprints, rule_ids: $rule_ids, comments: $comments}' \
                     >> auditor/disagreements.jsonl
                   echo "  pr_comments_snapshot emitted for $REPO#$pr_num"
