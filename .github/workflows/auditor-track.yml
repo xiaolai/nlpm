@@ -27,7 +27,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          jq -c '.repos | to_entries[] | select(.value.status == "contributed")' auditor/registry/repos.json | while read -r entry; do
+          # Outcome detection patterns. Case-insensitive grep.
+          # "applied_separately" = PR closed unmerged, but maintainer comment indicates fix was applied
+          APPLIED_PATTERNS='applied in|applied directly|applied to|applied as|merged into|fixed in release|fixed in v|fixed on main|included in|will be in|already in|already fixed'
+          # "rule_adopted" = maintainer opened a hardening/backfill PR that goes beyond our scope
+          ADOPTION_PATTERNS='(hardening|backfill|backfilling|sibling).*#[0-9]+|CHANGELOG.*NLPM|CHANGELOG.*audit'
+
+          jq -c '.repos | to_entries[] | select(.value.status == "contributed" or .value.status == "tracked")' auditor/registry/repos.json | while read -r entry; do
             REPO=$(echo "$entry" | jq -r '.key')
             ISSUE_NUM=$(echo "$entry" | jq -r '.value.audit_issue')
             echo "Checking PRs for $REPO..."
@@ -35,39 +41,82 @@ jobs:
             # Query only PRs we created (stored in pipeline_prs)
             PR_NUMS=$(echo "$entry" | jq -r '.value.pipeline_prs // [] | .[]')
             PRS="[]"
+            RULE_ADOPTED="false"
             if [ -n "$PR_NUMS" ]; then
               ITEMS="[]"
               for pr_num in $PR_NUMS; do
                 PR_DATA=$(gh pr view "$pr_num" --repo "$REPO" \
                   --json number,state,mergedAt,closedAt,title 2>/dev/null || echo "")
-                if [ -n "$PR_DATA" ]; then
-                  ITEMS=$(echo "$ITEMS" | jq --argjson pr "$PR_DATA" '. + [$pr]')
+                if [ -z "$PR_DATA" ]; then
+                  sleep 0.5
+                  continue
                 fi
+
+                RAW_STATE=$(echo "$PR_DATA" | jq -r '.state')
+                MERGED_AT=$(echo "$PR_DATA" | jq -r '.mergedAt // ""')
+
+                # Classify outcome. Default: whatever the raw state says.
+                OUTCOME=""
+                if [ -n "$MERGED_AT" ] && [ "$MERGED_AT" != "null" ]; then
+                  OUTCOME="merged"
+                elif [ "$RAW_STATE" = "OPEN" ]; then
+                  OUTCOME="open"
+                elif [ "$RAW_STATE" = "CLOSED" ]; then
+                  # Closed and not merged — check maintainer comments for "applied separately" signal
+                  COMMENTS=$(gh api "repos/$REPO/issues/$pr_num/comments" \
+                    --jq '[.[] | select(.user.type != "Bot") | .body] | join("\n")' 2>/dev/null || echo "")
+                  if [ -n "$COMMENTS" ] && echo "$COMMENTS" | grep -qiE "$APPLIED_PATTERNS"; then
+                    OUTCOME="applied_separately"
+                  else
+                    OUTCOME="rejected"
+                  fi
+                  # Check for rule-adoption signal while we have the comments
+                  if [ -n "$COMMENTS" ] && echo "$COMMENTS" | grep -qiE "$ADOPTION_PATTERNS"; then
+                    RULE_ADOPTED="true"
+                  fi
+                fi
+
+                # Also check merged PRs for rule-adoption comments
+                if [ "$OUTCOME" = "merged" ] && [ "$RULE_ADOPTED" = "false" ]; then
+                  COMMENTS=$(gh api "repos/$REPO/issues/$pr_num/comments" \
+                    --jq '[.[] | select(.user.type != "Bot") | .body] | join("\n")' 2>/dev/null || echo "")
+                  if [ -n "$COMMENTS" ] && echo "$COMMENTS" | grep -qiE "$ADOPTION_PATTERNS"; then
+                    RULE_ADOPTED="true"
+                  fi
+                fi
+
+                ITEMS=$(echo "$ITEMS" | jq --argjson pr "$PR_DATA" --arg outcome "$OUTCOME" \
+                  '. + [$pr + {outcome: $outcome}]')
                 sleep 0.5
               done
               PRS="$ITEMS"
             fi
 
-            MERGED=$(echo "$PRS" | jq '[.[] | select(.state == "MERGED")] | length')
-            CLOSED=$(echo "$PRS" | jq '[.[] | select(.state == "CLOSED" and .mergedAt == null)] | length')
-            OPEN=$(echo "$PRS" | jq '[.[] | select(.state == "OPEN")] | length')
-            echo "  $MERGED merged, $CLOSED closed, $OPEN open"
+            MERGED=$(echo "$PRS" | jq '[.[] | select(.outcome == "merged")] | length')
+            APPLIED=$(echo "$PRS" | jq '[.[] | select(.outcome == "applied_separately")] | length')
+            REJECTED=$(echo "$PRS" | jq '[.[] | select(.outcome == "rejected")] | length')
+            OPEN=$(echo "$PRS" | jq '[.[] | select(.outcome == "open")] | length')
+            CLOSED=$((APPLIED + REJECTED))
+            echo "  $MERGED merged, $APPLIED applied-separately, $REJECTED rejected, $OPEN open (rule_adopted=$RULE_ADOPTED)"
 
-            jq --arg name "$REPO" --argjson prs "$PRS" \
-               '.repos[$name].prs = $prs' \
+            jq --arg name "$REPO" --argjson prs "$PRS" --argjson rule_adopted "$RULE_ADOPTED" \
+               '.repos[$name].prs = $prs | .repos[$name].rule_adopted = $rule_adopted' \
                auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
 
             if [ "$OPEN" -eq 0 ] && [ "$(echo "$PRS" | jq length)" -gt 0 ]; then
               jq --arg name "$REPO" '.repos[$name].status = "tracked"' \
                  auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
 
-              if [ "$MERGED" -gt 0 ]; then
+              # A repo qualifies for a case study if any fix landed — either merged
+              # directly or applied separately by the maintainer after closing the PR.
+              ACCEPTED=$((MERGED + APPLIED))
+              if [ "$ACCEPTED" -gt 0 ]; then
                 jq --arg name "$REPO" '.repos[$name].case_study_candidate = true' \
                    auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
 
                 if [ "$ISSUE_NUM" != "null" ] && [ "$ISSUE_NUM" != "0" ]; then
                   gh issue comment "$ISSUE_NUM" \
-                    --body "All PRs resolved. $MERGED merged, $CLOSED closed. Ready for case study." \
+                    --body "All PRs resolved. $MERGED merged, $APPLIED applied-separately, $REJECTED rejected. Ready for case study." \
                     2>/dev/null || true
                   gh issue edit "$ISSUE_NUM" --add-label "case-study-ready" 2>/dev/null || true
                   # GITHUB_TOKEN label events don't trigger other workflows (anti-recursion).
@@ -89,8 +138,9 @@ jobs:
           CONTRIBUTED=$(jq '[.repos | to_entries[] | select(.value.status == "contributed")] | length' auditor/registry/repos.json)
           TRACKED=$(jq '[.repos | to_entries[] | select(.value.status == "tracked")] | length' auditor/registry/repos.json)
           CASE_READY=$(jq '[.repos | to_entries[] | select(.value.case_study_candidate == true)] | length' auditor/registry/repos.json)
+          RULE_ADOPTED=$(jq '[.repos | to_entries[] | select(.value.rule_adopted == true)] | length' auditor/registry/repos.json)
 
-          log_event "track" "status_check" "{\"contributed\": $CONTRIBUTED, \"tracked\": $TRACKED, \"case_study_ready\": $CASE_READY}"
+          log_event "track" "status_check" "{\"contributed\": $CONTRIBUTED, \"tracked\": $TRACKED, \"case_study_ready\": $CASE_READY, \"rule_adopted\": $RULE_ADOPTED}"
 
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
@@ -98,6 +148,6 @@ jobs:
           git add auditor/registry/repos.json auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
-            git commit -m "track: $(date +%Y-%m-%d) — $TRACKED tracked, $CASE_READY case-study ready"
+            git commit -m "track: $(date +%Y-%m-%d) — $TRACKED tracked, $CASE_READY case-study ready, $RULE_ADOPTED rule-adopted"
             git push
           }

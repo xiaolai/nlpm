@@ -68,9 +68,12 @@ jobs:
           except:
               prs = []
 
-          merged = [p for p in prs if p.get('state') == 'MERGED']
-          rejected = [p for p in prs if p.get('state') == 'CLOSED' and not p.get('mergedAt')]
-          pending = [p for p in prs if p.get('state') == 'OPEN']
+          # Outcome-aware classification (track workflow populates .outcome on each PR).
+          # Falls back to state for older rows that predate the outcome field.
+          merged = [p for p in prs if p.get('outcome') == 'merged' or (p.get('outcome') is None and p.get('state') == 'MERGED')]
+          applied_separately = [p for p in prs if p.get('outcome') == 'applied_separately']
+          rejected = [p for p in prs if p.get('outcome') == 'rejected' or (p.get('outcome') is None and p.get('state') == 'CLOSED' and not p.get('mergedAt'))]
+          pending = [p for p in prs if p.get('outcome') == 'open' or (p.get('outcome') is None and p.get('state') == 'OPEN')]
 
           # Count rule hits across audit reports
           rule_hits = {}
@@ -85,6 +88,7 @@ jobs:
           feedback['metadata'].update({
               'total_prs_submitted': len(prs),
               'total_prs_merged': len(merged),
+              'total_prs_applied_separately': len(applied_separately),
               'total_prs_rejected': len(rejected)
           })
           for rule, count in rule_hits.items():
@@ -94,10 +98,23 @@ jobs:
           with open('auditor/feedback/log.json', 'w') as f:
               json.dump(feedback, f, indent=2)
 
+          # "Accepted" = merged directly OR applied separately by maintainer.
+          accepted = merged + applied_separately
+          resolved = accepted + rejected
+          # Count rule-adopted repos from the registry
+          try:
+              with open('auditor/registry/repos.json') as f:
+                  _reg = json.load(f)
+              rule_adopted_repos = [k for k, v in _reg.get('repos', {}).items() if v.get('rule_adopted') is True]
+          except:
+              rule_adopted_repos = []
           summary = {
               'prs_total': len(prs), 'prs_merged': len(merged),
+              'prs_applied_separately': len(applied_separately),
               'prs_rejected': len(rejected), 'prs_pending': len(pending),
-              'acceptance_rate': f"{len(merged)/len(prs)*100:.0f}%" if prs else "N/A",
+              'acceptance_rate': f"{len(accepted)/len(resolved)*100:.0f}%" if resolved else "N/A",
+              'merge_only_rate': f"{len(merged)/len(resolved)*100:.0f}%" if resolved else "N/A",
+              'rule_adopted_repos': rule_adopted_repos,
               'top_rules': sorted(rule_hits.items(), key=lambda x: -x[1])[:10],
               'rejection_patterns': [{'repo': p['repo'], 'title': p['title']} for p in rejected[:5]]
           }
@@ -154,9 +171,20 @@ jobs:
           L.append("|--------|-------|")
           L.append(f"| Submitted | {fb.get('prs_total', 0)} |")
           L.append(f"| Merged | {fb.get('prs_merged', 0)} |")
+          L.append(f"| Applied separately | {fb.get('prs_applied_separately', 0)} |")
           L.append(f"| Rejected | {fb.get('prs_rejected', 0)} |")
           L.append(f"| Pending | {fb.get('prs_pending', 0)} |")
-          L.append(f"| **Acceptance rate** | **{fb.get('acceptance_rate', 'N/A')}** |\n")
+          L.append(f"| **Acceptance rate** (merged+applied / resolved) | **{fb.get('acceptance_rate', 'N/A')}** |")
+          L.append(f"| Merge-only rate (merged / resolved) | {fb.get('merge_only_rate', 'N/A')} |\n")
+
+          # Rule adoption — the rare, best outcome
+          adopted = fb.get('rule_adopted_repos', [])
+          if adopted:
+              L.append("## Rule Adoption\n")
+              L.append("*Repos where the maintainer went beyond merging our PRs — added systemic checks, backfilled siblings, or credited NLPM in their CHANGELOG.*\n")
+              for r in adopted:
+                  L.append(f"- {r}")
+              L.append("")
 
           # Top rules
           top = fb.get('top_rules', [])
@@ -199,8 +227,14 @@ jobs:
           if total_n > 0 and rejected_n > 0:
               L.append(f"- **Rejection rate {rejected_n}/{total_n}**: every 'no' is a rule that needs rethinking")
           merged_n = fb.get('prs_merged', 0)
+          applied_n = fb.get('prs_applied_separately', 0)
           if merged_n > 0:
               L.append(f"- **{merged_n} merged**: these rules found real bugs — protect them")
+          if applied_n > 0:
+              L.append(f"- **{applied_n} applied separately**: PR closed but fix shipped in a later release — maintainer took the advice, just not the diff")
+          adopted_n = len(fb.get('rule_adopted_repos', []))
+          if adopted_n > 0:
+              L.append(f"- **{adopted_n} rule-adopted**: maintainers went beyond the PR (systemic hardening, sibling-file backfill, CHANGELOG credit) — the best possible outcome; study what worked")
           if not top and rejected_n == 0 and merged_n == 0:
               L.append("- Pipeline needs more data — run discover.yml to start")
           L.append("")
