@@ -158,4 +158,6 @@
 {"timestamp":"2026-04-22T12:31:49Z","workflow":"contribute","event":"prs_submitted","run_id":"24778057277","run_number":138,"data":{"repo":"rohitg00/awesome-claude-code-toolkit","pr_count":3}}
 {"timestamp":"2026-04-22T12:47:38Z","workflow":"case-study","event":"published","run_id":"24778375886","run_number":113,"data":{"repo":"hesreallyhim/awesome-claude-code","article_lines":183,"has_cover":true}}
 {"timestamp":"2026-04-22T13:01:50Z","workflow":"case-study","event":"published","run_id":"24778438926","run_number":117,"data":{"repo":"wshobson/agents","article_lines":190,"has_cover":true}}
+{"timestamp":"2026-04-22T16:32:21Z","workflow":"track","event":"status_check","run_id":"24790024756","run_number":23,"data":{"contributed":38,"tracked":14,"case_study_ready":11,"rule_adopted":2}}
+{"timestamp":"2026-04-22T16:44:30Z","workflow":"case-study","event":"published","run_id":"24790125302","run_number":118,"data":{"repo":"hesreallyhim/awesome-claude-code","article_lines":207,"has_cover":true}}
 {"timestamp":"2026-04-22T16:58:13Z","workflow":"case-study","event":"published","run_id":"24790196083","run_number":122,"data":{"repo":"wshobson/agents","article_lines":170,"has_cover":true}}
