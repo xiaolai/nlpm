@@ -141,6 +141,19 @@ jobs:
           COUNT=$(jq '.proposals | length' /tmp/refinement-input.json)
           echo "proposals=$COUNT" >> "$GITHUB_OUTPUT"
 
+      - name: Configure git remote for bot pushes
+        if: steps.existing.outputs.open_count == '0' && steps.input.outputs.proposals != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # actions/checkout ran with persist-credentials: false, so the
+          # remote URL has no embedded token. Claude's git push step below
+          # needs auth — inject the GITHUB_TOKEN into the URL once here so
+          # the bot identity + auth are both set before Claude takes over.
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
       - name: Propose refinements via Claude
         if: steps.existing.outputs.open_count == '0' && steps.input.outputs.proposals != '0'
         uses: anthropics/claude-code-action@v1
@@ -165,6 +178,9 @@ jobs:
             - `/tmp/refinement-input.json` — array of proposals with evidence.
               Shape: `{"proposals": [{rule_id, state, metrics, maintainer_quotes, rule_gaps, downstream_reasons}, ...], "generated_at": "..."}`
             - `skills/nlpm/rules/SKILL.md` — the rule catalog (R01..R50).
+
+            The git remote is already configured with push auth as
+            `nlpm-auditor[bot]`; use plain `git push` without further setup.
 
             ## Workflow
 
@@ -257,6 +273,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Claude's step checked out a refine/rules-* branch and pushed it.
+          # The log commit must land on main, not on the refine branch —
+          # otherwise the event entry is trapped inside a PR that may never
+          # merge, and the branch carries phantom log rows that will conflict.
+          git fetch origin main --depth 1 2>/dev/null || true
+          git checkout main 2>/dev/null || true
+          git pull --ff-only origin main 2>/dev/null || true
+
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
           source auditor/scripts/log-event.sh
           PROPOSALS="${{ steps.input.outputs.proposals || 0 }}"
           EXISTING="${{ steps.existing.outputs.open_count || 0 }}"
@@ -264,12 +292,17 @@ jobs:
             "$(jq -cn --argjson p "${PROPOSALS:-0}" --argjson e "${EXISTING:-0}" \
                '{proposals: $p, skipped_existing_open: $e}')" || true
 
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "log: refine-rules $(date +%Y-%m-%d)"
-            git push
+
+            for ATTEMPT in 1 2 3 4 5; do
+              if git push 2>/dev/null; then break; fi
+              echo "Push attempt $ATTEMPT failed, resolving..."
+              git pull --no-rebase origin main --no-edit 2>/dev/null || true
+              bash auditor/scripts/resolve-merge-conflicts.sh || true
+              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
+              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
+            done
           }
