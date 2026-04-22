@@ -151,4 +151,5 @@
 {"timestamp":"2026-04-22T08:45:23Z","workflow":"track","event":"status_check","run_id":"24768914266","run_number":21,"data":{"contributed":35,"tracked":14,"case_study_ready":11,"rule_adopted":2}}
 {"timestamp":"2026-04-22T08:57:29Z","workflow":"case-study","event":"published","run_id":"24768998899","run_number":108,"data":{"repo":"hesreallyhim/awesome-claude-code","article_lines":177,"has_cover":true}}
 {"timestamp":"2026-04-22T09:12:04Z","workflow":"case-study","event":"published","run_id":"24769049865","run_number":112,"data":{"repo":"wshobson/agents","article_lines":188,"has_cover":true}}
+{"timestamp":"2026-04-22T12:26:21Z","workflow":"contribute","event":"prs_submitted","run_id":"24778063473","run_number":140,"data":{"repo":"zebbern/claude-code-guide","pr_count":1}}
 {"timestamp":"2026-04-22T12:27:14Z","workflow":"contribute","event":"prs_submitted","run_id":"24778069491","run_number":142,"data":{"repo":"kangraemin/claude-inspector","pr_count":3}}
