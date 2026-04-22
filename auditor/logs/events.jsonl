@@ -156,4 +156,5 @@
 {"timestamp":"2026-04-22T12:27:30Z","workflow":"contribute","event":"prs_submitted","run_id":"24778060474","run_number":139,"data":{"repo":"ykdojo/claude-code-tips","pr_count":3}}
 {"timestamp":"2026-04-22T12:29:14Z","workflow":"contribute","event":"prs_submitted","run_id":"24778066462","run_number":141,"data":{"repo":"zubair-trabzada/geo-seo-claude","pr_count":5}}
 {"timestamp":"2026-04-22T12:31:49Z","workflow":"contribute","event":"prs_submitted","run_id":"24778057277","run_number":138,"data":{"repo":"rohitg00/awesome-claude-code-toolkit","pr_count":3}}
+{"timestamp":"2026-04-22T12:47:38Z","workflow":"case-study","event":"published","run_id":"24778375886","run_number":113,"data":{"repo":"hesreallyhim/awesome-claude-code","article_lines":183,"has_cover":true}}
 {"timestamp":"2026-04-22T13:01:50Z","workflow":"case-study","event":"published","run_id":"24778438926","run_number":117,"data":{"repo":"wshobson/agents","article_lines":190,"has_cover":true}}
