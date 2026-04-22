@@ -527,7 +527,7 @@
         }
       ],
       "case_study_candidate": true,
-      "rule_adopted": true
+      "rule_adopted": false
     },
     "Orchestra-Research/AI-Research-SKILLs": {
       "status": "contributed",
@@ -1080,7 +1080,7 @@
       "stars": 38367,
       "artifacts": 24,
       "description": "A curated list of awesome skills, hooks, slash-commands, agent orchestrators, applications, and plugins for Claude Code by Anthropic",
-      "status": "complete",
+      "status": "tracked",
       "score": 89,
       "audit_issue": 64,
       "prs": [
@@ -1089,35 +1089,40 @@
           "mergedAt": "2025-06-09T01:15:59Z",
           "number": 3,
           "state": "MERGED",
-          "title": "Add CC Usage tool to Additional Tooling"
+          "title": "Add CC Usage tool to Additional Tooling",
+          "outcome": "merged"
         },
         {
           "closedAt": "2025-06-10T13:18:25Z",
           "mergedAt": "2025-06-10T13:18:25Z",
           "number": 4,
           "state": "MERGED",
-          "title": "feat: Add ASCII-art logo"
+          "title": "feat: Add ASCII-art logo",
+          "outcome": "merged"
         },
         {
           "closedAt": "2025-06-15T19:02:59Z",
           "mergedAt": "2025-06-15T19:02:59Z",
           "number": 5,
           "state": "MERGED",
-          "title": "Adding wrapper tools that i found to be useful."
+          "title": "Adding wrapper tools that i found to be useful.",
+          "outcome": "merged"
         },
         {
           "closedAt": "2025-06-13T18:33:50Z",
           "mergedAt": "2025-06-13T18:33:50Z",
           "number": 6,
           "state": "MERGED",
-          "title": "Improve README formatting and organization"
+          "title": "Improve README formatting and organization",
+          "outcome": "merged"
         },
         {
           "closedAt": "2025-06-14T01:26:50Z",
           "mergedAt": "2025-06-14T01:26:50Z",
           "number": 7,
           "state": "MERGED",
-          "title": "slash-command: wcygan megalist"
+          "title": "slash-command: wcygan megalist",
+          "outcome": "merged"
         }
       ],
       "strategy": "batched",
@@ -1130,14 +1135,15 @@
         7
       ],
       "case_study_candidate": true,
-      "case_study": "case-studies/2026-04-21-hesreallyhim-awesome-claude-code.md"
+      "case_study": "case-studies/2026-04-21-hesreallyhim-awesome-claude-code.md",
+      "rule_adopted": false
     },
     "jeremylongshore/claude-code-plugins-plus-skills": {
       "discovered": "2026-04-13T06:41:48Z",
       "stars": 1917,
       "artifacts": 7868,
       "description": "340 plugins + 1367 agent skills for Claude Code. Open-source marketplace with CCPI package manager, interactive tutorials, and production orchestration patterns.",
-      "status": "complete",
+      "status": "tracked",
       "score": 73,
       "audit_issue": 65,
       "prs": [
@@ -1146,35 +1152,40 @@
           "mergedAt": "2026-04-22T04:35:18Z",
           "number": 535,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to .claude/agents/skill-auditor.md"
+          "title": "fix: add missing YAML frontmatter to .claude/agents/skill-auditor.md",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-22T04:39:17Z",
           "mergedAt": "2026-04-22T04:39:17Z",
           "number": 536,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to schema-optimization pipeline agents"
+          "title": "fix: add missing YAML frontmatter to schema-optimization pipeline agents",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-22T04:35:41Z",
           "mergedAt": "2026-04-22T04:35:41Z",
           "number": 537,
           "state": "MERGED",
-          "title": "fix: replace unevaluated shell substitution in backup-strategy.md frontmatter"
+          "title": "fix: replace unevaluated shell substitution in backup-strategy.md frontmatter",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-22T04:39:21Z",
           "mergedAt": "2026-04-22T04:39:21Z",
           "number": 538,
           "state": "MERGED",
-          "title": "fix: replace silent global pnpm install in quick-test.sh with prerequisite check"
+          "title": "fix: replace silent global pnpm install in quick-test.sh with prerequisite check",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-22T04:35:52Z",
           "mergedAt": "2026-04-22T04:35:52Z",
           "number": 539,
           "state": "MERGED",
-          "title": "fix: guard webhook curl call with env var presence check in fairdb-setup-backup"
+          "title": "fix: guard webhook curl call with env var presence check in fairdb-setup-backup",
+          "outcome": "merged"
         }
       ],
       "strategy": "progressive",
@@ -1187,7 +1198,8 @@
         539
       ],
       "case_study_candidate": true,
-      "case_study": "case-studies/2026-04-22-jeremylongshore-claude-code-plugins-plus-skills.md"
+      "case_study": "case-studies/2026-04-22-jeremylongshore-claude-code-plugins-plus-skills.md",
+      "rule_adopted": true
     },
     "mukul975/Anthropic-Cybersecurity-Skills": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1479,7 +1491,7 @@
       "stars": 32502,
       "artifacts": 4427,
       "description": "Installable GitHub library of 1,400+ agentic skills for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and more. Includes installer CLI, bundles, workflows, and official/community skill collections.",
-      "status": "complete",
+      "status": "tracked",
       "score": 82,
       "audit_issue": 73,
       "prs": [
@@ -1488,35 +1500,40 @@
           "mergedAt": "2026-04-20T17:49:09Z",
           "number": 534,
           "state": "MERGED",
-          "title": "fix(prompt-engineer): add missing Step 2 to workflow sequence"
+          "title": "fix(prompt-engineer): add missing Step 2 to workflow sequence",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-20T17:51:15Z",
           "mergedAt": "2026-04-20T17:51:15Z",
           "number": 535,
           "state": "MERGED",
-          "title": "fix(youtube-summarizer): close unclosed code fence in Step 5 output section"
+          "title": "fix(youtube-summarizer): close unclosed code fence in Step 5 output section",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-20T17:53:21Z",
           "mergedAt": "2026-04-20T17:53:21Z",
           "number": 536,
           "state": "MERGED",
-          "title": "fix(seo-bundle): remove duplicate --- separator after frontmatter"
+          "title": "fix(seo-bundle): remove duplicate --- separator after frontmatter",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-20T17:55:31Z",
           "mergedAt": "2026-04-20T17:55:30Z",
           "number": 537,
           "state": "MERGED",
-          "title": "fix(blog-writing-guide): add missing date_added to frontmatter"
+          "title": "fix(blog-writing-guide): add missing date_added to frontmatter",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-20T17:57:42Z",
           "mergedAt": "2026-04-20T17:57:42Z",
           "number": 538,
           "state": "MERGED",
-          "title": "fix(security-engineer): correct risk label in ethical-hacking-methodology"
+          "title": "fix(security-engineer): correct risk label in ethical-hacking-methodology",
+          "outcome": "merged"
         }
       ],
       "strategy": "progressive",
@@ -1529,7 +1546,8 @@
         538
       ],
       "case_study_candidate": true,
-      "case_study": "case-studies/2026-04-21-sickn33-antigravity-awesome-skills.md"
+      "case_study": "case-studies/2026-04-21-sickn33-antigravity-awesome-skills.md",
+      "rule_adopted": true
     },
     "team-attention/plugins-for-claude-natives": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1777,7 +1795,7 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "complete",
+      "status": "tracked",
       "score": 76,
       "audit_issue": 82,
       "prs": [
@@ -1786,35 +1804,40 @@
           "mergedAt": "2026-04-17T17:15:22Z",
           "number": 488,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to threat-modeling-expert agent"
+          "title": "fix: add missing YAML frontmatter to threat-modeling-expert agent",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-17T17:15:25Z",
           "mergedAt": "2026-04-17T17:15:25Z",
           "number": 489,
           "state": "MERGED",
-          "title": "fix: add missing name field to all 3 meigen-ai-design agents"
+          "title": "fix: add missing name field to all 3 meigen-ai-design agents",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-17T17:15:29Z",
           "mergedAt": "2026-04-17T17:15:29Z",
           "number": 490,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to codebase-cleanup commands"
+          "title": "fix: add missing YAML frontmatter to codebase-cleanup commands",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-17T17:15:32Z",
           "mergedAt": "2026-04-17T17:15:32Z",
           "number": 491,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to error-diagnostics commands"
+          "title": "fix: add missing YAML frontmatter to error-diagnostics commands",
+          "outcome": "merged"
         },
         {
           "closedAt": "2026-04-17T17:15:35Z",
           "mergedAt": "2026-04-17T17:15:35Z",
           "number": 492,
           "state": "MERGED",
-          "title": "fix: add missing YAML frontmatter to framework-migration and c4-architecture commands"
+          "title": "fix: add missing YAML frontmatter to framework-migration and c4-architecture commands",
+          "outcome": "merged"
         }
       ],
       "strategy": "progressive",
@@ -1828,7 +1851,8 @@
         492
       ],
       "case_study_candidate": true,
-      "case_study": "case-studies/2026-04-18-wshobson-agents.md"
+      "case_study": "case-studies/2026-04-18-wshobson-agents.md",
+      "rule_adopted": false
     },
     "kangraemin/claude-inspector": {
       "discovered": "2026-04-18T22:52:00Z",

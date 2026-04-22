@@ -140,3 +140,4 @@
 {"timestamp":"2026-04-22T05:03:53Z","workflow":"track","event":"status_check","run_id":"24761127695","run_number":18,"data":{"contributed":31,"tracked":11,"case_study_ready":10}}
 {"timestamp":"2026-04-22T05:18:40Z","workflow":"case-study","event":"published","run_id":"24761156319","run_number":101,"data":{"repo":"jeremylongshore/claude-code-plugins-plus-skills","article_lines":188,"has_cover":true}}
 {"timestamp":"2026-04-22T05:43:50Z","workflow":"track","event":"status_check","run_id":"24762267498","run_number":19,"data":{"contributed":31,"tracked":10,"case_study_ready":11,"rule_adopted":1}}
+{"timestamp":"2026-04-22T05:50:57Z","workflow":"track","event":"status_check","run_id":"24762455608","run_number":20,"data":{"contributed":31,"tracked":14,"case_study_ready":11,"rule_adopted":2}}
