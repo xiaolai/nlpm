@@ -1796,7 +1796,7 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "tracked",
+      "status": "complete",
       "score": 76,
       "audit_issue": 82,
       "prs": [
@@ -1852,7 +1852,7 @@
         492
       ],
       "case_study_candidate": true,
-      "case_study": "case-studies/2026-04-18-wshobson-agents.md",
+      "case_study": "case-studies/2026-04-22-wshobson-agents.md",
       "rule_adopted": false
     },
     "kangraemin/claude-inspector": {
