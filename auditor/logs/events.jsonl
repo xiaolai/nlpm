@@ -148,4 +148,5 @@
 {"timestamp":"2026-04-22T06:45:25Z","workflow":"contribute","event":"prs_submitted","run_id":"24764175415","run_number":134,"data":{"repo":"muratcankoylan/ralph-wiggum-marketer","pr_count":3}}
 {"timestamp":"2026-04-22T06:48:08Z","workflow":"contribute","event":"prs_submitted","run_id":"24764179189","run_number":136,"data":{"repo":"fcakyon/claude-codex-settings","pr_count":5}}
 {"timestamp":"2026-04-22T06:56:46Z","workflow":"contribute","event":"prs_submitted","run_id":"24764177317","run_number":135,"data":{"repo":"JuliusBrussee/caveman","pr_count":3}}
+{"timestamp":"2026-04-22T08:45:23Z","workflow":"track","event":"status_check","run_id":"24768914266","run_number":21,"data":{"contributed":35,"tracked":14,"case_study_ready":11,"rule_adopted":2}}
 {"timestamp":"2026-04-22T08:57:29Z","workflow":"case-study","event":"published","run_id":"24768998899","run_number":108,"data":{"repo":"hesreallyhim/awesome-claude-code","article_lines":177,"has_cover":true}}

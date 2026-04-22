@@ -983,7 +983,26 @@
       "pipeline_prs": [
         11,
         12
-      ]
+      ],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 11,
+          "state": "OPEN",
+          "title": "fix: replace broken /文风分析 skill reference in dbs-ai-check",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 12,
+          "state": "OPEN",
+          "title": "fix: harden record-demo.sh against sed injection and brittle ls parsing",
+          "outcome": "open"
+        }
+      ],
+      "rule_adopted": false
     },
     "diet103/claude-code-infrastructure-showcase": {
       "status": "audited",
@@ -1051,14 +1070,40 @@
       "status": "contributed",
       "score": 92,
       "audit_issue": 61,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 260,
+          "state": "OPEN",
+          "title": "docs(security): add inspect-before-run note to curl-pipe-to-bash one-liners",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 261,
+          "state": "OPEN",
+          "title": "fix(security): pin REPO_URL to tagged release instead of main branch",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 262,
+          "state": "OPEN",
+          "title": "fix(security): add SHA-256 integrity verification for downloaded hook files",
+          "outcome": "open"
+        }
+      ],
       "strategy": "single",
       "security": "CLEAR",
       "pipeline_prs": [
         260,
         261,
         262
-      ]
+      ],
+      "rule_adopted": false
     },
     "fcakyon/claude-codex-settings": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1068,7 +1113,48 @@
       "status": "contributed",
       "score": 79,
       "audit_issue": 62,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 166,
+          "state": "OPEN",
+          "title": "fix: correct broken repo reference and add name to sync-allowlist",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 167,
+          "state": "OPEN",
+          "title": "fix: add missing name frontmatter to update-readme, sync-claude-md, load-claude-md",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 168,
+          "state": "OPEN",
+          "title": "fix: add missing name and allowed-tools to tavily, azure, gcloud, paper-search setup commands",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 169,
+          "state": "OPEN",
+          "title": "fix: add missing frontmatter to 10 supabase-cli reference skill docs",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 170,
+          "state": "OPEN",
+          "title": "fix: add path traversal guard in sync_marketplace_to_plugins.py",
+          "outcome": "open"
+        }
+      ],
       "strategy": "progressive",
       "security": "REVIEW",
       "pipeline_prs": [
@@ -1077,7 +1163,8 @@
         168,
         169,
         170
-      ]
+      ],
+      "rule_adopted": false
     },
     "gmickel/flow-next": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1286,14 +1373,40 @@
       "status": "contributed",
       "score": 90,
       "audit_issue": 67,
-      "prs": [],
+      "prs": [
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 5,
+          "state": "OPEN",
+          "title": "fix: create loop state file so autonomous loop actually activates",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 6,
+          "state": "OPEN",
+          "title": "fix: prevent JSON and regex injection in stop-hook.sh",
+          "outcome": "open"
+        },
+        {
+          "closedAt": null,
+          "mergedAt": null,
+          "number": 7,
+          "state": "OPEN",
+          "title": "fix: pin better-sqlite3 to exact version (11.10.0)",
+          "outcome": "open"
+        }
+      ],
       "strategy": "single",
       "security": "CLEAR",
       "pipeline_prs": [
         5,
         6,
         7
-      ]
+      ],
+      "rule_adopted": false
     },
     "numman-ali/n-skills": {
       "discovered": "2026-04-13T06:41:48Z",
@@ -1334,7 +1447,7 @@
       "stars": 2575,
       "artifacts": 212,
       "description": "Put up to 8 AI models on every coding task — blind spots surface before you ship. Claude Code plugin.",
-      "status": "complete",
+      "status": "tracked",
       "score": 79,
       "audit_issue": 69,
       "prs": [
@@ -1817,7 +1930,7 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "complete",
+      "status": "tracked",
       "score": 76,
       "audit_issue": 82,
       "prs": [
