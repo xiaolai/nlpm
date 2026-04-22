@@ -2212,7 +2212,7 @@
       "stars": 27150,
       "artifacts": 186,
       "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
-      "status": "audited",
+      "status": "contributed",
       "score": 77,
       "audit_issue": 95,
       "prs": [],
@@ -2220,7 +2220,12 @@
       "star_velocity": 381.6,
       "star_anomaly": 0.0,
       "strategy": "progressive",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        89,
+        90,
+        91
+      ]
     },
     "davila7/claude-code-templates": {
       "discovered": "2026-04-18T22:52:00Z",
