@@ -1542,9 +1542,9 @@
       "strategy": "progressive",
       "security": "CLEAR",
       "pipeline_prs": [
-        318,
-        319,
-        320
+        327,
+        328,
+        329
       ],
       "rule_adopted": false
     },
