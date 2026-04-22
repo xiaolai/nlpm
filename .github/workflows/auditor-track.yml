@@ -27,6 +27,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          source auditor/scripts/log-event.sh
+
           # Outcome detection patterns. Case-insensitive grep.
           # "applied_separately" = PR closed unmerged, but maintainer comment indicates fix was applied
           APPLIED_PATTERNS='applied in|applied directly|applied to|applied as|merged into|fixed in release|fixed in v|fixed on main|included in|will be in|already in|already fixed'
@@ -46,6 +48,11 @@ jobs:
             CURRENT_STATUS=$(echo "$entry" | jq -r '.value.status')
             echo "Checking PRs for $REPO... (status=$CURRENT_STATUS)"
 
+            # Snapshot prior PR outcomes before overwriting them — needed to detect
+            # state transitions so finding_outcome / pr_comments_snapshot are emitted
+            # exactly once per transition (SCHEMAS §finding_outcome).
+            OLD_PRS=$(jq -c --arg name "$REPO" '.repos[$name].prs // []' auditor/registry/repos.json)
+
             # Query only PRs we created (stored in pipeline_prs)
             PR_NUMS=$(echo "$entry" | jq -r '.value.pipeline_prs // [] | .[]')
             PRS="[]"
@@ -53,48 +60,126 @@ jobs:
             if [ -n "$PR_NUMS" ]; then
               ITEMS="[]"
               for pr_num in $PR_NUMS; do
-                PR_DATA=$(gh pr view "$pr_num" --repo "$REPO" \
-                  --json number,state,mergedAt,closedAt,title 2>/dev/null || echo "")
-                if [ -z "$PR_DATA" ]; then
+                # Fetch PR data, body, and comments in one call. body carries the
+                # nlpm-metadata block that joins this PR back to finding fingerprints.
+                PR_JSON=$(gh pr view "$pr_num" --repo "$REPO" \
+                  --json number,state,mergedAt,closedAt,title,body,updatedAt,createdAt,comments 2>/dev/null || echo "")
+                if [ -z "$PR_JSON" ]; then
                   sleep 0.5
                   continue
                 fi
 
+                PR_DATA=$(printf '%s' "$PR_JSON" | jq -c '{number, state, mergedAt, closedAt, title, updatedAt, createdAt}')
+                COMMENTS_ARR=$(printf '%s' "$PR_JSON" | jq -c '.comments // []')
+                PR_BODY=$(printf '%s' "$PR_JSON" | jq -r '.body // ""')
+
                 RAW_STATE=$(echo "$PR_DATA" | jq -r '.state')
                 MERGED_AT=$(echo "$PR_DATA" | jq -r '.mergedAt // ""')
+                UPDATED_AT=$(echo "$PR_DATA" | jq -r '.updatedAt // ""')
 
-                # Classify outcome. Default: whatever the raw state says.
+                # One string of non-bot comment bodies, used for pattern matching.
+                COMMENTS_BODIES=$(printf '%s' "$COMMENTS_ARR" \
+                  | jq -r '[.[] | select((.author.type // "") != "Bot") | .body] | join("\n")')
+
+                # Classify outcome
                 OUTCOME=""
                 if [ -n "$MERGED_AT" ] && [ "$MERGED_AT" != "null" ]; then
                   OUTCOME="merged"
                 elif [ "$RAW_STATE" = "OPEN" ]; then
                   OUTCOME="open"
                 elif [ "$RAW_STATE" = "CLOSED" ]; then
-                  # Closed and not merged — check maintainer comments for "applied separately" signal
-                  COMMENTS=$(gh api "repos/$REPO/issues/$pr_num/comments" \
-                    --jq '[.[] | select(.user.type != "Bot") | .body] | join("\n")' 2>/dev/null || echo "")
-                  if [ -n "$COMMENTS" ] && printf '%s' "$COMMENTS" | grep -qziE "$APPLIED_PATTERNS"; then
+                  if [ -n "$COMMENTS_BODIES" ] && printf '%s' "$COMMENTS_BODIES" | grep -qziE "$APPLIED_PATTERNS"; then
                     OUTCOME="applied_separately"
                   else
                     OUTCOME="rejected"
                   fi
-                  # Check for rule-adoption signal while we have the comments (multiline via -z)
-                  if [ -n "$COMMENTS" ] && printf '%s' "$COMMENTS" | grep -qziE "$ADOPTION_PATTERNS"; then
-                    RULE_ADOPTED="true"
+                fi
+
+                # Rule-adoption signal (merged or closed — reuse the same comment body)
+                if [ "$RULE_ADOPTED" = "false" ] && [ -n "$COMMENTS_BODIES" ] \
+                   && printf '%s' "$COMMENTS_BODIES" | grep -qziE "$ADOPTION_PATTERNS"; then
+                  RULE_ADOPTED="true"
+                fi
+
+                # Parse the nlpm-metadata block from PR body, per SCHEMAS §PR metadata block.
+                # Legacy PRs submitted before the block was wired will return {}.
+                META_JSON=$(printf '%s' "$PR_BODY" | python3 auditor/scripts/parse-pr-metadata.py 2>/dev/null || echo '{}')
+                FP_ARR=$(printf '%s' "$META_JSON" | jq -c '[.findings[]?.fingerprint] | map(select(. != null))' 2>/dev/null || echo '[]')
+                RULE_ARR=$(printf '%s' "$META_JSON" | jq -c '[.findings[]?.rule_id] | map(select(. != null))' 2>/dev/null || echo '[]')
+
+                # Prior state from the registry snapshot — used to detect transitions.
+                OLD_OUTCOME=$(printf '%s' "$OLD_PRS" | jq -r --argjson n "$pr_num" 'map(select(.number == $n)) | .[0].outcome // ""')
+                OLD_STALE=$(printf '%s' "$OLD_PRS" | jq -r --argjson n "$pr_num" 'map(select(.number == $n)) | .[0].stale_90d_emitted // false')
+
+                # Map outcome → pr_state per SCHEMAS §finding_outcome enum
+                case "$OUTCOME" in
+                  merged) PR_STATE="merged" ;;
+                  rejected|applied_separately) PR_STATE="closed_unmerged" ;;
+                  open) PR_STATE="open" ;;
+                  *) PR_STATE="" ;;
+                esac
+
+                # finding_outcome on every state transition (first observation also counts).
+                if [ -n "$OUTCOME" ] && [ "$OLD_OUTCOME" != "$OUTCOME" ]; then
+                  EVENT_DATA=$(jq -cn \
+                    --arg pr "$REPO#$pr_num" \
+                    --arg pr_state "$PR_STATE" \
+                    --argjson fingerprints "$FP_ARR" \
+                    --argjson rule_ids "$RULE_ARR" \
+                    '{pr: $pr, pr_state: $pr_state, fingerprints: $fingerprints, rule_ids: $rule_ids}')
+                  log_event "track" "finding_outcome" "$EVENT_DATA"
+                fi
+
+                # pr_comments_snapshot on first transition into closed_unmerged. Captures
+                # the raw comment thread for a future classifier to turn into
+                # maintainer_rejected / maintainer_pushback events.
+                if [ -n "$OUTCOME" ] && [ "$OLD_OUTCOME" != "$OUTCOME" ] && [ "$PR_STATE" = "closed_unmerged" ]; then
+                  COMMENTS_HASH="sha256:$(printf '%s' "$COMMENTS_ARR" | shasum -a 256 | awk '{print $1}')"
+                  TS_NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+                  touch auditor/disagreements.jsonl
+                  jq -cn \
+                    --arg event "pr_comments_snapshot" \
+                    --arg ts "$TS_NOW" \
+                    --arg pr "$REPO#$pr_num" \
+                    --arg pr_state "$PR_STATE" \
+                    --arg ch "$COMMENTS_HASH" \
+                    --argjson fingerprints "$FP_ARR" \
+                    --argjson rule_ids "$RULE_ARR" \
+                    --argjson comments "$COMMENTS_ARR" \
+                    '{event: $event, timestamp: $ts, pr: $pr, pr_state: $pr_state, comments_hash: $ch, fingerprints: $fingerprints, rule_ids: $rule_ids, comments: $comments}' \
+                    >> auditor/disagreements.jsonl
+                  echo "  pr_comments_snapshot emitted for $REPO#$pr_num"
+                fi
+
+                # stale_90d: open PR with no update in 90+ days, emitted at most once.
+                STALE_EMITTED="$OLD_STALE"
+                if [ "$OUTCOME" = "open" ] && [ "$OLD_STALE" != "true" ] \
+                   && [ -n "$UPDATED_AT" ] && [ "$UPDATED_AT" != "null" ]; then
+                  NOW_S=$(date -u +%s)
+                  UPD_S=$(date -u -d "$UPDATED_AT" +%s 2>/dev/null \
+                          || date -u -jf "%Y-%m-%dT%H:%M:%SZ" "$UPDATED_AT" +%s 2>/dev/null \
+                          || echo "$NOW_S")
+                  DAYS=$(( (NOW_S - UPD_S) / 86400 ))
+                  if [ "$DAYS" -ge 90 ]; then
+                    STALE_DATA=$(jq -cn \
+                      --arg pr "$REPO#$pr_num" \
+                      --arg pr_state "stale_90d" \
+                      --argjson fingerprints "$FP_ARR" \
+                      --argjson rule_ids "$RULE_ARR" \
+                      '{pr: $pr, pr_state: $pr_state, fingerprints: $fingerprints, rule_ids: $rule_ids}')
+                    log_event "track" "finding_outcome" "$STALE_DATA"
+                    STALE_EMITTED="true"
                   fi
                 fi
 
-                # Also check merged PRs for rule-adoption comments (multiline via -z)
-                if [ "$OUTCOME" = "merged" ] && [ "$RULE_ADOPTED" = "false" ]; then
-                  COMMENTS=$(gh api "repos/$REPO/issues/$pr_num/comments" \
-                    --jq '[.[] | select(.user.type != "Bot") | .body] | join("\n")' 2>/dev/null || echo "")
-                  if [ -n "$COMMENTS" ] && printf '%s' "$COMMENTS" | grep -qziE "$ADOPTION_PATTERNS"; then
-                    RULE_ADOPTED="true"
-                  fi
-                fi
-
-                ITEMS=$(echo "$ITEMS" | jq --argjson pr "$PR_DATA" --arg outcome "$OUTCOME" \
-                  '. + [$pr + {outcome: $outcome}]')
+                PR_ENRICHED=$(jq -cn \
+                  --argjson data "$PR_DATA" \
+                  --arg outcome "$OUTCOME" \
+                  --argjson fingerprints "$FP_ARR" \
+                  --argjson rule_ids "$RULE_ARR" \
+                  --argjson stale "$STALE_EMITTED" \
+                  '$data + {outcome: $outcome, fingerprints: $fingerprints, rule_ids: $rule_ids, stale_90d_emitted: $stale}')
+                ITEMS=$(echo "$ITEMS" | jq --argjson pr "$PR_ENRICHED" '. + [$pr]')
                 sleep 0.5
               done
               PRS="$ITEMS"
@@ -173,7 +258,7 @@ jobs:
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git add auditor/registry/repos.json auditor/logs/events.jsonl
+          git add auditor/registry/repos.json auditor/logs/events.jsonl auditor/disagreements.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "track: $(date +%Y-%m-%d) — $TRACKED tracked, $CASE_READY case-study ready, $RULE_ADOPTED rule-adopted"
