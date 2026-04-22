@@ -1930,7 +1930,7 @@
       "stars": 33764,
       "artifacts": 509,
       "description": "Intelligent automation and multi-agent orchestration for Claude Code",
-      "status": "tracked",
+      "status": "complete",
       "score": 76,
       "audit_issue": 82,
       "prs": [
