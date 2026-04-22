@@ -405,10 +405,15 @@
       "security": "CLEAR"
     },
     "AgriciDaniel/claude-seo": {
-      "status": "audited",
+      "status": "contributed",
       "score": 94,
       "strategy": "batched",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        62,
+        63,
+        64
+      ]
     },
     "ananddtyagi/cc-marketplace": {
       "status": "contributed",
