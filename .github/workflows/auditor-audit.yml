@@ -57,11 +57,16 @@ jobs:
           fi
 
       - name: Clone target repo
+        id: clone
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
         run: |
           git clone --depth 1 "https://github.com/$TARGET_REPO.git" target-repo
+          # Capture the SHA at audit time — needed for findings.jsonl provenance.
+          COMMIT_SHA=$(git -C target-repo rev-parse HEAD 2>/dev/null || echo "unknown")
+          echo "commit_sha=$COMMIT_SHA" >> "$GITHUB_OUTPUT"
+          echo "Target HEAD: $COMMIT_SHA"
 
       # ================================================================
       # SECURITY SCAN: check executable artifacts before NL audit
@@ -529,6 +534,44 @@ jobs:
             The **NL Score** line MUST contain a number like `72/100` — this is parsed by automation.
             The **Security** line MUST contain one of: CLEAR, REVIEW, BLOCKED.
 
+            ## Step 4: Write machine-readable findings sidecar
+
+            After the markdown report, write a JSONL sidecar at:
+              `auditor/audits/${{ steps.filelist.outputs.slug }}.findings.jsonl`
+
+            One JSON object per line. One line per row in the Bugs / Security Findings / Quality Issues / Cross-Component sections of your markdown report. If the audit is fully clean, write an empty file.
+
+            Per-line schema (strict JSONL — NOT a JSON array):
+
+            `{"category":"...","rule_id":"...","file":"...","line":<int|null>,"severity":"...","penalty":<int|null>,"pattern":"...","description":"...","false_positive":<bool>,"suggested_fix":"..."}`
+
+            Field rules:
+
+            - `category`: one of `nl_quality`, `security`, `bug`, `cross_component`
+            - `rule_id`:
+              - NL quality: `R01`–`R50` (from `skills/nlpm/rules/`)
+              - Security: `SEC-<pattern-slug>` (e.g., `SEC-new-function-eval`, `SEC-curl-pipe-sh`, `SEC-shell-true`, `SEC-postinstall-script`, `SEC-unpinned-semver`, `SEC-path-traversal`)
+              - Bug: `BUG-<kind>` (e.g., `BUG-missing-frontmatter`, `BUG-broken-reference`, `BUG-undeclared-tool`, `BUG-invalid-semver`)
+              - Cross-component: `CC-<kind>` (e.g., `CC-stale-count`, `CC-broken-relative-path`, `CC-terminology-drift`, `CC-orphan-component`)
+              - If genuinely unmappable: `UNCLASSIFIED`
+            - `file`: relative to target repo root (e.g., `scripts/build.js`, NOT `target-repo/scripts/build.js`)
+            - `line`: integer line number, or `null` for file-level and cross-component findings
+            - `severity`: one of `critical`, `high`, `medium`, `low`, `info`
+            - `penalty`: negative integer for `nl_quality` rows only, `null` for every other category
+            - `description`: one line, no newlines inside the string
+            - `false_positive`: `true` ONLY if YOU determined during this audit that the finding is invalid. When `true`, the object MUST also include:
+              - `fp_reason`: one-line explanation of why the finding is invalid in this context
+              - `rule_gap`: one-line hint at what the rule should account for to avoid this misfire
+            - `suggested_fix`: one-line fix hint, or empty string `""` if none
+
+            Format rules:
+
+            - One JSON object per line. No pretty-printing. No trailing commas. No array wrapper.
+            - No newlines inside any string value.
+            - Every line must parse as independent JSON.
+
+            This sidecar is the machine-readable spine of the audit. A post-step enriches it with fingerprints and timestamps and appends to `auditor/findings.jsonl`. Malformed lines are counted as invalid and reported but not appended — so be precise.
+
       # ================================================================
       # VALIDATE: ensure Claude wrote real results, not echoed the prompt
       # ================================================================
@@ -581,6 +624,98 @@ jobs:
           else
             echo "Report looks valid"
           fi
+
+      # ================================================================
+      # AGGREGATE: enrich sidecar findings, append to global logs
+      # ================================================================
+      - name: Aggregate findings into global log
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+          COMMIT_SHA: ${{ steps.clone.outputs.commit_sha }}
+          AUDIT_RUN_ID: ${{ github.run_id }}
+        run: |
+          SLUG="${TARGET_REPO//\//-}"
+          SIDECAR="auditor/audits/${SLUG}.findings.jsonl"
+
+          # If the sidecar is missing, it means Claude didn't emit it (older run or
+          # prompt echo). Log zero findings and move on — aggregation is idempotent.
+          if [ ! -f "$SIDECAR" ]; then
+            echo "No sidecar at $SIDECAR — nothing to aggregate."
+            # Still emit the lifecycle event so downstream monitoring sees the run.
+            source auditor/scripts/log-event.sh
+            log_event "audit" "findings_aggregated" \
+              "$(jq -cn --arg r "$TARGET_REPO" '{repo: $r, findings: 0, invalid_lines: 0, sidecar_missing: true}')" || true
+            exit 0
+          fi
+
+          mkdir -p auditor
+          : > /tmp/enriched.jsonl
+          : > /tmp/disagreements-new.jsonl
+
+          APPENDED=0
+          INVALID=0
+          FP_COUNT=0
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          # Process each sidecar line: parse, enrich, append.
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+
+            # Skip lines that don't parse as JSON — Claude occasionally emits stray
+            # commentary or trailing commas. Don't fail the whole aggregation.
+            if ! printf '%s' "$line" | jq -e . >/dev/null 2>&1; then
+              INVALID=$((INVALID + 1))
+              echo "INVALID LINE (dropped): $(printf '%s' "$line" | head -c 120)..."
+              continue
+            fi
+
+            # Compute fingerprint: sha256 of "repo|file|rule_id|pattern|line"
+            # Stable across re-audits of the same file at the same line.
+            FINGERPRINT=$(printf '%s' "$line" | jq -r --arg repo "$TARGET_REPO" \
+              '"\($repo)|\(.file // "")|\(.rule_id // "")|\(.pattern // "")|\(.line // "null")"' \
+              | shasum -a 256 | awk '{print "sha256:" $1}')
+
+            # Enrich the finding with provenance fields and append to global log
+            ENRICHED=$(printf '%s' "$line" | jq -c \
+              --arg event "finding" \
+              --arg ts "$TS" \
+              --arg run_id "$AUDIT_RUN_ID" \
+              --arg repo "$TARGET_REPO" \
+              --arg sha "$COMMIT_SHA" \
+              --arg fp "$FINGERPRINT" \
+              '{event: $event, timestamp: $ts, audit_run_id: $run_id, repo: $repo, commit_sha: $sha, fingerprint: $fp} + .')
+            printf '%s\n' "$ENRICHED" >> /tmp/enriched.jsonl
+            APPENDED=$((APPENDED + 1))
+
+            # If this finding is a self-identified false positive, emit a
+            # self_false_positive event to disagreements.jsonl. fp_reason and
+            # rule_gap are required by the schema when false_positive is true.
+            IS_FP=$(printf '%s' "$line" | jq -r '.false_positive // false')
+            if [ "$IS_FP" = "true" ]; then
+              FP_EVENT=$(printf '%s' "$line" | jq -c \
+                --arg event "self_false_positive" \
+                --arg ts "$TS" \
+                --arg repo "$TARGET_REPO" \
+                --arg fp "$FINGERPRINT" \
+                '{event: $event, timestamp: $ts, repo: $repo, fingerprint: $fp, rule_id: .rule_id, reason: (.fp_reason // ""), rule_gap: (.rule_gap // "")}')
+              printf '%s\n' "$FP_EVENT" >> /tmp/disagreements-new.jsonl
+              FP_COUNT=$((FP_COUNT + 1))
+            fi
+          done < "$SIDECAR"
+
+          # Commit: append to the global append-only logs. touch the files so
+          # they exist even when this run produced zero findings, so the files
+          # are created on first appropriate run and never re-created elsewhere.
+          touch auditor/findings.jsonl auditor/disagreements.jsonl
+          [ -s /tmp/enriched.jsonl ] && cat /tmp/enriched.jsonl >> auditor/findings.jsonl
+          [ -s /tmp/disagreements-new.jsonl ] && cat /tmp/disagreements-new.jsonl >> auditor/disagreements.jsonl
+
+          source auditor/scripts/log-event.sh
+          log_event "audit" "findings_aggregated" \
+            "$(jq -cn --arg r "$TARGET_REPO" --argjson f "$APPENDED" --argjson inv "$INVALID" --argjson fp "$FP_COUNT" \
+               '{repo: $r, findings: $f, invalid_lines: $inv, self_false_positives: $fp}')" || true
+
+          echo "Aggregated: $APPENDED findings ($FP_COUNT self_false_positives) appended from $SIDECAR. Invalid lines: $INVALID."
 
       # ================================================================
       # COMMIT AND CLOSE
@@ -665,7 +800,7 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git add auditor/audits/ auditor/registry/ auditor/logs/events.jsonl
+          git add auditor/audits/ auditor/registry/ auditor/logs/events.jsonl auditor/findings.jsonl auditor/disagreements.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "audit: $TARGET_REPO ($SCORE/100, security:$SECURITY, $STRATEGY, $TOTAL artifacts)"
