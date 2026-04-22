@@ -393,10 +393,13 @@
       "pipeline_prs": []
     },
     "xiaolai/grill-for-claude": {
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        2
+      ]
     },
     "xiaolai/codex-toolkit-for-claude": {
       "status": "audited",
