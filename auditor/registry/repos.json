@@ -976,10 +976,14 @@
       "rule_adopted": false
     },
     "dontbesilent2025/dbskill": {
-      "status": "audited",
+      "status": "contributed",
       "score": 90,
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        11,
+        12
+      ]
     },
     "diet103/claude-code-infrastructure-showcase": {
       "status": "audited",
