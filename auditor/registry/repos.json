@@ -3695,7 +3695,7 @@
       "stars": 1050,
       "artifacts": 38,
       "description": "20 SEO & GEO skills for Claude Code, Cursor, Codex, and 35+ AI agents. Keyword research, content writing, technical audits, rank tracking. CORE-EEAT + CITE frameworks.",
-      "status": "audited",
+      "status": "contributed",
       "score": 91,
       "security": "CLEAR",
       "audit_issue": 129,
@@ -3708,7 +3708,12 @@
       "source": "claudepot",
       "star_velocity": 19.0,
       "star_anomaly": 1.07,
-      "strategy": "batched"
+      "strategy": "batched",
+      "pipeline_prs": [
+        10,
+        11,
+        12
+      ]
     },
     "jnMetaCode/superpowers-zh": {
       "discovered": "2026-04-18T22:52:00Z",

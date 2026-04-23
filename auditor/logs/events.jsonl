@@ -202,3 +202,4 @@
 {"timestamp":"2026-04-23T00:50:02Z","workflow":"track","event":"finding_outcome","run_id":"24810384495","run_number":25,"data":{"pr":"wuji-labs/nopua#15","pr_state":"open","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-04-23T00:50:17Z","workflow":"track","event":"status_check","run_id":"24810384495","run_number":25,"data":{"contributed":47,"tracked":13,"case_study_ready":11,"rule_adopted":2}}
 {"timestamp":"2026-04-23T05:09:13Z","workflow":"track","event":"status_check","run_id":"24817828585","run_number":26,"data":{"contributed":47,"tracked":13,"case_study_ready":11,"rule_adopted":2}}
+{"timestamp":"2026-04-23T06:45:50Z","workflow":"contribute","event":"prs_submitted","run_id":"24820934325","run_number":155,"data":{"repo":"aaron-he-zhu/seo-geo-claude-skills","pr_count":3}}
