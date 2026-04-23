@@ -2418,7 +2418,7 @@
       "stars": 1434,
       "artifacts": 42,
       "description": "Claude Code settings, commands and agents for vibe coding",
-      "status": "audited",
+      "status": "contributed",
       "score": 85,
       "audit_issue": 119,
       "prs": [],
@@ -2426,7 +2426,10 @@
       "star_velocity": 0.0,
       "star_anomaly": 0.0,
       "strategy": "batched",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        19
+      ]
     },
     "wuji-labs/nopua": {
       "discovered": "2026-04-18T22:52:00Z",
