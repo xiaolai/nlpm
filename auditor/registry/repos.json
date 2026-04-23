@@ -2335,7 +2335,7 @@
       "stars": 2839,
       "artifacts": 6,
       "description": "Claude Code & Codex skills that build complete Godot projects from a game description",
-      "status": "audited",
+      "status": "contributed",
       "score": 91,
       "audit_issue": 108,
       "prs": [],
@@ -2343,14 +2343,17 @@
       "star_velocity": 20.0,
       "star_anomaly": 1.1,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        34
+      ]
     },
     "mikeyobrien/ralph-orchestrator": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 2710,
       "artifacts": 48,
       "description": "An improved implementation of the Ralph Wiggum technique for autonomous AI agent orchestration",
-      "status": "audited",
+      "status": "contributed",
       "score": 91,
       "audit_issue": 109,
       "prs": [],
@@ -2358,7 +2361,11 @@
       "star_velocity": 8.0,
       "star_anomaly": 0.57,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        304,
+        305
+      ]
     },
     "Q00/ouroboros": {
       "discovered": "2026-04-18T22:52:00Z",
@@ -2425,7 +2432,7 @@
       "stars": 1434,
       "artifacts": 42,
       "description": "Claude Code settings, commands and agents for vibe coding",
-      "status": "audited",
+      "status": "contributed",
       "score": 85,
       "audit_issue": 119,
       "prs": [],
@@ -2433,14 +2440,17 @@
       "star_velocity": 0.0,
       "star_anomaly": 0.0,
       "strategy": "batched",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        19
+      ]
     },
     "wuji-labs/nopua": {
       "discovered": "2026-04-18T22:52:00Z",
       "stars": 1229,
       "artifacts": 11,
       "description": "一个用爱解放 AI 潜能的 Skill。我们曾发号施令，威胁恐吓。它们沉默，隐瞒，悄悄把事情搞坏。后来我们换了一种方式：尊重，关怀，爱。它们开口了，不再撒谎，找出的Bug数量翻了一倍。爱里没有惧怕。 A skill that unlocks your AI's potential through love.We commanded. We threatened. They went silent, hid failures, broke things. Then we chose respect, care, and love. They opened up, stopped lying, and found twice the bugs.There is no fear in love.",
-      "status": "audited",
+      "status": "contributed",
       "score": 80,
       "audit_issue": 123,
       "prs": [],
@@ -2448,7 +2458,12 @@
       "star_velocity": 1.0,
       "star_anomaly": 0.0,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        13,
+        14,
+        15
+      ]
     },
     "stablyai/orca": {
       "discovered": "2026-04-18T22:52:00Z",
