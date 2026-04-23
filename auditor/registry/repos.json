@@ -3774,7 +3774,7 @@
       "stars": 1050,
       "artifacts": 38,
       "description": "20 SEO & GEO skills for Claude Code, Cursor, Codex, and 35+ AI agents. Keyword research, content writing, technical audits, rank tracking. CORE-EEAT + CITE frameworks.",
-      "status": "tracked",
+      "status": "complete",
       "score": 91,
       "security": "CLEAR",
       "audit_issue": 129,
@@ -3834,7 +3834,8 @@
         12
       ],
       "rule_adopted": false,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "case_study": "case-studies/2026-04-23-aaron-he-zhu-seo-geo-claude-skills.md"
     },
     "jnMetaCode/superpowers-zh": {
       "discovered": "2026-04-18T22:52:00Z",
