@@ -2328,7 +2328,7 @@
       "stars": 2839,
       "artifacts": 6,
       "description": "Claude Code & Codex skills that build complete Godot projects from a game description",
-      "status": "audited",
+      "status": "contributed",
       "score": 91,
       "audit_issue": 108,
       "prs": [],
@@ -2336,7 +2336,10 @@
       "star_velocity": 20.0,
       "star_anomaly": 1.1,
       "strategy": "single",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "pipeline_prs": [
+        34
+      ]
     },
     "mikeyobrien/ralph-orchestrator": {
       "discovered": "2026-04-18T22:52:00Z",
