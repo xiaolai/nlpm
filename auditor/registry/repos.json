@@ -3604,7 +3604,7 @@
       "stars": 1130,
       "artifacts": 59,
       "description": "Orca is the next-gen IDE for building with coding agents",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 124,
       "prs": [],
@@ -3612,7 +3612,12 @@
       "star_velocity": 118.0,
       "star_anomaly": 1.09,
       "strategy": "single",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "pipeline_prs": [
+        973,
+        974,
+        975
+      ]
     },
     "codeaholicguy/ai-devkit": {
       "discovered": "2026-04-18T22:52:00Z",
