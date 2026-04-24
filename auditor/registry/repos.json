@@ -1700,14 +1700,9 @@
           "updatedAt": "2026-04-22T04:36:41Z",
           "createdAt": "2026-04-21T00:37:01Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:10e01b456c65a0b277fa6a71fc24b546766e5384dd2921a5f6f720ad3704daaf"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 536,
@@ -1718,18 +1713,9 @@
           "updatedAt": "2026-04-22T04:39:37Z",
           "createdAt": "2026-04-21T00:37:48Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:10f13cbd07301eeac9579feb1e8d61cc215d914d3356ce69c64ec98d5f8b53b7",
-            "sha256:f48b1fae091ff8cfbab4c37d47301bcf3fb32903cc318d659bfd99260b774ce3",
-            "sha256:d3f8297eadf39a6819d5fceedba80107428c9dbbaca7d880c187c71d6bd3e7be",
-            "sha256:9dedaf12fd961e191363bbfda7d349829abcb51f95aceb1f98ff8ab59ff13bd6",
-            "sha256:1c0dcbf3cbad7c0cea08d8d103940d1a5885162ebcb22d2d00cbb36002f64b34"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 537,
@@ -1753,14 +1739,9 @@
           "updatedAt": "2026-04-22T04:40:13Z",
           "createdAt": "2026-04-21T00:38:55Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:17450b84ff8204e92a048fb3c0e393cb3adaddd80c3c3a376ae4c0300f072854"
-          ],
-          "rule_ids": [
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 539,
@@ -1995,14 +1976,9 @@
           "updatedAt": "2026-04-21T03:40:37Z",
           "createdAt": "2026-04-20T18:28:40Z",
           "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:69c4ba73a0814bb5f0c598a53ec6dc00e1f978bc4fdc47f2108063fdbc2d0631"
-          ],
-          "rule_ids": [
-            "BUG-unclassified"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 294,
@@ -2013,14 +1989,9 @@
           "updatedAt": "2026-04-21T03:40:39Z",
           "createdAt": "2026-04-20T18:29:14Z",
           "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:e81efe19034866d7b9ecd208fb068130a2df1d9f0ea4311a3266f8c3f91bf41d"
-          ],
-          "rule_ids": [
-            "BUG-unclassified"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 295,
@@ -2031,14 +2002,9 @@
           "updatedAt": "2026-04-21T03:40:40Z",
           "createdAt": "2026-04-20T18:29:45Z",
           "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:55635446580974f6aa75578eb69ee2941523d8ae8f555c1858e14893f2fe42f4"
-          ],
-          "rule_ids": [
-            "BUG-unclassified"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 296,
@@ -2049,14 +2015,9 @@
           "updatedAt": "2026-04-21T03:40:42Z",
           "createdAt": "2026-04-20T18:30:22Z",
           "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:f7fc2d9adce1a1736e9f4882c02629be7110ee3f9d2ab206b6474161bd6cfb33"
-          ],
-          "rule_ids": [
-            "BUG-unclassified"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 297,
@@ -2259,14 +2220,9 @@
           "updatedAt": "2026-04-20T17:49:10Z",
           "createdAt": "2026-04-20T12:37:43Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:464e75cab5940d528ac7da8bd35a75b2336f4e663f4e0cf9c2d6724aa62d779f"
-          ],
-          "rule_ids": [
-            "BUG-missing-steps"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 535,
@@ -2277,14 +2233,9 @@
           "updatedAt": "2026-04-20T17:51:15Z",
           "createdAt": "2026-04-20T12:38:37Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:5876defe8fbfc5a7527b226c6b4aeeed24b8cc05fff2cd4049f6c2078c03ad8e"
-          ],
-          "rule_ids": [
-            "BUG-malformed-markdown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 536,
@@ -2295,15 +2246,9 @@
           "updatedAt": "2026-04-20T17:53:21Z",
           "createdAt": "2026-04-20T12:39:32Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:7d3cba8c6626e7c892899578401179dfb13d29b95b0bdf82dbed4cf80cdb2673",
-            "sha256:4a3ce0949d5165059e15519ec4e90b8e24504b08a14bbe532f3d4807ba3325a8"
-          ],
-          "rule_ids": [
-            "BUG-invalid-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 537,
@@ -2314,14 +2259,9 @@
           "updatedAt": "2026-04-20T17:55:31Z",
           "createdAt": "2026-04-20T12:40:25Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:e7cf764f4213336fa16523b54b7484f23d87102e90fdf1791e913c92b0716e56"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 538,
@@ -2332,14 +2272,9 @@
           "updatedAt": "2026-04-20T17:57:42Z",
           "createdAt": "2026-04-20T12:41:25Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:880df694f479bce8ace194c3c0dee8a4e3789b9194a39e2865d7cf6401f923df"
-          ],
-          "rule_ids": [
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "strategy": "progressive",
@@ -2781,14 +2716,9 @@
           "updatedAt": "2026-04-17T17:15:48Z",
           "createdAt": "2026-04-17T12:52:39Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:7c25ce1700243af773778c414b9564da7fe84bd17551462ed2cabd907d18f8d4"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 489,
@@ -2799,16 +2729,9 @@
           "updatedAt": "2026-04-17T17:15:49Z",
           "createdAt": "2026-04-17T12:53:31Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:9a293c2cb9bd7e87c89f8d573711a5836b6852135aa43635cd5498a3b9ff64f3",
-            "sha256:a3bb9553d0c2bf3c2e6172db8c749dce146c800fb959ac44be9a619984390874",
-            "sha256:956c24878957b8ab4299943b9452d5890838372d919b5ac9b91e780fd742beb9"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 490,
@@ -2819,16 +2742,9 @@
           "updatedAt": "2026-04-17T17:15:51Z",
           "createdAt": "2026-04-17T12:54:10Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:63a613945859902c21139cdc23746b29acde9c76f1c6c4ac1ad6795824066f81",
-            "sha256:660990d84c42131d62e6f31931db8acef040a9e34e59d29564c7aade4d6f2e6a",
-            "sha256:bfdf5d4ce2938e305411fc5315bb9c4879bd52d7d6c319bc604f6b4cd0afae2d"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 491,
@@ -2839,16 +2755,9 @@
           "updatedAt": "2026-04-17T17:15:52Z",
           "createdAt": "2026-04-17T12:54:49Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:65de6abdf33dd744dac427c76865de7dc2bd254b3e294035e73a4271074f8a0c",
-            "sha256:2420389dc15253037e9c6f48f12743b2f0c793cbb541fb61c09463da4f25169b",
-            "sha256:9864ffd11e12abaf3fb7cb30b09b9d6b23642f9841a6d4a71b858f6c8166f909"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 492,
@@ -2859,16 +2768,9 @@
           "updatedAt": "2026-04-17T17:15:53Z",
           "createdAt": "2026-04-17T12:55:28Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:433ea676d632ba813fe3df625b6090966ec76706d05784d4bf9652a695f1c253",
-            "sha256:10c80decfdaca1eab6ec654dc1b6e5ffaf982b043e5c2c837a73cac4f5592c98",
-            "sha256:1fb7cc126943eed424a7b23cb22ec40a54c227397728cf504cab700d20baa36f"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "strategy": "progressive",
@@ -3047,16 +2949,9 @@
           "updatedAt": "2026-04-23T19:24:36Z",
           "createdAt": "2026-04-22T18:27:50Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:787b1a3cf3a6694394cff13f27b01c6894848420fb237a69404494a4a193f017",
-            "sha256:6f37aff5c1cd80d8dee459d199822a4245688ca7ee4999210a181f273e09eb19"
-          ],
-          "rule_ids": [
-            "BUG-missing-frontmatter",
-            "BUG-undeclared-tool"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 64,
@@ -3067,16 +2962,9 @@
           "updatedAt": "2026-04-23T19:17:27Z",
           "createdAt": "2026-04-22T18:28:33Z",
           "outcome": "rejected",
-          "fingerprints": [
-            "sha256:e31789a6e1c0ff035c1f9ba82e5e23c5004cedad716af97b7f2045b9a3301c99",
-            "sha256:0e0554e7b87d7d3850072d176f22a040173a88f47ee270d7be3dbd13f06f1efb"
-          ],
-          "rule_ids": [
-            "CC-name-collision",
-            "BUG-read-only-write"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 65,
@@ -3087,16 +2975,9 @@
           "updatedAt": "2026-04-23T19:24:01Z",
           "createdAt": "2026-04-22T18:29:16Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:763d5d4876cd36290c48232a0e4cca9a6b640c8a040ba14a9ab2ec127af420c0",
-            "sha256:91de0818e984894f3282a8851eec6c48e39533f734ae8a0cd75b26a1256d63da"
-          ],
-          "rule_ids": [
-            "BUG-unclassified",
-            "UNCLASSIFIED"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 66,
@@ -3120,15 +3001,9 @@
           "updatedAt": "2026-04-23T19:22:10Z",
           "createdAt": "2026-04-22T18:30:41Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:359ca2c4a54ea62b0376e51cbc0be9aa73a5966ea9c29e49c796f848120fdc0a",
-            "sha256:5331dc9ec3e258be1bb535f80d659dc603b82294ac3e365cc50b599e2772d535"
-          ],
-          "rule_ids": [
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "source": "claudepot",
@@ -3860,13 +3735,13 @@
       "prs": [
         {
           "number": 51,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-04-24T05:01:24Z",
+          "closedAt": "2026-04-24T05:01:24Z",
           "title": "fix: add missing frontmatter to engine skill definitions",
-          "updatedAt": "2026-04-23T06:45:39Z",
+          "updatedAt": "2026-04-24T05:01:24Z",
           "createdAt": "2026-04-23T06:43:35Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -3920,14 +3795,9 @@
           "updatedAt": "2026-04-23T12:37:22Z",
           "createdAt": "2026-04-23T06:43:35Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:7903955ce1b6ab5449fff1bc6665f392bb6904daafb8334d4d61c8fcf91fc3c8"
-          ],
-          "rule_ids": [
-            "BUG-undeclared-tool"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 11,
@@ -3938,16 +3808,9 @@
           "updatedAt": "2026-04-23T12:38:26Z",
           "createdAt": "2026-04-23T06:44:17Z",
           "outcome": "rejected",
-          "fingerprints": [
-            "sha256:8bd5ce1c0a293b6c039da85f6e77d4f724b7d1c6dd404650f3f885c2f9d45cbe",
-            "sha256:cae1318520c5cfeaec0c4769a88e90182e66f57c292d07d3dd2aa78ee1b8cefe"
-          ],
-          "rule_ids": [
-            "BUG-missing-steps",
-            "UNCLASSIFIED"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 12,
@@ -3958,22 +3821,9 @@
           "updatedAt": "2026-04-23T12:37:32Z",
           "createdAt": "2026-04-23T06:45:08Z",
           "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:3442a8aa09a0c1b61253cd9ca16ff233f36e876fb95cc6c49cf503f511f6f797",
-            "sha256:db64e8eb9c801ec6c5a61021c09822ecbdcc997bd0c5ba7fb2cc11596f365798",
-            "sha256:91e3f90f1994f10465dbb8ce496beaddc41d9ac05822f8000190b46b4ef86862",
-            "sha256:d0e008a5a1f01c4012f1bffda2d175467e5de37ba22322e03f5c627e1b82674d",
-            "sha256:c06823cfb03f5808db823c00cffb992442b0f1c7bd964cf8785b61bfdb261f10",
-            "sha256:c896fbaa8166c4d53c074ae90d4928c737699a3fe7a20a407aa7d601919af196",
-            "sha256:ab35b0a00863a664e9fcafe2ea0560c400fa21078c9ed7a193a75168a30b6d8e",
-            "sha256:30ba4d86177be51fd755aca2c8456ff7cdd487359fba02445cd5161b06dda1ab",
-            "sha256:61c15dbaacf48a706aab377946e841006a052944ec207422468b40f87c113c21"
-          ],
-          "rule_ids": [
-            "UNCLASSIFIED"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "source": "claudepot",
@@ -4084,16 +3934,9 @@
           "updatedAt": "2026-04-23T13:02:11Z",
           "createdAt": "2026-04-23T06:45:25Z",
           "outcome": "rejected",
-          "fingerprints": [
-            "sha256:9c59988db367e92f0bcf059651d360da0c496fb2227f3e99fba11d1cd5047c47",
-            "sha256:760e55600bb03a273f02ac9e4289a237fca546592a4052fd10247adc1bc9ffdf"
-          ],
-          "rule_ids": [
-            "BUG-broken-reference",
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 338,
@@ -4104,16 +3947,9 @@
           "updatedAt": "2026-04-23T13:02:27Z",
           "createdAt": "2026-04-23T06:45:58Z",
           "outcome": "rejected",
-          "fingerprints": [
-            "sha256:1754e86287b19d02c547c5010e0ea40d98402c6fa92f045df0e1342fb40d3878",
-            "sha256:134153ab6bb53b3081c0aae1173cd293ad724654d09c1460e442591dcc71bfe1"
-          ],
-          "rule_ids": [
-            "BUG-unclassified",
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 339,
@@ -4124,16 +3960,9 @@
           "updatedAt": "2026-04-23T13:29:54Z",
           "createdAt": "2026-04-23T06:46:24Z",
           "outcome": "merged",
-          "fingerprints": [
-            "sha256:dca73569634f771c3036b4b83df563ab0decf1a3dc584678be325334d6000f4a",
-            "sha256:a863a3519fac43a17a6baa965c3ffffbce897833e58945993dbb9e6cf3cfe4ae",
-            "sha256:02e39c3bc04e120047ae9fe96943c3f60b45a86e285f9ca3ba38b923abb0c108"
-          ],
-          "rule_ids": [
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         },
         {
           "number": 340,
@@ -4144,16 +3973,9 @@
           "updatedAt": "2026-04-23T13:04:09Z",
           "createdAt": "2026-04-23T06:46:55Z",
           "outcome": "rejected",
-          "fingerprints": [
-            "sha256:dca73569634f771c3036b4b83df563ab0decf1a3dc584678be325334d6000f4a",
-            "sha256:a863a3519fac43a17a6baa965c3ffffbce897833e58945993dbb9e6cf3cfe4ae",
-            "sha256:02e39c3bc04e120047ae9fe96943c3f60b45a86e285f9ca3ba38b923abb0c108"
-          ],
-          "rule_ids": [
-            "SEC-unknown"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "source": "claudepot",
