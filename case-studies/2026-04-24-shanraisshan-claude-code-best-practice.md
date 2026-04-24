@@ -1,4 +1,4 @@
-# Read-Only in Name Only: NLPM Audits Claude Code's Most-Starred Practice Guide
+# The Boilerplate Trap: When a Copy-Paste Default Turned Read-Only Agents Into Writers
 
 ![Cover](images/2026-04-24-shanraisshan-claude-code-best-practice-cover.png)
 
@@ -8,99 +8,91 @@
 
 ## The Project
 
-[shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) is the most-starred Claude Code reference repository on GitHub, maintained by [Shayan Rais](https://github.com/shanraisshan). Its tagline — "from vibe coding to agentic engineering - practice makes claude perfect" — describes what it actually is: a living compendium of Claude Code patterns, agents, skills, commands, and hooks, updated regularly as the platform evolves. At time of audit, the repo had 47,718 stars and 4,699 forks.
-
-It is not a library or a CLI tool. It is a reference — meant to be read, copied, and learned from. That framing matters when evaluating what NLPM found — a reference read by forty-seven thousand engineers is a mirror as much as a manual.
+[shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) is one of the most-starred Claude Code reference repositories on GitHub, with **47,743 stars** and 4,699 forks. Maintained by [Shayan Rais](https://github.com/shanraisshan), it bills itself as "from vibe coding to agentic engineering — practice makes claude perfect": a living reference implementation of agents, commands, skills, and hooks, updated continuously as the Claude Code platform evolves. Its scope is unusually broad — drift-detection workflows, multi-agent teams, RPI development pipelines, weather and time orchestration, presentation builders — all in a single public repository that is itself a running example of the practices it teaches — the textbook and the exam in one.
 
 ---
 
 ## The Audit
 
-**Date**: 2026-04-19 | **Artifacts**: 44 | **NL Score**: 88/100 | **Security**: CLEAR
+NLPM audited the repository on **2026-04-19**, scanning 44 NL artifacts across agents, commands, skills, and config files.
 
-The repo scores above the default 70-point threshold, and the gap between its best and worst artifacts tells the real story.
+**Overall NL Score: 88/100** — above the default 70-point threshold, but with a pronounced gap between the skill and command layers (averaging near 100) and the agent layer (averaging near 77).
 
 ```mermaid
-pie title Score Distribution — 44 Artifacts (Original Audit)
-    "100 (perfect)" : 11
-    "90–99" : 13
-    "80–89" : 10
-    "70–79" : 8
-    "< 70" : 2
+pie title Score Distribution — 44 Artifacts
+    "Perfect (100)" : 11
+    "Excellent (90–99)" : 11
+    "Good (80–89)" : 12
+    "Needs Work (70–79)" : 8
+    "Critical (< 70)" : 2
 ```
 
-Every skill file and both hook config files scored 100. Every standalone command except time-orchestrator scored 95. The drag comes from the agents — 20 of the 44 artifacts are agents, and they average well below the skills tier.
+> **Note:** 10 of the 11 files scoring below 80 were in the agent layer; `time-orchestrator.md` (a command, 70) was the exception and the subject of Bug #1.
 
-The two artifacts below 70 tell the story in miniature:
-
-- `.claude/agents/time-agent.md` scored **57**. It is a single-purpose agent that runs one `bash date` command and returns a formatted string. Its `allowedTools` list contained Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, NotebookEdit, and MCP wildcards — ten tools for a one-command agent — the equivalent of packing climbing gear for a walk to the mailbox.
-- `.claude/agents/workflows/best-practice/workflow-concepts-agent.md` scored **68**. Its body says "Do NOT take any actions or modify files." Its `allowedTools` includes Write and Edit. The agent's body and its frontmatter were not having the same conversation.
-
-These two artifacts are not outliers. They represent a pattern: the repo's agents were built from a shared `allowedTools` template that grants broad write access, and the per-agent bodies frequently contradict those grants — like a skeleton key labeled "read-only use only."
+The split is stark: **all 11 perfect scores belonged to skills and hook configs**. 10 of the 11 files scoring below 80 were agents; the exception was `agent-teams/.claude/commands/time-orchestrator.md` (70), which was the subject of Bug #1. Commands otherwise sat in the comfortable 89–95 range. The skill and hook layers reflect careful, deliberate authorship. The agent layer shows a different pattern.
 
 ### Top Issues
 
-| Issue | Scope | Penalty |
-|-------|-------|---------|
-| Zero usage examples | All 20 agents | −15 per agent |
-| Write/Edit on read-only agents | 8 agents | −10 per agent |
-| Missing `description` frontmatter | `time-orchestrator.md` | Functionally invisible in `/` menu |
-| Agent name collision (`time-agent`) | Root vs. agent-teams scope | Wrong timezone served in mixed-scope sessions; note that name collision is only a defect if both scopes are simultaneously active — a developer who controls which scopes are loaded may treat this as deliberate scoping |
-| Agent name collision (`development-workflows-research-agent`) | Root vs. workflows scope | Root variant has a superset of tools contradicting its read-only body |
-| Unpinned MCP package versions (`npx -y`) | `.mcp.json` | Supply-chain risk across all three MCP servers |
-| Hook log not in `.gitignore` | `hooks.py` | Risk of accidentally committing tool_input data |
+**1. Boilerplate `allowedTools` across all agents.**
+Every agent in `.claude/agents/` shared an identical 11-tool `allowedTools` block — `Bash`, `Read`, `Write`, `Edit`, `Glob`, `Grep`, `WebFetch`, `WebSearch`, `Agent`, `NotebookEdit`, `mcp__*`. The list was never tailored to the agent's actual task. Research agents that explicitly state "Do NOT modify any files" in their body text nonetheless declared `Write` and `Edit`. A time-display agent that runs a single `bash date` command declared every tool in the system — roughly equivalent to handing a timekeeper the full facilities master key. This is not a one-off oversight; it is a systemic copy-paste default applied without review.
+
+**2. Zero `<example>` blocks across all 20 agents.**
+Per NLPM's interpretation of Claude Code's auto-invocation behavior (R09), examples in agent descriptions help determine when to auto-invoke an agent. None of the 20 agents in the repository defined `<example>` blocks. Several descriptions explicitly say "PROACTIVELY use this agent" — but without examples, the auto-invocation signal is absent. Like a help-desk sign with no hours posted: the invitation is clear, but the timing is not.
+
+**3. Name collisions across scope boundaries.**
+Two agent pairs each declared the same `name:` field with different implementations. Root-scope `time-agent.md` (PKT, UTC+5) and `agent-teams/.claude/agents/time-agent.md` (Dubai GST, UTC+4) both set `name: time-agent`. Similarly, two files both declared `name: development-workflows-research-agent`. In sessions where both scope layers are active simultaneously — which may not reflect most users' workflows — Claude Code resolves the collision unpredictably — the wrong agent variant could fire silently. A user asking for the time in Dubai might quietly receive Karachi.
+
+**Security findings** were all Medium or Low severity (the pipeline is clear of Critical/High). One Medium finding involved `.mcp.json`: three MCP servers used `npx -y <package>` without version pins, meaning any npm package update — including a compromised release — would silently affect all users. The other Medium finding involved `hooks.py`: `subprocess.Popen` launches an audio player from PATH, creating an execution path outside direct command control. Two Low findings covered a hook log file that could accumulate sensitive `tool_input` data without `.gitignore` protection, and a related PATH-resolution concern.
+
+```mermaid
+graph LR
+    subgraph P1["Priority 1 — Functional Bug"]
+        style P1 fill:#fee2e2,stroke:#ef4444
+        A["#63: Missing description<br/>in time-orchestrator<br/>(breaks /slash-command menu)"]
+    end
+    subgraph P2["Priority 2 — Agent Correctness"]
+        style P2 fill:#fef3c7,stroke:#f59e0b
+        B["#65: time-agent name collision<br/>(PKT vs Dubai GST)"]
+    end
+    subgraph P3["Priority 3 — Security"]
+        style P3 fill:#dbeafe,stroke:#3b82f6
+        C["#66: hooks log not in .gitignore<br/>(sensitive data leakage risk)"]
+        D["#67: MCP servers unpinned<br/>(supply-chain drift)"]
+    end
+    A --> B --> C --> D
+```
 
 ---
 
 ## What Was Submitted
 
-The NLPM pipeline's PR tracking record (`prs.json`) is empty for this engagement — a gap that shapes how the re-audit outcome reads, and one that the auditor would flag in any other repo. However, the merge commit history tells what happened.
+The pipeline filed four PRs on **2026-04-22**, linked to tracking issue [#68](https://github.com/shanraisshan/claude-code-best-practice/issues/68).
 
-Four pull requests from the `xiaolai` account were merged into the repo on 2026-04-23, all carrying `fix/nlpm-*` branch names consistent with NLPM's automated contribution workflow:
+**[PR #63](https://github.com/shanraisshan/claude-code-best-practice/pull/63) — fix: add missing description frontmatter to time-orchestrator command**
+`agent-teams/.claude/commands/time-orchestrator.md` had only `model: haiku` in its YAML frontmatter — no `description` field. Without a description, Claude Code cannot surface the command in the `/` slash-command menu, making it non-discoverable. The fix added the missing field.
 
-```mermaid
-graph LR
-    subgraph P1["Priority 1 — Functional Break"]
-        style P1 fill:#fee2e2,stroke:#ef4444,color:#111
-        B1["PR #63: Add missing description\nto time-orchestrator command"]
-    end
-    subgraph P2["Priority 2 — Agent Identity"]
-        style P2 fill:#fef3c7,stroke:#f59e0b,color:#111
-        B3["PR #65: Rename root time-agent\nto time-agent-pkt"]
-    end
-    subgraph P3["Priority 3 — Security Medium/Low"]
-        style P3 fill:#dbeafe,stroke:#3b82f6,color:#111
-        S4["PR #66: Add hooks log directory\nto .gitignore"]
-        S1["PR #67: Pin MCP server package\nversions to stable releases"]
-    end
-    B1 --> B3 --> S4
-```
+**[PR #65](https://github.com/shanraisshan/claude-code-best-practice/pull/65) — fix: rename root time-agent to time-agent-pkt to resolve name collision**
+Two agent files both declared `name: time-agent` with different implementations (PKT/UTC+5 vs Dubai GST/UTC+4). The root agent's `name` was changed from `time-agent` to `time-agent-pkt`, preserving the agent-teams variant's name since `time-orchestrator.md` invokes it by that name.
 
-**PR #63** — `fix: add missing description frontmatter to time-orchestrator command`
-The command had only `model: haiku` in its YAML frontmatter. Without a `description`, Claude Code cannot surface it in the `/` slash-command menu. One line added; the command became discoverable.
-Merge commit: [7c760814](https://github.com/shanraisshan/claude-code-best-practice/commit/7c760814ad59516228c42bfb6c9fcf9a22c2a43b)
+**[PR #66](https://github.com/shanraisshan/claude-code-best-practice/pull/66) — fix: add hooks log directory to .gitignore to prevent sensitive data leakage**
+`hooks.py` logs full hook event data — including `tool_input`, which can contain file contents or command arguments — to `.claude/hooks/logs/hooks-log.jsonl`. That path was not in `.gitignore`, creating a risk of accidentally committing sensitive data. The fix added the directory.
 
-**PR #65** — `fix: rename root time-agent to time-agent-pkt to resolve name collision`
-Two agent files declared `name: time-agent` — one in the root scope (PKT, UTC+5) and one in `agent-teams/` (Dubai GST, UTC+4). In a mixed-scope session, Claude Code could invoke the wrong agent. The fix renamed the root agent to `time-agent-pkt`, keeping the agent-teams variant's name intact since `time-orchestrator.md` explicitly invokes it by that name.
-Merge commit: [eefa9801](https://github.com/shanraisshan/claude-code-best-practice/commit/eefa980187f4c1886d1df2f383cf18bb061c16b7)
-
-**PR #66** — `fix: add hooks log directory to .gitignore to prevent sensitive data leakage`
-`hooks.py` logs full hook event data — including `tool_input`, which may contain file contents or command arguments — to `.claude/hooks/logs/hooks-log.jsonl`. That log was not excluded from git. A stray `git add .` could expose tool inputs to version history.
-Merge commit: [4add23f5](https://github.com/shanraisshan/claude-code-best-practice/commit/4add23f53dcc6c15e2752e437f82c108af8681be)
-
-**PR #67** — `fix: pin MCP server package versions to prevent supply-chain drift`
-All three MCP servers in `.mcp.json` used `npx -y <package>` without version pins, causing npx to install the latest version on each invocation. Pinned to then-current stable versions: `@playwright/mcp@0.0.70`, `@upstash/context7-mcp@2.1.8`, `deepwiki-mcp@0.0.6`.
-Merge commit: [e41a2f65](https://github.com/shanraisshan/claude-code-best-practice/commit/e41a2f657dbceb070b7aa42db762a054fb73d4b9)
-
-Bug #2 — the `development-workflows-research-agent` name collision — had no corresponding PR in the commit history but was resolved by time of re-audit (classified "fixed — upstream, not via our PR").
+**[PR #67](https://github.com/shanraisshan/claude-code-best-practice/pull/67) — fix: pin MCP server package versions to prevent supply-chain drift**
+All three MCP servers in `.mcp.json` used `npx -y <package>` without version pins. The fix pinned them to the stable versions current at PR submission on 2026-04-22 (`@playwright/mcp@0.0.70`, `@upstash/context7-mcp@2.1.8`, `deepwiki-mcp@0.0.6`), which may differ from the versions noted at audit date (2026-04-19).
 
 ---
 
 ## The Response
 
-All four PRs were merged within approximately 25 hours of submission, on 2026-04-23 between 19:22 and 19:24 UTC. The issue filed alongside them ([#68](https://github.com/shanraisshan/claude-code-best-practice/issues/68) — "NLPM audit findings: 3 bugs + 2 security fixes (NL score 88/100)") was closed at 19:31 UTC the same day, seven minutes after the last merge.
+The maintainer merged all four PRs on **2026-04-23**, within roughly 25 hours of submission. The merge sequence:
 
-The PR review comment data was not available in evidence (`prs.json` is empty, and no `pr-*-reviews.json` files were generated). What the commit history does show: the maintainer did not amend the submitted fixes — the PRs were merged without modification. The speed of acceptance is consistent with both the maintainer finding the findings compelling and trusting a reputable contributor account and clearing the queue. Within the same session, Shayan also pushed a high volume of his own maintenance commits: drift-run logs for settings, skills, commands, subagents, and concepts, a README table update, and a redesign of the "Other Repos" section. Whether NLPM's issue triggered these independent maintenance commits or the timing was coincidental cannot be determined from commit history alone. The NLPM fixes were absorbed into a normal maintenance window.
+- 19:22 UTC — PR #66 (gitignore) merged
+- 19:23 UTC — PR #63 (missing description) merged
+- 19:24 UTC — PR #65 (time-agent name) merged
+- 19:24 UTC — PR #67 (MCP pinning) merged
+- 19:31 UTC — Issue #68 closed
+
+Nine minutes from first merge to closed issue. No review comments or requested changes were recorded in the available evidence. The maintainer appears to have accepted all four fixes as-is. Notably, the maintainer also independently resolved 21 of the 27 original findings without intervention from NLPM — including the `development-workflows-research-agent` name collision (Bug #2), the read-only/write-tool contradiction across five workflow agents, the `subprocess.Popen` audio-player finding in `hooks.py`, and all vague-quantifier findings across the RPI command suite. This independent resolution rate — 21 of 27 findings addressed without a PR from NLPM — suggests either the maintainer was already working on these issues or that seeing issue #68 prompted a broader review.
 
 ---
 
@@ -108,73 +100,64 @@ The PR review comment data was not available in evidence (`prs.json` is empty, a
 
 A rubric update is a claim; the re-audit verifies the claim against the target repo's current HEAD.
 
-**Before**: 88/100 (commit: `unknown`) | **After**: 87/100 (commit: [`13cbf08`](https://github.com/shanraisshan/claude-code-best-practice/commit/13cbf08d4d858152a35bfd1d5584d356a1e02176))
+Re-audit ran on **2026-04-24** at commit `13cbf08`. Before/after scores:
 
-All 27 original findings were resolved. The score nonetheless dropped one point, from 88 to 87. The reason is explained in the introduced-findings subsection below.
+| | Score | Findings |
+|--|-------|----------|
+| **Original audit** (commit unknown) | 88/100 | 27 |
+| **Re-audit** (commit `13cbf08`) | 88/100 | 50 |
 
-### Per-Finding Verification Table
+### Per-Finding Verification
 
-*Note: All outcomes appear as "fixed — upstream, not via our PR" due to a PR tracking data gap. Four NLPM-sourced PRs were in fact merged; see the [Limitations](#limitations) section for context.*
+| # | File | Rule | Pattern | Outcome | PR |
+|---|------|------|---------|---------|-----|
+| 1 | `agent-teams/.claude/commands/time-orchestrator.md` | BUG-missing-frontmatter | `missing-description` | fixed — our PR merged | #63 |
+| 2 | `.claude/agents/development-workflows-research-agent.md` | CC-name-collision | `name-collision` | fixed — upstream, not via our PR | |
+| 3 | `.claude/agents/workflows/development-workflows-research-agent.md` | CC-name-collision | `name-collision` | fixed — upstream, not via our PR | |
+| 4 | `.claude/agents/time-agent.md` | BUG-unclassified | `both-declare-name-time-agent-with-differ` | fixed — our PR merged | #65 |
+| 5 | `agent-teams/.claude/agents/time-agent.md` | BUG-unclassified | `both-declare-name-time-agent-with-differ` | fixed — upstream, not via our PR | |
+| 6 | `.mcp.json` | SEC-unknown | `npx-y-playwright-mcp-no-version-pin` | fixed — our PR merged | #67 |
+| 7 | `.mcp.json` | SEC-unknown | `npx-y-deepwiki-mcp-unknown-package-no-pi` | fixed — our PR merged | #67 |
+| 8 | `.claude/hooks/scripts/hooks.py` | SEC-unknown | `subprocess-popen-resolves-audio-player-f` | fixed — upstream, not via our PR | |
+| 9 | `.claude/hooks/scripts/hooks.py` | SEC-unknown | `hook-log-may-persist-sensitive-tool-inpu` | fixed — upstream, not via our PR | |
+| 10 | `All 20 agents` | R09 | `no-examples` | fixed — upstream, not via our PR | |
+| 11 | `.claude/agents/development-workflows-research-agent.md` | BUG-read-only-write | `write-edit-on-readonly` | fixed — upstream, not via our PR | |
+| 12 | `.claude/agents/weather-agent.md` | UNCLASSIFIED | `body-says-not-to-write-files-or-create-o` | fixed — upstream, not via our PR | |
+| 13 | `.claude/agents/time-agent.md` | UNCLASSIFIED | `single-purpose-time-agent-runs-one-bash` | fixed — our PR merged | #65 |
+| 14 | `workflows/best-practice/*-agent.md` | UNCLASSIFIED | `all-five-workflow-research-agents-declar` | fixed — upstream, not via our PR | |
+| 15 | `.claude/agents/presentation-vibe-coding.md` | BUG-unused-tool | `unused-tools` | fixed — upstream, not via our PR | |
+| 16 | `.claude/agents/presentation-learning-journey.md` | BUG-unused-tool | `unused-tools` | fixed — upstream, not via our PR | |
+| 17 | `agent-teams/.claude/commands/time-orchestrator.md` | BUG-undeclared-tool | `missing-allowed-tools` | fixed — our PR merged | #63 |
+| 18 | `All 8 standalone commands` | BUG-undeclared-tool | `missing-allowed-tools` | fixed — upstream, not via our PR | |
+| 19 | `development-workflows/rpi/.claude/commands/rpi/plan.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 20 | `development-workflows/rpi/.claude/commands/rpi/research.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 21 | `development-workflows/rpi/.claude/commands/rpi/implement.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 22 | `development-workflows/rpi/.claude/agents/requirement-parser.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 23 | `development-workflows/rpi/.claude/agents/technical-cto-advisor.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 24 | `development-workflows/rpi/.claude/agents/constitutional-validator.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 25 | `development-workflows/rpi/.claude/agents/documentation-analyst-writer.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR | |
+| 26 | `development-workflows/rpi/.claude/agents/*.md` | UNCLASSIFIED | `no-allowedtools-in-frontmatter-tools-ava` | fixed — upstream, not via our PR | |
+| 27 | `Repo-wide agents` | UNCLASSIFIED | `inconsistent-frontmatter-format-root-sco` | fixed — upstream, not via our PR | |
 
-| # | File | Rule | Pattern | Outcome |
-|---|------|------|---------|---------|
-| 1 | `agent-teams/.claude/commands/time-orchestrator.md` | BUG-missing-frontmatter | `missing-description` | fixed — upstream, not via our PR |
-| 2 | `.claude/agents/development-workflows-research-agent.md` | CC-name-collision | `name-collision` | fixed — upstream, not via our PR |
-| 3 | `.claude/agents/workflows/development-workflows-research-agent.md` | CC-name-collision | `name-collision` | fixed — upstream, not via our PR |
-| 4 | `.claude/agents/time-agent.md` | BUG-unclassified | `both-declare-name-time-agent-with-differ` | fixed — upstream, not via our PR |
-| 5 | `agent-teams/.claude/agents/time-agent.md` | BUG-unclassified | `both-declare-name-time-agent-with-differ` | fixed — upstream, not via our PR |
-| 6 | `.mcp.json` | SEC-unknown | `npx-y-playwright-mcp-no-version-pin` | fixed — upstream, not via our PR |
-| 7 | `.mcp.json` | SEC-unknown | `npx-y-deepwiki-mcp-unknown-package-no-pi` | fixed — upstream, not via our PR |
-| 8 | `.claude/hooks/scripts/hooks.py` | SEC-unknown | `subprocess-popen-resolves-audio-player-f` | fixed — upstream, not via our PR |
-| 9 | `.claude/hooks/scripts/hooks.py` | SEC-unknown | `hook-log-may-persist-sensitive-tool-inpu` | fixed — upstream, not via our PR |
-| 10 | `All 20 agents` | R09 | `no-examples` | fixed — upstream, not via our PR |
-| 11 | `.claude/agents/development-workflows-research-agent.md` | BUG-read-only-write | `write-edit-on-readonly` | fixed — upstream, not via our PR |
-| 12 | `.claude/agents/weather-agent.md` | UNCLASSIFIED | `body-says-not-to-write-files-or-create-o` | fixed — upstream, not via our PR |
-| 13 | `.claude/agents/time-agent.md` | UNCLASSIFIED | `single-purpose-time-agent-runs-one-bash` | fixed — upstream, not via our PR |
-| 14 | `workflows/best-practice/*-agent.md` | UNCLASSIFIED | `all-five-workflow-research-agents-declar` | fixed — upstream, not via our PR |
-| 15 | `.claude/agents/presentation-vibe-coding.md` | BUG-unused-tool | `unused-tools` | fixed — upstream, not via our PR |
-| 16 | `.claude/agents/presentation-learning-journey.md` | BUG-unused-tool | `unused-tools` | fixed — upstream, not via our PR |
-| 17 | `agent-teams/.claude/commands/time-orchestrator.md` | BUG-undeclared-tool | `missing-allowed-tools` | fixed — upstream, not via our PR |
-| 18 | `All 8 standalone commands` | BUG-undeclared-tool | `missing-allowed-tools` | fixed — upstream, not via our PR |
-| 19 | `development-workflows/rpi/.claude/commands/rpi/plan.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 20 | `development-workflows/rpi/.claude/commands/rpi/research.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 21 | `development-workflows/rpi/.claude/commands/rpi/implement.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 22 | `development-workflows/rpi/.claude/agents/requirement-parser.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 23 | `development-workflows/rpi/.claude/agents/technical-cto-advisor.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 24 | `development-workflows/rpi/.claude/agents/constitutional-validator.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 25 | `development-workflows/rpi/.claude/agents/documentation-analyst-writer.md` | R01 | `vague-quantifiers` | fixed — upstream, not via our PR |
-| 26 | `development-workflows/rpi/.claude/agents/*.md` | UNCLASSIFIED | `no-allowedtools-in-frontmatter-tools-ava` | fixed — upstream, not via our PR |
-| 27 | `Repo-wide agents` | UNCLASSIFIED | `inconsistent-frontmatter-format-root-sco` | fixed — upstream, not via our PR |
+### Introduced Findings
 
-### Findings Introduced Since Audit
+The re-audit found 50 findings not present in the original audit. This may reflect true regressions introduced by maintainer commits between audit and re-audit, or scoring drift — the re-audit model applying stricter or differently-weighted rules than the original run. Both possibilities are real. The 50 introduced findings include re-enumerated R09 violations (19 agents each flagged individually — the re-audit found 19 agents where the original found 20, consistent with one agent removed upstream between the two runs), R11 violations re-detected after the original was resolved upstream, R07 scope-note gaps in skills that previously scored 100, and new R33/R34/R35 penalties applied to `CLAUDE.md` for missing build/test/prerequisites sections. Note: R33/R34/R35 penalties apply the full rubric regardless of repo type; a reference repo scoring 80 for missing build instructions is an acknowledged rubric limitation, not a quality failure. The overall score held at 88/100 because the fixes and the newly-detected issues approximately cancelled each other out — like mopping a floor while the ceiling drips. NLPM does not have a mechanism to distinguish these two causes; both should be treated as open questions rather than attributions.
 
-The re-audit surfaced 57 findings not present in the original audit — though "surfaced" overstates it; many were present all along, waiting for a finer-grained net. Two explanations exist for any introduced finding; both may apply to any given row: true regressions introduced by maintainer commits between audit and re-audit, or scoring drift where the re-audit model applied a more granular reading of the same issues. NLPM cannot distinguish between these possibilities without commit-level diff analysis; this article does not assign blame.
+**27 of 27 original findings verified fixed; 0 still persist.**
 
-The 5-day gap between audit and re-audit coincided with a high-volume maintenance window, making it difficult to attribute introduced findings to regressions vs. independent evolution. In practice, the jump from 27 to 57 findings is largely explained by granularity. The original audit grouped all 20 agents' missing-examples under one finding ("All 20 agents — Zero usage examples across every agent in the repo"). The re-audit reported a separate finding per agent. Eight agents' Write/Edit-on-read-only, similarly grouped in the original audit, became eight individual findings. The underlying issues are the same; the counting changed.
-
-Introduced findings #1–8 are all classified as `BUG-undeclared-tool` — a more granular re-split of the original audit's grouped Write/Edit-on-read-only-agent finding, not net-new bugs. The two most actionable introduced findings are genuinely new cross-component issues:
-
-- **Findings #9–10**: `.claude/skills/presentation/presentation-structure/SKILL.md` and `.claude/skills/presentation/presentation-styling/SKILL.md` both reference `presentation/index.html` as the target file. The actual path is `presentation/vibe-coding-to-agentic-engineering/index.html`. Agents loading these skills will navigate to a nonexistent file.
-
-- **Finding #54** (informational): `CLAUDE.md` states 15 hook events are configured in `.claude/settings.json`, but `.claude/hooks/config/hooks-config.json` exposes disable flags for 27+ event types. The documented count is stale — a documentation-only inconsistency that does not affect repo functionality.
-
-### Outcome
-
-27 of 27 original findings verified fixed; 0 still persist.
+**50 new findings introduced by re-audit — cause not yet determined.**
 
 ---
 
 ## What the Audit Revealed
 
-The repo's skills and configs are genuinely excellent — nine skills and two hook configs all score 100. The command files are well-structured. The failure mode is concentrated in the agents, and it has a single root cause: a shared `allowedTools` template.
+The single most consistent pattern across this repo is the boilerplate `allowedTools` block. Every agent in `.claude/agents/` was given the same list — 11 tools, including `Write`, `Edit`, `Glob`, `Grep`, `WebFetch`, `WebSearch`, `Agent`, `NotebookEdit`, and `mcp__*`. In most agents, the body text explicitly prohibits the exact operations that `Write` and `Edit` enable. The body says "Do NOT modify any files." The frontmatter says `Write` and `Edit` are allowed. It is the engineering equivalent of a no-smoking sign above an ashtray. The gap is systematic. `allowedTools` caps capability; Claude Code may still respect body-level "do not write" instructions. The risk is that a future user or upstream change relaxes the body constraint, and the tool list silently permits writes.
 
-When building a multi-agent repo, it is common to establish a "generous" tool list in a template agent and copy it to new agents. The problem is that generous grants compound: a read-only research agent that declares `Write` and `Edit` does not just carry dead weight — it creates a security surface — not a door left open, but a door installed where there was no wall. If the agent is misused, confused, or extended, those tool grants become reachable. Eight of the repo's agents stated explicitly in their bodies that they do not modify files. All eight had `Write` and `Edit` in `allowedTools`.
+This pattern is common in multi-agent repos that start with a working agent and copy-paste its frontmatter as a template. The body text evolves to reflect the agent's specific role; the frontmatter does not — a template that outlives the agent it was written for. Over time, the mismatch compounds.
 
-An alternative view is that broad tool grants act as headroom — the agent body provides the behavioral constraint. NLPM's rubric treats the `allowedTools` field as an enforceable security boundary, not a hint.
+The second pattern — zero examples across all 20 agents in the original audit (19 at re-audit time, one having been removed upstream) — points in the same direction. Examples are the part of agent authorship that requires knowing how the agent will actually be invoked. Without them, the tool list and the body text both describe what the agent does in the abstract; neither provides the triggering signal Claude Code needs to auto-invoke correctly.
 
-The fairness note: this is a teaching repo, not a production deployment. The agents are not running autonomously at scale. The Write/Edit grants are unlikely to cause real harm — they are theoretical keys to a door nobody is pushing on. But a repo read by tens of thousands of engineers as a model for best practice carries an implicit standard: its agents should demonstrate the patterns it recommends. The audit found that the agents sometimes demonstrate the opposite. It is also worth noting that the NLPM rubric was designed for deployed agents; some rules — such as R09 requiring usage examples — apply differently to files that are themselves pedagogical examples.
-
-The skills demonstrate the opposite lesson just as clearly. Nine skills score 100. None of them overstate their tool grants, all have complete frontmatter, and several provide structured reference material with external files. The repo knows how to write skills; the agent tier had not yet applied the same discipline.
+A fairness note — and it deserves one: these patterns are characteristic of how Claude Code agentic repos are typically structured in this era of the platform. The skill and command layers of this repo are genuinely well-crafted — the skills all scored 100 in the original audit, the commands averaged 95, and the cross-component reference integrity across all workflow chains was correct. The quality gap is specific to the agent layer and specifically to frontmatter hygiene.
 
 ---
 
@@ -182,53 +165,51 @@ The skills demonstrate the opposite lesson just as clearly. Nine skills score 10
 
 ```mermaid
 gantt
+    title Engagement Timeline — shanraisshan/claude-code-best-practice
     dateFormat YYYY-MM-DD HH:mm
     axisFormat %b %d
-    title Engagement Timeline
 
-    section Discover
-        NL audit (88/100)           : milestone, 2026-04-19 00:00, 0d
+    section Audit
+    NL score audit (88/100, 44 artifacts)   :a1, 2026-04-19 00:00, 1d
 
-    section Submit
-        Issue #68 opened             : 2026-04-22 18:31, 1m
-        PR #63 — time-orchestrator desc    : 2026-04-22 18:27, 5m
-        PR #65 — time-agent rename         : 2026-04-22 18:29, 3m
-        PR #66 — gitignore hooks log       : 2026-04-22 18:29, 3m
-        PR #67 — pin MCP versions          : 2026-04-22 18:30, 2m
+    section Contribute
+    Fix commits prepared                     :c1, 2026-04-22 18:27, 4min
+    Issue #68 opened                         :c2, 2026-04-22 18:31, 1d
+    PR #63 submitted (missing description)   :c3, 2026-04-22 18:31, 1d
+    PR #65 submitted (name collision)        :c4, 2026-04-22 18:31, 1d
+    PR #66 submitted (gitignore)             :c5, 2026-04-22 18:31, 1d
+    PR #67 submitted (MCP pinning)           :c6, 2026-04-22 18:31, 1d
 
     section Merge
-        PR #67 merged                : milestone, 2026-04-23 19:22, 0d
-        PR #66 merged                : milestone, 2026-04-23 19:22, 0d
-        PR #65 merged                : milestone, 2026-04-23 19:24, 0d
-        PR #63 merged                : milestone, 2026-04-23 19:24, 0d
-        Issue #68 closed             : milestone, 2026-04-23 19:31, 0d
+    PR #66 merged                            :m1, 2026-04-23 19:22, 2min
+    PR #63 merged                            :m2, 2026-04-23 19:23, 1min
+    PR #65 merged                            :m3, 2026-04-23 19:24, 1min
+    PR #67 merged                            :m4, 2026-04-23 19:24, 1min
+    Issue #68 closed                         :m5, 2026-04-23 19:31, 1min
 
     section Verify
-        Re-audit at HEAD (13cbf08)   : milestone, 2026-04-24 00:00, 0d
+    Re-audit at HEAD (88/100, 13cbf08)       :v1, 2026-04-24 00:00, 1d
 ```
 
-The four PRs were submitted within a three-minute window on 2026-04-22 and merged within a two-minute window the following day. Issue #68 was opened in the same session as the PRs; its timestamp follows the PR submissions because it was generated last. Issue-to-close: approximately 25 hours.
+From first fix commit to last PR merge: **25 hours**.
 
 ---
 
 ## Limitations
 
-**The PR tracking gap.** The pipeline's `prs.json` is empty for this engagement. All 27 original findings are classified as "fixed — upstream, not via our PR" — the outcome that results when there are no tracked PRs to match against. The merge commits tell a different story: four PRs from the `xiaolai/fix/nlpm-*` branches were merged by the maintainer. The re-audit outcome table's wording is technically accurate per the tracking data, but may underrepresent NLPM's causal contribution to the fixes.
-
-**Granularity inflation in the introduced count.** The 57 introduced findings do not represent 57 newly broken things. The re-audit applied more granular counting to issues the original audit had grouped. The most consequential introduced findings (stale presentation skill paths, stale hook-event count in CLAUDE.md) were likely present at the time of the original audit and simply not surfaced at that granularity.
-
-**The re-audit measures file-level quality at one point in time; it does not verify that maintainer intent aligns with our rule set.** The 27 "fixed" findings are fixed according to NLPM's rubric. Whether the maintainer agrees that these were real bugs — or fixed them for NLPM's reasons versus their own — is not knowable from commit messages alone.
-
-**Score direction is not a verdict.** The overall score dropped one point, from 88 to 87, despite every original finding being resolved. This is not evidence that the repo got worse; it is evidence that the re-audit applied a stricter or differently-grained reading. The one-point delta may equally reflect rubric calibration drift between runs — the re-audit model applied a more granular reading by its own admission, which is consistent with both interpretations. Sometimes the sequel counts more carefully than the original.
-
-**The repo's teaching context.** Quality penalties measured against a production deployment rubric carry more weight when the artifact runs autonomously. This is a reference repo. The Write/Edit grants on read-only agents are real defects against the NLPM rubric, but their practical risk is lower than the same defect in a deployed agent that handles real user data.
+- **No review comments available.** No `pr-*-reviews.json` files were captured in the evidence set. The maintainer's reasoning for accepting or rejecting specific fixes is not known; merges are the only observable signal. No PR diff files were captured; changes merged by the maintainer may differ from submitted patches.
+- **prs.json was empty.** PR metadata was not captured in the evidence pipeline for this engagement. PR numbers and titles are inferred from merge commit messages in commits.json, not from a direct PR API response.
+- **Score stability is ambiguous.** The re-audit score (88) matches the original (88) despite all 27 original findings being resolved. This is consistent with two explanations: (a) the maintainer's independent fixes resolved the findings, but the re-audit detected new gaps the original missed; (b) scoring drift in the re-audit model produced stricter evaluations of the same artifacts. The evidence does not distinguish between them.
+- **The re-audit measures file-level quality at one point in time.** It does not verify that maintainer intent aligns with our rule set — a maintainer may deliberately choose to keep `Write` and `Edit` in a read-only agent's `allowedTools` for reasons not visible to a static scanner.
+- **"Fixed upstream" is a category, not a cause.** We cannot verify whether upstream fixes were in progress before our issue was filed, were triggered by seeing our issue, or were purely coincidental. The 21 upstream fixes could be any combination. Sometimes the best outcome for an automated auditor is to arrive and find someone already halfway through the repairs.
+- **Supply-chain security is an ongoing concern.** The pinned MCP versions were current stable at time of audit; they will need deliberate updates as packages evolve. The pins prevent silent drift but require maintenance. Pinned versions require deliberate updates to receive security patches released in later minor versions.
 
 ---
 
 ## Significance
 
-A 47,718-star repo merged four NLPM-sourced bug and security PRs in under 25 hours. The speed of merge is consistent with the maintainer finding the fixes credible — though it is equally consistent with a high-velocity maintainer clearing a queue during an active maintenance window.
+This engagement produced four merged PRs in a repository with 47,743 stars. The fixes are mechanical — a missing field, a name rename, a `.gitignore` entry, version pins — but each addresses a failure mode with real-world consequence: a slash command invisible to users, an agent that may fire with the wrong timezone, sensitive log data that could reach version control, and a supply-chain surface that accepts unverified package updates silently.
 
-The more durable observation is structural. The skills tier of this repo is close to exemplary. The agents tier is not, and the gap is not random — it traces to a single template-copy decision made early in the repo's history. This is a common pattern in multi-agent repos: the first agent is built carefully, then cloned with the same tool grants into contexts where those grants do not belong — a scaffolding that quietly becomes the building. Auditing each agent's `allowedTools` against what its body actually needs is a mechanical fix — and one that the maintainer of any multi-agent repo can apply independently of the tooling used to surface it.
+The broader audit finding — boilerplate `allowedTools` pasted into agents that declare read-only intent — is a pattern worth naming. It is not a bug in any single agent; it is what happens when a working agent template gets propagated without per-agent review. Users learning from this repo may replicate these patterns in their own agents unless the reference is updated.
 
-For a repo whose purpose is to teach Claude Code best practices, the most significant finding may be the simplest one: the agents sometimes don't follow their own stated contracts. Fixing that is not a matter of rewriting the repo — it is, as it turns out, a matter of the agents reading their own repo.
+The re-audit confirmed that all 27 original findings were resolved, 6 via NLPM's PRs and 21 by the maintainer independently. The score did not improve because the re-audit surfaced 50 new findings — mostly the same structural patterns re-enumerated under stricter scoring, plus a batch of skills that lost their perfect scores under updated scope-note rules. That last result is a signal the pipeline should track: when a re-audit introduces more findings than it verifies fixed, and the score holds constant, something about the rubric's consistency deserves scrutiny. Until the pipeline distinguishes drift from regressions, re-audit scores carry a known confidence gap — the cost of measuring a moving target with a fixed ruler.
