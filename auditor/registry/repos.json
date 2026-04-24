@@ -3756,7 +3756,7 @@
       "stars": 1128,
       "artifacts": 5,
       "description": "🪐 The ultimate starter kit for AI IDEs, Claude code，codex, and other agentic coding environments.",
-      "status": "contributed",
+      "status": "tracked",
       "score": 62,
       "audit_issue": 126,
       "prs": [
@@ -3775,13 +3775,13 @@
         },
         {
           "number": 52,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-04-24T05:11:49Z",
+          "closedAt": "2026-04-24T05:11:49Z",
           "title": "fix: add upper-bound version pins to engine dependencies",
-          "updatedAt": "2026-04-23T06:47:10Z",
+          "updatedAt": "2026-04-24T05:11:49Z",
           "createdAt": "2026-04-23T06:44:20Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -3796,7 +3796,8 @@
         51,
         52
       ],
-      "rule_adopted": false
+      "rule_adopted": false,
+      "case_study_candidate": true
     },
     "aaron-he-zhu/seo-geo-claude-skills": {
       "discovered": "2026-04-18T22:52:00Z",
