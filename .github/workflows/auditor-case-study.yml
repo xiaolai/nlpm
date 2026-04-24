@@ -11,6 +11,11 @@ on:
       issue_number:
         description: 'Tracking issue number'
         required: true
+      force_rewrite:
+        description: 'Regenerate the case study even if an article already exists (deletes the prior article + cover image first)'
+        required: false
+        default: 'false'
+        type: string
 
 permissions:
   contents: write
@@ -50,6 +55,35 @@ jobs:
             echo "repo=$REPO" >> "$GITHUB_OUTPUT"
             echo "issue=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Force rewrite — remove prior article + cover image
+        # Dispatched-only path. When force_rewrite=true, delete any
+        # existing `<date>-<slug>.md` and its cover image so the
+        # downstream skipcheck sees no prior article and proceeds to
+        # write a fresh one with the date-of-rewrite prefix. Without
+        # this, skipcheck would bail and the workflow would no-op.
+        # The final commit step stages `case-studies/` which picks up
+        # both the deletion (via git add -A on the directory) and the
+        # new file.
+        if: github.event_name == 'workflow_dispatch' && inputs.force_rewrite == 'true'
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          SLUG="${TARGET_REPO//\//-}"
+          REMOVED=0
+          for f in case-studies/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}".md; do
+            [ -f "$f" ] || continue
+            rm -f "$f"
+            REMOVED=$((REMOVED + 1))
+            echo "Removed prior article: $f"
+          done
+          for f in case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.png \
+                   case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.jpg; do
+            [ -f "$f" ] || continue
+            rm -f "$f"
+            echo "Removed prior cover image: $f"
+          done
+          echo "force_rewrite cleanup: $REMOVED prior article(s) removed"
 
       - name: Skip if case study already exists
         id: skipcheck
