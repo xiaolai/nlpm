@@ -5079,11 +5079,14 @@
       "stars": 61,
       "artifacts": 221,
       "description": "",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 0,
       "audit_issue": 199,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "78cda132785763559418f0bb6fefd4223ea9bbfa"
     },
     "tanweai/pua": {
       "discovered": "2026-04-25T01:06:48Z",
