@@ -4656,11 +4656,14 @@
       "stars": 19356,
       "artifacts": 134,
       "description": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 83,
       "audit_issue": 174,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "25e1c0f5696f8f219069acfe70856a4a3d316397"
     },
     "MiniMax-AI/skills": {
       "discovered": "2026-04-25T01:06:48Z",
