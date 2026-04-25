@@ -1258,3 +1258,5 @@
 {"timestamp":"2026-04-25T09:15:53Z","workflow":"audit","event":"audit_complete","run_id":"24927332082","run_number":337,"data":{"repo":"K-Dense-AI/scientific-agent-skills","score":83,"artifacts":134,"strategy":"progressive"}}
 {"timestamp":"2026-04-25T09:19:25Z","workflow":"audit","event":"findings_aggregated","run_id":"24927328963","run_number":335,"data":{"repo":"eyaltoledano/claude-task-master","findings":31,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-04-25T09:19:25Z","workflow":"audit","event":"audit_complete","run_id":"24927328963","run_number":335,"data":{"repo":"eyaltoledano/claude-task-master","score":67,"artifacts":57,"strategy":"batched"}}
+{"timestamp":"2026-04-25T12:24:26Z","workflow":"audit","event":"findings_aggregated","run_id":"24930688142","run_number":340,"data":{"repo":"zhsama/claude-sub-agent","findings":35,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-04-25T12:24:26Z","workflow":"audit","event":"audit_complete","run_id":"24930688142","run_number":340,"data":{"repo":"zhsama/claude-sub-agent","score":72,"artifacts":14,"strategy":"single"}}

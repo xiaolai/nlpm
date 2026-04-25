@@ -4998,11 +4998,14 @@
       "stars": 576,
       "artifacts": 13,
       "description": "AI-driven development workflow system built on Claude Code Sub-Agents.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 72,
       "audit_issue": 204,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905"
     },
     "0xmariowu/Autosearch": {
       "discovered": "2026-04-25T01:06:48Z",
