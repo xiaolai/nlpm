@@ -5009,11 +5009,14 @@
       "stars": 13,
       "artifacts": 73,
       "description": "Open-source deep research for coding agents. ",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 205,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "c429ffc4ef93f1f3c42bc5845a82d5be140c0885"
     },
     "2389-research/review-squad": {
       "discovered": "2026-04-25T01:06:48Z",
