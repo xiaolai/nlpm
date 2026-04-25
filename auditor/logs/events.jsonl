@@ -1294,4 +1294,6 @@
 {"timestamp":"2026-04-25T16:22:23Z","workflow":"track","event":"finding_outcome","run_id":"24935148715","run_number":41,"data":{"pr":"googleworkspace/cli#759","pr_state":"open","fingerprints":["sha256:eb7f32ad08d5f0d22fdf1f65c0eae2ee3f2236db05a42a937d72b955228ebff0"],"rule_ids":["SEC-runtime-package-install"]}}
 {"timestamp":"2026-04-25T16:22:24Z","workflow":"track","event":"finding_outcome","run_id":"24935148715","run_number":41,"data":{"pr":"googleworkspace/cli#760","pr_state":"open","fingerprints":["sha256:cc6dd0163e79cb9765bf8cff593f2d0bf97402bce9faf742ea55e61456870ae2"],"rule_ids":["SEC-unpinned-semver"]}}
 {"timestamp":"2026-04-25T16:22:26Z","workflow":"track","event":"status_check","run_id":"24935148715","run_number":41,"data":{"contributed":47,"tracked":13,"case_study_ready":19,"rule_adopted":2}}
+{"timestamp":"2026-04-25T18:16:57Z","workflow":"contribute","event":"prs_submitted","run_id":"24937414156","run_number":250,"data":{"repo":"2389-research/review-squad","pr_count":0}}
+{"timestamp":"2026-04-25T18:18:13Z","workflow":"contribute","event":"prs_submitted","run_id":"24937419694","run_number":255,"data":{"repo":"2389-research/review-squad","pr_count":0}}
 {"timestamp":"2026-04-25T18:18:33Z","workflow":"contribute","event":"prs_submitted","run_id":"24937415301","run_number":251,"data":{"repo":"zhsama/claude-sub-agent","pr_count":2}}
