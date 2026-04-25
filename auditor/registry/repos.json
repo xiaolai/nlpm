@@ -68,7 +68,8 @@
           "stale_90d_emitted": false
         }
       ],
-      "rule_adopted": false
+      "rule_adopted": false,
+      "policy_no_external_prs": true
     },
     "trailofbits/skills": {
       "status": "audited",
@@ -5038,11 +5039,12 @@
       "stars": 123447,
       "artifacts": 17,
       "description": "Public repository for Agent Skills",
-      "status": "discovered",
+      "status": "policy_denied",
       "score": null,
       "audit_issue": 209,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "policy_no_external_prs": true
     },
     "gsd-build/get-shit-done": {
       "discovered": "2026-04-25T01:06:48Z",

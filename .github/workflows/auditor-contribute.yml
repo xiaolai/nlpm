@@ -63,6 +63,55 @@ jobs:
             echo "issue=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Policy gate — refuse PRs to no-external-PR orgs
+        # Some orgs don't accept outside PRs (anthropics/* confirmed:
+        # 3/3 of our PRs to anthropics/claude-plugins-official were
+        # rejected as a policy matter, not a code matter). Auditing
+        # those repos is still useful — the audit data feeds rule-health
+        # — but opening PRs against them is wasted cycles + adds noise
+        # to the maintainer's queue. Gate here, after audit but before
+        # any fork/PR creation. Deny list is intentionally short; extend
+        # only when we have positive evidence (≥2 rejections-as-policy).
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+          ISSUE_NUM: ${{ steps.target.outputs.issue }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          OWNER=$(echo "$TARGET_REPO" | cut -d/ -f1)
+          # Owners that don't accept external PRs (policy, not code).
+          # Audit still runs and records signal; only PR-opening is gated.
+          DENY_OWNERS=(anthropics)
+          for denied in "${DENY_OWNERS[@]}"; do
+            if [ "$OWNER" = "$denied" ]; then
+              echo "Policy gate: $OWNER does not accept external PRs — skipping contribute step."
+              {
+                echo "## Contribute step skipped — policy"
+                echo ""
+                echo "Owner \`$OWNER\` does not accept external pull requests as a policy matter."
+                echo "Audit data captured for rule-health analysis; no PRs will be opened."
+              } | gh issue comment "$ISSUE_NUM" --body-file - 2>/dev/null || true
+              gh issue edit "$ISSUE_NUM" --add-label "policy-no-external-prs" --remove-label "contribute-approved" 2>/dev/null || true
+
+              # Persist on the registry record so future workflow runs
+              # (rule-health, daily report, dashboard) can filter cleanly.
+              jq --arg name "$TARGET_REPO" \
+                 '.repos[$name].policy_no_external_prs = true |
+                  .repos[$name].status = "policy_denied"' \
+                 auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+
+              git config user.name "nlpm-auditor[bot]"
+              git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+              git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+              git add auditor/registry/repos.json
+              bash auditor/scripts/guard-protected-paths.sh || exit 1
+              git diff --cached --quiet || {
+                git commit -m "policy: $TARGET_REPO — no external PRs (gated in contribute step)"
+                git push 2>/dev/null || true
+              }
+              exit 0
+            fi
+          done
+
       - name: Load audit report
         id: report
         env:
