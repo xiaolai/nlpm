@@ -5137,14 +5137,18 @@
       "stars": 576,
       "artifacts": 13,
       "description": "AI-driven development workflow system built on Claude Code Sub-Agents.",
-      "status": "audited",
+      "status": "contributed",
       "score": 72,
       "audit_issue": 204,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905"
+      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905",
+      "pipeline_prs": [
+        3,
+        4
+      ]
     },
     "0xmariowu/Autosearch": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5165,14 +5169,15 @@
       "stars": 1,
       "artifacts": 5,
       "description": "Dispatch panels of specialized subagents to review projects — expert audits, first-impression personas, task-completion flows, and pedantic nitpicks",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 206,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f"
+      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f",
+      "pipeline_prs": []
     },
     "2389-research/simmer": {
       "discovered": "2026-04-25T01:06:48Z",
