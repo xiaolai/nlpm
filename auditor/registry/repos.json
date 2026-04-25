@@ -5023,39 +5023,49 @@
       "stars": 1,
       "artifacts": 5,
       "description": "Dispatch panels of specialized subagents to review projects — expert audits, first-impression personas, task-completion flows, and pedantic nitpicks",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 206,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f"
     },
     "2389-research/simmer": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 4,
       "artifacts": 6,
       "description": "Iterative artifact refinement with investigation-first judge board - constructs problem-specific judges that read the code, understand the problem, and propose evidence-based improvements",
-      "status": "audited",
+      "status": "contributed",
       "score": 93,
       "audit_issue": 207,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "bf58540cf5d5e26f27f4f50d2bc924bfbf004f00"
+      "commit_sha_at_audit": "bf58540cf5d5e26f27f4f50d2bc924bfbf004f00",
+      "pipeline_prs": []
     },
     "888wing/codetape": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 0,
       "artifacts": 16,
       "description": "The flight recorder for AI coding — keeps your docs in sync with your code",
-      "status": "audited",
+      "status": "contributed",
       "score": 88,
       "audit_issue": 208,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "7a54141eb1ca6b0e040002d6c7215ec31a6add7d"
+      "commit_sha_at_audit": "7a54141eb1ca6b0e040002d6c7215ec31a6add7d",
+      "pipeline_prs": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "anthropics/skills": {
       "discovered": "2026-04-25T01:06:48Z",
