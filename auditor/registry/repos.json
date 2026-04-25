@@ -4623,11 +4623,14 @@
       "stars": 166779,
       "artifacts": 19,
       "description": "An agentic skills framework & software development methodology that works.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 171,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "6efe32c9e2dd002d0c394e861e0529675d1ab32e"
     },
     "0xfurai/claude-code-subagents": {
       "discovered": "2026-04-25T01:06:48Z",
