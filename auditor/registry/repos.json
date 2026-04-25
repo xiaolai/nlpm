@@ -5051,11 +5051,14 @@
       "stars": 1342,
       "artifacts": 9,
       "description": "Claude Code Workflow for beginners & intermediate users. Tutorial and Installer included",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 82,
       "audit_issue": 197,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "af4b9cc901826a359bc3f2b50733fefdbe658ba2"
     },
     "ruvnet/ruflo": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5095,11 +5098,14 @@
       "stars": 53665,
       "artifacts": 9,
       "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 82,
       "audit_issue": 201,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "5d284f215471c341e0e3d9bb4f9c24bb1345ada1"
     },
     "vectorize-io/hindsight": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5140,14 +5146,18 @@
       "stars": 576,
       "artifacts": 13,
       "description": "AI-driven development workflow system built on Claude Code Sub-Agents.",
-      "status": "audited",
+      "status": "contributed",
       "score": 72,
       "audit_issue": 204,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905"
+      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905",
+      "pipeline_prs": [
+        3,
+        4
+      ]
     },
     "0xmariowu/Autosearch": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5168,14 +5178,15 @@
       "stars": 1,
       "artifacts": 5,
       "description": "Dispatch panels of specialized subagents to review projects — expert audits, first-impression personas, task-completion flows, and pedantic nitpicks",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 206,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f"
+      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f",
+      "pipeline_prs": []
     },
     "2389-research/simmer": {
       "discovered": "2026-04-25T01:06:48Z",
