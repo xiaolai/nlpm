@@ -4623,14 +4623,17 @@
       "stars": 166779,
       "artifacts": 19,
       "description": "An agentic skills framework & software development methodology that works.",
-      "status": "audited",
+      "status": "contributed",
       "score": 92,
       "audit_issue": 171,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "CLEAR",
-      "commit_sha_at_audit": "6efe32c9e2dd002d0c394e861e0529675d1ab32e"
+      "commit_sha_at_audit": "6efe32c9e2dd002d0c394e861e0529675d1ab32e",
+      "pipeline_prs": [
+        1269
+      ]
     },
     "0xfurai/claude-code-subagents": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4659,14 +4662,21 @@
       "stars": 19356,
       "artifacts": 134,
       "description": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.",
-      "status": "audited",
+      "status": "contributed",
       "score": 83,
       "audit_issue": 174,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "progressive",
       "security": "CLEAR",
-      "commit_sha_at_audit": "25e1c0f5696f8f219069acfe70856a4a3d316397"
+      "commit_sha_at_audit": "25e1c0f5696f8f219069acfe70856a4a3d316397",
+      "pipeline_prs": [
+        145,
+        146,
+        147,
+        148,
+        149
+      ]
     },
     "MiniMax-AI/skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4976,11 +4986,14 @@
       "stars": 10609,
       "artifacts": 8,
       "description": "Hindsight: Agent Memory That  Learns",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 202,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "e1c6092785eae1da8f0114d3ee61bc69b210e6f8"
     },
     "webdevtodayjason/sub-agents": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5001,11 +5014,14 @@
       "stars": 576,
       "artifacts": 13,
       "description": "AI-driven development workflow system built on Claude Code Sub-Agents.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 72,
       "audit_issue": 204,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "ff1f0256e36c20365c393330cf1017b495996905"
     },
     "0xmariowu/Autosearch": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5023,39 +5039,49 @@
       "stars": 1,
       "artifacts": 5,
       "description": "Dispatch panels of specialized subagents to review projects — expert audits, first-impression personas, task-completion flows, and pedantic nitpicks",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 206,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "b32f196f410c917367bd51887b24336fe065915f"
     },
     "2389-research/simmer": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 4,
       "artifacts": 6,
       "description": "Iterative artifact refinement with investigation-first judge board - constructs problem-specific judges that read the code, understand the problem, and propose evidence-based improvements",
-      "status": "audited",
+      "status": "contributed",
       "score": 93,
       "audit_issue": 207,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "bf58540cf5d5e26f27f4f50d2bc924bfbf004f00"
+      "commit_sha_at_audit": "bf58540cf5d5e26f27f4f50d2bc924bfbf004f00",
+      "pipeline_prs": []
     },
     "888wing/codetape": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 0,
       "artifacts": 16,
       "description": "The flight recorder for AI coding — keeps your docs in sync with your code",
-      "status": "audited",
+      "status": "contributed",
       "score": 88,
       "audit_issue": 208,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "7a54141eb1ca6b0e040002d6c7215ec31a6add7d"
+      "commit_sha_at_audit": "7a54141eb1ca6b0e040002d6c7215ec31a6add7d",
+      "pipeline_prs": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "anthropics/skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5116,14 +5142,20 @@
       "stars": 25330,
       "artifacts": 95,
       "description": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.",
-      "status": "audited",
+      "status": "contributed",
       "score": 99,
       "audit_issue": 213,
       "prs": [],
       "discovery_strategy": "topic-tag",
       "strategy": "progressive",
       "security": "REVIEW",
-      "commit_sha_at_audit": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd"
+      "commit_sha_at_audit": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
+      "pipeline_prs": [
+        757,
+        758,
+        759,
+        760
+      ]
     },
     "iOfficeAI/AionUi": {
       "discovered": "2026-04-25T01:06:48Z",

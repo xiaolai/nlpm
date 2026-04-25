@@ -1258,5 +1258,17 @@
 {"timestamp":"2026-04-25T09:15:53Z","workflow":"audit","event":"audit_complete","run_id":"24927332082","run_number":337,"data":{"repo":"K-Dense-AI/scientific-agent-skills","score":83,"artifacts":134,"strategy":"progressive"}}
 {"timestamp":"2026-04-25T09:19:25Z","workflow":"audit","event":"findings_aggregated","run_id":"24927328963","run_number":335,"data":{"repo":"eyaltoledano/claude-task-master","findings":31,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-04-25T09:19:25Z","workflow":"audit","event":"audit_complete","run_id":"24927328963","run_number":335,"data":{"repo":"eyaltoledano/claude-task-master","score":67,"artifacts":57,"strategy":"batched"}}
+{"timestamp":"2026-04-25T12:17:34Z","workflow":"contribute","event":"prs_submitted","run_id":"24930679127","run_number":246,"data":{"repo":"2389-research/simmer","pr_count":0}}
+{"timestamp":"2026-04-25T12:18:50Z","workflow":"contribute","event":"prs_submitted","run_id":"24930681320","run_number":248,"data":{"repo":"obra/superpowers","pr_count":1}}
+{"timestamp":"2026-04-25T12:20:52Z","workflow":"contribute","event":"prs_submitted","run_id":"24930678137","run_number":245,"data":{"repo":"888wing/codetape","pr_count":4}}
+{"timestamp":"2026-04-25T12:21:07Z","workflow":"audit","event":"findings_aggregated","run_id":"24930691124","run_number":342,"data":{"repo":"2389-research/review-squad","findings":4,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-04-25T12:21:07Z","workflow":"audit","event":"audit_complete","run_id":"24930691124","run_number":342,"data":{"repo":"2389-research/review-squad","score":96,"artifacts":6,"strategy":"single"}}
+{"timestamp":"2026-04-25T12:21:09Z","workflow":"contribute","event":"prs_submitted","run_id":"24930682397","run_number":249,"data":{"repo":"obra/superpowers","pr_count":1}}
+{"timestamp":"2026-04-25T12:22:10Z","workflow":"contribute","event":"prs_submitted","run_id":"24930676975","run_number":244,"data":{"repo":"googleworkspace/cli","pr_count":4}}
+{"timestamp":"2026-04-25T12:22:58Z","workflow":"contribute","event":"prs_submitted","run_id":"24930680191","run_number":247,"data":{"repo":"K-Dense-AI/scientific-agent-skills","pr_count":5}}
+{"timestamp":"2026-04-25T12:24:26Z","workflow":"audit","event":"findings_aggregated","run_id":"24930688142","run_number":340,"data":{"repo":"zhsama/claude-sub-agent","findings":35,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-04-25T12:24:26Z","workflow":"audit","event":"audit_complete","run_id":"24930688142","run_number":340,"data":{"repo":"zhsama/claude-sub-agent","score":72,"artifacts":14,"strategy":"single"}}
+{"timestamp":"2026-04-25T12:25:15Z","workflow":"audit","event":"findings_aggregated","run_id":"24930685008","run_number":338,"data":{"repo":"vectorize-io/hindsight","findings":15,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-04-25T12:25:15Z","workflow":"audit","event":"audit_complete","run_id":"24930685008","run_number":338,"data":{"repo":"vectorize-io/hindsight","score":94,"artifacts":10,"strategy":"single"}}
 {"timestamp":"2026-04-25T12:28:45Z","workflow":"audit","event":"findings_aggregated","run_id":"24930686610","run_number":339,"data":{"repo":"webdevtodayjason/sub-agents","findings":34,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-04-25T12:28:45Z","workflow":"audit","event":"audit_complete","run_id":"24930686610","run_number":339,"data":{"repo":"webdevtodayjason/sub-agents","score":78,"artifacts":40,"strategy":"batched"}}
