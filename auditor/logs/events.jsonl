@@ -1232,3 +1232,5 @@
 {"timestamp":"2026-04-25T01:03:52Z","workflow":"case-study","event":"published","run_id":"24918396161","run_number":145,"data":{"repo":"luongnv89/claude-howto","article_lines":126,"has_cover":true}}
 {"timestamp":"2026-04-25T04:56:55Z","workflow":"track","event":"finding_outcome","run_id":"24923000210","run_number":38,"data":{"pr":"mikeyobrien/ralph-orchestrator#305","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-04-25T04:57:48Z","workflow":"track","event":"status_check","run_id":"24923000210","run_number":38,"data":{"contributed":45,"tracked":12,"case_study_ready":17,"rule_adopted":2}}
+{"timestamp":"2026-04-25T06:46:47Z","workflow":"audit","event":"findings_aggregated","run_id":"24924768932","run_number":333,"data":{"repo":"googleworkspace/cli","findings":16,"invalid_lines":0,"self_false_positives":1}}
+{"timestamp":"2026-04-25T06:46:47Z","workflow":"audit","event":"audit_complete","run_id":"24924768932","run_number":333,"data":{"repo":"googleworkspace/cli","score":99,"artifacts":96,"strategy":"progressive"}}

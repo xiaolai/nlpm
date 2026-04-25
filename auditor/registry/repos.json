@@ -5087,11 +5087,14 @@
       "stars": 25330,
       "artifacts": 95,
       "description": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 99,
       "audit_issue": 213,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd"
     },
     "iOfficeAI/AionUi": {
       "discovered": "2026-04-25T01:06:48Z",
