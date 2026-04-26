@@ -5568,11 +5568,14 @@
       "stars": 22516,
       "artifacts": 13,
       "description": "Free, local, open-source 24/7 Cowork app and OpenClaw for Gemini CLI, Claude Code, Codex, OpenCode, Qwen Code, Goose CLI, Auggie, and more | 🌟 Star if you like it!",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 79,
       "audit_issue": 214,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "batched",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "ed8a6bcd3803954807465947a5c8da4b43eaabca"
     },
     "kubesphere/kubesphere": {
       "discovered": "2026-04-25T01:06:48Z",
