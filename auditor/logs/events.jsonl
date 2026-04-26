@@ -1358,3 +1358,4 @@
 {"timestamp":"2026-04-26T08:36:40Z","workflow":"track","event":"finding_outcome","run_id":"24952303433","run_number":45,"data":{"pr":"nextlevelbuilder/ui-ux-pro-max-skill#288","pr_state":"open","fingerprints":["sha256:76b2cad276a5e94538b0dab8bd77ebbd93f7e9b7fbbe123c2adb76d328153e07"],"rule_ids":["SEC-curl-pipe-sh"]}}
 {"timestamp":"2026-04-26T08:37:01Z","workflow":"track","event":"status_check","run_id":"24952303433","run_number":45,"data":{"contributed":50,"tracked":13,"case_study_ready":19,"rule_adopted":2}}
 {"timestamp":"2026-04-26T09:26:32Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"24953283951","run_number":1,"data":{"proposals":1,"skipped_existing_open":0}}
+{"timestamp":"2026-04-26T12:27:24Z","workflow":"contribute","event":"prs_submitted","run_id":"24956419008","run_number":271,"data":{"repo":"iannuttall/claude-agents","pr_count":4}}
