@@ -9,7 +9,7 @@
       ]
     },
     "R01": {
-      "total_hits": 5,
+      "total_hits": 10,
       "repos": [
         "slavingia/skills",
         "deanpeters/Product-Manager-Skills",
@@ -95,7 +95,7 @@
       "state": "healthy"
     },
     "R08": {
-      "total_hits": 1,
+      "total_hits": 4,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -108,7 +108,7 @@
       "state": "healthy"
     },
     "R12": {
-      "total_hits": 6,
+      "total_hits": 16,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -121,7 +121,7 @@
       "state": "healthy"
     },
     "R14": {
-      "total_hits": 1,
+      "total_hits": 7,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -134,7 +134,7 @@
       "state": "healthy"
     },
     "R15": {
-      "total_hits": 3,
+      "total_hits": 16,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -147,9 +147,17 @@
       "state": "healthy"
     },
     "R20": {
-      "total_hits": 1,
+      "total_hits": 6,
       "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 0
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
     },
     "R31": {
       "total_hits": 1,
@@ -167,7 +175,7 @@
       "led_to_rejected_pr": 0
     },
     "R10": {
-      "total_hits": 6,
+      "total_hits": 13,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -180,7 +188,7 @@
       "state": "healthy"
     },
     "BUG-missing-frontmatter": {
-      "total_hits": 7,
+      "total_hits": 27,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -190,7 +198,7 @@
       "verified_persists": 0,
       "verify_rate": null,
       "introduced_since_audit": 12,
-      "state": "healthy"
+      "state": "noisy"
     },
     "BUG-malformed-syntax": {
       "total_hits": 0,
@@ -206,7 +214,7 @@
       "state": "healthy"
     },
     "CC-broken-relative-path": {
-      "total_hits": 2,
+      "total_hits": 4,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -219,7 +227,7 @@
       "state": "healthy"
     },
     "R11": {
-      "total_hits": 0,
+      "total_hits": 6,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -297,7 +305,7 @@
       "state": "healthy"
     },
     "BUG-undeclared-tool": {
-      "total_hits": 0,
+      "total_hits": 1,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -310,7 +318,7 @@
       "state": "healthy"
     },
     "R05": {
-      "total_hits": 12,
+      "total_hits": 13,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -323,7 +331,7 @@
       "state": "healthy"
     },
     "R25": {
-      "total_hits": 0,
+      "total_hits": 3,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -336,7 +344,7 @@
       "state": "healthy"
     },
     "CC-stale-count": {
-      "total_hits": 0,
+      "total_hits": 5,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -349,7 +357,7 @@
       "state": "healthy"
     },
     "CC-orphan-component": {
-      "total_hits": 1,
+      "total_hits": 5,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -388,7 +396,7 @@
       "state": "healthy"
     },
     "R06": {
-      "total_hits": 3,
+      "total_hits": 45,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -440,7 +448,7 @@
       "state": "healthy"
     },
     "BUG-broken-reference": {
-      "total_hits": 2,
+      "total_hits": 7,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -466,45 +474,6 @@
       "state": "healthy"
     },
     "SEC-runtime-package-install": {
-      "total_hits": 1,
-      "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 0,
-      "self_false_positive": 0,
-      "maintainer_rejected": 0,
-      "downstream_suppressions": 0,
-      "verified_fixed": 0,
-      "verified_persists": 0,
-      "verify_rate": null,
-      "introduced_since_audit": 0,
-      "state": "healthy"
-    },
-    "SEC-unpinned-semver": {
-      "total_hits": 4,
-      "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 0,
-      "self_false_positive": 0,
-      "maintainer_rejected": 0,
-      "downstream_suppressions": 0,
-      "verified_fixed": 0,
-      "verified_persists": 0,
-      "verify_rate": null,
-      "introduced_since_audit": 0,
-      "state": "healthy"
-    },
-    "R30": {
-      "total_hits": 1,
-      "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 0,
-      "self_false_positive": 0,
-      "maintainer_rejected": 0,
-      "downstream_suppressions": 0,
-      "verified_fixed": 0,
-      "verified_persists": 0,
-      "verify_rate": null,
-      "introduced_since_audit": 0,
-      "state": "healthy"
-    },
-    "R22": {
       "total_hits": 5,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
@@ -517,8 +486,47 @@
       "introduced_since_audit": 0,
       "state": "healthy"
     },
+    "SEC-unpinned-semver": {
+      "total_hits": 10,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "R30": {
+      "total_hits": 6,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "R22": {
+      "total_hits": 64,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
     "CC-terminology-drift": {
-      "total_hits": 4,
+      "total_hits": 8,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -594,6 +602,175 @@
       "verify_rate": null,
       "introduced_since_audit": 0,
       "state": "healthy"
+    },
+    "SEC-shell-true": {
+      "total_hits": 2,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-postinstall-script": {
+      "total_hits": 5,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-writes-outside-repo": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-path-modification": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-shell-interpolation": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "BUG-missing-tools": {
+      "total_hits": 3,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "noisy"
+    },
+    "BUG-contradictory-tool": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-destructive-command": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-network-call-env-key": {
+      "total_hits": 4,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-ambient-credential-use": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-missing-hook-script": {
+      "total_hits": 4,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "SEC-subprocess": {
+      "total_hits": 2,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "R18": {
+      "total_hits": 2,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
     }
   },
   "metadata": {
@@ -601,10 +778,10 @@
     "last_updated": "2026-04-10",
     "total_events": 16,
     "total_audits": 10,
-    "total_prs_submitted": 220,
-    "total_prs_merged": 58,
-    "total_prs_rejected": 23,
+    "total_prs_submitted": 236,
+    "total_prs_merged": 63,
+    "total_prs_rejected": 24,
     "total_prs_applied_separately": 6,
-    "updated_at": "2026-04-25T22:09:32.322607Z"
+    "updated_at": "2026-04-26T22:15:50.221053Z"
   }
 }
