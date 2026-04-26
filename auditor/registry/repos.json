@@ -4825,11 +4825,17 @@
       "stars": 22474,
       "artifacts": 113,
       "description": "A configuration framework that enhances Claude Code with specialized commands, cognitive personas, and development methodologies.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 84,
+      "security_status": "BLOCKED",
+      "audited": "2026-04-26T18:30:00Z",
+      "commit_sha": "unknown",
       "audit_issue": 177,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "af3a965da2ec4f481fe1a1a459899cf3f811894a"
     },
     "The-Vibe-Company/companion": {
       "discovered": "2026-04-25T01:06:48Z",
