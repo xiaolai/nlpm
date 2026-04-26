@@ -4956,7 +4956,10 @@
       "score": null,
       "audit_issue": 188,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "f7df2c3e7395d163ad52d0793bac8fa7ce0d776a"
     },
     "kbwo/ccmanager": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4967,7 +4970,10 @@
       "score": null,
       "audit_issue": 189,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "0c3ad3db5260c026bb37917195cbe95ec5dc867d"
     },
     "kepano/obsidian-skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4978,7 +4984,10 @@
       "score": null,
       "audit_issue": 190,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "fa1e131a014576ff8f8919f191a7ca8d8fded39b"
     },
     "krodak/clickup-cli": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4989,7 +4998,10 @@
       "score": null,
       "audit_issue": 191,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "48aeedb5a998df0fb4f5b4502dc01b5b645d8915"
     },
     "mksglu/context-mode": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5017,7 +5029,13 @@
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "CLEAR",
-      "commit_sha_at_audit": "7a95d94c364e25c869a86896a45791dfda6db8bf"
+      "commit_sha_at_audit": "7a95d94c364e25c869a86896a45791dfda6db8bf",
+      "pipeline_prs": [
+        80,
+        81,
+        82,
+        83
+      ]
     },
     "musistudio/claude-code-router": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5031,7 +5049,12 @@
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "e270dea523b8ac025ab9b7b0708dc170efa52d8a"
+      "commit_sha_at_audit": "e270dea523b8ac025ab9b7b0708dc170efa52d8a",
+      "pipeline_prs": [
+        1361,
+        1362,
+        1363
+      ]
     },
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5066,7 +5089,12 @@
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "9a97a5818bebbcb61cccf8941d533b82a1ce958b"
+      "commit_sha_at_audit": "9a97a5818bebbcb61cccf8941d533b82a1ce958b",
+      "pipeline_prs": [
+        43,
+        47,
+        45
+      ]
     },
     "peterkrueck/Claude-Code-Development-Kit": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5579,7 +5607,10 @@
       "score": null,
       "audit_issue": 214,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "batched",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "ed8a6bcd3803954807465947a5c8da4b43eaabca"
     },
     "kubesphere/kubesphere": {
       "discovered": "2026-04-25T01:06:48Z",
