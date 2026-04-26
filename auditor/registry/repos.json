@@ -3747,7 +3747,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(skills): remove broken doc references in orca-cli SKILL.md",
-          "updatedAt": "2026-04-23T06:43:17Z",
+          "updatedAt": "2026-04-26T00:34:49Z",
           "createdAt": "2026-04-23T06:43:17Z",
           "outcome": "open",
           "fingerprints": [],
@@ -3760,7 +3760,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(scripts): restrict ORCA_ELECTRON_VITE_CLI override to test environments",
-          "updatedAt": "2026-04-23T06:43:49Z",
+          "updatedAt": "2026-04-26T00:34:48Z",
           "createdAt": "2026-04-23T06:43:49Z",
           "outcome": "open",
           "fingerprints": [],
@@ -3773,7 +3773,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(deps): pin critical native dependencies to exact versions",
-          "updatedAt": "2026-04-23T06:44:27Z",
+          "updatedAt": "2026-04-26T00:34:47Z",
           "createdAt": "2026-04-23T06:44:27Z",
           "outcome": "open",
           "fingerprints": [],
@@ -5111,7 +5111,40 @@
       "status": "contributed",
       "score": 90,
       "audit_issue": 200,
-      "prs": [],
+      "prs": [
+        {
+          "number": 154,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: correct broken relative protocol file paths in P7/P9/P10 agents",
+          "updatedAt": "2026-04-26T00:46:28Z",
+          "createdAt": "2026-04-26T00:46:28Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:4a73a442009a66266adfc3c17b35faaa8340d79f18337329642a0fad79d7e023",
+            "sha256:28adfc462ff92f2ce96cbf54a693a3c840275799976999b6f5e5870df1da9222",
+            "sha256:d05efdc6e5054c3ff9029f78d4090655f56482ce7bed83b541ac84bc92ea31aa"
+          ],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 155,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(security): replace /tmp/pua-plugin-root TOCTOU race with CLAUDE_PLUGIN_ROOT",
+          "updatedAt": "2026-04-26T00:48:12Z",
+          "createdAt": "2026-04-26T00:48:12Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:0b765350bd4519754210274645bbf2627b0726a9449a0ff6020aa03c73df0cfc"
+          ],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        }
+      ],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "CLEAR",
@@ -5119,7 +5152,8 @@
       "pipeline_prs": [
         154,
         155
-      ]
+      ],
+      "rule_adopted": false
     },
     "upstash/context7": {
       "discovered": "2026-04-25T01:06:48Z",
