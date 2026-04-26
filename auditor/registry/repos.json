@@ -4980,14 +4980,15 @@
       "stars": 26283,
       "artifacts": 6,
       "description": "Agent skills for Obsidian. Teach your agent to use Markdown, Bases, JSON Canvas, and use the CLI.",
-      "status": "discovered",
+      "status": "contributed",
       "score": null,
       "audit_issue": 190,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "fa1e131a014576ff8f8919f191a7ca8d8fded39b"
+      "commit_sha_at_audit": "fa1e131a014576ff8f8919f191a7ca8d8fded39b",
+      "pipeline_prs": []
     },
     "krodak/clickup-cli": {
       "discovered": "2026-04-25T01:06:48Z",
