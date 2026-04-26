@@ -4958,7 +4958,113 @@
       "status": "contributed",
       "score": 77,
       "audit_issue": 185,
-      "prs": [],
+      "prs": [
+        {
+          "number": 46,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(agent): declare WebSearch tool in llm-ai-agents-and-eng-research",
+          "updatedAt": "2026-04-26T18:30:15Z",
+          "createdAt": "2026-04-26T18:30:15Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:1c85c2d86af8e5673e07a44860a9e5e27706f3dbdbfd82582c2e008942d9b043"
+          ],
+          "rule_ids": [
+            "BUG-undeclared-tool"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 47,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(commands): add missing frontmatter to cook and cook_research_only",
+          "updatedAt": "2026-04-26T18:30:49Z",
+          "createdAt": "2026-04-26T18:30:49Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:a11a860b0a81ae252d352dd9f5524c5ba7e2e50107fbc4881c98b5aa4aaa19e7",
+            "sha256:36516f6a39351aa171f4f077859c5aa5b9f407e2fbead97ed5b554dafff8cc81"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 48,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(commands): add missing frontmatter to all_tools and update_status_line",
+          "updatedAt": "2026-04-26T18:31:26Z",
+          "createdAt": "2026-04-26T18:31:26Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:f22b8ff336d1d5f52ab744486a420858db99ec7a5585547c79aa0fabd5f884c3",
+            "sha256:d8b3f13c23ac4eeac3d2d5ff81a19cc70f7bf4cbcc3648d498ae8b40c865a25e"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 41,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(commands): add missing frontmatter descriptions to all agent prompt files",
+          "updatedAt": "2026-04-26T18:32:55Z",
+          "createdAt": "2026-04-26T18:21:51Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:6594c616946f4b1a26957e670a11b8059814a8ace42b0734ee28a61a625e8cb7",
+            "sha256:89f438a37b023db362a7b0e63e2c7ff7eddae022ed20960c9261e7f17928e4d4",
+            "sha256:a47d6651e1380926eececed904fe39575fab4b6828f4920643dffccab212e760",
+            "sha256:59537e3e4da5e89196c91dfd81cfdc7876fe158b758fb55e10ddeb7dac726146",
+            "sha256:6f787f1b37d99204c91025ddab50f22bc789ee221a8085a431dd5bf9d72f6f9b",
+            "sha256:1ba4d1831f08d06fcf68aab36f111618e5eed8252144669a89376d660f32ce11",
+            "sha256:1b09ded0841fd2f2e416e0d84cfbf9e479f597316faaba88b1cd353a9de6508e"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 43,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(commands): correct misleading description in sentient.md",
+          "updatedAt": "2026-04-26T18:33:43Z",
+          "createdAt": "2026-04-26T18:23:04Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:7aaa378211b71ab434a78984e346f5077f0f1f159cc36d2c24ed7ef2ed3c8343",
+            "sha256:91a816dd674ffcf4b44c12cc2d1d544196039864285730e8d2a152097075081b",
+            "sha256:cfa3127a1442ca10d5832a7ba7510eee3a4c3b25306b55d673485f067be471cf"
+          ],
+          "rule_ids": [
+            "SEC-destructive-command",
+            "CC-terminology-drift",
+            "R05"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "REVIEW",
@@ -4969,7 +5075,8 @@
         48,
         41,
         43
-      ]
+      ],
+      "rule_adopted": false
     },
     "expo/skills": {
       "discovered": "2026-04-25T01:06:48Z",
