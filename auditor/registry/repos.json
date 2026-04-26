@@ -4952,11 +4952,14 @@
       "stars": 2046,
       "artifacts": 7,
       "description": "Custom subagents to use with Claude Code.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 88,
       "audit_issue": 188,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "f7df2c3e7395d163ad52d0793bac8fa7ce0d776a"
     },
     "kbwo/ccmanager": {
       "discovered": "2026-04-25T01:06:48Z",
