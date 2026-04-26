@@ -5029,11 +5029,14 @@
       "stars": 70122,
       "artifacts": 8,
       "description": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 85,
       "audit_issue": 195,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation, topic-tag"
+      "discovery_strategy": "awesome-list-citation, topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "b7e3af80f6e331f6fb456667b82b12cade7c9d35"
     },
     "nicobailon/visual-explainer": {
       "discovered": "2026-04-25T01:06:48Z",
