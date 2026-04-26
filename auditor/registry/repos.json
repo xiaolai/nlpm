@@ -5000,7 +5000,10 @@
       "score": null,
       "audit_issue": 192,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation, topic-tag"
+      "discovery_strategy": "awesome-list-citation, topic-tag",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "d858c2284670c7340b82757914290ec5ee439ae2"
     },
     "muratcankoylan/Agent-Skills-for-Context-Engineering": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5011,7 +5014,10 @@
       "score": null,
       "audit_issue": 193,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "7a95d94c364e25c869a86896a45791dfda6db8bf"
     },
     "musistudio/claude-code-router": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5022,7 +5028,10 @@
       "score": null,
       "audit_issue": 194,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "e270dea523b8ac025ab9b7b0708dc170efa52d8a"
     },
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5033,7 +5042,10 @@
       "score": null,
       "audit_issue": 195,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation, topic-tag"
+      "discovery_strategy": "awesome-list-citation, topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "b7e3af80f6e331f6fb456667b82b12cade7c9d35"
     },
     "nicobailon/visual-explainer": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5044,7 +5056,10 @@
       "score": null,
       "audit_issue": 196,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "9a97a5818bebbcb61cccf8941d533b82a1ce958b"
     },
     "peterkrueck/Claude-Code-Development-Kit": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5118,7 +5133,10 @@
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "5d284f215471c341e0e3d9bb4f9c24bb1345ada1"
+      "commit_sha_at_audit": "5d284f215471c341e0e3d9bb4f9c24bb1345ada1",
+      "pipeline_prs": [
+        2508
+      ]
     },
     "vectorize-io/hindsight": {
       "discovered": "2026-04-25T01:06:48Z",
