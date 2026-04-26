@@ -4814,11 +4814,14 @@
       "stars": 4595,
       "artifacts": 163,
       "description": "Warcraft III Peon voice notifications (+ more!) for Claude Code, Codex, IDEs, and any AI agent. Stop babysitting your terminal. Employ a Peon today.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 77,
       "audit_issue": 176,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "a3fc765dacc749b8f717e705c906c8f1da9fd0d2"
     },
     "SuperClaude-Org/SuperClaude_Framework": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4847,11 +4850,14 @@
       "stars": 55,
       "artifacts": 46,
       "description": "X (Twitter) data platform skill for AI coding agents. 111 REST API endpoints, 2 MCP tools, 23 extraction types, HMAC webhooks. Reads from $0.00015/call - 33x cheaper than the official X API. Works with Claude Code, Cursor, Codex, Copilot, Windsurf & 40+ agents.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 97,
       "audit_issue": 179,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "c9945b1061a0bc14f88cff48402442392f495ac0"
     },
     "addyosmani/agent-skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4908,14 +4914,18 @@
       "stars": 4561,
       "artifacts": 24,
       "description": "Annotate and review coding agent plans and code diffs visually, share with your team, send feedback to agents with one click.",
-      "status": "audited",
+      "status": "contributed",
       "score": 93,
       "audit_issue": 183,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "REVIEW",
-      "commit_sha_at_audit": "ef3172e33924d0eb3721573f9283bc6fb50a2603"
+      "commit_sha_at_audit": "ef3172e33924d0eb3721573f9283bc6fb50a2603",
+      "pipeline_prs": [
+        613,
+        614
+      ]
     },
     "czlonkowski/n8n-mcp": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4936,25 +4946,35 @@
       "stars": 3566,
       "artifacts": 40,
       "description": "Master Claude Code Hooks",
-      "status": "audited",
+      "status": "contributed",
       "score": 77,
       "audit_issue": 185,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
       "security": "REVIEW",
-      "commit_sha_at_audit": "052ad1cbd5aeb1ec4a1def22012d1293c6225625"
+      "commit_sha_at_audit": "052ad1cbd5aeb1ec4a1def22012d1293c6225625",
+      "pipeline_prs": [
+        40,
+        41,
+        42,
+        43,
+        44
+      ]
     },
     "expo/skills": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 1784,
       "artifacts": 14,
       "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 186,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "93751dadf0494110893a9f7a2091ca14833d8212"
     },
     "eyaltoledano/claude-task-master": {
       "discovered": "2026-04-25T01:06:48Z",
