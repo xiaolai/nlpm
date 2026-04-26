@@ -4974,22 +4974,28 @@
       "stars": 26283,
       "artifacts": 6,
       "description": "Agent skills for Obsidian. Teach your agent to use Markdown, Bases, JSON Canvas, and use the CLI.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 190,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "fa1e131a014576ff8f8919f191a7ca8d8fded39b"
     },
     "krodak/clickup-cli": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 57,
       "artifacts": 5,
       "description": "ClickUp CLI for AI agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 191,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "48aeedb5a998df0fb4f5b4502dc01b5b645d8915"
     },
     "mksglu/context-mode": {
       "discovered": "2026-04-25T01:06:48Z",
