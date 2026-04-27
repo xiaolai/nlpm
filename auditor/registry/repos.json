@@ -4665,11 +4665,14 @@
       "stars": 859,
       "artifacts": 138,
       "description": "A comprehensive collection of 100+ production-ready development subagents for Claude Code",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 74,
       "audit_issue": 172,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "9236d10702cdbba37eaa34515f1e1dbff8452506"
     },
     "Dammyjay93/interface-design": {
       "discovered": "2026-04-25T01:06:48Z",
