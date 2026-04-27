@@ -5948,11 +5948,14 @@
       "stars": 16912,
       "artifacts": 21,
       "description": "The container platform tailored for Kubernetes multi-cloud, datacenter, and edge management ⎈ 🖥 ☁️",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 89,
       "audit_issue": 215,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "batched",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "1681475e5864bbf2fbad3965b16686dd204c738b"
     },
     "JimLiu/baoyu-skills": {
       "discovered": "2026-04-25T01:06:48Z",
