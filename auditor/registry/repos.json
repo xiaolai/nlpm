@@ -4560,11 +4560,14 @@
       "stars": 1,
       "artifacts": 9,
       "description": "Pony desktop coding cockpit",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 91,
       "audit_issue": 165,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "50d7ec3f4fee26fe7a7f75ee10443cd5baa28428"
     },
     "eroslifestyle/Claude-Orchestrator-Plugin": {
       "discovered": "2026-04-25T01:06:48Z",
