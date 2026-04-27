@@ -4571,11 +4571,14 @@
       "stars": 0,
       "artifacts": 29,
       "description": "Claude Orchestrator Plugin - Multi-agent orchestration system with Central Communication Hub",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 0,
       "audit_issue": 166,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "progressive",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "47758073864c18c6d9e5d781368d98e18f4e76e2"
     },
     "firetiger-oss/claude-plugin": {
       "discovered": "2026-04-25T01:06:48Z",
