@@ -4582,11 +4582,14 @@
       "stars": 0,
       "artifacts": 8,
       "description": "Claude Code plugin for Firetiger",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 84,
       "audit_issue": 167,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "51421ce20adc7c30eb014e6847c7087ed34cb879"
     },
     "pe-menezes/fin-claude-plugin": {
       "discovered": "2026-04-25T01:06:48Z",
