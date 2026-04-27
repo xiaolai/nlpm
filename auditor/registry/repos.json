@@ -5086,14 +5086,20 @@
       "stars": 1784,
       "artifacts": 14,
       "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
-      "status": "discovered",
+      "status": "contributed",
       "score": null,
       "audit_issue": 186,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "93751dadf0494110893a9f7a2091ca14833d8212"
+      "commit_sha_at_audit": "93751dadf0494110893a9f7a2091ca14833d8212",
+      "pipeline_prs": [
+        50,
+        51,
+        52,
+        53
+      ]
     },
     "eyaltoledano/claude-task-master": {
       "discovered": "2026-04-25T01:06:48Z",
