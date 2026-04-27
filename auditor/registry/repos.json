@@ -4614,11 +4614,14 @@
       "stars": 95,
       "artifacts": 26,
       "description": "Nemp - The memory plugin for Claude Code that remembers everything.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 170,
       "prs": [],
-      "discovery_strategy": "skill-md-content"
+      "discovery_strategy": "skill-md-content",
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "5f3e48af5129d00fb28c7e8b27e03aeb3b89ed28"
     },
     "obra/superpowers": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4665,22 +4668,28 @@
       "stars": 859,
       "artifacts": 138,
       "description": "A comprehensive collection of 100+ production-ready development subagents for Claude Code",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 74,
       "audit_issue": 172,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "progressive",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "9236d10702cdbba37eaa34515f1e1dbff8452506"
     },
     "Dammyjay93/interface-design": {
       "discovered": "2026-04-25T01:06:48Z",
       "stars": 4630,
       "artifacts": 7,
       "description": "Design engineering for Claude Code. Craft, memory, and enforcement for consistent UI.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 173,
       "prs": [],
-      "discovery_strategy": "awesome-list-citation"
+      "discovery_strategy": "awesome-list-citation",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "8c407c1c42890010a9eb403a9f419b1eeadcfdad"
     },
     "K-Dense-AI/scientific-agent-skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -5083,14 +5092,20 @@
       "stars": 1784,
       "artifacts": 14,
       "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
-      "status": "discovered",
+      "status": "contributed",
       "score": null,
       "audit_issue": 186,
       "prs": [],
       "discovery_strategy": "awesome-list-citation",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "93751dadf0494110893a9f7a2091ca14833d8212"
+      "commit_sha_at_audit": "93751dadf0494110893a9f7a2091ca14833d8212",
+      "pipeline_prs": [
+        50,
+        51,
+        52,
+        53
+      ]
     },
     "eyaltoledano/claude-task-master": {
       "discovered": "2026-04-25T01:06:48Z",
