@@ -5876,7 +5876,7 @@
           "title": "fix: correct gws docs +write flags in recipe-post-mortem-setup",
           "updatedAt": "2026-04-25T12:21:08Z",
           "createdAt": "2026-04-25T12:19:19Z",
-          "outcome": "open",
+          "outcome": "cla_blocked",
           "fingerprints": [
             "sha256:7a2087bd83faf7caf5c8954c5d0055864b2f2c656c5ee608f120b2695e87a6ff"
           ],
@@ -5893,7 +5893,7 @@
           "title": "fix: replace nonexistent Forms API list method with Drive files list",
           "updatedAt": "2026-04-25T12:22:30Z",
           "createdAt": "2026-04-25T12:19:52Z",
-          "outcome": "open",
+          "outcome": "cla_blocked",
           "fingerprints": [
             "sha256:99765b5c957f40f0ba430c0f67d6df3ab2f4a7012b96f823937471e5d9ea9206"
           ],
@@ -5910,7 +5910,7 @@
           "title": "fix: add --locked flag to cargo install cargo-llvm-cov in coverage.sh",
           "updatedAt": "2026-04-25T12:22:25Z",
           "createdAt": "2026-04-25T12:20:21Z",
-          "outcome": "open",
+          "outcome": "cla_blocked",
           "fingerprints": [
             "sha256:eb7f32ad08d5f0d22fdf1f65c0eae2ee3f2236db05a42a937d72b955228ebff0"
           ],
@@ -5927,7 +5927,7 @@
           "title": "fix: pin devDependencies to exact versions in package.json",
           "updatedAt": "2026-04-25T12:21:56Z",
           "createdAt": "2026-04-25T12:20:53Z",
-          "outcome": "open",
+          "outcome": "cla_blocked",
           "fingerprints": [
             "sha256:cc6dd0163e79cb9765bf8cff593f2d0bf97402bce9faf742ea55e61456870ae2"
           ],
@@ -6248,7 +6248,60 @@
         38
       ],
       "rule_adopted": false,
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "prs": [
+        {
+          "number": 36,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: define model literal and add types prefix in URL Context example",
+          "createdAt": null,
+          "updatedAt": null,
+          "outcome": "cla_blocked",
+          "fingerprints": [
+            "sha256:3439ae24033ea4eca837d06d4a3e78c2f08ec906b1d97b08486edef14e2937c9"
+          ],
+          "rule_ids": [
+            "BUG-undefined-variable"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 37,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: use agent-neutral phrasing for web-fetch fallback in gemini-api-dev",
+          "createdAt": null,
+          "updatedAt": null,
+          "outcome": "cla_blocked",
+          "fingerprints": [
+            "sha256:fc97b7500e81f2a6ab9c904c9a8cd8f56b2199676b15932ae7566bcb0f99ceac"
+          ],
+          "rule_ids": [
+            "BUG-undeclared-tool"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 38,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "docs: fix README link text \"thought circulation\" → \"thought signatures\"",
+          "createdAt": null,
+          "updatedAt": null,
+          "outcome": "cla_blocked",
+          "fingerprints": [
+            "sha256:5798b0c47a62e2886ddbdbd6fbfeed259cbe3c361ece2397e36b2d2b26da52f8"
+          ],
+          "rule_ids": [
+            "BUG-link-text-mismatch"
+          ],
+          "stale_90d_emitted": false
+        }
+      ]
     }
   },
   "metadata": {

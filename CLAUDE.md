@@ -165,6 +165,34 @@ The audit workflow includes a security scan BEFORE the NL quality audit:
 4. The contribute workflow refuses to run if `security-blocked` label is present
 5. Manual review required to clear the security gate
 
+### Policy Gates (contribute workflow)
+
+After security, the contribute workflow runs two org-level policy gates.
+Both preserve the audit data and only skip PR creation.
+
+| Gate | Trigger | Status set | Label | Recovery |
+|------|---------|------------|-------|----------|
+| no-external-PRs | Owner in `DENY_OWNERS` (currently `anthropics`) | `policy_denied` | `policy-no-external-prs` | Manual override only — permanent. |
+| CLA-required | Owner in `CLA_REQUIRED_OWNERS` (Google's various orgs: `google`, `google-gemini`, `googleworkspace`, `google-labs-code`, `googleapis`, `googlecloudplatform`) **and** `vars.GOOGLE_CLA_SIGNED != 'true'` | `policy_cla_required` | `policy-cla-required` | Sign the individual CLA at <https://cla.developers.google.com/about>, set repo variable `GOOGLE_CLA_SIGNED=true` in this repo's Actions settings, re-add `contribute-approved` to the audit issue. |
+
+Why both: `anthropics/*` rejected 3/3 of our PRs as a policy matter (no
+external PRs accepted at all). Google orgs accept external PRs in
+principle but require a signed CLA before any human reviews the diff —
+confirmed by `cla/google: FAILURE` on `googleworkspace/cli` #757–#760
+and `google-gemini/gemini-skills` #36–#38, all OPEN with zero human
+review possible. Without the CLA gate, the pipeline opens PRs that sit
+indefinitely and inflate the "in flight" count for rule-health.
+
+The track workflow detects the `cla_blocked` PR state by inspecting
+`statusCheckRollup` for a check whose name matches `^cla(/|$)/i` with
+conclusion `FAILURE`. CLA-blocked PRs:
+- emit `pr_state: cla_blocked` on every transition (one of the
+  `finding_outcome` enum values, see `auditor/SCHEMAS.md`)
+- are excluded from `stale_90d` emission (the contributor, not the
+  maintainer, is the blocker)
+- prevent promotion from `contributed` to `tracked` until the CLA
+  gate clears
+
 ### Shared scripts (auditor/scripts/)
 
 | Script | Purpose |

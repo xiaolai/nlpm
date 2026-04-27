@@ -211,7 +211,7 @@ Emitted by `auditor-track.yml` on every PR state transition.
 }
 ```
 
-`pr_state` ∈ `{merged, closed_unmerged, open, stale_90d}`. The `stale_90d` state is emitted once, when an open PR crosses 90 days with no activity.
+`pr_state` ∈ `{merged, closed_unmerged, open, stale_90d, cla_blocked}`. The `stale_90d` state is emitted once, when an open PR crosses 90 days with no activity. The `cla_blocked` state is emitted on every transition into a state where the PR is OPEN but a `cla/...` check is failing — typical when the contributor identity has not signed the target org's Contributor License Agreement (e.g., Google's individual CLA at https://cla.developers.google.com/about). `stale_90d` is **not** emitted for `cla_blocked` PRs: the clock is on the contributor to sign, not on the maintainer to review.
 
 ### Event: `findings_aggregated`
 
@@ -454,13 +454,19 @@ Not a log — a mutable state file, rewritten in place by the pipeline. Document
 
 | Field | Type | Written by | Notes |
 |-------|------|------------|-------|
-| `status` | enum | discover → batch → audit → contribute → track | One of `discovered`, `audited`, `contributed`, `tracked`, `complete` |
+| `status` | enum | discover → batch → audit → contribute → track | One of `discovered`, `audited`, `contributed`, `tracked`, `complete`, `policy_denied`, `policy_cla_required` |
 | `audit_issue` | int | discover | Issue number in this repo, tracks the pipeline for the target |
 | `stars` | int | discover | Star count at discovery time |
 | `pipeline_prs` | array | contribute | PR numbers the auditor opened in the target repo |
 | `prs` | array | track | Per-PR state snapshots — see below |
 | `case_study_candidate` | bool | track | `true` once any PR merged or was applied separately |
 | `rule_adopted` | bool | track | `true` if the maintainer's own comments indicate rule-adoption |
+| `policy_no_external_prs` | bool | contribute | `true` if the owner is on the no-external-PR deny list (audit ran, contribute was skipped) |
+| `policy_cla_required` | bool | contribute | `true` if the owner requires a signed CLA (e.g., Google orgs) and the contributor identity has not signed (audit ran, contribute was skipped pending CLA) |
+
+### Status terminal states
+
+`policy_denied` (audit data captured, no PRs opened, repo is permanent dead-end for contribute) and `policy_cla_required` (audit data captured, no PRs opened, will become eligible once `vars.GOOGLE_CLA_SIGNED=true` is set on the workflow repo and the issue is re-labeled `contribute-approved`) are both terminal-but-recoverable states for the contribute pipeline. They never advance to `tracked`/`complete` automatically because no PRs exist to track. Daily report and rule-health filter on `status` to exclude these from "in flight" counts.
 
 ### PR record (`repos[owner/name].prs[i]`)
 
@@ -473,7 +479,7 @@ Not a log — a mutable state file, rewritten in place by the pipeline. Document
 | `title` | string | |
 | `createdAt` | ISO 8601 | |
 | `updatedAt` | ISO 8601 | Used for stale_90d detection |
-| `outcome` | enum | Pipeline-derived: `merged`, `applied_separately`, `rejected`, `open` |
+| `outcome` | enum | Pipeline-derived: `merged`, `applied_separately`, `rejected`, `open`, `cla_blocked` |
 | `fingerprints` | array | Finding fingerprints parsed from the PR body's `nlpm-metadata` block; `[]` for legacy PRs |
 | `rule_ids` | array | Parallel to `fingerprints`; `[]` for legacy PRs |
 | `stale_90d_emitted` | bool | Sticky flag — `true` once the `stale_90d` finding_outcome event was logged for this PR |

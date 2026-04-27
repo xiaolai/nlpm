@@ -112,6 +112,78 @@ jobs:
             fi
           done
 
+      - name: Policy gate — orgs that require a signed CLA before review
+        # Some orgs accept external PRs in principle but require a signed
+        # Contributor License Agreement (CLA) before any maintainer will
+        # review the diff. Without a signed CLA, the org's `cla/google`
+        # (or equivalent) check fails on every PR and the PR sits OPEN
+        # indefinitely with zero human attention.
+        #
+        # Concrete evidence: googleworkspace/cli #757-#760 (opened 2026-04-25)
+        # and google-gemini/gemini-skills #36-#38 (opened 2026-04-27) all
+        # OPEN with cla/google: FAILURE; gemini-code-assist (Google's
+        # automated reviewer) bot-acknowledged but no human review possible.
+        #
+        # Behavior: if the contributor identity has not signed the CLA
+        # (signaled by `vars.GOOGLE_CLA_SIGNED == 'true'`), skip the
+        # contribute step. Audit data still flows to rule-health.
+        # When the CLA is signed (one-time at https://cla.developers.google.com/about),
+        # set the repo variable `GOOGLE_CLA_SIGNED=true` and re-dispatch.
+        #
+        # Distinct from `policy_no_external_prs`: that gate is permanent
+        # ("we won't open PRs here"); this gate is conditional on contributor
+        # CLA state ("we won't open PRs here *yet*"). Status / label / log
+        # event names differ so rule-health can filter the two cleanly.
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+          ISSUE_NUM: ${{ steps.target.outputs.issue }}
+          CLA_SIGNED: ${{ vars.GOOGLE_CLA_SIGNED || 'false' }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          OWNER=$(echo "$TARGET_REPO" | cut -d/ -f1)
+          # Orgs whose maintainers require a signed Google CLA before review.
+          # Add new entries only after positive evidence (≥1 stranded PR with
+          # cla/google: FAILURE) so the gate doesn't grow on speculation.
+          CLA_REQUIRED_OWNERS=(google google-gemini googleworkspace google-labs-code googleapis googlecloudplatform)
+
+          for cla_owner in "${CLA_REQUIRED_OWNERS[@]}"; do
+            if [ "$OWNER" = "$cla_owner" ] && [ "$CLA_SIGNED" != "true" ]; then
+              echo "Policy gate: $OWNER requires a signed Google CLA — skipping contribute step."
+              {
+                echo "## Contribute step skipped — CLA required"
+                echo ""
+                echo "Owner \`$OWNER\` requires a signed Contributor License Agreement (CLA)"
+                echo "before any external PR can be reviewed. The contributor identity used by"
+                echo "this pipeline has not signed the CLA."
+                echo ""
+                echo "**To unblock**:"
+                echo ""
+                echo "1. Sign the individual CLA at <https://cla.developers.google.com/about> using the GitHub identity that opens PRs."
+                echo "2. Set repository variable \`GOOGLE_CLA_SIGNED=true\` in this repo's Actions settings."
+                echo "3. Re-add the \`contribute-approved\` label on this issue (or workflow_dispatch this workflow with this issue number)."
+                echo ""
+                echo "Audit data has been captured for rule-health analysis; no PRs will be opened until the CLA is in place."
+              } | gh issue comment "$ISSUE_NUM" --body-file - 2>/dev/null || true
+              gh issue edit "$ISSUE_NUM" --add-label "policy-cla-required" --remove-label "contribute-approved" 2>/dev/null || true
+
+              jq --arg name "$TARGET_REPO" \
+                 '.repos[$name].policy_cla_required = true |
+                  .repos[$name].status = "policy_cla_required"' \
+                 auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+
+              git config user.name "nlpm-auditor[bot]"
+              git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+              git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+              git add auditor/registry/repos.json
+              bash auditor/scripts/guard-protected-paths.sh || exit 1
+              git diff --cached --quiet || {
+                git commit -m "policy: $TARGET_REPO — CLA required (gated in contribute step)"
+                git push 2>/dev/null || true
+              }
+              exit 0
+            fi
+          done
+
       - name: Load audit report
         id: report
         env:

@@ -73,7 +73,7 @@ jobs:
                 # Fetch PR data, body, and comments in one call. body carries the
                 # nlpm-metadata block that joins this PR back to finding fingerprints.
                 PR_JSON=$(gh pr view "$pr_num" --repo "$REPO" \
-                  --json number,state,mergedAt,closedAt,title,body,updatedAt,createdAt,comments 2>/dev/null || echo "")
+                  --json number,state,mergedAt,closedAt,title,body,updatedAt,createdAt,comments,statusCheckRollup 2>/dev/null || echo "")
                 if [ -z "$PR_JSON" ]; then
                   sleep 0.5
                   continue
@@ -82,10 +82,32 @@ jobs:
                 PR_DATA=$(printf '%s' "$PR_JSON" | jq -c '{number, state, mergedAt, closedAt, title, updatedAt, createdAt}')
                 COMMENTS_ARR=$(printf '%s' "$PR_JSON" | jq -c '.comments // []')
                 PR_BODY=$(printf '%s' "$PR_JSON" | jq -r '.body // ""')
+                CHECKS_ARR=$(printf '%s' "$PR_JSON" | jq -c '.statusCheckRollup // []')
 
                 RAW_STATE=$(echo "$PR_DATA" | jq -r '.state')
                 MERGED_AT=$(echo "$PR_DATA" | jq -r '.mergedAt // ""')
                 UPDATED_AT=$(echo "$PR_DATA" | jq -r '.updatedAt // ""')
+
+                # CLA-gate detection. Google's `cla/google` check (and the
+                # `cla` check used by some Google-org repos) fails on every
+                # PR until the contributor signs the individual CLA at
+                # https://cla.developers.google.com/about. Until then,
+                # maintainers cannot review the diff at all — the PR sits
+                # OPEN with zero human attention. Distinguish this from a
+                # normal "open" outcome so:
+                #   - rule-health doesn't count CLA-blocked PRs as "in flight"
+                #   - stale_90d isn't emitted (the clock is on the contributor, not the maintainer)
+                #   - the daily report can flag CLA-blocked PRs for the operator
+                # Pattern: any check whose name matches /^cla(\/|$)/i and
+                # conclusion is FAILURE.
+                CLA_BLOCKED="false"
+                if [ "$RAW_STATE" = "OPEN" ] && [ -n "$CHECKS_ARR" ] && [ "$CHECKS_ARR" != "null" ]; then
+                  CLA_FAILED=$(printf '%s' "$CHECKS_ARR" \
+                    | jq -r '[.[] | select((.name // "") | test("^cla(/|$)"; "i")) | select((.conclusion // "") == "FAILURE")] | length' 2>/dev/null || echo 0)
+                  if [ "${CLA_FAILED:-0}" -gt 0 ]; then
+                    CLA_BLOCKED="true"
+                  fi
+                fi
 
                 # One string of non-bot comment bodies, used for pattern matching.
                 COMMENTS_BODIES=$(printf '%s' "$COMMENTS_ARR" \
@@ -96,7 +118,11 @@ jobs:
                 if [ -n "$MERGED_AT" ] && [ "$MERGED_AT" != "null" ]; then
                   OUTCOME="merged"
                 elif [ "$RAW_STATE" = "OPEN" ]; then
-                  OUTCOME="open"
+                  if [ "$CLA_BLOCKED" = "true" ]; then
+                    OUTCOME="cla_blocked"
+                  else
+                    OUTCOME="open"
+                  fi
                 elif [ "$RAW_STATE" = "CLOSED" ]; then
                   if [ -n "$COMMENTS_BODIES" ] && printf '%s' "$COMMENTS_BODIES" | grep -qziE "$APPLIED_PATTERNS"; then
                     OUTCOME="applied_separately"
@@ -147,6 +173,7 @@ jobs:
                   merged) PR_STATE="merged" ;;
                   rejected|applied_separately) PR_STATE="closed_unmerged" ;;
                   open) PR_STATE="open" ;;
+                  cla_blocked) PR_STATE="cla_blocked" ;;
                   *) PR_STATE="" ;;
                 esac
 
@@ -192,6 +219,8 @@ jobs:
                 fi
 
                 # stale_90d: open PR with no update in 90+ days, emitted at most once.
+                # CLA-blocked PRs are excluded — the clock is on the contributor
+                # to sign the CLA, not on the maintainer to review.
                 STALE_EMITTED="$OLD_STALE"
                 if [ "$OUTCOME" = "open" ] && [ "$OLD_STALE" != "true" ] \
                    && [ -n "$UPDATED_AT" ] && [ "$UPDATED_AT" != "null" ]; then
@@ -255,8 +284,9 @@ jobs:
             APPLIED=$(echo "$PRS" | jq '[.[] | select(.outcome == "applied_separately")] | length')
             REJECTED=$(echo "$PRS" | jq '[.[] | select(.outcome == "rejected")] | length')
             OPEN=$(echo "$PRS" | jq '[.[] | select(.outcome == "open")] | length')
+            CLA_BLOCKED_COUNT=$(echo "$PRS" | jq '[.[] | select(.outcome == "cla_blocked")] | length')
             CLOSED=$((APPLIED + REJECTED))
-            echo "  $MERGED merged, $APPLIED applied-separately, $REJECTED rejected, $OPEN open (rule_adopted=$RULE_ADOPTED)"
+            echo "  $MERGED merged, $APPLIED applied-separately, $REJECTED rejected, $OPEN open, $CLA_BLOCKED_COUNT cla-blocked (rule_adopted=$RULE_ADOPTED)"
 
             jq --arg name "$REPO" --argjson prs "$PRS" --argjson rule_adopted "$RULE_ADOPTED" \
                '.repos[$name].prs = $prs | .repos[$name].rule_adopted = $rule_adopted' \
@@ -265,7 +295,10 @@ jobs:
             # Promotion to "tracked" + case-study dispatch is a ONE-SHOT transition.
             # Only fire when the repo is still "contributed" — repos already "tracked"
             # or "complete" have passed this gate and must not re-trigger.
-            if [ "$CURRENT_STATUS" = "contributed" ] && [ "$OPEN" -eq 0 ] && [ "$(echo "$PRS" | jq length)" -gt 0 ]; then
+            #
+            # CLA-blocked PRs count as "still in flight" — they may unblock once the
+            # contributor signs the CLA, so don't promote prematurely.
+            if [ "$CURRENT_STATUS" = "contributed" ] && [ "$OPEN" -eq 0 ] && [ "$CLA_BLOCKED_COUNT" -eq 0 ] && [ "$(echo "$PRS" | jq length)" -gt 0 ]; then
               jq --arg name "$REPO" '.repos[$name].status = "tracked"' \
                  auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
 
