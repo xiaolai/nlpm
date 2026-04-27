@@ -4549,11 +4549,14 @@
       "stars": 3,
       "artifacts": 19,
       "description": "Plugin structure and tool use analyzer - validates plugin.json, MCP tools, and security patterns",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 86,
       "audit_issue": 164,
       "prs": [],
-      "discovery_strategy": "recently-active-any-stars"
+      "discovery_strategy": "recently-active-any-stars",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "93f299e494a3a9ea74e82bd2d15bc1c517ce8f0c"
     },
     "leowux/pony": {
       "discovered": "2026-04-25T01:06:48Z",
