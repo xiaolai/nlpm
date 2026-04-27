@@ -6378,10 +6378,23 @@
       ]
     }
   },
+    "navapbc/digital-service-orchestra": {
+      "status": "audited",
+      "score": 87,
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "artifacts": 89,
+      "bugs": 2,
+      "quality_issues": 5,
+      "security_findings": 4,
+      "audit_date": "2026-04-27",
+      "report": "auditor/audits/navapbc-digital-service-orchestra.md"
+    }
+  },
   "metadata": {
     "last_discovery": "2026-04-25T00:52:11Z",
     "total_discovered": 156,
-    "total_audited": 10,
+    "total_audited": 11,
     "total_contributed": 6
   }
 }
