@@ -5989,6 +5989,26 @@
       "audit_issue": 238,
       "prs": [],
       "discovery_strategy": "topic-tag"
+    },
+    "google-gemini/gemini-skills": {
+      "discovered": "2026-04-27T00:00:00Z",
+      "stars": 3330,
+      "artifacts": 14,
+      "description": "Skills for the Gemini API, SDK and model/agent interactions",
+      "status": "contributed",
+      "score": 98,
+      "audit_issue": 39,
+      "discovery_strategy": "manual",
+      "strategy": "full",
+      "security": "PASS",
+      "commit_sha_at_audit": "8c9508524605dc1732b22093c76037028099a447",
+      "pipeline_prs": [
+        36,
+        37,
+        38
+      ],
+      "rule_adopted": false,
+      "license": "Apache-2.0"
     }
   },
   "metadata": {

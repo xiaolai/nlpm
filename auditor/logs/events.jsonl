@@ -1372,3 +1372,5 @@
 {"timestamp":"2026-04-26T12:27:24Z","workflow":"contribute","event":"prs_submitted","run_id":"24956419008","run_number":271,"data":{"repo":"iannuttall/claude-agents","pr_count":4}}
 {"timestamp":"2026-04-26T12:28:06Z","workflow":"audit","event":"findings_aggregated","run_id":"24956425055","run_number":360,"data":{"repo":"backnotprop/plannotator","findings":24,"invalid_lines":0,"self_false_positives":4}}
 {"timestamp":"2026-04-26T12:28:06Z","workflow":"audit","event":"audit_complete","run_id":"24956425055","run_number":360,"data":{"repo":"backnotprop/plannotator","score":93,"artifacts":23,"strategy":"batched"}}
+{"timestamp":"2026-04-27T02:33:37Z","workflow":"audit","event":"score_computed","run_id":"local","run_number":0,"data":{"repo":"google-gemini/gemini-skills","score":98,"security":"PASS","artifacts":14,"strategy":"full","commit_sha":"8c9508524605dc1732b22093c76037028099a447"}}
+{"timestamp":"2026-04-27T02:33:37Z","workflow":"contribute","event":"prs_submitted","run_id":"local","run_number":0,"data":{"repo":"google-gemini/gemini-skills","pr_count":3}}
