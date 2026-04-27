@@ -4553,7 +4553,10 @@
       "score": null,
       "audit_issue": 164,
       "prs": [],
-      "discovery_strategy": "recently-active-any-stars"
+      "discovery_strategy": "recently-active-any-stars",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "93f299e494a3a9ea74e82bd2d15bc1c517ce8f0c"
     },
     "leowux/pony": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4564,7 +4567,10 @@
       "score": null,
       "audit_issue": 165,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "50d7ec3f4fee26fe7a7f75ee10443cd5baa28428"
     },
     "eroslifestyle/Claude-Orchestrator-Plugin": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4575,7 +4581,10 @@
       "score": null,
       "audit_issue": 166,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "progressive",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "47758073864c18c6d9e5d781368d98e18f4e76e2"
     },
     "firetiger-oss/claude-plugin": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -4586,7 +4595,10 @@
       "score": null,
       "audit_issue": 167,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "51421ce20adc7c30eb014e6847c7087ed34cb879"
     },
     "pe-menezes/fin-claude-plugin": {
       "discovered": "2026-04-25T01:06:48Z",
