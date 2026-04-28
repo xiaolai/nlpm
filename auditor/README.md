@@ -99,7 +99,7 @@ We're guests in other people's repos. Behave accordingly.
 
 1. **Only submit PRs for verified bugs** — the kind that break things, not the kind that offend your taste
 2. **Never PR convention preferences** — if their YAML works, it's their YAML
-3. **One tracking issue first** — introduce yourself before rearranging the furniture
+3. **No umbrella issues on the target repo** — the PR body's `nlpm-metadata` block is sufficient provenance. A separate "audit findings" issue duplicates the per-PR signal and pushes evaluation work back onto the maintainer. (Lesson from `google-gemini/gemini-skills#39`, 2026-04-28: per-PR fixes welcome, summary issues burdensome.) Anything not in a PR — deferred items, cross-component drifts, rule-learning notes — stays in our own audit data.
 4. **Max 5 PRs per repo** — a focused visit, not a renovation
 5. **Max 2 repos per week** — good neighbors don't ring every doorbell on the street
 6. **Accept "no" gracefully** — close the PR, say thank you, and take the lesson home

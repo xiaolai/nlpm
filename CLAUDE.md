@@ -98,7 +98,7 @@ The `auditor/` subdirectory contains a GitHub Actions pipeline that discovers, a
 | auditor-discover | Weekly cron / manual | Find repos with 500+ stars and 5+ NL artifacts |
 | auditor-batch-processor | Every 6h cron / manual | Pick next batch, promote audits to contribution |
 | auditor-audit | Issue labeled `audit-ready` | Security scan + NL score; emits findings.jsonl + disagreements.jsonl |
-| auditor-contribute | Issue labeled `contribute-approved` | Fork, PR for verified bugs; stamps PR body with `nlpm-metadata` block |
+| auditor-contribute | Issue labeled `contribute-approved` | Reads target's CONTRIBUTING.md / PR template / CoC, forks, opens PRs for verified bugs only (max 3 first-contact, 5 thereafter); stamps each PR body with `nlpm-metadata` block; **never** opens an umbrella/summary issue on the target; backstop step verifies post-hoc |
 | auditor-track | Every 4h cron | PR state, emits finding_outcome + pr_comments_snapshot on transitions |
 | auditor-case-study | Issue labeled `case-study-ready` | Re-audit target at HEAD (diff vs. original findings, emit finding_verified + finding_introduced), write article, self-review, polish, cover image |
 | auditor-daily-report | Daily cron | Pipeline state + per-rule health (healthy/noisy/dormant/disputed) |
@@ -167,14 +167,15 @@ The audit workflow includes a security scan BEFORE the NL quality audit:
 
 ### Policy Gates (contribute workflow)
 
-After security, the contribute workflow runs two org-level policy gates.
-Both preserve the audit data and only skip PR creation.
+After security, the contribute workflow runs three org/repo-level policy
+gates. All preserve the audit data and only skip PR creation.
 
 | Gate | Trigger | Status set | Label | Recovery |
 |------|---------|------------|-------|----------|
 | no-external-PRs | Owner in `DENY_OWNERS` (currently `anthropics`) | `policy_denied` | `policy-no-external-prs` | Manual override only — permanent. |
 | CLA-required (signature missing) | Owner in `CLA_REQUIRED_OWNERS` (Google's various orgs: `google`, `google-gemini`, `googleworkspace`, `google-labs-code`, `googleapis`, `googlecloudplatform`) **and** `vars.GOOGLE_CLA_SIGNED != 'true'` | `policy_cla_required` | `policy-cla-required` | Sign the individual CLA at <https://cla.developers.google.com/about>, set repo variable `GOOGLE_CLA_SIGNED=true`, set `CONTRIBUTE_AUTHOR_EMAIL` and `CONTRIBUTE_AUTHOR_NAME` to the CLA-signed identity, re-add `contribute-approved` on the audit issue. |
 | CLA-required (author identity missing) | Owner in `CLA_REQUIRED_OWNERS` **and** `GOOGLE_CLA_SIGNED == 'true'` **but** `CONTRIBUTE_AUTHOR_EMAIL` or `CONTRIBUTE_AUTHOR_NAME` is empty | `policy_cla_required` | `policy-cla-required` | Set both repo variables to the CLA-signed human identity, re-add `contribute-approved`. |
+| pushback-gated | Repo has any prior `maintainer_rejected` event, **or** any `pr_comments_snapshot` event with `pr_state: closed_unmerged`, in `auditor/logs/events.jsonl` | `pushback_gated` | `policy-pushback-gated` | Append a `gate_override` counter-event to `auditor/logs/events.jsonl` with the same `pr` value and a justification — only when the maintainer has explicitly invited a follow-up. |
 
 Why three separate trigger rows: a signed CLA is necessary but not
 sufficient. `claude-code-action`'s default commit identity is `claude[bot]
@@ -218,6 +219,7 @@ conclusion `FAILURE`. CLA-blocked PRs:
 | diff-findings.py | Diff a re-audit's sidecar against the original, emit finding_verified / finding_introduced events and the case-study diff report; `--self-test` cross-checks Python fingerprint vs. the shell helper |
 | guard-protected-paths.sh | Block stray edits to skills/, agents/ from automation commits |
 | resolve-merge-conflicts.sh | Auto-resolve conflicts on append-only log pushes |
+| atomic-registry-write.sh | Validate-then-rename for `auditor/registry/repos.json` writes — rejects malformed JSON before it can hit disk; sole writer used by every workflow that mutates the registry |
 | parse-suppressions.py | Extract rule_overrides from NLPM config frontmatter |
 | parse-pr-metadata.py | Extract `nlpm-metadata` block from a PR body on stdin |
 | rule-health.py | Run SCHEMAS §Learning query, write feedback-summary.json (consumes finding_verified for precision) |

@@ -290,7 +290,8 @@ jobs:
 
             jq --arg name "$REPO" --argjson prs "$PRS" --argjson rule_adopted "$RULE_ADOPTED" \
                '.repos[$name].prs = $prs | .repos[$name].rule_adopted = $rule_adopted' \
-               auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+               auditor/registry/repos.json > /tmp/reg.json \
+               && bash auditor/scripts/atomic-registry-write.sh
 
             # Promotion to "tracked" + case-study dispatch is a ONE-SHOT transition.
             # Only fire when the repo is still "contributed" — repos already "tracked"
@@ -300,14 +301,16 @@ jobs:
             # contributor signs the CLA, so don't promote prematurely.
             if [ "$CURRENT_STATUS" = "contributed" ] && [ "$OPEN" -eq 0 ] && [ "$CLA_BLOCKED_COUNT" -eq 0 ] && [ "$(echo "$PRS" | jq length)" -gt 0 ]; then
               jq --arg name "$REPO" '.repos[$name].status = "tracked"' \
-                 auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+                 auditor/registry/repos.json > /tmp/reg.json \
+                 && bash auditor/scripts/atomic-registry-write.sh
 
               # A repo qualifies for a case study if any fix landed — either merged
               # directly or applied separately by the maintainer after closing the PR.
               ACCEPTED=$((MERGED + APPLIED))
               if [ "$ACCEPTED" -gt 0 ]; then
                 jq --arg name "$REPO" '.repos[$name].case_study_candidate = true' \
-                   auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+                   auditor/registry/repos.json > /tmp/reg.json \
+                   && bash auditor/scripts/atomic-registry-write.sh
 
                 if [ "$ISSUE_NUM" != "null" ] && [ "$ISSUE_NUM" != "0" ]; then
                   gh issue comment "$ISSUE_NUM" \

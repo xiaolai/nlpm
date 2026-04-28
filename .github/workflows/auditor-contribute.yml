@@ -97,7 +97,8 @@ jobs:
               jq --arg name "$TARGET_REPO" \
                  '.repos[$name].policy_no_external_prs = true |
                   .repos[$name].status = "policy_denied"' \
-                 auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+                 auditor/registry/repos.json > /tmp/reg.json \
+                 && bash auditor/scripts/atomic-registry-write.sh
 
               git config user.name "nlpm-auditor[bot]"
               git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
@@ -182,7 +183,8 @@ jobs:
                 jq --arg name "$TARGET_REPO" \
                    '.repos[$name].policy_cla_required = true |
                     .repos[$name].status = "policy_cla_required"' \
-                   auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+                   auditor/registry/repos.json > /tmp/reg.json \
+                   && bash auditor/scripts/atomic-registry-write.sh
 
                 git config user.name "nlpm-auditor[bot]"
                 git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
@@ -198,8 +200,78 @@ jobs:
             fi
           done
 
+      - name: Pushback gate — refuse repos with prior maintainer rejection
+        # If we already received explicit maintainer pushback on this repo
+        # (a `maintainer_rejected` event, or a `pr_comments_snapshot` on a
+        # closed_unmerged PR, or a `pr_comments_snapshot` on a closed
+        # umbrella issue), don't return uninvited. The signal is asymmetric:
+        # maintainers who appreciate the work won't write to thank us; the
+        # ones who don't will. Honor the no.
+        #
+        # Sets `gated=true` in step output; subsequent contribute steps
+        # check this and skip cleanly. Status is not failed — the workflow
+        # run goes green to keep the daily report uncluttered, but no PR
+        # action is taken.
+        id: pushback_gate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+          ISSUE_NUM: ${{ steps.target.outputs.issue }}
+        run: |
+          if [ ! -f auditor/logs/events.jsonl ]; then
+            echo "No event log yet — nothing to gate against."
+            echo "gated=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          REJECTED=$(jq -c --arg repo "$TARGET_REPO" '
+            select(.event == "maintainer_rejected" or
+                   (.event == "pr_comments_snapshot" and .data.pr_state == "closed_unmerged"))
+            | select(.data.pr // "" | startswith($repo + "#"))
+          ' auditor/logs/events.jsonl 2>/dev/null | head -1)
+
+          if [ -z "$REJECTED" ]; then
+            echo "No prior pushback on $TARGET_REPO — proceeding."
+            echo "gated=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Maintainer pushback recorded for $TARGET_REPO — refusing to open more PRs."
+          echo "$REJECTED" | jq -r '"  PR: \(.data.pr) — event: \(.event)"'
+
+          {
+            echo "## Pushback gate — contribution paused"
+            echo ""
+            echo "We previously received maintainer pushback on $TARGET_REPO."
+            echo "Returning unbidden after a 'no' is rude. To re-enable contribution"
+            echo "for a specific reason (e.g., a maintainer invited a follow-up),"
+            echo "append a \`gate_override\` counter-event to auditor/logs/events.jsonl"
+            echo "with the same \`pr\` value and a justification comment."
+            echo ""
+            echo "Triggering event:"
+            echo '```json'
+            echo "$REJECTED"
+            echo '```'
+          } | gh issue comment "$ISSUE_NUM" --body-file - 2>/dev/null || true
+
+          gh issue edit "$ISSUE_NUM" \
+            --add-label "policy-pushback-gated" \
+            --remove-label "contribute-approved" 2>/dev/null || true
+
+          # Atomic registry update with JSON validation gate (root-cause
+          # prevention for the structural corruption observed 2026-04-28).
+          jq --arg name "$TARGET_REPO" \
+             '.repos[$name].status = "pushback_gated"' \
+             auditor/registry/repos.json > /tmp/reg.json \
+             && bash auditor/scripts/atomic-registry-write.sh
+
+          # Persist the gate decision so subsequent steps skip cleanly.
+          echo "gated=true" >> "$GITHUB_OUTPUT"
+          echo "gate_event=$(echo "$REJECTED" | jq -c .)" >> "$GITHUB_OUTPUT"
+
       - name: Load audit report
         id: report
+        if: steps.pushback_gate.outputs.gated != 'true'
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
         run: |
@@ -222,6 +294,7 @@ jobs:
       # is impossible.
       - name: Prepare findings with fingerprints
         id: sidecar
+        if: steps.pushback_gate.outputs.gated != 'true'
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           SIDECAR: auditor/audits/${{ steps.report.outputs.slug }}.findings.jsonl
@@ -255,6 +328,7 @@ jobs:
           echo "Prepared $COUNT findings with fingerprints."
 
       - name: Configure commit author identity
+        if: steps.pushback_gate.outputs.gated != 'true'
         # Set the global git author identity BEFORE claude-code-action runs.
         # Without this, claude-code-action commits under its default bot
         # identity (claude[bot] <claude[bot]@users.noreply.github.com>),
@@ -276,6 +350,7 @@ jobs:
           echo "Configured commit author: $AUTHOR_NAME <$AUTHOR_EMAIL>"
 
       - name: Contribute with Claude Code
+        if: steps.pushback_gate.outputs.gated != 'true'
         uses: anthropics/claude-code-action@v1
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
@@ -313,8 +388,25 @@ jobs:
 
                NEVER fix Critical or High security issues via PR. Those require private disclosure via SECURITY.md or direct maintainer contact.
 
-            2. Check contribution guidelines:
-               Run: gh api repos/${{ steps.target.outputs.repo }}/contents/CONTRIBUTING.md --jq .name 2>/dev/null
+            2. Read the project's contribution conventions and follow them as
+               written. Fetch each of these (any that exist) and read the
+               actual content — don't just check existence:
+
+                 gh api repos/${{ steps.target.outputs.repo }}/contents/CONTRIBUTING.md --jq '.content' | base64 -d > /tmp/CONTRIBUTING.md 2>/dev/null || true
+                 gh api repos/${{ steps.target.outputs.repo }}/contents/.github/CONTRIBUTING.md --jq '.content' | base64 -d >> /tmp/CONTRIBUTING.md 2>/dev/null || true
+                 gh api repos/${{ steps.target.outputs.repo }}/contents/.github/PULL_REQUEST_TEMPLATE.md --jq '.content' | base64 -d > /tmp/PR_TEMPLATE.md 2>/dev/null || true
+                 gh api repos/${{ steps.target.outputs.repo }}/contents/CODE_OF_CONDUCT.md --jq '.content' | base64 -d > /tmp/COC.md 2>/dev/null || true
+
+               Then `Read` each non-empty file. If the project specifies branch
+               naming, commit message format, sign-off requirements, DCO,
+               required PR template fields, or a maintainer review process,
+               follow it. If a CLA is required, the workflow's policy gate
+               handles that — but do honor any human-readable instructions in
+               CONTRIBUTING.md (e.g., "discuss in an issue first" — in that
+               case, STOP and post a brief comment on issue
+               #${{ steps.target.outputs.issue }} in THIS repo explaining
+               that the project requires prior discussion, then exit without
+               opening PRs).
 
             3. Fork the repo if not already forked:
                Run: gh repo fork ${{ steps.target.outputs.repo }} --clone -- target-repo-fork
@@ -330,7 +422,11 @@ jobs:
                If the env vars are not set, do NOT override; the workflow's
                outer git config (set by the previous step) is authoritative.
 
-            5. For each bug (max 5):
+            5. For each bug (max 3 on first contact with this repo, max 5
+               otherwise — "first contact" means we have not previously
+               opened any PR on this repo; check by running:
+               `gh pr list --repo ${{ steps.target.outputs.repo }} --author "$CONTRIBUTE_AUTHOR_EMAIL" --state all --json number --jq 'length'`
+               and treating zero as first contact):
                a. Create branch: fix/nlpm-{short-description}
                b. Read the file, understand existing format
                c. Make the minimal fix matching repo style
@@ -368,16 +464,21 @@ jobs:
                   must have missed it), still include the block with an empty findings
                   array: `{"version":1,"findings":[]}`.
 
-            6. Create a tracking issue in the TARGET repo. The issue body MUST include:
-               - The same disclosure block as above at the top
-               - NLPM methodology and scoring explanation
-               - All bugs found with priority
-               - Links to all PRs created
-               - Polite tone, acknowledge the project's quality
+            6. Do NOT open a tracking / summary issue on the TARGET repo. The
+               PR body's `nlpm-metadata` block already carries full provenance,
+               and a separate umbrella issue duplicates that signal while
+               putting "is this actually a bug?" evaluation work on the
+               maintainer. PRs are sufficient. Anything that didn't make it
+               into a PR (deferred / "needs domain expertise" findings, cross-
+               component drifts, false-positive notes for rule learning) stays
+               in our own audit data — never on the target's tracker.
 
-               Do NOT include a metadata block in this tracking issue — only PR bodies carry it.
+               Rationale: maintainer feedback on google-gemini/gemini-skills#39
+               (markmcd, 2026-04-28) — per-PR fixes welcome, summary issues
+               burdensome. See `auditor/feedback/log.json` and the memory note.
 
-            7. Comment on issue #${{ steps.target.outputs.issue }} in THIS repo (${{ github.repository }}) with links to all PRs and the tracking issue.
+            7. Comment on issue #${{ steps.target.outputs.issue }} in THIS repo
+               (${{ github.repository }}) with links to all PRs created.
 
             8. After creating each PR, write all PR info to `created-prs.json` in the workspace root.
                Format: JSON array of objects:
@@ -389,13 +490,61 @@ jobs:
             - ONLY fix "Bugs" items — never quality/convention issues
             - Match target repo style exactly
             - Be polite and respectful
-            - Max 5 PRs
+            - Max 3 PRs on first contact, max 5 thereafter
+            - NEVER open an issue on the TARGET repo (umbrella, summary, "audit findings", or otherwise) — PR bodies carry all provenance
+            - If CONTRIBUTING.md says "discuss in an issue first", STOP and exit without opening PRs
             - ALWAYS include the disclosure block — never omit it
             - ALWAYS add Co-Authored-By trailer to commits
             - ALWAYS include the `nlpm-metadata-begin`/`nlpm-metadata-end` block, even if empty
             - Metadata block sentinels are copied verbatim — do not rename or translate them
 
+      - name: Backstop — verify no umbrella issue was opened on target
+        # Defense in depth: the prompt instructs the agent NEVER to open an
+        # issue on the target repo, but a prompt is not a guarantee. After
+        # the contribute step, scan the target repo for any issue we
+        # authored within the last 15 minutes. If one exists, close it
+        # immediately with an apology comment, and fail the workflow so
+        # the regression is visible in the daily report.
+        if: steps.pushback_gate.outputs.gated != 'true' && success()
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+          AUTHOR: ${{ vars.CONTRIBUTE_AUTHOR_NAME || 'nlpm-auditor[bot]' }}
+        run: |
+          # GitHub search supports `created:>=<ISO8601>`; window the lookup
+          # to "since this workflow run started" via $RUN_STARTED.
+          RUN_STARTED="${RUN_STARTED:-$(date -u -d '15 minutes ago' +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -v-15M +%Y-%m-%dT%H:%M:%SZ)}"
+
+          STRAY=$(gh search issues \
+            --repo "$TARGET_REPO" \
+            --created ">=$RUN_STARTED" \
+            --json number,title,url,author \
+            --limit 10 2>/dev/null \
+            | jq -c --arg me "$AUTHOR" '[.[] | select(.author.login == $me or .author.login == "xiaolai")]')
+
+          STRAY_COUNT=$(echo "$STRAY" | jq 'length')
+
+          if [ "$STRAY_COUNT" -gt 0 ]; then
+            echo "BACKSTOP TRIPPED: $STRAY_COUNT umbrella issue(s) opened despite policy."
+            echo "$STRAY" | jq -r '.[] | "  #\(.number) \(.title) — \(.url)"'
+
+            echo "$STRAY" | jq -r '.[].number' | while read -r n; do
+              {
+                echo "Apologies — this issue was opened in error by an automated workflow"
+                echo "that should not have created it. The intent was to open per-PR fixes only."
+                echo "Closing now. The relevant fixes (if any) are in the PRs the same workflow opened."
+              } | gh issue comment "$n" --repo "$TARGET_REPO" --body-file - 2>/dev/null || true
+              gh issue close "$n" --repo "$TARGET_REPO" --comment "Closed by NLPM backstop: umbrella issues are not policy." 2>/dev/null || true
+            done
+
+            # Fail the workflow so the regression shows up in the daily report.
+            exit 1
+          fi
+
+          echo "Backstop clean: no umbrella issues opened on $TARGET_REPO."
+
       - name: Store created PR numbers in registry
+        if: steps.pushback_gate.outputs.gated != 'true'
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
         run: |
@@ -403,10 +552,12 @@ jobs:
             PR_NUMBERS=$(jq '[.[].number]' created-prs.json)
             jq --arg name "$TARGET_REPO" --argjson prs "$PR_NUMBERS" \
                '.repos[$name].pipeline_prs = $prs' \
-               auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+               auditor/registry/repos.json > /tmp/reg.json \
+               && bash auditor/scripts/atomic-registry-write.sh
           fi
 
       - name: Log, update registry, label
+        if: steps.pushback_gate.outputs.gated != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
@@ -420,7 +571,8 @@ jobs:
 
           jq --arg name "$TARGET_REPO" \
              '.repos[$name].status = "contributed"' \
-             auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+             auditor/registry/repos.json > /tmp/reg.json \
+             && bash auditor/scripts/atomic-registry-write.sh
 
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"

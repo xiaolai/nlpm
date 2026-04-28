@@ -1166,7 +1166,8 @@ jobs:
           # Update registry
           jq --arg name "$TARGET_REPO" --arg cs "case-studies/${DATE}-${SLUG}.md" \
              '.repos[$name].status = "complete" | .repos[$name].case_study = $cs' \
-             auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+             auditor/registry/repos.json > /tmp/reg.json \
+             && bash auditor/scripts/atomic-registry-write.sh
 
           git add auditor/registry/repos.json
           bash auditor/scripts/guard-protected-paths.sh || exit 1

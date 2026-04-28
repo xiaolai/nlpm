@@ -183,7 +183,8 @@ jobs:
                   description: $desc, status: "discovered",
                   score: null, audit_issue: $issue, prs: []
                 } | .metadata.total_discovered += 1 | .metadata.last_discovery = $now' \
-               auditor/registry/repos.json > /tmp/reg.json && mv /tmp/reg.json auditor/registry/repos.json
+               auditor/registry/repos.json > /tmp/reg.json \
+               && bash auditor/scripts/atomic-registry-write.sh
 
             sleep 2
           done

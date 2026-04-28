@@ -20,12 +20,16 @@ conflicted_paths() {
   git diff --name-only --diff-filter=U 2>/dev/null || true
 }
 
-# Registry: deep merge preserves fields from both sides
+# Registry: deep merge preserves fields from both sides.
+# Validate the merged result before writing — a malformed merge would
+# silently corrupt the registry on disk (observed 2026-04-28: an
+# unguarded merge produced two concatenated top-level objects).
 if conflicted_paths | grep -qx "auditor/registry/repos.json"; then
   echo "Resolving auditor/registry/repos.json via jq deep merge"
   git show :2:auditor/registry/repos.json > /tmp/reg-ours.json
   git show :3:auditor/registry/repos.json > /tmp/reg-theirs.json
-  jq -s '.[0] * .[1]' /tmp/reg-theirs.json /tmp/reg-ours.json > auditor/registry/repos.json
+  jq -s '.[0] * .[1]' /tmp/reg-theirs.json /tmp/reg-ours.json > /tmp/reg.json
+  REG_TMP=/tmp/reg.json bash auditor/scripts/atomic-registry-write.sh
   git add auditor/registry/repos.json
 fi
 
