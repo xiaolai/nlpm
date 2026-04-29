@@ -1518,3 +1518,4 @@
 {"timestamp":"2026-04-29T02:16:34Z","workflow":"audit","event":"audit_complete","run_id":"25087438063","run_number":394,"data":{"repo":"google-labs-code/stitch-skills","score":96,"artifacts":8,"strategy":"single"}}
 {"timestamp":"2026-04-29T02:17:26Z","workflow":"audit","event":"findings_aggregated","run_id":"25087437551","run_number":393,"data":{"repo":"antfu/skills","findings":36,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-04-29T02:17:26Z","workflow":"audit","event":"audit_complete","run_id":"25087437551","run_number":393,"data":{"repo":"antfu/skills","score":93,"artifacts":17,"strategy":"single"}}
+{"timestamp":"2026-04-29T02:29:22Z","workflow":"discover","event":"search_complete","run_id":"25087929284","run_number":7,"data":{"candidates":90,"new":37,"worthy":0,"oversized":0}}
