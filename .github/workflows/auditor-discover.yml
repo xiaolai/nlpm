@@ -128,13 +128,34 @@ jobs:
             STARS=$(echo "$repo" | jq -r '.stargazersCount')
             echo "Probing $FULL_NAME ($STARS stars)..."
 
+            # Path patterns for NL artifacts. The canonical Claude Code
+            # paths are listed first, followed by emerging conventions
+            # observed in the wild (multi-tool agent skills using
+            # AGENTS.md, repos with skill files at non-canonical layouts).
+            # The 2026-04-29 audit of safishamsi/graphify (37k stars, 13
+            # artifacts at `graphify/skill*.md` + AGENTS.md) was the
+            # forcing function — the previous probe returned 0 for that
+            # repo and silently dropped it from the queue.
             ARTIFACT_COUNT=$(gh api "repos/$FULL_NAME/git/trees/HEAD?recursive=1" \
               --jq '[.tree[].path | select(
+                # Canonical Claude Code layouts
                 test("agents/.*\\.md$") or
                 test("commands/.*\\.md$") or
                 test("skills/.*/SKILL\\.md$") or
                 test("\\.claude-plugin/plugin\\.json$") or
-                test("\\.claude/commands/.*\\.md$")
+                test("\\.claude/commands/.*\\.md$") or
+                test("\\.claude/agents/.*\\.md$") or
+                test("\\.claude/skills/.*/SKILL\\.md$") or
+                # Multi-tool agent spec (becoming a standard for
+                # cross-assistant skill repos)
+                test("^AGENTS\\.md$") or
+                # Non-canonical skill layouts seen in real-world repos
+                test("^[^/]+/skill\\.md$") or
+                test("^[^/]+/skill-[^/]+\\.md$") or
+                test("^[^/]+/SKILL\\.md$") or
+                # MCP / hooks at non-canonical paths
+                test("^\\.mcp\\.json$") or
+                test("hooks/hooks\\.json$")
               )] | length' 2>/dev/null || echo "0")
 
             if [ "$ARTIFACT_COUNT" -lt "$MIN_ARTIFACTS" ]; then

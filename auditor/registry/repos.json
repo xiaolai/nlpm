@@ -6520,11 +6520,27 @@
           "stale_90d_emitted": false
         }
       ]
+    },
+    "safishamsi/graphify": {
+      "discovered": "2026-04-29T03:09:01Z",
+      "stars": 37391,
+      "artifacts": 13,
+      "description": "AI coding assistant skill \u2014 turn any folder of code, docs, papers, images, or videos into a queryable knowledge graph",
+      "status": "audited",
+      "score": 58,
+      "audit_issue": 239,
+      "prs": [],
+      "discovery_strategy": "manual-override",
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "eceaaad61e453958c808a9f8675ab43a9cf2f96b",
+      "pipeline_prs": [],
+      "audit_note": "Discovery probe missed this repo because artifacts are at non-canonical paths (graphify/skill*.md, AGENTS.md). Probe-gap fix shipped as v0.7.18."
     }
   },
   "metadata": {
-    "last_discovery": "2026-04-25T00:52:11Z",
-    "total_discovered": 156,
+    "last_discovery": "2026-04-29T03:09:01Z",
+    "total_discovered": 184,
     "total_audited": 11,
     "total_contributed": 6
   }
