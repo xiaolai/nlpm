@@ -6700,11 +6700,14 @@
       "stars": 1629,
       "artifacts": 58,
       "description": "A curated collection of skills for AI coding agents. Skills are packaged instructions and scripts that extend agent capabilities across development, documentation, planning, and professional workflows.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 90,
       "audit_issue": 225,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "progressive",
+      "security": "UNKNOWN",
+      "commit_sha_at_audit": "3027f20f3181758385a1bb8c022d4041dfb4de84"
     },
     "samber/cc-skills-golang": {
       "discovered": "2026-04-25T01:06:48Z",
