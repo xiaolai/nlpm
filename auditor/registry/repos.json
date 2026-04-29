@@ -4628,11 +4628,14 @@
       "stars": 0,
       "artifacts": 8,
       "description": "Plugin do Claude (Code + Desktop) pra gestão financeira pessoal agnóstica via FIN App MCP",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 168,
       "prs": [],
-      "discovery_strategy": "plugin-manifest-content"
+      "discovery_strategy": "plugin-manifest-content",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "8ddfa3bb22fdde71b8fd2ceb37c736f29f2c221b"
     },
     "aaronmaturen/claude-plugin": {
       "discovered": "2026-04-25T01:06:48Z",
