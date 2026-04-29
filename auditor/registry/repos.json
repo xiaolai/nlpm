@@ -6721,14 +6721,18 @@
       "stars": 1362,
       "artifacts": 36,
       "description": "🧑‍🎨 A collection of Golang agentic skills that works",
-      "status": "audited",
+      "status": "contributed",
       "score": 87,
       "audit_issue": 226,
       "prs": [],
       "discovery_strategy": "topic-tag",
       "strategy": "batched",
       "security": "CLEAR",
-      "commit_sha_at_audit": "bee9d0486d1deb542ef53f8a46d17c70b560891f"
+      "commit_sha_at_audit": "bee9d0486d1deb542ef53f8a46d17c70b560891f",
+      "pipeline_prs": [
+        26,
+        27
+      ]
     },
     "itsmostafa/aws-agent-skills": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -6749,11 +6753,14 @@
       "stars": 1000,
       "artifacts": 5,
       "description": "A self-learning system for Claude Code that captures corrections, positive feedback, and preferences — then syncs them to CLAUDE.md and AGENTS.md.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 99,
       "audit_issue": 228,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "8dc9db43c9bfaa53b567d63f3f48385bcf3d3084"
     },
     "alirezarezvani/claude-code-skill-factory": {
       "discovered": "2026-04-25T01:06:48Z",
@@ -6782,11 +6789,14 @@
       "stars": 646,
       "artifacts": 7,
       "description": "Find the ghost tokens. Fix them. Survive compaction. Avoid context quality decay. ",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 98,
       "audit_issue": 231,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "e80f11f2070eaa55e51945288404fb2a23f06f14"
     },
     "AgriciDaniel/claude-blog": {
       "discovered": "2026-04-25T01:06:48Z",
