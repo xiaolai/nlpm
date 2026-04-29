@@ -6238,11 +6238,14 @@
       "stars": 4700,
       "artifacts": 17,
       "description": "Anthony Fu's curated collection of agent skills.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 93,
       "audit_issue": 220,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "c35a5588a5158b5b404a14fb10469b2b6dc1952b"
     },
     "parcadei/Continuous-Claude-v3": {
       "discovered": "2026-04-25T01:06:48Z",

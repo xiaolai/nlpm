@@ -1514,3 +1514,5 @@
 {"timestamp":"2026-04-29T00:55:21Z","workflow":"audit","event":"audit_complete","run_id":"25085081414","run_number":391,"data":{"repo":"aaronmaturen/claude-plugin","score":36,"artifacts":30,"strategy":"batched"}}
 {"timestamp":"2026-04-29T00:56:47Z","workflow":"audit","event":"findings_aggregated","run_id":"25085075737","run_number":388,"data":{"repo":"iOfficeAI/AionUi","findings":30,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-04-29T00:56:47Z","workflow":"audit","event":"audit_complete","run_id":"25085075737","run_number":388,"data":{"repo":"iOfficeAI/AionUi","score":75,"artifacts":39,"strategy":"batched"}}
+{"timestamp":"2026-04-29T02:17:26Z","workflow":"audit","event":"findings_aggregated","run_id":"25087437551","run_number":393,"data":{"repo":"antfu/skills","findings":36,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-04-29T02:17:26Z","workflow":"audit","event":"audit_complete","run_id":"25087437551","run_number":393,"data":{"repo":"antfu/skills","score":93,"artifacts":17,"strategy":"single"}}
