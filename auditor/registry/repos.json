@@ -6722,11 +6722,14 @@
       "stars": 1076,
       "artifacts": 18,
       "description": "AWS Skills for Agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 99,
       "audit_issue": 227,
       "prs": [],
-      "discovery_strategy": "topic-tag"
+      "discovery_strategy": "topic-tag",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "5df6da7060ce411e959312f07aa3cc1fad2eedd7"
     },
     "BayramAnnakov/claude-reflect": {
       "discovered": "2026-04-25T01:06:48Z",
