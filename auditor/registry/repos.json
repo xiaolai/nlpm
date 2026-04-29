@@ -4463,10 +4463,13 @@
       "stars": 4860,
       "artifacts": 8,
       "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 156,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "6c0cbdb909b7d256c8b9b3854c8c8f87aab2c140"
     },
     "levnikolaevich/claude-code-skills": {
       "discovered": "2026-04-25T01:06:48Z",
