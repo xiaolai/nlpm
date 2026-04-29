@@ -13,6 +13,18 @@ on:
         description: 'Minimum star count'
         type: number
         default: 500
+      max_age_days:
+        description: 'Skip repos with no push within this many days (freshness gate)'
+        type: number
+        default: 180
+      min_artifacts:
+        description: 'Minimum NL artifact count to be worthy'
+        type: number
+        default: 5
+      max_artifacts:
+        description: 'Maximum NL artifact count (above this, repo is likely generated/mirrored)'
+        type: number
+        default: 100
 
 permissions:
   contents: write
@@ -35,8 +47,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MIN_STARS: ${{ inputs.min_stars || 500 }}
+          MAX_AGE_DAYS: ${{ inputs.max_age_days || 180 }}
         run: |
           echo "Searching for Claude Code plugin and skill repos..."
+          echo "  min_stars=$MIN_STARS  max_age_days=$MAX_AGE_DAYS"
+
+          # Compute the freshness cutoff once. Repos with updatedAt earlier
+          # than this are dropped — they're either abandoned or done, and a
+          # PR is unlikely to land in either case.
+          FRESH_CUTOFF=$(date -u -d "$MAX_AGE_DAYS days ago" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null \
+                       || date -u -v-${MAX_AGE_DAYS}d +%Y-%m-%dT%H:%M:%SZ)
+          echo "  freshness cutoff: $FRESH_CUTOFF (skip repos with updatedAt < this)"
 
           RESULTS_FILE=$(mktemp)
           echo "[]" > "$RESULTS_FILE"
@@ -51,13 +72,16 @@ jobs:
               --sort stars \
               --limit 50 \
               --json fullName,stargazersCount,updatedAt,description,isArchived \
-              --jq "[.[] | select(.stargazersCount >= ($MIN_STARS | tonumber)) | select(.isArchived == false)]" \
+              --jq "[.[]
+                    | select(.stargazersCount >= ($MIN_STARS | tonumber))
+                    | select(.isArchived == false)
+                    | select(.updatedAt > \"$FRESH_CUTOFF\")]" \
               2>/dev/null >> "$RESULTS_FILE" || true
             sleep 2
           done
 
           jq -s 'add | group_by(.fullName) | map(max_by(.stargazersCount))' "$RESULTS_FILE" > /tmp/candidates.json
-          echo "Found $(jq length /tmp/candidates.json) unique candidate repos"
+          echo "Found $(jq length /tmp/candidates.json) unique candidate repos (post freshness gate)"
 
       - name: Filter against registry + published case studies
         run: |
@@ -91,9 +115,13 @@ jobs:
       - name: Probe repos for NL artifacts
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MIN_ARTIFACTS: ${{ inputs.min_artifacts || 5 }}
+          MAX_ARTIFACTS: ${{ inputs.max_artifacts || 100 }}
         run: |
+          echo "Probe range: $MIN_ARTIFACTS <= artifacts <= $MAX_ARTIFACTS"
           echo "[]" > /tmp/worthy.json
           > /tmp/worthy_raw.jsonl
+          > /tmp/oversized.jsonl
 
           jq -c '.[]' /tmp/new_candidates.json | while read -r repo; do
             FULL_NAME=$(echo "$repo" | jq -r '.fullName')
@@ -109,11 +137,18 @@ jobs:
                 test("\\.claude/commands/.*\\.md$")
               )] | length' 2>/dev/null || echo "0")
 
-            if [ "$ARTIFACT_COUNT" -ge 5 ]; then
+            if [ "$ARTIFACT_COUNT" -lt "$MIN_ARTIFACTS" ]; then
+              echo "  -> $ARTIFACT_COUNT artifacts — skipping (below floor)"
+            elif [ "$ARTIFACT_COUNT" -gt "$MAX_ARTIFACTS" ]; then
+              # Oversized repos are usually generated, mirrored, or scraped —
+              # not curated plugins. Audit cost scales with artifact count, so
+              # we skip rather than burn LLM cycles. Recorded for review in
+              # case a legitimate large repo (rare) needs an explicit override.
+              echo "  -> $ARTIFACT_COUNT artifacts — skipping (above ceiling, likely generated/mirrored)"
+              echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" '. + {artifact_count: $count, skip_reason: "above_artifact_ceiling"}' >> /tmp/oversized.jsonl
+            else
               echo "  -> $ARTIFACT_COUNT artifacts — worthy"
               echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" '. + {artifact_count: $count}' >> /tmp/worthy_raw.jsonl
-            else
-              echo "  -> $ARTIFACT_COUNT artifacts — skipping"
             fi
             sleep 1
           done
@@ -121,7 +156,13 @@ jobs:
           if [ -s /tmp/worthy_raw.jsonl ]; then
             jq -s '.' /tmp/worthy_raw.jsonl > /tmp/worthy.json
           fi
-          echo "Worthy repos (5+ artifacts): $(jq length /tmp/worthy.json)"
+          OVERSIZED=$(wc -l < /tmp/oversized.jsonl | tr -d ' ')
+          echo "Worthy repos (in-range): $(jq length /tmp/worthy.json)"
+          echo "Skipped (above ceiling): $OVERSIZED"
+          if [ "$OVERSIZED" -gt 0 ]; then
+            echo "Oversized repos for manual review:"
+            jq -r '"  - \(.fullName) (\(.stargazersCount) stars, \(.artifact_count) artifacts)"' /tmp/oversized.jsonl
+          fi
 
       - name: Update registry and create issues
         if: inputs.dry_run != true && inputs.dry_run != 'true'
@@ -199,8 +240,9 @@ jobs:
           CANDIDATES=$(jq length /tmp/candidates.json 2>/dev/null || echo 0)
           NEW=$(jq length /tmp/new_candidates.json 2>/dev/null || echo 0)
           WORTHY=$(jq length /tmp/worthy.json 2>/dev/null || echo 0)
+          OVERSIZED=$(wc -l < /tmp/oversized.jsonl 2>/dev/null | tr -d ' ' || echo 0)
 
-          log_event "discover" "search_complete" "{\"candidates\": $CANDIDATES, \"new\": $NEW, \"worthy\": $WORTHY}"
+          log_event "discover" "search_complete" "{\"candidates\": $CANDIDATES, \"new\": $NEW, \"worthy\": $WORTHY, \"oversized\": $OVERSIZED}"
 
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
@@ -217,14 +259,22 @@ jobs:
           CANDIDATES=$(jq length /tmp/candidates.json 2>/dev/null || echo 0)
           NEW=$(jq length /tmp/new_candidates.json 2>/dev/null || echo 0)
           WORTHY=$(jq length /tmp/worthy.json 2>/dev/null || echo 0)
+          OVERSIZED=$(wc -l < /tmp/oversized.jsonl 2>/dev/null | tr -d ' ' || echo 0)
+          MIN_ART=${{ inputs.min_artifacts || 5 }}
+          MAX_ART=${{ inputs.max_artifacts || 100 }}
+          MIN_STARS=${{ inputs.min_stars || 500 }}
+          MAX_AGE=${{ inputs.max_age_days || 180 }}
           {
             echo "## Discovery Summary"
             echo ""
+            echo "Gates: stars ≥ $MIN_STARS, pushed within $MAX_AGE days, $MIN_ART ≤ artifacts ≤ $MAX_ART."
+            echo ""
             echo "| Metric | Count |"
             echo "|--------|-------|"
-            echo "| Candidates | $CANDIDATES |"
-            echo "| New | $NEW |"
-            echo "| Worthy (5+ artifacts) | $WORTHY |"
+            echo "| Candidates (post freshness gate) | $CANDIDATES |"
+            echo "| New (post registry/case-study dedup) | $NEW |"
+            echo "| Worthy (in artifact range) | $WORTHY |"
+            echo "| Oversized (above ceiling, skipped) | $OVERSIZED |"
             echo ""
             if [ -f /tmp/worthy.json ] && [ "$WORTHY" -gt 0 ]; then
               echo "### Worthy Repos"
@@ -232,5 +282,13 @@ jobs:
               echo "| Repo | Stars | Artifacts |"
               echo "|------|-------|-----------|"
               jq -r '.[] | "| \(.fullName) | \(.stargazersCount) | \(.artifact_count) |"' /tmp/worthy.json
+            fi
+            if [ "$OVERSIZED" -gt 0 ]; then
+              echo ""
+              echo "### Oversized — manual review only"
+              echo ""
+              echo "| Repo | Stars | Artifacts |"
+              echo "|------|-------|-----------|"
+              jq -r '"| \(.fullName) | \(.stargazersCount) | \(.artifact_count) |"' /tmp/oversized.jsonl
             fi
           } >> "$GITHUB_STEP_SUMMARY"
