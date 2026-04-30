@@ -6750,14 +6750,17 @@
     },
     "kazukinagata/shinkoku": {
       "discovered": "2026-04-25T01:06:48Z",
-      "score": null,
+      "score": 94,
       "artifacts": 25,
       "audit_issue": 237,
-      "status": "discovered",
+      "status": "audited",
       "description": "確定申告自動化 AI エージェントプラグイン — 帳簿管理から e-Tax 入力代行まで",
       "prs": [],
       "discovery_strategy": "topic-tag",
-      "stars": 335
+      "stars": 335,
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "e610b30c549ccc954717561c87004b6079d03f77"
     },
     "safishamsi/graphify": {
       "score": 58,
