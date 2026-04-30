@@ -6467,7 +6467,7 @@
       ],
       "rule_adopted": false,
       "description": "🧑‍🎨 A collection of Golang agentic skills that works",
-      "status": "contributed",
+      "status": "tracked",
       "audit_issue": 226,
       "discovery_strategy": "topic-tag",
       "strategy": "batched",
@@ -6478,13 +6478,13 @@
       "prs": [
         {
           "number": 28,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-04-30T13:34:04Z",
           "title": "fix(golang-graphql): mark skill as user-invocable to prevent silent auto-load of placeholder",
-          "updatedAt": "2026-04-29T18:42:11Z",
+          "updatedAt": "2026-04-30T13:34:04Z",
           "createdAt": "2026-04-29T18:42:11Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:fc18ede135a03251c576fe72a0db46680e1c2ed4d4d5804cf74ffcfcc11c874d"
           ],
@@ -6495,13 +6495,13 @@
         },
         {
           "number": 29,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-04-30T13:34:13Z",
           "title": "fix(golang-uber-dig,golang-uber-fx): remove dangling golang-google-wire cross-reference",
-          "updatedAt": "2026-04-29T18:43:10Z",
+          "updatedAt": "2026-04-30T13:34:13Z",
           "createdAt": "2026-04-29T18:43:10Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:2ff909bc465fe8e544cc4cc3f601677d8c14675160d78cceab4bc8dc1c67d97b",
             "sha256:20ac2064fcc3f9c544ea67e03075dc5873dea6a477f715836d1a3397c257b8bd"
