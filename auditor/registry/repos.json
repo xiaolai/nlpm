@@ -3922,7 +3922,7 @@
           "title": "fix: sync plugin.json version and rule count with npm package [skip changelog]",
           "updatedAt": "2026-04-28T13:27:47Z",
           "createdAt": "2026-04-26T18:18:39Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:039a69bf4b89f3c3870ada215f3e64ad1129439e652b03a561aa6f8f28652fe9"
           ],
@@ -3939,7 +3939,7 @@
           "title": "fix: update stale rule count from 405 to 414 in plugin and skill files [skip changelog]",
           "updatedAt": "2026-04-28T13:27:49Z",
           "createdAt": "2026-04-26T18:19:20Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:17a15f4663964c5b99248ee3ec99e2e6752239bb65de9fae862630077829e60e",
             "sha256:2936ce241191d0834e2443a2c76895a07bb3de3c64b3cb1c973e209f9f970a98",
@@ -3960,7 +3960,7 @@
           "title": "fix: add missing allowed-tools to plugin/skills/agnix/SKILL.md [skip changelog]",
           "updatedAt": "2026-04-28T13:27:51Z",
           "createdAt": "2026-04-26T18:19:56Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:efa1ee83d78ac53a9e14b6d00a6c080e65a396f742aebf8a0079bdef0a9eaec9"
           ],
@@ -4030,7 +4030,7 @@
           "title": "fix: expand ${PLUGIN_DIR} with double quotes in hook echo commands",
           "updatedAt": "2026-04-25T13:03:02Z",
           "createdAt": "2026-04-21T12:27:38Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4784,7 +4784,7 @@
           "title": "fix: remove write-capable tools from read-only spec-status command",
           "updatedAt": "2026-04-26T20:45:30Z",
           "createdAt": "2026-04-23T00:41:18Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4797,7 +4797,7 @@
           "title": "fix: add required frontmatter and structure to gemini-agents/spec-reviewer.md",
           "updatedAt": "2026-04-26T20:45:30Z",
           "createdAt": "2026-04-23T00:42:57Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -6773,7 +6773,7 @@
       ],
       "rule_adopted": false,
       "description": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.",
-      "status": "contributed",
+      "status": "tracked",
       "audit_issue": 213,
       "discovery_strategy": "topic-tag",
       "strategy": "progressive",
@@ -6784,13 +6784,13 @@
       "prs": [
         {
           "number": 757,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-01T02:21:35Z",
           "title": "fix: correct gws docs +write flags in recipe-post-mortem-setup",
-          "updatedAt": "2026-04-27T04:35:13Z",
+          "updatedAt": "2026-05-01T02:21:35Z",
           "createdAt": "2026-04-25T12:19:19Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:7a2087bd83faf7caf5c8954c5d0055864b2f2c656c5ee608f120b2695e87a6ff"
           ],
@@ -6801,13 +6801,13 @@
         },
         {
           "number": 758,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-01T02:21:32Z",
           "title": "fix: replace nonexistent Forms API list method with Drive files list",
-          "updatedAt": "2026-04-27T04:35:38Z",
+          "updatedAt": "2026-05-01T02:21:32Z",
           "createdAt": "2026-04-25T12:19:52Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:99765b5c957f40f0ba430c0f67d6df3ab2f4a7012b96f823937471e5d9ea9206"
           ],
@@ -6818,13 +6818,13 @@
         },
         {
           "number": 759,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-01T02:21:30Z",
           "title": "fix: add --locked flag to cargo install cargo-llvm-cov in coverage.sh",
-          "updatedAt": "2026-04-27T04:36:09Z",
+          "updatedAt": "2026-05-01T02:21:30Z",
           "createdAt": "2026-04-25T12:20:21Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:eb7f32ad08d5f0d22fdf1f65c0eae2ee3f2236db05a42a937d72b955228ebff0"
           ],
@@ -6835,13 +6835,13 @@
         },
         {
           "number": 760,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-01T02:21:27Z",
           "title": "fix: pin devDependencies to exact versions in package.json",
-          "updatedAt": "2026-04-27T03:53:39Z",
+          "updatedAt": "2026-05-01T02:21:27Z",
           "createdAt": "2026-04-25T12:20:53Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:cc6dd0163e79cb9765bf8cff593f2d0bf97402bce9faf742ea55e61456870ae2"
           ],
@@ -6850,7 +6850,8 @@
           ],
           "stale_90d_emitted": false
         }
-      ]
+      ],
+      "case_study_candidate": true
     },
     "OpenRaiser/NanoResearch": {
       "stars": 690,
@@ -6890,7 +6891,7 @@
           "title": "fix(skills): replace hardcoded developer path in web-auth skill",
           "updatedAt": "2026-04-23T13:02:11Z",
           "createdAt": "2026-04-23T06:45:25Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:9c59988db367e92f0bcf059651d360da0c496fb2227f3e99fba11d1cd5047c47",
             "sha256:760e55600bb03a273f02ac9e4289a237fca546592a4052fd10247adc1bc9ffdf"
@@ -6910,7 +6911,7 @@
           "title": "fix(skills): replace hardcoded developer path in web-browse skill",
           "updatedAt": "2026-04-23T13:02:27Z",
           "createdAt": "2026-04-23T06:45:58Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:1754e86287b19d02c547c5010e0ea40d98402c6fa92f045df0e1342fb40d3878",
             "sha256:134153ab6bb53b3081c0aae1173cd293ad724654d09c1460e442591dcc71bfe1"
