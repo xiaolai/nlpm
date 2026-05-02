@@ -216,7 +216,7 @@
     "BUG-missing-frontmatter": {
       "total_hits": 129,
       "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 3,
+      "led_to_rejected_pr": 4,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
@@ -907,7 +907,7 @@
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 1,
       "self_false_positive": 0,
-      "maintainer_rejected": 0,
+      "maintainer_rejected": 1,
       "downstream_suppressions": 0,
       "verified_fixed": 0,
       "verified_persists": 0,
@@ -1177,7 +1177,7 @@
     },
     "BUG-syntax-error": {
       "total_hits": 1,
-      "led_to_merged_pr": 0,
+      "led_to_merged_pr": 1,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
@@ -3301,9 +3301,9 @@
     "total_events": 16,
     "total_audits": 10,
     "total_prs_submitted": 273,
-    "total_prs_merged": 76,
-    "total_prs_rejected": 40,
+    "total_prs_merged": 77,
+    "total_prs_rejected": 41,
     "total_prs_applied_separately": 18,
-    "updated_at": "2026-05-01T22:16:23.575384Z"
+    "updated_at": "2026-05-02T22:12:59.931164Z"
   }
 }
