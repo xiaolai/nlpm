@@ -2543,7 +2543,7 @@
       ],
       "rule_adopted": false,
       "description": "Annotate and review coding agent plans and code diffs visually, share with your team, send feedback to agents with one click.",
-      "status": "contributed",
+      "status": "tracked",
       "audit_issue": 183,
       "discovery_strategy": "awesome-list-citation",
       "strategy": "batched",
@@ -2554,13 +2554,13 @@
       "prs": [
         {
           "number": 613,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-01T21:08:58Z",
           "title": "fix: add missing instruction body to opencode plannotator-last command",
-          "updatedAt": "2026-04-26T18:26:17Z",
+          "updatedAt": "2026-05-01T21:08:58Z",
           "createdAt": "2026-04-26T18:20:48Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:76544d68a446869602e6c8ca3dc364e478a4b0516b88890e139ec39c59661bac"
           ],

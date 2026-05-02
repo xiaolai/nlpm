@@ -1791,3 +1791,5 @@
 {"timestamp":"2026-05-01T16:32:19Z","workflow":"track","event":"status_check","run_id":"25222535210","run_number":77,"data":{"contributed":51,"tracked":23,"case_study_ready":24,"rule_adopted":2}}
 {"timestamp":"2026-05-01T20:29:02Z","workflow":"track","event":"status_check","run_id":"25231537322","run_number":78,"data":{"contributed":51,"tracked":23,"case_study_ready":24,"rule_adopted":2}}
 {"timestamp":"2026-05-01T22:16:23Z","workflow":"daily-report","event":"report_generated","run_id":"25235520500","run_number":27,"data":{"total_repos":184}}
+{"timestamp":"2026-05-02T00:50:34Z","workflow":"track","event":"finding_outcome","run_id":"25239502853","run_number":79,"data":{"pr":"backnotprop/plannotator#613","pr_state":"closed_unmerged","fingerprints":["sha256:76544d68a446869602e6c8ca3dc364e478a4b0516b88890e139ec39c59661bac"],"rule_ids":["BUG-missing-frontmatter"]}}
+{"timestamp":"2026-05-02T00:54:43Z","workflow":"track","event":"status_check","run_id":"25239502853","run_number":79,"data":{"contributed":50,"tracked":24,"case_study_ready":24,"rule_adopted":2}}
