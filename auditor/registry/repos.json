@@ -2891,7 +2891,7 @@
       "rule_adopted": false,
       "description": "AI coding assistant skill — turn any folder of code, docs, papers, images, or videos into a queryable knowledge graph",
       "audit_note": "Discovery probe missed this repo because artifacts are at non-canonical paths (graphify/skill*.md, AGENTS.md). Probe-gap fix shipped as v0.7.18.",
-      "status": "contributed",
+      "status": "tracked",
       "audit_issue": 239,
       "discovery_strategy": "manual-override",
       "strategy": "single",
@@ -2902,13 +2902,13 @@
       "prs": [
         {
           "number": 603,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-05-02T13:14:39Z",
+          "closedAt": "2026-05-02T13:14:39Z",
           "title": "fix: remove stray colon in --cluster-only dict literal (SyntaxError)",
-          "updatedAt": "2026-04-29T03:36:19Z",
+          "updatedAt": "2026-05-02T14:35:33Z",
           "createdAt": "2026-04-29T03:36:19Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:c5ff2beccc8af5662eed24d04172989e05b28f479a497c821383ec4fa0eb9fbd"
           ],
@@ -2917,7 +2917,8 @@
           ],
           "stale_90d_emitted": false
         }
-      ]
+      ],
+      "case_study_candidate": true
     },
     "obra/superpowers": {
       "stars": 166779,
