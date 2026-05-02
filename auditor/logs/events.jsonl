@@ -1794,3 +1794,4 @@
 {"timestamp":"2026-05-02T00:50:34Z","workflow":"track","event":"finding_outcome","run_id":"25239502853","run_number":79,"data":{"pr":"backnotprop/plannotator#613","pr_state":"closed_unmerged","fingerprints":["sha256:76544d68a446869602e6c8ca3dc364e478a4b0516b88890e139ec39c59661bac"],"rule_ids":["BUG-missing-frontmatter"]}}
 {"timestamp":"2026-05-02T00:54:43Z","workflow":"track","event":"status_check","run_id":"25239502853","run_number":79,"data":{"contributed":50,"tracked":24,"case_study_ready":24,"rule_adopted":2}}
 {"timestamp":"2026-05-02T04:36:20Z","workflow":"classify","event":"classifications_emitted","run_id":"25243869996","run_number":11,"data":{"classifications":1,"invalid":0}}
+{"timestamp":"2026-05-02T05:13:09Z","workflow":"track","event":"status_check","run_id":"25244396408","run_number":80,"data":{"contributed":50,"tracked":24,"case_study_ready":24,"rule_adopted":2}}
