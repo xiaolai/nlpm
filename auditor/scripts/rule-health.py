@@ -77,6 +77,7 @@ def classify_rule(metrics: dict) -> str:
     maintainer_rejected = metrics["maintainer_rejected"]
     downstream = metrics["downstream_suppressions"]
     merged = metrics["merged"]
+    applied_separately = metrics.get("applied_separately", 0)
     closed_unmerged = metrics.get("closed_unmerged", 0)
     verified_total = metrics.get("verified_total", 0)
     verified_fixed = metrics.get("verified_fixed", 0)
@@ -102,14 +103,16 @@ def classify_rule(metrics: dict) -> str:
             return "noisy"
     else:
         # Fall back to PR-level signal when re-audit hasn't accumulated yet.
-        # Use resolved-only rate (merged / (merged + closed_unmerged)) so that
-        # open PRs don't count against the rule. The previous formula
-        # (merged / contributed) flagged BUG-missing-frontmatter as noisy on
-        # 2026-04-30 with 21 contributed but 21 still open — penalizing the
-        # rule for "not yet" rather than "no". Open PRs are pending; only
-        # resolved ones reflect maintainer judgment.
-        resolved = merged + closed_unmerged
-        if resolved >= 3 and merged / resolved < 0.5:
+        # Use resolved-only rate so that open PRs don't count against the
+        # rule. `applied_separately` PRs count alongside merged — both are
+        # positive maintainer judgments ("the bug is real"), they just took
+        # different paths to land. Concrete case: avifenesh closed three
+        # CC-stale-count PRs with "the issue you flagged is real. Closing
+        # in favor of the consolidated structural fix in #840" — that is a
+        # win, not a failure.
+        accepted = merged + applied_separately
+        resolved = accepted + closed_unmerged
+        if resolved >= 3 and accepted / resolved < 0.5:
             return "noisy"
 
     return "healthy"
@@ -140,6 +143,30 @@ def main() -> int:
             continue
         for fp in data.get("fingerprints", []) or []:
             outcome_by_fp[fp] = state
+
+    # The SCHEMAS pr_state enum is {merged, closed_unmerged, open, stale_90d,
+    # cla_blocked} — `applied_separately` is NOT in the enum. The track
+    # workflow maps both `rejected` and `applied_separately` outcomes to
+    # `closed_unmerged` for event emission, which loses the positive signal
+    # for rule-health. Cross-reference the registry's authoritative
+    # `prs[].outcome` field to recover the distinction. Findings whose
+    # fingerprint maps to a PR with outcome=applied_separately get
+    # reclassified into a separate bucket that the classifier credits as
+    # positive (alongside merged), not as a failure.
+    #
+    # Concrete case: agent-sh/agnix #828/#829/#830 closed_unmerged but
+    # applied separately in #840 (avifenesh: "the issue you flagged is
+    # real. Closing in favor of the consolidated structural fix in #840").
+    # CC-stale-count was being classified noisy because rule-health saw
+    # 4 closed_unmerged with 0 merged. After this fix, three of those four
+    # become applied_separately and the rule clears.
+    applied_separately_by_fp: set[str] = set()
+    for slug, repo_data in registry.get("repos", {}).items():
+        for pr in repo_data.get("prs") or []:
+            if pr.get("outcome") != "applied_separately":
+                continue
+            for fp in pr.get("fingerprints") or []:
+                applied_separately_by_fp.add(fp)
 
     # Index finding_verified events by fingerprint. Same last-write-wins rule
     # applies — a finding can be re-audited more than once (e.g., a case
@@ -204,9 +231,14 @@ def main() -> int:
         unique_fps = {f["fingerprint"] for f in fs if f.get("fingerprint")}
         contributed = sum(1 for fp in unique_fps if fp in outcome_by_fp)
         merged = sum(1 for fp in unique_fps if outcome_by_fp.get(fp) == "merged")
+        applied_separately = len(unique_fps & applied_separately_by_fp)
+        # Don't double-count: a fingerprint marked applied_separately in
+        # the registry will also have pr_state=closed_unmerged in events
+        # (until the SCHEMAS enum gets extended). Subtract from the
+        # closed_unmerged bucket to keep the totals consistent.
         closed_unmerged = sum(
             1 for fp in unique_fps if outcome_by_fp.get(fp) == "closed_unmerged"
-        )
+        ) - applied_separately
         open_count = sum(1 for fp in unique_fps if outcome_by_fp.get(fp) == "open")
         self_fp = len(unique_fps & self_fp_fps)
         maintainer_rejected = sum(1 for fp in unique_fps if fp in rejected_by_fp)
@@ -234,6 +266,7 @@ def main() -> int:
             "unique_fingerprints": len(unique_fps),
             "contributed": contributed,
             "merged": merged,
+            "applied_separately": applied_separately,
             "closed_unmerged": closed_unmerged,
             "open": open_count,
             "self_fp": self_fp,

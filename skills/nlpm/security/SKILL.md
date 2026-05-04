@@ -153,35 +153,70 @@ Scan `requirements.txt` / `pyproject.toml` for:
 
 ## Pre-Match Context Filter (apply BEFORE flagging)
 
-Before generating ANY Critical or High finding, verify the matched pattern
-is in executable position — not quoted text being displayed, documented, or
-echoed. The audit data shows half of `curl | bash` matches in shell scripts
-are false positives because the pattern appears inside `usage()` heredocs,
-`echo` arguments, or comment blocks where it is content, not code.
+Before generating ANY Critical or High finding from the pattern tables
+above, verify the matched pattern is in **executable position** — not
+quoted text being displayed, documented, echoed, or used as test data.
+This filter applies universally to **every** Critical/High pattern in
+this skill, not just `curl | bash`. The audit data has shown the same
+class of false positives across `SEC-curl-pipe-sh`, `SEC-new-function-eval`,
+`SEC-eval-with-variables`, and `SEC-base64-decode-and-exec` — pattern
+syntactically present in the file, but in a string context where the
+shell or interpreter never parses it as code.
 
 **Drop the finding silently** if any of these apply:
 
 | Filter | What to skip |
 |--------|--------------|
 | Inside `echo`/`printf`/`cat` arguments | `echo "curl X \| bash"`, `printf '%s' 'wget Y \| sh'` — the shell never executes the matched substring |
-| Inside heredoc bodies | Anything between `<<EOF` / `<<-EOF` / `<<'EOF'` and the closing delimiter, when the heredoc is fed to `cat`, `echo`, a variable, or a usage function — only flag when fed to `bash`, `sh`, `eval`, or piped to a shell |
-| Inside single- or double-quoted strings on RHS of assignment | `MSG="run: curl X \| bash"`, `INSTRUCTIONS='see: wget Y \| sh'` — variable holds text, not code |
+| Inside heredoc bodies fed to non-shell consumers | Anything between `<<EOF` / `<<-EOF` / `<<'EOF'` and the closing delimiter, when the heredoc is fed to `cat`, `echo`, a variable, or a usage function — only flag when fed to `bash`, `sh`, `eval`, or piped to a shell |
+| Inside single- or double-quoted strings on RHS of assignment | `MSG="run: curl X \| bash"`, `JS_CODE='const x = eval(input)'`, `INSTRUCTIONS='see: wget Y \| sh'` — the string is data, not code |
+| Inside object/dict literals as test/fixture data | `{"jsCode": "eval(item.json.code)"}` — the object value is a string sent to a remote system as workflow/test/fixture data, never parsed locally |
 | Inside shell comments | Anything after `#` on a line (outside quoted strings) |
 | Inside `usage()` / `help()` / `--help` output functions | Functions whose only effect is printing text to stderr/stdout |
 | Inside markdown code fences in `.md` files | Already covered by the documentation-file rule above; reaffirm here |
 
-A pattern is in executable position only when the shell would actually
-parse it as a command — not when it is a string the script displays,
-returns, or stores. Apply this filter BEFORE confidence assignment, not
-after; once a finding is emitted, the contribute path may ship it.
+A pattern is in executable position only when the shell or interpreter
+would actually parse it as a command — not when it is a string the
+program displays, returns, stores, or transmits. Apply this filter
+BEFORE confidence assignment, not after; once a Critical/High finding
+is emitted, the contribute path may ship it.
 
-Specific guidance for `SEC-curl-pipe-sh` / `download-then-execute`:
+### Per-pattern guidance
+
+**`SEC-curl-pipe-sh` / `download-then-execute`**:
 - Match `curl ... | (bash|sh)` only when the curl invocation is at the
   start of a pipeline whose right-hand side is a shell, NOT when the
   pattern text appears as a quoted argument to another command.
 - A `chmod +x file && ./file` immediately after a `curl -o file ...` IS
   executable; flag it. A `chmod +x` shown inside a usage heredoc is NOT;
   drop it.
+
+**`SEC-new-function-eval` / `SEC-eval-with-variables`**:
+- Match `eval(...)`, `new Function(...)`, `exec(...)` only when the call
+  is in executable position. Verify by reading the surrounding 5 lines:
+  if the match is the value of an object property, the body of a string
+  literal, or fixture/test data being passed to a remote system, drop it.
+- A `python3 -c "..."` block where the `-c` argument interpolates
+  variables IS executable when the script runs locally; flag it.
+- A string constant `jsCode: 'const result = eval(item.json.code);'`
+  defined in test data destined for an external workflow runtime is NOT
+  executable in the audited repo; drop it.
+
+**`SEC-base64-decode-and-exec`**:
+- Match `base64 -d | sh`, `base64.decode(...) | exec` only when the
+  decoded output is fed to a local shell or interpreter. If the base64
+  is a transport encoding for code sent to a remote sandbox/container
+  (e.g., `printf X | base64 -d` where X is constructed locally and
+  shipped via stdin to an E2B sandbox), the local audit has no exposure
+  — drop it.
+
+If a pattern is in executable position but is intentional and trusted
+(e.g., a CI release script that pipes a known maintainer-controlled URL
+to bash, or `python3 -c` interpolating values from `mktemp`/`stat`/internal
+tools that cannot contain injection characters), mark it `false_positive: true`
+with an `fp_reason` explaining the trust path. The reproduction gate at
+the contribute step will drop it; the rule still gets the self-learning
+signal.
 
 ## Finding Validation
 

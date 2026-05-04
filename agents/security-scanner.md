@@ -92,7 +92,8 @@ Exception: if a `.md` file is explicitly wired as an executed script via `comman
 ### For package.json:
 - Check scripts.postinstall and scripts.preinstall
 - Check for git URL dependencies
-- Check for unpinned versions (wildcard or "latest"), BUT first check if a lockfile exists (package-lock.json, bun.lock, yarn.lock, pnpm-lock.yaml) in the same directory. If a lockfile is present, suppress the unpinned-versions finding entirely — lockfiles pin resolved versions regardless of range specifiers in package.json
+- Check for unpinned versions (wildcard or "latest"), BUT first check if a lockfile exists (package-lock.json, bun.lock, yarn.lock, pnpm-lock.yaml) in the same directory. If a lockfile is present, suppress the unpinned-versions finding entirely — lockfiles pin resolved versions regardless of range specifiers in package.json.
+- **SEC-unpinned-semver findings on `package.json` are advisory-only — emit them with `confidence: low` so the contribute gate drops them.** Maintainer feedback (krodak/clickup-cli#63: "Sorry for your token waste, but this is intentional"; avifenesh/agentsys#340: "caret ranges are intentional here so runtime security patches flow in automatically") is consistent: caret ranges are deliberate strategy, not a bug. The finding still goes in the audit report for self-learning, but no PR ships. **Exception**: `.mcp.json` SEC-unpinned-semver findings (npx -y patterns, missing version on remote MCP servers) ARE PR-worthy — supply-chain risk is materially different there because no lockfile applies.
 
 ### For commands with Bash:
 - Check if command passes user arguments directly to Bash
