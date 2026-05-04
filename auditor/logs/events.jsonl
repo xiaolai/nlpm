@@ -1830,5 +1830,7 @@
 {"timestamp":"2026-05-04T04:47:33Z","workflow":"classify","event":"classifications_emitted","run_id":"25301537723","run_number":13,"data":{"classifications":1,"invalid":0}}
 {"timestamp":"2026-05-04T05:20:53Z","workflow":"track","event":"status_check","run_id":"25302302416","run_number":92,"data":{"contributed":49,"tracked":24,"case_study_ready":25,"rule_adopted":2}}
 {"timestamp":"2026-05-04T06:59:16Z","workflow":"discover","event":"search_complete","run_id":"25305456821","run_number":8,"data":{"candidates":90,"new":36,"worthy":2,"oversized":0}}
+{"timestamp":"2026-05-04T07:10:59Z","workflow":"audit","event":"findings_aggregated","run_id":"25305739062","run_number":422,"data":{"repo":"glitternetwork/pinme","findings":7,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-05-04T07:10:59Z","workflow":"audit","event":"audit_complete","run_id":"25305739062","run_number":422,"data":{"repo":"glitternetwork/pinme","score":98,"artifacts":6,"strategy":"single"}}
 {"timestamp":"2026-05-04T07:19:25Z","workflow":"audit","event":"findings_aggregated","run_id":"25305745213","run_number":424,"data":{"repo":"glitternetwork/pinme","findings":18,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-05-04T07:19:25Z","workflow":"audit","event":"audit_complete","run_id":"25305745213","run_number":424,"data":{"repo":"glitternetwork/pinme","score":93,"artifacts":6,"strategy":"single"}}
