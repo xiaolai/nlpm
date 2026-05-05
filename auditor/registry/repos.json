@@ -1913,10 +1913,13 @@
       "artifacts": 3,
       "description": "A 100% free modern JS SaaS boilerplate (React, NodeJS, Prisma). Full-featured: Auth (email, google, github, slack, MS), Email sending, Background jobs, Landing page, Payments (Stripe, Polar.sh), Shadcn UI, S3 file upload. AI-ready with tailored AGENTS.md, skills, and Claude Code plugin. One cmd deploy. Powered by Wasp full-stack framework.",
       "stars": 14349,
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "discovered": "2026-05-05T00:52:16Z",
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "89e35c95c3cf94443ae531abf14c208d5f3f6947"
     },
     "Imbad0202/academic-research-skills": {
       "rule_adopted": false,
