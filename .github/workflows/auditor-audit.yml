@@ -972,6 +972,29 @@ jobs:
                 --arg path "$QUEUE_PATH" \
                 --arg err "$ERR_FIRST_LINE" \
                 '{repo: $repo, queue_path: $path, gh_error: $err}')" || true
+
+              # Second commit cycle for the disclosure-pending file. The
+              # primary commit at line ~828 already pushed the audit data;
+              # this one specifically captures the queued disclosure body
+              # plus the manual_disclosure_pending event. Without it, the
+              # 2026-05-05 audits (refly-ai, SimoneAvogadro) wrote the
+              # body to the runner's disk and then lost it when the runner
+              # tore down — security-blocked findings silently disappeared
+              # from the queue. Keep this even when the primary commit
+              # already ran, because guard-protected-paths still applies
+              # and the push retry logic still has to handle conflicts.
+              git add auditor/disclosures-pending/ auditor/logs/events.jsonl
+              bash auditor/scripts/guard-protected-paths.sh || exit 1
+              git diff --cached --quiet || {
+                git commit -m "disclosure-pending: $TARGET_REPO (security:$SECURITY)"
+                for ATTEMPT in 1 2 3 4 5; do
+                  if git push 2>/dev/null; then break; fi
+                  git pull --no-rebase origin main --no-edit 2>/dev/null || true
+                  bash auditor/scripts/resolve-merge-conflicts.sh || true
+                  git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
+                  [ "$ATTEMPT" -eq 5 ] && { echo "WARN: disclosure-pending push failed after 5 attempts; file is staged but not pushed"; break; }
+                done
+              }
             fi
           fi
 
