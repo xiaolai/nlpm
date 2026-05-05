@@ -7236,10 +7236,13 @@
       "stars": 21673,
       "artifacts": 3,
       "description": "A Claude Code plugin that shows what's happening - context usage, active tools, running agents, and todo progress",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 248,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "b53c3f0b208fd14df6407f9d830c565c0b43d520"
     },
     "m1heng/claude-plugin-weixin": {
       "discovered": "2026-05-05T00:52:16Z",
