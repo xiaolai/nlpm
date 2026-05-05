@@ -31,10 +31,13 @@
       "artifacts": 3,
       "description": "Native-first Claude Code plugin for third-party models with silent Agent model injection and output styles.",
       "stars": 651,
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 84,
       "discovered": "2026-05-05T00:52:16Z",
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "ad09b98cfdc17dbaa13f4889f27a98823e049f31"
     },
     "timescale/pg-aiguide": {
       "audit_issue": 75,
