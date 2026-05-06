@@ -1955,7 +1955,7 @@
       "description": "omo; the best agent harness - previously oh-my-opencode",
       "audit_issue": 88,
       "rule_adopted": false,
-      "status": "tracked",
+      "status": "complete",
       "security": "REVIEW",
       "strategy": "single",
       "pipeline_prs": [
@@ -1979,7 +1979,8 @@
       ],
       "source": "claudepot",
       "stars": 51912,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "case_study": "case-studies/2026-05-06-code-yeongyu-oh-my-openagent.md"
     },
     "addyosmani/agent-skills": {
       "score": 94,
