@@ -3732,7 +3732,7 @@
       "description": "The container platform tailored for Kubernetes multi-cloud, datacenter, and edge management ⎈ 🖥 ☁️",
       "audit_issue": 215,
       "rule_adopted": false,
-      "status": "tracked",
+      "status": "complete",
       "security": "REVIEW",
       "strategy": "batched",
       "pipeline_prs": [
@@ -3830,7 +3830,8 @@
         }
       ],
       "stars": 16912,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "case_study": "case-studies/2026-05-06-kubesphere-kubesphere.md"
     },
     "0xfurai/claude-code-subagents": {
       "score": 74,
