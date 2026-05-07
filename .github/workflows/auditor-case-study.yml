@@ -77,7 +77,8 @@ jobs:
             REMOVED=$((REMOVED + 1))
             echo "Removed prior article: $f"
           done
-          for f in case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.png \
+          for f in case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.webp \
+                   case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.png \
                    case-studies/images/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"${SLUG}"-cover.jpg; do
             [ -f "$f" ] || continue
             rm -f "$f"
@@ -1082,20 +1083,28 @@ jobs:
                   print('saved')
           " 2>/dev/null || echo "Cover image generation failed"
 
-          # Compress PNG (try pngquant, fall back to python PIL, fall back to raw copy)
-          IMG_DEST="case-studies/images/${DATE}-${SLUG}-cover.png"
+          # Convert PNG to WebP (cwebp first, fall back to PIL, fall back to raw PNG copy).
+          # WebP at q=85 averages ~7-11% of original PNG size on the
+          # editorial-illustration cover style we use; a 17-cover backfill
+          # on 2026-05-07 went 50.8MB → 4.2MB (92% smaller). Storage on
+          # GitHub is the constraint — these images live in the repo and
+          # are served via raw.githubusercontent.com on every article view.
+          IMG_DEST="case-studies/images/${DATE}-${SLUG}-cover.webp"
           if [ -f /tmp/cover-raw.png ]; then
-            if command -v pngquant &>/dev/null; then
-              pngquant --quality=65-80 --output "$IMG_DEST" /tmp/cover-raw.png 2>/dev/null && echo "Compressed with pngquant"
+            if command -v cwebp &>/dev/null; then
+              cwebp -quiet -q 85 /tmp/cover-raw.png -o "$IMG_DEST" && echo "Compressed with cwebp (q=85)"
             elif python3 -c "from PIL import Image" 2>/dev/null; then
               python3 -c "
           from PIL import Image
           img = Image.open('/tmp/cover-raw.png')
-          img = img.convert('RGB')
-          img.save('${IMG_DEST}'.replace('.png', '.jpg'), 'JPEG', quality=75, optimize=True)
-          " 2>/dev/null && IMG_DEST="${IMG_DEST%.png}.jpg" && echo "Compressed with PIL to JPEG"
+          img.save('${IMG_DEST}', 'WebP', quality=85, method=6)
+          " 2>/dev/null && echo "Compressed with PIL to WebP (q=85)"
             else
-              cp /tmp/cover-raw.png "$IMG_DEST" && echo "No compression tool — raw copy"
+              # Last-resort fallback: keep the raw PNG. Article reference
+              # uses .webp by convention; rename the destination to .png
+              # so the file/article extension match.
+              IMG_DEST="${IMG_DEST%.webp}.png"
+              cp /tmp/cover-raw.png "$IMG_DEST" && echo "WARN: no WebP encoder — raw PNG copy"
             fi
 
             RAW_SIZE=$(stat -f%z /tmp/cover-raw.png 2>/dev/null || stat -c%s /tmp/cover-raw.png 2>/dev/null || echo "?")
@@ -1150,7 +1159,7 @@ jobs:
           ARTICLE="case-studies/${DATE}-${SLUG}.md"
           LINES=0
           [ -f "$ARTICLE" ] && LINES=$(wc -l < "$ARTICLE" | tr -d ' ')
-          HAS_IMAGE=$([ -f "case-studies/images/${DATE}-${SLUG}-cover.png" ] || [ -f "case-studies/images/${DATE}-${SLUG}-cover.jpg" ] && echo true || echo false)
+          HAS_IMAGE=$([ -f "case-studies/images/${DATE}-${SLUG}-cover.webp" ] || [ -f "case-studies/images/${DATE}-${SLUG}-cover.png" ] || [ -f "case-studies/images/${DATE}-${SLUG}-cover.jpg" ] && echo true || echo false)
 
           log_event "case-study" "published" "{\"repo\": \"$TARGET_REPO\", \"article_lines\": $LINES, \"has_cover\": $HAS_IMAGE}"
 
