@@ -38,6 +38,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install cwebp
+        # ubuntu-24.04 doesn't ship webp tools by default and PIL's WebP
+        # support depends on libwebp at install time. Without this step,
+        # the cover-image step's last-resort fallback writes a raw PNG
+        # (typically 3MB) instead of a compressed WebP (typically
+        # 250KB) — observed on the 2026-05-07 kubesphere/code-yeongyu
+        # regenerations: HTTP 200, image saved, "WARN: no WebP encoder
+        # — raw PNG copy". The package is small (~600KB) and apt-get is
+        # fast on GitHub runners.
+        run: sudo apt-get install -y --no-install-recommends webp
+
       - name: Extract target
         id: target
         env:
