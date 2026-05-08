@@ -1994,3 +1994,4 @@
 {"timestamp":"2026-05-08T02:18:18Z","workflow":"audit","event":"audit_complete","run_id":"25532513813","run_number":441,"data":{"repo":"Q00/ouroboros","score":69,"artifacts":58,"strategy":"batched"}}
 {"timestamp":"2026-05-08T02:18:24Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"25532513813","run_number":441,"data":{"repo":"Q00/ouroboros","queue_path":"auditor/disclosures-pending/Q00-ouroboros.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
 {"timestamp":"2026-05-08T02:27:42Z","workflow":"audit","event":"security_disclosed","run_id":"local","run_number":0,"data":{"repo":"Q00/ouroboros","disclosure_url":"https://github.com/Q00/ouroboros/issues/766","disclosure_method":"manual"}}
+{"timestamp":"2026-05-08T04:35:24Z","workflow":"classify","event":"classifications_emitted","run_id":"25536942240","run_number":17,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
