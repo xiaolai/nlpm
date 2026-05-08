@@ -1,6 +1,6 @@
 {
   "name": "nlpm",
-  "version": "0.7.29",
+  "version": "0.7.30",
   "description": "Natural-Language Programming Manager \u2014 scan, lint, and write NL artifacts with Claude-native quality scoring",
   "author": {
     "name": "xiaolai"

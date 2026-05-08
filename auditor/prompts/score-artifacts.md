@@ -95,9 +95,16 @@ agent — `agents/scorer.md`):
    absence: `namespace:` on skills; `main:`, `engines:`, `minClaudeVersion:`
    in plugin.json; inline `hooks:` / `skills:` arrays in plugin.json;
    `tools:` on reference-only skills; `commentary:` tags in agent examples;
-   **`name:` on commands** (Claude Code commands register by filename;
+   **`name:` on commands** — Claude Code commands register by filename;
    `description:` is the only required command field per
-   `skills/nlpm/conventions/` §2).
+   `skills/nlpm/conventions/` §2. Primary-source citation:
+   <https://code.claude.com/docs/en/slash-commands> — "the `name` field
+   is explicitly optional, and Claude Code falls back to the filename
+   (or the enclosing directory for SKILL.md-style layouts) when it's
+   omitted." Maintainer Jeffallan cited this URL when merging
+   Jeffallan/claude-skills#184 (2026-05-07) and noted that pre-v0.7.15
+   audits flagged this incorrectly. The v0.7.15 fix is correct; this
+   citation is preserved so the rule doesn't regress.
 3. **Path scope check** — Two tiers of artifact paths:
 
    **Tier 1 — Cross-tool SKILL.md (open spec at agentskills.io).** SKILL.md

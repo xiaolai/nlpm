@@ -56,10 +56,17 @@ The plugin manifest. Located at `.claude-plugin/plugin.json`.
 
 Commands live in `commands/*.md`. Frontmatter is YAML between `---` delimiters.
 
+**Authoritative reference:** <https://code.claude.com/docs/en/slash-commands>
+
 **Required fields:**
 - `description` — string; explains what the command does and when to invoke it
 
 **Optional fields:**
+- `name` — string; per the official docs, **explicitly optional**. When
+  omitted, Claude Code falls back to the filename (or enclosing
+  directory for SKILL.md-style layouts). Pre-v0.7.15 NLPM incorrectly
+  flagged missing `name:` as a bug; the rule was corrected after
+  Jeffallan/claude-skills#184 maintainer feedback citing the same docs.
 - `argument-hint` — string; shown in UI as placeholder (e.g. `"[path]"`, `"<file>"`)
 - `allowed-tools` — string array; tools Claude may call while executing this command
 - `model` — one of `haiku`, `sonnet`, `opus`; selects model tier

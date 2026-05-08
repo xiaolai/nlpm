@@ -65,7 +65,8 @@ categories. Before reporting any finding, run this 5-step check:
    - `tools:` on reference-only skills (no tool calls in body)
    - `commentary:` tags in agent examples (style preference, not a rule)
    - `name:` on commands (filename-based registration; only `description:`
-     is required per `nlpm:conventions` §2)
+     is required per `nlpm:conventions` §2; primary source:
+     <https://code.claude.com/docs/en/slash-commands>)
 
 3. **Path scope check** — two tiers:
 
