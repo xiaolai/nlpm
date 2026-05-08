@@ -1992,3 +1992,4 @@
 {"timestamp":"2026-05-08T00:57:53Z","workflow":"track","event":"status_check","run_id":"25530292350","run_number":115,"data":{"contributed":46,"tracked":25,"case_study_ready":27,"rule_adopted":2}}
 {"timestamp":"2026-05-08T02:18:18Z","workflow":"audit","event":"findings_aggregated","run_id":"25532513813","run_number":441,"data":{"repo":"Q00/ouroboros","findings":125,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-05-08T02:18:18Z","workflow":"audit","event":"audit_complete","run_id":"25532513813","run_number":441,"data":{"repo":"Q00/ouroboros","score":69,"artifacts":58,"strategy":"batched"}}
+{"timestamp":"2026-05-08T02:18:24Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"25532513813","run_number":441,"data":{"repo":"Q00/ouroboros","queue_path":"auditor/disclosures-pending/Q00-ouroboros.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
