@@ -4815,7 +4815,7 @@
       "stars": 1128,
       "score": 96,
       "artifacts": 71,
-      "status": "contributed",
+      "status": "complete",
       "prs": [
         {
           "number": 66,
@@ -4870,7 +4870,9 @@
       "source": "claudepot",
       "description": "A universal CLI toolkit for AI agent skills, enabling structured AI-assisted development across tools like Cursor, Claude Code, Codex, and more.",
       "star_anomaly": 0.86,
-      "discovered": "2026-04-18T22:52:00Z"
+      "discovered": "2026-04-18T22:52:00Z",
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=96, security=CLEAR, merged=1, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "mksglu/context-mode": {
       "discovery_strategy": "awesome-list-citation, topic-tag",

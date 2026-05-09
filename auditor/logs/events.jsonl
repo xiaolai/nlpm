@@ -2014,3 +2014,4 @@
 {"timestamp":"2026-05-09T12:32:38Z","workflow":"track","event":"finding_outcome","run_id":"25601079280","run_number":125,"data":{"pr":"AgriciDaniel/claude-seo#63","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-05-09T12:32:40Z","workflow":"track","event":"finding_outcome","run_id":"25601079280","run_number":125,"data":{"pr":"AgriciDaniel/claude-seo#64","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-05-09T12:33:22Z","workflow":"track","event":"status_check","run_id":"25601079280","run_number":125,"data":{"contributed":44,"tracked":27,"case_study_ready":28,"rule_adopted":2}}
+{"timestamp":"2026-05-09T16:27:53Z","workflow":"case-study","event":"no_narrative","run_id":"25605981602","run_number":259,"data":{"repo":"codeaholicguy/ai-devkit","reason":"thin narrative: score=96, security=CLEAR, merged=1, applied_separately=0, rejected=0, rule_adopted=False"}}
