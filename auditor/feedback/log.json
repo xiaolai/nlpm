@@ -3626,9 +3626,9 @@
     "total_events": 16,
     "total_audits": 10,
     "total_prs_submitted": 273,
-    "total_prs_merged": 85,
-    "total_prs_rejected": 42,
-    "total_prs_applied_separately": 18,
-    "updated_at": "2026-05-08T22:20:17.941814Z"
+    "total_prs_merged": 88,
+    "total_prs_rejected": 44,
+    "total_prs_applied_separately": 20,
+    "updated_at": "2026-05-09T22:14:25.977743Z"
   }
 }
