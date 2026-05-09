@@ -4730,7 +4730,7 @@
           "title": "fix: correct broken relative protocol file paths in P7/P9/P10 agents",
           "updatedAt": "2026-05-09T05:42:47Z",
           "createdAt": "2026-04-26T00:46:28Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:4a73a442009a66266adfc3c17b35faaa8340d79f18337329642a0fad79d7e023",
             "sha256:28adfc462ff92f2ce96cbf54a693a3c840275799976999b6f5e5870df1da9222",
@@ -4747,7 +4747,7 @@
           "title": "fix(security): replace /tmp/pua-plugin-root TOCTOU race with CLAUDE_PLUGIN_ROOT",
           "updatedAt": "2026-05-09T05:42:45Z",
           "createdAt": "2026-04-26T00:48:12Z",
-          "outcome": "rejected",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:0b765350bd4519754210274645bbf2627b0726a9449a0ff6020aa03c73df0cfc"
           ],
