@@ -2022,3 +2022,5 @@
 {"timestamp":"2026-05-10T00:21:20Z","workflow":"suppressions","event":"scan_complete","run_id":"25615410376","run_number":3,"data":{"candidates":0,"emitted":0,"skipped_self":0,"skipped_dup":0,"skipped_no_overrides":0}}
 {"timestamp":"2026-05-10T01:01:01Z","workflow":"track","event":"status_check","run_id":"25615978941","run_number":128,"data":{"contributed":43,"tracked":27,"case_study_ready":28,"rule_adopted":2}}
 {"timestamp":"2026-05-10T04:51:03Z","workflow":"classify","event":"classifications_emitted","run_id":"25620112871","run_number":19,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
+{"timestamp":"2026-05-10T05:19:59Z","workflow":"track","event":"finding_outcome","run_id":"25620606382","run_number":129,"data":{"pr":"stablyai/orca#973","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-05-10T05:24:04Z","workflow":"track","event":"status_check","run_id":"25620606382","run_number":129,"data":{"contributed":43,"tracked":27,"case_study_ready":28,"rule_adopted":2}}

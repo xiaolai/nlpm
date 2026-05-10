@@ -2445,13 +2445,13 @@
       "prs": [
         {
           "number": 973,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-05-10T00:58:49Z",
+          "closedAt": "2026-05-10T00:58:50Z",
           "title": "fix(skills): remove broken doc references in orca-cli SKILL.md",
-          "updatedAt": "2026-05-10T00:41:32Z",
+          "updatedAt": "2026-05-10T00:58:50Z",
           "createdAt": "2026-04-23T06:43:17Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
