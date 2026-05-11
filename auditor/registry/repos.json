@@ -108,19 +108,6 @@
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
-        },
-        {
-          "number": 68,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-05-09T15:02:18Z",
-          "title": "fix(security): pin packages/cli runtime dependencies to exact versions",
-          "updatedAt": "2026-05-09T15:02:18Z",
-          "createdAt": "2026-04-21T00:37:08Z",
-          "outcome": "rejected",
-          "fingerprints": [],
-          "rule_ids": [],
-          "stale_90d_emitted": false
         }
       ],
       "strategy": "progressive",
@@ -6357,23 +6344,6 @@
           ],
           "rule_ids": [
             "SEC-credential-in-url"
-          ],
-          "stale_90d_emitted": false
-        },
-        {
-          "number": 82,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
-          "title": "fix: tighten production dependency ranges from ^ to ~ in package.json",
-          "updatedAt": "2026-04-26T06:53:52Z",
-          "createdAt": "2026-04-26T06:46:30Z",
-          "outcome": "open",
-          "fingerprints": [
-            "sha256:d1c01a3b5ad2e85dff67b7cd400aa0b8b692b6b5bc72d146601e927f8710cb80"
-          ],
-          "rule_ids": [
-            "SEC-unpinned-semver"
           ],
           "stale_90d_emitted": false
         },
