@@ -2035,3 +2035,4 @@
 {"timestamp":"2026-05-11T04:54:56Z","workflow":"classify","event":"classifications_emitted","run_id":"25651004031","run_number":20,"data":{"classifications":2,"invalid":0}}
 {"timestamp":"2026-05-11T05:05:00Z","workflow":"audit","event":"findings_aggregated","run_id":"25651126433","run_number":443,"data":{"repo":"mattpocock/skills","findings":21,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-05-11T05:05:00Z","workflow":"audit","event":"audit_complete","run_id":"25651126433","run_number":443,"data":{"repo":"mattpocock/skills","score":98,"artifacts":30,"strategy":"batched"}}
+{"timestamp":"2026-05-11T05:29:41Z","workflow":"case-study","event":"no_narrative","run_id":"25652101440","run_number":262,"data":{"repo":"stablyai/orca","reason":"thin narrative: score=96, security=REVIEW, merged=1, applied_separately=0, rejected=0, rule_adopted=False"}}
