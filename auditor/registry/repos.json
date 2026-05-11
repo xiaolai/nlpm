@@ -1,8 +1,8 @@
 {
   "metadata": {
     "total_contributed": 6,
-    "total_discovered": 198,
-    "last_discovery": "2026-05-05T00:52:16Z",
+    "total_discovered": 200,
+    "last_discovery": "2026-05-11T07:07:23Z",
     "total_audited": 12
   },
   "repos": {
@@ -7350,6 +7350,26 @@
       ],
       "score": 73,
       "rule_adopted": false
+    },
+    "jordanrendric/claude-video-vision": {
+      "discovered": "2026-05-11T07:07:23Z",
+      "stars": 561,
+      "artifacts": 6,
+      "description": "Give Claude the ability to watch and understand videos — Claude Code plugin with frame extraction and multimodal audio analysis",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 256,
+      "prs": []
+    },
+    "zhukunpenglinyutong/jetbrains-cc-gui": {
+      "discovered": "2026-05-11T07:07:23Z",
+      "stars": 3355,
+      "artifacts": 74,
+      "description": "Jetbrains Claude Code and Codex GUI Plugin",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 257,
+      "prs": []
     }
   }
 }
