@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "label": "nlpm",
-  "message": "0 issues · v0.8.2",
+  "message": "0 issues · v0.8.3",
   "color": "success",
   "isError": false,
   "extras": {
-    "checked_at": "2026-05-11T08:35:19+00:00",
-    "nlpm_version": "0.8.2",
+    "checked_at": "2026-05-11T08:39:17+00:00",
+    "nlpm_version": "0.8.3",
     "findings": {
       "high": 0,
       "medium": 0,

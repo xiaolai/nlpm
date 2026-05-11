@@ -36,7 +36,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-VERSION = "0.8.2"
+VERSION = "0.8.3"
 
 
 # ----- finding model -----
@@ -479,7 +479,7 @@ def check_hook_event_names(plugin_root: Path, findings: list[Finding]) -> None:
         "PreToolUse", "PostToolUse", "PostToolUseFailure",
         "PermissionRequest", "UserPromptSubmit", "Stop", "SubagentStop",
         "SessionStart", "SessionEnd", "PreCompact", "Notification",
-        "InstructionsLoaded",
+        "InstructionsLoaded", "TaskCompleted",
     }
     VALID_LOWER = {e.lower(): e for e in VALID_EVENTS}
     for hook_path in CANONICAL_HOOK_PATHS:

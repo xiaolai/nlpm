@@ -70,7 +70,7 @@ def main(argv: list[str] | None = None) -> int:
         print(__doc__)
         return 0
     if argv and argv[0] == "--version":
-        print("nlpm-badge 0.8.2")
+        print("nlpm-badge 0.8.3")
         return 0
 
     raw = sys.stdin.read()

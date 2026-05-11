@@ -280,6 +280,7 @@ Hook events are **case-sensitive**. Using wrong case silently ignores the hook.
 | `PreCompact` | Before context compaction |
 | `Notification` | On notification events |
 | `InstructionsLoaded` | After instructions load |
+| `TaskCompleted` | After Claude completes a task |
 
 **Hook types:** `command`, `prompt`, `agent`
 
