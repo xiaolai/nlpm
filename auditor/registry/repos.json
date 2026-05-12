@@ -7605,11 +7605,14 @@
       "stars": 2482,
       "artifacts": null,
       "description": "Extract any website's complete design system with one command. DTCG tokens, semantic+primitive+composite, MCP server for Claude Code/Cursor/Windsurf, multi-platform emitters (iOS SwiftUI, Android Comp",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 264,
       "prs": [],
-      "discovery_strategy": "manual-batch-2026-05-12"
+      "discovery_strategy": "manual-batch-2026-05-12",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "959f700bba7772fbb023c1d87f98a1d99d9c8282"
     }
   }
 }
