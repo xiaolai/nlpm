@@ -261,102 +261,14 @@ jobs:
           done
 
       # ================================================================
-      # SHALLOW SCAN: frontmatter-only check (haiku-class, fast, cheap)
-      # For progressive strategy on large repos, this filters what needs deep scoring
-      # ================================================================
-      - name: Shallow scan — frontmatter check
-        if: false  # Disabled: jq parsing issues with grep -c in subshell. TODO: rewrite with awk
-        id: shallow
-        run: |
-          cd target-repo
-          echo "[]" > /tmp/shallow-results.json
-
-          cat /tmp/artifacts-*.txt | sort -u | while IFS= read -r filepath; do
-            [ ! -f "$filepath" ] && continue
-
-            # Extract YAML frontmatter (between --- delimiters)
-            FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$filepath" 2>/dev/null | head -30)
-            FILENAME=$(basename "$filepath")
-            DIRNAME=$(dirname "$filepath")
-
-            # Check structural fields
-            # `grep -c` outputs 0 to stdout AND exits 1 when zero matches —
-            # `|| echo 0` would then double-emit "0\n0", making downstream
-            # `[ "$HAS_X" -eq 0 ]` comparisons error with "integer expression
-            # expected". Suppress the failure with `|| true` so only grep's
-            # stdout count survives.
-            HAS_NAME=$(echo "$FRONTMATTER" | grep -c '^name:' || true)
-            HAS_DESC=$(echo "$FRONTMATTER" | grep -c '^description:' || true)
-            HAS_MODEL=$(echo "$FRONTMATTER" | grep -c '^model:' || true)
-            HAS_TOOLS=$(echo "$FRONTMATTER" | grep -cE '^(tools:|allowed-tools:)' || echo 0)
-
-            # Determine type from path
-            TYPE="unknown"
-            echo "$filepath" | grep -q '/agents/' && TYPE="agent"
-            echo "$filepath" | grep -q '/commands/shared/' && TYPE="shared-partial"
-            echo "$filepath" | grep -q '/commands/' && TYPE="command"
-            echo "$filepath" | grep -q 'SKILL.md' && TYPE="skill"
-            echo "$filepath" | grep -q '/hooks/' && TYPE="hook"
-            echo "$filepath" | grep -q 'CLAUDE.md' && TYPE="claude-md"
-            echo "$filepath" | grep -q 'plugin.json' && TYPE="manifest"
-
-            # Quick score: count missing required fields
-            ISSUES=0
-            [ "$TYPE" = "agent" ] && [ "$HAS_DESC" -eq 0 ] && ISSUES=$((ISSUES + 1)) || true
-            [ "$TYPE" = "agent" ] && [ "$HAS_MODEL" -eq 0 ] && ISSUES=$((ISSUES + 1)) || true
-            [ "$TYPE" = "command" ] && [ "$HAS_DESC" -eq 0 ] && ISSUES=$((ISSUES + 1)) || true
-            [ "$TYPE" = "skill" ] && [ "$HAS_NAME" -eq 0 ] && ISSUES=$((ISSUES + 1)) || true
-            [ "$TYPE" = "skill" ] && [ "$HAS_DESC" -eq 0 ] && ISSUES=$((ISSUES + 1)) || true
-            NEEDS_DEEP="false"
-            [ "$ISSUES" -gt 0 ] && NEEDS_DEEP="true"
-
-            LINE_COUNT=$(wc -l < "$filepath" | tr -d ' ')
-
-            jq -cn \
-              --arg path "$filepath" --arg type "$TYPE" \
-              --arg issues "$ISSUES" --arg lines "$LINE_COUNT" \
-              --arg deep "$NEEDS_DEEP" \
-              --arg has_name "$HAS_NAME" --arg has_desc "$HAS_DESC" \
-              --arg has_model "$HAS_MODEL" --arg has_tools "$HAS_TOOLS" \
-              '{path:$path, type:$type, issues:($issues|tonumber), lines:($lines|tonumber), needs_deep:($deep=="true"),
-                frontmatter:{name:(($has_name|tonumber)>0), description:(($has_desc|tonumber)>0), model:(($has_model|tonumber)>0), tools:(($has_tools|tonumber)>0)}}' \
-              >> /tmp/shallow-raw.jsonl
-          done
-
-          [ -f /tmp/shallow-raw.jsonl ] && jq -s '.' /tmp/shallow-raw.jsonl > /tmp/shallow-results.json
-
-          TOTAL=$(jq length /tmp/shallow-results.json)
-          NEED_DEEP=$(jq '[.[] | select(.needs_deep == true)] | length' /tmp/shallow-results.json)
-          CLEAN=$(jq '[.[] | select(.needs_deep == false)] | length' /tmp/shallow-results.json)
-
-          echo "Shallow scan: $TOTAL files, $NEED_DEEP need deep scoring, $CLEAN passed frontmatter check"
-          echo "needs_deep=$NEED_DEEP" >> "$GITHUB_OUTPUT"
-
-          # For progressive strategy: rebuild batches with only files needing deep scoring
-          # plus a random sample of 5 "clean" files for calibration
-          mkdir -p /tmp/deep-batches
-          jq -r '.[] | select(.needs_deep == true) | .path' /tmp/shallow-results.json > /tmp/deep-files.txt
-          jq -r '.[] | select(.needs_deep == false) | .path' /tmp/shallow-results.json | shuf | head -5 >> /tmp/deep-files.txt
-
-          DEEP_COUNT=$(wc -l < /tmp/deep-files.txt | tr -d ' ')
-          echo "Deep scoring: $DEEP_COUNT files (all flagged + 5 calibration samples)"
-
-          # Re-batch for deep scoring
-          BATCH_NUM=1
-          LINES_IN_BATCH=0
-          while IFS= read -r f; do
-            echo "$f" >> "/tmp/deep-batches/batch-${BATCH_NUM}.txt"
-            LINES_IN_BATCH=$((LINES_IN_BATCH + 1))
-            if [ "$LINES_IN_BATCH" -ge 15 ]; then
-              BATCH_NUM=$((BATCH_NUM + 1))
-              LINES_IN_BATCH=0
-            fi
-          done < /tmp/deep-files.txt
-          echo "deep_batch_count=$BATCH_NUM" >> "$GITHUB_OUTPUT"
-
-      # ================================================================
       # DEEP SCORE: full rubric scoring via Claude
       # ================================================================
+      # Note: a `Shallow scan — frontmatter check` step previously sat here,
+      # gated `if: false` with a TODO to rewrite jq+grep logic in awk.
+      # Removed 2026-05-12 per audit (actionlint flagged the constant
+      # condition + 2 unused-var warnings). Git history preserves the
+      # original implementation; the progressive-strategy idea is documented
+      # in `analysis/scope-expansion-2026-05.md` if it's worth reviving.
       - name: Build file list
         id: filelist
         env:
@@ -606,10 +518,14 @@ jobs:
           REPORT="auditor/audits/${SLUG}.md"
 
           if [ ! -f "$REPORT" ]; then
-            echo "WARNING: Report not found at $REPORT"
+            echo "ERROR: Report not found at $REPORT"
             echo "Looking for any audit files Claude may have written..."
             find . -name "*.md" -newer .git/HEAD -not -path './.github/*' -not -path './target-repo/*' | head -10
-            exit 0
+            # Fail loudly — previous exit 0 let the aggregate/commit
+            # steps mark the audit complete with score 0/UNKNOWN,
+            # creating phantom registry entries that look audited but
+            # weren't.
+            exit 1
           fi
 
           echo "Report size: $(wc -c < "$REPORT") bytes"

@@ -155,5 +155,5 @@ jobs:
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "suppressions: $(date +%Y-%m-%d) scan"
-            git push
+            bash auditor/scripts/git-push-with-retry.sh
           }

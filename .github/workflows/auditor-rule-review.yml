@@ -184,6 +184,18 @@ jobs:
           _Filed automatically by `auditor-rule-review.yml`._
           MARKDOWN
 
+          # Dedupe: a quarterly cron can fire twice (manual + scheduled
+          # in the same quarter) and would otherwise file two review
+          # issues. Check for an existing open `rule-review` issue for
+          # this exact quarter first.
+          EXISTING=$(gh issue list \
+            --label "rule-review" --state open \
+            --search "in:title \"Quarterly Rule Review — ${QUARTER}\"" \
+            --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            echo "Quarterly review issue for ${QUARTER} already exists: #$EXISTING"
+            exit 0
+          fi
           gh issue create \
             --title "Quarterly Rule Review — ${QUARTER}" \
             --label "rule-review" \

@@ -356,5 +356,5 @@ jobs:
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "track: $(date +%Y-%m-%d) — $TRACKED tracked, $CASE_READY case-study ready, $RULE_ADOPTED rule-adopted"
-            git push
+            bash auditor/scripts/git-push-with-retry.sh
           }

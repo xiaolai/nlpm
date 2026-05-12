@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  issues: write
+  contents: write   # daily report commits report file to repo
+  issues: read      # read-only — counts open issues by label; no creation/edit needed
 
 concurrency:
   group: nlpm-daily-report
@@ -59,11 +59,20 @@ jobs:
           python3 auditor/scripts/rule-health.py /tmp/report/feedback-summary.json
 
       - name: Generate report
+        # Embed Python via quoted heredoc so shell never expands $vars or
+        # interprets the f-string braces inside the script.
+        # shellcheck-in-actionlint can't see past the heredoc to know it's
+        # Python, so it parses the Python f-strings as bash brace
+        # expressions and emits SC1054/SC1056/SC1072/SC1073/SC1083/SC1009
+        # false positives. Disable those codes for this step.
+        # shellcheck disable=SC1009,SC1054,SC1056,SC1072,SC1073,SC1083
         run: |
-          DATE=$(date +%Y-%m-%d)
           mkdir -p auditor/reports
 
-          python3 << PYEOF
+          # The Python script computes its own date via datetime — no
+          # bash DATE var is needed (and the quoted heredoc wouldn't
+          # see it anyway).
+          python3 << 'PYEOF'
           import json
           from datetime import datetime
 

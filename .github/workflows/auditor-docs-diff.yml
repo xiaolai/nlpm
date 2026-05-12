@@ -81,7 +81,10 @@ jobs:
 
             NEW_HASH=$(printf '%s' "$BODY" | shasum -a 256 | awk '{print $1}')
 
-            OLD_HASH=$(jq -r --arg u "$url" '.[$u] // empty' "$NEW_HASHES")
+            # Stored shape is {hash, last_seen}; previously this read the
+            # whole object and compared it to a raw hash string, so drift
+            # was detected on every run. Pluck `.hash` explicitly.
+            OLD_HASH=$(jq -r --arg u "$url" '.[$u].hash // empty' "$NEW_HASHES")
 
             if [ -z "$OLD_HASH" ]; then
               echo "BOOTSTRAP: $url -> $NEW_HASH"
@@ -174,10 +177,25 @@ jobs:
           print("_Filed automatically by `auditor-docs-diff.yml`._")
           PYEOF
 
-            gh issue create \
-              --title "Docs drift: $url" \
-              --label "docs-drift" \
-              --body-file /tmp/issue-body.md || echo "WARN: issue create failed"
+            # Dedupe: don't open a second open drift issue for the same
+            # URL. Search existing open `docs-drift` issues by title-prefix
+            # match. If one exists, append a comment instead of creating
+            # a duplicate.
+            EXISTING_ISSUE=$(gh issue list \
+              --label "docs-drift" --state open \
+              --search "in:title \"Docs drift: $url\"" \
+              --json number --jq '.[0].number // empty')
+            if [ -n "$EXISTING_ISSUE" ]; then
+              echo "Drift for $url already tracked in issue #$EXISTING_ISSUE; appending"
+              gh issue comment "$EXISTING_ISSUE" --body-file /tmp/issue-body.md \
+                || echo "WARN: comment append failed for #$EXISTING_ISSUE"
+            else
+              gh issue create \
+                --title "Docs drift: $url" \
+                --label "docs-drift" \
+                --body-file /tmp/issue-body.md \
+                || echo "WARN: issue create failed for $url"
+            fi
           done < /tmp/changed-urls.txt
 
       - name: Commit hash store

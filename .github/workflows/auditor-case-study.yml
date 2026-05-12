@@ -1339,12 +1339,13 @@ jobs:
           fi
 
       - name: Log, commit, and close
-        # Runs only on the "wrote an article" path. The two early-exit
-        # paths (already-exists, no-narrative) handle their own
-        # close/label/registry updates inline. Without this gate, this
-        # step would also fire on the no-narrative path and double-
-        # close the issue.
-        if: steps.gate.outputs.write_article == 'true'
+        # Runs on the "wrote an article" path AND on the existing-case-study
+        # skip path. The skip-path used to be unreachable: the previous gate
+        # `if: steps.gate.outputs.write_article == 'true'` excluded skipcheck=true
+        # because gate sets write_article=false when SKIP=true. The new gate
+        # explicitly allows either condition so the skip-close path actually
+        # runs and closes the issue cleanly.
+        if: steps.gate.outputs.write_article == 'true' || steps.skipcheck.outputs.skip == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
@@ -1352,7 +1353,6 @@ jobs:
           SKIP: ${{ steps.skipcheck.outputs.skip }}
         run: |
           # Skip path: case study already existed — just close the issue cleanly.
-          # (Kept for safety even though gate makes this unreachable.)
           if [ "$SKIP" = "true" ]; then
             echo "Skip path: a prior case study exists; closing issue without regenerating."
             if [ "$ISSUE_NUM" != "null" ] && [ "$ISSUE_NUM" != "0" ]; then

@@ -272,7 +272,7 @@ jobs:
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "chore: discovery $(date +%Y-%m-%d) — $WORTHY new repos"
-            git push
+            bash auditor/scripts/git-push-with-retry.sh
           }
 
       - name: Summary

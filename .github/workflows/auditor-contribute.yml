@@ -107,7 +107,12 @@ jobs:
               bash auditor/scripts/guard-protected-paths.sh || exit 1
               git diff --cached --quiet || {
                 git commit -m "policy: $TARGET_REPO — no external PRs (gated in contribute step)"
-                git push 2>/dev/null || true
+                # Was `git push 2>/dev/null || true` — silently swallowing
+                # push failures meant the policy gate state could miss
+                # main and the target would be re-attempted on the next
+                # contribute run. Use the retry helper so we either land
+                # the change or fail loudly.
+                bash auditor/scripts/git-push-with-retry.sh
               }
               exit 0
             fi
@@ -193,7 +198,7 @@ jobs:
                 bash auditor/scripts/guard-protected-paths.sh || exit 1
                 git diff --cached --quiet || {
                   git commit -m "policy: $TARGET_REPO — CLA gate ($GATE_REASON)"
-                  git push 2>/dev/null || true
+                  bash auditor/scripts/git-push-with-retry.sh
                 }
                 exit 0
               fi
@@ -264,6 +269,20 @@ jobs:
              '.repos[$name].status = "pushback_gated"' \
              auditor/registry/repos.json > /tmp/reg.json \
              && bash auditor/scripts/atomic-registry-write.sh
+
+          # Commit + push the gate decision. Previously this mutation
+          # only landed on the runner's local checkout; the workflow
+          # then exited on a later skip condition without ever syncing
+          # the gated status to main, so the next contribute attempt
+          # would re-process this target as if no gate decision had
+          # been made.
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git add auditor/registry/repos.json
+          if ! git diff --cached --quiet; then
+            git commit -m "contribute: mark $TARGET_REPO pushback_gated"
+            bash auditor/scripts/git-push-with-retry.sh
+          fi
 
           # Persist the gate decision so subsequent steps skip cleanly.
           echo "gated=true" >> "$GITHUB_OUTPUT"
@@ -407,6 +426,17 @@ jobs:
              '.repos[$name].status = "no_prs_high_confidence_only"' \
              auditor/registry/repos.json > /tmp/reg.json \
              && bash auditor/scripts/atomic-registry-write.sh
+
+          # Same fix as the pushback gate above: commit + push the
+          # status change, otherwise the runner's mutation never lands
+          # on main and the target gets re-processed.
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git add auditor/registry/repos.json
+          if ! git diff --cached --quiet; then
+            git commit -m "contribute: $TARGET_REPO — no high-confidence findings"
+            bash auditor/scripts/git-push-with-retry.sh
+          fi
 
       - name: Contribute with Claude Code
         if: |

@@ -13,9 +13,10 @@ on:
         default: unit
 
 permissions:
-  contents: write
-  issues: write
-  id-token: write
+  contents: read    # default — unit/smoke jobs only need read
+  # The `full` job re-elevates inline to the minimum it actually needs;
+  # workflow-level write was previously applied even when running unit/smoke,
+  # which violated least-privilege for the bulk of integration-test invocations.
 
 concurrency:
   group: nlpm-auditor-test
@@ -160,6 +161,13 @@ jobs:
     needs: smoke
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # Re-elevate for the full integration path that exercises issue
+    # creation + OIDC. Unit/smoke jobs inherit the workflow-level
+    # contents:read default and never touch these surfaces.
+    permissions:
+      contents: write
+      issues: write
+      id-token: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
