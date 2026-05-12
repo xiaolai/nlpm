@@ -2066,4 +2066,7 @@
 {"timestamp":"2026-05-12T00:56:56Z","workflow":"track","event":"status_check","run_id":"25706288125","run_number":140,"data":{"contributed":39,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
 {"timestamp":"2026-05-12T04:48:02Z","workflow":"classify","event":"classifications_emitted","run_id":"25713942033","run_number":21,"data":{"classifications":18,"invalid":0}}
 {"timestamp":"2026-05-12T05:25:16Z","workflow":"track","event":"status_check","run_id":"25715015899","run_number":141,"data":{"contributed":39,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
+{"timestamp":"2026-05-12T07:04:02Z","workflow":"discover","event":"search_complete","run_id":"25718964628","run_number":12,"data":{"candidates":90,"new":23,"worthy":0,"oversized":0}}
+{"timestamp":"2026-05-12T07:08:00Z","workflow":"audit","event":"findings_aggregated","run_id":"25719013869","run_number":455,"data":{"repo":"forrestchang/andrej-karpathy-skills","findings":1,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-05-12T07:08:00Z","workflow":"audit","event":"audit_complete","run_id":"25719013869","run_number":455,"data":{"repo":"forrestchang/andrej-karpathy-skills","score":99,"artifacts":3,"strategy":"single"}}
 {"timestamp":"2026-05-12T07:09:04Z","workflow":"contribute","event":"prs_submitted","run_id":"25718969424","run_number":1189,"data":{"repo":"aaronmaturen/claude-plugin","pr_count":2}}
