@@ -2064,3 +2064,4 @@
 {"timestamp":"2026-05-11T20:55:37Z","workflow":"case-study","event":"published","run_id":"25696054890","run_number":263,"data":{"repo":"rohitg00/awesome-claude-code-toolkit","article_lines":165,"has_cover":true}}
 {"timestamp":"2026-05-11T22:22:58Z","workflow":"daily-report","event":"report_generated","run_id":"25700804203","run_number":37,"data":{"total_repos":201}}
 {"timestamp":"2026-05-12T00:56:56Z","workflow":"track","event":"status_check","run_id":"25706288125","run_number":140,"data":{"contributed":39,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
+{"timestamp":"2026-05-12T04:48:02Z","workflow":"classify","event":"classifications_emitted","run_id":"25713942033","run_number":21,"data":{"classifications":18,"invalid":0}}
