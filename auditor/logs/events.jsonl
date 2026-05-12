@@ -2079,3 +2079,4 @@
 {"timestamp":"2026-05-12T09:11:15Z","workflow":"track","event":"status_check","run_id":"25724572579","run_number":142,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
 {"timestamp":"2026-05-12T12:52:30Z","workflow":"audit","event":"findings_aggregated","run_id":"25735345020","run_number":461,"data":{"repo":"Manavarya09/design-extract","findings":31,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-05-12T12:52:30Z","workflow":"audit","event":"audit_complete","run_id":"25735345020","run_number":461,"data":{"repo":"Manavarya09/design-extract","score":94,"artifacts":11,"strategy":"single"}}
+{"timestamp":"2026-05-12T12:52:35Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"25735345020","run_number":461,"data":{"repo":"Manavarya09/design-extract","queue_path":"auditor/disclosures-pending/Manavarya09-design-extract.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
