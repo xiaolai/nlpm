@@ -7382,6 +7382,83 @@
       "disclosure_filed_at": "2026-04-26T12:26:56Z",
       "description": "An AI-powered task-management system you can drop into Cursor, Lovable, Windsurf, Roo, and others.",
       "security": "BLOCKED"
+    },
+    "forrestchang/andrej-karpathy-skills": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 125813,
+      "artifacts": null,
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 258,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "shareAI-lab/learn-claude-code": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 59868,
+      "artifacts": null,
+      "description": "Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 259,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "mem0ai/mem0": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 55456,
+      "artifacts": null,
+      "description": "Universal memory layer for AI Agents",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 260,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "MemPalace/mempalace": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 51982,
+      "artifacts": null,
+      "description": "The best-benchmarked open-source AI memory system. And it's free.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 261,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "vercel-labs/agent-browser": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 32739,
+      "artifacts": null,
+      "description": "Browser automation CLI for AI agents",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 262,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "lackeyjb/playwright-skill": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 2607,
+      "artifacts": null,
+      "description": "Claude Code Skill for browser automation with Playwright. Model-invoked - Claude autonomously writes and executes custom automation for testing and validation.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 263,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
+    },
+    "Manavarya09/design-extract": {
+      "discovered": "2026-05-12T07:02:20Z",
+      "stars": 2482,
+      "artifacts": null,
+      "description": "Extract any website's complete design system with one command. DTCG tokens, semantic+primitive+composite, MCP server for Claude Code/Cursor/Windsurf, multi-platform emitters (iOS SwiftUI, Android Comp",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 264,
+      "prs": [],
+      "discovery_strategy": "manual-batch-2026-05-12"
     }
   }
 }
