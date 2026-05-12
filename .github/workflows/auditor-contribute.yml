@@ -455,7 +455,15 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           allowed_bots: "github-actions[bot],nlpm-auditor[bot]"
           show_full_output: true
-          claude_args: "--allowedTools Read,Glob,Grep,Write,Edit,Bash"
+          # Defense-in-depth against prompt-injection exfiltration: contribute
+          # processes target-repo content (audit findings + target files +
+          # maintainer quotes) while holding PAT_TOKEN with cross-org write
+          # scope. Block direct network-exfil Bash channels + WebFetch/WebSearch.
+          # This is layer 1; the structural fix (patch-only LLM + token-bearing
+          # shell step) is queued for a dedicated session. See AUTH-LEAK.md.
+          claude_args: |
+            --allowedTools Read,Glob,Grep,Write,Edit,Bash
+            --disallowedTools "Bash(curl:*)" "Bash(wget:*)" "Bash(nc:*)" "Bash(ncat:*)" "Bash(socat:*)" "Bash(telnet:*)" "Bash(ssh:*)" "Bash(scp:*)" "Bash(sftp:*)" "Bash(rsync:*)" WebFetch WebSearch
           prompt: |
             IMPORTANT: Before running any `gh` command, first run:
             export GH_TOKEN="$FORK_TOKEN"

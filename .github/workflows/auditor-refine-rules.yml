@@ -77,7 +77,13 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           show_full_output: true
-          claude_args: "--allowedTools Read,Glob,Grep,Write,Edit,Bash"
+          # Defense-in-depth against prompt-injection exfiltration: refine-rules
+          # reads maintainer quotes from arbitrary upstream PRs while holding
+          # write perms to this repo. Block network-exfil Bash channels +
+          # WebFetch/WebSearch. See AUTH-LEAK.md.
+          claude_args: |
+            --allowedTools Read,Glob,Grep,Write,Edit,Bash
+            --disallowedTools "Bash(curl:*)" "Bash(wget:*)" "Bash(nc:*)" "Bash(ncat:*)" "Bash(socat:*)" "Bash(telnet:*)" "Bash(ssh:*)" "Bash(scp:*)" "Bash(sftp:*)" "Bash(rsync:*)" WebFetch WebSearch
           prompt: |
             You are proposing refinements to NLPM's own rule catalog based on
             observed auditor outcomes. The pipeline has flagged one or more

@@ -813,7 +813,12 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           allowed_bots: "github-actions[bot],nlpm-auditor[bot]"
           prompt: "Read the prompt file at /tmp/case-study-prompt.md and follow all instructions in it."
-          claude_args: "--allowedTools Read,Glob,Grep,Write,Bash"
+          # Defense-in-depth: case-study reads target-repo content while
+          # holding git push perms. Block network-exfil Bash channels +
+          # WebFetch/WebSearch. See AUTH-LEAK.md.
+          claude_args: |
+            --allowedTools Read,Glob,Grep,Write,Bash
+            --disallowedTools "Bash(curl:*)" "Bash(wget:*)" "Bash(nc:*)" "Bash(ncat:*)" "Bash(socat:*)" "Bash(telnet:*)" "Bash(ssh:*)" "Bash(scp:*)" "Bash(sftp:*)" "Bash(rsync:*)" WebFetch WebSearch
 
       # ================================================================
       # STEP A: Self-Review — 6 perspectives (replaces external Codex review)

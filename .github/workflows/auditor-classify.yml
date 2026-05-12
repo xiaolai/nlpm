@@ -70,7 +70,15 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           show_full_output: true
-          claude_args: "--allowedTools Read,Write,Edit,Bash --model claude-haiku-4-5-20251001"
+          # Defense-in-depth against prompt-injection exfiltration: classify
+          # reads maintainer quotes from arbitrary upstream repos via
+          # disagreements.jsonl. Block direct network-exfil Bash channels +
+          # WebFetch/WebSearch. Does NOT block git/gh (needed for legit ops)
+          # nor python/node (sophisticated attackers can still pivot through
+          # those — defense is layered, not absolute). See AUTH-LEAK.md.
+          claude_args: |
+            --allowedTools Read,Write,Edit,Bash --model claude-haiku-4-5-20251001
+            --disallowedTools "Bash(curl:*)" "Bash(wget:*)" "Bash(nc:*)" "Bash(ncat:*)" "Bash(socat:*)" "Bash(telnet:*)" "Bash(ssh:*)" "Bash(scp:*)" "Bash(sftp:*)" "Bash(rsync:*)" WebFetch WebSearch
           prompt: |
             You are a classifier for GitHub PR rejection comment threads. You
             process a JSONL batch and emit one classification per thread.
