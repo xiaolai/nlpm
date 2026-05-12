@@ -1960,7 +1960,107 @@
       "case_study_candidate": true
     },
     "LigphiDonk/Oh-my--paper": {
-      "prs": [],
+      "prs": [
+        {
+          "number": 8,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: add required YAML frontmatter to all agent files",
+          "updatedAt": "2026-05-12T07:08:55Z",
+          "createdAt": "2026-05-12T07:08:55Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:26f8dbcf6a62318b766c09857bd94a3bf0077103ee9c9832bafed2e8af47bf02",
+            "sha256:a89a9bb39394cd9f360f6341d06497aecf8aef50fa722fe04027ad1648d3fb1d",
+            "sha256:bd4e4fb75065b46381dcdca6a5c79936c2a41b35dda9a2f1eea4e468f92460dd",
+            "sha256:28c417c1702974116f003cf6c92c8cf116cf3ef8e5f6b885aa83a3e5bd1a9da4",
+            "sha256:7db03746e8ff500c0fffa0b49b62e01015c1c04912cd199dd8cb26c87920ab02",
+            "sha256:888ded3e7cf7b7b09be223ce9272a67f03ebcafdb816db82ebf63bc16ecf2ee9",
+            "sha256:0e989f28bd8ccbb53bbe82cafe99de29a4d5832dc8b2b5a422e50dc440391172",
+            "sha256:2e0ce97020387b9063d15bde7f7925d62c5335066493b959f53cc4b4a12742bd",
+            "sha256:df0566c9a6449d1c8d1ffddf3e9c0251b4a71272bfd7e95eb81ef237037f035b",
+            "sha256:1daab02050c0cc9abf912f20e68099e2de57d57ba5214f3b3054b878bf6ff546"
+          ],
+          "rule_ids": [
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 9,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: add required name field to all command frontmatters",
+          "updatedAt": "2026-05-12T07:10:57Z",
+          "createdAt": "2026-05-12T07:10:57Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:6eed33380e90876a8e3c447aac7cd36e468175754a2464efc52ece117614ae39",
+            "sha256:b0fa4d8356cffaf12a2c83cbeedd7e9bc9dea017d29c50299861948ae08f177c",
+            "sha256:3fc7f0c8602c01df4b23b68589b692eaaeacc30b1cd04bc1b869b1f740c929f3",
+            "sha256:fa74db40310af7ec142b63c14ad4720009fd29d5c996a44932365785cbc66d82",
+            "sha256:93655d819dd0a49bf7a3a0eb1e7465bc84add8ebc6b8760ec42ba272fb8c4c03",
+            "sha256:87269423d652e1782ee4be88fedcc96182f4a48b2c414255d1c29a907aa441b5",
+            "sha256:a345c522a4743cb1288d3d30ec90f1c849f89fdc6e9c67e1c5dfef597795dd5f",
+            "sha256:53cb8a5f9e270576cc8aadeb9f79570dcfc9f009fad78bbf56a3827c8b7ebd50",
+            "sha256:581e353e0ba1d3f382f484e1282a00c830aa88e585aabb5ccc4cf296e206a3c9",
+            "sha256:82a190f00f6a5177e8d18527bb0938f6ad52d26a22f891ea8c64958427df9cc0",
+            "sha256:5e111a9a2215034bdd9bb22316e2c83a68765d2edb5a1c09db9135c555478fa5",
+            "sha256:bab7ed7209b79b190fecec63c222a1c7e19a430f65226bcd442f2ed39b7909eb",
+            "sha256:6fe4f9c3268775c38a37696063de63042059952388251a58eb8525ead33d71ff",
+            "sha256:a46c52c42bcc6d70e42973d0632cd23e5792ee75b85b9e358d963d0dd11974ab",
+            "sha256:59ad51eb5bf8055568aefef6f6784f8ab83a3f9bd02eb0bf74b815060db20052",
+            "sha256:3cab8d37ade794861fd9ee896ad5edd7479f72178ddbe4ca5cb9262c63f0bd86"
+          ],
+          "rule_ids": [
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02",
+            "R02"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 10,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: document missing prerequisite scripts in research-news skill",
+          "updatedAt": "2026-05-12T07:12:06Z",
+          "createdAt": "2026-05-12T07:12:06Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:0008281b27dde06459854e8b92d747bd6b8b4e652a8789aaef57a4abadfed533"
+          ],
+          "rule_ids": [
+            "R27"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "strategy": "progressive",
       "score": 65,
       "commit_sha_at_audit": "6baece9f13324c209592124ebc213289336f26c3",
@@ -1975,7 +2075,8 @@
         8,
         9,
         10
-      ]
+      ],
+      "rule_adopted": false
     },
     "glitternetwork/pinme": {
       "prs": [],
@@ -3060,7 +3161,44 @@
       "star_anomaly": 1.09
     },
     "aaronmaturen/claude-plugin": {
-      "prs": [],
+      "prs": [
+        {
+          "number": 1,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: pin @upstash/context7-mcp to version 2.2.5",
+          "updatedAt": "2026-05-12T07:07:21Z",
+          "createdAt": "2026-05-12T07:07:21Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:2db6f1f792f6bd723458f64eda12865e1a305496be2bc25cd9e1ac5dc788383c"
+          ],
+          "rule_ids": [
+            "SEC-unpinned-npm-install"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 2,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: add required description frontmatter to all 26 command files",
+          "updatedAt": "2026-05-12T07:08:34Z",
+          "createdAt": "2026-05-12T07:08:34Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:811d41b02831543cc8ff0f0278c54432dfe165190e662069b71588c9bd25d744",
+            "sha256:fcc3de47c8d1ac6e3879e70553f3df647f58d0119aedc1a67eff445b25419208"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter",
+            "R01"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "strategy": "batched",
       "score": 36,
       "commit_sha_at_audit": "46939d689b94c35975f8ec284c21301022f87b95",
@@ -3075,7 +3213,8 @@
       "pipeline_prs": [
         1,
         2
-      ]
+      ],
+      "rule_adopted": false
     },
     "antfu/skills": {
       "prs": [],
