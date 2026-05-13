@@ -4958,7 +4958,9 @@
       "discovered": "2026-04-25T01:06:48Z",
       "rule_adopted": false,
       "description": "Annotate and review coding agent plans and code diffs visually, share with your team, send feedback to agents with one click.",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/backnotprop-plannotator.md"
     },
     "uditgoenka/autoresearch": {
       "prs": [
