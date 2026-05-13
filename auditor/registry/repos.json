@@ -7147,7 +7147,9 @@
         63,
         64
       ],
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/AgriciDaniel-claude-seo.md"
     },
     "alexgreensh/token-optimizer": {
       "prs": [],
