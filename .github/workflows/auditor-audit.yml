@@ -567,6 +567,53 @@ jobs:
           fi
 
       # ================================================================
+      # VALIDATE: scorer rule_id discipline (catches LLM mislabel drift)
+      # ================================================================
+      # Runs validate-rule-ids.py against the sidecar Claude just wrote and
+      # emits a scorer_drift_check event with the drift count. Does NOT fail
+      # the audit — drift is telemetry, not a gate. The 2026-05-13 baseline
+      # was 861 drifts across 127 historical sidecars; the v0.8.15 prompt
+      # fix should reduce per-audit drift, and this step tracks whether it
+      # actually does.
+      - name: Validate scorer rule_id discipline
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          SLUG="${TARGET_REPO//\//-}"
+          SIDECAR="auditor/audits/${SLUG}.findings.jsonl"
+
+          if [ ! -f "$SIDECAR" ]; then
+            echo "No sidecar at $SIDECAR — nothing to validate."
+            exit 0
+          fi
+
+          set +e
+          python3 auditor/scripts/validate-rule-ids.py "$SIDECAR" > /tmp/drift-output.txt 2>&1
+          DRIFT_EXIT=$?
+          set -e
+
+          # Show the first 50 lines of the validator output in the GHA log
+          head -50 /tmp/drift-output.txt
+
+          # Extract the trailing SUMMARY line drift count, default 0
+          DRIFT_COUNT=$(grep -oE 'SUMMARY: [0-9]+ drift' /tmp/drift-output.txt | grep -oE '[0-9]+' | head -1)
+          DRIFT_COUNT=${DRIFT_COUNT:-0}
+
+          source auditor/scripts/log-event.sh
+          log_event "audit" "scorer_drift_check" "$(jq -cn \
+            --arg repo "$TARGET_REPO" \
+            --arg sidecar "$SIDECAR" \
+            --argjson drifts "$DRIFT_COUNT" \
+            --argjson exit_code "$DRIFT_EXIT" \
+            '{repo: $repo, sidecar: $sidecar, drifts: $drifts, exit_code: $exit_code}')" || true
+
+          if [ "$DRIFT_COUNT" -gt 0 ]; then
+            echo "::warning::scorer rule_id drift: $DRIFT_COUNT finding(s) labeled with R-numbers that don't apply to their artifact type. See auditor/logs/events.jsonl scorer_drift_check event."
+          else
+            echo "Rule_id discipline clean: 0 drifts."
+          fi
+
+      # ================================================================
       # AGGREGATE: enrich sidecar findings, append to global logs
       # ================================================================
       - name: Aggregate findings into global log

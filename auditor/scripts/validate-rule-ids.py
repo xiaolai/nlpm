@@ -6,11 +6,21 @@ catalog, then walks `auditor/audits/*.findings.jsonl` (or a path on argv)
 and reports every NL-quality finding whose `rule_id` is not documented in
 the rubric for that artifact's path category.
 
-This is the regression test that catches the 2026-05-13 ljg-skills bug:
-the scorer used `rule_id: R07` with `penalty: -15` for missing example
-blocks on skills, but R07 in the rubric is "scope note when related
-skills exist" (-3 penalty); -15 is the agents R09 penalty for missing
-examples. The validator flags this kind of misapplication.
+Catches TYPE drift only — rule_id valid for artifact type? It does NOT
+yet check SEMANTIC drift — does the rule_id match the finding's pattern
+and penalty? Example: R07 on a skill is type-valid (R07 IS in the Skills
+rubric), but if the finding's pattern is "missing-example-block" with
+penalty -15, the rule_id is semantically wrong (R07 is scope-note at -3;
+example-block on skills is R06 at -10). Catching semantic drift requires
+building a keyword-to-rule map from the rubric's Check column — tracked
+as a TODO; the scorer prompt fix in auditor/prompts/score-artifacts.md
+addresses semantic drift going forward.
+
+The 2026-05-13 baseline was 861 type-drifts across 127 historical
+sidecars — most are real misuses like R11 on commands (R11 is
+agents-only) or R14 on skills (commands-only). The 2026-05-13
+lijigang/ljg-skills R07/-15 ladder is semantic drift and is NOT
+caught by the type check — only the scorer prompt fix prevents it.
 
 Exit codes:
   0 — no drift detected
