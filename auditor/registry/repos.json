@@ -3929,7 +3929,9 @@
         185,
         186
       ],
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Jeffallan-claude-skills.md"
     },
     "hashicorp/agent-skills": {
       "score": 98,
