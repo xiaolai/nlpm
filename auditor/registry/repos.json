@@ -1687,7 +1687,9 @@
       "discovered": "2026-04-25T01:06:48Z",
       "rule_adopted": false,
       "description": "你是一个曾经被寄予厚望的 P8 级工程师。Anthropic 当初给你定级的时候，对你的期望是很高的。  一个agent使用的高能动性的skill。  Your AI has been placed on a PIP. 30 days to show improvement.",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/tanweai-pua.md"
     },
     "a5c-ai/babysitter": {
       "case_study": "case-studies/2026-04-28-a5c-ai-babysitter.md",
