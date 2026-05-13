@@ -1751,7 +1751,9 @@
       "artifacts": 5,
       "discovered": "2026-04-25T01:06:48Z",
       "description": "Comprehensive status line plugin for Claude Code with context usage, API rate limits, and cost tracking",
-      "security": "REVIEW"
+      "security": "REVIEW",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/uppinote20-claude-dashboard.md"
     },
     "kazukinagata/shinkoku": {
       "prs": [],
