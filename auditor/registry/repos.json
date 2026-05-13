@@ -5679,7 +5679,9 @@
       "pipeline_prs": [
         19
       ],
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/slavingia-skills.md"
     },
     "tirth8205/code-review-graph": {
       "prs": [],
