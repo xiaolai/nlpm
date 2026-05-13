@@ -127,7 +127,13 @@ jobs:
             -e "s|{{DATE_ISO}}|${DATE_ISO}|g" \
             auditor/prompts/write-exemplar.md > /tmp/exemplar-prompt.md
           echo "Rendered $(wc -l < /tmp/exemplar-prompt.md) lines"
-          head -20 /tmp/exemplar-prompt.md
+          # claude-code-action v1 does NOT accept prompt_file; pass via env+prompt:
+          # below. The 2026-05-13 first deploy hit this — every run failed in 4s.
+          {
+            echo "EXEMPLAR_PROMPT<<__EXEMPLAR_PROMPT_EOF__"
+            cat /tmp/exemplar-prompt.md
+            echo "__EXEMPLAR_PROMPT_EOF__"
+          } >> "$GITHUB_ENV"
 
       - name: Write exemplar with Claude Code
         uses: anthropics/claude-code-action@v1
@@ -136,7 +142,7 @@ jobs:
           allowed_bots: "github-actions[bot],nlpm-auditor[bot]"
           show_full_output: true
           claude_args: "--allowedTools Read,Glob,Grep,Write"
-          prompt_file: /tmp/exemplar-prompt.md
+          prompt: ${{ env.EXEMPLAR_PROMPT }}
 
       - name: Validate exemplar
         env:

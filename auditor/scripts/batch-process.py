@@ -138,9 +138,18 @@ def phase0_label_exemplars(dry_run: bool) -> int:
       - registry has no `exemplar_published: true` for this repo
       - issue doesn't already have `case-study-clean` or `exemplar-published`
 
-    Adding the label fires `auditor-exemplar.yml`. We do NOT remove
-    audit-complete or interfere with phase1's promotion to
-    contribute-approved — the exemplar and contribute paths are
+    Labels with `case-study-clean` AND dispatches `auditor-exemplar.yml`
+    directly. The label is for visibility — both because the label is
+    documented as the trigger in the workflow's `if:` clause, and because
+    rule-health / future queries filter on it. The dispatch is because
+    `gh issue edit` authenticated with GITHUB_TOKEN does NOT fire issue
+    events (GHA security: tokens can't trigger workflows). The 2026-05-13
+    v0.8.18 first deploy hit exactly this — 48 labels applied, zero
+    exemplar workflows ever fired. phase1_promote dispatches contribute
+    the same way for the same reason.
+
+    We do NOT remove audit-complete or interfere with phase1's promotion
+    to contribute-approved — the exemplar and contribute paths are
     parallel and both can be in flight on the same issue.
     """
     print("--- Phase 0: Label qualifying audits as exemplars ---")
@@ -160,15 +169,22 @@ def phase0_label_exemplars(dry_run: bool) -> int:
         score = registry_score(repo)
         if score < EXEMPLAR_THRESHOLD:
             continue
-        print(f"  EXEMPLAR #{num} ({repo}): score={score} security={security} → case-study-clean")
+        print(f"  EXEMPLAR #{num} ({repo}): score={score} security={security} → case-study-clean + dispatch")
         if not dry_run:
             rc, _ = gh(["issue", "edit", str(num), "--add-label", "case-study-clean"])
             if rc != 0:
                 print(f"    WARNING: failed to label {repo}")
                 continue
+            rc, _ = gh([
+                "workflow", "run", "auditor-exemplar.yml",
+                "-f", f"repo={repo}",
+                "-f", f"issue_number={num}",
+            ])
+            if rc != 0:
+                print(f"    WARNING: failed to dispatch exemplar for {repo}")
             time.sleep(DISPATCH_SLEEP)
         labeled += 1
-    print(f"Labeled: {labeled} audits as case-study-clean\n")
+    print(f"Labeled+dispatched: {labeled} audits as case-study-clean\n")
     return labeled
 
 
