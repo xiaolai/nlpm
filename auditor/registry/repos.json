@@ -5383,7 +5383,9 @@
       "artifacts": 26,
       "discovered": "2026-04-25T01:06:48Z",
       "description": "Nemp - The memory plugin for Claude Code that remembers everything.",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/SukinShetty-Nemp-memory.md"
     },
     "K-Dense-AI/scientific-agent-skills": {
       "prs": [
