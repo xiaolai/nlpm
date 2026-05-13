@@ -2087,3 +2087,4 @@
 {"timestamp":"2026-05-12T22:26:27Z","workflow":"daily-report","event":"report_generated","run_id":"25765852780","run_number":38,"data":{"total_repos":208}}
 {"timestamp":"2026-05-13T00:50:45Z","workflow":"audit","event":"findings_aggregated","run_id":"25770997854","run_number":472,"data":{"repo":"MemPalace/mempalace","findings":19,"invalid_lines":0,"self_false_positives":0}}
 {"timestamp":"2026-05-13T00:50:45Z","workflow":"audit","event":"audit_complete","run_id":"25770997854","run_number":472,"data":{"repo":"MemPalace/mempalace","score":90,"artifacts":15,"strategy":"single"}}
+{"timestamp":"2026-05-13T00:59:44Z","workflow":"track","event":"status_check","run_id":"25771289412","run_number":146,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
