@@ -3240,7 +3240,9 @@
       "artifacts": 17,
       "discovered": "2026-04-25T01:06:48Z",
       "description": "Anthony Fu's curated collection of agent skills.",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/antfu-skills.md"
     },
     "m1heng/claude-plugin-weixin": {
       "prs": [],
