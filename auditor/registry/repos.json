@@ -2709,7 +2709,9 @@
       "security": "CLEAR",
       "description": "🦸 AI 编程超能力 · 中文增强版 — superpowers（116k+ ⭐）完整汉化 + 6 个中国原创 skills，让 Claude Code / Copilot CLI / Hermes Agent / Cursor / Windsurf / Kiro / Gemini CLI 等 16 款 AI 编程工具真正会干活",
       "star_velocity": 38.6,
-      "star_anomaly": 1.07
+      "star_anomaly": 1.07,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/jnMetaCode-superpowers-zh.md"
     },
     "alirezarezvani/claude-code-skill-factory": {
       "prs": [
