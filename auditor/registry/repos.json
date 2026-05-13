@@ -4572,7 +4572,9 @@
       "discovered": "2026-04-25T01:06:48Z",
       "rule_adopted": false,
       "description": "Iterative artifact refinement with investigation-first judge board - constructs problem-specific judges that read the code, understand the problem, and propose evidence-based improvements",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/2389-research-simmer.md"
     },
     "IvanMurzak/Unity-MCP": {
       "prs": [
