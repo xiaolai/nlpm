@@ -166,6 +166,15 @@ jobs:
           wc -l "$EXEMPLAR_PATH"
           head -15 "$EXEMPLAR_PATH"
 
+      - name: Rebuild exemplar gallery
+        # Regenerate auditor/exemplars/README.md so the gallery stays in
+        # sync with the exemplars directory. Deterministic; no-op if
+        # nothing changed.
+        run: |
+          python3 auditor/scripts/build-exemplar-gallery.py
+          # Show the diff (informational; not gated)
+          git diff --stat -- auditor/exemplars/README.md 2>/dev/null || true
+
       - name: Commit, update registry, close out
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
@@ -189,7 +198,7 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git add "$EXEMPLAR_PATH" auditor/registry/repos.json auditor/logs/events.jsonl
+          git add "$EXEMPLAR_PATH" auditor/exemplars/README.md auditor/registry/repos.json auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "exemplar: $TARGET_REPO (score $SCORE/100)"

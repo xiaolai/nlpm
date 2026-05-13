@@ -153,7 +153,7 @@ def main(argv: list[str] | None = None) -> int:
         print(__doc__)
         return 0
     if argv and argv[0] == "--version":
-        print("nlpm-badge 0.8.17")
+        print("nlpm-badge 0.8.18")
         return 0
     emit_attestation = argv and argv[0] == "--attestation"
 

@@ -527,6 +527,30 @@ Registry side-effects: the exemplar workflow sets
 `repos[<slug>].exemplar_published: true` and
 `repos[<slug>].exemplar_path: auditor/exemplars/<slug>.md`.
 
+### Auto-generated gallery: `auditor/exemplars/README.md`
+
+Built by `auditor/scripts/build-exemplar-gallery.py`. Deterministic
+re-render on each `auditor-exemplar.yml` run; CI freshness check via
+`--check`. Three views: by score (desc), by rule, by repo (alpha).
+Never hand-edit; the workflow overwrites it.
+
+### Citation blocks in `skills/nlpm/rules/SKILL.md`
+
+When a rule has at least one exemplar, the
+`auditor-cite-exemplars.yml` weekly workflow opens a PR adding a
+3-line marker-wrapped block right before the next rule heading:
+
+```markdown
+<!-- nlpm-exemplar-citation:begin -->
+> Real-world example: [slug-a](../../../auditor/exemplars/slug-a.md), [slug-b](...)
+<!-- nlpm-exemplar-citation:end -->
+```
+
+The marker anchors let subsequent runs UPDATE the block in place
+(idempotent — re-runs don't stack duplicates) and REMOVE it when the
+exemplar list shrinks to zero. Hand-edits within the markers will be
+overwritten on the next workflow run.
+
 ### Event: `exemplar_published`
 
 Emitted by `auditor-exemplar.yml` after successful commit.

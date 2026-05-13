@@ -1,0 +1,129 @@
+name: Propose Rule Citations
+
+# Weekly workflow. Runs `propose-rule-citations.py` to insert (or
+# refresh) `> Real-world example:` lines after every rule in
+# `skills/nlpm/rules/SKILL.md` that now has at least one matching
+# exemplar in `auditor/exemplars/`. If the script produces any diff,
+# opens a human-review PR against main.
+#
+# Deterministic, no LLM. The edits are mechanical — match rule_id to
+# exemplar slugs, insert/replace a 3-line marker-wrapped block. Unlike
+# `auditor-refine-rules.yml`, no judgment is required, so Claude isn't
+# involved.
+#
+# Still human-gated: we never auto-merge to skills/nlpm/rules/. The
+# weekly cadence batches new citations so the reviewer sees a single
+# coherent PR per week rather than per-exemplar churn.
+
+on:
+  schedule:
+    - cron: '0 10 * * 0'  # Sunday 10:00 UTC (after auditor-refine-rules at 09:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nlpm-cite-exemplars
+  cancel-in-progress: false
+
+jobs:
+  cite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Check for existing open citation PR
+        id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          OPEN=$(gh pr list --label exemplar-citation-proposal --state open --json number --jq length 2>/dev/null || echo "0")
+          echo "open_count=$OPEN" >> "$GITHUB_OUTPUT"
+          if [ "$OPEN" != "0" ]; then
+            echo "An open exemplar-citation-proposal PR exists; this run is a no-op."
+          fi
+
+      - name: Dry-run the proposer
+        if: steps.existing.outputs.open_count == '0'
+        id: dryrun
+        run: |
+          # --check exits 1 if edits are needed. We intentionally don't
+          # fail the step on that — capture the exit code and use it as
+          # a gate for whether to apply + commit + open PR.
+          set +e
+          python3 auditor/scripts/propose-rule-citations.py --check
+          DRIFT=$?
+          set -e
+          echo "drift=$DRIFT" >> "$GITHUB_OUTPUT"
+          if [ "$DRIFT" = "0" ]; then
+            echo "Rules file is in sync — no PR needed."
+          else
+            echo "Rules file needs citation updates."
+          fi
+
+      - name: Apply edits
+        if: steps.existing.outputs.open_count == '0' && steps.dryrun.outputs.drift == '1'
+        run: |
+          python3 auditor/scripts/propose-rule-citations.py --apply
+          echo "=== Diff summary ==="
+          git diff --stat -- skills/nlpm/rules/SKILL.md
+
+      - name: Configure git + branch
+        if: steps.existing.outputs.open_count == '0' && steps.dryrun.outputs.drift == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          BRANCH="exemplar-citations/$(date -u +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Commit + push
+        if: steps.existing.outputs.open_count == '0' && steps.dryrun.outputs.drift == '1'
+        run: |
+          # Compute exemplar count for the commit message
+          COUNT=$(find auditor/exemplars -maxdepth 1 -name '*.md' ! -name 'README.md' 2>/dev/null | wc -l | tr -d ' ')
+          git add skills/nlpm/rules/SKILL.md
+          git commit -m "rules: cite ${COUNT} exemplar(s) as real-world references"
+          git push -u origin "$BRANCH"
+
+      - name: Open PR
+        if: steps.existing.outputs.open_count == '0' && steps.dryrun.outputs.drift == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "## Exemplar citation refresh"
+            echo ""
+            echo "Mechanical edit by \`auditor/scripts/propose-rule-citations.py\`."
+            echo ""
+            echo "Each rule with at least one matching exemplar in \`auditor/exemplars/\` gets a \`> Real-world example: [...]\` line inserted (or refreshed) after its body, wrapped in HTML-comment anchors so subsequent runs can update in place without stacking duplicates."
+            echo ""
+            echo "### What to review"
+            echo ""
+            echo "- The inserted citation lines point to real exemplar files. Spot-check 1-2 to confirm they read as expected from the rules SKILL.md surface."
+            echo "- No prose changes anywhere else — only marker-wrapped \`> Real-world example:\` lines are added/updated/removed."
+            echo "- Removed citations indicate exemplars that lost the corresponding rule from their \`exemplifies:\` frontmatter."
+            echo ""
+            echo "### Diff stats"
+            echo ""
+            echo '```'
+            git diff origin/main..HEAD --stat -- skills/nlpm/rules/SKILL.md
+            echo '```'
+            echo ""
+            echo "Generated by \`.github/workflows/auditor-cite-exemplars.yml\`."
+          } > /tmp/pr-body.md
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "rules: refresh exemplar citations" \
+            --label exemplar-citation-proposal \
+            --body-file /tmp/pr-body.md
