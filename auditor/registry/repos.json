@@ -7586,11 +7586,14 @@
       "stars": 32739,
       "artifacts": null,
       "description": "Browser automation CLI for AI agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 99,
       "audit_issue": 262,
       "prs": [],
-      "discovery_strategy": "manual-batch-2026-05-12"
+      "discovery_strategy": "manual-batch-2026-05-12",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "82eadcee41240b1c8477870f846bc8528e77a8a6"
     },
     "lackeyjb/playwright-skill": {
       "discovered": "2026-05-12T07:02:20Z",
