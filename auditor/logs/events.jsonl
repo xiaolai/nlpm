@@ -2095,3 +2095,4 @@
 {"timestamp":"2026-05-13T07:17:35Z","workflow":"audit","event":"findings_aggregated","run_id":"25784064582","run_number":478,"data":{"repo":"vercel-labs/agent-browser","findings":8,"invalid_lines":0,"self_false_positives":1}}
 {"timestamp":"2026-05-13T07:17:35Z","workflow":"audit","event":"audit_complete","run_id":"25784064582","run_number":478,"data":{"repo":"vercel-labs/agent-browser","score":99,"artifacts":7,"strategy":"single"}}
 {"timestamp":"2026-05-13T07:17:41Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"25784064582","run_number":478,"data":{"repo":"vercel-labs/agent-browser","queue_path":"auditor/disclosures-pending/vercel-labs-agent-browser.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
+{"timestamp":"2026-05-13T09:15:45Z","workflow":"track","event":"status_check","run_id":"25789562476","run_number":148,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
