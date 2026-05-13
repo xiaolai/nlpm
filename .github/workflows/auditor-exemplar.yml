@@ -97,13 +97,18 @@ jobs:
           COMMIT_SHA: ${{ steps.ctx.outputs.commit_sha }}
         run: |
           # Try to clone at the exact commit_sha if known; fall back to default branch.
-          if [ "$COMMIT_SHA" != "HEAD" ] && [ "$COMMIT_SHA" != "unknown" ] && [ -n "$COMMIT_SHA" ]; then
+          # Older registry entries (pre-v0.8.13) have literal placeholder strings like
+          # "HEAD-at-2026-05-11" instead of real SHAs — treat any non-40-char-hex value
+          # as "no real commit SHA known" and just clone the default branch.
+          if echo "$COMMIT_SHA" | grep -qE '^[0-9a-f]{40}$'; then
             git clone "https://github.com/$TARGET_REPO.git" target-repo
-            (cd target-repo && git checkout "$COMMIT_SHA" 2>/dev/null) || {
-              echo "WARN: commit $COMMIT_SHA not reachable — using HEAD instead"
-              (cd target-repo && git checkout -)
-            }
+            if ! (cd target-repo && git checkout "$COMMIT_SHA" 2>/dev/null); then
+              # commit no longer reachable (force-pushed, garbage-collected, etc.)
+              # Stay on the default branch — `git clone` already put us there.
+              echo "WARN: commit $COMMIT_SHA not reachable in target — using default branch HEAD"
+            fi
           else
+            echo "INFO: commit_sha_at_audit=$COMMIT_SHA is not a 40-char hex — cloning default branch"
             git clone --depth 1 "https://github.com/$TARGET_REPO.git" target-repo
           fi
           echo "Cloned: $(cd target-repo && git rev-parse HEAD)"
