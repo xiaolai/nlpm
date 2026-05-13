@@ -5927,7 +5927,9 @@
       "discovered": "2026-04-13T06:41:48Z",
       "rule_adopted": false,
       "description": "A Claude Code Plugin that provides an autonomous AI copywriter.",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/muratcankoylan-ralph-wiggum-marketer.md"
     },
     "agent-sh/agnix": {
       "prs": [
