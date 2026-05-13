@@ -7563,7 +7563,9 @@
       "artifacts": 9,
       "discovered": "2026-04-25T01:06:48Z",
       "description": "Pony desktop coding cockpit",
-      "security": "CLEAR"
+      "security": "CLEAR",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/leowux-pony.md"
     },
     "levnikolaevich/claude-code-skills": {
       "prs": [],
