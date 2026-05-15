@@ -2118,3 +2118,6 @@
 {"timestamp":"2026-05-15T05:30:18Z","workflow":"track","event":"status_check","run_id":"25901852824","run_number":159,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
 {"timestamp":"2026-05-15T09:19:17Z","workflow":"track","event":"status_check","run_id":"25909889506","run_number":160,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
 {"timestamp":"2026-05-15T12:51:54Z","workflow":"track","event":"status_check","run_id":"25918433578","run_number":161,"data":{"contributed":41,"tracked":29,"case_study_ready":31,"rule_adopted":2}}
+{"timestamp":"2026-05-15T16:44:15Z","workflow":"track","event":"finding_outcome","run_id":"25929599394","run_number":162,"data":{"pr":"deanpeters/Product-Manager-Skills#7","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-05-15T16:44:16Z","workflow":"track","event":"finding_outcome","run_id":"25929599394","run_number":162,"data":{"pr":"deanpeters/Product-Manager-Skills#8","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-05-15T16:48:11Z","workflow":"track","event":"status_check","run_id":"25929599394","run_number":162,"data":{"contributed":40,"tracked":30,"case_study_ready":32,"rule_adopted":2}}

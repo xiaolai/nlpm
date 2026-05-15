@@ -4134,26 +4134,26 @@
       "prs": [
         {
           "number": 7,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-15T14:54:09Z",
           "title": "security: add input length guard to run-pm.sh",
-          "updatedAt": "2026-04-07T06:10:34Z",
+          "updatedAt": "2026-05-15T14:54:09Z",
           "createdAt": "2026-04-07T06:10:34Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 8,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-05-15T14:53:35Z",
+          "closedAt": "2026-05-15T14:53:35Z",
           "title": "security: validate adapter names before dynamic source in add-a-skill.sh",
-          "updatedAt": "2026-04-07T06:11:51Z",
+          "updatedAt": "2026-05-15T14:54:07Z",
           "createdAt": "2026-04-07T06:11:51Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4163,11 +4163,12 @@
       "score": 89,
       "rule_adopted": false,
       "security": "CLEAR",
-      "status": "contributed",
+      "status": "tracked",
       "pipeline_prs": [
         7,
         8
-      ]
+      ],
+      "case_study_candidate": true
     },
     "iannuttall/claude-agents": {
       "prs": [
