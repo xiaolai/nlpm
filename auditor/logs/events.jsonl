@@ -2131,3 +2131,4 @@
 {"timestamp":"2026-05-16T16:30:48Z","workflow":"track","event":"status_check","run_id":"25966922922","run_number":168,"data":{"contributed":40,"tracked":30,"case_study_ready":32,"rule_adopted":2}}
 {"timestamp":"2026-05-16T20:27:26Z","workflow":"track","event":"status_check","run_id":"25971922758","run_number":169,"data":{"contributed":40,"tracked":30,"case_study_ready":32,"rule_adopted":2}}
 {"timestamp":"2026-05-16T22:15:30Z","workflow":"daily-report","event":"report_generated","run_id":"25974361206","run_number":42,"data":{"total_repos":209}}
+{"timestamp":"2026-05-17T00:22:25Z","workflow":"suppressions","event":"scan_complete","run_id":"25976784677","run_number":4,"data":{"candidates":0,"emitted":0,"skipped_self":0,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
