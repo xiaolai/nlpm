@@ -7784,10 +7784,13 @@
       "stars": 960,
       "artifacts": 5,
       "description": "A curated list of resources dedicated to Python libraries, LLMs, dictionaries, and corpora of NLP for Japanese. Includes a Claude Code plugin with skills to search resources.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 98,
       "audit_issue": 267,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "c3029cbaf68245df4db1251706fda9becd3fddf9"
     }
   }
 }
