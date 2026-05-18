@@ -259,6 +259,16 @@ auditor/            Self-evolution pipeline (GitHub Actions + data)
 - [Auditing kubesphere/kubesphere](case-studies/2026-05-07-kubesphere-kubesphere.md) — 16k-star repo, 18 findings including duplicate sections and broken YAML, surfaced by manifest-vs-disk and cross-component checks the other validators don't run.
 - [When the Linter Met Its Match](case-studies/2026-04-06-how-we-helped-gsd.md) — `gsd-build/get-shit-done`, 80 files scored, 5 PRs accepted, plus the false-positive that improved NLPM itself.
 
+## Effectiveness
+
+As of 2026-05-18 the auditor pipeline has filed 278 PRs across 49 distinct repos, with a 71% acceptance rate (97 merged + 20 applied-separately, 48 rejected, 113 still open). The following data points are the highest-signal:
+
+- **`google-gemini/gemini-skills`** and **`googleworkspace/cli`** — both Google orgs that originally CLA-blocked the pipeline — ended up accepting work: 2 merged and 4 applied-separately respectively, once the CLA gate was satisfied.
+- **`openai/codex-plugin-cc`** has 2 merges — first-party OpenAI org acceptance.
+- **`kubesphere/kubesphere`** (24k+ stars) accepted 5 PRs — the highest-profile downstream.
+- 8 repos (`zubair-trabzada/geo-seo-claude`, `wshobson/agents`, `sickn33/antigravity-awesome-skills`, `kubesphere/kubesphere`, `jeremylongshore/claude-code-plugins-plus-skills`, `Jeffallan/claude-skills`, `hesreallyhim/awesome-claude-code`, `caliber-ai-org/ai-setup`) each hit the per-repo PR cap of 5 — more PRs could ship if the cap were raised.
+- 2 repos have crossed into **rule-adoption** (maintainer credited NLPM in CHANGELOG or systemically backfilled siblings): [`jeremylongshore/claude-code-plugins-plus-skills`](https://github.com/jeremylongshore/claude-code-plugins-plus-skills/blob/main/CHANGELOG.md) and [`sickn33/antigravity-awesome-skills`](https://github.com/sickn33/antigravity-awesome-skills/blob/main/CHANGELOG.md).
+
 ## Auditor — Self-Evolution Pipeline
 
 The `auditor/` directory contains a GitHub Actions pipeline that systematically discovers, audits, and contributes to Claude Code repos across GitHub. Learnings feed back into NLPM's rules.
