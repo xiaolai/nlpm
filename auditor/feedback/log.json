@@ -9,7 +9,7 @@
       ]
     },
     "R01": {
-      "total_hits": 249,
+      "total_hits": 255,
       "repos": [
         "slavingia/skills",
         "deanpeters/Product-Manager-Skills",
@@ -100,7 +100,7 @@
       "state": "healthy"
     },
     "R07": {
-      "total_hits": 91,
+      "total_hits": 102,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -132,22 +132,22 @@
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 1,
+      "verified_fixed": 5,
       "verified_persists": 0,
       "verify_rate": 1.0,
       "introduced_since_audit": 90,
       "state": "healthy"
     },
     "R14": {
-      "total_hits": 109,
+      "total_hits": 112,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 3,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 6,
       "state": "healthy"
     },
@@ -230,7 +230,7 @@
       "state": "healthy"
     },
     "BUG-missing-frontmatter": {
-      "total_hits": 178,
+      "total_hits": 180,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 4,
       "self_false_positive": 0,
@@ -275,14 +275,14 @@
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 14,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 202,
       "state": "healthy"
     },
     "R09": {
-      "total_hits": 105,
+      "total_hits": 108,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 1,
@@ -304,7 +304,7 @@
       "verified_fixed": 85,
       "verified_persists": 0,
       "verify_rate": 1.0,
-      "introduced_since_audit": 16,
+      "introduced_since_audit": 32,
       "state": "healthy"
     },
     "R02": {
@@ -360,7 +360,7 @@
       "state": "healthy"
     },
     "R05": {
-      "total_hits": 76,
+      "total_hits": 134,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -386,7 +386,7 @@
       "state": "healthy"
     },
     "CC-stale-count": {
-      "total_hits": 42,
+      "total_hits": 43,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -529,7 +529,7 @@
       "state": "healthy"
     },
     "SEC-unpinned-semver": {
-      "total_hits": 95,
+      "total_hits": 98,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 4,
       "self_false_positive": 0,
@@ -629,7 +629,7 @@
       "verified_fixed": 1,
       "verified_persists": 0,
       "verify_rate": 1.0,
-      "introduced_since_audit": 22,
+      "introduced_since_audit": 36,
       "state": "healthy"
     },
     "R16": {
@@ -1318,7 +1318,7 @@
       "verified_fixed": 0,
       "verified_persists": 0,
       "verify_rate": null,
-      "introduced_since_audit": 0,
+      "introduced_since_audit": 15,
       "state": "healthy"
     },
     "SEC-eval-with-vars": {
@@ -1562,22 +1562,22 @@
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 6,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 0,
       "state": "healthy"
     },
     "BUG-license-typo": {
       "total_hits": 1,
-      "led_to_merged_pr": 0,
+      "led_to_merged_pr": 1,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 1,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 0,
       "state": "healthy"
     },
@@ -1588,22 +1588,22 @@
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 14,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 0,
       "state": "healthy"
     },
     "SEC-outbound-api-call": {
       "total_hits": 2,
       "led_to_merged_pr": 1,
-      "led_to_rejected_pr": 0,
+      "led_to_rejected_pr": 1,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
-      "verified_fixed": 0,
+      "verified_fixed": 2,
       "verified_persists": 0,
-      "verify_rate": null,
+      "verify_rate": 1.0,
       "introduced_since_audit": 0,
       "state": "healthy"
     },
@@ -2349,7 +2349,7 @@
       "state": "healthy"
     },
     "SEC-env-var-access": {
-      "total_hits": 1,
+      "total_hits": 5,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -3259,7 +3259,7 @@
       "state": "healthy"
     },
     "SEC-file-write-outside-repo": {
-      "total_hits": 5,
+      "total_hits": 6,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -3842,6 +3842,32 @@
       "verify_rate": null,
       "introduced_since_audit": 0,
       "state": "healthy"
+    },
+    "SEC-stale-dependency": {
+      "total_hits": 1,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 0,
+      "state": "healthy"
+    },
+    "BUG-code-error": {
+      "total_hits": 0,
+      "led_to_merged_pr": 0,
+      "led_to_rejected_pr": 0,
+      "self_false_positive": 0,
+      "maintainer_rejected": 0,
+      "downstream_suppressions": 0,
+      "verified_fixed": 0,
+      "verified_persists": 0,
+      "verify_rate": null,
+      "introduced_since_audit": 1,
+      "state": "healthy"
     }
   },
   "metadata": {
@@ -3850,9 +3876,9 @@
     "total_events": 16,
     "total_audits": 10,
     "total_prs_submitted": 278,
-    "total_prs_merged": 97,
-    "total_prs_rejected": 48,
+    "total_prs_merged": 98,
+    "total_prs_rejected": 49,
     "total_prs_applied_separately": 20,
-    "updated_at": "2026-05-17T22:17:57.477112Z"
+    "updated_at": "2026-05-18T22:20:27.751953Z"
   }
 }
