@@ -34,7 +34,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 
-VERSION = "0.8.19"
+VERSION = "0.8.20"
 
 
 # ----- finding model -----
@@ -609,6 +609,14 @@ def check_plugin(plugin_root: Path, nested_skip: set[Path] | None = None) -> lis
     `nested_skip`: set of nested sub-plugin roots whose subtrees this
     pass should skip (each nested sub-plugin gets its own check_plugin
     call).
+
+    Dual-platform plugins (those that ship both `.claude-plugin/plugin.json`
+    and `.codex-plugin/plugin.json` for the same plugin) have a sibling
+    `codex/` tree containing Codex-format artifacts. Those artifacts are
+    not Claude plugin content — they're a parallel layout for OpenAI's
+    Codex CLI. Treat the `codex/` subtree like a nested sub-plugin and
+    skip it during the Claude-side scan; Codex has its own validator for
+    that tree.
     """
     manifest_file = plugin_root / ".claude-plugin" / "plugin.json"
     findings: list[Finding] = []
@@ -623,6 +631,13 @@ def check_plugin(plugin_root: Path, nested_skip: set[Path] | None = None) -> lis
             message=f"failed to parse plugin.json: {e}",
         ))
         return findings
+
+    # If this plugin also ships a Codex layout, exclude codex/ from the scan
+    nested_skip = set(nested_skip) if nested_skip else set()
+    if (plugin_root / ".codex-plugin" / "plugin.json").is_file():
+        codex_root = (plugin_root / "codex").resolve()
+        if codex_root.is_dir():
+            nested_skip.add(codex_root)
 
     check_manifest_required(plugin_root, manifest, findings)
     check_manifest_paths_exist(plugin_root, manifest, findings)
