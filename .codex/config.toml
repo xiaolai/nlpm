@@ -1,0 +1,15 @@
+# cc-suite: generated-by-init  (this comment is consumed by unbridge)
+# Codex CLI configuration for this project.
+# See: https://developers.openai.com/codex/config-reference
+
+# Uncomment to also read CLAUDE.md as a fallback instruction source:
+# project_doc_fallback_filenames = ["CLAUDE.md"]
+
+# MCP servers mirrored from .mcp.json are added below by /cc-suite:bridge-mcp.
+
+# >>> cc-suite-claude-mcp >>>
+[mcp_servers.claude-code]
+command = "npx"
+args    = ["-y", "claude-octopus@1.0.0"]
+env     = {}
+# <<< cc-suite-claude-mcp <<<
