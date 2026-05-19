@@ -20,6 +20,10 @@
   letter-spacing: 0.04em;
 }
 .drift-frame { height: 600px; }
+/* Rule-distribution bar chart needs extra vertical room for the rotated
+   labels in its bottom gutter (50° rotation × ~130px-wide labels =
+   ~110px downward extent below the bar baseline). */
+#rule-graph { height: 400px; }
 #rule-table-wrap { margin-top: 12px; }
 #rule-table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
 #rule-table-wrap th, #rule-table-wrap td { padding: 4px 8px; border-bottom: 1px solid var(--border); }

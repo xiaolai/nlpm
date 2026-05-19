@@ -142,10 +142,13 @@
       display: "flex",
       alignItems: "flex-end",
       gap: "4px",
-      // Bottom padding reserves vertical room for the rotated labels
-      // below the chart proper. With 50° rotation and ~10px font, a
-      // label up to 22 characters fits in ~96px vertical projection.
-      padding: "16px 16px 96px 16px",
+      // Padding reserves room for the rotated labels around the chart:
+      //   bottom: ~110px downward extent of a long label rotated -50°
+      //   left:   ~85px leftward extent on the first column's label
+      //           (which pivots at column-center and extends down-left)
+      //   right:  modest, since labels only extend a few px past the
+      //           pivot horizontally (sin(50°)·H ≈ 9px for a 12px font)
+      padding: "16px 24px 130px 70px",
       height: "100%",
       boxSizing: "border-box",
     });
