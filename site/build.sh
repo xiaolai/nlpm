@@ -59,7 +59,7 @@ echo "==> Vendoring Lucide icons into site/public/icons/"
 ICONS_DST="$PUBLIC/icons"
 ICONS_SRC="$SITE/node_modules/lucide-static/icons"
 mkdir -p "$ICONS_DST"
-for icon in bar-chart-3 compass link-2 globe package book-open; do
+for icon in bar-chart-3 compass link-2 globe terminal book-open; do
   if [ -f "$ICONS_SRC/${icon}.svg" ]; then
     sed 's|stroke="currentColor"|stroke="#3b82f6"|' "$ICONS_SRC/${icon}.svg" > "$ICONS_DST/${icon}.svg"
   else

@@ -61,7 +61,7 @@ features:
       vocabulary drift, security signals — all on one cross-repo
       dashboard.
   - icon:
-      src: /icons/package.svg
+      src: /icons/terminal.svg
       width: 32
       height: 32
     title: Standalone CLI
