@@ -231,14 +231,18 @@ function mountVocab(container: HTMLDivElement, vocab: any): Graph {
     })
   }
 
-  // --- NOUNS — circles, label to the right ---
+  // --- NOUNS — ellipses, label CENTERED inside ---
+  // Ellipses (instead of circles) so labels like "frontmatter" actually
+  // fit inside the shape. Width grows with label length.
   for (const n of vocab.nouns || []) {
+    const w = Math.max(60, n.id.length * 8 + 18)
+    const h = n.class === 'role_nouns' ? 24 : 28
     nodes.push({
       id: `noun-${n.id}`,
       combo: n.scope ? `combo-${n.scope}` : undefined,
       data: { kind: 'noun', label: n.id, class: n.class, definition: n.definition },
       style: {
-        size: n.class === 'role_nouns' ? 14 : 18,
+        size: [w, h],
         fill: n.class === 'output_class' ? '#ffd58a' : n.class === 'role_nouns' ? '#ffe9c7' : '#ffc46e',
         stroke: '#e07a13',
         lineWidth: 1.5,
@@ -246,11 +250,12 @@ function mountVocab(container: HTMLDivElement, vocab: any): Graph {
         shadowBlur: 4,
         shadowOffsetY: 1,
         labelText: n.id,
-        labelFontSize: 11,
+        labelFontSize: n.class === 'role_nouns' ? 10 : 11,
         labelFontWeight: 500,
         labelFill: '#1d2433',
-        labelPosition: 'right',
-        labelOffsetX: 8,
+        labelPlacement: 'center',
+        labelPosition: 'center',
+        labelTextAlign: 'center',
         labelTextBaseline: 'middle',
       },
     })
@@ -303,9 +308,10 @@ function mountVocab(container: HTMLDivElement, vocab: any): Graph {
     container,
     data: { nodes, edges, combos },
     // Pick the shape per node based on its data.kind. Verbs (and
-    // deferred verbs) are rect; nouns are circle.
+    // deferred verbs) are rect; nouns are ellipse (so the width/height
+    // array applies and the label fits inside the shape).
     node: {
-      type: (datum: any) => (datum.data?.kind === 'noun' ? 'circle' : 'rect'),
+      type: (datum: any) => (datum.data?.kind === 'noun' ? 'ellipse' : 'rect'),
       state: {
         hover: { lineWidth: 3, shadowBlur: 10, shadowColor: 'rgba(43,95,255,0.35)' },
       },
