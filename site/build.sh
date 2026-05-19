@@ -16,6 +16,11 @@ SITE="$ROOT/site"
 PUBLIC="$SITE/public"
 SRC_REPORTS="$ROOT/auditor/reports"
 
+echo "==> Installing site dependencies (pnpm)"
+# Run install first so any later step that needs node_modules (icon
+# vendoring from lucide-static) sees the tree it expects.
+( cd "$SITE" && pnpm install --silent )
+
 echo "==> Regenerating reference Markdown"
 python3 "$ROOT/bin/nlpm-build-reference-md" --out "$SITE/reference"
 
@@ -64,7 +69,6 @@ done
 
 echo "==> Building VitePress"
 cd "$SITE"
-pnpm install --silent
 pnpm build
 
 # Surface the dist path so callers can deploy from it.
