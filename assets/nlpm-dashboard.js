@@ -127,45 +127,90 @@
   // ==================================================================
 
   function renderRuleBars(items) {
-    const nodes = [];
-    const edges = [];
+    // Render the chart on a transparent canvas. Bars come from G6; the
+    // rotated rule-id labels are HTML elements absolutely positioned
+    // over the canvas — far easier than fighting G6's label rotation,
+    // gives us clean kerning + theme-adaptive text color via inherited CSS.
+    const container = document.getElementById("rule-graph");
+    container.style.position = "relative";
+    container.innerHTML = ""; // wipe any prior render
     const N = items.length;
     const W = 800;
-    const H = 240;
+    const H = 280; // taller so rotated labels have room below the axis
     const margin = 40;
+    const labelGutter = 90; // vertical room reserved for rotated labels
+    const baselineY = H - labelGutter;
     const maxVal = Math.max(...items.map(i => i.total));
     const slot = (W - 2 * margin) / Math.max(1, N);
+
+    const nodes = [];
     items.forEach((it, i) => {
-      const h = (it.total / maxVal) * (H - 60);
-      // baseline node
-      nodes.push({
-        id: `b${i}`,
-        style: { x: margin + i * slot + slot / 2, y: H - margin, size: 1, fill: "transparent" },
-      });
-      // top of bar (we draw the bar as a rectangle by using a tall rect node)
+      const h = (it.total / maxVal) * (baselineY - 20);
+      const cx = margin + i * slot + slot / 2;
       nodes.push({
         id: `r${i}`,
         data: { label: it.rule_id, val: it.total, repos: it.repos_affected },
         style: {
-          x: margin + i * slot + slot / 2,
-          y: H - margin - h / 2,
+          x: cx,
+          y: baselineY - h / 2,
           size: [Math.max(8, slot * 0.7), Math.max(2, h)],
           fill: "#2b5fff",
-          labelText: it.rule_id,
-          labelFontSize: 9,
-          labelPosition: "bottom",
-          labelOffsetY: 4,
         },
       });
     });
+
     const graph = new G6.Graph({
       container: "rule-graph",
-      data: { nodes, edges },
+      data: { nodes, edges: [] },
       node: { type: "rect" },
       behaviors: ["zoom-canvas", "drag-canvas"],
       autoFit: "view",
     });
     graph.render();
+
+    // Overlay rotated labels in a separate absolutely-positioned layer.
+    // Coordinates are computed using G6's input coords; we then scale to
+    // the rendered container size since autoFit may have resized the SVG.
+    const overlay = document.createElement("div");
+    overlay.className = "rule-label-overlay";
+    Object.assign(overlay.style, {
+      position: "absolute",
+      inset: "0",
+      pointerEvents: "none",
+      // Match G6's internal coordinate system; the chart is rendered
+      // with viewBox-ish autoFit, so we use percentages.
+    });
+    // To map coords correctly under autoFit, compute the visible scale.
+    requestAnimationFrame(() => {
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+      // G6's autoFit fits content into the container; preserve aspect.
+      const sx = cw / W;
+      const sy = ch / H;
+      const s = Math.min(sx, sy);
+      const offX = (cw - W * s) / 2;
+      const offY = (ch - H * s) / 2;
+
+      items.forEach((it, i) => {
+        const cx = (margin + i * slot + slot / 2) * s + offX;
+        const top = baselineY * s + offY + 4;
+        const label = document.createElement("div");
+        label.textContent = it.rule_id;
+        Object.assign(label.style, {
+          position: "absolute",
+          left: cx + "px",
+          top: top + "px",
+          fontSize: "10px",
+          fontFamily: "inherit",
+          color: "var(--vp-c-text-2, #5a6378)",
+          whiteSpace: "nowrap",
+          transformOrigin: "left top",
+          transform: "rotate(35deg)",
+        });
+        overlay.appendChild(label);
+      });
+      container.appendChild(overlay);
+    });
   }
 
   function renderDriftNetwork(net) {
