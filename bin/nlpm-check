@@ -34,7 +34,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 
-VERSION = "0.8.21"
+VERSION = "0.8.22"
 
 
 # ----- finding model -----
@@ -100,9 +100,18 @@ def frontmatter_line(text: str, key: str) -> int:
 # ----- plugin root discovery -----
 
 # Directories never walked by any function in this module.
+#
+# `templates` is intentionally skipped: by convention, a top-level
+# `templates/` directory contains scaffold files (including SKILL.md
+# starters with placeholder `name:` values) that are meant to be copied
+# and renamed, not loaded by Claude Code at runtime. Scanning them
+# produces false-positive `manifest-disk-diff` and `skill/name-parent`
+# findings — by design, their `name:` does not match their parent dir,
+# and they sit outside the canonical `skills/` path.
 WALK_SKIP = {
     ".git", "node_modules", ".venv", "venv", "__pycache__",
     ".pytest_cache", ".mypy_cache", "dist", "build",
+    "templates",
 }
 
 
