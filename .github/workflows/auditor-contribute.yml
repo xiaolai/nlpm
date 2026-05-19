@@ -714,6 +714,62 @@ jobs:
 
           echo "Backstop clean: no umbrella issues opened on $TARGET_REPO."
 
+      - name: Upload per-repo HTML report as workflow artifact
+        if: |
+          steps.pushback_gate.outputs.gated != 'true' &&
+          steps.sidecar.outputs.skip_contribute != 'true'
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          SLUG="${TARGET_REPO//\//-}"
+          REPORT="auditor/reports/${SLUG}.html"
+          ASSETS="auditor/reports/assets"
+          VENDOR="auditor/reports/vendor"
+          if [ ! -f "$REPORT" ]; then
+            echo "Per-repo report missing at $REPORT — rendering now."
+            mkdir -p auditor/reports
+            python3 auditor/scripts/render-repo-report.py --repo "$TARGET_REPO" || {
+              echo "::warning::could not render per-repo report; skipping artifact upload"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            }
+          fi
+          # Stage the report + its sibling assets into one bundle directory
+          # so the artifact unzips into a self-contained, file://-openable folder.
+          mkdir -p /tmp/report-bundle
+          cp "$REPORT" "/tmp/report-bundle/index.html"
+          [ -d "$ASSETS" ] && cp -R "$ASSETS" "/tmp/report-bundle/assets"
+          [ -d "$VENDOR" ] && cp -R "$VENDOR" "/tmp/report-bundle/vendor"
+          ls -la /tmp/report-bundle/
+          echo "bundle_path=/tmp/report-bundle" >> "$GITHUB_OUTPUT"
+        id: bundle
+
+      - name: Publish artifact
+        if: |
+          steps.pushback_gate.outputs.gated != 'true' &&
+          steps.sidecar.outputs.skip_contribute != 'true' &&
+          steps.bundle.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nlpm-audit-${{ steps.target.outputs.repo }}-${{ github.run_id }}
+          path: /tmp/report-bundle/
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Log artifact URL
+        if: |
+          steps.pushback_gate.outputs.gated != 'true' &&
+          steps.sidecar.outputs.skip_contribute != 'true' &&
+          steps.bundle.outputs.skip != 'true'
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          source auditor/scripts/log-event.sh
+          ARTIFACT_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          log_event "contribute" "report_artifact_uploaded" \
+            "$(jq -cn --arg r "$TARGET_REPO" --arg url "$ARTIFACT_URL" \
+               '{repo: $r, artifact_run_url: $url, retention_days: 90}')" || true
+
       - name: Store created PR numbers in registry
         if: |
           steps.pushback_gate.outputs.gated != 'true' &&

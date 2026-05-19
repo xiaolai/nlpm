@@ -705,6 +705,24 @@ jobs:
           echo "Aggregated: $APPENDED findings ($FP_COUNT self_false_positives) appended from $SIDECAR. Invalid lines: $INVALID."
 
       # ================================================================
+      # PER-REPO HTML REPORT
+      # ================================================================
+      - name: Render per-repo HTML report
+        if: success() || failure()
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          mkdir -p auditor/reports
+          if python3 auditor/scripts/render-repo-report.py --repo "$TARGET_REPO"; then
+            source auditor/scripts/log-event.sh
+            log_event "audit" "repo_report_rendered" \
+              "$(jq -cn --arg r "$TARGET_REPO" --arg slug "${TARGET_REPO//\//-}" \
+                 '{repo: $r, html: ("auditor/reports/" + $slug + ".html")}')" || true
+          else
+            echo "::warning::per-repo HTML render failed for $TARGET_REPO — continuing"
+          fi
+
+      # ================================================================
       # COMMIT AND CLOSE
       # ================================================================
       - name: Commit audit report
@@ -793,7 +811,7 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
           git config user.name "nlpm-auditor[bot]"
           git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git add auditor/audits/ auditor/registry/ auditor/logs/events.jsonl auditor/findings.jsonl auditor/disagreements.jsonl
+          git add auditor/audits/ auditor/reports/ auditor/registry/ auditor/logs/events.jsonl auditor/findings.jsonl auditor/disagreements.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
           git diff --cached --quiet || {
             git commit -m "audit: $TARGET_REPO ($SCORE/100, security:$SECURITY, $STRATEGY, $TOTAL artifacts)"

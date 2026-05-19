@@ -1,0 +1,492 @@
+#!/usr/bin/env python3
+"""Build NLPM's framework-reference HTML guide from the canonical markdown.
+
+Reads:
+  - skills/nlpm/rules/SKILL.md            → #R01..#R51 + #warrant-types
+  - analysis/vocabulary-design-principles.md → #P1..#P6 + #precedence
+  - skills/nlpm/vocabulary/SKILL.md       → #vocab-* anchors
+  - skills/nlpm/scoring/SKILL.md          → #score-bands, #severity-levels
+  - skills/nlpm/conventions/SKILL.md      → #artifact-types + #artifact-<kind>
+  - agents/vocab-drift-scanner.md         → #disposition-criteria, #confidence-criteria
+
+Output: <out>/index.html  (self-contained except for ./assets/ + ./vendor/)
+
+Stdlib only. Markdown coverage is a deliberate subset (ATX headings, ordered
+and unordered lists, fenced code blocks, inline code, bold, italic, links,
+tables, blockquotes, paragraphs). Anything beyond that in the source files
+gets rendered as a paragraph.
+
+Usage:
+  python3 bin/nlpm-build-docs --out auditor/reports/docs/
+  python3 bin/nlpm-build-docs --out .claude/nlpm-reports/docs/
+"""
+from __future__ import annotations
+
+import argparse
+import re
+import shutil
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = ROOT / "templates" / "report"
+
+
+# ---------------------------------------------------------------------------
+# Minimal markdown → HTML (subset)
+# ---------------------------------------------------------------------------
+
+def esc(s: str) -> str:
+    return (
+        s.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&#39;")
+    )
+
+
+_INLINE_CODE = re.compile(r"`([^`]+?)`")
+_BOLD = re.compile(r"\*\*([^*]+?)\*\*")
+_ITALIC = re.compile(r"(?<![\*\w])\*([^*\n]+?)\*(?!\*)")
+_LINK = re.compile(r"\[([^\]]+?)\]\(([^)]+?)\)")
+
+
+def md_inline(s: str) -> str:
+    """Inline markdown → HTML. Escapes first; placeholders for code spans
+    so other patterns don't eat the contents of code."""
+    spans: list[str] = []
+
+    def stash_code(m: re.Match[str]) -> str:
+        spans.append(f"<code>{esc(m.group(1))}</code>")
+        return f"\x00{len(spans) - 1}\x00"
+
+    s = _INLINE_CODE.sub(stash_code, s)
+    s = esc(s)
+    s = _BOLD.sub(r"<strong>\1</strong>", s)
+    s = _ITALIC.sub(r"<em>\1</em>", s)
+    s = _LINK.sub(lambda m: f'<a href="{esc(m.group(2))}">{m.group(1)}</a>', s)
+
+    def restore_code(m: re.Match[str]) -> str:
+        return spans[int(m.group(1))]
+
+    s = re.sub(r"\x00(\d+)\x00", restore_code, s)
+    return s
+
+
+def md_to_html(text: str, *, demote_headings: int = 0) -> str:
+    """Block-level converter. `demote_headings=2` shifts `#` to `<h3>` so the
+    extracted content nests cleanly inside top-level <section> wrappers.
+    """
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    n = len(lines)
+
+    def close_list(stack: list[str]) -> None:
+        while stack:
+            out.append(f"</{stack.pop()}>")
+
+    list_stack: list[str] = []
+
+    while i < n:
+        line = lines[i]
+        stripped = line.strip()
+
+        # Fenced code block
+        if stripped.startswith("```"):
+            close_list(list_stack)
+            lang = stripped[3:].strip()
+            i += 1
+            code_lines: list[str] = []
+            while i < n and not lines[i].strip().startswith("```"):
+                code_lines.append(lines[i])
+                i += 1
+            if i < n:
+                i += 1  # closing fence
+            code_html = esc("\n".join(code_lines))
+            cls = f' class="lang-{esc(lang)}"' if lang else ""
+            out.append(f"<pre><code{cls}>{code_html}</code></pre>")
+            continue
+
+        # Blank line — close lists, paragraph break
+        if not stripped:
+            close_list(list_stack)
+            i += 1
+            continue
+
+        # ATX heading
+        m = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        if m:
+            close_list(list_stack)
+            level = min(6, len(m.group(1)) + demote_headings)
+            out.append(f"<h{level}>{md_inline(m.group(2))}</h{level}>")
+            i += 1
+            continue
+
+        # Blockquote
+        if stripped.startswith(">"):
+            close_list(list_stack)
+            quote_lines: list[str] = []
+            while i < n and lines[i].lstrip().startswith(">"):
+                quote_lines.append(re.sub(r"^\s*>\s?", "", lines[i]))
+                i += 1
+            out.append("<blockquote>")
+            out.append(md_to_html("\n".join(quote_lines), demote_headings=demote_headings))
+            out.append("</blockquote>")
+            continue
+
+        # Table (very simple GFM-style: header row, separator, body rows)
+        if "|" in stripped and i + 1 < n and re.match(r"^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$", lines[i + 1]):
+            close_list(list_stack)
+            header_cells = [c.strip() for c in stripped.strip("|").split("|")]
+            i += 2  # skip header + separator
+            rows: list[list[str]] = []
+            while i < n and "|" in lines[i] and lines[i].strip():
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            out.append("<table>")
+            out.append("<thead><tr>" + "".join(f"<th>{md_inline(c)}</th>" for c in header_cells) + "</tr></thead>")
+            out.append("<tbody>")
+            for r in rows:
+                out.append("<tr>" + "".join(f"<td>{md_inline(c)}</td>" for c in r) + "</tr>")
+            out.append("</tbody></table>")
+            continue
+
+        # Unordered list item
+        m = re.match(r"^(\s*)[-*]\s+(.+)$", line)
+        if m:
+            depth = len(m.group(1)) // 2  # 2-space indents
+            while len(list_stack) < depth + 1:
+                list_stack.append("ul")
+                out.append("<ul>")
+            while len(list_stack) > depth + 1:
+                out.append(f"</{list_stack.pop()}>")
+            out.append(f"<li>{md_inline(m.group(2))}</li>")
+            i += 1
+            continue
+
+        # Ordered list item
+        m = re.match(r"^(\s*)\d+\.\s+(.+)$", line)
+        if m:
+            depth = len(m.group(1)) // 2
+            while len(list_stack) < depth + 1:
+                list_stack.append("ol")
+                out.append("<ol>")
+            while len(list_stack) > depth + 1:
+                out.append(f"</{list_stack.pop()}>")
+            out.append(f"<li>{md_inline(m.group(2))}</li>")
+            i += 1
+            continue
+
+        # Paragraph
+        close_list(list_stack)
+        para_lines: list[str] = [stripped]
+        i += 1
+        while i < n and lines[i].strip() and not lines[i].strip().startswith(("#", "```", ">", "-", "*")) \
+                and not re.match(r"^\s*\d+\.\s+", lines[i]):
+            para_lines.append(lines[i].strip())
+            i += 1
+        out.append(f"<p>{md_inline(' '.join(para_lines))}</p>")
+
+    close_list(list_stack)
+    return "\n".join(out)
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8") if path.exists() else ""
+
+
+def split_frontmatter(text: str) -> str:
+    if not text.startswith("---"):
+        return text
+    parts = text.split("---", 2)
+    return parts[2] if len(parts) >= 3 else text
+
+
+# ---------------------------------------------------------------------------
+# Per-section emitters
+# ---------------------------------------------------------------------------
+
+def emit_rules(text: str) -> str:
+    """Each rule appears as `**R<N>. <Title>.** <body>` in rules SKILL.md.
+    Slice on these boundaries; emit a <section> per rule with id=R<N>."""
+    body = split_frontmatter(text)
+    # The bold envelope brackets both the rule id and its title together —
+    # not just `**R01.**` but `**R01. Title.**`. Capture title separately.
+    pattern = re.compile(
+        r"^\*\*(R\d+)\.\s+([^*]+?)\.\*\*\s*(.+?)(?=^\*\*R\d+\.\s|^##\s|^---\s*$|\Z)",
+        re.M | re.S,
+    )
+    parts: list[str] = []
+    for m in pattern.finditer(body):
+        rid = m.group(1)
+        title = m.group(2).strip()
+        block = m.group(3).rstrip()
+        body_html = md_to_html(block, demote_headings=2)
+        parts.append(
+            f'<section class="rule" id="{rid}">'
+            f'<h3><a href="#{rid}" class="anchor">#</a> {rid} — {esc(title)}</h3>'
+            f"{body_html}"
+            "</section>"
+        )
+    return "\n".join(parts)
+
+
+def emit_warrant_table(text: str) -> str:
+    """The warrant table is a GFM table after `## Warrant tags`. Extract it
+    and emit with id=#warrant-types so finding rule_id badges can link the
+    user to the retirement criterion for the rule they're seeing."""
+    body = split_frontmatter(text)
+    m = re.search(
+        r"## Warrant tags.*?(\| Type \|.*?\n(?:\|.*?\n)+)\n",
+        body,
+        re.S,
+    )
+    if not m:
+        return ""
+    table_md = m.group(1)
+    return (
+        '<section id="warrant-types">'
+        "<h3>Warrant types</h3>"
+        "<p>Each rule earns its place by one of four warrant types. The "
+        "type indicates when the rule should be revisited or retired.</p>"
+        + md_to_html(table_md)
+        + "</section>"
+    )
+
+
+def emit_principles(text: str) -> str:
+    """Principles doc has sections `### P1 — ...` for each principle, plus a
+    `## Conflict resolution: precedence order` section."""
+    body = text  # principles doc has no frontmatter
+    # Per-principle slicing
+    pattern = re.compile(
+        r"^### (P\d+) — ([^\n]+)\n+(.+?)(?=^### P\d+ — |^## |\Z)",
+        re.M | re.S,
+    )
+    parts: list[str] = []
+    for m in pattern.finditer(body):
+        pid = m.group(1)
+        title = m.group(2).strip()
+        block = m.group(3).rstrip()
+        parts.append(
+            f'<section class="principle" id="{pid}">'
+            f'<h3><a href="#{pid}" class="anchor">#</a> {pid} — {esc(title)}</h3>'
+            f"{md_to_html(block, demote_headings=2)}"
+            "</section>"
+        )
+    # Precedence section
+    m = re.search(
+        r"^## Conflict resolution: precedence order\n+(.+?)(?=^## |\Z)",
+        body,
+        re.M | re.S,
+    )
+    if m:
+        parts.append(
+            '<section id="precedence">'
+            '<h3><a href="#precedence" class="anchor">#</a> Conflict resolution: precedence order</h3>'
+            + md_to_html(m.group(1).rstrip(), demote_headings=2)
+            + "</section>"
+        )
+    return "\n".join(parts)
+
+
+def emit_vocabulary(text: str) -> str:
+    """Vocabulary SKILL.md has multiple major H2 sections we want anchored."""
+    body = split_frontmatter(text)
+
+    def slice_h2(title_regex: str) -> str:
+        m = re.search(
+            rf"^## {title_regex}\n+(.+?)(?=^## |\Z)",
+            body,
+            re.M | re.S,
+        )
+        return m.group(1).rstrip() if m else ""
+
+    out: list[str] = []
+    sections = [
+        ("vocab-scopes", "Two scopes &thinsp;\\(P1\\)|Two scopes \\(P1\\)", "Scopes (P1)"),
+        ("vocab-verbs-internal", "Verbs", "Verbs by scope"),
+        ("vocab-nouns", "Nouns", "Nouns by class"),
+        ("cross-scope-homonyms", "Auditor workflow filename convention|Cross-scope", "Cross-scope homonyms & workflow filename convention"),
+        ("deferred-vs-rejected", "How to extend|Verbs proposed but not entered", "Deferred vs rejected"),
+    ]
+    # Simpler: just emit the whole document body as one anchored section per H2.
+    # Build by scanning H2 headings and slicing.
+    out = []
+    h2_iter = list(re.finditer(r"^## (.+?)$", body, re.M))
+    for idx, m in enumerate(h2_iter):
+        title = m.group(1).strip()
+        start = m.end()
+        end = h2_iter[idx + 1].start() if idx + 1 < len(h2_iter) else len(body)
+        block = body[start:end].rstrip()
+        anchor = slugify(title)
+        out.append(
+            f'<section class="vocab" id="vocab-{anchor}">'
+            f'<h3><a href="#vocab-{anchor}" class="anchor">#</a> {esc(title)}</h3>'
+            + md_to_html(block, demote_headings=2)
+            + "</section>"
+        )
+    return "\n".join(out)
+
+
+def emit_scoring(text: str) -> str:
+    """Extract Score Bands and the vague-quantifier / R51 bits — anchored as
+    #score-bands and #severity-levels."""
+    body = split_frontmatter(text)
+    out: list[str] = []
+
+    # Score bands
+    m = re.search(r"^## Score Bands\n+(.+?)(?=^## |\Z)", body, re.M | re.S)
+    if m:
+        out.append(
+            '<section id="score-bands">'
+            '<h3><a href="#score-bands" class="anchor">#</a> Score bands</h3>'
+            + md_to_html(m.group(1).rstrip(), demote_headings=2)
+            + "</section>"
+        )
+
+    # Severity levels — synthesise from the scorer agent's standard mapping
+    # (HIGH ≥ 10 pt penalty, MEDIUM 5–9, LOW < 5). This isn't in scoring SKILL
+    # explicitly but matches the scorer agent body and the auditor schema.
+    out.append(
+        '<section id="severity-levels">'
+        '<h3><a href="#severity-levels" class="anchor">#</a> Severity levels</h3>'
+        "<table>"
+        "<thead><tr><th>Severity</th><th>Local scorer</th><th>Auditor schema</th></tr></thead>"
+        "<tbody>"
+        "<tr><td><strong>HIGH</strong></td><td>penalty ≥ 10 points</td>"
+        '<td>scorer reproduced the breakage during the scoring pass; '
+        "<code>confidence: high</code>, requires concrete <code>evidence</code>. "
+        "Only HIGH findings reach the contribute step.</td></tr>"
+        "<tr><td><strong>MEDIUM</strong></td><td>penalty 5–9 points</td>"
+        "<td>default confidence; no reproducer required.</td></tr>"
+        "<tr><td><strong>LOW</strong></td><td>penalty &lt; 5 points</td>"
+        "<td>weakest signal; kept for our own learning but not for PRs.</td></tr>"
+        "</tbody></table>"
+        "</section>"
+    )
+    return "\n".join(out)
+
+
+def emit_conventions(text: str) -> str:
+    """Emit a per-artifact-type section."""
+    body = split_frontmatter(text)
+    out: list[str] = []
+    # Top-level H2 of conventions SKILL is the artifact-type table-of-contents.
+    h2_iter = list(re.finditer(r"^## \d+\.\s+(.+?)$", body, re.M))
+    for idx, m in enumerate(h2_iter):
+        title = m.group(1).strip()
+        start = m.end()
+        end = h2_iter[idx + 1].start() if idx + 1 < len(h2_iter) else len(body)
+        block = body[start:end].rstrip()
+        anchor = slugify(title)
+        out.append(
+            f'<section class="artifact-type" id="artifact-{anchor}">'
+            f'<h3><a href="#artifact-{anchor}" class="anchor">#</a> {esc(title)}</h3>'
+            + md_to_html(block, demote_headings=2)
+            + "</section>"
+        )
+    return (
+        '<section id="artifact-types">'
+        '<h3><a href="#artifact-types" class="anchor">#</a> Artifact types overview</h3>'
+        "<p>Each row in a report's <em>type</em> column maps to one of the sections below.</p>"
+        + "\n".join(out)
+        + "</section>"
+    )
+
+
+def emit_drift_criteria(text: str) -> str:
+    """Pull disposition + confidence definitions from the scanner agent."""
+    body = split_frontmatter(text)
+    parts: list[str] = []
+    m = re.search(
+        r"### Step 4: Judge each cluster\n+(.+?)(?=^### |\Z)",
+        body,
+        re.M | re.S,
+    )
+    if m:
+        parts.append(
+            '<section id="disposition-criteria">'
+            '<h3><a href="#disposition-criteria" class="anchor">#</a> Drift disposition criteria</h3>'
+            + md_to_html(m.group(1).rstrip(), demote_headings=2)
+            + "</section>"
+        )
+
+    parts.append(
+        '<section id="confidence-criteria">'
+        '<h3><a href="#confidence-criteria" class="anchor">#</a> Drift confidence levels</h3>'
+        "<table>"
+        "<thead><tr><th>Confidence</th><th>What it means</th></tr></thead>"
+        "<tbody>"
+        "<tr><td><strong>high</strong></td><td>Surface similarity + role compatibility + ≥ 60% co-occurrence overlap. Strong recommendation to declare a canonical.</td></tr>"
+        "<tr><td><strong>medium</strong></td><td>Surface similarity + role compatibility, but co-occurrence overlap below 60%; or surface dissimilar but role + neighbors match. Worth a maintainer's review.</td></tr>"
+        "<tr><td><strong>low</strong></td><td>Mixed signals; the scanner can't tell from the corpus alone. Treat as a hint, not a directive.</td></tr>"
+        "</tbody></table>"
+        "</section>"
+    )
+    return "\n".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Wiring
+# ---------------------------------------------------------------------------
+
+def slugify(s: str) -> str:
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    return s.strip("-")
+
+
+def build(out_dir: Path) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Asset reuse — link to ../assets and ../vendor when nested under a
+    # report dir; otherwise expect ./assets next to docs/index.html.
+    rules_md = read_text(ROOT / "skills" / "nlpm" / "rules" / "SKILL.md")
+    principles_md = read_text(ROOT / "analysis" / "vocabulary-design-principles.md")
+    vocab_md = read_text(ROOT / "skills" / "nlpm" / "vocabulary" / "SKILL.md")
+    scoring_md = read_text(ROOT / "skills" / "nlpm" / "scoring" / "SKILL.md")
+    conventions_md = read_text(ROOT / "skills" / "nlpm" / "conventions" / "SKILL.md")
+    scanner_md = read_text(ROOT / "agents" / "vocab-drift-scanner.md")
+
+    rules_html = emit_rules(rules_md)
+    warrant_html = emit_warrant_table(rules_md)
+    principles_html = emit_principles(principles_md)
+    vocab_html = emit_vocabulary(vocab_md)
+    scoring_html = emit_scoring(scoring_md)
+    conventions_html = emit_conventions(conventions_md)
+    drift_html = emit_drift_criteria(scanner_md)
+
+    template = (TEMPLATE_DIR / "docs" / "index.html").read_text(encoding="utf-8")
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    html = (
+        template
+        .replace("{{GENERATED_AT}}", ts)
+        .replace("{{RULES}}", rules_html)
+        .replace("{{WARRANT}}", warrant_html)
+        .replace("{{PRINCIPLES}}", principles_html)
+        .replace("{{VOCAB}}", vocab_html)
+        .replace("{{SCORING}}", scoring_html)
+        .replace("{{ARTIFACT_TYPES}}", conventions_html)
+        .replace("{{DRIFT}}", drift_html)
+    )
+    target = out_dir / "index.html"
+    target.write_text(html, encoding="utf-8")
+    return target
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--out", required=True, help="Output directory (will contain index.html)")
+    args = parser.parse_args(argv)
+    result = build(Path(args.out))
+    print(f"Wrote {result}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

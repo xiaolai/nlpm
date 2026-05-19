@@ -1,0 +1,74 @@
+name: Render Aggregate Dashboard
+
+# Renders the cross-repo HTML dashboard from the append-only logs.
+# Output: auditor/reports/dashboard.html (self-contained, file:// openable).
+#
+# Cadence: runs after the daily report has refreshed registry summaries.
+# Output is committed to the auditor branch alongside auditor/findings.jsonl
+# etc.; readers download or clone to view locally.
+
+on:
+  schedule:
+    - cron: '30 22 * * *'  # 30 min after daily-report so its outputs are committed
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'ISO date (YYYY-MM-DD) — drop records older than this'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nlpm-render-dashboard
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Render dashboard + framework docs
+        env:
+          SINCE: ${{ inputs.since }}
+        run: |
+          mkdir -p auditor/reports
+          if [ -n "$SINCE" ]; then
+            python3 auditor/scripts/render-dashboard.py --since "$SINCE"
+          else
+            python3 auditor/scripts/render-dashboard.py
+          fi
+          # The dashboard renderer builds docs/ alongside; if anything went
+          # wrong with that side-effect, fall back to an explicit build so
+          # rule_id anchors don't 404.
+          [ -f auditor/reports/docs/index.html ] || python3 bin/nlpm-build-docs --out auditor/reports/docs/
+          ls -lh auditor/reports/dashboard.html auditor/reports/docs/index.html
+
+      - name: Log lifecycle event
+        run: |
+          source auditor/scripts/log-event.sh
+          REPO_COUNT=$(jq '.repos | length' auditor/registry/repos.json 2>/dev/null || echo 0)
+          FIND_COUNT=$(wc -l < auditor/findings.jsonl 2>/dev/null | tr -d ' ' || echo 0)
+          ADV_COUNT=$(wc -l < auditor/vocab-advisories.jsonl 2>/dev/null | tr -d ' ' || echo 0)
+          log_event "dashboard" "dashboard_rendered" \
+            "$(jq -cn --argjson r "$REPO_COUNT" --argjson f "$FIND_COUNT" --argjson a "$ADV_COUNT" \
+               '{repos: $r, findings: $f, advisories: $a}')" || true
+
+      - name: Commit dashboard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git add auditor/reports/ auditor/logs/events.jsonl 2>/dev/null || true
+          bash auditor/scripts/guard-protected-paths.sh || exit 1
+          git diff --cached --quiet || {
+            git commit -m "dashboard: $(date -u +%Y-%m-%d) render"
+            bash auditor/scripts/git-push-with-retry.sh
+          }

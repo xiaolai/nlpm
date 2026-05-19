@@ -1,0 +1,82 @@
+name: Render Per-Repo Report (backfill)
+
+# Re-renders `auditor/reports/<slug>.html` for a single audited repo
+# without re-running the audit. Operator-driven: pick a repo by name
+# (or "all" to backfill every audited repo).
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repo to render (owner/name), or "all" for every audited repo in the registry'
+        required: true
+        default: 'all'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nlpm-repo-report-${{ github.event.inputs.repo }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Render
+        env:
+          INPUT_REPO: ${{ inputs.repo }}
+        run: |
+          mkdir -p auditor/reports
+          OK=0
+          FAIL=0
+          if [ "$INPUT_REPO" = "all" ]; then
+            # Walk every repo in the registry; skip ones without a markdown audit.
+            REPOS=$(jq -r '.repos | keys[]' auditor/registry/repos.json 2>/dev/null || true)
+            for REPO in $REPOS; do
+              SLUG="${REPO//\//-}"
+              if [ -f "auditor/audits/${SLUG}.md" ]; then
+                if python3 auditor/scripts/render-repo-report.py --repo "$REPO" >/dev/null 2>&1; then
+                  OK=$((OK + 1))
+                else
+                  FAIL=$((FAIL + 1))
+                  echo "::warning::render failed for $REPO"
+                fi
+              fi
+            done
+          else
+            if [ -z "$INPUT_REPO" ] || [[ "$INPUT_REPO" != *"/"* ]]; then
+              echo "::error::--repo must be owner/name or the literal string 'all'"
+              exit 2
+            fi
+            python3 auditor/scripts/render-repo-report.py --repo "$INPUT_REPO"
+            OK=1
+          fi
+          echo "ok=$OK" >> "$GITHUB_OUTPUT"
+          echo "fail=$FAIL" >> "$GITHUB_OUTPUT"
+          echo "Rendered: $OK · failed: $FAIL"
+
+          source auditor/scripts/log-event.sh
+          log_event "repo-report" "backfill_complete" \
+            "$(jq -cn --arg r "$INPUT_REPO" --argjson ok "$OK" --argjson fail "$FAIL" \
+               '{scope: $r, rendered: $ok, failed: $fail}')" || true
+
+      - name: Commit reports
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_REPO: ${{ inputs.repo }}
+        run: |
+          git config user.name "nlpm-auditor[bot]"
+          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git add auditor/reports/ auditor/logs/events.jsonl 2>/dev/null || true
+          bash auditor/scripts/guard-protected-paths.sh || exit 1
+          git diff --cached --quiet || {
+            git commit -m "repo-report: backfill ${INPUT_REPO} ($(date -u +%Y-%m-%d))"
+            bash auditor/scripts/git-push-with-retry.sh
+          }

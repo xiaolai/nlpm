@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""Render a single-repo NLPM HTML report.
+
+Takes a JSON data blob produced by /nlpm:report (the slash command does
+the smart data-gathering) and substitutes it into the templates under
+templates/report/. Stdlib-only.
+
+Output structure (under --out, default `.claude/nlpm-reports/`):
+
+    .claude/nlpm-reports/
+    ├── vendor/g6.min.js         # copied from templates/report/vendor/
+    ├── assets/                  # CSS + JS, copied from templates/report/assets/
+    ├── data/<timestamp>.json    # archived data blob
+    ├── <timestamp>.html         # archived report
+    └── index.html               # latest
+
+Usage:
+    python3 bin/nlpm-report --data /path/to/data.json --project nlpm
+    cat data.json | python3 bin/nlpm-report --project nlpm
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import shutil
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = HERE / "templates" / "report"
+DOCS_BUILDER = HERE / "bin" / "nlpm-build-docs"
+
+
+def render(data: dict, project: str, out_dir: Path) -> Path:
+    out_dir = out_dir.resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "data").mkdir(exist_ok=True)
+
+    # Vendor and assets — copy once per render so reports are self-contained
+    # under their own out_dir (even if moved elsewhere later).
+    vendor_src = TEMPLATE_DIR / "vendor"
+    assets_src = TEMPLATE_DIR / "assets"
+    vendor_dst = out_dir / "vendor"
+    assets_dst = out_dir / "assets"
+    if vendor_dst.exists():
+        shutil.rmtree(vendor_dst)
+    shutil.copytree(vendor_src, vendor_dst)
+    if assets_dst.exists():
+        shutil.rmtree(assets_dst)
+    shutil.copytree(assets_src, assets_dst)
+
+    template = (TEMPLATE_DIR / "single.html").read_text(encoding="utf-8")
+    ts = data.get("generated_at") or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    data["generated_at"] = ts
+    data.setdefault("project", project)
+
+    # Compact JSON in the page — the data blob is read by JS via JSON.parse.
+    data_json = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    # `</script>` inside a string would close the script tag; escape it.
+    data_json = data_json.replace("</", "<\\/")
+
+    html = (
+        template
+        .replace("{{PROJECT}}", project)
+        .replace("{{GENERATED_AT}}", ts)
+        .replace("{{DATA_JSON}}", data_json)
+    )
+
+    # Archive copy + latest pointer
+    stamp = ts.replace(":", "").replace("-", "").replace("T", "-").replace("Z", "")
+    archived_html = out_dir / f"{stamp}.html"
+    archived_json = out_dir / "data" / f"{stamp}.json"
+    archived_html.write_text(html, encoding="utf-8")
+    archived_json.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # Latest pointer — use a copy, not a symlink. Symlinks are awkward across
+    # filesystems and on Windows; a plain copy works everywhere.
+    (out_dir / "index.html").write_text(html, encoding="utf-8")
+
+    # Build docs alongside so the report's rule/principle/etc. anchors resolve.
+    # Always rebuild — markdown sources change more often than the docs HTML.
+    try:
+        subprocess.run(
+            [sys.executable, str(DOCS_BUILDER), "--out", str(out_dir / "docs")],
+            check=False, capture_output=True,
+        )
+    except Exception as e:
+        print(f"warning: docs build failed: {e}", file=sys.stderr)
+
+    return out_dir / "index.html"
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--data", help="Path to data JSON file (default: stdin)")
+    parser.add_argument("--out", default=".claude/nlpm-reports/", help="Output directory")
+    parser.add_argument("--project", default=None, help="Project name (default: cwd basename)")
+    args = parser.parse_args(argv)
+
+    if args.data:
+        text = Path(args.data).read_text(encoding="utf-8")
+    else:
+        text = sys.stdin.read()
+
+    if not text.strip():
+        print("error: no input data (expected JSON on stdin or via --data)", file=sys.stderr)
+        return 2
+
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        print(f"error: invalid JSON: {e}", file=sys.stderr)
+        return 2
+
+    project = args.project or Path.cwd().name
+    out = Path(args.out)
+    if not out.is_absolute():
+        out = Path.cwd() / out
+
+    result = render(data, project, out)
+    print(f"Wrote {result}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

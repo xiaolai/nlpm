@@ -259,6 +259,24 @@ jobs:
           echo "Aggregated: $APPENDED advisories appended. Invalid lines: $INVALID."
 
       # ================================================================
+      # PER-REPO HTML REPORT (re-render to pick up new advisories)
+      # ================================================================
+      - name: Render per-repo HTML report
+        if: success() || failure()
+        env:
+          TARGET_REPO: ${{ steps.target.outputs.repo }}
+        run: |
+          mkdir -p auditor/reports
+          if python3 auditor/scripts/render-repo-report.py --repo "$TARGET_REPO"; then
+            source auditor/scripts/log-event.sh
+            log_event "vocab-drift" "repo_report_rendered" \
+              "$(jq -cn --arg r "$TARGET_REPO" --arg slug "${TARGET_REPO//\//-}" \
+                 '{repo: $r, html: ("auditor/reports/" + $slug + ".html")}')" || true
+          else
+            echo "::warning::per-repo HTML render failed for $TARGET_REPO — continuing"
+          fi
+
+      # ================================================================
       # COMMIT
       # ================================================================
       - name: Commit advisory artifacts
@@ -275,6 +293,7 @@ jobs:
           git add \
             "auditor/audits/${SLUG}.vocab-drift.md" \
             "auditor/audits/${SLUG}.vocab-drift.jsonl" \
+            "auditor/reports/${SLUG}.html" \
             "auditor/vocab-advisories.jsonl" \
             "auditor/logs/events.jsonl" 2>/dev/null || true
           bash auditor/scripts/guard-protected-paths.sh || exit 1
