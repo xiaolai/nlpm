@@ -29,6 +29,10 @@ on:
 permissions:
   contents: write
   issues: write
+  # Workload-identity-friendly OIDC token, available even though the
+  # current setup uses GCP_SA_KEY. Future migration to WIF is a config
+  # change in the workflow only.
+  id-token: write
 
 concurrency:
   group: nlpm-discover
@@ -80,8 +84,108 @@ jobs:
             sleep 2
           done
 
-          jq -s 'add | group_by(.fullName) | map(max_by(.stargazersCount))' "$RESULTS_FILE" > /tmp/candidates.json
-          echo "Found $(jq length /tmp/candidates.json) unique candidate repos (post freshness gate)"
+          jq -s 'add | group_by(.fullName) | map(max_by(.stargazersCount))' "$RESULTS_FILE" > /tmp/gh_candidates.json
+          echo "GH-search candidates: $(jq length /tmp/gh_candidates.json)"
+
+      # ── BigQuery velocity harvest ──────────────────────────────────
+      # Parallel signal source from githubarchive.day. Finds repos
+      # *spiking right now* — complementary to GH-search which sees
+      # only already-popular repos. Requires GCP_SA_KEY secret and
+      # BQ_PROJECT var. When secrets aren't configured (e.g. fork
+      # runs), the step short-circuits cleanly with an empty result.
+
+      - name: Detect BQ availability
+        id: bq-check
+        # Skip the BQ branch cleanly when either secret/var is missing.
+        # `secrets.*` isn't directly usable in step-level `if:` per GHA
+        # convention, so we resolve presence here into a plain string
+        # output that later steps can branch on.
+        env:
+          HAS_GCP_KEY: ${{ secrets.GCP_SA_KEY != '' }}
+          HAS_BQ_PROJECT: ${{ vars.BQ_PROJECT != '' }}
+        run: |
+          if [ "$HAS_GCP_KEY" = "true" ] && [ "$HAS_BQ_PROJECT" = "true" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "BQ harvest skipped — GCP_SA_KEY secret and/or BQ_PROJECT var not configured"
+          fi
+
+      - name: Authenticate to Google Cloud (BQ)
+        id: gcp-auth
+        if: steps.bq-check.outputs.available == 'true'
+        uses: google-github-actions/auth@140bb5113ffb6b65a7e9b937a81fa96cf5064462  # v3.0.1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Install BQ client
+        if: ${{ steps.gcp-auth.outcome == 'success' }}
+        run: |
+          python3 -m pip install --quiet "google-cloud-bigquery>=3.0,<4.0"
+
+      - name: Harvest via BigQuery (velocity signal)
+        id: bq-harvest
+        if: ${{ steps.gcp-auth.outcome == 'success' }}
+        env:
+          BQ_PROJECT: ${{ vars.BQ_PROJECT }}
+          # On-demand BigQuery free tier is 1 TB/month. Set a per-run
+          # ceiling well below 1/30th of that (~33 GB/day) so a runaway
+          # day cannot blow the monthly budget.
+          BQ_MAX_BYTES: 5368709120  # 5 GB per run
+        run: |
+          set -euo pipefail
+          echo "BQ project: $BQ_PROJECT"
+
+          # Dry-run cost gate first. The script exits 3 if the estimate
+          # exceeds --max-bytes, which fails the step loudly.
+          python3 auditor/scripts/discover_via_bq.py \
+            --project "$BQ_PROJECT" \
+            --pool-size 200 \
+            --max-bytes "$BQ_MAX_BYTES" \
+            > /tmp/bq_candidates.jsonl
+
+          jq -s '.' /tmp/bq_candidates.jsonl > /tmp/bq_candidates.json
+          echo "BQ candidates: $(jq length /tmp/bq_candidates.json)"
+
+      - name: Merge BQ + GH-search candidates
+        run: |
+          # Initialize BQ candidate file when the BQ step was skipped.
+          # The merge step is unconditional so the downstream pipeline
+          # has a single candidate list to work with regardless of
+          # whether BQ was enabled this run.
+          if [ ! -f /tmp/bq_candidates.json ]; then
+            echo "[]" > /tmp/bq_candidates.json
+          fi
+
+          # Union the two sources. group_by + max_by(stargazersCount)
+          # keeps the row carrying the most info — GH-search rows have
+          # real star counts; BQ rows have velocity fields. When the
+          # same repo surfaces in both, we keep GH-search's authoritative
+          # star count but lose BQ's velocity data. Acceptable trade —
+          # the artifact-probe gate is the deciding filter regardless.
+          #
+          # Future: merge field-by-field instead of dropping one side,
+          # so velocity stays alongside the real star count.
+          jq -s '
+            (.[0] + .[1])
+            | group_by(.fullName)
+            | map(max_by(.stargazersCount // 0))
+          ' /tmp/gh_candidates.json /tmp/bq_candidates.json > /tmp/candidates_premerge.json
+
+          # Vendor-default exclusion. Drops repos the contribute
+          # pipeline structurally cannot ship PRs to (anthropics/*,
+          # google-*/* without CLA, etc.) before any artifact-probe
+          # API cost is paid.
+          jq -c '.[]' /tmp/candidates_premerge.json \
+            | python3 auditor/scripts/vendor_default_filter.py --report \
+            > /tmp/candidates_filtered.jsonl
+          jq -s '.' /tmp/candidates_filtered.jsonl > /tmp/candidates.json
+
+          GH_N=$(jq length /tmp/gh_candidates.json)
+          BQ_N=$(jq length /tmp/bq_candidates.json)
+          MERGED_N=$(jq length /tmp/candidates_premerge.json)
+          FINAL_N=$(jq length /tmp/candidates.json)
+          echo "Sources: gh=$GH_N bq=$BQ_N merged=$MERGED_N (post-vendor-filter=$FINAL_N)"
 
       - name: Filter against registry + published case studies
         run: |

@@ -99,6 +99,11 @@ Run `python3 -m unittest tests.test_nlpm_check` to verify the binary.
 - Slash commands (/nlpm:*) -- none. Pure markdown.
 - Standalone bin/nlpm-check -- Python 3.11+ (stdlib only; no pip install).
 - Auditor workflows -- CLAUDE_CODE_OAUTH_TOKEN, PAT_TOKEN, OPENAI_API_KEY secrets.
+- BigQuery discovery (optional, `auditor-discover.yml`) -- `secrets.GCP_SA_KEY`
+  (service-account JSON with `roles/bigquery.jobUser` on the project)
+  and `vars.BQ_PROJECT` (the GCP project id). When either is unset the
+  BQ branch short-circuits cleanly; `gh search repos` remains the sole
+  discovery source in that mode.
 
 ## Development
 
@@ -124,7 +129,7 @@ The `auditor/` subdirectory contains a GitHub Actions pipeline that discovers, a
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| auditor-discover | Weekly cron / manual | Find repos with 500+ stars and 5+ NL artifacts |
+| auditor-discover | Weekly cron / manual | Find repos with 500+ stars and 5+ NL artifacts. Dual-source: `gh search repos` (popularity) + BigQuery `githubarchive.day.20*` velocity (rising repos). BQ branch activates only when `vars.BQ_PROJECT` and `secrets.GCP_SA_KEY` are set; cost-gated to 5 GB/run via `auditor/scripts/discover_via_bq.py --max-bytes`. Vendor-default filter (`auditor/scripts/vendor_default_filter.py`) drops anthropics/* and CLA-gated orgs before the artifact probe. Origin of the BQ approach: `claudepot-office/bots/alan@repo-scout`. |
 | auditor-batch-processor | Every 6h cron / manual | Pick next batch, promote audits to contribution |
 | auditor-audit | Issue labeled `audit-ready` | Security scan + NL score; emits findings.jsonl + disagreements.jsonl |
 | auditor-contribute | Issue labeled `contribute-approved` | Reads target's CONTRIBUTING.md / PR template / CoC, forks, opens PRs for verified bugs only (max 3 first-contact, 5 thereafter); stamps each PR body with `nlpm-metadata` block; **never** opens an umbrella/summary issue on the target; backstop step verifies post-hoc |
@@ -267,6 +272,8 @@ conclusion `FAILURE`. CLA-blocked PRs:
 | compute-vocab-fingerprint.sh | SCHEMAS §vocab fingerprint formula; sole writer used by `auditor-vocab-drift.yml` |
 | render-dashboard.py | Aggregate cross-repo HTML dashboard renderer. Reads `findings.jsonl` + `vocab-advisories.jsonl` + `logs/events.jsonl` + `registry/repos.json`; emits `auditor/reports/dashboard.html` using `templates/report/` and vendored G6. |
 | render-repo-report.py | Per-repo HTML report renderer. Takes `--repo owner/name`, filters the global logs to one repo, and emits `auditor/reports/<slug>.html` using the same template as `/nlpm:report`. Runs at the tail of `auditor-audit` and `auditor-vocab-drift`; standalone backfill via `auditor-repo-report.yml`. Dashboard rows link to these via relative anchor. |
+| discover_via_bq.py | BigQuery velocity harvest. Queries `githubarchive.day.20*` for repos with WatchEvent / ForkEvent / ReleaseEvent activity matching a Claude-Code keyword regex, vs a 7-day baseline. Emits gh-search-shaped JSONL on stdout. Includes `--dry-run` cost estimate and `--max-bytes` cost gate (defaults to 5 GB / run in `auditor-discover.yml`, well inside BQ's 1 TB/month free tier). Ported from `claudepot-office/bots/alan@repo-scout/repo_scout/bigquery.py`. |
+| vendor_default_filter.py | JSONL filter on stdin → stdout. Drops candidates whose owner is on the `DENY_OWNERS` list (no-external-PRs policy, e.g. `anthropics`) or `CLA_REQUIRED_OWNERS` list (Google orgs requiring CLA-signed commits). Saves API + LLM cost vs. discovering and then failing at the contribute policy gates. Used by `auditor-discover.yml` between merge and artifact-probe. |
 
 The framework-reference doc builder lives in `bin/nlpm-build-docs` and is
 invoked as a side effect by all three renderers (`bin/nlpm-report`,
