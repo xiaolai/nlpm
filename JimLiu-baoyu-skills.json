@@ -1,0 +1,367 @@
+{
+  "project": "JimLiu/baoyu-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 90,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/release-skills/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 284,
+          "message": "'Clear, meaningful description' appears twice in Step 6 commit message guidance; 'meaningful' is not actionable or measurable"
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 87,
+          "message": "'short variable names' in Code Style section — threshold is undefined; could encourage overly abbreviated identifiers"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 20,
+          "message": "Runtime dependencies sharp, pdf-lib, and pptxgenjs use ^ ranges; a compromised patch release could be silently installed on next npm install"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-danger-gemini-web/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": null,
+          "message": "The consent check (5-step flow) and EXTEND.md preferences section exist as prose sections but are not organized as a numbered workflow; reduces agent traversal confidence for first-time users"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-diagram/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": 1,
+          "message": "All other skills carry version and metadata.openclaw frontmatter; baoyu-diagram is missing both, reducing marketplace discoverability"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-format-markdown/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 127,
+          "message": "'obvious typos' in Step 2 analysis guidance — what counts as obvious is subjective and may lead to inconsistent behavior across runs"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-image-gen/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 3,
+          "message": "Description field opens with [Deprecated: use baoyu-imagine] inline rather than using a dedicated deprecated flag or frontmatter key"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Deprecated skill mirrors baoyu-imagine but also lacks a post-generation completion report step"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 90,
+          "message": "baoyu-image-gen is at v1.56.4 while baoyu-imagine is at v1.58.0; baoyu-imagine documents DashScope wan2.7-image --ref support (line 94) that is absent from baoyu-image-gen (line 90), confirming sync drift"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-imagine/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Skill has no post-generation completion report step; agents have no structured success signal after image generation completes"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-post-to-weibo/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Workflow ends after scripts open the browser; no structured completion report is defined for the overall skill invocation"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-post-to-x/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Workflow ends after scripts open the browser; no structured completion report is defined"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-url-to-markdown/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Four-item workflow section has no final completion step reporting the saved file path, media status, and quality gate result"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-xhs-images/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 291,
+          "message": "Step 0 EXTEND.md search paths reference .baoyu-skills/baoyu-image-cards/EXTEND.md instead of .baoyu-skills/baoyu-xhs-images/EXTEND.md; deprecated skill has no config isolation from its replacement"
+        },
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 3,
+          "message": "Description field opens with [Deprecated: use baoyu-image-cards] inline rather than using a dedicated deprecated flag or frontmatter key"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": 291,
+          "message": "baoyu-xhs-images Step 0 EXTEND.md paths point to baoyu-image-cards directories; violates skill self-containment principle in CLAUDE.md and causes config namespace pollution"
+        }
+      ]
+    },
+    {
+      "path": "skills/baoyu-youtube-transcript/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-duplicate-step",
+          "severity": "medium",
+          "line": 144,
+          "message": "Workflow section has two items numbered 3 (lines 144 and 145); second item 3 and item 4 should be renumbered to 4 and 5 respectively"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 90,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-duplicate-step",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/baoyu-youtube-transcript/SKILL.md",
+      "line": 144,
+      "message": "Workflow section has two items numbered 3 (lines 144 and 145); second item 3 and item 4 should be renumbered to 4 and 5 respectively"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/baoyu-xhs-images/SKILL.md",
+      "line": 291,
+      "message": "Step 0 EXTEND.md search paths reference .baoyu-skills/baoyu-image-cards/EXTEND.md instead of .baoyu-skills/baoyu-xhs-images/EXTEND.md; deprecated skill has no config isolation from its replacement"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 20,
+      "message": "Runtime dependencies sharp, pdf-lib, and pptxgenjs use ^ ranges; a compromised patch release could be silently installed on next npm install"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-image-gen/SKILL.md",
+      "line": 3,
+      "message": "Description field opens with [Deprecated: use baoyu-imagine] inline rather than using a dedicated deprecated flag or frontmatter key"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-xhs-images/SKILL.md",
+      "line": 3,
+      "message": "Description field opens with [Deprecated: use baoyu-image-cards] inline rather than using a dedicated deprecated flag or frontmatter key"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-diagram/SKILL.md",
+      "line": 1,
+      "message": "All other skills carry version and metadata.openclaw frontmatter; baoyu-diagram is missing both, reducing marketplace discoverability"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-imagine/SKILL.md",
+      "line": null,
+      "message": "Skill has no post-generation completion report step; agents have no structured success signal after image generation completes"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-image-gen/SKILL.md",
+      "line": null,
+      "message": "Deprecated skill mirrors baoyu-imagine but also lacks a post-generation completion report step"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-post-to-weibo/SKILL.md",
+      "line": null,
+      "message": "Workflow ends after scripts open the browser; no structured completion report is defined for the overall skill invocation"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-post-to-x/SKILL.md",
+      "line": null,
+      "message": "Workflow ends after scripts open the browser; no structured completion report is defined"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-url-to-markdown/SKILL.md",
+      "line": null,
+      "message": "Four-item workflow section has no final completion step reporting the saved file path, media status, and quality gate result"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/release-skills/SKILL.md",
+      "line": 284,
+      "message": "'Clear, meaningful description' appears twice in Step 6 commit message guidance; 'meaningful' is not actionable or measurable"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-format-markdown/SKILL.md",
+      "line": 127,
+      "message": "'obvious typos' in Step 2 analysis guidance — what counts as obvious is subjective and may lead to inconsistent behavior across runs"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 87,
+      "message": "'short variable names' in Code Style section — threshold is undefined; could encourage overly abbreviated identifiers"
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-danger-gemini-web/SKILL.md",
+      "line": null,
+      "message": "The consent check (5-step flow) and EXTEND.md preferences section exist as prose sections but are not organized as a numbered workflow; reduces agent traversal confidence for first-time users"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/baoyu-xhs-images/SKILL.md",
+      "line": 291,
+      "message": "baoyu-xhs-images Step 0 EXTEND.md paths point to baoyu-image-cards directories; violates skill self-containment principle in CLAUDE.md and causes config namespace pollution"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/baoyu-image-gen/SKILL.md",
+      "line": 90,
+      "message": "baoyu-image-gen is at v1.56.4 while baoyu-imagine is at v1.58.0; baoyu-imagine documents DashScope wan2.7-image --ref support (line 94) that is absent from baoyu-image-gen (line 90), confirming sync drift"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 16303,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/JimLiu-baoyu-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:10Z",
+  "schema_version": 1
+}

@@ -1,0 +1,59 @@
+{
+  "project": "kepano/obsidian-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 1,
+    "average_score": 100,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "skills/defuddle/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Skill covers the happy path only — no troubleshooting or error handling for a missing npm/defuddle dependency."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 100,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/defuddle/SKILL.md",
+      "line": null,
+      "message": "Skill covers the happy path only — no troubleshooting or error handling for a missing npm/defuddle dependency."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 26283,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/kepano-obsidian-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

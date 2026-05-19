@@ -1,0 +1,395 @@
+{
+  "project": "nexu-io/html-anything",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 15,
+    "average_score": 81,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "info",
+          "line": 1,
+          "message": "CLAUDE.md contains a single @AGENTS.md import; AGENTS.md itself is only 4 lines — combined provides minimal project-specific AI context"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "info",
+          "line": 1,
+          "message": "CLAUDE.md delegates entirely to @AGENTS.md; AGENTS.md provides only a 4-line Next.js version caution with no template skill conventions, category taxonomy, or output format guidance"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-stale-dependency",
+          "severity": "medium",
+          "line": 17,
+          "message": "xlsx: ^0.18.5 — SheetJS was removed from the npm public registry; ^0.18.5 is the last public release (~2022) with no further security patches on npm"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 12,
+          "message": "23 of 25 package.json dependencies use ^ (caret) semver ranges, allowing automatic minor/patch upgrades that may introduce regressions or vulnerabilities"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "Pattern: 18 files have 4-line bodies with section names only (no hex colors, no font specs, no output format); representative: dashboard, dating-web, docs-page, team-okrs, pricing-page, meeting-notes, mobile-app, deck-presenter-mode, wireframe-sketch, social-media-dashboard"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "Pattern: 19 files have 4-7 line bodies with partial specs (layout described, design brief, no typography or explicit HTML output); representative: deck-blueprint, deck-graphify-dark, hr-onboarding, kanban-board, pm-spec, finance-report, eng-runbook, saas-landing"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/deck-replit/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "References 8 named theme variants (helix/holm/vance/bevel/world-dark/world-mint/atlas/bluehouse) without specifying any color palettes — agent must guess theme colors"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/deck-xhs-post/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 3 lines; layout and design collapsed to a single brief entry; no color or font spec"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/frame-data-chart-nyt/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": 42,
+          "message": "'合理坐标' (reasonable coordinates) for auto-estimated schematic data — no range or rounding rule specified"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/frame-light-leak-cinema/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": 49,
+          "message": "'合理年份 / 章节 / 地点' (reasonable year/chapter/location metadata) — ambiguous without a fallback rule"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/gamified-app/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 3 lines of design detail after layout section; missing font, color, animation, and output format specs"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/mobile-onboarding/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 3 lines; no design detail beyond screen enumeration; no font, color, or CSS output spec"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/motion-frames/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 7 lines; no CSS/HTML output format stated, no font families, no color palette — insufficient for consistent AI output"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/social-carousel/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 4 lines; no color palette, no font specification, no technical output details"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/social-reddit-card/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": 50,
+          "message": "'合理的 subreddit / username / 票数' (reasonable subreddit/username/votes) — no default fallback values or generation rule specified"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/web-proto-brutalist/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 4 lines; no color palette, no typography spec, no technical output declaration"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/web-proto-editorial/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 4 lines; no technical output details beyond a four-item design concept list"
+        }
+      ]
+    },
+    {
+      "path": "src/lib/templates/skills/web-proto-soft/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Body only 4 lines; four bullet points with no color, font, or CSS specifications — insufficient specification for consistent AI output"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-18T21:22:26Z",
+      "average_score": 81,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/motion-frames/SKILL.md",
+      "line": null,
+      "message": "Body only 7 lines; no CSS/HTML output format stated, no font families, no color palette — insufficient for consistent AI output"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/web-proto-soft/SKILL.md",
+      "line": null,
+      "message": "Body only 4 lines; four bullet points with no color, font, or CSS specifications — insufficient specification for consistent AI output"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/web-proto-brutalist/SKILL.md",
+      "line": null,
+      "message": "Body only 4 lines; no color palette, no typography spec, no technical output declaration"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/web-proto-editorial/SKILL.md",
+      "line": null,
+      "message": "Body only 4 lines; no technical output details beyond a four-item design concept list"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/gamified-app/SKILL.md",
+      "line": null,
+      "message": "Body only 3 lines of design detail after layout section; missing font, color, animation, and output format specs"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/deck-xhs-post/SKILL.md",
+      "line": null,
+      "message": "Body only 3 lines; layout and design collapsed to a single brief entry; no color or font spec"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/mobile-onboarding/SKILL.md",
+      "line": null,
+      "message": "Body only 3 lines; no design detail beyond screen enumeration; no font, color, or CSS output spec"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/social-carousel/SKILL.md",
+      "line": null,
+      "message": "Body only 4 lines; no color palette, no font specification, no technical output details"
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/frame-data-chart-nyt/SKILL.md",
+      "line": 42,
+      "message": "'合理坐标' (reasonable coordinates) for auto-estimated schematic data — no range or rounding rule specified"
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/social-reddit-card/SKILL.md",
+      "line": 50,
+      "message": "'合理的 subreddit / username / 票数' (reasonable subreddit/username/votes) — no default fallback values or generation rule specified"
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/frame-light-leak-cinema/SKILL.md",
+      "line": 49,
+      "message": "'合理年份 / 章节 / 地点' (reasonable year/chapter/location metadata) — ambiguous without a fallback rule"
+    },
+    {
+      "rule": "R05",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 1,
+      "message": "CLAUDE.md contains a single @AGENTS.md import; AGENTS.md itself is only 4 lines — combined provides minimal project-specific AI context"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/deck-replit/SKILL.md",
+      "line": null,
+      "message": "References 8 named theme variants (helix/holm/vance/bevel/world-dark/world-mint/atlas/bluehouse) without specifying any color palettes — agent must guess theme colors"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/",
+      "line": null,
+      "message": "Pattern: 18 files have 4-line bodies with section names only (no hex colors, no font specs, no output format); representative: dashboard, dating-web, docs-page, team-okrs, pricing-page, meeting-notes, mobile-app, deck-presenter-mode, wireframe-sketch, social-media-dashboard"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/lib/templates/skills/",
+      "line": null,
+      "message": "Pattern: 19 files have 4-7 line bodies with partial specs (layout described, design brief, no typography or explicit HTML output); representative: deck-blueprint, deck-graphify-dark, hr-onboarding, kanban-board, pm-spec, finance-report, eng-runbook, saas-landing"
+    },
+    {
+      "rule": "SEC-stale-dependency",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 17,
+      "message": "xlsx: ^0.18.5 — SheetJS was removed from the npm public registry; ^0.18.5 is the last public release (~2022) with no further security patches on npm"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 12,
+      "message": "23 of 25 package.json dependencies use ^ (caret) semver ranges, allowing automatic minor/patch upgrades that may introduce regressions or vulnerabilities"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 1,
+      "message": "CLAUDE.md delegates entirely to @AGENTS.md; AGENTS.md provides only a 4-line Next.js version caution with no template skill conventions, category taxonomy, or output format guidance"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 2976,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/nexu-io-html-anything.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

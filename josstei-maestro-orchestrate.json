@@ -1,0 +1,528 @@
+{
+  "project": "josstei/maestro-orchestrate",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 20,
+    "average_score": 87,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "claude/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-injection",
+          "severity": "medium",
+          "line": 5,
+          "message": "MCP server binary path and working directory resolved from ${CLAUDE_PLUGIN_ROOT} env var; poisoned env var redirects MCP server execution"
+        }
+      ]
+    },
+    {
+      "path": "claude/agents/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "All 25 claude/agents/ stub agents lack an output format specification in their body; stubs defer to MCP tool get_agent but output contract is not specified"
+        },
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "All 25 claude/agents/ stubs have zero standalone example blocks in document body; examples are embedded in YAML description field only and not surfaced as agent-body examples"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "info",
+          "line": null,
+          "message": "All 25 claude/agents/ stubs defer methodology to MCP tool 'get_agent' declared in claude/.mcp.json; if CLAUDE_PLUGIN_ROOT is unset or MCP server unavailable, all stubs function as empty agents with no guidance"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Five vague word instances: 'appropriate' twice in commentary and body, 'proper' twice in implementation standards and error handling guidance, 'necessary' in Output Contract"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/data-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Five vague word instances: 'appropriate' twice in methodology (including 'appropriate denormalization'), 'proper' in indexing guidance, 'ensure' in query frequency check, 'necessary' in Output Contract"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/db2-dba.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Four vague word instances: 'appropriate' twice in commentary and protocol section including 'appropriate RTS protocol', 'proper' in lock analysis, 'necessary' in Output Contract"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/ibm-i-specialist.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Four vague word instances: 'appropriate' twice (example body and commentary), 'proper' in example body, 'necessary' in Output Contract boilerplate"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/ml-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/ which include an Output Contract"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/mlops-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/platform-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/refactor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Four vague word instances: 'appropriate' in commentary, 'proper' twice in patterns and decision framework sections, 'necessary' in Output Contract boilerplate"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/tester.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "No Output Format section in body; agent has Testing Standards and Test Types sections but omits any specification of how results or reports should be structured"
+        }
+      ]
+    },
+    {
+      "path": "claude/src/agents/ux-designer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Four vague word instances: 'appropriate' twice in methodology including 'appropriate to the task type' and 'appropriate interaction patterns', 'efficient' in decision table, 'necessary' in Output Contract"
+        }
+      ]
+    },
+    {
+      "path": "hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-injection",
+          "severity": "medium",
+          "line": 8,
+          "message": "Hook command binary paths resolved from ${extensionPath} env var; attacker-controlled env var redirects hook execution to arbitrary binary"
+        }
+      ]
+    },
+    {
+      "path": "mcp/maestro-server.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-injection",
+          "severity": "low",
+          "line": 3,
+          "message": "MAESTRO_RUNTIME env var selects platform adapter at runtime without validation; untrusted input could load unexpected or unintended adapter"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 25,
+          "message": "prepare lifecycle script automatically runs node scripts/install-git-hooks.js on npm install, silently reconfiguring git core.hooksPath without user consent"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 34,
+          "message": "devDependency c8 pinned with caret range (^10.1.3) allowing automatic minor and patch version upgrades on fresh installs"
+        }
+      ]
+    },
+    {
+      "path": "plugins/maestro/src/agents/tester.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Five vague word instances: 'appropriate' in commentary, 'comprehensive' twice in persona and methodology sections, 'proper' in mocking guidance, 'relevant' in input type description"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install-codex-plugin.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "high",
+          "line": 10,
+          "message": "Script writes plugin files to ~/.codex/plugins/maestro/ and modifies ~/.agents/plugins/marketplace.json outside repository directory"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install-git-hooks.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 30,
+          "message": "execSync executes git subprocesses automatically via prepare lifecycle hook, running on every npm install in any consuming repository"
+        },
+        {
+          "rule": "SEC-path-mod",
+          "severity": "medium",
+          "line": 42,
+          "message": "Modifies git core.hooksPath to .githooks/ directory; if .githooks/ contents are malicious, all future git operations execute attacker code"
+        }
+      ]
+    },
+    {
+      "path": "src/agents/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": null,
+          "message": "Frontmatter lacks model field; all 75 agents in src/agents/, plugins/maestro/src/agents/, and claude/src/agents/ share this defect universally"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "Three parallel implementations exist for the same 15 core agent roles (src/agents/ at ~89, claude/src/agents/ at ~90, claude/agents/ stubs at 75); quality diverges 14 points between full-body and stub variants"
+        }
+      ]
+    },
+    {
+      "path": "src/agents/design-system-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Five vague word instances: 'appropriate' appears 4 times (2 in commentary, 2 in body including 'appropriate level of token granularity' and 'appropriate composition pattern') plus 'necessary' in Output Contract"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 87,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 25,
+      "message": "prepare lifecycle script automatically runs node scripts/install-git-hooks.js on npm install, silently reconfiguring git core.hooksPath without user consent"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/install-codex-plugin.js",
+      "line": 10,
+      "message": "Script writes plugin files to ~/.codex/plugins/maestro/ and modifies ~/.agents/plugins/marketplace.json outside repository directory"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/install-git-hooks.js",
+      "line": 30,
+      "message": "execSync executes git subprocesses automatically via prepare lifecycle hook, running on every npm install in any consuming repository"
+    },
+    {
+      "rule": "SEC-path-mod",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install-git-hooks.js",
+      "line": 42,
+      "message": "Modifies git core.hooksPath to .githooks/ directory; if .githooks/ contents are malicious, all future git operations execute attacker code"
+    },
+    {
+      "rule": "SEC-env-injection",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": 8,
+      "message": "Hook command binary paths resolved from ${extensionPath} env var; attacker-controlled env var redirects hook execution to arbitrary binary"
+    },
+    {
+      "rule": "SEC-env-injection",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/.mcp.json",
+      "line": 5,
+      "message": "MCP server binary path and working directory resolved from ${CLAUDE_PLUGIN_ROOT} env var; poisoned env var redirects MCP server execution"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 34,
+      "message": "devDependency c8 pinned with caret range (^10.1.3) allowing automatic minor and patch version upgrades on fresh installs"
+    },
+    {
+      "rule": "SEC-env-injection",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mcp/maestro-server.js",
+      "line": 3,
+      "message": "MAESTRO_RUNTIME env var selects platform adapter at runtime without validation; untrusted input could load unexpected or unintended adapter"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/agents/coder.md",
+      "line": null,
+      "message": "Frontmatter lacks model field; all 75 agents in src/agents/, plugins/maestro/src/agents/, and claude/src/agents/ share this defect universally"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/agents/coder.md",
+      "line": null,
+      "message": "All 25 claude/agents/ stub agents lack an output format specification in their body; stubs defer to MCP tool get_agent but output contract is not specified"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/agents/coder.md",
+      "line": null,
+      "message": "All 25 claude/agents/ stubs have zero standalone example blocks in document body; examples are embedded in YAML description field only and not surfaced as agent-body examples"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "src/agents/design-system-engineer.md",
+      "line": null,
+      "message": "Five vague word instances: 'appropriate' appears 4 times (2 in commentary, 2 in body including 'appropriate level of token granularity' and 'appropriate composition pattern') plus 'necessary' in Output Contract"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/maestro/src/agents/tester.md",
+      "line": null,
+      "message": "Five vague word instances: 'appropriate' in commentary, 'comprehensive' twice in persona and methodology sections, 'proper' in mocking guidance, 'relevant' in input type description"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/coder.md",
+      "line": null,
+      "message": "Five vague word instances: 'appropriate' twice in commentary and body, 'proper' twice in implementation standards and error handling guidance, 'necessary' in Output Contract"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/data-engineer.md",
+      "line": null,
+      "message": "Five vague word instances: 'appropriate' twice in methodology (including 'appropriate denormalization'), 'proper' in indexing guidance, 'ensure' in query frequency check, 'necessary' in Output Contract"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/src/agents/tester.md",
+      "line": null,
+      "message": "No Output Format section in body; agent has Testing Standards and Test Types sections but omits any specification of how results or reports should be structured"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/src/agents/ml-engineer.md",
+      "line": null,
+      "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/ which include an Output Contract"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/src/agents/platform-engineer.md",
+      "line": null,
+      "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "claude/src/agents/mlops-engineer.md",
+      "line": null,
+      "message": "Body has Methodology, Work Areas, and Constraints sections but no Output Format section; inconsistent with most other claude/src/agents/"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/refactor.md",
+      "line": null,
+      "message": "Four vague word instances: 'appropriate' in commentary, 'proper' twice in patterns and decision framework sections, 'necessary' in Output Contract boilerplate"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/ux-designer.md",
+      "line": null,
+      "message": "Four vague word instances: 'appropriate' twice in methodology including 'appropriate to the task type' and 'appropriate interaction patterns', 'efficient' in decision table, 'necessary' in Output Contract"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/db2-dba.md",
+      "line": null,
+      "message": "Four vague word instances: 'appropriate' twice in commentary and protocol section including 'appropriate RTS protocol', 'proper' in lock analysis, 'necessary' in Output Contract"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude/src/agents/ibm-i-specialist.md",
+      "line": null,
+      "message": "Four vague word instances: 'appropriate' twice (example body and commentary), 'proper' in example body, 'necessary' in Output Contract boilerplate"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "claude/agents/coder.md",
+      "line": null,
+      "message": "All 25 claude/agents/ stubs defer methodology to MCP tool 'get_agent' declared in claude/.mcp.json; if CLAUDE_PLUGIN_ROOT is unset or MCP server unavailable, all stubs function as empty agents with no guidance"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "src/agents/coder.md",
+      "line": null,
+      "message": "Three parallel implementations exist for the same 15 core agent roles (src/agents/ at ~89, claude/src/agents/ at ~90, claude/agents/ stubs at 75); quality diverges 14 points between full-body and stub variants"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 370,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/josstei-maestro-orchestrate.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

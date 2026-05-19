@@ -1,0 +1,402 @@
+{
+  "project": "leowux/pony",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 10,
+    "average_score": 91,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": 17,
+          "message": "plugin.json repository URL (git@code.alipay.com:wuwenbang.wwb/pony.git) differs from package.json repository URL (git@github.com:leowux/pony.git); inconsistent canonical source reference"
+        }
+      ]
+    },
+    {
+      "path": "agents/executor.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has no concrete invocation example block; Output_Format section shows a template but not an actual input→output demonstration"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": 61,
+          "message": "Tool_Usage lists TaskCreate, TaskUpdate, TaskList as callable tools but these are not declared in plugin.json and do not match standard Claude Code built-in tool names; will silently fail at runtime"
+        }
+      ]
+    },
+    {
+      "path": "agents/explorer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has no concrete invocation example block; Output_Format section is a template only"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": 25,
+          "message": "Vague quantifier 'relevant' used in Success Criteria: 'ALL relevant matches found (not just the first one)' — 'relevant' is undefined and leaves scope ambiguous"
+        }
+      ]
+    },
+    {
+      "path": "agents/planner.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has no concrete invocation example block; Output_Format shows a template but not an actual planning session"
+        }
+      ]
+    },
+    {
+      "path": "agents/verifier.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has no concrete invocation example block; Output_Format is a template only"
+        }
+      ]
+    },
+    {
+      "path": "commands/hud.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools; Bash is required to invoke pony hud/hud-config CLI commands"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified for Claude's response after executing HUD management commands"
+        }
+      ]
+    },
+    {
+      "path": "commands/init.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools; Bash is required to run 'pony init'"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified for Claude's response after initializing Pony"
+        }
+      ]
+    },
+    {
+      "path": "commands/run.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Command instructs Claude to call Agent() but 'Agent' is not listed in allowed-tools frontmatter; runtime enforcement will block the default planner→executor→verifier pipeline"
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools despite explicitly using Agent tool in the Implementation section"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified for Claude's response at the end of the orchestration loop"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": 25,
+          "message": "Vague quantifier 'appropriate' in Workflow step 5: 'Use Agent tool with appropriate subagent_type' — the routing table already specifies the exact subagent_type, making 'appropriate' redundant and vague"
+        }
+      ]
+    },
+    {
+      "path": "commands/task.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools; Bash is required to invoke pony CLI subcommands"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified for Claude's response after task operations"
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Argument-hint requires a subcommand (<add|list|get|update|delete|next>) but the command body does not specify what Claude should do when invoked with no arguments"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 54,
+          "message": "vite-plus is pinned to 'latest' which resolves to whatever the package author publishes next; any future version installs automatically"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 43,
+          "message": "Production dependencies chalk ^5.3.0, commander ^12.0.0, zod ^3.22.0 use ^ ranges; minor/patch updates install automatically on fresh installs without lockfile"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 60,
+          "message": "publishConfig.registry points to internal Alipay registry (registry.antgroup-inc.cn); external consumers cannot install the package from standard npm and have no visibility into published versions"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-28T03:02:33Z",
+      "average_score": 91,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": null,
+      "message": "Command instructs Claude to call Agent() but 'Agent' is not listed in allowed-tools frontmatter; runtime enforcement will block the default planner→executor→verifier pipeline"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/executor.md",
+      "line": null,
+      "message": "Agent has no concrete invocation example block; Output_Format section shows a template but not an actual input→output demonstration"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/explorer.md",
+      "line": null,
+      "message": "Agent has no concrete invocation example block; Output_Format section is a template only"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/explorer.md",
+      "line": 25,
+      "message": "Vague quantifier 'relevant' used in Success Criteria: 'ALL relevant matches found (not just the first one)' — 'relevant' is undefined and leaves scope ambiguous"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/planner.md",
+      "line": null,
+      "message": "Agent has no concrete invocation example block; Output_Format shows a template but not an actual planning session"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/verifier.md",
+      "line": null,
+      "message": "Agent has no concrete invocation example block; Output_Format is a template only"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/hud.md",
+      "line": null,
+      "message": "Command declares no allowed-tools; Bash is required to invoke pony hud/hud-config CLI commands"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/hud.md",
+      "line": null,
+      "message": "No output format specified for Claude's response after executing HUD management commands"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/init.md",
+      "line": null,
+      "message": "Command declares no allowed-tools; Bash is required to run 'pony init'"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/init.md",
+      "line": null,
+      "message": "No output format specified for Claude's response after initializing Pony"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": null,
+      "message": "Command declares no allowed-tools despite explicitly using Agent tool in the Implementation section"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": null,
+      "message": "No output format specified for Claude's response at the end of the orchestration loop"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": 25,
+      "message": "Vague quantifier 'appropriate' in Workflow step 5: 'Use Agent tool with appropriate subagent_type' — the routing table already specifies the exact subagent_type, making 'appropriate' redundant and vague"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/task.md",
+      "line": null,
+      "message": "Command declares no allowed-tools; Bash is required to invoke pony CLI subcommands"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/task.md",
+      "line": null,
+      "message": "No output format specified for Claude's response after task operations"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/task.md",
+      "line": null,
+      "message": "Argument-hint requires a subcommand (<add|list|get|update|delete|next>) but the command body does not specify what Claude should do when invoked with no arguments"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 54,
+      "message": "vite-plus is pinned to 'latest' which resolves to whatever the package author publishes next; any future version installs automatically"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 43,
+      "message": "Production dependencies chalk ^5.3.0, commander ^12.0.0, zod ^3.22.0 use ^ ranges; minor/patch updates install automatically on fresh installs without lockfile"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 60,
+      "message": "publishConfig.registry points to internal Alipay registry (registry.antgroup-inc.cn); external consumers cannot install the package from standard npm and have no visibility into published versions"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/executor.md",
+      "line": 61,
+      "message": "Tool_Usage lists TaskCreate, TaskUpdate, TaskList as callable tools but these are not declared in plugin.json and do not match standard Claude Code built-in tool names; will silently fail at runtime"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": 17,
+      "message": "plugin.json repository URL (git@code.alipay.com:wuwenbang.wwb/pony.git) differs from package.json repository URL (git@github.com:leowux/pony.git); inconsistent canonical source reference"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 1,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/leowux-pony.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

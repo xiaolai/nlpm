@@ -1,0 +1,150 @@
+{
+  "project": "krodak/clickup-cli",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 95,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".agents/skills/testing-clickup-cli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 111,
+          "message": "Step 3 of 'New unit test' says 'edge cases' without defining what constitutes an edge case for this codebase"
+        }
+      ]
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Plugin manifest has no entries/commands/skills array; automation cannot enumerate exposed surfaces without a filesystem scan"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 48,
+          "message": "Production dependency @inquirer/prompts uses '^8.3.0'; minor-version bumps are auto-applied on fresh installs"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 49,
+          "message": "Production dependency chalk uses '^5.6.2'; minor-version bumps are auto-applied on fresh installs"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 50,
+          "message": "Production dependency commander uses '^14.0.3'; minor-version bumps are auto-applied on fresh installs"
+        }
+      ]
+    },
+    {
+      "path": "skills/clickup-cli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": 3,
+          "message": "Skill name field is 'clickup' while package name, plugin manifest name, and directory are all 'clickup-cli'"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 95,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": null,
+      "message": "Plugin manifest has no entries/commands/skills array; automation cannot enumerate exposed surfaces without a filesystem scan"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/clickup-cli/SKILL.md",
+      "line": 3,
+      "message": "Skill name field is 'clickup' while package name, plugin manifest name, and directory are all 'clickup-cli'"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".agents/skills/testing-clickup-cli/SKILL.md",
+      "line": 111,
+      "message": "Step 3 of 'New unit test' says 'edge cases' without defining what constitutes an edge case for this codebase"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 48,
+      "message": "Production dependency @inquirer/prompts uses '^8.3.0'; minor-version bumps are auto-applied on fresh installs"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 49,
+      "message": "Production dependency chalk uses '^5.6.2'; minor-version bumps are auto-applied on fresh installs"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 50,
+      "message": "Production dependency commander uses '^14.0.3'; minor-version bumps are auto-applied on fresh installs"
+    }
+  ],
+  "repo_meta": {
+    "status": "tracked",
+    "stars": 57,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/krodak-clickup-cli.md"
+  },
+  "generated_at": "2026-05-19T09:50:42Z",
+  "schema_version": 1
+}

@@ -31,6 +31,6 @@
     "security": "CLEAR",
     "audit_report_path": "auditor/audits/xiaolai-nlpm-for-claude.md"
   },
-  "generated_at": "2026-05-19T09:08:35Z",
+  "generated_at": "2026-05-19T09:50:19Z",
   "schema_version": 1
 }

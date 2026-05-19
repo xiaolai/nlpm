@@ -1,0 +1,157 @@
+{
+  "project": "0xfurai/claude-code-subagents",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 74,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "agents/gin-expert.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": 3,
+          "message": "Description reads 'Create a Claude Code Agent that is an expert in the Gin web framework...' — self-referential meta-phrasing instead of a direct statement of the agent's purpose and capabilities."
+        }
+      ]
+    },
+    {
+      "path": "agents/html-expert.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "medium",
+          "line": null,
+          "message": "Zero example blocks across all 100 agents in this repository; no worked invocation scenarios exist to verify correct agent behaviour. Representative file shown; penalty applies to every agent file."
+        }
+      ]
+    },
+    {
+      "path": "agents/jasmine-expert.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Blank lines appear between each key-value pair in the YAML front matter. The YAML spec permits this but it violates the de-facto Claude Code agent file convention and may trip strict front-matter parsers."
+        }
+      ]
+    },
+    {
+      "path": "agents/prisma-expert.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": null,
+          "message": "9 vague quantifiers in a single file (appropriate×2, comprehensive×3, efficient×3, clear×2) without measurable thresholds; repo-wide pattern affects all 100 agents. Worst-case file shown; median penalty across repo is -12."
+        }
+      ]
+    },
+    {
+      "path": "agents/sqs-expert.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Entire file is indented with 4 leading spaces; YAML front-matter delimiters (---) never appear at column 0, so the name, description, and model fields are not parsed by any standard YAML front-matter processor."
+        },
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": null,
+          "message": "Beyond the frontmatter bug, the body contains 6+ vague quantifiers (appropriate, efficient, comprehensive, etc.) that would reduce quality score even if the indentation bug were fixed."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 74,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/sqs-expert.md",
+      "line": null,
+      "message": "Entire file is indented with 4 leading spaces; YAML front-matter delimiters (---) never appear at column 0, so the name, description, and model fields are not parsed by any standard YAML front-matter processor."
+    },
+    {
+      "rule": "R08",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/html-expert.md",
+      "line": null,
+      "message": "Zero example blocks across all 100 agents in this repository; no worked invocation scenarios exist to verify correct agent behaviour. Representative file shown; penalty applies to every agent file."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/prisma-expert.md",
+      "line": null,
+      "message": "9 vague quantifiers in a single file (appropriate×2, comprehensive×3, efficient×3, clear×2) without measurable thresholds; repo-wide pattern affects all 100 agents. Worst-case file shown; median penalty across repo is -12."
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/gin-expert.md",
+      "line": 3,
+      "message": "Description reads 'Create a Claude Code Agent that is an expert in the Gin web framework...' — self-referential meta-phrasing instead of a direct statement of the agent's purpose and capabilities."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/jasmine-expert.md",
+      "line": 1,
+      "message": "Blank lines appear between each key-value pair in the YAML front matter. The YAML spec permits this but it violates the de-facto Claude Code agent file convention and may trip strict front-matter parsers."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/sqs-expert.md",
+      "line": null,
+      "message": "Beyond the frontmatter bug, the body contains 6+ vague quantifiers (appropriate, efficient, comprehensive, etc.) that would reduce quality score even if the indentation bug were fixed."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 859,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/0xfurai-claude-code-subagents.md"
+  },
+  "generated_at": "2026-05-19T09:50:09Z",
+  "schema_version": 1
+}

@@ -1,0 +1,248 @@
+{
+  "project": "Dammyjay93/interface-design",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 6,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/commands/audit.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools declared in frontmatter; command reads source files and system.md but tool access is undeclared"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/critique.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools declared in frontmatter; command reads and rewrites UI files but tool access is undeclared"
+        },
+        {
+          "rule": "R13",
+          "severity": "low",
+          "line": null,
+          "message": "No empty input handling; command assumes a file was just built and does not specify behavior when invoked with no recent build context"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/extract.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools declared; Implementation step 1 explicitly calls for Glob but no tools are declared in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/init.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools declared; command loads a skill file via Read and may write system.md but tool access is undeclared"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "info",
+          "line": null,
+          "message": "interface-design:init is the primary entry point for the plugin but is absent from the Commands listing at the bottom of SKILL.md (lines 388-391)"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/status.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools declared; command reads system.md but tool access is undeclared"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/interface-design/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 381,
+          "message": "References non-existent file references/principles.md in Deep Dives section; code examples and dark mode detail are unreachable"
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 382,
+          "message": "References non-existent file references/validation.md in Deep Dives section; memory management and system.md update guidance is unreachable"
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 383,
+          "message": "References non-existent file references/critique.md in Deep Dives section; post-build critique protocol detail is unreachable"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": 43,
+          "message": "Vague quantifier: 'some decisions are creative and others are structural' — 'some' is imprecise in an instructional context"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": 14,
+          "message": "Scope section redirects to /frontend-design command which is not defined in this plugin or documented as a companion plugin"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/skills/interface-design/SKILL.md",
+      "line": 381,
+      "message": "References non-existent file references/principles.md in Deep Dives section; code examples and dark mode detail are unreachable"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/skills/interface-design/SKILL.md",
+      "line": 382,
+      "message": "References non-existent file references/validation.md in Deep Dives section; memory management and system.md update guidance is unreachable"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/skills/interface-design/SKILL.md",
+      "line": 383,
+      "message": "References non-existent file references/critique.md in Deep Dives section; post-build critique protocol detail is unreachable"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/audit.md",
+      "line": null,
+      "message": "No allowed-tools declared in frontmatter; command reads source files and system.md but tool access is undeclared"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/critique.md",
+      "line": null,
+      "message": "No allowed-tools declared in frontmatter; command reads and rewrites UI files but tool access is undeclared"
+    },
+    {
+      "rule": "R13",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/critique.md",
+      "line": null,
+      "message": "No empty input handling; command assumes a file was just built and does not specify behavior when invoked with no recent build context"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/extract.md",
+      "line": null,
+      "message": "No allowed-tools declared; Implementation step 1 explicitly calls for Glob but no tools are declared in frontmatter"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/init.md",
+      "line": null,
+      "message": "No allowed-tools declared; command loads a skill file via Read and may write system.md but tool access is undeclared"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/status.md",
+      "line": null,
+      "message": "No allowed-tools declared; command reads system.md but tool access is undeclared"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/interface-design/SKILL.md",
+      "line": 43,
+      "message": "Vague quantifier: 'some decisions are creative and others are structural' — 'some' is imprecise in an instructional context"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/interface-design/SKILL.md",
+      "line": 14,
+      "message": "Scope section redirects to /frontend-design command which is not defined in this plugin or documented as a companion plugin"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/commands/init.md",
+      "line": null,
+      "message": "interface-design:init is the primary entry point for the plugin but is absent from the Commands listing at the bottom of SKILL.md (lines 388-391)"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 4630,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/Dammyjay93-interface-design.md"
+  },
+  "generated_at": "2026-05-19T09:50:10Z",
+  "schema_version": 1
+}

@@ -1,0 +1,927 @@
+{
+  "project": "mbruhler/claude-orchestration",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 19,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "agents/workflow-socratic-designer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 294,
+          "message": "Write tool invoked at line 294 to create temp-agent files but is absent from tools: [Read, Grep, Task] — agent will fail at runtime if tool list is enforced"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 19,
+          "message": "AskUserQuestion is the agent's primary interaction mechanism (used 15+ times) but is not declared in tools: [Read, Grep, Task]"
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": 329,
+          "message": "Absolute path /Users/mbroler/.claude/plugins/repos/orchestration/docs/TEMP-SCRIPTS-DETECTION-GUIDE.md embeds author's macOS username and points to a file that does not exist anywhere in the repository"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "Agent does not declare a model field; model tier should be explicit for agents performing multi-step Socratic reasoning"
+        },
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": null,
+          "message": "Output format is described inline across process steps rather than in a dedicated ## Output section; makes it hard for callers to parse expected return shape"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 199,
+          "message": "'comprehensive prompt' uses the vague quantifier 'comprehensive' without defining what completeness criteria make a prompt comprehensive"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 272,
+          "message": "'Be thorough' is an unquantified instruction; thoroughness criteria are undefined"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "high",
+          "line": 329,
+          "message": "Absolute path /Users/mbroler/.claude/... embeds author's macOS username; TEMP-SCRIPTS-DETECTION-GUIDE.md does not exist in the repo; same file referenced portably in creating-workflows/SKILL.md also resolves to nothing"
+        }
+      ]
+    },
+    {
+      "path": "agents/workflow-syntax-designer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "Agent does not declare a model field"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 201,
+          "message": "'Intuitive' used as a design principle without objective criteria for what makes a name intuitive"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 54,
+          "message": "'Define behavior clearly' — 'clearly' is unquantified"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 64,
+          "message": "'comprehensive documentation' — 'comprehensive' is unquantified"
+        }
+      ]
+    },
+    {
+      "path": "commands/create.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/create.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/create.md uses Task, AskUserQuestion but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/examples.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/examples.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/examples.md uses Read, Glob, AskUserQuestion but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/explain.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/explain.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/explain.md uses Read, AskUserQuestion but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/help.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/help.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/help.md uses AskUserQuestion but declares no allowed-tools"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": null,
+          "message": "Quick-reference panel lists /orchestration:run, /orchestration:template, /orchestration:examples, /orchestration:explain without indicating they are deprecated; users following help will invoke deprecated paths"
+        }
+      ]
+    },
+    {
+      "path": "commands/init.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/init.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/init.md uses Glob, Read, AskUserQuestion, Write but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/menu.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/menu.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/menu.md uses AskUserQuestion, Glob, Grep but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/orchestrate.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/orchestrate.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/orchestrate.md routes via SlashCommand but declares no allowed-tools"
+        }
+      ]
+    },
+    {
+      "path": "commands/pull.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 38,
+          "message": "User-supplied workflow name from {{ARGS}} is used as-is in curl -o ./examples/<workflow-name>.flow — a name containing ../ segments could write files outside the examples/ directory"
+        },
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/pull.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/pull.md uses Bash (curl) but declares no allowed-tools field"
+        },
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": null,
+          "message": "Command requires a workflow identifier argument but has no handler for when {{ARGS}} is empty; the Phase 1 check would silently proceed with an empty string"
+        }
+      ]
+    },
+    {
+      "path": "commands/run.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-rm-glob",
+          "severity": "low",
+          "line": 547,
+          "message": "rm -rf ./temp-scripts/* and rm -f ./temp-agents/*.md executed as cleanup shell commands; limited blast radius and gated by user confirmation, but unconditional glob deletes are worth noting"
+        },
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/run.md has no name field in frontmatter; all 10 command files share this pattern suggesting intentional convention, but reduces AI discoverability"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/run.md uses Task, AskUserQuestion, Bash tools but declares no allowed-tools field in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "commands/template.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/template.md has no name field in frontmatter"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "commands/template.md uses Read, AskUserQuestion, Glob but declares no allowed-tools"
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Template command has file-not-found handling but no explicit empty-args handler; user invoking /orchestration:template with no argument gets file search on empty string"
+        }
+      ]
+    },
+    {
+      "path": "skills/creating-workflows-from-description/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 70,
+          "message": "'Show relevant example from docs/reference/examples.md' — 'relevant' is unquantified"
+        }
+      ]
+    },
+    {
+      "path": "skills/creating-workflows/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 222,
+          "message": "References docs/TEMP-SCRIPTS-DETECTION-GUIDE.md which is absent from the repository — the link silently fails"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 3,
+          "message": "'complex multi-agent workflows' — 'complex' is unquantified in the skill trigger description"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 35,
+          "message": "'I'll proactively create temp scripts' — 'proactively' is vague without a defined detection threshold"
+        }
+      ]
+    },
+    {
+      "path": "skills/designing-syntax/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 27,
+          "message": "'Intuitive — Names/symbols hint at behavior' — no measurable criteria for intuitiveness"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 103,
+          "message": "'Only when truly needed' — 'truly needed' has no objective threshold"
+        }
+      ]
+    },
+    {
+      "path": "skills/executing-workflows/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 333,
+          "message": "Links to examples/sequential.md, examples/parallel.md, examples/conditional.md, examples/error-handling.md, and examples/checkpoints.md — the skills/executing-workflows/examples/ directory does not exist"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 36,
+          "message": "'Manage errors gracefully' — 'gracefully' is unquantified"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 399,
+          "message": "'Add review points for critical steps' — 'critical' is undefined"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": 333,
+          "message": "Five category-specific example files referenced under skills/executing-workflows/examples/ but that directory does not exist in the repository"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": 1,
+          "message": "name: orchestration:executing-workflows uses the plugin namespace prefix; all other skills use bare names (e.g. name: managing-agents) — inconsistent naming convention across the skill set"
+        }
+      ]
+    },
+    {
+      "path": "skills/managing-agents/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 290,
+          "message": "'Make prompts comprehensive and specific' — both 'comprehensive' and 'specific' are unquantified"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 292,
+          "message": "'Recommend appropriate tools' — 'appropriate' is unquantified"
+        }
+      ]
+    },
+    {
+      "path": "skills/managing-temp-scripts/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-package-install",
+          "severity": "medium",
+          "line": 163,
+          "message": "Skill instructs pip install and npm install patterns with variables sourced from workflow context; no version pinning requirement is shown, and installs run in the user's global environment"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 14,
+          "message": "'complex multi-step tasks' — 'complex' is unquantified"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 437,
+          "message": "'Set restrictive file permissions' — 'restrictive' is unquantified"
+        }
+      ]
+    },
+    {
+      "path": "skills/using-orchestration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 59,
+          "message": "'Show relevant syntax based on user's needs' — 'relevant' is unquantified"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 294,
+      "message": "Write tool invoked at line 294 to create temp-agent files but is absent from tools: [Read, Grep, Task] — agent will fail at runtime if tool list is enforced"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 19,
+      "message": "AskUserQuestion is the agent's primary interaction mechanism (used 15+ times) but is not declared in tools: [Read, Grep, Task]"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 329,
+      "message": "Absolute path /Users/mbroler/.claude/plugins/repos/orchestration/docs/TEMP-SCRIPTS-DETECTION-GUIDE.md embeds author's macOS username and points to a file that does not exist anywhere in the repository"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/creating-workflows/SKILL.md",
+      "line": 222,
+      "message": "References docs/TEMP-SCRIPTS-DETECTION-GUIDE.md which is absent from the repository — the link silently fails"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/executing-workflows/SKILL.md",
+      "line": 333,
+      "message": "Links to examples/sequential.md, examples/parallel.md, examples/conditional.md, examples/error-handling.md, and examples/checkpoints.md — the skills/executing-workflows/examples/ directory does not exist"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/pull.md",
+      "line": 38,
+      "message": "User-supplied workflow name from {{ARGS}} is used as-is in curl -o ./examples/<workflow-name>.flow — a name containing ../ segments could write files outside the examples/ directory"
+    },
+    {
+      "rule": "SEC-runtime-package-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/managing-temp-scripts/SKILL.md",
+      "line": 163,
+      "message": "Skill instructs pip install and npm install patterns with variables sourced from workflow context; no version pinning requirement is shown, and installs run in the user's global environment"
+    },
+    {
+      "rule": "SEC-rm-glob",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": 547,
+      "message": "rm -rf ./temp-scripts/* and rm -f ./temp-agents/*.md executed as cleanup shell commands; limited blast radius and gated by user confirmation, but unconditional glob deletes are worth noting"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": null,
+      "message": "commands/run.md has no name field in frontmatter; all 10 command files share this pattern suggesting intentional convention, but reduces AI discoverability"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/pull.md",
+      "line": null,
+      "message": "commands/pull.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/init.md",
+      "line": null,
+      "message": "commands/init.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/template.md",
+      "line": null,
+      "message": "commands/template.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/examples.md",
+      "line": null,
+      "message": "commands/examples.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/orchestrate.md",
+      "line": null,
+      "message": "commands/orchestrate.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/help.md",
+      "line": null,
+      "message": "commands/help.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/explain.md",
+      "line": null,
+      "message": "commands/explain.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/menu.md",
+      "line": null,
+      "message": "commands/menu.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/create.md",
+      "line": null,
+      "message": "commands/create.md has no name field in frontmatter"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/run.md",
+      "line": null,
+      "message": "commands/run.md uses Task, AskUserQuestion, Bash tools but declares no allowed-tools field in frontmatter"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/pull.md",
+      "line": null,
+      "message": "commands/pull.md uses Bash (curl) but declares no allowed-tools field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/init.md",
+      "line": null,
+      "message": "commands/init.md uses Glob, Read, AskUserQuestion, Write but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/template.md",
+      "line": null,
+      "message": "commands/template.md uses Read, AskUserQuestion, Glob but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/examples.md",
+      "line": null,
+      "message": "commands/examples.md uses Read, Glob, AskUserQuestion but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/orchestrate.md",
+      "line": null,
+      "message": "commands/orchestrate.md routes via SlashCommand but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/help.md",
+      "line": null,
+      "message": "commands/help.md uses AskUserQuestion but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/explain.md",
+      "line": null,
+      "message": "commands/explain.md uses Read, AskUserQuestion but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/menu.md",
+      "line": null,
+      "message": "commands/menu.md uses AskUserQuestion, Glob, Grep but declares no allowed-tools"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/create.md",
+      "line": null,
+      "message": "commands/create.md uses Task, AskUserQuestion but declares no allowed-tools"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": null,
+      "message": "Agent does not declare a model field; model tier should be explicit for agents performing multi-step Socratic reasoning"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-syntax-designer.md",
+      "line": null,
+      "message": "Agent does not declare a model field"
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": null,
+      "message": "Output format is described inline across process steps rather than in a dedicated ## Output section; makes it hard for callers to parse expected return shape"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 199,
+      "message": "'comprehensive prompt' uses the vague quantifier 'comprehensive' without defining what completeness criteria make a prompt comprehensive"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 272,
+      "message": "'Be thorough' is an unquantified instruction; thoroughness criteria are undefined"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-syntax-designer.md",
+      "line": 201,
+      "message": "'Intuitive' used as a design principle without objective criteria for what makes a name intuitive"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-syntax-designer.md",
+      "line": 54,
+      "message": "'Define behavior clearly' — 'clearly' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/workflow-syntax-designer.md",
+      "line": 64,
+      "message": "'comprehensive documentation' — 'comprehensive' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/managing-agents/SKILL.md",
+      "line": 290,
+      "message": "'Make prompts comprehensive and specific' — both 'comprehensive' and 'specific' are unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/managing-agents/SKILL.md",
+      "line": 292,
+      "message": "'Recommend appropriate tools' — 'appropriate' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/executing-workflows/SKILL.md",
+      "line": 36,
+      "message": "'Manage errors gracefully' — 'gracefully' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/executing-workflows/SKILL.md",
+      "line": 399,
+      "message": "'Add review points for critical steps' — 'critical' is undefined"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/designing-syntax/SKILL.md",
+      "line": 27,
+      "message": "'Intuitive — Names/symbols hint at behavior' — no measurable criteria for intuitiveness"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/designing-syntax/SKILL.md",
+      "line": 103,
+      "message": "'Only when truly needed' — 'truly needed' has no objective threshold"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/managing-temp-scripts/SKILL.md",
+      "line": 14,
+      "message": "'complex multi-step tasks' — 'complex' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/managing-temp-scripts/SKILL.md",
+      "line": 437,
+      "message": "'Set restrictive file permissions' — 'restrictive' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/creating-workflows/SKILL.md",
+      "line": 3,
+      "message": "'complex multi-agent workflows' — 'complex' is unquantified in the skill trigger description"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/creating-workflows/SKILL.md",
+      "line": 35,
+      "message": "'I'll proactively create temp scripts' — 'proactively' is vague without a defined detection threshold"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/using-orchestration/SKILL.md",
+      "line": 59,
+      "message": "'Show relevant syntax based on user's needs' — 'relevant' is unquantified"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/creating-workflows-from-description/SKILL.md",
+      "line": 70,
+      "message": "'Show relevant example from docs/reference/examples.md' — 'relevant' is unquantified"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/pull.md",
+      "line": null,
+      "message": "Command requires a workflow identifier argument but has no handler for when {{ARGS}} is empty; the Phase 1 check would silently proceed with an empty string"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/template.md",
+      "line": null,
+      "message": "Template command has file-not-found handling but no explicit empty-args handler; user invoking /orchestration:template with no argument gets file search on empty string"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/workflow-socratic-designer.md",
+      "line": 329,
+      "message": "Absolute path /Users/mbroler/.claude/... embeds author's macOS username; TEMP-SCRIPTS-DETECTION-GUIDE.md does not exist in the repo; same file referenced portably in creating-workflows/SKILL.md also resolves to nothing"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/executing-workflows/SKILL.md",
+      "line": 333,
+      "message": "Five category-specific example files referenced under skills/executing-workflows/examples/ but that directory does not exist in the repository"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/help.md",
+      "line": null,
+      "message": "Quick-reference panel lists /orchestration:run, /orchestration:template, /orchestration:examples, /orchestration:explain without indicating they are deprecated; users following help will invoke deprecated paths"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/executing-workflows/SKILL.md",
+      "line": 1,
+      "message": "name: orchestration:executing-workflows uses the plugin namespace prefix; all other skills use bare names (e.g. name: managing-agents) — inconsistent naming convention across the skill set"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 215,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/mbruhler-claude-orchestration.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

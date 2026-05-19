@@ -1,0 +1,612 @@
+{
+  "project": "parcadei/Continuous-Claude-v3",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 26,
+    "average_score": 78,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/agents/agentica-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references a non-existent skill path; skill context will be absent"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/arbiter.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Testing agent has no examples"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/architect.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Planning agent has no examples"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/braintrust-analyst.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "No tools field declared; agent will silently have no tools or inherit all from parent, neither of which is the intended behavior"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/context-query-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "No tools field; the agent's core function (running artifact_query.py) requires Bash which is not declared"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/debug-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references a non-existent skill path; skill will silently not load"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/judge.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Agent runs shell commands in its instructions but Bash is not in the declared tools list"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/kraken.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Primary implementation agent has no examples"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/liaison.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Agent shows bash-dependent workflow without Bash declared in tools"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/maestro.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Maestro's agent registry is stale; references three deleted agents that no longer exist"
+        },
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Maestro orchestrator has no examples despite being the primary workflow coordinator"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/onboard.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no tools field; least-privilege principle violated"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/plan-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references a non-existent skill path"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/plan-reviewer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Agent has a verification workflow that requires Bash but it is not declared in tools"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/research-codebase.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references three non-existent sub-agents by name; Task spawns will fail at runtime"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/review-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no tools field"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/scout.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Scout has no examples; developers new to the project cannot see typical invocations"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/session-analyst.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references a non-existent skill path"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/sleuth.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "Bug investigation agent has no examples"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/surveyor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Agent's rp-cli workflow requires Bash but it is not declared in tools"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/validate-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-frontmatter",
+          "severity": "high",
+          "line": 4,
+          "message": "validate-agent uses model: haiku in violation of the project's no-haiku rule"
+        },
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no tools field; in addition to the model violation, this agent lacks tool constraints"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/build/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-frontmatter",
+          "severity": "medium",
+          "line": 4,
+          "message": "Non-standard frontmatter field name (underscore vs hyphen); parsers checking for `user-invocable` will silently miss this skill's invocability declaration"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/plan-agent/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 2,
+          "message": "Skill's declared name (planning-agent) does not match its folder path (plan-agent); causes confusion in skill activation and cross-references"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/prove/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 22,
+          "message": "Skill instructs Claude to pipe a remote shell script directly to sh with no integrity check"
+        }
+      ]
+    },
+    {
+      "path": "opc/scripts/repoprompt_async.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 47,
+          "message": "subprocess.run with shell=True and user-controlled string argument — shell injection risk if workspace name contains metacharacters"
+        }
+      ]
+    },
+    {
+      "path": "opc/scripts/setup/math_features.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "medium",
+          "line": 143,
+          "message": "Setup script prints curl-pipe-to-sh install instruction for Lean elan; not auto-executed but propagates insecure install pattern to users"
+        }
+      ]
+    },
+    {
+      "path": "opc/scripts/setup/wizard.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "medium",
+          "line": 229,
+          "message": "Setup wizard prints curl-pipe-to-sh install instruction for Lean elan at lines 229, 560, and 1136"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T13:44:22Z",
+      "average_score": 78,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "high",
+      "file": ".claude/skills/prove/SKILL.md",
+      "line": 22,
+      "message": "Skill instructs Claude to pipe a remote shell script directly to sh with no integrity check — Line 22: `curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh` — live shell-pipe in a skill file loaded into Claude context as instructions"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "high",
+      "file": "opc/scripts/repoprompt_async.py",
+      "line": 47,
+      "message": "subprocess.run with shell=True and user-controlled string argument — shell injection risk if workspace name contains metacharacters — Line 47: `subprocess.run(cmd, shell=True, ...)` where cmd is an f-string built from user-provided workspace/task arguments passed via CLI args"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "opc/scripts/setup/math_features.py",
+      "line": 143,
+      "message": "Setup script prints curl-pipe-to-sh install instruction for Lean elan; not auto-executed but propagates insecure install pattern to users"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "opc/scripts/setup/wizard.py",
+      "line": 229,
+      "message": "Setup wizard prints curl-pipe-to-sh install instruction for Lean elan at lines 229, 560, and 1136"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/research-codebase.md",
+      "line": null,
+      "message": "Agent references three non-existent sub-agents by name; Task spawns will fail at runtime — Agents `codebase-locator`, `codebase-analyzer`, `codebase-pattern-finder` referenced in prompt body — none exist in .claude/agents/"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/maestro.md",
+      "line": null,
+      "message": "Maestro's agent registry is stale; references three deleted agents that no longer exist — Agent Reference table in maestro.md lists `turbo`, `pioneer`, `nexus` — none exist in .claude/agents/"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/debug-agent.md",
+      "line": null,
+      "message": "Agent references a non-existent skill path; skill will silently not load — Prompt instructs loading `.claude/skills/debug/SKILL.md` — path does not exist; no `debug/` skill folder found"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/plan-agent.md",
+      "line": null,
+      "message": "Agent references a non-existent skill path — Prompt references `.claude/skills/create_plan/SKILL.md` — no `create_plan/` folder exists in .claude/skills/"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/agentica-agent.md",
+      "line": null,
+      "message": "Agent references a non-existent skill path; skill context will be absent — Prompt references `.claude/skills/agentica-sdk/SKILL.md` — no `agentica-sdk/` skill folder exists"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/session-analyst.md",
+      "line": null,
+      "message": "Agent references a non-existent skill path — Prompt references `.claude/skills/braintrust-analyze/SKILL.md` — no such skill exists; `braintrust-tracing/SKILL.md` is the closest match"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/braintrust-analyst.md",
+      "line": null,
+      "message": "No tools field declared; agent will silently have no tools or inherit all from parent, neither of which is the intended behavior — Agent has no `tools:` frontmatter field but prompt body runs Python scripts via Bash and writes output files"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/context-query-agent.md",
+      "line": null,
+      "message": "No tools field; the agent's core function (running artifact_query.py) requires Bash which is not declared — Agent has no `tools:` field but prompt runs `artifact_query.py` via Bash; Bash is unavailable without declaration"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/judge.md",
+      "line": null,
+      "message": "Agent runs shell commands in its instructions but Bash is not in the declared tools list — Tools declares [Read, Grep, Glob] but prompt shows `git diff HEAD` and `uv run pytest` commands that require Bash"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/surveyor.md",
+      "line": null,
+      "message": "Agent's rp-cli workflow requires Bash but it is not declared in tools — Tools declares [Read, Grep, Glob] but prompt shows `rp-cli snapshot` and `rp-cli switch` commands requiring Bash"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/liaison.md",
+      "line": null,
+      "message": "Agent shows bash-dependent workflow without Bash declared in tools — Tools declares [Read, Grep, Glob] but prompt shows `cat FILE` and `rp-cli` bash commands"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/plan-reviewer.md",
+      "line": null,
+      "message": "Agent has a verification workflow that requires Bash but it is not declared in tools — Tools declares [Read, Grep, Glob] but 'Verification Commands' section shows bash commands that require Bash"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/skills/plan-agent/SKILL.md",
+      "line": 2,
+      "message": "Skill's declared name (planning-agent) does not match its folder path (plan-agent); causes confusion in skill activation and cross-references — Frontmatter line 2: `name: planning-agent` but file is at `.claude/skills/plan-agent/SKILL.md`; skill activation by folder name `plan-agent` will find a skill declaring a different name"
+    },
+    {
+      "rule": "BUG-invalid-frontmatter",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/skills/build/SKILL.md",
+      "line": 4,
+      "message": "Non-standard frontmatter field name (underscore vs hyphen); parsers checking for `user-invocable` will silently miss this skill's invocability declaration — Frontmatter line 4: `user_invocable: true` — canonical field name uses hyphen: `user-invocable`"
+    },
+    {
+      "rule": "BUG-invalid-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/validate-agent.md",
+      "line": 4,
+      "message": "validate-agent uses model: haiku in violation of the project's no-haiku rule — Frontmatter: `model: haiku` — project rule `.claude/rules/no-haiku.md` explicitly states: 'Never use model: haiku when spawning agents via the Task tool'"
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/agents/onboard.md",
+      "line": null,
+      "message": "Agent has no tools field; least-privilege principle violated — No `tools:` field present in frontmatter; agent inherits all parent tools"
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/agents/review-agent.md",
+      "line": null,
+      "message": "Agent has no tools field — No `tools:` field in frontmatter"
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/agents/validate-agent.md",
+      "line": null,
+      "message": "Agent has no tools field; in addition to the model violation, this agent lacks tool constraints — No `tools:` field in frontmatter"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/maestro.md",
+      "line": null,
+      "message": "Maestro orchestrator has no examples despite being the primary workflow coordinator — No `## Examples` section found in agent body"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/scout.md",
+      "line": null,
+      "message": "Scout has no examples; developers new to the project cannot see typical invocations — No `## Examples` section found in agent body"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/kraken.md",
+      "line": null,
+      "message": "Primary implementation agent has no examples — No `## Examples` section found in agent body"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/arbiter.md",
+      "line": null,
+      "message": "Testing agent has no examples — No `## Examples` section found in agent body"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/sleuth.md",
+      "line": null,
+      "message": "Bug investigation agent has no examples — No `## Examples` section found in agent body"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/agents/architect.md",
+      "line": null,
+      "message": "Planning agent has no examples — No `## Examples` section found in agent body"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 1200,
+    "security": null,
+    "audit_report_path": "auditor/audits/parcadei-Continuous-Claude-v3.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

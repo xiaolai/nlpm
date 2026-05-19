@@ -1,0 +1,36 @@
+{
+  "project": "slavingia/skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 97,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-07T01:56:49Z",
+      "average_score": 97,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "tracked",
+    "stars": null,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/slavingia-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:42Z",
+  "schema_version": 1
+}

@@ -1,0 +1,129 @@
+{
+  "project": "lackeyjb/playwright-skill",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 3,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-version-drift",
+          "severity": "medium",
+          "line": 9,
+          "message": "metadata.version is \"1.0.0\" but plugins[0].version and plugin.json are both \"4.1.0\"; outer metadata version was not updated when plugin advanced from v1 to v4"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "marketplace.json metadata.version \"1.0.0\" diverges from plugin.json version \"4.1.0\"; version fields across manifests are out of sync"
+        }
+      ]
+    },
+    {
+      "path": "skills/playwright-skill/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 373,
+          "message": "\"comprehensive Playwright API documentation\" — 'comprehensive' is a subjective adjective with no measurable criteria, borderline R01 vague quantifier"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 3,
+          "message": "'writes clean test scripts to /tmp' in description — 'clean' is subjective with no measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/playwright-skill/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 20,
+          "message": "\"playwright\": \"^1.57.0\" allows automatic minor-version updates; a supply-chain compromise in a minor playwright release would silently propagate to all installs"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-13T03:37:23Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-version-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude-plugin/marketplace.json",
+      "line": 9,
+      "message": "metadata.version is \"1.0.0\" but plugins[0].version and plugin.json are both \"4.1.0\"; outer metadata version was not updated when plugin advanced from v1 to v4"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/playwright-skill/SKILL.md",
+      "line": 373,
+      "message": "\"comprehensive Playwright API documentation\" — 'comprehensive' is a subjective adjective with no measurable criteria, borderline R01 vague quantifier"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/playwright-skill/SKILL.md",
+      "line": 3,
+      "message": "'writes clean test scripts to /tmp' in description — 'clean' is subjective with no measurable criteria"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/playwright-skill/package.json",
+      "line": 20,
+      "message": "\"playwright\": \"^1.57.0\" allows automatic minor-version updates; a supply-chain compromise in a minor playwright release would silently propagate to all installs"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude-plugin/marketplace.json",
+      "line": null,
+      "message": "marketplace.json metadata.version \"1.0.0\" diverges from plugin.json version \"4.1.0\"; version fields across manifests are out of sync"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 2607,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/lackeyjb-playwright-skill.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

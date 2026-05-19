@@ -1,0 +1,36 @@
+{
+  "project": "JuliusBrussee/caveman",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 92,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-17T22:58:39Z",
+      "average_score": 92,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 22505,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/JuliusBrussee-caveman.md"
+  },
+  "generated_at": "2026-05-19T09:50:41Z",
+  "schema_version": 1
+}

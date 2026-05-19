@@ -1,0 +1,892 @@
+{
+  "project": "nexu-io/open-design",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 40,
+    "average_score": 91,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Single-line @AGENTS.md redirect provides no NLPM frontmatter or project summary; acceptable as delegation pattern but undiscoverable by skill indexing"
+        }
+      ]
+    },
+    {
+      "path": "docs/examples/saas-landing-skill/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R30",
+          "severity": "high",
+          "line": 2,
+          "message": "name: saas-landing collides with skills/saas-landing/SKILL.md; this is the example copy — rename to disambiguate"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-HIGH",
+          "severity": "high",
+          "line": 1,
+          "message": "postinstall hook fires node ./scripts/postinstall.mjs on every pnpm install; script content verified: runs pnpm build on 5 internal workspace packages only — no network access, no remote code execution"
+        }
+      ]
+    },
+    {
+      "path": "scripts/postinstall.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-LOW",
+          "severity": "low",
+          "line": 1,
+          "message": "Uses spawnSync to invoke pnpm build; low risk (internal packages only) but any future addition to the package list could introduce supply-chain exposure without re-review"
+        }
+      ]
+    },
+    {
+      "path": "skills/audio-jingle/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "No artifact tag in output contract; skill dispatches to external tool without specifying returned artifact shape or MIME type; vague: some, various"
+        }
+      ]
+    },
+    {
+      "path": "skills/editorial-collage-deck/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": 1,
+          "message": "od block fields are scattered across skill body rather than structured YAML frontmatter; triggers absent from YAML header making the skill undiscoverable by daemon trigger matching"
+        }
+      ]
+    },
+    {
+      "path": "skills/guizang-ppt/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R30",
+          "severity": "low",
+          "line": 2,
+          "message": "name: magazine-web-ppt does not match folder name guizang-ppt; inconsistency confuses skill registry lookups even without hard collision"
+        }
+      ]
+    },
+    {
+      "path": "skills/hatch-pet/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": 1,
+          "message": "Vague: some, appropriate; subagent script paths partially assume Codex environment without documenting cross-environment portability requirements"
+        }
+      ]
+    },
+    {
+      "path": "skills/hatch-pet/scripts/finalize_pet_run.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-MEDIUM",
+          "severity": "medium",
+          "line": 1,
+          "message": "Writes to ~/.codex/ and reads CODEX_HOME env var, creating side-effects outside project root that persist after run completion"
+        }
+      ]
+    },
+    {
+      "path": "skills/hatch-pet/scripts/generate_pet_images.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-MEDIUM",
+          "severity": "medium",
+          "line": 83,
+          "message": "subprocess.run([\"curl\",...]) calls https://api.openai.com/v1/images/edits and /generations with OPENAI_API_KEY from os.environ; key visible in process args (visible to ps/proc)"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-course-module/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-dir-key-nav-minimal/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-graphify-dark-graph/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-hermes-cyber-terminal/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-knowledge-arch-blueprint/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-obsidian-claude-gradient/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-pitch-deck/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-presenter-mode-reveal/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R30",
+          "severity": "critical",
+          "line": 2,
+          "message": "name field is 'html-ppt-presenter-mode' but folder is 'html-ppt-presenter-mode-reveal'; master html-ppt/SKILL.md references this template as presenter-mode-reveal — daemon will register wrong name and full-deck template will never activate"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-product-launch/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-taste-brutalist/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "No triggers or od block; pure style reference for CRT terminal / tactical telemetry aesthetic; undocumented as non-dispatchable"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-taste-editorial/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "No triggers or od block; pure editorial-minimalist style reference; undocumented as non-dispatchable"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-tech-sharing/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-testing-safety-alert/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-weekly-report/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-xhs-pastel-card/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-xhs-post/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt-xhs-white-editorial/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+        }
+      ]
+    },
+    {
+      "path": "skills/html-ppt/scripts/render.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-MEDIUM",
+          "severity": "medium",
+          "line": 55,
+          "message": "Chrome launched with --no-sandbox reducing renderer isolation; acceptable for local CI but risks being inadvertently used in cloud/shared environments"
+        },
+        {
+          "rule": "SEC-LOW",
+          "severity": "low",
+          "line": 12,
+          "message": "Chrome path hardcoded to /Applications/Google Chrome.app/... (macOS only); silently fails on Linux/Windows CI"
+        }
+      ]
+    },
+    {
+      "path": "skills/hyperframes/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Artifact hand-off from the hyperframes engine is not explicitly contracted; consumer must read dispatcher implementation to understand output shape; vague: some"
+        }
+      ]
+    },
+    {
+      "path": "skills/image-poster/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Explicitly suppresses artifact tag emission without documenting the alternative delivery path; consumers cannot determine how to receive output; vague: some, various"
+        }
+      ]
+    },
+    {
+      "path": "skills/invoice/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "4-bullet workflow insufficient for structured invoice output; output contract omits field inventory and file format; vague: some, appropriate"
+        }
+      ]
+    },
+    {
+      "path": "skills/meeting-notes/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "3-bullet workflow; output contract missing required field inventory; vague: some, relevant"
+        }
+      ]
+    },
+    {
+      "path": "skills/pm-spec/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "4-bullet workflow; no output schema for the spec document produced; vague: some, appropriate"
+        }
+      ]
+    },
+    {
+      "path": "skills/pptx-html-fidelity-audit/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": 1,
+          "message": "od block contains only mode and scenario; missing platform, preview, design_system; no explicit output contract section"
+        }
+      ]
+    },
+    {
+      "path": "skills/saas-landing/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R30",
+          "severity": "high",
+          "line": 2,
+          "message": "name: saas-landing collides with docs/examples/saas-landing-skill/SKILL.md which declares the same name; whichever loads second silently shadows the first in the daemon skill registry"
+        }
+      ]
+    },
+    {
+      "path": "skills/team-okrs/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "3-bullet workflow; output contract omits OKR structure (objective count, key result format); vague: some"
+        }
+      ]
+    },
+    {
+      "path": "skills/video-shortform/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 1,
+          "message": "Inline dispatch with no standalone output contract; consumer cannot determine artifact type without reading dispatcher implementation; vague: some"
+        }
+      ]
+    },
+    {
+      "path": "skills/web-prototype-taste-brutalist/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "No triggers or od block; pure style reference with no indication it is non-dispatchable; a skill-loading scanner will flag it as incomplete without this context"
+        }
+      ]
+    },
+    {
+      "path": "skills/web-prototype-taste-editorial/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "No triggers or od block; editorial-minimalist web prototype style reference (warm monochrome, serif display); undocumented as non-dispatchable"
+        }
+      ]
+    },
+    {
+      "path": "skills/web-prototype-taste-soft/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "No triggers or od block; Apple-tier soft premium style reference; undocumented as non-dispatchable"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-04T11:50:34Z",
+      "average_score": 91,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R30",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "skills/html-ppt-presenter-mode-reveal/SKILL.md",
+      "line": 2,
+      "message": "name field is 'html-ppt-presenter-mode' but folder is 'html-ppt-presenter-mode-reveal'; master html-ppt/SKILL.md references this template as presenter-mode-reveal — daemon will register wrong name and full-deck template will never activate"
+    },
+    {
+      "rule": "R30",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/saas-landing/SKILL.md",
+      "line": 2,
+      "message": "name: saas-landing collides with docs/examples/saas-landing-skill/SKILL.md which declares the same name; whichever loads second silently shadows the first in the daemon skill registry"
+    },
+    {
+      "rule": "R30",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "docs/examples/saas-landing-skill/SKILL.md",
+      "line": 2,
+      "message": "name: saas-landing collides with skills/saas-landing/SKILL.md; this is the example copy — rename to disambiguate"
+    },
+    {
+      "rule": "SEC-HIGH",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 1,
+      "message": "postinstall hook fires node ./scripts/postinstall.mjs on every pnpm install; script content verified: runs pnpm build on 5 internal workspace packages only — no network access, no remote code execution"
+    },
+    {
+      "rule": "SEC-MEDIUM",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/html-ppt/scripts/render.sh",
+      "line": 55,
+      "message": "Chrome launched with --no-sandbox reducing renderer isolation; acceptable for local CI but risks being inadvertently used in cloud/shared environments"
+    },
+    {
+      "rule": "SEC-MEDIUM",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/hatch-pet/scripts/generate_pet_images.py",
+      "line": 83,
+      "message": "subprocess.run([\"curl\",...]) calls https://api.openai.com/v1/images/edits and /generations with OPENAI_API_KEY from os.environ; key visible in process args (visible to ps/proc)"
+    },
+    {
+      "rule": "SEC-MEDIUM",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/hatch-pet/scripts/finalize_pet_run.py",
+      "line": 1,
+      "message": "Writes to ~/.codex/ and reads CODEX_HOME env var, creating side-effects outside project root that persist after run completion"
+    },
+    {
+      "rule": "SEC-LOW",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt/scripts/render.sh",
+      "line": 12,
+      "message": "Chrome path hardcoded to /Applications/Google Chrome.app/... (macOS only); silently fails on Linux/Windows CI"
+    },
+    {
+      "rule": "SEC-LOW",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scripts/postinstall.mjs",
+      "line": 1,
+      "message": "Uses spawnSync to invoke pnpm build; low risk (internal packages only) but any future addition to the package list could introduce supply-chain exposure without re-review"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/editorial-collage-deck/SKILL.md",
+      "line": 1,
+      "message": "od block fields are scattered across skill body rather than structured YAML frontmatter; triggers absent from YAML header making the skill undiscoverable by daemon trigger matching"
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/pptx-html-fidelity-audit/SKILL.md",
+      "line": 1,
+      "message": "od block contains only mode and scenario; missing platform, preview, design_system; no explicit output contract section"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/invoice/SKILL.md",
+      "line": 1,
+      "message": "4-bullet workflow insufficient for structured invoice output; output contract omits field inventory and file format; vague: some, appropriate"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/meeting-notes/SKILL.md",
+      "line": 1,
+      "message": "3-bullet workflow; output contract missing required field inventory; vague: some, relevant"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/pm-spec/SKILL.md",
+      "line": 1,
+      "message": "4-bullet workflow; no output schema for the spec document produced; vague: some, appropriate"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/team-okrs/SKILL.md",
+      "line": 1,
+      "message": "3-bullet workflow; output contract omits OKR structure (objective count, key result format); vague: some"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/audio-jingle/SKILL.md",
+      "line": 1,
+      "message": "No artifact tag in output contract; skill dispatches to external tool without specifying returned artifact shape or MIME type; vague: some, various"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/image-poster/SKILL.md",
+      "line": 1,
+      "message": "Explicitly suppresses artifact tag emission without documenting the alternative delivery path; consumers cannot determine how to receive output; vague: some, various"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/video-shortform/SKILL.md",
+      "line": 1,
+      "message": "Inline dispatch with no standalone output contract; consumer cannot determine artifact type without reading dispatcher implementation; vague: some"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/web-prototype-taste-brutalist/SKILL.md",
+      "line": 1,
+      "message": "No triggers or od block; pure style reference with no indication it is non-dispatchable; a skill-loading scanner will flag it as incomplete without this context"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-taste-brutalist/SKILL.md",
+      "line": 1,
+      "message": "No triggers or od block; pure style reference for CRT terminal / tactical telemetry aesthetic; undocumented as non-dispatchable"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-taste-editorial/SKILL.md",
+      "line": 1,
+      "message": "No triggers or od block; pure editorial-minimalist style reference; undocumented as non-dispatchable"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/web-prototype-taste-editorial/SKILL.md",
+      "line": 1,
+      "message": "No triggers or od block; editorial-minimalist web prototype style reference (warm monochrome, serif display); undocumented as non-dispatchable"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/web-prototype-taste-soft/SKILL.md",
+      "line": 1,
+      "message": "No triggers or od block; Apple-tier soft premium style reference; undocumented as non-dispatchable"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-course-module/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-dir-key-nav-minimal/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-graphify-dark-graph/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-hermes-cyber-terminal/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-knowledge-arch-blueprint/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-obsidian-claude-gradient/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-pitch-deck/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-product-launch/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-tech-sharing/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-testing-safety-alert/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-weekly-report/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-xhs-pastel-card/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-xhs-post/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/html-ppt-xhs-white-editorial/SKILL.md",
+      "line": 1,
+      "message": "Focused-entry skill delegates to master html-ppt but lacks standalone output contract and od.example_prompt; delegation is implicit and undocumented"
+    },
+    {
+      "rule": "R30",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/guizang-ppt/SKILL.md",
+      "line": 2,
+      "message": "name: magazine-web-ppt does not match folder name guizang-ppt; inconsistency confuses skill registry lookups even without hard collision"
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hatch-pet/SKILL.md",
+      "line": 1,
+      "message": "Vague: some, appropriate; subagent script paths partially assume Codex environment without documenting cross-environment portability requirements"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hyperframes/SKILL.md",
+      "line": 1,
+      "message": "Artifact hand-off from the hyperframes engine is not explicitly contracted; consumer must read dispatcher implementation to understand output shape; vague: some"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 1,
+      "message": "Single-line @AGENTS.md redirect provides no NLPM frontmatter or project summary; acceptable as delegation pattern but undiscoverable by skill indexing"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 20558,
+    "security": null,
+    "audit_report_path": "auditor/audits/nexu-io-open-design.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

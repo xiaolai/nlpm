@@ -1,0 +1,234 @@
+{
+  "project": "kazukinagata/shinkoku",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 8,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "CLAUDE.md has no YAML frontmatter (name, description). This is expected for project instruction files but the file was included in the artifact list."
+        }
+      ]
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 34,
+          "message": "Runtime dependencies use '>=' floor constraints (pydantic>=2.0, pdfplumber>=0.10, pyyaml>=6.0.3) rather than exact version pins. Future incompatible major versions could silently break tax calculations."
+        }
+      ]
+    },
+    {
+      "path": "skills/e-tax/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "info",
+          "line": null,
+          "message": "skills/e-tax/SKILL.md exceeds the 25k-token read limit; audit coverage limited to first ~150 lines. Full scoring is estimated. Recommend splitting into orchestration SKILL.md plus per-section sub-skill files."
+        }
+      ]
+    },
+    {
+      "path": "skills/e-tax/scripts/etax-stealth.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-browser-fingerprint-spoof",
+          "severity": "low",
+          "line": null,
+          "message": "Spoofs navigator.platform, navigator.userAgent, navigator.userAgentData, navigator.webdriver and patches server-baked OS-detection JS functions to present Windows identity. Purpose: enable Linux users to access Japan NTA e-Tax filing site that discriminates against non-Windows OSes. All manipulations are in-browser client-side; no network exfiltration."
+        }
+      ]
+    },
+    {
+      "path": "skills/furusato/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 253,
+          "message": "'適切に設定されているか' (appropriately set) used for home-office business ratio check. Does not specify how to verify appropriateness."
+        }
+      ]
+    },
+    {
+      "path": "skills/settlement/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 99,
+          "message": "'妥当か' (reasonable/appropriate) used as a vague qualifier for account balance review criteria. Ambiguous — does not specify what constitutes an abnormal balance."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 279,
+          "message": "Second instance of '妥当か' (reasonable/appropriate) used as a vague qualifier for expense account review. Does not specify what constitutes an abnormal expense."
+        }
+      ]
+    },
+    {
+      "path": "skills/setup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-package-install",
+          "severity": "medium",
+          "line": 21,
+          "message": "Skill instructs 'uv tool install git+https://github.com/kazukinagata/shinkoku' — a runtime install from a git URL with no version pin. Git URL installs bypass package registry integrity guarantees and resolve to HEAD at install time."
+        }
+      ]
+    },
+    {
+      "path": "skills/tax-advisor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 152,
+          "message": "'網羅的に' (comprehensively) used when instructing Claude to list all applicable deductions. Vague — does not specify the enumeration order or completeness criteria."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "skills/tax-advisor/SKILL.md references files under 'reference/' (singular) while all other skills use 'references/' (plural). Both directories exist and all paths resolve correctly, so this is a naming inconsistency rather than a broken reference."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "CLAUDE.md has no YAML frontmatter (name, description). This is expected for project instruction files but the file was included in the artifact list."
+    },
+    {
+      "rule": "R22",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/e-tax/SKILL.md",
+      "line": null,
+      "message": "skills/e-tax/SKILL.md exceeds the 25k-token read limit; audit coverage limited to first ~150 lines. Full scoring is estimated. Recommend splitting into orchestration SKILL.md plus per-section sub-skill files."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/settlement/SKILL.md",
+      "line": 99,
+      "message": "'妥当か' (reasonable/appropriate) used as a vague qualifier for account balance review criteria. Ambiguous — does not specify what constitutes an abnormal balance."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/settlement/SKILL.md",
+      "line": 279,
+      "message": "Second instance of '妥当か' (reasonable/appropriate) used as a vague qualifier for expense account review. Does not specify what constitutes an abnormal expense."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/furusato/SKILL.md",
+      "line": 253,
+      "message": "'適切に設定されているか' (appropriately set) used for home-office business ratio check. Does not specify how to verify appropriateness."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/tax-advisor/SKILL.md",
+      "line": 152,
+      "message": "'網羅的に' (comprehensively) used when instructing Claude to list all applicable deductions. Vague — does not specify the enumeration order or completeness criteria."
+    },
+    {
+      "rule": "SEC-runtime-package-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/setup/SKILL.md",
+      "line": 21,
+      "message": "Skill instructs 'uv tool install git+https://github.com/kazukinagata/shinkoku' — a runtime install from a git URL with no version pin. Git URL installs bypass package registry integrity guarantees and resolve to HEAD at install time."
+    },
+    {
+      "rule": "SEC-browser-fingerprint-spoof",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/e-tax/scripts/etax-stealth.js",
+      "line": null,
+      "message": "Spoofs navigator.platform, navigator.userAgent, navigator.userAgentData, navigator.webdriver and patches server-baked OS-detection JS functions to present Windows identity. Purpose: enable Linux users to access Japan NTA e-Tax filing site that discriminates against non-Windows OSes. All manipulations are in-browser client-side; no network exfiltration."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "pyproject.toml",
+      "line": 34,
+      "message": "Runtime dependencies use '>=' floor constraints (pydantic>=2.0, pdfplumber>=0.10, pyyaml>=6.0.3) rather than exact version pins. Future incompatible major versions could silently break tax calculations."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/tax-advisor/SKILL.md",
+      "line": null,
+      "message": "skills/tax-advisor/SKILL.md references files under 'reference/' (singular) while all other skills use 'references/' (plural). Both directories exist and all paths resolve correctly, so this is a naming inconsistency rather than a broken reference."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 335,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/kazukinagata-shinkoku.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

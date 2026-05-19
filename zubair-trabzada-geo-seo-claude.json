@@ -1,0 +1,36 @@
+{
+  "project": "zubair-trabzada/geo-seo-claude",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 88,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-16T23:43:55Z",
+      "average_score": 88,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 5411,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/zubair-trabzada-geo-seo-claude.md"
+  },
+  "generated_at": "2026-05-19T09:50:41Z",
+  "schema_version": 1
+}

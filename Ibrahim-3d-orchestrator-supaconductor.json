@@ -1,0 +1,339 @@
+{
+  "project": "Ibrahim-3d/orchestrator-supaconductor",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "agents/board-meeting.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 109,
+          "message": "Agent body explicitly instructs use of run_shell_command to create the board message-bus directory, but run_shell_command is not declared in the frontmatter tools list; the mkdir call will fail at runtime"
+        },
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Board of Directors agent has no example invocations; users cannot see what a properly formatted board-meeting request looks like or what output to expect"
+        }
+      ]
+    },
+    {
+      "path": "agents/code-reviewer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "model: inherit is not a valid model identifier; executor cannot determine appropriate model tier; likely intended to inherit from the calling agent but this convention is not supported in standard Claude Code frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "agents/conductor-orchestrator.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-injection",
+          "severity": "medium",
+          "line": null,
+          "message": "escalateToBoard helper spawns 'claude --print --model opus /orchestrator-supaconductor:board-meeting {question}' and invoke_superpower() interpolates $superpower and $params from track metadata into a shell command without sanitization; a track name or goal containing shell metacharacters (backtick, semicolon, $()) could inject arbitrary commands"
+        },
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "No example invocation blocks present; this is the most complex agent in the plugin (master orchestrator) yet users have no worked examples showing how to trigger it or what output to expect (applies to 11/15 agents — representative finding logged)"
+        }
+      ]
+    },
+    {
+      "path": "commands/brainstorm.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": null,
+          "message": "Two near-identical commands (brainstorm and brainstorming) targeting the same skill; creates discovery ambiguity and maintenance burden"
+        }
+      ]
+    },
+    {
+      "path": "commands/brainstorming.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "No allowed-tools field in frontmatter; the harness cannot restrict tool access for this command (applies to 48/49 commands in this plugin — only representative finding logged)"
+        }
+      ]
+    },
+    {
+      "path": "commands/evaluate-plan.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "Command body contains stale cross-reference to /loop-plan-evaluator; the canonical invocation for this command is /evaluate-plan (matching the file name); creates user confusion especially since both commands exist"
+        }
+      ]
+    },
+    {
+      "path": "commands/loop-executor.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body references legacy direct-file agent path format for loop-executor agent"
+        }
+      ]
+    },
+    {
+      "path": "commands/loop-planner.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body references the legacy .claude/agents/orchestrator-supaconductor:loop-planner.md path format; current Claude Code convention dispatches agents via the Task tool or Skill tool invocation, not by direct file path"
+        }
+      ]
+    },
+    {
+      "path": "commands/task-worker.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body references legacy direct-file agent path format for task-worker agent"
+        }
+      ]
+    },
+    {
+      "path": "commands/ui-audit/UI-UX-AUDIT-REPORT.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": null,
+          "message": "Report template placed inside commands/ directory with no YAML frontmatter; it cannot be invoked as a command and will confuse artifact discovery tools"
+        }
+      ]
+    },
+    {
+      "path": "hooks/session-start.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-outbound-network-call",
+          "severity": "low",
+          "line": 25,
+          "message": "Outbound curl call to GitHub API on every Claude Code session start to check for plugin updates; makes an unconditional network request to an external service with no caching, adding latency to each session start"
+        }
+      ]
+    },
+    {
+      "path": "skills/business-docs-sync/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Skill has no YAML frontmatter; both required name and description fields are absent; the skill is invisible to the Skill tool and cannot be discovered or invoked"
+        }
+      ]
+    },
+    {
+      "path": "skills/conductor-orchestrator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "Skill description summarizes the v3 feature set rather than describing triggering conditions; per writing-skills CSO guidance, descriptions that summarize workflow cause Claude to follow the description summary instead of loading and reading the full skill body"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "high",
+      "file": "agents/board-meeting.md",
+      "line": 109,
+      "message": "Agent body explicitly instructs use of run_shell_command to create the board message-bus directory, but run_shell_command is not declared in the frontmatter tools list; the mkdir call will fail at runtime — Phase 5 body: 'Use run_shell_command mkdir -p conductor/tracks/{trackId}/.message-bus/board/' — tool not in frontmatter tools list which only declares read_file and write_file"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "skills/business-docs-sync/SKILL.md",
+      "line": null,
+      "message": "Skill has no YAML frontmatter; both required name and description fields are absent; the skill is invisible to the Skill tool and cannot be discovered or invoked — File opens with raw markdown heading '# Business Docs Sync' with no preceding YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "commands/ui-audit/UI-UX-AUDIT-REPORT.md",
+      "line": null,
+      "message": "Report template placed inside commands/ directory with no YAML frontmatter; it cannot be invoked as a command and will confuse artifact discovery tools — File opens with '# UI/UX Audit Report' heading with no YAML frontmatter; scanning commands/ yields no name or description field"
+    },
+    {
+      "rule": "SEC-outbound-network-call",
+      "severity": "low",
+      "confidence": "high",
+      "file": "hooks/session-start.sh",
+      "line": 25,
+      "message": "Outbound curl call to GitHub API on every Claude Code session start to check for plugin updates; makes an unconditional network request to an external service with no caching, adding latency to each session start — Line 25: curl -s --max-time 3 \"https://api.github.com/repos/${REPO}/releases/latest\" — REPO is hardcoded to Ibrahim-3d/orchestrator-supaconductor; runs unconditionally on every SessionStart hook invocation"
+    },
+    {
+      "rule": "SEC-shell-injection",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/conductor-orchestrator.md",
+      "line": null,
+      "message": "escalateToBoard helper spawns 'claude --print --model opus /orchestrator-supaconductor:board-meeting {question}' and invoke_superpower() interpolates $superpower and $params from track metadata into a shell command without sanitization; a track name or goal containing shell metacharacters (backtick, semicolon, $()) could inject arbitrary commands"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "commands/loop-planner.md",
+      "line": null,
+      "message": "Command body references the legacy .claude/agents/orchestrator-supaconductor:loop-planner.md path format; current Claude Code convention dispatches agents via the Task tool or Skill tool invocation, not by direct file path — Command body: 'Use agent at .claude/agents/orchestrator-supaconductor:loop-planner.md' — path uses legacy direct-file convention"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "commands/task-worker.md",
+      "line": null,
+      "message": "Command body references legacy direct-file agent path format for task-worker agent — Command body references .claude/agents/orchestrator-supaconductor:task-worker.md — same stale-path pattern"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "commands/loop-executor.md",
+      "line": null,
+      "message": "Command body references legacy direct-file agent path format for loop-executor agent — Command body references .claude/agents/orchestrator-supaconductor:loop-executor.md — same stale-path pattern"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "high",
+      "file": "commands/evaluate-plan.md",
+      "line": null,
+      "message": "Command body contains stale cross-reference to /loop-plan-evaluator; the canonical invocation for this command is /evaluate-plan (matching the file name); creates user confusion especially since both commands exist — Command file is named evaluate-plan.md but body instructs 'Use /loop-plan-evaluator' which is the old command name"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "high",
+      "file": "agents/code-reviewer.md",
+      "line": null,
+      "message": "model: inherit is not a valid model identifier; executor cannot determine appropriate model tier; likely intended to inherit from the calling agent but this convention is not supported in standard Claude Code frontmatter — Frontmatter field: model: inherit — not a recognized Claude model ID (expected sonnet, opus, haiku, or a concrete model string)"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "commands/brainstorming.md",
+      "line": null,
+      "message": "No allowed-tools field in frontmatter; the harness cannot restrict tool access for this command (applies to 48/49 commands in this plugin — only representative finding logged) — Frontmatter has no allowed-tools field; applies to all 48 commands with this same omission"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "agents/conductor-orchestrator.md",
+      "line": null,
+      "message": "No example invocation blocks present; this is the most complex agent in the plugin (master orchestrator) yet users have no worked examples showing how to trigger it or what output to expect (applies to 11/15 agents — representative finding logged) — Agent body contains extensive TypeScript pseudocode and orchestration logic but no ## Examples section or examples: frontmatter field with concrete invocation samples"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/conductor-orchestrator/SKILL.md",
+      "line": null,
+      "message": "Skill description summarizes the v3 feature set rather than describing triggering conditions; per writing-skills CSO guidance, descriptions that summarize workflow cause Claude to follow the description summary instead of loading and reading the full skill body — Description: 'Master coordinator for the Evaluate-Loop workflow v3. Supports GOAL-DRIVEN entry, PARALLEL execution via worker agents, BOARD OF DIRECTORS deliberation, and message bus coordination...' — summarizes capabilities instead of triggering conditions"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "agents/board-meeting.md",
+      "line": null,
+      "message": "Board of Directors agent has no example invocations; users cannot see what a properly formatted board-meeting request looks like or what output to expect — Agent body describes a multi-phase deliberation protocol but contains no examples: section in frontmatter and no ## Examples section in body"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "high",
+      "file": "commands/brainstorm.md",
+      "line": null,
+      "message": "Two near-identical commands (brainstorm and brainstorming) targeting the same skill; creates discovery ambiguity and maintenance burden — commands/brainstorm.md and commands/brainstorming.md both invoke the brainstorming skill with identical behavior; no functional differentiation"
+    }
+  ],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 336,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/Ibrahim-3d-orchestrator-supaconductor.md"
+  },
+  "generated_at": "2026-05-19T09:50:44Z",
+  "schema_version": 1
+}

@@ -1,0 +1,36 @@
+{
+  "project": "rtk-ai/rtk",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 88,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-19T08:21:57Z",
+      "average_score": 88,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 28660,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/rtk-ai-rtk.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

@@ -1,0 +1,311 @@
+{
+  "project": "SimoneAvogadro/android-reverse-engineering-skill",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 92,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/android-reverse-engineering/commands/decompile.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 2,
+          "message": "Write and Edit declared in allowed-tools but never referenced in any of the 5 command steps; all file operations are delegated to Bash scripts"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "No formal ## Output section; output format guidance is embedded in step prose rather than a structured template"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 40,
+          "message": "\"better results\" is an undefined comparator; does not specify the metric by which vineflower+dex2jar improves output"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 53,
+          "message": "\"better Java output\" is an undefined comparator with no metric specified"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 62,
+          "message": "\"best quality\" is an undefined comparator"
+        }
+      ]
+    },
+    {
+      "path": "plugins/android-reverse-engineering/skills/android-reverse-engineering/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 64,
+          "message": "\"best results\" is an undefined comparator with no metric"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 97,
+          "message": "\"better Java output\" in the engine-selection table is an undefined comparator"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 104,
+          "message": "\"better code\" is an undefined comparator"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 159,
+          "message": "\"broad sweep\" is a vague scope quantifier; does not define which pattern categories are included"
+        }
+      ]
+    },
+    {
+      "path": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-user-content-display",
+          "severity": "low",
+          "line": 110,
+          "message": "cat prints manifest.json from a user-supplied XAPK archive directly to stdout; display-only but content is fully unsanitised"
+        }
+      ]
+    },
+    {
+      "path": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": 112,
+          "message": "run_grep() captures only $1 as pattern; calls run_grep -i 'regex' pass '-i' as the pattern and silently drop the regex, breaking the --auth case-insensitive search for credentials and base URLs"
+        }
+      ]
+    },
+    {
+      "path": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-sudo",
+          "severity": "high",
+          "line": 92,
+          "message": "pkg_install() invokes sudo apt-get/dnf/pacman unconditionally when sudo is available; package names are hardcoded so no injection risk, but sudo elevation proceeds without user confirmation"
+        },
+        {
+          "rule": "SEC-path-modification",
+          "severity": "high",
+          "line": 144,
+          "message": "add_to_profile() permanently appends export PATH and FERNFLOWER_JAR_PATH to ~/.zshrc, ~/.bashrc, or ~/.profile without asking the user"
+        },
+        {
+          "rule": "SEC-unverified-binary",
+          "severity": "medium",
+          "line": 230,
+          "message": "install_jadx downloads a zip from GitHub releases via curl/wget with no SHA-256 or signature verification before extracting and making it executable"
+        },
+        {
+          "rule": "SEC-unverified-binary",
+          "severity": "medium",
+          "line": 297,
+          "message": "install_vineflower downloads a JAR from GitHub releases with no integrity check before setting FERNFLOWER_JAR_PATH and executing it"
+        },
+        {
+          "rule": "SEC-unverified-binary",
+          "severity": "medium",
+          "line": 347,
+          "message": "install_dex2jar downloads a zip from GitHub releases with no integrity check before extracting and symlinking scripts into ~/.local/bin"
+        },
+        {
+          "rule": "SEC-network-fetch",
+          "severity": "medium",
+          "line": 135,
+          "message": "gh_latest_tag() makes an outbound call to api.github.com to resolve the latest release tag; the response is parsed with sed/grep and used directly to construct a download URL without validation"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-05T01:13:30Z",
+      "average_score": 92,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/commands/decompile.md",
+      "line": 2,
+      "message": "Write and Edit declared in allowed-tools but never referenced in any of the 5 command steps; all file operations are delegated to Bash scripts"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/commands/decompile.md",
+      "line": null,
+      "message": "No formal ## Output section; output format guidance is embedded in step prose rather than a structured template"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/commands/decompile.md",
+      "line": 40,
+      "message": "\"better results\" is an undefined comparator; does not specify the metric by which vineflower+dex2jar improves output"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/commands/decompile.md",
+      "line": 53,
+      "message": "\"better Java output\" is an undefined comparator with no metric specified"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/commands/decompile.md",
+      "line": 62,
+      "message": "\"best quality\" is an undefined comparator"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/SKILL.md",
+      "line": 64,
+      "message": "\"best results\" is an undefined comparator with no metric"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/SKILL.md",
+      "line": 97,
+      "message": "\"better Java output\" in the engine-selection table is an undefined comparator"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/SKILL.md",
+      "line": 104,
+      "message": "\"better code\" is an undefined comparator"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/SKILL.md",
+      "line": 159,
+      "message": "\"broad sweep\" is a vague scope quantifier; does not define which pattern categories are included"
+    },
+    {
+      "rule": "SEC-sudo",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 92,
+      "message": "pkg_install() invokes sudo apt-get/dnf/pacman unconditionally when sudo is available; package names are hardcoded so no injection risk, but sudo elevation proceeds without user confirmation"
+    },
+    {
+      "rule": "SEC-path-modification",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 144,
+      "message": "add_to_profile() permanently appends export PATH and FERNFLOWER_JAR_PATH to ~/.zshrc, ~/.bashrc, or ~/.profile without asking the user"
+    },
+    {
+      "rule": "SEC-unverified-binary",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 230,
+      "message": "install_jadx downloads a zip from GitHub releases via curl/wget with no SHA-256 or signature verification before extracting and making it executable"
+    },
+    {
+      "rule": "SEC-unverified-binary",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 297,
+      "message": "install_vineflower downloads a JAR from GitHub releases with no integrity check before setting FERNFLOWER_JAR_PATH and executing it"
+    },
+    {
+      "rule": "SEC-unverified-binary",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 347,
+      "message": "install_dex2jar downloads a zip from GitHub releases with no integrity check before extracting and symlinking scripts into ~/.local/bin"
+    },
+    {
+      "rule": "SEC-network-fetch",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh",
+      "line": 135,
+      "message": "gh_latest_tag() makes an outbound call to api.github.com to resolve the latest release tag; the response is parsed with sed/grep and used directly to construct a download URL without validation"
+    },
+    {
+      "rule": "SEC-user-content-display",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh",
+      "line": 110,
+      "message": "cat prints manifest.json from a user-supplied XAPK archive directly to stdout; display-only but content is fully unsanitised"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh",
+      "line": 112,
+      "message": "run_grep() captures only $1 as pattern; calls run_grep -i 'regex' pass '-i' as the pattern and silently drop the regex, breaking the --auth case-insensitive search for credentials and base URLs"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 5485,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/SimoneAvogadro-android-reverse-engineering-skill.md"
+  },
+  "generated_at": "2026-05-19T09:50:11Z",
+  "schema_version": 1
+}

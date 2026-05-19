@@ -1,0 +1,353 @@
+{
+  "project": "jordanrendric/claude-video-vision",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 7,
+    "average_score": 79,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "plugin.json declares version 1.2.0 but mcp-server/package.json is at 1.3.1; marketplace listings will show an outdated version while users receive newer code via the @latest npx install"
+        }
+      ]
+    },
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-package-install",
+          "severity": "medium",
+          "line": 4,
+          "message": "npx -y claude-video-vision@latest auto-installs the unversioned @latest npm tag on every MCP server startup; a supply-chain compromise of the package or a breaking update is immediately trusted and executed"
+        }
+      ]
+    },
+    {
+      "path": "agents/frame-describer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R13",
+          "severity": "info",
+          "line": null,
+          "message": "Agent has no example blocks; readers and the framework cannot verify expected input/output behavior"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 11,
+          "message": "Vague quantifier: 'concise but detailed' provides no objective measure for description length or depth"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 15,
+          "message": "Vague quantifier: 'key objects' — no criteria given for which objects qualify as key vs. incidental"
+        }
+      ]
+    },
+    {
+      "path": "commands/setup-video-vision.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Command frontmatter is missing the required `name` field; without it the command cannot register in the plugin's slash-command list"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body calls video_configure, video_setup, and video_watch but the frontmatter declares no allowed-tools; tool calls may be blocked in restricted permission modes"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 124,
+          "message": "Vague quantifier: 'a brief summary of the results' — no scope, length, or content criteria defined"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 131,
+          "message": "Vague quantifier: 'keep it concise' — unenforceable without a concrete length or detail target"
+        }
+      ]
+    },
+    {
+      "path": "commands/watch-video.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Command frontmatter is missing the required `name` field; without it the command cannot register in the plugin's slash-command list"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body calls video_info, video_analyze, video_watch, video_detail, and video_setup but the frontmatter declares no allowed-tools"
+        },
+        {
+          "rule": "R22",
+          "severity": "info",
+          "line": null,
+          "message": "Command requires a video path but provides no instruction for what to do when the user invokes it with no arguments"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 23,
+          "message": "Vague quantifier: 'plan smart frame extraction' — 'smart' is undefined and gives the model no actionable criteria"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 32,
+          "message": "Vague quantifier: 'give a comprehensive summary' — no coverage criteria or length guidance"
+        }
+      ]
+    },
+    {
+      "path": "mcp-server/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 28,
+          "message": "Production dependencies @modelcontextprotocol/sdk, zod, @google/genai, and openai all use ^ semver ranges, permitting unreviewed minor and patch updates"
+        }
+      ]
+    },
+    {
+      "path": "skills/video-perception/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 30,
+          "message": "Vague quantifier: 'make smart extraction decisions' — undefined standard for decision quality"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 31,
+          "message": "Vague quantifier: 'Select filters relevant to the user's question' — relevance is implicit; the lookup table below partially resolves this but the prose itself is vague"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 62,
+          "message": "Vague quantifier: 'if the initial view is insufficient' — no threshold or failure criteria defined"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 96,
+          "message": "Vague quantifier: 'form a complete understanding' — completeness cannot be verified or enforced"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-11T08:35:00Z",
+      "average_score": 79,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/setup-video-vision.md",
+      "line": null,
+      "message": "Command frontmatter is missing the required `name` field; without it the command cannot register in the plugin's slash-command list"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/watch-video.md",
+      "line": null,
+      "message": "Command frontmatter is missing the required `name` field; without it the command cannot register in the plugin's slash-command list"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/setup-video-vision.md",
+      "line": null,
+      "message": "Command body calls video_configure, video_setup, and video_watch but the frontmatter declares no allowed-tools; tool calls may be blocked in restricted permission modes"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/watch-video.md",
+      "line": null,
+      "message": "Command body calls video_info, video_analyze, video_watch, video_detail, and video_setup but the frontmatter declares no allowed-tools"
+    },
+    {
+      "rule": "R13",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/frame-describer.md",
+      "line": null,
+      "message": "Agent has no example blocks; readers and the framework cannot verify expected input/output behavior"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/frame-describer.md",
+      "line": 11,
+      "message": "Vague quantifier: 'concise but detailed' provides no objective measure for description length or depth"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/frame-describer.md",
+      "line": 15,
+      "message": "Vague quantifier: 'key objects' — no criteria given for which objects qualify as key vs. incidental"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/setup-video-vision.md",
+      "line": 124,
+      "message": "Vague quantifier: 'a brief summary of the results' — no scope, length, or content criteria defined"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/setup-video-vision.md",
+      "line": 131,
+      "message": "Vague quantifier: 'keep it concise' — unenforceable without a concrete length or detail target"
+    },
+    {
+      "rule": "R22",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/watch-video.md",
+      "line": null,
+      "message": "Command requires a video path but provides no instruction for what to do when the user invokes it with no arguments"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/watch-video.md",
+      "line": 23,
+      "message": "Vague quantifier: 'plan smart frame extraction' — 'smart' is undefined and gives the model no actionable criteria"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/watch-video.md",
+      "line": 32,
+      "message": "Vague quantifier: 'give a comprehensive summary' — no coverage criteria or length guidance"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/video-perception/SKILL.md",
+      "line": 30,
+      "message": "Vague quantifier: 'make smart extraction decisions' — undefined standard for decision quality"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/video-perception/SKILL.md",
+      "line": 31,
+      "message": "Vague quantifier: 'Select filters relevant to the user's question' — relevance is implicit; the lookup table below partially resolves this but the prose itself is vague"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/video-perception/SKILL.md",
+      "line": 62,
+      "message": "Vague quantifier: 'if the initial view is insufficient' — no threshold or failure criteria defined"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/video-perception/SKILL.md",
+      "line": 96,
+      "message": "Vague quantifier: 'form a complete understanding' — completeness cannot be verified or enforced"
+    },
+    {
+      "rule": "SEC-runtime-package-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 4,
+      "message": "npx -y claude-video-vision@latest auto-installs the unversioned @latest npm tag on every MCP server startup; a supply-chain compromise of the package or a breaking update is immediately trusted and executed"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mcp-server/package.json",
+      "line": 28,
+      "message": "Production dependencies @modelcontextprotocol/sdk, zod, @google/genai, and openai all use ^ semver ranges, permitting unreviewed minor and patch updates"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": null,
+      "message": "plugin.json declares version 1.2.0 but mcp-server/package.json is at 1.3.1; marketplace listings will show an outdated version while users receive newer code via the @latest npx install"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 561,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/jordanrendric-claude-video-vision.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

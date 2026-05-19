@@ -1,0 +1,283 @@
+{
+  "project": "refly-ai/refly",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 9,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 42,
+          "message": "'prepare': 'husky' runs automatically on npm install; legitimate husky pattern but satisfies postinstall-script HIGH pattern."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "Most devDependencies use ^ ranges allowing automatic minor/patch resolution; supply-chain drift can introduce vulnerabilities between lockfile updates."
+        }
+      ]
+    },
+    {
+      "path": "packages/cli/commands/refly-login.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools field; Claude Code cannot restrict tool usage for this command."
+        },
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified; success and error messages shown to the user after login are undefined."
+        },
+        {
+          "rule": "R18",
+          "severity": "low",
+          "line": null,
+          "message": "Command prompts for API key but does not specify behavior when invoked with no key and REFLY_API_KEY env var is unset."
+        }
+      ]
+    },
+    {
+      "path": "packages/cli/commands/refly-status.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools field."
+        }
+      ]
+    },
+    {
+      "path": "packages/cli/commands/refly-upgrade.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Command declares no allowed-tools field."
+        },
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": null,
+          "message": "No output format specified; what Claude tells the user after the upgrade completes is undefined."
+        }
+      ]
+    },
+    {
+      "path": "packages/cli/skill/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "info",
+          "line": 160,
+          "message": "SKILL.md References section cites 'rules/execution.md' etc. matching the deployed path (~/.refly/skills/base/rules/) but source files live at packages/cli/skill/references/; upgrade/install must map references/ to rules/ correctly or references silently break."
+        }
+      ]
+    },
+    {
+      "path": "scripts/check-i18n-consistency.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "high",
+          "line": 91,
+          "message": "new Function(`return ${str}`)() executes translation file content as JavaScript; a malicious translation file could run arbitrary code in the developer's environment."
+        }
+      ]
+    },
+    {
+      "path": "scripts/cli-deploy/deploy-cli.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-var-repo-override",
+          "severity": "medium",
+          "line": 23,
+          "message": "REFLY_REPO env var controls the git clone URL; an attacker who controls the environment before running the script can redirect the clone to a malicious repository."
+        }
+      ]
+    },
+    {
+      "path": "scripts/upload-config.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-credential-env-var",
+          "severity": "medium",
+          "line": 6,
+          "message": "MINIO_EXTERNAL_ACCESS_KEY and MINIO_EXTERNAL_SECRET_KEY read from env and passed to external MinIO client; misconfigured or leaked env vars expose storage credentials."
+        }
+      ]
+    },
+    {
+      "path": "specs/current/ptc/scripts/ptc_common.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-credential-env-var",
+          "severity": "medium",
+          "line": 155,
+          "message": "Full database connection URL (with embedded credentials) read from REFLY_DATABASE_URL_LOCAL; URL is easily captured by logging or error output."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-05T01:13:30Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-login.md",
+      "line": null,
+      "message": "Command declares no allowed-tools field; Claude Code cannot restrict tool usage for this command."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-login.md",
+      "line": null,
+      "message": "No output format specified; success and error messages shown to the user after login are undefined."
+    },
+    {
+      "rule": "R18",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-login.md",
+      "line": null,
+      "message": "Command prompts for API key but does not specify behavior when invoked with no key and REFLY_API_KEY env var is unset."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-status.md",
+      "line": null,
+      "message": "Command declares no allowed-tools field."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-upgrade.md",
+      "line": null,
+      "message": "Command declares no allowed-tools field."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/commands/refly-upgrade.md",
+      "line": null,
+      "message": "No output format specified; what Claude tells the user after the upgrade completes is undefined."
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/check-i18n-consistency.js",
+      "line": 91,
+      "message": "new Function(`return ${str}`)() executes translation file content as JavaScript; a malicious translation file could run arbitrary code in the developer's environment."
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 42,
+      "message": "'prepare': 'husky' runs automatically on npm install; legitimate husky pattern but satisfies postinstall-script HIGH pattern."
+    },
+    {
+      "rule": "SEC-credential-env-var",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/upload-config.js",
+      "line": 6,
+      "message": "MINIO_EXTERNAL_ACCESS_KEY and MINIO_EXTERNAL_SECRET_KEY read from env and passed to external MinIO client; misconfigured or leaked env vars expose storage credentials."
+    },
+    {
+      "rule": "SEC-credential-env-var",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "specs/current/ptc/scripts/ptc_common.py",
+      "line": 155,
+      "message": "Full database connection URL (with embedded credentials) read from REFLY_DATABASE_URL_LOCAL; URL is easily captured by logging or error output."
+    },
+    {
+      "rule": "SEC-env-var-repo-override",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/cli-deploy/deploy-cli.sh",
+      "line": 23,
+      "message": "REFLY_REPO env var controls the git clone URL; an attacker who controls the environment before running the script can redirect the clone to a malicious repository."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": null,
+      "message": "Most devDependencies use ^ ranges allowing automatic minor/patch resolution; supply-chain drift can introduce vulnerabilities between lockfile updates."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "packages/cli/skill/SKILL.md",
+      "line": 160,
+      "message": "SKILL.md References section cites 'rules/execution.md' etc. matching the deployed path (~/.refly/skills/base/rules/) but source files live at packages/cli/skill/references/; upgrade/install must map references/ to rules/ correctly or references silently break."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 7272,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/refly-ai-refly.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

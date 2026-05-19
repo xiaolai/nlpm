@@ -1,0 +1,220 @@
+{
+  "project": "taishi-i/awesome-japanese-nlp-resources",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "skills/find-new-resources/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 157,
+          "message": "'manageable' used without a measurable criterion; R01 lists 'adequate/sufficient' as equivalent vague words"
+        },
+        {
+          "rule": "SEC-file-write-outside-repo",
+          "severity": "medium",
+          "line": 124,
+          "message": "Python block writes URL cache to /tmp/awesome_ja_nlp_existing_urls.txt; predictable filename is world-readable and subject to symlink attacks in shared environments"
+        },
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "low",
+          "line": 58,
+          "message": "Bash find command reads ${HOME} to locate plugin data; benign in normal use but env can be poisoned in CI contexts"
+        }
+      ]
+    },
+    {
+      "path": "skills/research-issues/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 144,
+          "message": "'high-value' used to qualify URLs to fetch without defining what makes a URL high-value"
+        },
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "low",
+          "line": 42,
+          "message": "Bash find command reads ${HOME} to locate plugin data directory"
+        }
+      ]
+    },
+    {
+      "path": "skills/research-trends/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 142,
+          "message": "'high-value' used to qualify URLs without a measurable definition (same pattern as research-issues)"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 154,
+          "message": "'relevant' appears in R01's explicit vague-word list; 'confirm the survey's top items remain relevant' gives no criterion for relevance"
+        },
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "low",
+          "line": 42,
+          "message": "Bash find command reads ${HOME} to locate plugin data directory"
+        }
+      ]
+    },
+    {
+      "path": "skills/search/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 197,
+          "message": "'generally signal' introduces hedging without a threshold; equivalent to 'usually/typically' in R01 spirit"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 204,
+          "message": "'significantly higher' lacks a numeric threshold for when to prefer a newer item based on sc score"
+        },
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "low",
+          "line": 67,
+          "message": "Bash find command reads ${HOME} to locate plugin data directory"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-18T21:22:26Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/find-new-resources/SKILL.md",
+      "line": 157,
+      "message": "'manageable' used without a measurable criterion; R01 lists 'adequate/sufficient' as equivalent vague words"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/research-issues/SKILL.md",
+      "line": 144,
+      "message": "'high-value' used to qualify URLs to fetch without defining what makes a URL high-value"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/research-trends/SKILL.md",
+      "line": 142,
+      "message": "'high-value' used to qualify URLs without a measurable definition (same pattern as research-issues)"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/research-trends/SKILL.md",
+      "line": 154,
+      "message": "'relevant' appears in R01's explicit vague-word list; 'confirm the survey's top items remain relevant' gives no criterion for relevance"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/search/SKILL.md",
+      "line": 197,
+      "message": "'generally signal' introduces hedging without a threshold; equivalent to 'usually/typically' in R01 spirit"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/search/SKILL.md",
+      "line": 204,
+      "message": "'significantly higher' lacks a numeric threshold for when to prefer a newer item based on sc score"
+    },
+    {
+      "rule": "SEC-file-write-outside-repo",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/find-new-resources/SKILL.md",
+      "line": 124,
+      "message": "Python block writes URL cache to /tmp/awesome_ja_nlp_existing_urls.txt; predictable filename is world-readable and subject to symlink attacks in shared environments"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/find-new-resources/SKILL.md",
+      "line": 58,
+      "message": "Bash find command reads ${HOME} to locate plugin data; benign in normal use but env can be poisoned in CI contexts"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/research-issues/SKILL.md",
+      "line": 42,
+      "message": "Bash find command reads ${HOME} to locate plugin data directory"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/research-trends/SKILL.md",
+      "line": 42,
+      "message": "Bash find command reads ${HOME} to locate plugin data directory"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/search/SKILL.md",
+      "line": 67,
+      "message": "Bash find command reads ${HOME} to locate plugin data directory"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 960,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/taishi-i-awesome-japanese-nlp-resources.md"
+  },
+  "generated_at": "2026-05-19T09:50:18Z",
+  "schema_version": 1
+}

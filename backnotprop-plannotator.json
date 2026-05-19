@@ -1,0 +1,465 @@
+{
+  "project": "backnotprop/plannotator",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 93,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "apps/gemini/hooks/settings-snippet.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": null,
+          "message": "Snippet does not include the `experimental.plan: true` block present in the auto-generated Gemini settings produced by install.sh (lines 530-550). Manual applicants will miss the Gemini plan-mode enablement."
+        }
+      ]
+    },
+    {
+      "path": "apps/hook/hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "PreToolUse/EnterPlanMode hook calling `plannotator improve-context` (timeout: 5s) is present in hooks.json but absent from scripts/install.sh. Marketplace install gets this hook; install.sh users do not. The improve-context subcommand is also undocumented in the audited files."
+        }
+      ]
+    },
+    {
+      "path": "apps/marketing/public/install.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 57,
+          "message": "Pattern `curl ... | bash` detected inside usage() heredoc (identical copy of scripts/install.sh)"
+        },
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "high",
+          "line": 508,
+          "message": "`node -e` block with $GEMINI_SETTINGS interpolation — identical to scripts/install.sh finding; same risk and same fix applies"
+        }
+      ]
+    },
+    {
+      "path": "apps/marketing/src/content/docs/commands/annotate-last.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics. Scored as documentation type; well-written reference material."
+        }
+      ]
+    },
+    {
+      "path": "apps/marketing/src/content/docs/commands/annotate.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+        }
+      ]
+    },
+    {
+      "path": "apps/marketing/src/content/docs/commands/code-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+        }
+      ]
+    },
+    {
+      "path": "apps/marketing/src/content/docs/commands/plan-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+        }
+      ]
+    },
+    {
+      "path": "apps/opencode-plugin/commands/plannotator-annotate.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "No branching for approved/dismissed/annotated decision states. Hook variant explicitly handles all three decision outcomes. OpenCode variant only acknowledges opening the UI without instructing the agent on any outcome."
+        }
+      ]
+    },
+    {
+      "path": "apps/opencode-plugin/commands/plannotator-archive.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "File is an exact copy of the hook variant; contains !`plannotator archive` bang command and allowed-tools: Bash(plannotator:*) frontmatter that OpenCode does not process — archive subcommand is never invoked in OpenCode"
+        }
+      ]
+    },
+    {
+      "path": "apps/opencode-plugin/commands/plannotator-last.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "File contains only a description field in frontmatter; the body is empty. Agent receives no instructions when the command is invoked. All other OpenCode commands (review, annotate, archive) have a brief instruction body."
+        }
+      ]
+    },
+    {
+      "path": "apps/opencode-plugin/commands/plannotator-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "No branching for empty output or approval state. Hook and copilot variants enumerate 3 explicit cases (approved, dismissed/empty, annotated). OpenCode variant only says 'wait for the user's feedback' with no guidance on empty or approve outcomes."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 38,
+          "message": "@anthropic-ai/claude-agent-sdk: ^0.2.92 — caret range permits minor/patch upgrades without explicit review"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 39,
+          "message": "@openai/codex-sdk: ^0.118.0 — caret range"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 40,
+          "message": "@opencode-ai/sdk: ^1.3.0 — caret range"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 41,
+          "message": "@pierre/diffs: ^1.1.12 — caret range; shadow DOM internals make surprise minor-version breaks high-impact per pierre-guard skill"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 57,
+          "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash` detected inside usage() heredoc at line 57"
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 58,
+          "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash -s -- --version vX.Y.Z` detected inside usage() heredoc at line 58"
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 59,
+          "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash -s -- --verify-attestation` detected inside usage() heredoc at line 59"
+        },
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "high",
+          "line": 508,
+          "message": "`node -e` block at lines 508-514 embeds unquoted shell variables $GEMINI_SETTINGS and $PLANNOTATOR_HOOK directly into the JavaScript source string. If $HOME contains shell metacharacters or quotes the injected JavaScript is malformed. Both variables are OS-controlled or hardcoded so actual exploit surface is negligible, but the pattern is architecturally unsafe."
+        },
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 169,
+          "message": "curl to GitHub API to resolve latest release tag: `curl -fsSL https://api.github.com/repos/$REPO/releases/latest`. Network call to external service on every install; result parsed via grep+cut without JSON validation."
+        },
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 237,
+          "message": "curl downloads binary and SHA256 checksum from GitHub Releases. SHA256 is verified before install; SLSA attestation optionally verified via `gh attestation verify`. Download chain is intact and well-guarded."
+        },
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 349,
+          "message": "`pi install npm:@plannotator/pi-extension` — installs npm package at runtime during install script execution, only when the `pi` CLI is detected. Pulls from npm registry without additional integrity check."
+        },
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 465,
+          "message": "`git clone --depth 1 --sparse` from GitHub to install skills assets. Clones at `$latest_tag` which is resolved earlier in the script; tag is not pinned to a commit SHA so a force-pushed tag could serve different content."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:28:25Z",
+      "average_score": 93,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "apps/opencode-plugin/commands/plannotator-archive.md",
+      "line": null,
+      "message": "File is an exact copy of the hook variant; contains !`plannotator archive` bang command and allowed-tools: Bash(plannotator:*) frontmatter that OpenCode does not process — archive subcommand is never invoked in OpenCode"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "apps/opencode-plugin/commands/plannotator-last.md",
+      "line": null,
+      "message": "File contains only a description field in frontmatter; the body is empty. Agent receives no instructions when the command is invoked. All other OpenCode commands (review, annotate, archive) have a brief instruction body."
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "apps/opencode-plugin/commands/plannotator-review.md",
+      "line": null,
+      "message": "No branching for empty output or approval state. Hook and copilot variants enumerate 3 explicit cases (approved, dismissed/empty, annotated). OpenCode variant only says 'wait for the user's feedback' with no guidance on empty or approve outcomes."
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "apps/opencode-plugin/commands/plannotator-annotate.md",
+      "line": null,
+      "message": "No branching for approved/dismissed/annotated decision states. Hook variant explicitly handles all three decision outcomes. OpenCode variant only acknowledges opening the UI without instructing the agent on any outcome."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "apps/marketing/src/content/docs/commands/annotate-last.md",
+      "line": null,
+      "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics. Scored as documentation type; well-written reference material."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "apps/marketing/src/content/docs/commands/plan-review.md",
+      "line": null,
+      "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "apps/marketing/src/content/docs/commands/annotate.md",
+      "line": null,
+      "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "apps/marketing/src/content/docs/commands/code-review.md",
+      "line": null,
+      "message": "Astro content-collection docs page included in NL artifact scan. Has valid title/description frontmatter but carries no agent-instruction semantics."
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 57,
+      "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash` detected inside usage() heredoc at line 57"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 58,
+      "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash -s -- --version vX.Y.Z` detected inside usage() heredoc at line 58"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 59,
+      "message": "Pattern `curl -fsSL https://plannotator.ai/install.sh | bash -s -- --verify-attestation` detected inside usage() heredoc at line 59"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 508,
+      "message": "`node -e` block at lines 508-514 embeds unquoted shell variables $GEMINI_SETTINGS and $PLANNOTATOR_HOOK directly into the JavaScript source string. If $HOME contains shell metacharacters or quotes the injected JavaScript is malformed. Both variables are OS-controlled or hardcoded so actual exploit surface is negligible, but the pattern is architecturally unsafe."
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "apps/marketing/public/install.sh",
+      "line": 57,
+      "message": "Pattern `curl ... | bash` detected inside usage() heredoc (identical copy of scripts/install.sh)"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "apps/marketing/public/install.sh",
+      "line": 508,
+      "message": "`node -e` block with $GEMINI_SETTINGS interpolation — identical to scripts/install.sh finding; same risk and same fix applies"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 169,
+      "message": "curl to GitHub API to resolve latest release tag: `curl -fsSL https://api.github.com/repos/$REPO/releases/latest`. Network call to external service on every install; result parsed via grep+cut without JSON validation."
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 237,
+      "message": "curl downloads binary and SHA256 checksum from GitHub Releases. SHA256 is verified before install; SLSA attestation optionally verified via `gh attestation verify`. Download chain is intact and well-guarded."
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 349,
+      "message": "`pi install npm:@plannotator/pi-extension` — installs npm package at runtime during install script execution, only when the `pi` CLI is detected. Pulls from npm registry without additional integrity check."
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 465,
+      "message": "`git clone --depth 1 --sparse` from GitHub to install skills assets. Clones at `$latest_tag` which is resolved earlier in the script; tag is not pinned to a commit SHA so a force-pushed tag could serve different content."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 38,
+      "message": "@anthropic-ai/claude-agent-sdk: ^0.2.92 — caret range permits minor/patch upgrades without explicit review"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 39,
+      "message": "@openai/codex-sdk: ^0.118.0 — caret range"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 40,
+      "message": "@opencode-ai/sdk: ^1.3.0 — caret range"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 41,
+      "message": "@pierre/diffs: ^1.1.12 — caret range; shadow DOM internals make surprise minor-version breaks high-impact per pierre-guard skill"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "apps/hook/hooks/hooks.json",
+      "line": null,
+      "message": "PreToolUse/EnterPlanMode hook calling `plannotator improve-context` (timeout: 5s) is present in hooks.json but absent from scripts/install.sh. Marketplace install gets this hook; install.sh users do not. The improve-context subcommand is also undocumented in the audited files."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "apps/gemini/hooks/settings-snippet.json",
+      "line": null,
+      "message": "Snippet does not include the `experimental.plan: true` block present in the auto-generated Gemini settings produced by install.sh (lines 530-550). Manual applicants will miss the Gemini plan-mode enablement."
+    }
+  ],
+  "repo_meta": {
+    "status": "tracked",
+    "stars": 4561,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/backnotprop-plannotator.md"
+  },
+  "generated_at": "2026-05-19T09:50:41Z",
+  "schema_version": 1
+}

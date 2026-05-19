@@ -1,0 +1,325 @@
+{
+  "project": "vectorize-io/hindsight",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 11,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/code-review/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 130,
+          "message": "Five vague quantifiers in review criteria: 'significantly changed' (line 130), 'non-trivial' (lines 135, 148, 167), 'meaningful' (line 156). These leave review thresholds ambiguous."
+        }
+      ]
+    },
+    {
+      "path": "hindsight-integrations/claude-code/scripts/lib/daemon.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 297,
+          "message": "Uses shell=True to chain profile-create and daemon-start commands with &&. Arguments are pre-escaped via shlex.join() which mitigates injection risk, but shell=True remains a high-severity pattern if config values change."
+        }
+      ]
+    },
+    {
+      "path": "hindsight-integrations/claude-code/scripts/retain.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 147,
+          "message": "Hook script POSTs full conversation transcripts to the configured Hindsight API on every Stop event. Intentional functionality, but consumers should be aware conversation content leaves the local machine to hindsightApiUrl."
+        }
+      ]
+    },
+    {
+      "path": "hindsight-integrations/codex/hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hook commands use __SCRIPTS_DIR__ as a path prefix instead of a runtime-resolved variable like ${CLAUDE_PLUGIN_ROOT}. If deployed without install-time substitution, all codex hooks invoke non-existent paths and silently fail."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Codex hooks.json lacks async:true on Stop hook (unlike claude-code which uses async+15s), uses 30s sync timeout instead, and is missing the SessionEnd hook entirely — meaning no guaranteed final retain on session close."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "Codex and claude-code integrations use different variable conventions for script paths: __SCRIPTS_DIR__ (install-time placeholder) vs ${CLAUDE_PLUGIN_ROOT} (runtime env var). This inconsistency increases maintenance burden and risk of misconfiguration."
+        }
+      ]
+    },
+    {
+      "path": "hindsight-integrations/codex/scripts/lib/daemon.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 269,
+          "message": "Identical shell=True daemon pre-start pattern in the codex integration. Same shlex.join() mitigation and same refactoring recommendation applies."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "medium",
+          "line": 12,
+          "message": "npm prepare script runs setup-hooks.sh automatically on npm install. The script only sets core.hooksPath and is low-risk in content, but auto-executed install scripts are a supply-chain surface."
+        }
+      ]
+    },
+    {
+      "path": "skills/hindsight-architect/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 675,
+          "message": "'appropriate' used three times as a guidance qualifier (e.g., 'design a retrieval strategy appropriate for the application'). Leaves the decision criteria open-ended rather than offering named patterns."
+        }
+      ]
+    },
+    {
+      "path": "skills/hindsight-cloud/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 24,
+          "message": "Skill instructs Claude to run curl piped to bash for CLI installation. Claude executes this on the user's machine, downloading and running arbitrary remote code without integrity verification."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 133,
+          "message": "'non-trivial task' is a vague trigger for when to recall memories. Reader cannot determine the threshold without further judgment."
+        }
+      ]
+    },
+    {
+      "path": "skills/hindsight-docs/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "info",
+          "line": null,
+          "message": "Docs skill references references/ subdirectory (references/best-practices.md, references/developer/api/, etc.) which is auto-generated by scripts/generate-docs-skill.sh. Skill accuracy depends on the generator being run; stale docs reduce usefulness but no missing files detected in this audit."
+        }
+      ]
+    },
+    {
+      "path": "skills/hindsight-local/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 100,
+          "message": "Same 'non-trivial task' vague recall trigger as hindsight-cloud/SKILL.md line 133."
+        }
+      ]
+    },
+    {
+      "path": "skills/hindsight-self-hosted/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 24,
+          "message": "Identical curl-pipe-bash CLI install pattern in the self-hosted skill. Claude executes this during self-hosted setup, same risk surface as the cloud skill."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 141,
+          "message": "Same 'non-trivial task' vague recall trigger repeated in the self-hosted variant."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "skills/hindsight-cloud/SKILL.md",
+      "line": 24,
+      "message": "Skill instructs Claude to run curl piped to bash for CLI installation. Claude executes this on the user's machine, downloading and running arbitrary remote code without integrity verification."
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "skills/hindsight-self-hosted/SKILL.md",
+      "line": 24,
+      "message": "Identical curl-pipe-bash CLI install pattern in the self-hosted skill. Claude executes this during self-hosted setup, same risk surface as the cloud skill."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "hindsight-integrations/claude-code/scripts/lib/daemon.py",
+      "line": 297,
+      "message": "Uses shell=True to chain profile-create and daemon-start commands with &&. Arguments are pre-escaped via shlex.join() which mitigates injection risk, but shell=True remains a high-severity pattern if config values change."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "hindsight-integrations/codex/scripts/lib/daemon.py",
+      "line": 269,
+      "message": "Identical shell=True daemon pre-start pattern in the codex integration. Same shlex.join() mitigation and same refactoring recommendation applies."
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 12,
+      "message": "npm prepare script runs setup-hooks.sh automatically on npm install. The script only sets core.hooksPath and is low-risk in content, but auto-executed install scripts are a supply-chain surface."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "hindsight-integrations/claude-code/scripts/retain.py",
+      "line": 147,
+      "message": "Hook script POSTs full conversation transcripts to the configured Hindsight API on every Stop event. Intentional functionality, but consumers should be aware conversation content leaves the local machine to hindsightApiUrl."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "hindsight-integrations/codex/hooks/hooks.json",
+      "line": null,
+      "message": "Hook commands use __SCRIPTS_DIR__ as a path prefix instead of a runtime-resolved variable like ${CLAUDE_PLUGIN_ROOT}. If deployed without install-time substitution, all codex hooks invoke non-existent paths and silently fail."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/code-review/SKILL.md",
+      "line": 130,
+      "message": "Five vague quantifiers in review criteria: 'significantly changed' (line 130), 'non-trivial' (lines 135, 148, 167), 'meaningful' (line 156). These leave review thresholds ambiguous."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hindsight-architect/SKILL.md",
+      "line": 675,
+      "message": "'appropriate' used three times as a guidance qualifier (e.g., 'design a retrieval strategy appropriate for the application'). Leaves the decision criteria open-ended rather than offering named patterns."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hindsight-cloud/SKILL.md",
+      "line": 133,
+      "message": "'non-trivial task' is a vague trigger for when to recall memories. Reader cannot determine the threshold without further judgment."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hindsight-local/SKILL.md",
+      "line": 100,
+      "message": "Same 'non-trivial task' vague recall trigger as hindsight-cloud/SKILL.md line 133."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hindsight-self-hosted/SKILL.md",
+      "line": 141,
+      "message": "Same 'non-trivial task' vague recall trigger repeated in the self-hosted variant."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hindsight-integrations/codex/hooks/hooks.json",
+      "line": null,
+      "message": "Codex hooks.json lacks async:true on Stop hook (unlike claude-code which uses async+15s), uses 30s sync timeout instead, and is missing the SessionEnd hook entirely — meaning no guaranteed final retain on session close."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/hindsight-docs/SKILL.md",
+      "line": null,
+      "message": "Docs skill references references/ subdirectory (references/best-practices.md, references/developer/api/, etc.) which is auto-generated by scripts/generate-docs-skill.sh. Skill accuracy depends on the generator being run; stale docs reduce usefulness but no missing files detected in this audit."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "hindsight-integrations/codex/hooks/hooks.json",
+      "line": null,
+      "message": "Codex and claude-code integrations use different variable conventions for script paths: __SCRIPTS_DIR__ (install-time placeholder) vs ${CLAUDE_PLUGIN_ROOT} (runtime env var). This inconsistency increases maintenance burden and risk of misconfiguration."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 10609,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/vectorize-io-hindsight.md"
+  },
+  "generated_at": "2026-05-19T09:50:18Z",
+  "schema_version": 1
+}

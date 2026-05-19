@@ -1,0 +1,549 @@
+{
+  "project": "iOfficeAI/AionUi",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 75,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/commands/package-assistant.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file has no YAML frontmatter; name field is absent"
+        },
+        {
+          "rule": "R02",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file has no YAML frontmatter; description field is absent"
+        },
+        {
+          "rule": "R25",
+          "severity": "medium",
+          "line": 1,
+          "message": "Multi-step command that reads files and runs shell commands has no allowed-tools declaration; tool-level sandboxing cannot be enforced"
+        },
+        {
+          "rule": "R18",
+          "severity": "medium",
+          "line": null,
+          "message": "Command uses $ARGUMENTS but has no guard for the empty-input case; behavior on bare invocation is undefined"
+        },
+        {
+          "rule": "R30",
+          "severity": "high",
+          "line": 50,
+          "message": "Command references absolute developer-local path `/Users/veryliu/Documents/GitHub/officecli/`; will fail for all other contributors"
+        },
+        {
+          "rule": "CC-hardcoded-path",
+          "severity": "high",
+          "line": null,
+          "message": "Command hardcodes /Users/veryliu/Documents/GitHub/officecli/ as the OfficeCLI source directory; non-functional on all non-author machines"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": null,
+          "message": "package-assistant.md acknowledges the YAML-comment-breaks-parser bug but the 7 officecli-* skills are still broken, creating a persistent doc-vs-code mismatch"
+        }
+      ]
+    },
+    {
+      "path": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 1,
+          "message": "Agent file has no YAML frontmatter block; name field is absent and agent cannot be registered by Claude Code"
+        },
+        {
+          "rule": "R02",
+          "severity": "high",
+          "line": 1,
+          "message": "Agent file has no YAML frontmatter block; description field is absent"
+        },
+        {
+          "rule": "R11",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent specifies no output format; Claude response structure will be unpredictable"
+        },
+        {
+          "rule": "R15",
+          "severity": "medium",
+          "line": 1,
+          "message": "Agent has zero worked examples; expected invocation and output are undefined"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent has no model pin; Claude Code will use default model selection"
+        }
+      ]
+    },
+    {
+      "path": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 1,
+          "message": "Agent file has no YAML frontmatter block; name field is absent and agent cannot be registered by Claude Code"
+        },
+        {
+          "rule": "R02",
+          "severity": "high",
+          "line": 1,
+          "message": "Agent file has no YAML frontmatter block; description field is absent"
+        },
+        {
+          "rule": "R11",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent specifies no output format; Claude response structure will be unpredictable"
+        },
+        {
+          "rule": "R15",
+          "severity": "medium",
+          "line": 1,
+          "message": "Agent has zero worked examples; expected invocation and output are undefined"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent has no model pin; Claude Code will use default model selection"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": null,
+          "message": "Both example agents in hello-world-extension were not updated when the frontmatter convention was adopted; contributors using these as templates will produce non-conforming agents"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install-ubuntu.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 17,
+          "message": "Script header documents its own canonical install method as `curl -fsSL .../install-ubuntu.sh | bash`; the script is the target of that curl-pipe-sh invocation"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/_builtin/aionui-skills/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-remote-content-fetch",
+          "severity": "medium",
+          "line": 19,
+          "message": "Skill instructs: `curl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md` — fetches remote content to a local config path with no integrity verification; a compromised CDN could deliver malicious skill instructions"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/_builtin/office-cli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 18,
+          "message": "Skill instructs Claude to pipe a remote shell script directly to bash with no integrity check"
+        },
+        {
+          "rule": "SEC-irm-iex",
+          "severity": "high",
+          "line": 27,
+          "message": "Skill instructs Claude to pipe a remote PowerShell script directly to Invoke-Expression on Windows"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-academic-paper/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-data-dashboard/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-docx/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.23` inside `---` block breaks parser; compounded by repeated version headers in document body corrupting section structure"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": null,
+          "message": "Version comment appears 5+ times as H1 headings in the body, corrupting the document section structure"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-financial-model/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-pitch-deck/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-pptx/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.23` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    },
+    {
+      "path": "src/process/resources/skills/officecli-xlsx/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "high",
+          "line": 3,
+          "message": "YAML comment `# officecli: v1.0.23` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 75,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "src/process/resources/skills/_builtin/office-cli/SKILL.md",
+      "line": 18,
+      "message": "Skill instructs Claude to pipe a remote shell script directly to bash with no integrity check — Code block reads: `curl -fsSL https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.sh | bash` in the Install section; Claude Code agents following this skill will execute this verbatim"
+    },
+    {
+      "rule": "SEC-irm-iex",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/_builtin/office-cli/SKILL.md",
+      "line": 27,
+      "message": "Skill instructs Claude to pipe a remote PowerShell script directly to Invoke-Expression on Windows — Code block reads: `irm https://raw.githubusercontent.com/iOfficeAI/OfficeCLI/main/install.ps1 | iex` — PowerShell download-and-execute with no integrity check"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/install-ubuntu.sh",
+      "line": 17,
+      "message": "Script header documents its own canonical install method as `curl -fsSL .../install-ubuntu.sh | bash`; the script is the target of that curl-pipe-sh invocation"
+    },
+    {
+      "rule": "SEC-remote-content-fetch",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/process/resources/skills/_builtin/aionui-skills/SKILL.md",
+      "line": 19,
+      "message": "Skill instructs: `curl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md` — fetches remote content to a local config path with no integrity verification; a compromised CDN could deliver malicious skill instructions"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": 1,
+      "message": "Agent file has no YAML frontmatter block; name field is absent and agent cannot be registered by Claude Code — File opens with `You are an AI assistant` prose at line 1; no `---` delimiter present anywhere in the file"
+    },
+    {
+      "rule": "R02",
+      "severity": "high",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": 1,
+      "message": "Agent file has no YAML frontmatter block; description field is absent — No frontmatter block present; description field is absent"
+    },
+    {
+      "rule": "R11",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": null,
+      "message": "Agent specifies no output format; Claude response structure will be unpredictable — No `## Output` or equivalent output-format section found anywhere in the file"
+    },
+    {
+      "rule": "R15",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": 1,
+      "message": "Agent has zero worked examples; expected invocation and output are undefined — No `## Examples` section or equivalent found anywhere in the file"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": 1,
+      "message": "Agent has no model pin; Claude Code will use default model selection — No model field present (frontmatter absent entirely)"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "line": 1,
+      "message": "Agent file has no YAML frontmatter block; name field is absent and agent cannot be registered by Claude Code — File opens with prose at line 1; no `---` delimiter present anywhere in the file"
+    },
+    {
+      "rule": "R02",
+      "severity": "high",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "line": 1,
+      "message": "Agent file has no YAML frontmatter block; description field is absent — No frontmatter block present; description field is absent"
+    },
+    {
+      "rule": "R11",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "line": null,
+      "message": "Agent specifies no output format; Claude response structure will be unpredictable — No `## Output` or equivalent output-format section found anywhere in the file"
+    },
+    {
+      "rule": "R15",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "line": 1,
+      "message": "Agent has zero worked examples; expected invocation and output are undefined — No `## Examples` section or equivalent found anywhere in the file"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-coder-context.md",
+      "line": 1,
+      "message": "Agent has no model pin; Claude Code will use default model selection — No model field present (frontmatter absent entirely)"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/package-assistant.md",
+      "line": 1,
+      "message": "Command file has no YAML frontmatter; name field is absent — File opens with a markdown heading at line 1; no `---` delimiter present"
+    },
+    {
+      "rule": "R02",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/package-assistant.md",
+      "line": 1,
+      "message": "Command file has no YAML frontmatter; description field is absent — No frontmatter block present; description field is absent"
+    },
+    {
+      "rule": "R25",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/commands/package-assistant.md",
+      "line": 1,
+      "message": "Multi-step command that reads files and runs shell commands has no allowed-tools declaration; tool-level sandboxing cannot be enforced"
+    },
+    {
+      "rule": "R18",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/commands/package-assistant.md",
+      "line": null,
+      "message": "Command uses $ARGUMENTS but has no guard for the empty-input case; behavior on bare invocation is undefined"
+    },
+    {
+      "rule": "R30",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/package-assistant.md",
+      "line": 50,
+      "message": "Command references absolute developer-local path `/Users/veryliu/Documents/GitHub/officecli/`; will fail for all other contributors — Line contains `/Users/veryliu/Documents/GitHub/officecli/` — macOS-specific absolute home-directory path belonging to the original author"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-financial-model/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — package-assistant.md explicitly states: 'Skills with # officecli: vX.X.X comments inside the YAML frontmatter block break AionUi\\'s parser, causing skills to not appear in Skills Center'"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-data-dashboard/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — Same pattern confirmed by package-assistant.md documentation"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-pitch-deck/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — Same pattern confirmed by package-assistant.md documentation"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-docx/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.23` inside `---` block breaks parser; compounded by repeated version headers in document body corrupting section structure — Same pattern confirmed by package-assistant.md; additionally the version string appears as H1 headers in the body 5+ times"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-pptx/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.23` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — Same pattern confirmed by package-assistant.md documentation"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-academic-paper/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.24` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — Same pattern confirmed by package-assistant.md documentation"
+    },
+    {
+      "rule": "R01",
+      "severity": "high",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-xlsx/SKILL.md",
+      "line": 3,
+      "message": "YAML comment `# officecli: v1.0.23` inside the `---` block breaks AionUi's frontmatter parser; skill invisible in Skills Center — Same pattern confirmed by package-assistant.md documentation"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "high",
+      "file": "src/process/resources/skills/officecli-docx/SKILL.md",
+      "line": null,
+      "message": "Version comment appears 5+ times as H1 headings in the body, corrupting the document section structure — Multiple occurrences of `# officecli: v1.0.23` found as H1 section headings throughout the body, producing spurious top-level headings that corrupt the document outline"
+    },
+    {
+      "rule": "CC-hardcoded-path",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/package-assistant.md",
+      "line": null,
+      "message": "Command hardcodes /Users/veryliu/Documents/GitHub/officecli/ as the OfficeCLI source directory; non-functional on all non-author machines — Line contains `/Users/veryliu/Documents/GitHub/officecli/` — absolute macOS home-directory path belonging to the original author"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/commands/package-assistant.md",
+      "line": null,
+      "message": "package-assistant.md acknowledges the YAML-comment-breaks-parser bug but the 7 officecli-* skills are still broken, creating a persistent doc-vs-code mismatch — Command documents the officecli frontmatter YAML comment bug as a known issue but 7 affected SKILL.md files remain unpatched"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "examples/hello-world-extension/agents/hello-researcher-context.md",
+      "line": null,
+      "message": "Both example agents in hello-world-extension were not updated when the frontmatter convention was adopted; contributors using these as templates will produce non-conforming agents — Both agent files under examples/hello-world-extension/agents/ lack frontmatter while all production agents in the repo have frontmatter"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 22516,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/iOfficeAI-AionUi.md"
+  },
+  "generated_at": "2026-05-19T09:50:14Z",
+  "schema_version": 1
+}

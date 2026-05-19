@@ -1,0 +1,598 @@
+{
+  "project": "agent-sh/enhance",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 16,
+    "average_score": 86,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-semver",
+          "severity": "low",
+          "line": 3,
+          "message": "plugin.json version 5.1.0 does not match package.json version 1.0.0; the plugin's own enhance-plugins skill flags this as a HIGH-certainty structural bug."
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "medium",
+          "line": 3,
+          "message": "plugin.json version 5.1.0 does not match package.json version 1.0.0; the plugin's own schema requires these to be in sync."
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": null,
+          "message": "The 8 Critical Rules list mandates without rationale; rules without WHY explanations have lower compliance rates."
+        }
+      ]
+    },
+    {
+      "path": "agents/agent-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block; zero examples in an agent definition reduces reliability for edge cases and reduces test coverage."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification; output format is entirely delegated to the skill with no fallback description in the agent."
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": null,
+          "message": "All 8 enhancer agents advertise --fix apply behaviour but declare no Write or Edit tools; if skills cannot bypass agent tool restrictions, auto-fix is silently broken across all agents."
+        }
+      ]
+    },
+    {
+      "path": "agents/claudemd-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 3,
+          "message": "Description uses 'better AI understanding' — a vague outcome claim that does not specify what constitutes 'better'."
+        }
+      ]
+    },
+    {
+      "path": "agents/cross-file-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 20,
+          "message": "'Structural analysis (no complex reasoning needed)' — 'complex' is vague and context-dependent."
+        }
+      ]
+    },
+    {
+      "path": "agents/docs-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 46,
+          "message": "'Balance AI optimization with human readability' — 'balance' does not specify a measurable trade-off point."
+        }
+      ]
+    },
+    {
+      "path": "agents/hooks-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 46,
+          "message": "'Be cautious about security patterns' — 'cautious' gives no measurable direction."
+        }
+      ]
+    },
+    {
+      "path": "agents/plugin-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        }
+      ]
+    },
+    {
+      "path": "agents/prompt-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        }
+      ]
+    },
+    {
+      "path": "agents/skills-enhancer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no examples block."
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body contains no output format specification."
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 46,
+          "message": "'Consider skill context when evaluating trigger quality' — 'consider' is a weak directive."
+        }
+      ]
+    },
+    {
+      "path": "commands/enhance.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": null,
+          "message": "Command frontmatter is missing the allowed-tools field; Claude Code cannot determine which tools to pre-authorise when dispatching the command."
+        }
+      ]
+    },
+    {
+      "path": "lib/binary/index.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-download-exec",
+          "severity": "medium",
+          "line": 188,
+          "message": "Binary agent-analyzer is fetched from GitHub releases at runtime via HTTPS on first use. SHA-256 sidecar and optional SLSA attestation provide integrity checks, but a stolen release token plus matching SHA-256 sidecar would bypass the checksum gate."
+        },
+        {
+          "rule": "SEC-soft-attestation-default",
+          "severity": "low",
+          "line": 679,
+          "message": "SLSA attestation is soft-fail by default: if the gh CLI is absent, verification is skipped with a warning. Only SHA-256 protection remains, which does not close the stolen-release-token attack vector."
+        }
+      ]
+    },
+    {
+      "path": "skills/enhance-claude-memory/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 384,
+          "message": "'Positioning suggestions are HIGH certainty but may have valid exceptions' — 'may have' is a hedge that reduces the prescriptive value of the guidance."
+        }
+      ]
+    },
+    {
+      "path": "skills/enhance-hooks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 329,
+          "message": "Four vague terms in detection patterns: 'complex logic', 'simple and fast', 'unreasonably long timeouts', used without quantification — conflicts with the skill's own requirement for precise pattern matching."
+        }
+      ]
+    },
+    {
+      "path": "skills/enhance-plugins/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 214,
+          "message": "'Limit to 3-5 relevant tools' uses 'relevant'; 'Consider dynamic tool loading for large toolsets' uses 'consider' and 'large' without thresholds."
+        }
+      ]
+    },
+    {
+      "path": "skills/enhance-skills/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 247,
+          "message": "'Consider skill context when evaluating trigger quality' and 'Missing argument-hint for skills that clearly need input' use 'consider' and 'clearly' without measurable criteria."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-28T03:02:33Z",
+      "average_score": 86,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/enhance.md",
+      "line": null,
+      "message": "Command frontmatter is missing the allowed-tools field; Claude Code cannot determine which tools to pre-authorise when dispatching the command."
+    },
+    {
+      "rule": "BUG-invalid-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": 3,
+      "message": "plugin.json version 5.1.0 does not match package.json version 1.0.0; the plugin's own enhance-plugins skill flags this as a HIGH-certainty structural bug."
+    },
+    {
+      "rule": "SEC-network-download-exec",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "lib/binary/index.js",
+      "line": 188,
+      "message": "Binary agent-analyzer is fetched from GitHub releases at runtime via HTTPS on first use. SHA-256 sidecar and optional SLSA attestation provide integrity checks, but a stolen release token plus matching SHA-256 sidecar would bypass the checksum gate."
+    },
+    {
+      "rule": "SEC-soft-attestation-default",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "lib/binary/index.js",
+      "line": 679,
+      "message": "SLSA attestation is soft-fail by default: if the gh CLI is absent, verification is skipped with a warning. Only SHA-256 protection remains, which does not close the stolen-release-token attack vector."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/agent-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block; zero examples in an agent definition reduces reliability for edge cases and reduces test coverage."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/claudemd-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/cross-file-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/docs-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/hooks-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/plugin-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/prompt-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/skills-enhancer.md",
+      "line": null,
+      "message": "Agent has no examples block."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/agent-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification; output format is entirely delegated to the skill with no fallback description in the agent."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/claudemd-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/cross-file-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/docs-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/hooks-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/plugin-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/prompt-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/skills-enhancer.md",
+      "line": null,
+      "message": "Agent body contains no output format specification."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/claudemd-enhancer.md",
+      "line": 3,
+      "message": "Description uses 'better AI understanding' — a vague outcome claim that does not specify what constitutes 'better'."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/cross-file-enhancer.md",
+      "line": 20,
+      "message": "'Structural analysis (no complex reasoning needed)' — 'complex' is vague and context-dependent."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/docs-enhancer.md",
+      "line": 46,
+      "message": "'Balance AI optimization with human readability' — 'balance' does not specify a measurable trade-off point."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/hooks-enhancer.md",
+      "line": 46,
+      "message": "'Be cautious about security patterns' — 'cautious' gives no measurable direction."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/skills-enhancer.md",
+      "line": 46,
+      "message": "'Consider skill context when evaluating trigger quality' — 'consider' is a weak directive."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "The 8 Critical Rules list mandates without rationale; rules without WHY explanations have lower compliance rates."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/enhance-hooks/SKILL.md",
+      "line": 329,
+      "message": "Four vague terms in detection patterns: 'complex logic', 'simple and fast', 'unreasonably long timeouts', used without quantification — conflicts with the skill's own requirement for precise pattern matching."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/enhance-plugins/SKILL.md",
+      "line": 214,
+      "message": "'Limit to 3-5 relevant tools' uses 'relevant'; 'Consider dynamic tool loading for large toolsets' uses 'consider' and 'large' without thresholds."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/enhance-skills/SKILL.md",
+      "line": 247,
+      "message": "'Consider skill context when evaluating trigger quality' and 'Missing argument-hint for skills that clearly need input' use 'consider' and 'clearly' without measurable criteria."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/enhance-claude-memory/SKILL.md",
+      "line": 384,
+      "message": "'Positioning suggestions are HIGH certainty but may have valid exceptions' — 'may have' is a hedge that reduces the prescriptive value of the guidance."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": 3,
+      "message": "plugin.json version 5.1.0 does not match package.json version 1.0.0; the plugin's own schema requires these to be in sync."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/agent-enhancer.md",
+      "line": null,
+      "message": "All 8 enhancer agents advertise --fix apply behaviour but declare no Write or Edit tools; if skills cannot bypass agent tool restrictions, auto-fix is silently broken across all agents."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 3,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/agent-sh-enhance.md"
+  },
+  "generated_at": "2026-05-19T09:50:12Z",
+  "schema_version": 1
+}

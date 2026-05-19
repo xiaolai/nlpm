@@ -1,0 +1,570 @@
+{
+  "project": "ruvnet/ruflo",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 20,
+    "average_score": 60,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/agents/python-specialist.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "Body is 5 lines with no examples, tools, or hooks; provides almost no behavioral guidance beyond a single sentence."
+        }
+      ]
+    },
+    {
+      "path": ".claude/mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "high",
+          "line": null,
+          "message": "`.claude/mcp.json` registers only the `flow-nexus` MCP server. All agent hooks referencing `mcp__claude-flow__*` tools (swarm, memory, neural, performance) require the claude-flow MCP server, which is not configured here. Agents break silently on a fresh clone."
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "Root CLAUDE.md states '16 agent roles + custom types' in one place and '60+ agent types' in another. Audit found 84 agent files (~64 unique after deduplication). Neither count matches the actual state."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/analysis/code-analyzer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 2,
+          "message": "`name: analyst` in frontmatter conflicts with CLAUDE.md registry entry `code-analyzer` and body title; Claude Code will route `@code-analyzer` to the wrong file."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/analysis/code-review/analyze-code-quality.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": null,
+          "message": "File is an exact duplicate of `v3/@claude-flow/cli/.claude/agents/analysis/analyze-code-quality.md`; ~20 such duplicate pairs exist across the repo (nested `backend/`, `ci-cd/`, `unit/`, etc. subdirs mirror parent dirs)."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/core/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "No `model` field in frontmatter; all 5 core agents (coder, reviewer, tester, planner, researcher) are missing model declarations."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/flow-nexus/app-store.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": null,
+          "message": "All 9 flow-nexus agents missing output_format; agents invoke MCP tools but never declare what structured response they return."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/github/issue-tracker.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hook calls undefined bash function `calculate_review_quality`; post-task learning never fires for issue review work."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/github/pr-manager.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hooks call undefined bash functions `calculate_pr_success` and `validate_pr_merge`; these are not shell built-ins and have no definition in scope, so post-task tracking silently drops."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/github/release-manager.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hook calls undefined bash function `calculate_release_quality`; release-quality metrics are never stored."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/optimization/benchmark-suite.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Optimization agents (benchmark-suite, performance-monitor, load-balancer, resource-allocator, topology-optimizer) all hit the vague-quantifier cap; bodies are JS class stubs with no specific behavioral thresholds."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Benchmark-suite agent body is entirely JavaScript class stubs with no agent instructions, no output contract, and no hooks. Frontmatter has `name`, `type`, `category`, `description` but no behavioral content."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/sparc/architecture.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Pre hook calls `memory_store` and `memory_search` as bare bash commands; both are undefined shell functions."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/sparc/pseudocode.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Pre hook calls `memory_store` as a bare bash command; undefined function causes silent failure."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/sparc/refinement.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Pre hook calls `memory_store` as a bare bash command; undefined function causes silent failure."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/sparc/specification.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Pre hook calls `memory_store \"sparc_phase\" \"specification\"` — `memory_store` is not a shell command; SPARC phase tracking silently drops on every invocation."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": null,
+          "message": "SPARC agents use `npx claude-flow@alpha memory search-patterns` (v2 subcommand) while core agents use `npx claude-flow@v3alpha`. The v2 `search-patterns` subcommand does not exist in v3; SPARC hook memory lookups silently fail."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Pre and post hooks invoke `mcp__claude-flow__swarm_init`, `mcp__claude-flow__neural_patterns`, `mcp__claude-flow__model_save` etc. as bash commands; MCP tool identifiers are not executables and will fail with command-not-found on every hook trigger."
+        },
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "No `model` field in frontmatter; agent cannot be routed to an appropriate Claude tier by the 3-tier ADR-026 routing system."
+        },
+        {
+          "rule": "R03",
+          "severity": "medium",
+          "line": null,
+          "message": "Zero frontmatter `examples:` blocks; all 82 non-arch agents omit example input/output pairs, making behavioral validation from metadata impossible."
+        },
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": null,
+          "message": "No `output_format` field in frontmatter; present across all 82 non-arch agents uniformly."
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers at cap: 'intelligent', 'optimal', 'appropriate', 'dynamic', 'adaptive', 'efficiently' appear 10+ times."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/swarm/hierarchical-coordinator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hooks invoke `mcp__claude-flow__swarm_init hierarchical`, `mcp__claude-flow__swarm_monitor`, `mcp__claude-flow__coordination_sync` as bash commands; all will fail with command-not-found."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/cli/.claude/agents/swarm/mesh-coordinator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Hooks invoke `mcp__claude-flow__swarm_init mesh`, `mcp__claude-flow__daa_communication`, `mcp__claude-flow__daa_consensus` as bash commands; all will fail."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/mcp/.claude/agents/consensus/quorum-manager.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "medium",
+          "line": null,
+          "message": "No `model` field in frontmatter; affects all 7 consensus agents uniformly."
+        },
+        {
+          "rule": "R03",
+          "severity": "medium",
+          "line": null,
+          "message": "Zero frontmatter examples; consensus agent bodies contain JS implementation classes rather than behavioral guidance or illustrative use cases."
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers at cap: 'appropriate', 'optimal', 'intelligent', 'efficient', 'properly' appear 10+ times across the file body."
+        }
+      ]
+    },
+    {
+      "path": "v3/@claude-flow/mcp/.claude/agents/v3/collective-intelligence-coordinator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Post hook uses `$(mcp__claude-flow__swarm_status | jq -r '.topology')` as a bash subshell; the MCP tool name is not an executable, so jq receives no input and memory stores an empty string."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 60,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/github/pr-manager.md",
+      "line": null,
+      "message": "Hooks call undefined bash functions `calculate_pr_success` and `validate_pr_merge`; these are not shell built-ins and have no definition in scope, so post-task tracking silently drops."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/github/issue-tracker.md",
+      "line": null,
+      "message": "Hook calls undefined bash function `calculate_review_quality`; post-task learning never fires for issue review work."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/github/release-manager.md",
+      "line": null,
+      "message": "Hook calls undefined bash function `calculate_release_quality`; release-quality metrics are never stored."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/sparc/specification.md",
+      "line": null,
+      "message": "Pre hook calls `memory_store \"sparc_phase\" \"specification\"` — `memory_store` is not a shell command; SPARC phase tracking silently drops on every invocation."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/sparc/architecture.md",
+      "line": null,
+      "message": "Pre hook calls `memory_store` and `memory_search` as bare bash commands; both are undefined shell functions."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/sparc/pseudocode.md",
+      "line": null,
+      "message": "Pre hook calls `memory_store` as a bare bash command; undefined function causes silent failure."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/sparc/refinement.md",
+      "line": null,
+      "message": "Pre hook calls `memory_store` as a bare bash command; undefined function causes silent failure."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "line": null,
+      "message": "Pre and post hooks invoke `mcp__claude-flow__swarm_init`, `mcp__claude-flow__neural_patterns`, `mcp__claude-flow__model_save` etc. as bash commands; MCP tool identifiers are not executables and will fail with command-not-found on every hook trigger."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/hierarchical-coordinator.md",
+      "line": null,
+      "message": "Hooks invoke `mcp__claude-flow__swarm_init hierarchical`, `mcp__claude-flow__swarm_monitor`, `mcp__claude-flow__coordination_sync` as bash commands; all will fail with command-not-found."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/mesh-coordinator.md",
+      "line": null,
+      "message": "Hooks invoke `mcp__claude-flow__swarm_init mesh`, `mcp__claude-flow__daa_communication`, `mcp__claude-flow__daa_consensus` as bash commands; all will fail."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/mcp/.claude/agents/v3/collective-intelligence-coordinator.md",
+      "line": null,
+      "message": "Post hook uses `$(mcp__claude-flow__swarm_status | jq -r '.topology')` as a bash subshell; the MCP tool name is not an executable, so jq receives no input and memory stores an empty string."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/analysis/code-analyzer.md",
+      "line": 2,
+      "message": "`name: analyst` in frontmatter conflicts with CLAUDE.md registry entry `code-analyzer` and body title; Claude Code will route `@code-analyzer` to the wrong file."
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "line": null,
+      "message": "No `model` field in frontmatter; agent cannot be routed to an appropriate Claude tier by the 3-tier ADR-026 routing system."
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/mcp/.claude/agents/consensus/quorum-manager.md",
+      "line": null,
+      "message": "No `model` field in frontmatter; affects all 7 consensus agents uniformly."
+    },
+    {
+      "rule": "R01",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/core/coder.md",
+      "line": null,
+      "message": "No `model` field in frontmatter; all 5 core agents (coder, reviewer, tester, planner, researcher) are missing model declarations."
+    },
+    {
+      "rule": "R03",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "line": null,
+      "message": "Zero frontmatter `examples:` blocks; all 82 non-arch agents omit example input/output pairs, making behavioral validation from metadata impossible."
+    },
+    {
+      "rule": "R03",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/mcp/.claude/agents/consensus/quorum-manager.md",
+      "line": null,
+      "message": "Zero frontmatter examples; consensus agent bodies contain JS implementation classes rather than behavioral guidance or illustrative use cases."
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "line": null,
+      "message": "No `output_format` field in frontmatter; present across all 82 non-arch agents uniformly."
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/flow-nexus/app-store.md",
+      "line": null,
+      "message": "All 9 flow-nexus agents missing output_format; agents invoke MCP tools but never declare what structured response they return."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/mcp/.claude/agents/consensus/quorum-manager.md",
+      "line": null,
+      "message": "Vague quantifiers at cap: 'appropriate', 'optimal', 'intelligent', 'efficient', 'properly' appear 10+ times across the file body."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/swarm/adaptive-coordinator.md",
+      "line": null,
+      "message": "Vague quantifiers at cap: 'intelligent', 'optimal', 'appropriate', 'dynamic', 'adaptive', 'efficiently' appear 10+ times."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/optimization/benchmark-suite.md",
+      "line": null,
+      "message": "Optimization agents (benchmark-suite, performance-monitor, load-balancer, resource-allocator, topology-optimizer) all hit the vague-quantifier cap; bodies are JS class stubs with no specific behavioral thresholds."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/optimization/benchmark-suite.md",
+      "line": null,
+      "message": "Benchmark-suite agent body is entirely JavaScript class stubs with no agent instructions, no output contract, and no hooks. Frontmatter has `name`, `type`, `category`, `description` but no behavioral content."
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/python-specialist.md",
+      "line": null,
+      "message": "Body is 5 lines with no examples, tools, or hooks; provides almost no behavioral guidance beyond a single sentence."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/analysis/code-review/analyze-code-quality.md",
+      "line": null,
+      "message": "File is an exact duplicate of `v3/@claude-flow/cli/.claude/agents/analysis/analyze-code-quality.md`; ~20 such duplicate pairs exist across the repo (nested `backend/`, `ci-cd/`, `unit/`, etc. subdirs mirror parent dirs)."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/mcp.json",
+      "line": null,
+      "message": "`.claude/mcp.json` registers only the `flow-nexus` MCP server. All agent hooks referencing `mcp__claude-flow__*` tools (swarm, memory, neural, performance) require the claude-flow MCP server, which is not configured here. Agents break silently on a fresh clone."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "v3/@claude-flow/cli/.claude/agents/sparc/specification.md",
+      "line": null,
+      "message": "SPARC agents use `npx claude-flow@alpha memory search-patterns` (v2 subcommand) while core agents use `npx claude-flow@v3alpha`. The v2 `search-patterns` subcommand does not exist in v3; SPARC hook memory lookups silently fail."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "Root CLAUDE.md states '16 agent roles + custom types' in one place and '60+ agent types' in another. Audit found 84 agent files (~64 unique after deduplication). Neither count matches the actual state."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 33166,
+    "security": null,
+    "audit_report_path": "auditor/audits/ruvnet-ruflo.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

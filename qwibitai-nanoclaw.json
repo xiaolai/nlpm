@@ -1,0 +1,395 @@
+{
+  "project": "qwibitai/nanoclaw",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 15,
+    "average_score": 81,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/add-discord/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "No output-format declared. Channel install skills that produce observable state changes (imports wired, pnpm install run) should document expected output so Claude can confirm success."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/add-parallel/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "File has no YAML frontmatter at all — opens directly with '# Add Parallel AI Integration'. Missing required 'name' and 'description' fields; skill cannot be installed or referenced by name."
+        },
+        {
+          "rule": "SEC-shell-injection",
+          "severity": "high",
+          "line": null,
+          "message": "Uses sed -i.bak \"s/^PARALLEL_API_KEY=.*/PARALLEL_API_KEY=${API_KEY_FROM_USER}/\" — user-controlled variable interpolated directly into sed substitution. sed metacharacters (/, &, \\) in the API key value can cause unexpected behavior or injection."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/add-slack/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "No output-format declared. Same as add-discord pattern — systematic across all channel install skills."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/add-telegram/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "No output-format declared. Systematic gap across all add-<channel> skills."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/add-whatsapp/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "No output-format declared."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/convert-to-apple-container/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-sudo-usage",
+          "severity": "high",
+          "line": null,
+          "message": "Phase 3 instructs Claude to run 'sudo pfctl' and 'sudo tee' to modify system packet filtering rules. Errors in pfctl rules can break network connectivity system-wide; Claude lacks interactive confirmation context."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/customize/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "References v1 source paths that don't exist in v2: src/ipc.ts, src/channels/whatsapp.ts, src/db.ts, src/whatsapp-auth.ts, groups/CLAUDE.md. Will cause Claude to attempt edits on nonexistent files."
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "Instructs Claude to edit src/channels/whatsapp.ts directly. In v2, channel adapters are installed from the channels branch via /add-<channel> skills — not present on trunk by default. Creates false expectation."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/debug/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R29",
+          "severity": "low",
+          "line": null,
+          "message": "Contains 6+ vague quantifiers: 'appropriate', 'relevant', 'some', 'various', 'sufficient', 'reasonable'. Each -2 under R29."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/init-onecli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 62,
+          "message": "Instructs Claude to execute 'curl -fsSL onecli.sh/install | sh' and 'curl -fsSL onecli.sh/cli/install | sh' — remote code execution without checksum verification. If onecli.sh is compromised or hijacked, all operators running /init-onecli execute attacker code."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/manage-channels/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R29",
+          "severity": "low",
+          "line": null,
+          "message": "Contains 3 vague quantifiers: 'various', 'appropriate', and 'some'. Each -2 under R29."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/x-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Declares 'Compatibility: NanoClaw v1.0.0. Directory structure may change in future versions.' in a v2 repository. Creates ambiguity about whether the skill applies to the current version."
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/x-integration/scripts/setup.ts",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-browser-session-storage",
+          "severity": "medium",
+          "line": 67,
+          "message": "Stores full Chrome browser session to disk after X.com login. The session file grants full account access and must be treated as a credential. No security warning is provided to the operator."
+        }
+      ]
+    },
+    {
+      "path": "groups/main/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": null,
+          "message": "Contains v1-era content (registered_groups.json, WhatsApp JID management, /workspace/ipc/ paths, ~/.config/nanoclaw/sender-allowlist.json, register_group MCP tool) mixed with v2 concepts. Main agent will attempt v1 operations against a v2 system."
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "References /workspace/ipc/available_groups.json and /workspace/ipc/tasks/ — paths from v1 file-based IPC system removed in v2. Main agent will not find these files and may emit errors."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "medium",
+          "line": null,
+          "message": "'prepare': 'husky' runs on pnpm install. While husky is well-known and pnpm minimumReleaseAge/onlyBuiltDependencies policies mitigate the primary risk, the prepare hook is a known supply-chain attack vector."
+        }
+      ]
+    },
+    {
+      "path": "scripts/run-migrations.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-argv-path-exec",
+          "severity": "medium",
+          "line": 86,
+          "message": "execFileSync runs TypeScript files whose paths derive from process.argv[4] (newCorePath). A malicious newCorePath could execute arbitrary code. Risk is low-medium in practice as this is a developer/CI script, not agent-facing."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-25T09:00:59Z",
+      "average_score": 81,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/add-parallel/SKILL.md",
+      "line": null,
+      "message": "File has no YAML frontmatter at all — opens directly with '# Add Parallel AI Integration'. Missing required 'name' and 'description' fields; skill cannot be installed or referenced by name."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/customize/SKILL.md",
+      "line": null,
+      "message": "References v1 source paths that don't exist in v2: src/ipc.ts, src/channels/whatsapp.ts, src/db.ts, src/whatsapp-auth.ts, groups/CLAUDE.md. Will cause Claude to attempt edits on nonexistent files."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "groups/main/CLAUDE.md",
+      "line": null,
+      "message": "Contains v1-era content (registered_groups.json, WhatsApp JID management, /workspace/ipc/ paths, ~/.config/nanoclaw/sender-allowlist.json, register_group MCP tool) mixed with v2 concepts. Main agent will attempt v1 operations against a v2 system."
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": ".claude/skills/init-onecli/SKILL.md",
+      "line": 62,
+      "message": "Instructs Claude to execute 'curl -fsSL onecli.sh/install | sh' and 'curl -fsSL onecli.sh/cli/install | sh' — remote code execution without checksum verification. If onecli.sh is compromised or hijacked, all operators running /init-onecli execute attacker code."
+    },
+    {
+      "rule": "SEC-sudo-usage",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/convert-to-apple-container/SKILL.md",
+      "line": null,
+      "message": "Phase 3 instructs Claude to run 'sudo pfctl' and 'sudo tee' to modify system packet filtering rules. Errors in pfctl rules can break network connectivity system-wide; Claude lacks interactive confirmation context."
+    },
+    {
+      "rule": "SEC-shell-injection",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/add-parallel/SKILL.md",
+      "line": null,
+      "message": "Uses sed -i.bak \"s/^PARALLEL_API_KEY=.*/PARALLEL_API_KEY=${API_KEY_FROM_USER}/\" — user-controlled variable interpolated directly into sed substitution. sed metacharacters (/, &, \\) in the API key value can cause unexpected behavior or injection."
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": null,
+      "message": "'prepare': 'husky' runs on pnpm install. While husky is well-known and pnpm minimumReleaseAge/onlyBuiltDependencies policies mitigate the primary risk, the prepare hook is a known supply-chain attack vector."
+    },
+    {
+      "rule": "SEC-browser-session-storage",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/skills/x-integration/scripts/setup.ts",
+      "line": 67,
+      "message": "Stores full Chrome browser session to disk after X.com login. The session file grants full account access and must be treated as a credential. No security warning is provided to the operator."
+    },
+    {
+      "rule": "SEC-argv-path-exec",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/run-migrations.ts",
+      "line": 86,
+      "message": "execFileSync runs TypeScript files whose paths derive from process.argv[4] (newCorePath). A malicious newCorePath could execute arbitrary code. Risk is low-medium in practice as this is a developer/CI script, not agent-facing."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/add-discord/SKILL.md",
+      "line": null,
+      "message": "No output-format declared. Channel install skills that produce observable state changes (imports wired, pnpm install run) should document expected output so Claude can confirm success."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/add-slack/SKILL.md",
+      "line": null,
+      "message": "No output-format declared. Same as add-discord pattern — systematic across all channel install skills."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/add-telegram/SKILL.md",
+      "line": null,
+      "message": "No output-format declared. Systematic gap across all add-<channel> skills."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/add-whatsapp/SKILL.md",
+      "line": null,
+      "message": "No output-format declared."
+    },
+    {
+      "rule": "R29",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/debug/SKILL.md",
+      "line": null,
+      "message": "Contains 6+ vague quantifiers: 'appropriate', 'relevant', 'some', 'various', 'sufficient', 'reasonable'. Each -2 under R29."
+    },
+    {
+      "rule": "R29",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/manage-channels/SKILL.md",
+      "line": null,
+      "message": "Contains 3 vague quantifiers: 'various', 'appropriate', and 'some'. Each -2 under R29."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/x-integration/SKILL.md",
+      "line": null,
+      "message": "Declares 'Compatibility: NanoClaw v1.0.0. Directory structure may change in future versions.' in a v2 repository. Creates ambiguity about whether the skill applies to the current version."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "groups/main/CLAUDE.md",
+      "line": null,
+      "message": "References /workspace/ipc/available_groups.json and /workspace/ipc/tasks/ — paths from v1 file-based IPC system removed in v2. Main agent will not find these files and may emit errors."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/skills/customize/SKILL.md",
+      "line": null,
+      "message": "Instructs Claude to edit src/channels/whatsapp.ts directly. In v2, channel adapters are installed from the channels branch via /add-<channel> skills — not present on trunk by default. Creates false expectation."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 27917,
+    "security": null,
+    "audit_report_path": "auditor/audits/qwibitai-nanoclaw.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

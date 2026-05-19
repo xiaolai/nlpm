@@ -1,0 +1,346 @@
+{
+  "project": "tirth8205/code-review-graph",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 10,
+    "average_score": 95,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "medium",
+          "line": 5,
+          "message": "uvx invokes 'code-review-graph' without a version pin; each session fetches and runs the latest published PyPI release, so a compromised or broken release is auto-adopted"
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 170,
+          "message": "\"significant\" is a vague quantifier: 'This saves significant tokens by avoiding full codebase scans'"
+        }
+      ]
+    },
+    {
+      "path": "code-review-graph-vscode/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 297,
+          "message": "npm dependencies use caret ranges (better-sqlite3 ^12.4.1, d3 ^7.9.0, esbuild ^0.20.0) without a committed lockfile, allowing unexpected minor/patch upgrades on install"
+        }
+      ]
+    },
+    {
+      "path": "code_review_graph/embeddings.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 195,
+          "message": "Makes outbound HTTP requests to third-party APIs (MiniMax, Google Gemini, OpenAI-compatible endpoints) carrying API keys from environment variables; code content is included in request bodies when embeddings are computed"
+        }
+      ]
+    },
+    {
+      "path": "skills/build-graph/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-stale-count",
+          "severity": "low",
+          "line": 38,
+          "message": "Notes section lists 14 supported languages but CLAUDE.md architecture documents 19, explicitly naming Dart, R, Perl, Lua, and Jupyter/Databricks notebooks as additional languages"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "info",
+          "line": 38,
+          "message": "build-graph Notes lists 14 languages; CLAUDE.md documents 19 — the skill's language list has diverged from the canonical architecture documentation"
+        }
+      ]
+    },
+    {
+      "path": "skills/debug-issue/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "medium",
+          "line": null,
+          "message": "Skill has no output format section; steps describe what tools to run but do not specify what the final debugging report should contain or how to structure it"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 12,
+          "message": "\"related\" is a vague quantifier: 'find code related to the issue' does not constrain the search scope"
+        }
+      ]
+    },
+    {
+      "path": "skills/explore-codebase/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "medium",
+          "line": null,
+          "message": "Skill has no output format section; no guidance on what the exploration summary should contain or how to present findings"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 23,
+          "message": "\"complex\" is a vague quantifier in Tips: 'identify complex code' gives no measurable threshold"
+        }
+      ]
+    },
+    {
+      "path": "skills/refactor-safely/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "medium",
+          "line": null,
+          "message": "Skill has no output format section; no template for the refactoring plan or safety report"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 21,
+          "message": "\"major\" is a vague quantifier in Safety Checks: 'before major refactors' sets no actionable threshold"
+        }
+      ]
+    },
+    {
+      "path": "skills/review-delta/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 26,
+          "message": "\"many\" is a vague quantifier in step 3: 'Files with many dependents (high-risk changes)' — no threshold defined"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "review-delta and review-pr use the '_tool' suffix for MCP tool names (get_review_context_tool, query_graph_tool, build_or_update_graph_tool) while debug-issue, explore-codebase, and review-changes use bare names; CLAUDE.md Key Tools table also uses bare names"
+        }
+      ]
+    },
+    {
+      "path": "skills/review-pr/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 30,
+          "message": "\"significant\" is a vague quantifier in step 5: 'files with significant changes' does not define what qualifies"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 64,
+          "message": "\"large\" is a vague quantifier in Tips: 'For large PRs' sets no actionable threshold"
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 65,
+          "message": "\"related\" is a vague quantifier in Tips: 'find related code the PR might have missed'"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T13:44:22Z",
+      "average_score": 95,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R11",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/debug-issue/SKILL.md",
+      "line": null,
+      "message": "Skill has no output format section; steps describe what tools to run but do not specify what the final debugging report should contain or how to structure it"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/debug-issue/SKILL.md",
+      "line": 12,
+      "message": "\"related\" is a vague quantifier: 'find code related to the issue' does not constrain the search scope"
+    },
+    {
+      "rule": "R11",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/explore-codebase/SKILL.md",
+      "line": null,
+      "message": "Skill has no output format section; no guidance on what the exploration summary should contain or how to present findings"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/explore-codebase/SKILL.md",
+      "line": 23,
+      "message": "\"complex\" is a vague quantifier in Tips: 'identify complex code' gives no measurable threshold"
+    },
+    {
+      "rule": "R11",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/refactor-safely/SKILL.md",
+      "line": null,
+      "message": "Skill has no output format section; no template for the refactoring plan or safety report"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/refactor-safely/SKILL.md",
+      "line": 21,
+      "message": "\"major\" is a vague quantifier in Safety Checks: 'before major refactors' sets no actionable threshold"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/review-pr/SKILL.md",
+      "line": 30,
+      "message": "\"significant\" is a vague quantifier in step 5: 'files with significant changes' does not define what qualifies"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/review-pr/SKILL.md",
+      "line": 64,
+      "message": "\"large\" is a vague quantifier in Tips: 'For large PRs' sets no actionable threshold"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/review-pr/SKILL.md",
+      "line": 65,
+      "message": "\"related\" is a vague quantifier in Tips: 'find related code the PR might have missed'"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/review-delta/SKILL.md",
+      "line": 26,
+      "message": "\"many\" is a vague quantifier in step 3: 'Files with many dependents (high-risk changes)' — no threshold defined"
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 170,
+      "message": "\"significant\" is a vague quantifier: 'This saves significant tokens by avoiding full codebase scans'"
+    },
+    {
+      "rule": "BUG-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/build-graph/SKILL.md",
+      "line": 38,
+      "message": "Notes section lists 14 supported languages but CLAUDE.md architecture documents 19, explicitly naming Dart, R, Perl, Lua, and Jupyter/Databricks notebooks as additional languages"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 5,
+      "message": "uvx invokes 'code-review-graph' without a version pin; each session fetches and runs the latest published PyPI release, so a compromised or broken release is auto-adopted"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "code_review_graph/embeddings.py",
+      "line": 195,
+      "message": "Makes outbound HTTP requests to third-party APIs (MiniMax, Google Gemini, OpenAI-compatible endpoints) carrying API keys from environment variables; code content is included in request bodies when embeddings are computed"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "code-review-graph-vscode/package.json",
+      "line": 297,
+      "message": "npm dependencies use caret ranges (better-sqlite3 ^12.4.1, d3 ^7.9.0, esbuild ^0.20.0) without a committed lockfile, allowing unexpected minor/patch upgrades on install"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/review-delta/SKILL.md",
+      "line": null,
+      "message": "review-delta and review-pr use the '_tool' suffix for MCP tool names (get_review_context_tool, query_graph_tool, build_or_update_graph_tool) while debug-issue, explore-codebase, and review-changes use bare names; CLAUDE.md Key Tools table also uses bare names"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/build-graph/SKILL.md",
+      "line": 38,
+      "message": "build-graph Notes lists 14 languages; CLAUDE.md documents 19 — the skill's language list has diverged from the canonical architecture documentation"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 12954,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/tirth8205-code-review-graph.md"
+  },
+  "generated_at": "2026-05-19T09:50:18Z",
+  "schema_version": 1
+}

@@ -1,0 +1,386 @@
+{
+  "project": "kubesphere/kubesphere",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "config/ks-core/charts/ks-crds/scripts/post-delete.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-xargs-shell-injection",
+          "severity": "high",
+          "line": 33,
+          "message": "Uses `xargs -n 3 sh -c 'kubectl patch $2 -n $0 $1...'` with resource names piped from kubectl output; resource names are interpolated directly into a shell string, matching the HIGH shell injection pattern."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-core/scripts/ks_api.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-insecure-token-storage",
+          "severity": "medium",
+          "line": 28,
+          "message": "OAuth token cached to ~/.kubesphere_token (TOKEN_FILE) without setting restrictive file permissions; token is readable by other users on shared systems."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-devops-argocd/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R25",
+          "severity": "low",
+          "line": 640,
+          "message": "Common Issues troubleshooting table duplicated at lines 640–649 and 677–684; identical rows appear twice, bloating the file and creating a maintenance hazard."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-devops-credentials/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-incorrect-api-example",
+          "severity": "high",
+          "line": 111,
+          "message": "API examples use `type: Opaque` which contradicts the explicit warning at lines 56–70 that Opaque breaks Jenkins credential sync; correct type is credential.devops.kubesphere.io/basic-auth or the matching domain-specific type."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-devops-overview/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-duplicate-section",
+          "severity": "low",
+          "line": 92,
+          "message": "'Project Components' ASCII architecture diagram block is duplicated; the same content block appears twice in the file starting at line 92."
+        },
+        {
+          "rule": "R25",
+          "severity": "low",
+          "line": null,
+          "message": "'Key Resources' heading appears twice in the file, creating an ambiguous document structure and confusing section navigation."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-devops-pipeline/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-markdown",
+          "severity": "low",
+          "line": 323,
+          "message": "Bold markdown marker is not closed: `**Step 3b: For Private Repository (with credential):` is missing its closing `**`; renders incorrectly and may confuse section boundary parsing."
+        },
+        {
+          "rule": "R25",
+          "severity": "low",
+          "line": 1277,
+          "message": "Common Mistakes partial table at lines 1277–1282 duplicates content that appears earlier in the file."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-devops-tenant/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-hardcoded-credential",
+          "severity": "medium",
+          "line": 130,
+          "message": "Password 'P@88w0rd' hardcoded in documentation API examples at lines 130, 803, and 867; realistic-looking credential may be copied into production configurations."
+        },
+        {
+          "rule": "R25",
+          "severity": "low",
+          "line": 247,
+          "message": "The Authorization header `-H \"Authorization: Bearer ${API_TOKEN}\"` appears twice in the List Pipelines curl command (lines 247–249); the HTTP request contains a duplicate header."
+        },
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": 130,
+          "message": "Hardcoded example password 'P@88w0rd' at lines 130, 803, and 867 appears realistic; readers may use it in production without substitution."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-fluid/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-yaml-syntax-error",
+          "severity": "medium",
+          "line": 410,
+          "message": "YAML template syntax error: `low: \"{{low}}` is missing closing double-quote; produces invalid YAML that will fail to parse when applied as an InstallPlan."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-multi-tenant-management/scripts/ks_api.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-insecure-token-storage",
+          "severity": "medium",
+          "line": 28,
+          "message": "Identical to kubesphere-core/scripts/ks_api.py (file duplicated verbatim); OAuth token cached to ~/.kubesphere_token without restrictive file permissions; same insecure token storage pattern."
+        },
+        {
+          "rule": "CC-duplicate-file",
+          "severity": "medium",
+          "line": null,
+          "message": "skills/kubesphere-core/scripts/ks_api.py and skills/kubesphere-multi-tenant-management/scripts/ks_api.py are byte-for-byte identical; security fixes must be applied to both files, creating a maintenance hazard."
+        }
+      ]
+    },
+    {
+      "path": "skills/kubesphere-volcano/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 713,
+          "message": "Uses vague word 'appropriate' at line 713 without defining what an appropriate value means in this context; readers cannot determine compliance."
+        }
+      ]
+    },
+    {
+      "path": "skills/whizard-logging/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-incorrect-step-reference",
+          "severity": "low",
+          "line": 106,
+          "message": "Placeholder comment says '# From Step 3' but the installation section defines only Step 1 and Step 2; agents will look for a non-existent step."
+        }
+      ]
+    },
+    {
+      "path": "skills/whizard-telemetry/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-undocumented-dependency",
+          "severity": "low",
+          "line": null,
+          "message": "generate-config.sh reads OpenSearch credentials from the vector-sinks Kubernetes Secret (created by the vector extension) but this cross-extension runtime dependency is not documented in whizard-telemetry/SKILL.md or vector/SKILL.md; agents invoking the script without vector installed will get silent failures."
+        }
+      ]
+    },
+    {
+      "path": "skills/whizard-telemetry/scripts/generate-config.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-plaintext-credential-output",
+          "severity": "medium",
+          "line": 354,
+          "message": "Prints OpenSearch password to stdout: `echo \"  Password: ${OS_PASSWORD}\"` where OS_PASSWORD is read from the vector-sinks Kubernetes Secret; credential leaks to terminal scrollback and shell logs."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-05-07T01:44:32Z",
+      "average_score": 7,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-incorrect-api-example",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-credentials/SKILL.md",
+      "line": 111,
+      "message": "API examples use `type: Opaque` which contradicts the explicit warning at lines 56–70 that Opaque breaks Jenkins credential sync; correct type is credential.devops.kubesphere.io/basic-auth or the matching domain-specific type."
+    },
+    {
+      "rule": "BUG-yaml-syntax-error",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/kubesphere-fluid/SKILL.md",
+      "line": 410,
+      "message": "YAML template syntax error: `low: \"{{low}}` is missing closing double-quote; produces invalid YAML that will fail to parse when applied as an InstallPlan."
+    },
+    {
+      "rule": "BUG-incorrect-step-reference",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/whizard-logging/SKILL.md",
+      "line": 106,
+      "message": "Placeholder comment says '# From Step 3' but the installation section defines only Step 1 and Step 2; agents will look for a non-existent step."
+    },
+    {
+      "rule": "BUG-broken-markdown",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-pipeline/SKILL.md",
+      "line": 323,
+      "message": "Bold markdown marker is not closed: `**Step 3b: For Private Repository (with credential):` is missing its closing `**`; renders incorrectly and may confuse section boundary parsing."
+    },
+    {
+      "rule": "BUG-duplicate-section",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-overview/SKILL.md",
+      "line": 92,
+      "message": "'Project Components' ASCII architecture diagram block is duplicated; the same content block appears twice in the file starting at line 92."
+    },
+    {
+      "rule": "SEC-xargs-shell-injection",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "config/ks-core/charts/ks-crds/scripts/post-delete.sh",
+      "line": 33,
+      "message": "Uses `xargs -n 3 sh -c 'kubectl patch $2 -n $0 $1...'` with resource names piped from kubectl output; resource names are interpolated directly into a shell string, matching the HIGH shell injection pattern."
+    },
+    {
+      "rule": "SEC-plaintext-credential-output",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/whizard-telemetry/scripts/generate-config.sh",
+      "line": 354,
+      "message": "Prints OpenSearch password to stdout: `echo \"  Password: ${OS_PASSWORD}\"` where OS_PASSWORD is read from the vector-sinks Kubernetes Secret; credential leaks to terminal scrollback and shell logs."
+    },
+    {
+      "rule": "SEC-insecure-token-storage",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/kubesphere-core/scripts/ks_api.py",
+      "line": 28,
+      "message": "OAuth token cached to ~/.kubesphere_token (TOKEN_FILE) without setting restrictive file permissions; token is readable by other users on shared systems."
+    },
+    {
+      "rule": "SEC-insecure-token-storage",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/kubesphere-multi-tenant-management/scripts/ks_api.py",
+      "line": 28,
+      "message": "Identical to kubesphere-core/scripts/ks_api.py (file duplicated verbatim); OAuth token cached to ~/.kubesphere_token without restrictive file permissions; same insecure token storage pattern."
+    },
+    {
+      "rule": "SEC-hardcoded-credential",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-tenant/SKILL.md",
+      "line": 130,
+      "message": "Password 'P@88w0rd' hardcoded in documentation API examples at lines 130, 803, and 867; realistic-looking credential may be copied into production configurations."
+    },
+    {
+      "rule": "R25",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-argocd/SKILL.md",
+      "line": 640,
+      "message": "Common Issues troubleshooting table duplicated at lines 640–649 and 677–684; identical rows appear twice, bloating the file and creating a maintenance hazard."
+    },
+    {
+      "rule": "R25",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-pipeline/SKILL.md",
+      "line": 1277,
+      "message": "Common Mistakes partial table at lines 1277–1282 duplicates content that appears earlier in the file."
+    },
+    {
+      "rule": "R25",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-overview/SKILL.md",
+      "line": null,
+      "message": "'Key Resources' heading appears twice in the file, creating an ambiguous document structure and confusing section navigation."
+    },
+    {
+      "rule": "R25",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-tenant/SKILL.md",
+      "line": 247,
+      "message": "The Authorization header `-H \"Authorization: Bearer ${API_TOKEN}\"` appears twice in the List Pipelines curl command (lines 247–249); the HTTP request contains a duplicate header."
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-devops-tenant/SKILL.md",
+      "line": 130,
+      "message": "Hardcoded example password 'P@88w0rd' at lines 130, 803, and 867 appears realistic; readers may use it in production without substitution."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/kubesphere-volcano/SKILL.md",
+      "line": 713,
+      "message": "Uses vague word 'appropriate' at line 713 without defining what an appropriate value means in this context; readers cannot determine compliance."
+    },
+    {
+      "rule": "CC-duplicate-file",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/kubesphere-multi-tenant-management/scripts/ks_api.py",
+      "line": null,
+      "message": "skills/kubesphere-core/scripts/ks_api.py and skills/kubesphere-multi-tenant-management/scripts/ks_api.py are byte-for-byte identical; security fixes must be applied to both files, creating a maintenance hazard."
+    },
+    {
+      "rule": "CC-undocumented-dependency",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/whizard-telemetry/SKILL.md",
+      "line": null,
+      "message": "generate-config.sh reads OpenSearch credentials from the vector-sinks Kubernetes Secret (created by the vector extension) but this cross-extension runtime dependency is not documented in whizard-telemetry/SKILL.md or vector/SKILL.md; agents invoking the script without vector installed will get silent failures."
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 16912,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/kubesphere-kubesphere.md"
+  },
+  "generated_at": "2026-05-19T09:50:42Z",
+  "schema_version": 1
+}

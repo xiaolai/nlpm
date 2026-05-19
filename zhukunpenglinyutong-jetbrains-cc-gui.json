@@ -1,0 +1,262 @@
+{
+  "project": "zhukunpenglinyutong/jetbrains-cc-gui",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 10,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".agents/skills/vercel-react-best-practices/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 149,
+          "message": "SKILL.md references `AGENTS.md` as the full compiled guide but no AGENTS.md file exists anywhere in the repository"
+        },
+        {
+          "rule": "R27",
+          "severity": "low",
+          "line": 12,
+          "message": "'Comprehensive' in the skill subtitle is a vague quantifier that makes no measurable commitment; prefer 'covering 70 rules across 8 priority tiers' which the document already supports"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/config/api-config.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-tls-reject-unauthorized",
+          "severity": "medium",
+          "line": 293,
+          "message": "NODE_TLS_REJECT_UNAUTHORIZED=0 is read from user settings.json and injected into process.env; disables all TLS certificate verification creating MITM exposure; code warns but still applies the value"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/config/api-config.test.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-eval-variable",
+          "severity": "medium",
+          "line": 23,
+          "message": "execFileSync passes a dynamically constructed template-literal script to node --eval; current content is derived from static file paths but the pattern makes future injection easier if input sources change"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 6,
+          "message": "sql.js dependency declared as ^1.12.0; patch or minor update could introduce a regression or supply-chain compromise"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/services/claude/mcp-status/stdio-tools-getter.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 95,
+          "message": "spawn() called with shell:true on Windows when MCP server command is npx/npm/pnpm/yarn/.cmd/.bat; command originates from user-supplied MCP config, enabling shell injection via malicious server config"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/services/claude/mcp-status/stdio-verifier.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 87,
+          "message": "Same spawn+shell:true pattern as stdio-tools-getter.js; verification path for STDIO MCP servers on Windows inherits the same shell injection risk"
+        }
+      ]
+    },
+    {
+      "path": "ai-bridge/utils/sdk-loader.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-dynamic-import-user-path",
+          "severity": "medium",
+          "line": 178,
+          "message": "import(resolvedUrl) where resolvedUrl is built from ~/.codemoss/dependencies/ (user-writable directory); a tampered package placed in that directory would execute at load time without integrity verification"
+        }
+      ]
+    },
+    {
+      "path": "metadata.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 5,
+          "message": "metadata.json states '40+ rules' but SKILL.md Quick Reference lists exactly 70 rules; the metadata.json count predates the expanded guide and is stale"
+        }
+      ]
+    },
+    {
+      "path": "src/main/resources/libs/react-dom.production.min.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-exec-unsafe-local-function",
+          "severity": "critical",
+          "line": 219,
+          "message": "MSApp.execUnsafeLocalFunction call in vendored React DOM production build — IE compatibility shim in minified library, not custom code"
+        }
+      ]
+    },
+    {
+      "path": "webview/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 14,
+          "message": "All devDependencies and production dependencies use ^ or ~ version ranges; any future npm install could pull a compromised minor/patch release"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-11T08:35:00Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-exec-unsafe-local-function",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "src/main/resources/libs/react-dom.production.min.js",
+      "line": 219,
+      "message": "MSApp.execUnsafeLocalFunction call in vendored React DOM production build — IE compatibility shim in minified library, not custom code"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "ai-bridge/services/claude/mcp-status/stdio-tools-getter.js",
+      "line": 95,
+      "message": "spawn() called with shell:true on Windows when MCP server command is npx/npm/pnpm/yarn/.cmd/.bat; command originates from user-supplied MCP config, enabling shell injection via malicious server config"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "ai-bridge/services/claude/mcp-status/stdio-verifier.js",
+      "line": 87,
+      "message": "Same spawn+shell:true pattern as stdio-tools-getter.js; verification path for STDIO MCP servers on Windows inherits the same shell injection risk"
+    },
+    {
+      "rule": "SEC-tls-reject-unauthorized",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "ai-bridge/config/api-config.js",
+      "line": 293,
+      "message": "NODE_TLS_REJECT_UNAUTHORIZED=0 is read from user settings.json and injected into process.env; disables all TLS certificate verification creating MITM exposure; code warns but still applies the value"
+    },
+    {
+      "rule": "SEC-dynamic-import-user-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "ai-bridge/utils/sdk-loader.js",
+      "line": 178,
+      "message": "import(resolvedUrl) where resolvedUrl is built from ~/.codemoss/dependencies/ (user-writable directory); a tampered package placed in that directory would execute at load time without integrity verification"
+    },
+    {
+      "rule": "SEC-eval-variable",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "ai-bridge/config/api-config.test.js",
+      "line": 23,
+      "message": "execFileSync passes a dynamically constructed template-literal script to node --eval; current content is derived from static file paths but the pattern makes future injection easier if input sources change"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "webview/package.json",
+      "line": 14,
+      "message": "All devDependencies and production dependencies use ^ or ~ version ranges; any future npm install could pull a compromised minor/patch release"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "ai-bridge/package.json",
+      "line": 6,
+      "message": "sql.js dependency declared as ^1.12.0; patch or minor update could introduce a regression or supply-chain compromise"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".agents/skills/vercel-react-best-practices/SKILL.md",
+      "line": 149,
+      "message": "SKILL.md references `AGENTS.md` as the full compiled guide but no AGENTS.md file exists anywhere in the repository"
+    },
+    {
+      "rule": "R27",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".agents/skills/vercel-react-best-practices/SKILL.md",
+      "line": 12,
+      "message": "'Comprehensive' in the skill subtitle is a vague quantifier that makes no measurable commitment; prefer 'covering 70 rules across 8 priority tiers' which the document already supports"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "metadata.json",
+      "line": 5,
+      "message": "metadata.json states '40+ rules' but SKILL.md Quick Reference lists exactly 70 rules; the metadata.json count predates the expanded guide and is stale"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 3355,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/zhukunpenglinyutong-jetbrains-cc-gui.md"
+  },
+  "generated_at": "2026-05-19T09:50:19Z",
+  "schema_version": 1
+}

@@ -1,0 +1,388 @@
+{
+  "project": "eroslifestyle/Claude-Orchestrator-Plugin",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 14,
+    "average_score": 72,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "agents/docs/getting-started.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "References experts/iam_expert.md and experts/api_expert.md; neither file exists; iam_expert was merged into experts/security_unified_expert.md and api_expert was merged into experts/integration_expert.md in a prior refactor"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-windows-process-kill",
+          "severity": "medium",
+          "line": null,
+          "message": "CLAUDE.md instructs Claude to run taskkill /F on python.exe, node.exe, bash.exe, git.exe, grep.exe, cmd.exe, and powershell.exe at the end of every task; this terminates all matching processes system-wide regardless of whether they belong to the plugin or to unrelated user work; the NUL KILLER V2.0 block uses ctypes.windll.kernel32.DeleteFileW on user home directories"
+        },
+        {
+          "rule": "BUG-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "Header section reads '44 Totali' but footer reads '43 agents total (6 L0 + 22 L1 + 15 L2)'; the math 6+22+15=43 is correct; header is off by one"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "CLAUDE.md contains two conflicting agent counts in the same file: header says 44, footer says 43; creates confusion about the canonical agent count"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/core/analyzer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Frontmatter declares name and description but omits model; routing tables indicate this agent should use haiku but that is expressed only in inline documentation, not in machine-readable frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/core/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Frontmatter declares name and description but omits model; routing tables indicate sonnet but that is not in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/core/reviewer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Frontmatter declares name and description but omits model; routing tables indicate sonnet but that is not in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/core/system_coordinator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Frontmatter declares name and description but omits model; routing tables indicate haiku but that is not in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/docs/INTEGRATION_REPORT.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "medium",
+          "line": null,
+          "message": "INTEGRATION_REPORT.md documents 11 expert agents (V5.1 integration) while the current system has 22 L1 experts; the architecture diagram and integration metrics are approximately 50% behind reality"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/docs/quick-reference.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Contains five broken expert file references: experts/api_expert.md, experts/mql5_expert.md, experts/pyqt5_expert.md, experts/python_expert.md, experts/iam_expert.md; all were renamed in V6+ refactors"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/experts/mql_decompilation_expert.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-license-bypass",
+          "severity": "high",
+          "line": null,
+          "message": "Agent contains explicit instructions for bypassing MetaTrader EA copy protections: account number validation bypass, HWID fingerprinting removal, trial/expiry check removal, broker restriction bypass, and demo-mode removal; references EX4-TO-MQL, IDA Pro, Ghidra, x64dbg, OllyDbg for protection circumvention; distributing these instructions in a public plugin enables DMCA-violating usage at scale"
+        }
+      ]
+    },
+    {
+      "path": "github-package/agents/experts/offensive_security_expert.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-offensive-tool-ref",
+          "severity": "high",
+          "line": null,
+          "message": "Agent references Cobalt Strike, Sliver C2, and explicit EDR/AV bypass techniques for red-team operations; no authorization gate exists between the agent and any end user; public plugin distribution means any user who installs it gets an AI configured to provide detailed offensive toolchain guidance"
+        }
+      ]
+    },
+    {
+      "path": "plugins/orchestrator-plugin/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-hardcoded-path",
+          "severity": "high",
+          "line": 4,
+          "message": "MCP server args contain a hardcoded absolute Windows path c:\\Users\\LeoDg\\.claude\\... which breaks the MCP server for every user that is not the developer; all non-developer installs silently fail to start the MCP server"
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "critical",
+          "line": 4,
+          "message": "args array contains c:\\Users\\LeoDg\\.claude\\plugins\\orchestrator-plugin\\mcp_server\\server.py which does not exist on any machine except the developer's; MCP server fails to start on all user installs; this is a ship-blocking defect"
+        }
+      ]
+    },
+    {
+      "path": "plugins/orchestrator-plugin/install.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 50,
+          "message": "Step 2 of the installer runs `curl -LsSf https://astral.sh/uv/install.sh | sh` without checksum verification; a compromised CDN or MitM response executes arbitrary code with user privileges at install time"
+        }
+      ]
+    },
+    {
+      "path": "plugins/orchestrator-plugin/mcp_server/server.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 744,
+          "message": "cleanup_orphan_processes() calls subprocess.run(cmd, shell=True) on a hardcoded cmd string; while not currently user-influenced, shell=True widens the injection surface and is unnecessary when cmd can be expressed as a list"
+        },
+        {
+          "rule": "BUG-stale-count",
+          "severity": "low",
+          "line": 15,
+          "message": "Module docstring says 'Total Agents: 36 (6 Core + 15 L1 Expert + 15 L2 Sub-Agent)' and the orchestrator_config resource returns total_agents:36; actual deployed count is 43; the 7 experts added after V6 (reverse_engineering, offensive_security, mql_decompilation, browser_automation, mcp_integration, notification, payment_integration) are not in KEYWORD_TO_EXPERT_MAPPING and are unreachable via MCP routing"
+        }
+      ]
+    },
+    {
+      "path": "plugins/orchestrator-plugin/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "medium",
+          "line": 61,
+          "message": "postinstall script runs `npm run build` (tsc + copy-assets) automatically on every npm install; enables arbitrary code execution at install time if a dependency is compromised or a malicious version is published"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-28T03:02:33Z",
+      "average_score": 72,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-hardcoded-path",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/.mcp.json",
+      "line": 4,
+      "message": "MCP server args contain a hardcoded absolute Windows path c:\\Users\\LeoDg\\.claude\\... which breaks the MCP server for every user that is not the developer; all non-developer installs silently fail to start the MCP server"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/install.sh",
+      "line": 50,
+      "message": "Step 2 of the installer runs `curl -LsSf https://astral.sh/uv/install.sh | sh` without checksum verification; a compromised CDN or MitM response executes arbitrary code with user privileges at install time"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/package.json",
+      "line": 61,
+      "message": "postinstall script runs `npm run build` (tsc + copy-assets) automatically on every npm install; enables arbitrary code execution at install time if a dependency is compromised or a malicious version is published"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/mcp_server/server.py",
+      "line": 744,
+      "message": "cleanup_orphan_processes() calls subprocess.run(cmd, shell=True) on a hardcoded cmd string; while not currently user-influenced, shell=True widens the injection surface and is unnecessary when cmd can be expressed as a list"
+    },
+    {
+      "rule": "SEC-license-bypass",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "github-package/agents/experts/mql_decompilation_expert.md",
+      "line": null,
+      "message": "Agent contains explicit instructions for bypassing MetaTrader EA copy protections: account number validation bypass, HWID fingerprinting removal, trial/expiry check removal, broker restriction bypass, and demo-mode removal; references EX4-TO-MQL, IDA Pro, Ghidra, x64dbg, OllyDbg for protection circumvention; distributing these instructions in a public plugin enables DMCA-violating usage at scale"
+    },
+    {
+      "rule": "SEC-offensive-tool-ref",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "github-package/agents/experts/offensive_security_expert.md",
+      "line": null,
+      "message": "Agent references Cobalt Strike, Sliver C2, and explicit EDR/AV bypass techniques for red-team operations; no authorization gate exists between the agent and any end user; public plugin distribution means any user who installs it gets an AI configured to provide detailed offensive toolchain guidance"
+    },
+    {
+      "rule": "SEC-windows-process-kill",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "github-package/agents/CLAUDE.md",
+      "line": null,
+      "message": "CLAUDE.md instructs Claude to run taskkill /F on python.exe, node.exe, bash.exe, git.exe, grep.exe, cmd.exe, and powershell.exe at the end of every task; this terminates all matching processes system-wide regardless of whether they belong to the plugin or to unrelated user work; the NUL KILLER V2.0 block uses ctypes.windll.kernel32.DeleteFileW on user home directories"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/.mcp.json",
+      "line": 4,
+      "message": "args array contains c:\\Users\\LeoDg\\.claude\\plugins\\orchestrator-plugin\\mcp_server\\server.py which does not exist on any machine except the developer's; MCP server fails to start on all user installs; this is a ship-blocking defect"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/docs/getting-started.md",
+      "line": null,
+      "message": "References experts/iam_expert.md and experts/api_expert.md; neither file exists; iam_expert was merged into experts/security_unified_expert.md and api_expert was merged into experts/integration_expert.md in a prior refactor"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "github-package/agents/docs/quick-reference.md",
+      "line": null,
+      "message": "Contains five broken expert file references: experts/api_expert.md, experts/mql5_expert.md, experts/pyqt5_expert.md, experts/python_expert.md, experts/iam_expert.md; all were renamed in V6+ refactors"
+    },
+    {
+      "rule": "BUG-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/CLAUDE.md",
+      "line": null,
+      "message": "Header section reads '44 Totali' but footer reads '43 agents total (6 L0 + 22 L1 + 15 L2)'; the math 6+22+15=43 is correct; header is off by one"
+    },
+    {
+      "rule": "BUG-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/orchestrator-plugin/mcp_server/server.py",
+      "line": 15,
+      "message": "Module docstring says 'Total Agents: 36 (6 Core + 15 L1 Expert + 15 L2 Sub-Agent)' and the orchestrator_config resource returns total_agents:36; actual deployed count is 43; the 7 experts added after V6 (reverse_engineering, offensive_security, mql_decompilation, browser_automation, mcp_integration, notification, payment_integration) are not in KEYWORD_TO_EXPERT_MAPPING and are unreachable via MCP routing"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "github-package/agents/docs/INTEGRATION_REPORT.md",
+      "line": null,
+      "message": "INTEGRATION_REPORT.md documents 11 expert agents (V5.1 integration) while the current system has 22 L1 experts; the architecture diagram and integration metrics are approximately 50% behind reality"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/CLAUDE.md",
+      "line": null,
+      "message": "CLAUDE.md contains two conflicting agent counts in the same file: header says 44, footer says 43; creates confusion about the canonical agent count"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/core/analyzer.md",
+      "line": null,
+      "message": "Frontmatter declares name and description but omits model; routing tables indicate this agent should use haiku but that is expressed only in inline documentation, not in machine-readable frontmatter"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/core/coder.md",
+      "line": null,
+      "message": "Frontmatter declares name and description but omits model; routing tables indicate sonnet but that is not in frontmatter"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/core/reviewer.md",
+      "line": null,
+      "message": "Frontmatter declares name and description but omits model; routing tables indicate sonnet but that is not in frontmatter"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "github-package/agents/core/system_coordinator.md",
+      "line": null,
+      "message": "Frontmatter declares name and description but omits model; routing tables indicate haiku but that is not in frontmatter"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 0,
+    "security": null,
+    "audit_report_path": "auditor/audits/eroslifestyle-Claude-Orchestrator-Plugin.md"
+  },
+  "generated_at": "2026-05-19T09:50:13Z",
+  "schema_version": 1
+}

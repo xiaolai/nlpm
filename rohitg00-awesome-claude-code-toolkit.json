@@ -1,0 +1,36 @@
+{
+  "project": "rohitg00/awesome-claude-code-toolkit",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 46,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-17T00:28:40Z",
+      "average_score": 46,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 1214,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/rohitg00-awesome-claude-code-toolkit.md"
+  },
+  "generated_at": "2026-05-19T09:50:43Z",
+  "schema_version": 1
+}

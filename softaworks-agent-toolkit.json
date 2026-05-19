@@ -1,0 +1,486 @@
+{
+  "project": "softaworks/agent-toolkit",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 14,
+    "average_score": 90,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/commands/add-skill.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": ".claude/commands/add-skill.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": ".claude/commands/add-skill.md missing allowed-tools: declaration"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/sync-skills-readme.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": ".claude/commands/sync-skills-readme.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": ".claude/commands/sync-skills-readme.md missing allowed-tools: declaration"
+        }
+      ]
+    },
+    {
+      "path": "agents/general-purpose.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "high",
+          "line": null,
+          "message": "agents/general-purpose.md has zero invocation examples"
+        },
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": null,
+          "message": "agents/general-purpose.md uses 'appropriate' three times as a vague instruction"
+        }
+      ]
+    },
+    {
+      "path": "agents/mermaid-diagram-specialist.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "high",
+          "line": null,
+          "message": "agents/mermaid-diagram-specialist.md missing required model: frontmatter field"
+        }
+      ]
+    },
+    {
+      "path": "commands/codex-plan.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/codex-plan.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": null,
+          "message": "commands/codex-plan.md allowed-tools lists 'AskUser'; correct name is 'AskUserQuestion'"
+        }
+      ]
+    },
+    {
+      "path": "commands/compose-email.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/compose-email.md missing required name: frontmatter field"
+        }
+      ]
+    },
+    {
+      "path": "commands/explain-changes-mental-model.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/explain-changes-mental-model.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": "commands/explain-changes-mental-model.md missing allowed-tools: declaration"
+        }
+      ]
+    },
+    {
+      "path": "commands/explain-pr-changes.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/explain-pr-changes.md has no YAML frontmatter — name: field absent"
+        },
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/explain-pr-changes.md has no YAML frontmatter — description: field absent"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": "commands/explain-pr-changes.md missing allowed-tools: declaration while using Bash"
+        }
+      ]
+    },
+    {
+      "path": "commands/sync-branch.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/sync-branch.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": "commands/sync-branch.md missing allowed-tools: declaration"
+        }
+      ]
+    },
+    {
+      "path": "commands/sync-skills-readme.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/sync-skills-readme.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": "commands/sync-skills-readme.md missing allowed-tools: declaration"
+        }
+      ]
+    },
+    {
+      "path": "commands/viral-tweet.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "critical",
+          "line": null,
+          "message": "commands/viral-tweet.md missing required name: frontmatter field"
+        },
+        {
+          "rule": "R07",
+          "severity": "high",
+          "line": null,
+          "message": "commands/viral-tweet.md missing allowed-tools: declaration"
+        },
+        {
+          "rule": "R09",
+          "severity": "high",
+          "line": null,
+          "message": "commands/viral-tweet.md multi-step workflow uses thematic headers instead of numbered steps"
+        }
+      ]
+    },
+    {
+      "path": "skills/qa-test-planner/scripts/create_bug_report.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-eval-with-vars",
+          "severity": "medium",
+          "line": 32,
+          "message": "create_bug_report.sh uses eval to assign unsanitized stdin input — shell injection risk in automated contexts"
+        }
+      ]
+    },
+    {
+      "path": "skills/qa-test-planner/scripts/generate_test_cases.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-eval-with-vars",
+          "severity": "medium",
+          "line": 34,
+          "message": "generate_test_cases.sh uses eval to assign unsanitized stdin input — shell injection risk in automated contexts"
+        }
+      ]
+    },
+    {
+      "path": "skills/reducing-entropy/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "skills/reducing-entropy/SKILL.md has no Output Format section or example of expected deliverable"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T13:44:22Z",
+      "average_score": 90,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/explain-pr-changes.md",
+      "line": null,
+      "message": "commands/explain-pr-changes.md has no YAML frontmatter — name: field absent — File begins with '# Explain PR Changes' with no preceding '---' YAML block; grep for frontmatter delimiters returns zero matches"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/explain-pr-changes.md",
+      "line": null,
+      "message": "commands/explain-pr-changes.md has no YAML frontmatter — description: field absent — File begins with '# Explain PR Changes' with no preceding '---' YAML block; description: key absent from the file entirely"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/explain-pr-changes.md",
+      "line": null,
+      "message": "commands/explain-pr-changes.md missing allowed-tools: declaration while using Bash — No frontmatter block exists; allowed-tools: key absent; command invokes git and gh CLI (Bash) without declaration"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": ".claude/commands/add-skill.md",
+      "line": null,
+      "message": ".claude/commands/add-skill.md missing required name: frontmatter field — Frontmatter block opens with description: and argument-hint: but contains no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/add-skill.md",
+      "line": null,
+      "message": ".claude/commands/add-skill.md missing allowed-tools: declaration — Command body instructs use of Task, AskUserQuestion, Bash, Read, Edit; none appear in frontmatter allowed-tools"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": ".claude/commands/sync-skills-readme.md",
+      "line": null,
+      "message": ".claude/commands/sync-skills-readme.md missing required name: frontmatter field — Frontmatter block opens with description: but contains no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": ".claude/commands/sync-skills-readme.md",
+      "line": null,
+      "message": ".claude/commands/sync-skills-readme.md missing allowed-tools: declaration — Command body instructs use of Bash, Read, Edit; none declared in frontmatter allowed-tools"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/sync-skills-readme.md",
+      "line": null,
+      "message": "commands/sync-skills-readme.md missing required name: frontmatter field — Frontmatter block opens with description: but contains no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/sync-skills-readme.md",
+      "line": null,
+      "message": "commands/sync-skills-readme.md missing allowed-tools: declaration — Command body instructs use of Bash, Read, Edit; none declared in frontmatter allowed-tools"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/compose-email.md",
+      "line": null,
+      "message": "commands/compose-email.md missing required name: frontmatter field — Frontmatter block has description:, argument-hint:, allowed-tools: but no name: key"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/codex-plan.md",
+      "line": null,
+      "message": "commands/codex-plan.md missing required name: frontmatter field — Frontmatter block has description:, argument-hint:, allowed-tools: but no name: key"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "commands/codex-plan.md",
+      "line": null,
+      "message": "commands/codex-plan.md allowed-tools lists 'AskUser'; correct name is 'AskUserQuestion' — allowed-tools field contains 'AskUser'; the registered Claude Code tool name is 'AskUserQuestion' — grep of Claude Code schema confirms no tool named AskUser exists"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/sync-branch.md",
+      "line": null,
+      "message": "commands/sync-branch.md missing required name: frontmatter field — Frontmatter block has description:, argument-hint: but no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/sync-branch.md",
+      "line": null,
+      "message": "commands/sync-branch.md missing allowed-tools: declaration — Command body uses git commands (Bash) but allowed-tools: absent from frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/explain-changes-mental-model.md",
+      "line": null,
+      "message": "commands/explain-changes-mental-model.md missing required name: frontmatter field — Frontmatter block has description:, argument-hint: but no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/explain-changes-mental-model.md",
+      "line": null,
+      "message": "commands/explain-changes-mental-model.md missing allowed-tools: declaration — Command body uses Bash (git log) but allowed-tools: absent from frontmatter"
+    },
+    {
+      "rule": "R01",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "commands/viral-tweet.md",
+      "line": null,
+      "message": "commands/viral-tweet.md missing required name: frontmatter field — Frontmatter block has description:, argument-hint: but no name: key"
+    },
+    {
+      "rule": "R07",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/viral-tweet.md",
+      "line": null,
+      "message": "commands/viral-tweet.md missing allowed-tools: declaration — Command body references Bash or Write for output but allowed-tools: absent from frontmatter"
+    },
+    {
+      "rule": "R09",
+      "severity": "high",
+      "confidence": "high",
+      "file": "commands/viral-tweet.md",
+      "line": null,
+      "message": "commands/viral-tweet.md multi-step workflow uses thematic headers instead of numbered steps — Body uses '## Research Phase', '## Draft Tweets', '## Selection' headings instead of '1. ...', '2. ...', '3. ...' numbered steps"
+    },
+    {
+      "rule": "R04",
+      "severity": "high",
+      "confidence": "high",
+      "file": "agents/general-purpose.md",
+      "line": null,
+      "message": "agents/general-purpose.md has zero invocation examples — 54-line file contains no '## Examples', no invocation sample, no demonstration of expected input/output"
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "high",
+      "file": "agents/general-purpose.md",
+      "line": null,
+      "message": "agents/general-purpose.md uses 'appropriate' three times as a vague instruction — Body contains 'appropriate' three times without measurable criteria (e.g., 'appropriate tools', 'appropriate context', 'appropriate response')"
+    },
+    {
+      "rule": "R05",
+      "severity": "high",
+      "confidence": "high",
+      "file": "agents/mermaid-diagram-specialist.md",
+      "line": null,
+      "message": "agents/mermaid-diagram-specialist.md missing required model: frontmatter field — Agent frontmatter contains name:, description:, category:, usage:, input:, output: but no model: key"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/reducing-entropy/SKILL.md",
+      "line": null,
+      "message": "skills/reducing-entropy/SKILL.md has no Output Format section or example of expected deliverable"
+    },
+    {
+      "rule": "SEC-eval-with-vars",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/qa-test-planner/scripts/generate_test_cases.sh",
+      "line": 34,
+      "message": "generate_test_cases.sh uses eval to assign unsanitized stdin input — shell injection risk in automated contexts"
+    },
+    {
+      "rule": "SEC-eval-with-vars",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/qa-test-planner/scripts/create_bug_report.sh",
+      "line": 32,
+      "message": "create_bug_report.sh uses eval to assign unsanitized stdin input — shell injection risk in automated contexts"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 1629,
+    "security": null,
+    "audit_report_path": "auditor/audits/softaworks-agent-toolkit.md"
+  },
+  "generated_at": "2026-05-19T09:50:18Z",
+  "schema_version": 1
+}

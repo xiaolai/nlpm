@@ -1,0 +1,220 @@
+{
+  "project": "m1heng/claude-plugin-weixin",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 6,
+    "average_score": 97,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-version-mismatch",
+          "severity": "medium",
+          "line": 4,
+          "message": "plugin.json declares version 0.4.0 but package.json and server.ts MCP registration both declare 0.1.0; tooling that correlates these will see inconsistent versions."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": 4,
+          "message": "plugin.json (0.4.0) and package.json/server.ts (0.1.0) track versions independently; the public plugin version has diverged from the npm package version."
+        }
+      ]
+    },
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "low",
+          "line": 5,
+          "message": "'--shell=bun' arg routes npm script execution through Bun's built-in shell rather than /bin/sh."
+        }
+      ]
+    },
+    {
+      "path": "login-qr.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-install",
+          "severity": "medium",
+          "line": 15,
+          "message": "Auto-installs qrcode-terminal via Bun.spawnSync if node_modules is missing; same supply-chain risk as the package.json start script finding."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-install",
+          "severity": "medium",
+          "line": 8,
+          "message": "start script runs 'bun install' on every MCP server launch, resolving and downloading dependencies at runtime rather than at install time, creating a supply-chain window."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 11,
+          "message": "@modelcontextprotocol/sdk uses '^1.0.0' and qrcode-terminal uses '^0.12.0'; caret ranges allow unreviewed minor/patch version bumps on each install."
+        }
+      ]
+    },
+    {
+      "path": "skills/access/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Bash(ls *) declared in allowed-tools but no ls invocation appears in any documented step."
+        },
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 108,
+          "message": "'gracefully' is a vague quantifier in 'handle ENOENT gracefully'; the expected fallback (return default Access object) should be stated explicitly."
+        }
+      ]
+    },
+    {
+      "path": "skills/configure/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Bash(mkdir *) declared in allowed-tools but no mkdir invocation appears in any configure step; directory creation is delegated to bun scripts."
+        },
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 26,
+          "message": "'complete picture' is a vague quantifier in 'give the user a complete picture'; the numbered list below already specifies the content concretely."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-06T00:05:24Z",
+      "average_score": 97,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/access/SKILL.md",
+      "line": null,
+      "message": "Bash(ls *) declared in allowed-tools but no ls invocation appears in any documented step."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/access/SKILL.md",
+      "line": 108,
+      "message": "'gracefully' is a vague quantifier in 'handle ENOENT gracefully'; the expected fallback (return default Access object) should be stated explicitly."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/configure/SKILL.md",
+      "line": null,
+      "message": "Bash(mkdir *) declared in allowed-tools but no mkdir invocation appears in any configure step; directory creation is delegated to bun scripts."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/configure/SKILL.md",
+      "line": 26,
+      "message": "'complete picture' is a vague quantifier in 'give the user a complete picture'; the numbered list below already specifies the content concretely."
+    },
+    {
+      "rule": "CC-version-mismatch",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": 4,
+      "message": "plugin.json declares version 0.4.0 but package.json and server.ts MCP registration both declare 0.1.0; tooling that correlates these will see inconsistent versions."
+    },
+    {
+      "rule": "SEC-runtime-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 8,
+      "message": "start script runs 'bun install' on every MCP server launch, resolving and downloading dependencies at runtime rather than at install time, creating a supply-chain window."
+    },
+    {
+      "rule": "SEC-runtime-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "login-qr.ts",
+      "line": 15,
+      "message": "Auto-installs qrcode-terminal via Bun.spawnSync if node_modules is missing; same supply-chain risk as the package.json start script finding."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 11,
+      "message": "@modelcontextprotocol/sdk uses '^1.0.0' and qrcode-terminal uses '^0.12.0'; caret ranges allow unreviewed minor/patch version bumps on each install."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 5,
+      "message": "'--shell=bun' arg routes npm script execution through Bun's built-in shell rather than /bin/sh."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": 4,
+      "message": "plugin.json (0.4.0) and package.json/server.ts (0.1.0) track versions independently; the public plugin version has diverged from the npm package version."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 556,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/m1heng-claude-plugin-weixin.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

@@ -1,0 +1,192 @@
+{
+  "project": "hellowind777/hello2cc",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 84,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "agents/native.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "info",
+          "line": null,
+          "message": "Agent defines no example blocks; zero examples leave the model without calibration anchors for correct vs. incorrect behavior."
+        },
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section; agent provides no guidance on expected response structure, length constraints, or rendering conventions."
+        },
+        {
+          "rule": "R03",
+          "severity": "info",
+          "line": 33,
+          "message": "Vague quantifier: 'genuinely unclear' — does not define a measurable threshold for when to enter plan mode."
+        },
+        {
+          "rule": "R03",
+          "severity": "info",
+          "line": 36,
+          "message": "Vague quantifier: 'genuinely independent' — leaves model to judge parallelism threshold without a defined criterion."
+        },
+        {
+          "rule": "R03",
+          "severity": "info",
+          "line": 27,
+          "message": "Vague quantifier: '尽量' (try to / as much as possible) appears 5 times (lines 27, 29, 31, 32, 46); each instance avoids a concrete trigger or threshold."
+        }
+      ]
+    },
+    {
+      "path": "scripts/ccstatusline-bridge.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 52,
+          "message": "spawn() called with shell:true; command string is derived from process.argv.slice(2) or HELLO2CC_CCSTATUSLINE_COMMAND env var, creating a shell injection surface if either source is attacker-controlled."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 47,
+          "message": "Default downstream command is 'npx -y ccstatusline@latest'; @latest is unpinned and will silently pull future versions on every invocation, introducing supply-chain risk."
+        }
+      ]
+    },
+    {
+      "path": "scripts/generate-release-notes.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": 80,
+          "message": "fetch() to api.github.com at runtime; GH_TOKEN / GITHUB_TOKEN env vars are read and sent as an Authorization Bearer header. Dev-only utility; not reachable from any hook invocation."
+        }
+      ]
+    },
+    {
+      "path": "scripts/lib/hook-io.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": 18,
+          "message": "HELLO2CC_DEBUG_ROUTE_PATH env var controls the destination path of writeFileSync without path validation; a maliciously set env var could direct writes outside the repo."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-06T00:05:24Z",
+      "average_score": 84,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R12",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/native.md",
+      "line": null,
+      "message": "Agent defines no example blocks; zero examples leave the model without calibration anchors for correct vs. incorrect behavior."
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/native.md",
+      "line": null,
+      "message": "No output format section; agent provides no guidance on expected response structure, length constraints, or rendering conventions."
+    },
+    {
+      "rule": "R03",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/native.md",
+      "line": 33,
+      "message": "Vague quantifier: 'genuinely unclear' — does not define a measurable threshold for when to enter plan mode."
+    },
+    {
+      "rule": "R03",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/native.md",
+      "line": 36,
+      "message": "Vague quantifier: 'genuinely independent' — leaves model to judge parallelism threshold without a defined criterion."
+    },
+    {
+      "rule": "R03",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/native.md",
+      "line": 27,
+      "message": "Vague quantifier: '尽量' (try to / as much as possible) appears 5 times (lines 27, 29, 31, 32, 46); each instance avoids a concrete trigger or threshold."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/ccstatusline-bridge.mjs",
+      "line": 52,
+      "message": "spawn() called with shell:true; command string is derived from process.argv.slice(2) or HELLO2CC_CCSTATUSLINE_COMMAND env var, creating a shell injection surface if either source is attacker-controlled."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/generate-release-notes.mjs",
+      "line": 80,
+      "message": "fetch() to api.github.com at runtime; GH_TOKEN / GITHUB_TOKEN env vars are read and sent as an Authorization Bearer header. Dev-only utility; not reachable from any hook invocation."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/lib/hook-io.mjs",
+      "line": 18,
+      "message": "HELLO2CC_DEBUG_ROUTE_PATH env var controls the destination path of writeFileSync without path validation; a maliciously set env var could direct writes outside the repo."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scripts/ccstatusline-bridge.mjs",
+      "line": 47,
+      "message": "Default downstream command is 'npx -y ccstatusline@latest'; @latest is unpinned and will silently pull future versions on every invocation, introducing supply-chain risk."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 651,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/hellowind777-hello2cc.md"
+  },
+  "generated_at": "2026-05-19T09:50:14Z",
+  "schema_version": 1
+}

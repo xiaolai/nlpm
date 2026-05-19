@@ -1,0 +1,255 @@
+{
+  "project": "pe-menezes/fin-claude-plugin",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 7,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "medium",
+          "line": 5,
+          "message": "npx -y fin-app-mcp has no version pin; any new npm release including a compromised one is silently adopted on next Claude restart."
+        },
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 7,
+          "message": "MCP server contacts external API at https://fin-app-wine.vercel.app on every invocation; documents a live external dependency whose availability and trustworthiness is outside the plugin's control."
+        },
+        {
+          "rule": "SEC-runtime-install",
+          "severity": "low",
+          "line": 4,
+          "message": "npx -y auto-downloads and executes the npm package without user confirmation at each invocation; standard pattern for MCP servers but elevates supply-chain risk slightly."
+        }
+      ]
+    },
+    {
+      "path": "agents/financeiro.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R18",
+          "severity": "info",
+          "line": null,
+          "message": "Agent has zero input/output example blocks; zero examples makes dispatch behavior opaque without reading the full body."
+        },
+        {
+          "rule": "R22",
+          "severity": "info",
+          "line": 9,
+          "message": "Agent frontmatter declares tools but omits the model field; defaults silently to whatever Claude version is current at runtime."
+        }
+      ]
+    },
+    {
+      "path": "skills/conciliar/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'alguns reais' (rendimento-residual tolerance) is imprecise; the %-based alternative clause partially mitigates but the phrase alone is not actionable."
+        }
+      ]
+    },
+    {
+      "path": "skills/extrato/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'se a confiança no parse for baixa' lacks a numeric or categorical threshold; an agent cannot reliably decide when to abort without a defined cutoff."
+        }
+      ]
+    },
+    {
+      "path": "skills/fatura/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'tipicamente até 3 meses antes' when searching for an estorno's original transaction — 'tipicamente' is not a hard bound and cannot be enforced consistently."
+        }
+      ]
+    },
+    {
+      "path": "skills/lancar/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'caso raro' used to describe when a saque should be treated as an expense rather than a transfer — no decision criteria given, leaving the classification to model judgement."
+        }
+      ]
+    },
+    {
+      "path": "skills/onboarding/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": 12,
+          "message": "Bash is declared in allowed-tools but no Bash command appears in the skill body; explicit Bash usage lives in instalar-fin-mcp, not here."
+        },
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'algo crítico' in Modo B validation step is undefined — no list of what fields are critical vs optional."
+        },
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "'muito próximas' for grouping establishment name variants has no edit-distance threshold or normalization algorithm specified."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R18",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/financeiro.md",
+      "line": null,
+      "message": "Agent has zero input/output example blocks; zero examples makes dispatch behavior opaque without reading the full body."
+    },
+    {
+      "rule": "R22",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agents/financeiro.md",
+      "line": 9,
+      "message": "Agent frontmatter declares tools but omits the model field; defaults silently to whatever Claude version is current at runtime."
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/onboarding/SKILL.md",
+      "line": 12,
+      "message": "Bash is declared in allowed-tools but no Bash command appears in the skill body; explicit Bash usage lives in instalar-fin-mcp, not here."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/conciliar/SKILL.md",
+      "line": null,
+      "message": "'alguns reais' (rendimento-residual tolerance) is imprecise; the %-based alternative clause partially mitigates but the phrase alone is not actionable."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/extrato/SKILL.md",
+      "line": null,
+      "message": "'se a confiança no parse for baixa' lacks a numeric or categorical threshold; an agent cannot reliably decide when to abort without a defined cutoff."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/fatura/SKILL.md",
+      "line": null,
+      "message": "'tipicamente até 3 meses antes' when searching for an estorno's original transaction — 'tipicamente' is not a hard bound and cannot be enforced consistently."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/lancar/SKILL.md",
+      "line": null,
+      "message": "'caso raro' used to describe when a saque should be treated as an expense rather than a transfer — no decision criteria given, leaving the classification to model judgement."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/onboarding/SKILL.md",
+      "line": null,
+      "message": "'algo crítico' in Modo B validation step is undefined — no list of what fields are critical vs optional."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/onboarding/SKILL.md",
+      "line": null,
+      "message": "'muito próximas' for grouping establishment name variants has no edit-distance threshold or normalization algorithm specified."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 5,
+      "message": "npx -y fin-app-mcp has no version pin; any new npm release including a compromised one is silently adopted on next Claude restart."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 7,
+      "message": "MCP server contacts external API at https://fin-app-wine.vercel.app on every invocation; documents a live external dependency whose availability and trustworthiness is outside the plugin's control."
+    },
+    {
+      "rule": "SEC-runtime-install",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 4,
+      "message": "npx -y auto-downloads and executes the npm package without user confirmation at each invocation; standard pattern for MCP servers but elevates supply-chain risk slightly."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 0,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/pe-menezes-fin-claude-plugin.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

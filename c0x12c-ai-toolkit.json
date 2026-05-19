@@ -1,0 +1,1060 @@
+{
+  "project": "c0x12c/ai-toolkit",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 48,
+    "average_score": 96,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".codex/commands/spartan/architect.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/ask.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/backend-api-design.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/brainstorm.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/commit-message.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/competitive-teardown.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/content-engine.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/database-table-creator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/debug.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/deep-research.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/design-figma-to-code.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/design.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/gsd.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. Orchestration commands like gsd also need Task for sub-agent dispatch."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/guard.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field. Also missing empty-input guard for required args[0]."
+        },
+        {
+          "rule": "R16",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command uses '{{ args[0] }}' as required argument with no Jinja default. Invoking /spartan:guard with no argument raises TemplateError before the command body executes."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/idea-validation.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/implement.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/investor-outreach.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/ops-investigate-alert.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/ops-oncall-log.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/pr.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/security-checklist.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/terraform-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/test.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": ".codex/commands/spartan/web-to-prd.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Command frontmatter missing 'allowed-tools' field."
+        }
+      ]
+    },
+    {
+      "path": "bridges/core/engine.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R41",
+          "severity": "MEDIUM",
+          "line": 433,
+          "message": "When permInteractive is false (the default), the bridge engine silently sets permissionMode='bypassPermissions' and allowDangerouslySkipPermissions=true with all tools allowed. Users adopting the bridge without reading the default get a maximally-permissive agent."
+        }
+      ]
+    },
+    {
+      "path": "bridges/telegram/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R43",
+          "severity": "LOW",
+          "line": 0,
+          "message": "node-telegram-bot-api@^0.66.0 and dotenv@^16.4.7 use caret ranges — minor/patch updates install automatically, creating supply chain risk."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/agents/ai-designer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R18",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Agent has zero concrete input/output example blocks."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/agents/idea-killer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R18",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Agent has zero concrete input/output example blocks."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/agents/micronaut-backend-expert.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Body uses vague quantifier 'when helpful' without specifying concrete conditions."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/agents/phase-reviewer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "HIGH",
+          "line": 0,
+          "message": "Agent body instructs Claude to run 'cat .spartan/config.yaml', 'ls rules/', and 'ls .claude/rules/' but the tools frontmatter declares only [\"Read\",\"Grep\",\"Glob\",\"WebSearch\"] — Bash is absent. These shell calls will fail at runtime."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/agents/research-planner.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R18",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Agent has zero concrete input/output example blocks. Examples are the primary calibration mechanism for agent behavior."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/hooks/spartan-check-update.js",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R40",
+          "severity": "MEDIUM",
+          "line": 174,
+          "message": "Branch name from git output is concatenated into execSync shell command at lines 174 and 181. Sanitization exists (line 169) but allows '/' which could permit git ref path traversal. Risk is locally bounded but pattern is unsafe."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R43",
+          "severity": "LOW",
+          "line": 0,
+          "message": "js-yaml@^4.1.1 uses caret range — minor/patch updates install automatically."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/scripts/design/ai-image.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R44",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Script sources .spartan/ai.env, .env, and ~/.spartan/ai.env for API keys. Expected behavior for a local development tool; no credentials logged or exfiltrated."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/scripts/setup.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R42",
+          "severity": "MEDIUM",
+          "line": 262,
+          "message": "'npx get-shit-done-cc@latest' executes whatever the npm registry serves as latest at run time. A compromised publish could execute arbitrary code on the installer's machine."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/api-endpoint-creator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section despite having comprehensive code templates."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/database-table-creator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill uses 'Common Mistakes' instead of the canonical ## Gotchas section name."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/design-workflow/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks both a ## Gotchas section and formal examples. Has rules and checklists but missing failure-pattern documentation."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/kotlin-best-practices/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill has 'What to Avoid' content inline but lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/ops-investigate-alert/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/ops-oncall-log/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/terraform-best-practices/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "MEDIUM",
+          "line": 0,
+          "message": "The SKILL.md frontmatter is missing the required allowed_tools field as specified in SKILL_AUTHORING.md. All skills must declare allowed_tools for Claude Code to validate tool access at load time."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/terraform-module-creator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/terraform-security-audit/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill has extensive inline bad/good examples but lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/terraform-service-scaffold/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/ui-ux-pro-max/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill lacks a formal ## Gotchas section as required by SKILL_AUTHORING.md. Missing 3+ documented failure patterns."
+        }
+      ]
+    },
+    {
+      "path": "toolkit/skills/web-to-prd/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "LOW",
+          "line": 0,
+          "message": "Skill has extensive rules but lacks a formal ## Gotchas section with failure patterns."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 96,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R12",
+      "severity": "HIGH",
+      "confidence": "medium",
+      "file": "toolkit/agents/phase-reviewer.md",
+      "line": 0,
+      "message": "Agent body instructs Claude to run 'cat .spartan/config.yaml', 'ls rules/', and 'ls .claude/rules/' but the tools frontmatter declares only [\"Read\",\"Grep\",\"Glob\",\"WebSearch\"] — Bash is absent. These shell calls will fail at runtime."
+    },
+    {
+      "rule": "R08",
+      "severity": "MEDIUM",
+      "confidence": "medium",
+      "file": "toolkit/skills/terraform-best-practices/SKILL.md",
+      "line": 0,
+      "message": "The SKILL.md frontmatter is missing the required allowed_tools field as specified in SKILL_AUTHORING.md. All skills must declare allowed_tools for Claude Code to validate tool access at load time."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/ask.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/architect.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/backend-api-design.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/brainstorm.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/commit-message.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/competitive-teardown.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/content-engine.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/database-table-creator.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/debug.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/deep-research.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/design.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/design-figma-to-code.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. All 25 spartan commands share this systemic gap."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/gsd.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. Orchestration commands like gsd also need Task for sub-agent dispatch."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/guard.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field. Also missing empty-input guard for required args[0]."
+    },
+    {
+      "rule": "R16",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/guard.md",
+      "line": 0,
+      "message": "Command uses '{{ args[0] }}' as required argument with no Jinja default. Invoking /spartan:guard with no argument raises TemplateError before the command body executes."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/idea-validation.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/implement.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/investor-outreach.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/ops-investigate-alert.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/ops-oncall-log.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/pr.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/review.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/security-checklist.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/terraform-review.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/test.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R15",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": ".codex/commands/spartan/web-to-prd.md",
+      "line": 0,
+      "message": "Command frontmatter missing 'allowed-tools' field."
+    },
+    {
+      "rule": "R18",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/agents/research-planner.md",
+      "line": 0,
+      "message": "Agent has zero concrete input/output example blocks. Examples are the primary calibration mechanism for agent behavior."
+    },
+    {
+      "rule": "R18",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/agents/idea-killer.md",
+      "line": 0,
+      "message": "Agent has zero concrete input/output example blocks."
+    },
+    {
+      "rule": "R18",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/agents/ai-designer.md",
+      "line": 0,
+      "message": "Agent has zero concrete input/output example blocks."
+    },
+    {
+      "rule": "R22",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/agents/micronaut-backend-expert.md",
+      "line": 0,
+      "message": "Body uses vague quantifier 'when helpful' without specifying concrete conditions."
+    },
+    {
+      "rule": "R40",
+      "severity": "MEDIUM",
+      "confidence": "medium",
+      "file": "toolkit/hooks/spartan-check-update.js",
+      "line": 174,
+      "message": "Branch name from git output is concatenated into execSync shell command at lines 174 and 181. Sanitization exists (line 169) but allows '/' which could permit git ref path traversal. Risk is locally bounded but pattern is unsafe."
+    },
+    {
+      "rule": "R41",
+      "severity": "MEDIUM",
+      "confidence": "medium",
+      "file": "bridges/core/engine.js",
+      "line": 433,
+      "message": "When permInteractive is false (the default), the bridge engine silently sets permissionMode='bypassPermissions' and allowDangerouslySkipPermissions=true with all tools allowed. Users adopting the bridge without reading the default get a maximally-permissive agent."
+    },
+    {
+      "rule": "R42",
+      "severity": "MEDIUM",
+      "confidence": "medium",
+      "file": "toolkit/scripts/setup.sh",
+      "line": 262,
+      "message": "'npx get-shit-done-cc@latest' executes whatever the npm registry serves as latest at run time. A compromised publish could execute arbitrary code on the installer's machine."
+    },
+    {
+      "rule": "R43",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "bridges/telegram/package.json",
+      "line": 0,
+      "message": "node-telegram-bot-api@^0.66.0 and dotenv@^16.4.7 use caret ranges — minor/patch updates install automatically, creating supply chain risk."
+    },
+    {
+      "rule": "R43",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/package.json",
+      "line": 0,
+      "message": "js-yaml@^4.1.1 uses caret range — minor/patch updates install automatically."
+    },
+    {
+      "rule": "R44",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/scripts/design/ai-image.sh",
+      "line": 0,
+      "message": "Script sources .spartan/ai.env, .env, and ~/.spartan/ai.env for API keys. Expected behavior for a local development tool; no credentials logged or exfiltrated."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/ui-ux-pro-max/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section as required by SKILL_AUTHORING.md. Missing 3+ documented failure patterns."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/kotlin-best-practices/SKILL.md",
+      "line": 0,
+      "message": "Skill has 'What to Avoid' content inline but lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/api-endpoint-creator/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section despite having comprehensive code templates."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/database-table-creator/SKILL.md",
+      "line": 0,
+      "message": "Skill uses 'Common Mistakes' instead of the canonical ## Gotchas section name."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/design-workflow/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks both a ## Gotchas section and formal examples. Has rules and checklists but missing failure-pattern documentation."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/ops-investigate-alert/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/ops-oncall-log/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/terraform-module-creator/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/terraform-security-audit/SKILL.md",
+      "line": 0,
+      "message": "Skill has extensive inline bad/good examples but lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/terraform-service-scaffold/SKILL.md",
+      "line": 0,
+      "message": "Skill lacks a formal ## Gotchas section."
+    },
+    {
+      "rule": "R09",
+      "severity": "LOW",
+      "confidence": "medium",
+      "file": "toolkit/skills/web-to-prd/SKILL.md",
+      "line": 0,
+      "message": "Skill has extensive rules but lacks a formal ## Gotchas section with failure patterns."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 61,
+    "security": null,
+    "audit_report_path": "auditor/audits/c0x12c-ai-toolkit.md"
+  },
+  "generated_at": "2026-05-19T09:50:13Z",
+  "schema_version": 1
+}

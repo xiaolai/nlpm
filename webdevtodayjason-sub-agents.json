@@ -1,0 +1,689 @@
+{
+  "project": "webdevtodayjason/sub-agents",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 25,
+    "average_score": 78,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 34,
+          "message": "Vague quantifier: 'related' in 'Launch ALL related agents simultaneously' — 'related' is undefined; the model must guess which agents qualify."
+        }
+      ]
+    },
+    {
+      "path": "agents/api-developer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Four vague quantifiers: 'robust' (desc), 'scalable' (desc), 'comprehensive' (l.218), 'clean' (l.302); none specify measurable quality targets."
+        }
+      ]
+    },
+    {
+      "path": "agents/api-documenter/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Two vague quantifiers: 'comprehensive' (desc), 'developer-friendly' (desc)."
+        }
+      ]
+    },
+    {
+      "path": "agents/code-reviewer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Two vague quantifiers: 'Adequate' (l.67 'Adequate test coverage'), 'appropriate' (l.38 'Appropriate abstraction levels')."
+        }
+      ]
+    },
+    {
+      "path": "agents/devops-engineer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent file contains CI/CD code templates and YAML configs but zero input-output examples of the agent responding to a user request; a reader cannot see how to invoke the agent or predict its response shape."
+        },
+        {
+          "rule": "R13",
+          "severity": "medium",
+          "line": null,
+          "message": "No ## Output Format section; the agent provides extensive reference templates but no defined structure for how it will communicate results back to the user."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 7,
+          "message": "Three vague quantifiers: 'robust' (l.7), 'scalable' (l.7), 'proper' (l.403 'Implement proper role-based access control'); none give the model measurable criteria."
+        }
+      ]
+    },
+    {
+      "path": "agents/doc-writer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Three vague quantifiers: 'comprehensive' (desc), 'user-friendly' (desc), 'appropriate' (l.247 'appropriate documentation type')."
+        }
+      ]
+    },
+    {
+      "path": "agents/frontend-developer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R13",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit ## Output Format section; the agent has component examples and testing patterns but no defined response template for how it reports completed work."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Two vague quantifiers: 'modern' (desc), 'performant' (desc); neither gives the model a measurable target."
+        }
+      ]
+    },
+    {
+      "path": "agents/marketing-writer/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 3,
+          "message": "Vague quantifier: 'compelling' in description ('compelling technical marketing materials'); not a measurable quality criterion."
+        }
+      ]
+    },
+    {
+      "path": "agents/product-manager/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Two vague quantifiers: 'actionable' (l.14 'clear, actionable user stories'), 'realistic' (l.154 'realistic time estimates')."
+        }
+      ]
+    },
+    {
+      "path": "agents/project-planner/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 8,
+          "message": "Three vague quantifiers: 'comprehensive' (l.8), 'optimal' (l.64 'optimal agent assignments'), 'realistic' (l.154 'realistic time estimates')."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": null,
+          "message": "Twelve agent files and context-forge commands reference a JavaScript memory API (memory.set, memory.get, memory.isContextForgeProject, memory.getAvailablePRPs, memory.updatePRPState) as a live Claude Code feature; src/commands/run.js implements only an in-process in-memory store (src/memory/index.js) with no cross-agent sharing, making the advertised coordination non-functional inside Claude Code."
+        }
+      ]
+    },
+    {
+      "path": "agents/refactor/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 38,
+          "message": "Vague quantifier: 'Appropriate abstraction levels' in the review checklist; no criterion for what counts as appropriate."
+        }
+      ]
+    },
+    {
+      "path": "agents/security-scanner/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 11,
+          "message": "Vague quantifier: 'comprehensive' (l.11 'comprehensive security audit')."
+        }
+      ]
+    },
+    {
+      "path": "agents/shadcn-ui-builder/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 29,
+          "message": "Agent instructs the model to run ShadCN installation commands ('Install the required ShadCN components using the appropriate installation commands') but Bash is not declared in the tools list, making execution impossible."
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 22,
+          "message": "Agent instructs 'ALWAYS use the MCP server during planning' but no .mcp.json exists in the repository and no MCP tool appears in the declared tools list; MCP server is unresolvable."
+        },
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": null,
+          "message": "Only one example workflow is provided (login page); the scoring rubric requires at least two examples to avoid a -5 penalty."
+        },
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": 5,
+          "message": "NotebookRead is declared in the tools list but the agent body contains no notebook-reading logic or use case; likely copied from a template."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 21,
+          "message": "Four vague quantifiers: 'appropriate' ×3 (ll.21,29,65 - 'appropriate ShadCN components', 'appropriate installation commands', 'appropriate'), 'comprehensive' (l.25)."
+        }
+      ]
+    },
+    {
+      "path": "agents/tdd-specialist/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R13",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit ## Output Format section; the agent has detailed test examples but no structured template for reporting test results or coverage metrics to the caller."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 3,
+          "message": "Vague quantifier: 'comprehensive' in description ('comprehensive test suites')."
+        }
+      ]
+    },
+    {
+      "path": "agents/test-runner/agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Two vague quantifiers: 'comprehensive' (desc), 'maintainable' (l.149 'maintainable and clear')."
+        }
+      ]
+    },
+    {
+      "path": "commands/api-docs.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": null,
+          "message": "14 agent-dispatch commands omit 'allowed-tools'; Claude Code cannot communicate permitted tools to the model, unlike sibling commands that correctly use 'allowed-tools: Task'."
+        }
+      ]
+    },
+    {
+      "path": "commands/context-forge/continue-implementation.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 45,
+          "message": "Vague quantifier: 'appropriate agent based on task type' (l.45); does not specify the selection rule."
+        }
+      ]
+    },
+    {
+      "path": "commands/debug.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body uses $ARGUMENTS with no empty-input handling; running /debug bare produces an incomplete instruction."
+        }
+      ]
+    },
+    {
+      "path": "commands/deploy.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": null,
+          "message": "commands/deploy.md and commands/devops.md both dispatch to the devops-engineer agent with no documented distinction; similarly commands/marketing.md and commands/content.md both dispatch to marketing-writer. Users cannot determine which command to use."
+        }
+      ]
+    },
+    {
+      "path": "commands/devops.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "All 20 command files lack the required 'name' frontmatter field; Claude Code command registration relies on filename convention only, breaking discoverability in frontmatter-aware registries."
+        }
+      ]
+    },
+    {
+      "path": "commands/document.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body uses $ARGUMENTS with no empty-input handling; running /document bare produces an incomplete instruction."
+        }
+      ]
+    },
+    {
+      "path": "commands/refactor.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Command body uses $ARGUMENTS but provides no fallback when the user runs /refactor with no arguments; the agent receives 'Use the refactor agent to improve code structure and maintainability for: ' with a trailing blank."
+        }
+      ]
+    },
+    {
+      "path": "dashboard/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 12,
+          "message": "All dashboard dependencies (radix-ui packages, lucide-react, tailwind-merge, etc.) use ^ semver ranges; next is pinned at 14.1.0 but its dependencies are not, creating a transitive supply-chain risk."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 71,
+          "message": "Eight production dependencies use ^ semver ranges (chalk ^5.3.0, cli-table3 ^0.6.3, commander ^11.1.0, fs-extra ^11.2.0, inquirer ^9.2.12, ora ^8.0.1, yaml ^2.3.4, open ^10.0.0); a compromised minor release could inject malicious code."
+        }
+      ]
+    },
+    {
+      "path": "src/commands/dashboard.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 60,
+          "message": "spawn('npm', ['run', 'dashboard:start'], { shell: true }) uses shell:true unnecessarily; all command components are hardcoded but the pattern enables shell injection if future edits interpolate user-controlled input."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 78,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/devops.md",
+      "line": null,
+      "message": "All 20 command files lack the required 'name' frontmatter field; Claude Code command registration relies on filename convention only, breaking discoverability in frontmatter-aware registries."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/api-docs.md",
+      "line": null,
+      "message": "14 agent-dispatch commands omit 'allowed-tools'; Claude Code cannot communicate permitted tools to the model, unlike sibling commands that correctly use 'allowed-tools: Task'."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/shadcn-ui-builder/agent.md",
+      "line": 29,
+      "message": "Agent instructs the model to run ShadCN installation commands ('Install the required ShadCN components using the appropriate installation commands') but Bash is not declared in the tools list, making execution impossible."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/shadcn-ui-builder/agent.md",
+      "line": 22,
+      "message": "Agent instructs 'ALWAYS use the MCP server during planning' but no .mcp.json exists in the repository and no MCP tool appears in the declared tools list; MCP server is unresolvable."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "src/commands/dashboard.js",
+      "line": 60,
+      "message": "spawn('npm', ['run', 'dashboard:start'], { shell: true }) uses shell:true unnecessarily; all command components are hardcoded but the pattern enables shell injection if future edits interpolate user-controlled input."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 71,
+      "message": "Eight production dependencies use ^ semver ranges (chalk ^5.3.0, cli-table3 ^0.6.3, commander ^11.1.0, fs-extra ^11.2.0, inquirer ^9.2.12, ora ^8.0.1, yaml ^2.3.4, open ^10.0.0); a compromised minor release could inject malicious code."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "dashboard/package.json",
+      "line": 12,
+      "message": "All dashboard dependencies (radix-ui packages, lucide-react, tailwind-merge, etc.) use ^ semver ranges; next is pinned at 14.1.0 but its dependencies are not, creating a transitive supply-chain risk."
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/devops-engineer/agent.md",
+      "line": null,
+      "message": "Agent file contains CI/CD code templates and YAML configs but zero input-output examples of the agent responding to a user request; a reader cannot see how to invoke the agent or predict its response shape."
+    },
+    {
+      "rule": "R13",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/devops-engineer/agent.md",
+      "line": null,
+      "message": "No ## Output Format section; the agent provides extensive reference templates but no defined structure for how it will communicate results back to the user."
+    },
+    {
+      "rule": "R13",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/frontend-developer/agent.md",
+      "line": null,
+      "message": "No explicit ## Output Format section; the agent has component examples and testing patterns but no defined response template for how it reports completed work."
+    },
+    {
+      "rule": "R13",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/tdd-specialist/agent.md",
+      "line": null,
+      "message": "No explicit ## Output Format section; the agent has detailed test examples but no structured template for reporting test results or coverage metrics to the caller."
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/shadcn-ui-builder/agent.md",
+      "line": null,
+      "message": "Only one example workflow is provided (login page); the scoring rubric requires at least two examples to avoid a -5 penalty."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/shadcn-ui-builder/agent.md",
+      "line": 5,
+      "message": "NotebookRead is declared in the tools list but the agent body contains no notebook-reading logic or use case; likely copied from a template."
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/refactor.md",
+      "line": null,
+      "message": "Command body uses $ARGUMENTS but provides no fallback when the user runs /refactor with no arguments; the agent receives 'Use the refactor agent to improve code structure and maintainability for: ' with a trailing blank."
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/document.md",
+      "line": null,
+      "message": "Command body uses $ARGUMENTS with no empty-input handling; running /document bare produces an incomplete instruction."
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/debug.md",
+      "line": null,
+      "message": "Command body uses $ARGUMENTS with no empty-input handling; running /debug bare produces an incomplete instruction."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/devops-engineer/agent.md",
+      "line": 7,
+      "message": "Three vague quantifiers: 'robust' (l.7), 'scalable' (l.7), 'proper' (l.403 'Implement proper role-based access control'); none give the model measurable criteria."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/project-planner/agent.md",
+      "line": 8,
+      "message": "Three vague quantifiers: 'comprehensive' (l.8), 'optimal' (l.64 'optimal agent assignments'), 'realistic' (l.154 'realistic time estimates')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/api-developer/agent.md",
+      "line": null,
+      "message": "Four vague quantifiers: 'robust' (desc), 'scalable' (desc), 'comprehensive' (l.218), 'clean' (l.302); none specify measurable quality targets."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/shadcn-ui-builder/agent.md",
+      "line": 21,
+      "message": "Four vague quantifiers: 'appropriate' ×3 (ll.21,29,65 - 'appropriate ShadCN components', 'appropriate installation commands', 'appropriate'), 'comprehensive' (l.25)."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/doc-writer/agent.md",
+      "line": null,
+      "message": "Three vague quantifiers: 'comprehensive' (desc), 'user-friendly' (desc), 'appropriate' (l.247 'appropriate documentation type')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/code-reviewer/agent.md",
+      "line": null,
+      "message": "Two vague quantifiers: 'Adequate' (l.67 'Adequate test coverage'), 'appropriate' (l.38 'Appropriate abstraction levels')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/api-documenter/agent.md",
+      "line": null,
+      "message": "Two vague quantifiers: 'comprehensive' (desc), 'developer-friendly' (desc)."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/product-manager/agent.md",
+      "line": null,
+      "message": "Two vague quantifiers: 'actionable' (l.14 'clear, actionable user stories'), 'realistic' (l.154 'realistic time estimates')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/frontend-developer/agent.md",
+      "line": null,
+      "message": "Two vague quantifiers: 'modern' (desc), 'performant' (desc); neither gives the model a measurable target."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/test-runner/agent.md",
+      "line": null,
+      "message": "Two vague quantifiers: 'comprehensive' (desc), 'maintainable' (l.149 'maintainable and clear')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/security-scanner/agent.md",
+      "line": 11,
+      "message": "Vague quantifier: 'comprehensive' (l.11 'comprehensive security audit')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/marketing-writer/agent.md",
+      "line": 3,
+      "message": "Vague quantifier: 'compelling' in description ('compelling technical marketing materials'); not a measurable quality criterion."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/refactor/agent.md",
+      "line": 38,
+      "message": "Vague quantifier: 'Appropriate abstraction levels' in the review checklist; no criterion for what counts as appropriate."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/tdd-specialist/agent.md",
+      "line": 3,
+      "message": "Vague quantifier: 'comprehensive' in description ('comprehensive test suites')."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/context-forge/continue-implementation.md",
+      "line": 45,
+      "message": "Vague quantifier: 'appropriate agent based on task type' (l.45); does not specify the selection rule."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 34,
+      "message": "Vague quantifier: 'related' in 'Launch ALL related agents simultaneously' — 'related' is undefined; the model must guess which agents qualify."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/project-planner/agent.md",
+      "line": null,
+      "message": "Twelve agent files and context-forge commands reference a JavaScript memory API (memory.set, memory.get, memory.isContextForgeProject, memory.getAvailablePRPs, memory.updatePRPState) as a live Claude Code feature; src/commands/run.js implements only an in-process in-memory store (src/memory/index.js) with no cross-agent sharing, making the advertised coordination non-functional inside Claude Code."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/deploy.md",
+      "line": null,
+      "message": "commands/deploy.md and commands/devops.md both dispatch to the devops-engineer agent with no documented distinction; similarly commands/marketing.md and commands/content.md both dispatch to marketing-writer. Users cannot determine which command to use."
+    }
+  ],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 189,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/webdevtodayjason-sub-agents.md"
+  },
+  "generated_at": "2026-05-19T09:50:40Z",
+  "schema_version": 1
+}

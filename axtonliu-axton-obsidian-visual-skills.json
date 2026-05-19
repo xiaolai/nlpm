@@ -1,0 +1,150 @@
+{
+  "project": "axtonliu/axton-obsidian-visual-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 2,
+    "average_score": 90,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "mermaid-visualizer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 25,
+          "message": "Vague quantifier 'appropriate' in 'Choose the most appropriate visualization' — no criteria given for what makes a visualization appropriate."
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 44,
+          "message": "Vague quantifier 'balanced' in 'balanced between simplicity and information' — subjective trade-off with no measurable boundary."
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 263,
+          "message": "Vague quantifier 'sensible' in 'Use sensible defaults for unspecified options' — does not define what sensible means in context."
+        }
+      ]
+    },
+    {
+      "path": "obsidian-canvas-creator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 69,
+          "message": "Vague quantifier 'appropriate' in 'Use appropriate arrow styles' — no criteria for selecting arrow style."
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 74,
+          "message": "Vague quantifier 'subtle' in 'Use subtle background colors' — no color value or opacity range specified."
+        },
+        {
+          "rule": "R08",
+          "severity": "low",
+          "line": 201,
+          "message": "Vague quantifier 'strategic' in 'Strategic colors: Use colors to encode meaning' — 'strategic' adds no precision."
+        },
+        {
+          "rule": "R15",
+          "severity": "info",
+          "line": null,
+          "message": "Example blocks in the Examples section show only process steps, not actual JSON Canvas output. A reader cannot verify output format compliance without loading the deferred reference doc."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-05T01:13:30Z",
+      "average_score": 90,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mermaid-visualizer/SKILL.md",
+      "line": 25,
+      "message": "Vague quantifier 'appropriate' in 'Choose the most appropriate visualization' — no criteria given for what makes a visualization appropriate."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mermaid-visualizer/SKILL.md",
+      "line": 44,
+      "message": "Vague quantifier 'balanced' in 'balanced between simplicity and information' — subjective trade-off with no measurable boundary."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mermaid-visualizer/SKILL.md",
+      "line": 263,
+      "message": "Vague quantifier 'sensible' in 'Use sensible defaults for unspecified options' — does not define what sensible means in context."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "obsidian-canvas-creator/SKILL.md",
+      "line": 69,
+      "message": "Vague quantifier 'appropriate' in 'Use appropriate arrow styles' — no criteria for selecting arrow style."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "obsidian-canvas-creator/SKILL.md",
+      "line": 74,
+      "message": "Vague quantifier 'subtle' in 'Use subtle background colors' — no color value or opacity range specified."
+    },
+    {
+      "rule": "R08",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "obsidian-canvas-creator/SKILL.md",
+      "line": 201,
+      "message": "Vague quantifier 'strategic' in 'Strategic colors: Use colors to encode meaning' — 'strategic' adds no precision."
+    },
+    {
+      "rule": "R15",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "obsidian-canvas-creator/SKILL.md",
+      "line": null,
+      "message": "Example blocks in the Examples section show only process steps, not actual JSON Canvas output. A reader cannot verify output format compliance without loading the deferred reference doc."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 2669,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/axtonliu-axton-obsidian-visual-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:12Z",
+  "schema_version": 1
+}

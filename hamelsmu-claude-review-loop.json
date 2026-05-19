@@ -1,0 +1,248 @@
+{
+  "project": "hamelsmu/claude-review-loop",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/review-loop/commands/cancel-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "Multi-step body (check active → read state → remove files → report) presented in unnumbered prose; the four sequential steps have no explicit numbering."
+        }
+      ]
+    },
+    {
+      "path": "plugins/review-loop/commands/review-loop.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "medium",
+          "line": null,
+          "message": "Empty $ARGUMENTS not validated: running /review-loop with no argument silently creates a state file with a blank task body and starts the loop. The standalone setup-review-loop.sh correctly exits with an error for empty input but the command's inline bash omits this check."
+        },
+        {
+          "rule": "R14",
+          "severity": "info",
+          "line": null,
+          "message": "Multi-step command body (setup → implement → stop → run Codex → address feedback) presented in unnumbered prose paragraphs rather than a numbered list, making sequencing ambiguous."
+        },
+        {
+          "rule": "R15",
+          "severity": "info",
+          "line": null,
+          "message": "Command declares argument-hint but the body never specifies behavior when $ARGUMENTS is blank. Duplicate of Bug #1; counted as quality penalty too."
+        },
+        {
+          "rule": "R16",
+          "severity": "info",
+          "line": null,
+          "message": "No output format defined. The command ends with behavioral RULES but provides no report template or completion summary structure for what Claude should say when the review loop finishes."
+        },
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": 29,
+          "message": "Vague quantifier: 'thoroughly and completely' has no measurable criteria."
+        },
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": 29,
+          "message": "Vague quantifier: 'well-structured' has no measurable criteria."
+        },
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": 29,
+          "message": "Vague quantifier: 'well-tested' has no measurable criteria."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "Install instruction 'npm install -g @openai/codex' has no version pin. A breaking change in the Codex CLI could silently break the review workflow without any error at install time."
+        }
+      ]
+    },
+    {
+      "path": "plugins/review-loop/hooks/stop-hook.sh",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-var-injection",
+          "severity": "medium",
+          "line": 294,
+          "message": "REVIEW_LOOP_CODEX_FLAGS is read from the environment and expanded unquoted at line 350 into a heredoc-generated shell script. If the variable contains shell metacharacters (;, &&, |), they are baked into .claude/review-loop-run-codex.sh and execute when Claude runs bash on it."
+        },
+        {
+          "rule": "SEC-unpinned-runtime-install",
+          "severity": "medium",
+          "line": 222,
+          "message": "The UX agent section of build_review_prompt() instructs the Codex agent to run 'npm install -g agent-browser' with no version pin. If the package name is squatted or typosquatted, a Codex agent operating on a UI project will install a malicious package."
+        },
+        {
+          "rule": "SEC-missing-strictmode",
+          "severity": "low",
+          "line": 1,
+          "message": "Script header uses ERR trap for cleanup but omits 'set -u' and 'set -o pipefail'. Unbound variables silently produce empty strings; pipeline failures in the middle of a compound command may go undetected."
+        }
+      ]
+    },
+    {
+      "path": "plugins/review-loop/scripts/setup-review-loop.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "info",
+          "line": null,
+          "message": "scripts/setup-review-loop.sh is a fully-implemented setup script with proper dependency and empty-input checks, but commands/review-loop.md embeds equivalent logic inline and never calls the script. The script has no documented callers and may drift from the inline bash over time."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-06T00:05:24Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R15",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": null,
+      "message": "Empty $ARGUMENTS not validated: running /review-loop with no argument silently creates a state file with a blank task body and starts the loop. The standalone setup-review-loop.sh correctly exits with an error for empty input but the command's inline bash omits this check."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": null,
+      "message": "Multi-step command body (setup → implement → stop → run Codex → address feedback) presented in unnumbered prose paragraphs rather than a numbered list, making sequencing ambiguous."
+    },
+    {
+      "rule": "R15",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": null,
+      "message": "Command declares argument-hint but the body never specifies behavior when $ARGUMENTS is blank. Duplicate of Bug #1; counted as quality penalty too."
+    },
+    {
+      "rule": "R16",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": null,
+      "message": "No output format defined. The command ends with behavioral RULES but provides no report template or completion summary structure for what Claude should say when the review loop finishes."
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": 29,
+      "message": "Vague quantifier: 'thoroughly and completely' has no measurable criteria."
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": 29,
+      "message": "Vague quantifier: 'well-structured' has no measurable criteria."
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": 29,
+      "message": "Vague quantifier: 'well-tested' has no measurable criteria."
+    },
+    {
+      "rule": "R14",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/cancel-review.md",
+      "line": null,
+      "message": "Multi-step body (check active → read state → remove files → report) presented in unnumbered prose; the four sequential steps have no explicit numbering."
+    },
+    {
+      "rule": "SEC-env-var-injection",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/review-loop/hooks/stop-hook.sh",
+      "line": 294,
+      "message": "REVIEW_LOOP_CODEX_FLAGS is read from the environment and expanded unquoted at line 350 into a heredoc-generated shell script. If the variable contains shell metacharacters (;, &&, |), they are baked into .claude/review-loop-run-codex.sh and execute when Claude runs bash on it."
+    },
+    {
+      "rule": "SEC-unpinned-runtime-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/review-loop/hooks/stop-hook.sh",
+      "line": 222,
+      "message": "The UX agent section of build_review_prompt() instructs the Codex agent to run 'npm install -g agent-browser' with no version pin. If the package name is squatted or typosquatted, a Codex agent operating on a UI project will install a malicious package."
+    },
+    {
+      "rule": "SEC-missing-strictmode",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/review-loop/hooks/stop-hook.sh",
+      "line": 1,
+      "message": "Script header uses ERR trap for cleanup but omits 'set -u' and 'set -o pipefail'. Unbound variables silently produce empty strings; pipeline failures in the middle of a compound command may go undetected."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/review-loop/commands/review-loop.md",
+      "line": null,
+      "message": "Install instruction 'npm install -g @openai/codex' has no version pin. A breaking change in the Codex CLI could silently break the review workflow without any error at install time."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/review-loop/scripts/setup-review-loop.sh",
+      "line": null,
+      "message": "scripts/setup-review-loop.sh is a fully-implemented setup script with proper dependency and empty-input checks, but commands/review-loop.md embeds equivalent logic inline and never calls the script. The script has no documented callers and may drift from the inline bash over time."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 655,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/hamelsmu-claude-review-loop.md"
+  },
+  "generated_at": "2026-05-19T09:50:14Z",
+  "schema_version": 1
+}

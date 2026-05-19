@@ -1,0 +1,591 @@
+{
+  "project": "peterfei/ai-agent-team",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 21,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/agents/backend_dev.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has code templates and workflow guides but no dedicated ## 示例交互 section showing user/agent interaction pairs; -5 for one-or-fewer examples"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/devops_engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has zero interaction examples; no section showing user/agent request-response flow for deployment, CI/CD, or infrastructure tasks"
+        },
+        {
+          "rule": "R05",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent lacks a dedicated output-format section; no specification of expected response structure for deployment plans, pipeline configs, or incident reports"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/frontend_dev.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers (-18): 适当 x3, 清晰 x2, 合理 x2, 良好 x1 — implementation guidelines lack measurable thresholds"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/product_manager.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague-quantifier cap reached (-20): 清晰 x3, 全面 x2, 具体 x2, 直观 x1, 现实的 x1 — requirement descriptions lack measurable acceptance criteria"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/qa_engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers (-18): 全面 x4, 清晰 x2, 彻底 x1, 有效 x1 — test quality standards use unmeasurable adjectives"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/tech-leader.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has zero interaction examples; no section showing user/agent request-response flow for architecture decisions or code reviews"
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague-quantifier cap reached (-20): 清晰 x4, 合理 x3, 详细 x3, 完整 x2, 及时 x1 — instructions lack measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/README.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": 243,
+          "message": "README.md links to '../../docs/THREAD_AGENT_INTEGRATION.md' and '../../docs/THREAD_CONTEXT_ISOLATION_DESIGN.md' but docs/ is absent from package.json 'files' field; links broken in installed packages"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/pm-start.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": null,
+          "message": "Command invokes mcp__thread-manager__create_thread but declares no allowed-tools in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/start-task.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Role-mapping table references '.claude/agents/tech_leader.md' (underscore) but actual file is 'tech-leader.md' (hyphen); /start-task tl silently loads wrong agent"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "high",
+          "line": null,
+          "message": "start-task.md and tl-start.md both reference 'tech_leader.md' (underscore) while agent file is 'tech-leader.md' (hyphen); tech-lead role silently broken across two commands"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/thread.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": null,
+          "message": "Command invokes multiple mcp__thread-manager__* tools but declares no allowed-tools in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/threads.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": null,
+          "message": "Command invokes mcp__thread-manager__list_threads but declares no allowed-tools in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/tl-start.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Step 3 instructs reading '.claude/agents/tech_leader.md' (underscore) but actual file is 'tech-leader.md' (hyphen); /tl-start silently fails to load tech-leader persona"
+        }
+      ]
+    },
+    {
+      "path": ".claude/hooks/record-user-message.sh",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-access",
+          "severity": "medium",
+          "line": 1,
+          "message": "UserPromptSubmit hook captures every user prompt and writes it to local SQLite DB via record-message.js; expected thread-manager feature but the data-capture behavior is not disclosed prominently during installation"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/drawnote/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague-quantifier cap reached (-20): 完整 x3, 清晰 x3, 合理 x2, 适当 x2, 专业 x2 — design quality criteria are subjective and not actionable"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/softcopyright/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Vague-quantifier cap reached (-20): 清晰 x3, 专业 x2, 完整 x2, 准确 x2 — generated document quality criteria are unverifiable"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/thread-manager/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "SKILL.md has no YAML frontmatter; missing required 'name' and 'description' fields causing the skill not to register; all thread-based commands depend on it"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "high",
+          "line": null,
+          "message": "thread-manager SKILL.md missing frontmatter so skill is unregistered; all thread-based commands and agents depend on its MCP tools but the dependency is invisible to the registry"
+        }
+      ]
+    },
+    {
+      "path": "bin/ai-agent-team.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 168,
+          "message": "spawnSync called with shell:true at lines 168, 176, and 188; args are currently hardcoded so injection is not immediately exploitable, but shell:true on an array invocation is unnecessary and removes a safety layer"
+        }
+      ]
+    },
+    {
+      "path": "install.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 4,
+          "message": "Comment on line 4 documents curl|bash installation pattern; script is explicitly designed to be fetched from a remote URL and piped into bash with no integrity verification, creating a supply-chain attack surface"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 11,
+          "message": "'postinstall' npm lifecycle script executes scripts/postinstall.js automatically on every npm install; actual content prints a banner (low actual risk) but the unconditional execution hook remains active"
+        },
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 10,
+          "message": "'preinstall' npm lifecycle script executes scripts/preinstall.js automatically on every npm install"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 125,
+          "message": "@xenova/transformers ^2.17.2 and puppeteer ^24.31.0 use caret ranges; automatic minor/patch upgrades can introduce vulnerabilities or breaking changes without explicit opt-in"
+        },
+        {
+          "rule": "SEC-runtime-package-install",
+          "severity": "low",
+          "line": 126,
+          "message": "puppeteer dependency downloads a ~300 MB Chromium browser binary on npm install; users are unlikely to expect this implicit large binary dependency"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install-clt.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-sql-injection",
+          "severity": "high",
+          "line": 14,
+          "message": "Shell variable $thread_prefix is directly interpolated into SQLite query string with no sanitization; malicious input such as \"' OR '1'='1'; DELETE FROM threads; --\" could corrupt the threads database"
+        },
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 40,
+          "message": "Appends shell function aliases to ~/.zshrc without per-session confirmation; modifies user shell profile outside the repository"
+        }
+      ]
+    },
+    {
+      "path": "scripts/install.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 143,
+          "message": "Copies agent/command/CLAUDE.md files to ~/.claude/ and creates backup directories in user's home directory outside the project repo"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/commands/start-task.md",
+      "line": null,
+      "message": "Role-mapping table references '.claude/agents/tech_leader.md' (underscore) but actual file is 'tech-leader.md' (hyphen); /start-task tl silently loads wrong agent"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/commands/tl-start.md",
+      "line": null,
+      "message": "Step 3 instructs reading '.claude/agents/tech_leader.md' (underscore) but actual file is 'tech-leader.md' (hyphen); /tl-start silently fails to load tech-leader persona"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/thread-manager/SKILL.md",
+      "line": null,
+      "message": "SKILL.md has no YAML frontmatter; missing required 'name' and 'description' fields causing the skill not to register; all thread-based commands depend on it"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "install.sh",
+      "line": 4,
+      "message": "Comment on line 4 documents curl|bash installation pattern; script is explicitly designed to be fetched from a remote URL and piped into bash with no integrity verification, creating a supply-chain attack surface"
+    },
+    {
+      "rule": "SEC-sql-injection",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/install-clt.sh",
+      "line": 14,
+      "message": "Shell variable $thread_prefix is directly interpolated into SQLite query string with no sanitization; malicious input such as \"' OR '1'='1'; DELETE FROM threads; --\" could corrupt the threads database"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 11,
+      "message": "'postinstall' npm lifecycle script executes scripts/postinstall.js automatically on every npm install; actual content prints a banner (low actual risk) but the unconditional execution hook remains active"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 10,
+      "message": "'preinstall' npm lifecycle script executes scripts/preinstall.js automatically on every npm install"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "bin/ai-agent-team.js",
+      "line": 168,
+      "message": "spawnSync called with shell:true at lines 168, 176, and 188; args are currently hardcoded so injection is not immediately exploitable, but shell:true on an array invocation is unnecessary and removes a safety layer"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install.sh",
+      "line": 143,
+      "message": "Copies agent/command/CLAUDE.md files to ~/.claude/ and creates backup directories in user's home directory outside the project repo"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/install-clt.sh",
+      "line": 40,
+      "message": "Appends shell function aliases to ~/.zshrc without per-session confirmation; modifies user shell profile outside the repository"
+    },
+    {
+      "rule": "SEC-env-access",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/hooks/record-user-message.sh",
+      "line": 1,
+      "message": "UserPromptSubmit hook captures every user prompt and writes it to local SQLite DB via record-message.js; expected thread-manager feature but the data-capture behavior is not disclosed prominently during installation"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 125,
+      "message": "@xenova/transformers ^2.17.2 and puppeteer ^24.31.0 use caret ranges; automatic minor/patch upgrades can introduce vulnerabilities or breaking changes without explicit opt-in"
+    },
+    {
+      "rule": "SEC-runtime-package-install",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 126,
+      "message": "puppeteer dependency downloads a ~300 MB Chromium browser binary on npm install; users are unlikely to expect this implicit large binary dependency"
+    },
+    {
+      "rule": "R04",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/devops_engineer.md",
+      "line": null,
+      "message": "Agent has zero interaction examples; no section showing user/agent request-response flow for deployment, CI/CD, or infrastructure tasks"
+    },
+    {
+      "rule": "R04",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/tech-leader.md",
+      "line": null,
+      "message": "Agent has zero interaction examples; no section showing user/agent request-response flow for architecture decisions or code reviews"
+    },
+    {
+      "rule": "R05",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/devops_engineer.md",
+      "line": null,
+      "message": "Agent lacks a dedicated output-format section; no specification of expected response structure for deployment plans, pipeline configs, or incident reports"
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/backend_dev.md",
+      "line": null,
+      "message": "Agent has code templates and workflow guides but no dedicated ## 示例交互 section showing user/agent interaction pairs; -5 for one-or-fewer examples"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/tech-leader.md",
+      "line": null,
+      "message": "Vague-quantifier cap reached (-20): 清晰 x4, 合理 x3, 详细 x3, 完整 x2, 及时 x1 — instructions lack measurable criteria"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/product_manager.md",
+      "line": null,
+      "message": "Vague-quantifier cap reached (-20): 清晰 x3, 全面 x2, 具体 x2, 直观 x1, 现实的 x1 — requirement descriptions lack measurable acceptance criteria"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/drawnote/SKILL.md",
+      "line": null,
+      "message": "Vague-quantifier cap reached (-20): 完整 x3, 清晰 x3, 合理 x2, 适当 x2, 专业 x2 — design quality criteria are subjective and not actionable"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/softcopyright/SKILL.md",
+      "line": null,
+      "message": "Vague-quantifier cap reached (-20): 清晰 x3, 专业 x2, 完整 x2, 准确 x2 — generated document quality criteria are unverifiable"
+    },
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/threads.md",
+      "line": null,
+      "message": "Command invokes mcp__thread-manager__list_threads but declares no allowed-tools in frontmatter"
+    },
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/thread.md",
+      "line": null,
+      "message": "Command invokes multiple mcp__thread-manager__* tools but declares no allowed-tools in frontmatter"
+    },
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/pm-start.md",
+      "line": null,
+      "message": "Command invokes mcp__thread-manager__create_thread but declares no allowed-tools in frontmatter"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/qa_engineer.md",
+      "line": null,
+      "message": "Vague quantifiers (-18): 全面 x4, 清晰 x2, 彻底 x1, 有效 x1 — test quality standards use unmeasurable adjectives"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/frontend_dev.md",
+      "line": null,
+      "message": "Vague quantifiers (-18): 适当 x3, 清晰 x2, 合理 x2, 良好 x1 — implementation guidelines lack measurable thresholds"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/commands/start-task.md",
+      "line": null,
+      "message": "start-task.md and tl-start.md both reference 'tech_leader.md' (underscore) while agent file is 'tech-leader.md' (hyphen); tech-lead role silently broken across two commands"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/thread-manager/SKILL.md",
+      "line": null,
+      "message": "thread-manager SKILL.md missing frontmatter so skill is unregistered; all thread-based commands and agents depend on its MCP tools but the dependency is invisible to the registry"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/commands/README.md",
+      "line": 243,
+      "message": "README.md links to '../../docs/THREAD_AGENT_INTEGRATION.md' and '../../docs/THREAD_CONTEXT_ISOLATION_DESIGN.md' but docs/ is absent from package.json 'files' field; links broken in installed packages"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 336,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/peterfei-ai-agent-team.md"
+  },
+  "generated_at": "2026-05-19T09:50:17Z",
+  "schema_version": 1
+}

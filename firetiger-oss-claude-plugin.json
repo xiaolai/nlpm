@@ -1,0 +1,458 @@
+{
+  "project": "firetiger-oss/claude-plugin",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 8,
+    "average_score": 84,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-external-http-mcp",
+          "severity": "medium",
+          "line": 5,
+          "message": "MCP server is a remote HTTP endpoint (https://api.cloud.firetiger.com/mcp/v1). All tool calls including get_ingest_credentials and agent management traverse this external connection. No credentials are hardcoded; trust depends on TLS and the vendor's server security."
+        }
+      ]
+    },
+    {
+      "path": "agents/firetiger.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "agents/firetiger.md has no YAML frontmatter block at all; the `name` field is absent, preventing proper agent registration in the plugin."
+        },
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "agents/firetiger.md has no YAML frontmatter block; the `description` field is absent, breaking agent discovery and help listings."
+        },
+        {
+          "rule": "R05",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has no YAML frontmatter and therefore no model field; the model tier is undeclared and will fall through to the runtime default."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Agent context document has no output format section; there is no specification of how the agent should structure its responses."
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": 30,
+          "message": "Agent context lists supported MCP resource collections (agents, known-issues, connections, runbooks, triggers) but omits `investigations`, which is the primary resource used by commands/investigate.md."
+        }
+      ]
+    },
+    {
+      "path": "commands/create-agent.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command frontmatter has no `allowed-tools` declaration; relies on MCP tools only but omitting the field leaves tool access unrestricted."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 17,
+          "message": "Phrase `until the agent is fully configured` uses vague completion criterion; `fully` is not defined."
+        }
+      ]
+    },
+    {
+      "path": "commands/instrument.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command writes source files (tracing.ts, tracing.py, etc.) and updates .gitignore but declares no `allowed-tools`; Write and Edit tools are used without being listed."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 21,
+          "message": "Step 2 says `Quickly identify the primary framework` but provides no bound on what constitutes a quick scan."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 35,
+          "message": "Step 4 says `Add the minimal instrumentation needed` where `minimal` is undefined; Claude must infer what counts as minimal."
+        }
+      ]
+    },
+    {
+      "path": "commands/investigate.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command uses only MCP tools but has no `allowed-tools` declaration, leaving tool access unrestricted."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 43,
+          "message": "Investigation create fields include `services: Relevant services to investigate` where `relevant` is undefined."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 49,
+          "message": "Investigation create fields include `description: Detailed context about the issue` where `detailed` is undefined."
+        }
+      ]
+    },
+    {
+      "path": "commands/monitor-deploy.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command uses Bash (gh CLI) explicitly but has no `allowed-tools` declaration."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 13,
+          "message": "Description says Firetiger `develops a targeted monitoring plan` where `targeted` has no defined criteria."
+        },
+        {
+          "rule": "SEC-user-content-shell",
+          "severity": "medium",
+          "line": 39,
+          "message": "Command instructs Claude to run `gh pr comment <PR_NUMBER> --body \"@firetiger <monitoring context>\"` where monitoring context is assembled from user input and PR diff. Unescaped shell metacharacters in user-provided text could break out of the --body argument boundary."
+        }
+      ]
+    },
+    {
+      "path": "commands/query.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command uses only the MCP `query` tool but has no `allowed-tools` declaration."
+        },
+        {
+          "rule": "R14",
+          "severity": "medium",
+          "line": null,
+          "message": "Command is a SQL reference guide with no section specifying how query results should be formatted and presented to the user."
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": null,
+          "message": "commands/query.md, commands/investigate.md, and commands/create-agent.md have no auth-fallback guard. If the Firetiger MCP server is not authenticated, these commands will fail silently. Only commands/setup.md handles the unauthenticated case."
+        }
+      ]
+    },
+    {
+      "path": "commands/setup.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command uses Bash extensively (curl, aws, gcloud, wrangler, open/xdg-open) and writes files but has no `allowed-tools` declaration."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 9,
+          "message": "Goal statement says `minimal user interaction` with no threshold defined for what counts as minimal."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 67,
+          "message": "Section heading `Proactively connect` does not define what proactive means or when the agent should act without asking."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 87,
+          "message": "Warning condition `if only some connections were skipped` uses vague `some`; quantity is unspecified."
+        },
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 327,
+          "message": "Note says `Only ask for confirmation if genuinely uncertain` where `genuinely` provides no actionable decision rule."
+        },
+        {
+          "rule": "SEC-open-external-url",
+          "severity": "low",
+          "line": 282,
+          "message": "Command instructs Claude to run `open \"URL\"` or `xdg-open \"URL\"` with a URL from the get_checkout_url MCP tool. If the MCP server ever returns a non-https scheme (file://, javascript:, etc.), the OS handler could execute unintended content."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-28T03:02:33Z",
+      "average_score": 84,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/firetiger.md",
+      "line": null,
+      "message": "agents/firetiger.md has no YAML frontmatter block at all; the `name` field is absent, preventing proper agent registration in the plugin."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "agents/firetiger.md",
+      "line": null,
+      "message": "agents/firetiger.md has no YAML frontmatter block; the `description` field is absent, breaking agent discovery and help listings."
+    },
+    {
+      "rule": "R05",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/firetiger.md",
+      "line": null,
+      "message": "Agent has no YAML frontmatter and therefore no model field; the model tier is undeclared and will fall through to the runtime default."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/firetiger.md",
+      "line": null,
+      "message": "Agent context document has no output format section; there is no specification of how the agent should structure its responses."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/create-agent.md",
+      "line": null,
+      "message": "Command frontmatter has no `allowed-tools` declaration; relies on MCP tools only but omitting the field leaves tool access unrestricted."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/create-agent.md",
+      "line": 17,
+      "message": "Phrase `until the agent is fully configured` uses vague completion criterion; `fully` is not defined."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/instrument.md",
+      "line": null,
+      "message": "Command writes source files (tracing.ts, tracing.py, etc.) and updates .gitignore but declares no `allowed-tools`; Write and Edit tools are used without being listed."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/instrument.md",
+      "line": 21,
+      "message": "Step 2 says `Quickly identify the primary framework` but provides no bound on what constitutes a quick scan."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/instrument.md",
+      "line": 35,
+      "message": "Step 4 says `Add the minimal instrumentation needed` where `minimal` is undefined; Claude must infer what counts as minimal."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/investigate.md",
+      "line": null,
+      "message": "Command uses only MCP tools but has no `allowed-tools` declaration, leaving tool access unrestricted."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/investigate.md",
+      "line": 43,
+      "message": "Investigation create fields include `services: Relevant services to investigate` where `relevant` is undefined."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/investigate.md",
+      "line": 49,
+      "message": "Investigation create fields include `description: Detailed context about the issue` where `detailed` is undefined."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/monitor-deploy.md",
+      "line": null,
+      "message": "Command uses Bash (gh CLI) explicitly but has no `allowed-tools` declaration."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/monitor-deploy.md",
+      "line": 13,
+      "message": "Description says Firetiger `develops a targeted monitoring plan` where `targeted` has no defined criteria."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/query.md",
+      "line": null,
+      "message": "Command uses only the MCP `query` tool but has no `allowed-tools` declaration."
+    },
+    {
+      "rule": "R14",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/query.md",
+      "line": null,
+      "message": "Command is a SQL reference guide with no section specifying how query results should be formatted and presented to the user."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": null,
+      "message": "Command uses Bash extensively (curl, aws, gcloud, wrangler, open/xdg-open) and writes files but has no `allowed-tools` declaration."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 9,
+      "message": "Goal statement says `minimal user interaction` with no threshold defined for what counts as minimal."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 67,
+      "message": "Section heading `Proactively connect` does not define what proactive means or when the agent should act without asking."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 87,
+      "message": "Warning condition `if only some connections were skipped` uses vague `some`; quantity is unspecified."
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 327,
+      "message": "Note says `Only ask for confirmation if genuinely uncertain` where `genuinely` provides no actionable decision rule."
+    },
+    {
+      "rule": "SEC-external-http-mcp",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 5,
+      "message": "MCP server is a remote HTTP endpoint (https://api.cloud.firetiger.com/mcp/v1). All tool calls including get_ingest_credentials and agent management traverse this external connection. No credentials are hardcoded; trust depends on TLS and the vendor's server security."
+    },
+    {
+      "rule": "SEC-user-content-shell",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/monitor-deploy.md",
+      "line": 39,
+      "message": "Command instructs Claude to run `gh pr comment <PR_NUMBER> --body \"@firetiger <monitoring context>\"` where monitoring context is assembled from user input and PR diff. Unescaped shell metacharacters in user-provided text could break out of the --body argument boundary."
+    },
+    {
+      "rule": "SEC-open-external-url",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 282,
+      "message": "Command instructs Claude to run `open \"URL\"` or `xdg-open \"URL\"` with a URL from the get_checkout_url MCP tool. If the MCP server ever returns a non-https scheme (file://, javascript:, etc.), the OS handler could execute unintended content."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/firetiger.md",
+      "line": 30,
+      "message": "Agent context lists supported MCP resource collections (agents, known-issues, connections, runbooks, triggers) but omits `investigations`, which is the primary resource used by commands/investigate.md."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/query.md",
+      "line": null,
+      "message": "commands/query.md, commands/investigate.md, and commands/create-agent.md have no auth-fallback guard. If the Firetiger MCP server is not authenticated, these commands will fail silently. Only commands/setup.md handles the unauthenticated case."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 0,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/firetiger-oss-claude-plugin.md"
+  },
+  "generated_at": "2026-05-19T09:50:13Z",
+  "schema_version": 1
+}

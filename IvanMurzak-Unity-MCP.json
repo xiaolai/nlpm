@@ -1,0 +1,36 @@
+{
+  "project": "IvanMurzak/Unity-MCP",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-12T22:21:37Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "tracked",
+    "stars": null,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/IvanMurzak-Unity-MCP.md"
+  },
+  "generated_at": "2026-05-19T09:50:39Z",
+  "schema_version": 1
+}

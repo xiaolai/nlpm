@@ -1,0 +1,59 @@
+{
+  "project": "forrestchang/andrej-karpathy-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 1,
+    "average_score": 99,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 3,
+          "message": "Vague quantifier 'as needed' in 'Merge with project-specific instructions as needed' — no criteria for when merging is warranted"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-13T03:37:23Z",
+      "average_score": 99,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 3,
+      "message": "Vague quantifier 'as needed' in 'Merge with project-specific instructions as needed' — no criteria for when merging is warranted"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 125813,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/forrestchang-andrej-karpathy-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:13Z",
+  "schema_version": 1
+}

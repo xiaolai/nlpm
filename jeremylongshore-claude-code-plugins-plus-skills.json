@@ -1,0 +1,904 @@
+{
+  "project": "jeremylongshore/claude-code-plugins-plus-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 39,
+    "average_score": 73,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/agents/skill-auditor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter — no name, description, or model"
+        }
+      ]
+    },
+    {
+      "path": "All devops/testing backup commands (33 files)",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "No `allowed-tools` field — commands can call any tool; constraining to relevant tools improves predictability"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../backup-strategy.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Shell command substitution in YAML `description` field — broken template never instantiated"
+        },
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "Shell substitution expressions in YAML frontmatter (`$(echo ...)`) — broken template that could cause YAML parser confusion"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../commit-smart.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../commit.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Hardcoded `model: claude-sonnet-4-5-20250929` — use model alias (`sonnet`) not versioned ID; will break when model is deprecated"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../discovery.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../fairdb-onboard-customer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "`PGPASSWORD=` in env — document alternative: `~/.pgpass` file or `PGSSLMODE` cert auth"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../fairdb-setup-backup.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "Webhook curl with env-var URL — add a `[[ -n \"$FAIRDB_MONITORING_WEBHOOK\" ]]` guard before the curl call"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../fuzz-api.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../incident-p0-disk-full.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "`sudo rm -rf` instructed against a PostgreSQL data directory — narrow the target path with an explicit safety check"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../make-builder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../mobile-test.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../n8n-builder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../overnight-setup.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../roi.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../sow.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../sync-agent-context.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter — raw markdown file without any frontmatter block"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../validate-consistency.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Non-standard `temperature: 0.0` frontmatter field — not a recognized Claude Code frontmatter key"
+        }
+      ]
+    },
+    {
+      "path": "backups/.../zap.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "Missing required `name` field"
+        }
+      ]
+    },
+    {
+      "path": "data-validation-engine",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+        }
+      ]
+    },
+    {
+      "path": "geepers_a11y.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+        }
+      ]
+    },
+    {
+      "path": "geepers_dashboard.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+        }
+      ]
+    },
+    {
+      "path": "geepers_links.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+        }
+      ]
+    },
+    {
+      "path": "geepers_orchestrator_web.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Description truncated mid-sentence (\"...building and revie...\") — description field cut off"
+        }
+      ]
+    },
+    {
+      "path": "geepers_scalpel.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+        }
+      ]
+    },
+    {
+      "path": "name",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-model",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `model` field — inheriting session default means these run on whatever model is active"
+        }
+      ]
+    },
+    {
+      "path": "nosql-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-model",
+          "severity": "info",
+          "line": null,
+          "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+        }
+      ]
+    },
+    {
+      "path": "orm-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-model",
+          "severity": "info",
+          "line": null,
+          "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+        }
+      ]
+    },
+    {
+      "path": "schema-optimization/agents/phase_*.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "No `<example>` blocks — contract agents are functional but undiscoverable by Claude"
+        }
+      ]
+    },
+    {
+      "path": "scripts/quick-test.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "`npm install -g pnpm@9.15.9` at runtime — pin via `.npmrc` or `corepack enable` instead of global install"
+        }
+      ]
+    },
+    {
+      "path": "skill-auditor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Substantial body (detailed audit methodology) wasted — Claude will never load this agent without frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "templates/agent-plugin/agents/example.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Model field commented out — should show active model value as default"
+        }
+      ]
+    },
+    {
+      "path": "templates/full-plugin/agents/example.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Stub body (\"Agent instructions here.\") — template gives no scaffold for what to write"
+        }
+      ]
+    },
+    {
+      "path": "validation-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-model",
+          "severity": "info",
+          "line": null,
+          "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+        }
+      ]
+    },
+    {
+      "path": "workspace/lab/schema-optimization/agents/phase_1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "workspace/lab/schema-optimization/agents/phase_2.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "workspace/lab/schema-optimization/agents/phase_3.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "workspace/lab/schema-optimization/agents/phase_4.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "workspace/lab/schema-optimization/agents/phase_5.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Zero YAML frontmatter"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-17T12:21:40Z",
+      "average_score": 73,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-04-24T04:03:00Z",
+      "average_score": 84,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/agents/skill-auditor.md",
+      "line": null,
+      "message": "Zero YAML frontmatter — no name, description, or model"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "workspace/lab/schema-optimization/agents/phase_1.md",
+      "line": null,
+      "message": "Zero YAML frontmatter"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "workspace/lab/schema-optimization/agents/phase_2.md",
+      "line": null,
+      "message": "Zero YAML frontmatter"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "workspace/lab/schema-optimization/agents/phase_3.md",
+      "line": null,
+      "message": "Zero YAML frontmatter"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "workspace/lab/schema-optimization/agents/phase_4.md",
+      "line": null,
+      "message": "Zero YAML frontmatter"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "workspace/lab/schema-optimization/agents/phase_5.md",
+      "line": null,
+      "message": "Zero YAML frontmatter"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../backup-strategy.md",
+      "line": null,
+      "message": "Shell command substitution in YAML `description` field — broken template never instantiated"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../sync-agent-context.md",
+      "line": null,
+      "message": "Zero YAML frontmatter — raw markdown file without any frontmatter block"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../overnight-setup.md",
+      "line": null,
+      "message": "Missing required `name` field in frontmatter"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../discovery.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../sow.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../make-builder.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../zap.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../n8n-builder.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../roi.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../mobile-test.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../fuzz-api.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../commit-smart.md",
+      "line": null,
+      "message": "Missing required `name` field"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../backup-strategy.md",
+      "line": null,
+      "message": "Shell substitution expressions in YAML frontmatter (`$(echo ...)`) — broken template that could cause YAML parser confusion"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../incident-p0-disk-full.md",
+      "line": null,
+      "message": "`sudo rm -rf` instructed against a PostgreSQL data directory — narrow the target path with an explicit safety check"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "scripts/quick-test.sh",
+      "line": null,
+      "message": "`npm install -g pnpm@9.15.9` at runtime — pin via `.npmrc` or `corepack enable` instead of global install"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../fairdb-onboard-customer.md",
+      "line": null,
+      "message": "`PGPASSWORD=` in env — document alternative: `~/.pgpass` file or `PGSSLMODE` cert auth"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../fairdb-setup-backup.md",
+      "line": null,
+      "message": "Webhook curl with env-var URL — add a `[[ -n \"$FAIRDB_MONITORING_WEBHOOK\" ]]` guard before the curl call"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "schema-optimization/agents/phase_*.md",
+      "line": null,
+      "message": "No `<example>` blocks — contract agents are functional but undiscoverable by Claude"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skill-auditor.md",
+      "line": null,
+      "message": "Substantial body (detailed audit methodology) wasted — Claude will never load this agent without frontmatter"
+    },
+    {
+      "rule": "BUG-missing-model",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "nosql-agent.md",
+      "line": null,
+      "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+    },
+    {
+      "rule": "BUG-missing-model",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "validation-agent.md",
+      "line": null,
+      "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+    },
+    {
+      "rule": "BUG-missing-model",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "orm-agent.md",
+      "line": null,
+      "message": "No model specified — will inherit session default instead of being assigned appropriate reasoning tier"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "nosql-agent.md",
+      "line": null,
+      "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "validation-agent.md",
+      "line": null,
+      "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "data-validation-engine",
+      "line": null,
+      "message": "Code examples in body but no agent `<example>` blocks — examples show usage pattern, not Claude invocation scenarios"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "templates/full-plugin/agents/example.md",
+      "line": null,
+      "message": "Stub body (\"Agent instructions here.\") — template gives no scaffold for what to write"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "templates/agent-plugin/agents/example.md",
+      "line": null,
+      "message": "Model field commented out — should show active model value as default"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../commit.md",
+      "line": null,
+      "message": "Hardcoded `model: claude-sonnet-4-5-20250929` — use model alias (`sonnet`) not versioned ID; will break when model is deprecated"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "backups/.../validate-consistency.md",
+      "line": null,
+      "message": "Non-standard `temperature: 0.0` frontmatter field — not a recognized Claude Code frontmatter key"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "geepers_orchestrator_web.md",
+      "line": null,
+      "message": "Description truncated mid-sentence (\"...building and revie...\") — description field cut off"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "geepers_dashboard.md",
+      "line": null,
+      "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "geepers_scalpel.md",
+      "line": null,
+      "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "geepers_a11y.md",
+      "line": null,
+      "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "geepers_links.md",
+      "line": null,
+      "message": "Only 2 `<example>` blocks — minimum viable but three is the recommended floor"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "All devops/testing backup commands (33 files)",
+      "line": null,
+      "message": "No `allowed-tools` field — commands can call any tool; constraining to relevant tools improves predictability"
+    },
+    {
+      "rule": "BUG-missing-model",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "name",
+      "line": null,
+      "message": "Missing `model` field — inheriting session default means these run on whatever model is active"
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 1917,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/jeremylongshore-claude-code-plugins-plus-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:40Z",
+  "schema_version": 1
+}

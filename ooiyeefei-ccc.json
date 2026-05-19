@@ -1,0 +1,563 @@
+{
+  "project": "ooiyeefei/ccc",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 17,
+    "average_score": 96,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "commands/streak-insights.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "commands/streak-list.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter; Claude must infer which tools to use"
+        }
+      ]
+    },
+    {
+      "path": "commands/streak-new.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "commands/streak-stats.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "commands/streak-switch.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 38,
+          "message": "Command requires [challenge-name] argument but provides no handling when invoked with no argument; instructions reference checking if [challenge-name] exists which silently fails on empty"
+        },
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter"
+        },
+        {
+          "rule": "R22",
+          "severity": "medium",
+          "line": 38,
+          "message": "[challenge-name] argument required but no handling when omitted; see Bug #5"
+        }
+      ]
+    },
+    {
+      "path": "commands/streak.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R24",
+          "severity": "low",
+          "line": null,
+          "message": "Command has no allowed-tools declaration in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "plugins/deckling/commands/deckling.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Command delegates to skills/deckling-pptx.md (relative to plugin) which does not exist among scanned artifacts; command cannot function"
+        },
+        {
+          "rule": "R24",
+          "severity": "medium",
+          "line": null,
+          "message": "Command has no allowed-tools declaration; needs at minimum Bash to run the worker script"
+        },
+        {
+          "rule": "R18",
+          "severity": "medium",
+          "line": null,
+          "message": "Command has no output format section; user cannot anticipate what file will be produced or where it will be saved"
+        },
+        {
+          "rule": "R15",
+          "severity": "medium",
+          "line": 25,
+          "message": "Multi-step Instructions section gives two sequential steps as unnumbered prose without ordering markers"
+        },
+        {
+          "rule": "R22",
+          "severity": "medium",
+          "line": null,
+          "message": "Command accepts a topic argument but provides no fallback when invoked with no argument"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "high",
+          "line": 26,
+          "message": "skills/deckling-pptx.md referenced as skill entry point does not exist; same as Bug #1"
+        }
+      ]
+    },
+    {
+      "path": "plugins/deckling/requirements.txt",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 1,
+          "message": "anthropic>=0.39.0 uses >= operator; will automatically upgrade through breaking major versions on fresh installs"
+        }
+      ]
+    },
+    {
+      "path": "plugins/deckling/scripts/deckling_worker.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 135,
+          "message": "Outbound HTTPS call to Anthropic API; uses ANTHROPIC_API_KEY from environment; key never logged or forwarded elsewhere"
+        }
+      ]
+    },
+    {
+      "path": "plugins/mvp-launch/skills/mvp-launch/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": 17,
+          "message": "'appropriate' used without concrete spec in 'Trials configured with appropriate period'"
+        },
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": 23,
+          "message": "'appropriately sized' used before the concrete spec (44x44px); the qualifier is redundant given the immediate measurement"
+        }
+      ]
+    },
+    {
+      "path": "plugins/product-management/.claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-semver",
+          "severity": "low",
+          "line": 4,
+          "message": "plugin.json declares version 0.1.0 but plugins/product-management/skills/product-management/SKILL.md declares version: 0.2.0"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 4,
+          "message": "plugin.json version 0.1.0 vs SKILL.md version 0.2.0; same as Bug #3"
+        }
+      ]
+    },
+    {
+      "path": "plugins/product-management/agents/research-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": 135,
+          "message": "'relevant' used in quality standards: 'Focus on information relevant to competitive positioning'"
+        }
+      ]
+    },
+    {
+      "path": "plugins/product-management/commands/prd.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 9,
+          "message": "Command requires $ARGUMENTS (feature-name) but provides no empty-argument branch; invoked as /pm:prd with no name silently runs gh issue search for empty string"
+        },
+        {
+          "rule": "R22",
+          "severity": "medium",
+          "line": 9,
+          "message": "$ARGUMENTS used as required feature-name with no empty guard; see Bug #4"
+        }
+      ]
+    },
+    {
+      "path": "plugins/product-management/skills/product-management/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 131,
+          "message": "SKILL.md documents /pm:review as a workflow step but no review.md command file exists; users following the documented gap-filing workflow hit a missing command"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 13,
+          "message": "SKILL.md top-level formula shows WINNING = Pain x Timing x Execution Capability (3 factors, multiplicative) but gap-analyst.md and gaps.md implement 6 additive factors scored 0-60; the tagline formula is misleading"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": 131,
+          "message": "/pm:review documented as a workflow step but no review.md command exists; same as Bug #2"
+        }
+      ]
+    },
+    {
+      "path": "skills/streak/tools/requirements.txt",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 2,
+          "message": "pytz>=2024.1 uses >= operator; unpinned minor/major versions reduce reproducibility"
+        }
+      ]
+    },
+    {
+      "path": "skills/streak/tools/streak-bot.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 106,
+          "message": "subprocess.run for git pull/push; commit message includes user-supplied challenge name from Telegram; safe because list invocation is used (no shell=True), git receives name as literal string argument"
+        }
+      ]
+    },
+    {
+      "path": "skills/streak/tools/streak-notify.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 187,
+          "message": "Outbound HTTPS to Telegram Bot API using token read from plaintext .streak/config.md; token could be accidentally committed"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 96,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": null,
+      "message": "Command delegates to skills/deckling-pptx.md (relative to plugin) which does not exist among scanned artifacts; command cannot function"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/product-management/skills/product-management/SKILL.md",
+      "line": 131,
+      "message": "SKILL.md documents /pm:review as a workflow step but no review.md command file exists; users following the documented gap-filing workflow hit a missing command"
+    },
+    {
+      "rule": "BUG-invalid-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/product-management/.claude-plugin/plugin.json",
+      "line": 4,
+      "message": "plugin.json declares version 0.1.0 but plugins/product-management/skills/product-management/SKILL.md declares version: 0.2.0"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/product-management/commands/prd.md",
+      "line": 9,
+      "message": "Command requires $ARGUMENTS (feature-name) but provides no empty-argument branch; invoked as /pm:prd with no name silently runs gh issue search for empty string"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/streak-switch.md",
+      "line": 38,
+      "message": "Command requires [challenge-name] argument but provides no handling when invoked with no argument; instructions reference checking if [challenge-name] exists which silently fails on empty"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak-list.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter; Claude must infer which tools to use"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak-stats.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak-insights.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak-switch.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter"
+    },
+    {
+      "rule": "R24",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/streak-new.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration in frontmatter"
+    },
+    {
+      "rule": "R24",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": null,
+      "message": "Command has no allowed-tools declaration; needs at minimum Bash to run the worker script"
+    },
+    {
+      "rule": "R18",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": null,
+      "message": "Command has no output format section; user cannot anticipate what file will be produced or where it will be saved"
+    },
+    {
+      "rule": "R15",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": 25,
+      "message": "Multi-step Instructions section gives two sequential steps as unnumbered prose without ordering markers"
+    },
+    {
+      "rule": "R22",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": null,
+      "message": "Command accepts a topic argument but provides no fallback when invoked with no argument"
+    },
+    {
+      "rule": "R22",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/product-management/commands/prd.md",
+      "line": 9,
+      "message": "$ARGUMENTS used as required feature-name with no empty guard; see Bug #4"
+    },
+    {
+      "rule": "R22",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/streak-switch.md",
+      "line": 38,
+      "message": "[challenge-name] argument required but no handling when omitted; see Bug #5"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/mvp-launch/skills/mvp-launch/SKILL.md",
+      "line": 17,
+      "message": "'appropriate' used without concrete spec in 'Trials configured with appropriate period'"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/mvp-launch/skills/mvp-launch/SKILL.md",
+      "line": 23,
+      "message": "'appropriately sized' used before the concrete spec (44x44px); the qualifier is redundant given the immediate measurement"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/product-management/agents/research-agent.md",
+      "line": 135,
+      "message": "'relevant' used in quality standards: 'Focus on information relevant to competitive positioning'"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/deckling/scripts/deckling_worker.py",
+      "line": 135,
+      "message": "Outbound HTTPS call to Anthropic API; uses ANTHROPIC_API_KEY from environment; key never logged or forwarded elsewhere"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/streak/tools/streak-notify.py",
+      "line": 187,
+      "message": "Outbound HTTPS to Telegram Bot API using token read from plaintext .streak/config.md; token could be accidentally committed"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/streak/tools/streak-bot.py",
+      "line": 106,
+      "message": "subprocess.run for git pull/push; commit message includes user-supplied challenge name from Telegram; safe because list invocation is used (no shell=True), git receives name as literal string argument"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/deckling/requirements.txt",
+      "line": 1,
+      "message": "anthropic>=0.39.0 uses >= operator; will automatically upgrade through breaking major versions on fresh installs"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/streak/tools/requirements.txt",
+      "line": 2,
+      "message": "pytz>=2024.1 uses >= operator; unpinned minor/major versions reduce reproducibility"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/product-management/skills/product-management/SKILL.md",
+      "line": 13,
+      "message": "SKILL.md top-level formula shows WINNING = Pain x Timing x Execution Capability (3 factors, multiplicative) but gap-analyst.md and gaps.md implement 6 additive factors scored 0-60; the tagline formula is misleading"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/product-management/skills/product-management/SKILL.md",
+      "line": 131,
+      "message": "/pm:review documented as a workflow step but no review.md command exists; same as Bug #2"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/deckling/commands/deckling.md",
+      "line": 26,
+      "message": "skills/deckling-pptx.md referenced as skill entry point does not exist; same as Bug #1"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/product-management/.claude-plugin/plugin.json",
+      "line": 4,
+      "message": "plugin.json version 0.1.0 vs SKILL.md version 0.2.0; same as Bug #3"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 405,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/ooiyeefei-ccc.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

@@ -1,0 +1,381 @@
+{
+  "project": "memvid/claude-brain",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 11,
+    "average_score": 96,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "commands/ask.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Command declares required argument <question> but provides no empty-input behaviour; invoking with no args passes empty string to ask.js which exits with a raw usage error."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 26,
+          "message": "Phrase 'when applicable' is a vague quantifier with no defined criteria."
+        }
+      ]
+    },
+    {
+      "path": "commands/recent.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 26,
+          "message": "Phrase 'when helpful' is a vague quantifier with no defined criteria."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "high",
+          "line": 15,
+          "message": "${ARGUMENTS:-20} is unquoted in the bash invocation; word-splitting and glob expansion are active, enabling shell injection if ARGUMENTS contains metacharacters (e.g. /mind:recent $(id))."
+        }
+      ]
+    },
+    {
+      "path": "commands/search.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Command declares required argument <query> but provides no empty-input behaviour; invoking with no args passes empty string to find.js which exits with a raw usage error."
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 16,
+          "message": "\"$ARGUMENTS\" is passed as a single quoted token so <query> and [limit] are concatenated; the hardcoded 10 on the bash line is always used as the limit, making the [limit] argument-hint non-functional."
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "medium",
+          "line": null,
+          "message": "argument-hint documents <query> [limit] but the bash line hardcodes 10 as the limit; the hint and implementation are out of sync."
+        }
+      ]
+    },
+    {
+      "path": "commands/stats.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 20,
+          "message": "Phrase 'when appropriate' is a vague quantifier with no defined criteria."
+        }
+      ]
+    },
+    {
+      "path": "hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Stop hook timeout is 10 s in hooks/hooks.json but 30 s in src/hooks/hooks.json and dist/hooks/hooks.json; the stale copy should be resolved."
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "hooks/hooks.json Stop timeout (10 s) differs from src/hooks/hooks.json and dist/hooks/hooks.json (30 s); one of these is stale."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 47,
+          "message": "@memvid/sdk: \"^2.0.149\" uses a caret range; automatic minor/patch upgrades could introduce breaking or malicious changes between installs."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 48,
+          "message": "proper-lockfile: \"^4.1.2\" uses a caret range; same supply-chain drift concern."
+        }
+      ]
+    },
+    {
+      "path": "skills/memory/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "skills/memory/SKILL.md is byte-for-byte identical to skills/mind/SKILL.md except for the name field; dual maintenance burden and likely to diverge."
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 71,
+          "message": "File path '.mind.mv2' is incorrect; the actual memory file is stored at '.claude/mind.mv2'."
+        }
+      ]
+    },
+    {
+      "path": "skills/mind/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "skills/mind/SKILL.md is byte-for-byte identical to skills/memory/SKILL.md except for the name field."
+        },
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 71,
+          "message": "File path '.mind.mv2' is incorrect; the actual memory file is stored at '.claude/mind.mv2'. (Same typo as in skills/memory/SKILL.md.)"
+        }
+      ]
+    },
+    {
+      "path": "src/hooks/smart-install.ts",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 78,
+          "message": "execSync('npm install …') runs a live npm registry fetch on every SessionStart; a compromised @memvid/sdk version would execute arbitrary code in the user environment."
+        }
+      ]
+    },
+    {
+      "path": "src/scripts/ask.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 23,
+          "message": "Duplicate execSync('npm install …') install guard in ask.ts; smart-install.ts already handles SessionStart installs, making this redundant and an unnecessary network surface."
+        }
+      ]
+    },
+    {
+      "path": "src/scripts/find.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 23,
+          "message": "Duplicate execSync('npm install …') install guard in find.ts; same issue as ask.ts."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 96,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/ask.md",
+      "line": null,
+      "message": "Command declares required argument <question> but provides no empty-input behaviour; invoking with no args passes empty string to ask.js which exits with a raw usage error."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/ask.md",
+      "line": 26,
+      "message": "Phrase 'when applicable' is a vague quantifier with no defined criteria."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/search.md",
+      "line": null,
+      "message": "Command declares required argument <query> but provides no empty-input behaviour; invoking with no args passes empty string to find.js which exits with a raw usage error."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/recent.md",
+      "line": 26,
+      "message": "Phrase 'when helpful' is a vague quantifier with no defined criteria."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/stats.md",
+      "line": 20,
+      "message": "Phrase 'when appropriate' is a vague quantifier with no defined criteria."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/memory/SKILL.md",
+      "line": null,
+      "message": "skills/memory/SKILL.md is byte-for-byte identical to skills/mind/SKILL.md except for the name field; dual maintenance burden and likely to diverge."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/mind/SKILL.md",
+      "line": null,
+      "message": "skills/mind/SKILL.md is byte-for-byte identical to skills/memory/SKILL.md except for the name field."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": null,
+      "message": "Stop hook timeout is 10 s in hooks/hooks.json but 30 s in src/hooks/hooks.json and dist/hooks/hooks.json; the stale copy should be resolved."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/memory/SKILL.md",
+      "line": 71,
+      "message": "File path '.mind.mv2' is incorrect; the actual memory file is stored at '.claude/mind.mv2'."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/mind/SKILL.md",
+      "line": 71,
+      "message": "File path '.mind.mv2' is incorrect; the actual memory file is stored at '.claude/mind.mv2'. (Same typo as in skills/memory/SKILL.md.)"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/search.md",
+      "line": 16,
+      "message": "\"$ARGUMENTS\" is passed as a single quoted token so <query> and [limit] are concatenated; the hardcoded 10 on the bash line is always used as the limit, making the [limit] argument-hint non-functional."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/recent.md",
+      "line": 15,
+      "message": "${ARGUMENTS:-20} is unquoted in the bash invocation; word-splitting and glob expansion are active, enabling shell injection if ARGUMENTS contains metacharacters (e.g. /mind:recent $(id))."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/hooks/smart-install.ts",
+      "line": 78,
+      "message": "execSync('npm install …') runs a live npm registry fetch on every SessionStart; a compromised @memvid/sdk version would execute arbitrary code in the user environment."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/scripts/ask.ts",
+      "line": 23,
+      "message": "Duplicate execSync('npm install …') install guard in ask.ts; smart-install.ts already handles SessionStart installs, making this redundant and an unnecessary network surface."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/scripts/find.ts",
+      "line": 23,
+      "message": "Duplicate execSync('npm install …') install guard in find.ts; same issue as ask.ts."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 47,
+      "message": "@memvid/sdk: \"^2.0.149\" uses a caret range; automatic minor/patch upgrades could introduce breaking or malicious changes between installs."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 48,
+      "message": "proper-lockfile: \"^4.1.2\" uses a caret range; same supply-chain drift concern."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/search.md",
+      "line": null,
+      "message": "argument-hint documents <query> [limit] but the bash line hardcodes 10 as the limit; the hint and implementation are out of sync."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": null,
+      "message": "hooks/hooks.json Stop timeout (10 s) differs from src/hooks/hooks.json and dist/hooks/hooks.json (30 s); one of these is stale."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 465,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/memvid-claude-brain.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

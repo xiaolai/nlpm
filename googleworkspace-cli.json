@@ -1,0 +1,379 @@
+{
+  "project": "googleworkspace/cli",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 16,
+    "average_score": 99,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 54,
+          "message": "devDependencies use ^ semver: `@changesets/cli ^2.29.8` and `lefthook ^2.1.2` — minor/patch updates apply automatically on fresh installs, bypassing review."
+        }
+      ]
+    },
+    {
+      "path": "scripts/coverage.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-package-install",
+          "severity": "medium",
+          "line": 22,
+          "message": "`cargo install cargo-llvm-cov` downloads and compiles a crate from crates.io at runtime without a hash pin, allowing supply-chain substitution if the crate name is hijacked or yanked."
+        }
+      ]
+    },
+    {
+      "path": "scripts/show-art.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "high",
+          "line": 17,
+          "message": "`cat \"$1\"` reads any file path supplied as the first argument with no validation or restriction, enabling path traversal if invoked from automation with attacker-controlled input."
+        }
+      ]
+    },
+    {
+      "path": "skills/gws-docs-write/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": null,
+          "message": "gws-docs-write documents `--document <ID>` as the required flag, but three recipes (recipe-save-email-to-doc, recipe-generate-report-from-sheet, recipe-create-doc-from-template) consistently use `--document-id`. The consistent use across three independently-authored recipes suggests the actual binary flag may be `--document-id` and the skill file is the error source."
+        }
+      ]
+    },
+    {
+      "path": "skills/gws-modelarmor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "medium",
+          "line": null,
+          "message": "No API Resources section; every other gws-* API reference skill includes this section. Without it, agents cannot discover raw modelarmor resource methods (templates, findings) via the pattern shown in Discovering Commands."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-collect-form-responses/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": 22,
+          "message": "Step 1 calls `gws forms forms list` but the Google Forms API v1 has no list method on the forms resource (only create, get, batchUpdate, setPublishSettings). Command fails at runtime."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-compare-sheet-tabs/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 25,
+          "message": "Step 3 is \"Compare the data and identify changes\" with no CLI command; leaves an agent with data but no concrete next action to produce a diff output."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-create-doc-from-template/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R17",
+          "severity": "medium",
+          "line": 27,
+          "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-create-events-from-sheet/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 26,
+          "message": "Step 2 says \"for each row, create a calendar event\" but shows only a single hardcoded insert command with static attendees; loop iteration mechanism is not demonstrated."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-create-shared-drive/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R30",
+          "severity": "low",
+          "line": 3,
+          "message": "Description contains vague quantifier: \"add members with appropriate roles\" — does not specify which roles (writer, reader, commenter) are appropriate for which members."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-draft-email-from-doc/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 24,
+          "message": "Step 2 is \"Copy the text from the body content\" — a manual human action with no CLI command. An agent following this recipe has no automated path to extract body text."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-find-large-files/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 25,
+          "message": "Step 2 is \"Review the output and identify files to archive or move\" with no CLI command; provides no path from identification to action."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-generate-report-from-sheet/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R17",
+          "severity": "medium",
+          "line": 28,
+          "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-post-mortem-setup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": 26,
+          "message": "Step 1 calls `gws docs +write --title ... --body ...`; gws-docs-write requires --document <ID> and --text <TEXT>. Both required flags are absent and --title/--body are not valid flags; command fails at runtime."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-review-overdue-tasks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "low",
+          "line": 26,
+          "message": "Step 3 is \"Review due dates and prioritize overdue items\" with no CLI command; does not specify how to filter by due date or what action to take on overdue tasks."
+        }
+      ]
+    },
+    {
+      "path": "skills/recipe-save-email-to-doc/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R17",
+          "severity": "medium",
+          "line": 27,
+          "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-25T09:00:59Z",
+      "average_score": 99,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-05-01T13:41:32Z",
+      "average_score": 89,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/recipe-post-mortem-setup/SKILL.md",
+      "line": 26,
+      "message": "Step 1 calls `gws docs +write --title ... --body ...`; gws-docs-write requires --document <ID> and --text <TEXT>. Both required flags are absent and --title/--body are not valid flags; command fails at runtime."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/recipe-collect-form-responses/SKILL.md",
+      "line": 22,
+      "message": "Step 1 calls `gws forms forms list` but the Google Forms API v1 has no list method on the forms resource (only create, get, batchUpdate, setPublishSettings). Command fails at runtime."
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/show-art.sh",
+      "line": 17,
+      "message": "`cat \"$1\"` reads any file path supplied as the first argument with no validation or restriction, enabling path traversal if invoked from automation with attacker-controlled input."
+    },
+    {
+      "rule": "SEC-runtime-package-install",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/coverage.sh",
+      "line": 22,
+      "message": "`cargo install cargo-llvm-cov` downloads and compiles a crate from crates.io at runtime without a hash pin, allowing supply-chain substitution if the crate name is hijacked or yanked."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 54,
+      "message": "devDependencies use ^ semver: `@changesets/cli ^2.29.8` and `lefthook ^2.1.2` — minor/patch updates apply automatically on fresh installs, bypassing review."
+    },
+    {
+      "rule": "R30",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-create-shared-drive/SKILL.md",
+      "line": 3,
+      "message": "Description contains vague quantifier: \"add members with appropriate roles\" — does not specify which roles (writer, reader, commenter) are appropriate for which members."
+    },
+    {
+      "rule": "R05",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/gws-modelarmor/SKILL.md",
+      "line": null,
+      "message": "No API Resources section; every other gws-* API reference skill includes this section. Without it, agents cannot discover raw modelarmor resource methods (templates, findings) via the pattern shown in Discovering Commands."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-compare-sheet-tabs/SKILL.md",
+      "line": 25,
+      "message": "Step 3 is \"Compare the data and identify changes\" with no CLI command; leaves an agent with data but no concrete next action to produce a diff output."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-draft-email-from-doc/SKILL.md",
+      "line": 24,
+      "message": "Step 2 is \"Copy the text from the body content\" — a manual human action with no CLI command. An agent following this recipe has no automated path to extract body text."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-create-events-from-sheet/SKILL.md",
+      "line": 26,
+      "message": "Step 2 says \"for each row, create a calendar event\" but shows only a single hardcoded insert command with static attendees; loop iteration mechanism is not demonstrated."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-review-overdue-tasks/SKILL.md",
+      "line": 26,
+      "message": "Step 3 is \"Review due dates and prioritize overdue items\" with no CLI command; does not specify how to filter by due date or what action to take on overdue tasks."
+    },
+    {
+      "rule": "R22",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/recipe-find-large-files/SKILL.md",
+      "line": 25,
+      "message": "Step 2 is \"Review the output and identify files to archive or move\" with no CLI command; provides no path from identification to action."
+    },
+    {
+      "rule": "R17",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/recipe-save-email-to-doc/SKILL.md",
+      "line": 27,
+      "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+    },
+    {
+      "rule": "R17",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/recipe-generate-report-from-sheet/SKILL.md",
+      "line": 28,
+      "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+    },
+    {
+      "rule": "R17",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/recipe-create-doc-from-template/SKILL.md",
+      "line": 27,
+      "message": "Uses `--document-id` flag for gws docs +write, but gws-docs-write/SKILL.md documents the flag as `--document`. Flag name mismatch may cause command failure depending on which is authoritative."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/gws-docs-write/SKILL.md",
+      "line": null,
+      "message": "gws-docs-write documents `--document <ID>` as the required flag, but three recipes (recipe-save-email-to-doc, recipe-generate-report-from-sheet, recipe-create-doc-from-template) consistently use `--document-id`. The consistent use across three independently-authored recipes suggests the actual binary flag may be `--document-id` and the skill file is the error source."
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 25330,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/googleworkspace-cli.md"
+  },
+  "generated_at": "2026-05-19T09:50:37Z",
+  "schema_version": 1
+}

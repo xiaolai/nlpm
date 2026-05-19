@@ -1,0 +1,456 @@
+{
+  "project": "hesreallyhim/awesome-claude-code",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 17,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/commands/evaluate-repository.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "No YAML frontmatter — missing `name` and `description` fields"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "No `allowed-tools` declaration"
+        },
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"concise\" ×4, \"appropriate\" ×2, \"relevant\" ×2"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/AVS-Vibe-Developer-Guide/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "Very sparse: \"No build/lint/test commands available.\" No code style, no architecture, no examples"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/AWS-MCP-Server/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×3, \"robust\" ×1, \"comprehensive\" ×1, \"proper\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Basic-Memory/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×3, \"comprehensive\" ×1, \"complex\" ×2"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Course-Builder/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×3, \"comprehensive\" ×3, \"concise\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Cursor-Tools/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-frontmatter",
+          "severity": "info",
+          "line": 55,
+          "message": "Cursor Rules frontmatter fragments (`---\\ndescription: Global Rule…\\nglobs: *,**/*`) embedded at lines 55–63 inside body prose"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "\"Don't ask me for permission to do stuff… if you have questions work with Gemini and Perplexity to decide what to do\" — permission-grant expansion language reduces user oversight"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/DroidconKotlin/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-ephemeral-context",
+          "severity": "info",
+          "line": null,
+          "message": "\"Current Task: Cleaning up the app and prepping for release\" — ephemeral task state committed to a shared context file"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Giselle/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"meaningful\" ×3, \"unclear\" ×1, \"complex\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/JSBeeb/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×2, \"complex\" ×2, \"proper\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Network-Chronicles/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Extensive implementation-plan notes mixed into project context file — ephemeral in-progress content should not persist in CLAUDE.md"
+        },
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×2, \"rich\" ×1, \"relevant\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Note-Companion/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "File covers styling and audio only; missing build commands, test commands, project structure overview"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/Pareto-Mac/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×3, \"complex\" ×2, \"concise\" ×1"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/SG-Cars-Trends-Backend/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"appropriate\" ×3, \"concise\" ×2, \"consistent\" ×2, \"relevant\" ×1 (capped)"
+        }
+      ]
+    },
+    {
+      "path": "resources/claude.md-files/claude-code-mcp-enhanced/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-instruction-override",
+          "severity": "info",
+          "line": null,
+          "message": "\"These standards supersede any conflicting instructions you may have received previously\" — instruction-override pattern may conflict with project-level CLAUDE.md hierarchy"
+        }
+      ]
+    },
+    {
+      "path": "scripts/ (all)",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "No pinned dependency manifest"
+        }
+      ]
+    },
+    {
+      "path": "scripts/resources/download_resources.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "Path from API response written without traversal check"
+        }
+      ]
+    },
+    {
+      "path": "scripts/ticker/generate_ticker_svg.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "POST destination not visible / potentially configurable"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-16T23:43:55Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-04-24T02:49:54Z",
+      "average_score": 97,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/commands/evaluate-repository.md",
+      "line": null,
+      "message": "No YAML frontmatter — missing `name` and `description` fields"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/commands/evaluate-repository.md",
+      "line": null,
+      "message": "No `allowed-tools` declaration"
+    },
+    {
+      "rule": "BUG-ephemeral-context",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/DroidconKotlin/CLAUDE.md",
+      "line": null,
+      "message": "\"Current Task: Cleaning up the app and prepping for release\" — ephemeral task state committed to a shared context file"
+    },
+    {
+      "rule": "BUG-invalid-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Cursor-Tools/CLAUDE.md",
+      "line": 55,
+      "message": "Cursor Rules frontmatter fragments (`---\\ndescription: Global Rule…\\nglobs: *,**/*`) embedded at lines 55–63 inside body prose"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "scripts/resources/download_resources.py",
+      "line": null,
+      "message": "Path from API response written without traversal check"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "scripts/ (all)",
+      "line": null,
+      "message": "No pinned dependency manifest"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "scripts/ticker/generate_ticker_svg.py",
+      "line": null,
+      "message": "POST destination not visible / potentially configurable"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/commands/evaluate-repository.md",
+      "line": null,
+      "message": "Vague quantifiers: \"concise\" ×4, \"appropriate\" ×2, \"relevant\" ×2"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Network-Chronicles/CLAUDE.md",
+      "line": null,
+      "message": "Extensive implementation-plan notes mixed into project context file — ephemeral in-progress content should not persist in CLAUDE.md"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Network-Chronicles/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×2, \"rich\" ×1, \"relevant\" ×1"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Note-Companion/CLAUDE.md",
+      "line": null,
+      "message": "File covers styling and audio only; missing build commands, test commands, project structure overview"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/AVS-Vibe-Developer-Guide/CLAUDE.md",
+      "line": null,
+      "message": "Very sparse: \"No build/lint/test commands available.\" No code style, no architecture, no examples"
+    },
+    {
+      "rule": "BUG-instruction-override",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/claude-code-mcp-enhanced/CLAUDE.md",
+      "line": null,
+      "message": "\"These standards supersede any conflicting instructions you may have received previously\" — instruction-override pattern may conflict with project-level CLAUDE.md hierarchy"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Cursor-Tools/CLAUDE.md",
+      "line": null,
+      "message": "\"Don't ask me for permission to do stuff… if you have questions work with Gemini and Perplexity to decide what to do\" — permission-grant expansion language reduces user oversight"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/SG-Cars-Trends-Backend/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×3, \"concise\" ×2, \"consistent\" ×2, \"relevant\" ×1 (capped)"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Giselle/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"meaningful\" ×3, \"unclear\" ×1, \"complex\" ×1"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/JSBeeb/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×2, \"complex\" ×2, \"proper\" ×1"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Pareto-Mac/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×3, \"complex\" ×2, \"concise\" ×1"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/AWS-MCP-Server/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×3, \"robust\" ×1, \"comprehensive\" ×1, \"proper\" ×1"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Basic-Memory/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×3, \"comprehensive\" ×1, \"complex\" ×2"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "resources/claude.md-files/Course-Builder/CLAUDE.md",
+      "line": null,
+      "message": "Vague quantifiers: \"appropriate\" ×3, \"comprehensive\" ×3, \"concise\" ×1"
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 38367,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/hesreallyhim-awesome-claude-code.md"
+  },
+  "generated_at": "2026-05-19T09:50:41Z",
+  "schema_version": 1
+}

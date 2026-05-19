@@ -1,0 +1,185 @@
+{
+  "project": "jarrodwatts/claude-hud",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 3,
+    "average_score": 92,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "commands/setup.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 288,
+          "message": "Step 4 instructs creating plugins/claude-hud/config.json (new file), but Write is not in allowed-tools. Edit cannot create new files in Claude Code; only Write can."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 233,
+          "message": "Vague quantifier: 'within a few seconds' gives no actionable timeout threshold for deciding when output is a failure vs. slow."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 316,
+          "message": "'most common cause on macOS' implies an ordering claim not supported by data; reads as filler."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": 2,
+          "message": "Description 'Configure claude-hud as your statusline' omits cross-platform detection, ghost-install cleanup, and runtime discovery that the command performs."
+        },
+        {
+          "rule": "SEC-network-call",
+          "severity": "low",
+          "line": 312,
+          "message": "Command runs `gh repo star jarrodwatts/claude-hud` (or gh api PUT /user/starred/...) which makes an authenticated GitHub API mutation. Gated on explicit user consent."
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 33,
+          "message": "devDependency @types/node uses ^ range (^25.6.0); allows automatic minor/patch upgrades on fresh installs."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 34,
+          "message": "devDependency c8 uses ^ range (^11.0.0); allows automatic minor/patch upgrades on fresh installs."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 35,
+          "message": "devDependency typescript uses ^ range (^6.0.3); allows automatic minor/patch upgrades on fresh installs."
+        }
+      ]
+    },
+    {
+      "path": "src/extra-cmd.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "medium",
+          "line": 81,
+          "message": "execAsync(cmd) calls Node's exec() which runs through /bin/sh. cmd is a user-provided string from --extra-cmd CLI arg. Shell injection is by design (user controls their shell), but exec() spawns an unnecessary shell wrapper."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-05T01:13:30Z",
+      "average_score": 92,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 288,
+      "message": "Step 4 instructs creating plugins/claude-hud/config.json (new file), but Write is not in allowed-tools. Edit cannot create new files in Claude Code; only Write can."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 233,
+      "message": "Vague quantifier: 'within a few seconds' gives no actionable timeout threshold for deciding when output is a failure vs. slow."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 316,
+      "message": "'most common cause on macOS' implies an ordering claim not supported by data; reads as filler."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 2,
+      "message": "Description 'Configure claude-hud as your statusline' omits cross-platform detection, ghost-install cleanup, and runtime discovery that the command performs."
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "src/extra-cmd.ts",
+      "line": 81,
+      "message": "execAsync(cmd) calls Node's exec() which runs through /bin/sh. cmd is a user-provided string from --extra-cmd CLI arg. Shell injection is by design (user controls their shell), but exec() spawns an unnecessary shell wrapper."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 312,
+      "message": "Command runs `gh repo star jarrodwatts/claude-hud` (or gh api PUT /user/starred/...) which makes an authenticated GitHub API mutation. Gated on explicit user consent."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 33,
+      "message": "devDependency @types/node uses ^ range (^25.6.0); allows automatic minor/patch upgrades on fresh installs."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 34,
+      "message": "devDependency c8 uses ^ range (^11.0.0); allows automatic minor/patch upgrades on fresh installs."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 35,
+      "message": "devDependency typescript uses ^ range (^6.0.3); allows automatic minor/patch upgrades on fresh installs."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 21673,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/jarrodwatts-claude-hud.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

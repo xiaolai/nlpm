@@ -1,0 +1,206 @@
+{
+  "project": "uppinote20/claude-dashboard",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 6,
+    "average_score": 99,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": 5,
+          "message": "'comprehensive' is a vague quantifier in the plugin description; does not specify what coverage means in practice"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "medium",
+          "line": 21,
+          "message": "CLAUDE.md project structure tree lists 2 commands (setup.md, check-usage.md) but 4 command files exist: setup.md, check-usage.md, setup-alias.md, update.md"
+        }
+      ]
+    },
+    {
+      "path": "commands/check-usage.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unquoted-shell-arg",
+          "severity": "high",
+          "line": 39,
+          "message": "$ARGUMENTS is passed unquoted to the node shell invocation; user-supplied shell metacharacters (semicolons, backticks, dollar signs) execute as arbitrary shell commands"
+        }
+      ]
+    },
+    {
+      "path": "commands/setup-alias.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": 24,
+          "message": "Step-2 heading 'add the appropriate function' uses vague quantifier 'appropriate'; selection criteria are specified in sub-steps but the heading itself is imprecise"
+        },
+        {
+          "rule": "SEC-file-write-outside-repo",
+          "severity": "medium",
+          "line": 58,
+          "message": "Command appends a shell function to ~/.zshrc or ~/.bashrc (or PowerShell $PROFILE) outside the plugin repository"
+        }
+      ]
+    },
+    {
+      "path": "commands/setup.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R19",
+          "severity": "low",
+          "line": 5,
+          "message": "Bash(cat:*) declared in allowed-tools but no task step in the command body uses cat; file creation uses Write and jq instead"
+        },
+        {
+          "rule": "SEC-file-write-outside-repo",
+          "severity": "medium",
+          "line": 209,
+          "message": "Command writes ~/.claude/settings.json via jq and mv, modifying a file outside the plugin repository"
+        }
+      ]
+    },
+    {
+      "path": "commands/update.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-file-write-outside-repo",
+          "severity": "medium",
+          "line": 22,
+          "message": "Command writes ~/.claude/settings.json via jq and mv to update the statusLine path after a plugin version bump"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 23,
+          "message": "All four devDependencies use ^ version ranges: @types/node ^20.0.0, esbuild ^0.20.0, typescript ^5.0.0, vitest ^4.0.16; minor or patch bumps may introduce breaking changes in the build pipeline"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T01:30:14Z",
+      "average_score": 99,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 5,
+      "message": "'comprehensive' is a vague quantifier in the plugin description; does not specify what coverage means in practice"
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup-alias.md",
+      "line": 24,
+      "message": "Step-2 heading 'add the appropriate function' uses vague quantifier 'appropriate'; selection criteria are specified in sub-steps but the heading itself is imprecise"
+    },
+    {
+      "rule": "R19",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 5,
+      "message": "Bash(cat:*) declared in allowed-tools but no task step in the command body uses cat; file creation uses Write and jq instead"
+    },
+    {
+      "rule": "SEC-unquoted-shell-arg",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/check-usage.md",
+      "line": 39,
+      "message": "$ARGUMENTS is passed unquoted to the node shell invocation; user-supplied shell metacharacters (semicolons, backticks, dollar signs) execute as arbitrary shell commands"
+    },
+    {
+      "rule": "SEC-file-write-outside-repo",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/setup.md",
+      "line": 209,
+      "message": "Command writes ~/.claude/settings.json via jq and mv, modifying a file outside the plugin repository"
+    },
+    {
+      "rule": "SEC-file-write-outside-repo",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/setup-alias.md",
+      "line": 58,
+      "message": "Command appends a shell function to ~/.zshrc or ~/.bashrc (or PowerShell $PROFILE) outside the plugin repository"
+    },
+    {
+      "rule": "SEC-file-write-outside-repo",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/update.md",
+      "line": 22,
+      "message": "Command writes ~/.claude/settings.json via jq and mv to update the statusLine path after a plugin version bump"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 23,
+      "message": "All four devDependencies use ^ version ranges: @types/node ^20.0.0, esbuild ^0.20.0, typescript ^5.0.0, vitest ^4.0.16; minor or patch bumps may introduce breaking changes in the build pipeline"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 21,
+      "message": "CLAUDE.md project structure tree lists 2 commands (setup.md, check-usage.md) but 4 command files exist: setup.md, check-usage.md, setup-alias.md, update.md"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 404,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/uppinote20-claude-dashboard.md"
+  },
+  "generated_at": "2026-05-19T09:50:18Z",
+  "schema_version": 1
+}

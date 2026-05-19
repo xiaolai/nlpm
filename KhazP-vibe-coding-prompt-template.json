@@ -1,0 +1,325 @@
+{
+  "project": "KhazP/vibe-coding-prompt-template",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 7,
+    "average_score": 80,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-injection",
+          "severity": "high",
+          "line": 31,
+          "message": "PostToolUse hook concatenates tool_input.file_path directly into an execSync shell command string; a crafted filename with shell metacharacters can execute arbitrary commands"
+        },
+        {
+          "rule": "SEC-shell-injection",
+          "severity": "medium",
+          "line": 55,
+          "message": "Notification hook concatenates d.message into osascript/notify-send/PowerShell command strings without sanitization; crafted message content can inject shell commands"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-agents/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-build/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-allowed-tools",
+          "severity": "high",
+          "line": null,
+          "message": "Skill instructs Claude to read AGENTS.md, write agent_docs files, and run npm/git Bash commands but declares no allowed-tools in frontmatter"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Only one example block present (Good/Avoid communication style); does not demonstrate full skill invocation with input and structured output"
+        },
+        {
+          "rule": "R12",
+          "severity": "info",
+          "line": 29,
+          "message": "Vague quantifiers: 'relevant' (line 29), 'brief' (line 41), 'minimal' (line 63) give no measurable criteria for what qualifies"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-prd/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-research/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-techdesign/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/vibe-workflow/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-allowed-tools",
+          "severity": "high",
+          "line": null,
+          "message": "Orchestrator's Step 1 reads docs/research-*.md, docs/PRD-*.md, docs/TechDesign-*.md, and AGENTS.md but no Read or Glob tools are declared in frontmatter"
+        },
+        {
+          "rule": "R07",
+          "severity": "info",
+          "line": null,
+          "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-29T13:44:22Z",
+      "average_score": 80,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-allowed-tools",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-build/SKILL.md",
+      "line": null,
+      "message": "Skill instructs Claude to read AGENTS.md, write agent_docs files, and run npm/git Bash commands but declares no allowed-tools in frontmatter"
+    },
+    {
+      "rule": "BUG-missing-allowed-tools",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-workflow/SKILL.md",
+      "line": null,
+      "message": "Orchestrator's Step 1 reads docs/research-*.md, docs/PRD-*.md, docs/TechDesign-*.md, and AGENTS.md but no Read or Glob tools are declared in frontmatter"
+    },
+    {
+      "rule": "SEC-shell-injection",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/hooks/hooks.json",
+      "line": 31,
+      "message": "PostToolUse hook concatenates tool_input.file_path directly into an execSync shell command string; a crafted filename with shell metacharacters can execute arbitrary commands"
+    },
+    {
+      "rule": "SEC-shell-injection",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/hooks/hooks.json",
+      "line": 55,
+      "message": "Notification hook concatenates d.message into osascript/notify-send/PowerShell command strings without sanitization; crafted message content can inject shell commands"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-agents/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-agents/SKILL.md",
+      "line": null,
+      "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-build/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-build/SKILL.md",
+      "line": null,
+      "message": "Only one example block present (Good/Avoid communication style); does not demonstrate full skill invocation with input and structured output"
+    },
+    {
+      "rule": "R12",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-build/SKILL.md",
+      "line": 29,
+      "message": "Vague quantifiers: 'relevant' (line 29), 'brief' (line 41), 'minimal' (line 63) give no measurable criteria for what qualifies"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-prd/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-prd/SKILL.md",
+      "line": null,
+      "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-research/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-research/SKILL.md",
+      "line": null,
+      "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-techdesign/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-techdesign/SKILL.md",
+      "line": null,
+      "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+    },
+    {
+      "rule": "R07",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-workflow/SKILL.md",
+      "line": null,
+      "message": "No model field declared in frontmatter; consumers cannot determine intended model tier"
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/skills/vibe-workflow/SKILL.md",
+      "line": null,
+      "message": "Zero example invocation blocks; no input/output pair shows how the skill behaves when triggered"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 2278,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/KhazP-vibe-coding-prompt-template.md"
+  },
+  "generated_at": "2026-05-19T09:50:10Z",
+  "schema_version": 1
+}

@@ -1,0 +1,213 @@
+{
+  "project": "ZeframLou/call-me",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 3,
+    "average_score": 80,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 8,
+          "message": "'significant work' has no measurable threshold; the hook cannot reliably distinguish significant from insignificant work."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 8,
+          "message": "'genuinely blocked' is undefined; no criteria distinguish genuine blockage from ordinary uncertainty."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 8,
+          "message": "'Trivial tasks' is vague; only one example given ('reading files'), leaving the boundary ambiguous."
+        }
+      ]
+    },
+    {
+      "path": "server/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-runtime-autoinstall",
+          "severity": "medium",
+          "line": 8,
+          "message": "'prestart' script runs 'bun install --silent' on every server start, fetching remote packages from the registry each invocation; combined with semver ranges, the installed dependency set can change between starts."
+        },
+        {
+          "rule": "SEC-network-tunnel",
+          "severity": "medium",
+          "line": 14,
+          "message": "@ngrok/ngrok opens an outbound public internet tunnel on every server start; intentional for Twilio webhook delivery but means every run exposes a new public endpoint."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 20,
+          "message": "'bun-types' is pinned to 'latest' with no semver range; resolves to whatever version is current at install time."
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 13,
+          "message": "Four runtime dependencies (@modelcontextprotocol/sdk, @ngrok/ngrok, openai, ws) use '^' ranges; minor/patch upgrades are pulled automatically on each bun install."
+        }
+      ]
+    },
+    {
+      "path": "skills/phone-input/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "SKILL.md has no YAML frontmatter block; the required 'name' field is absent, preventing reliable skill indexing and cross-linking."
+        },
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "SKILL.md has no YAML frontmatter block; the required 'description' field is absent, preventing trigger-phrase resolution and /help surfacing."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 9,
+          "message": "'significant task' has no size or scope criterion; any task could be argued significant by the model."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 12,
+          "message": "'complex decisions' is undefined; no criteria for what makes a decision complex enough to warrant a phone call."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-06T00:05:24Z",
+      "average_score": 80,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/phone-input/SKILL.md",
+      "line": null,
+      "message": "SKILL.md has no YAML frontmatter block; the required 'name' field is absent, preventing reliable skill indexing and cross-linking."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills/phone-input/SKILL.md",
+      "line": null,
+      "message": "SKILL.md has no YAML frontmatter block; the required 'description' field is absent, preventing trigger-phrase resolution and /help surfacing."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": 8,
+      "message": "'significant work' has no measurable threshold; the hook cannot reliably distinguish significant from insignificant work."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": 8,
+      "message": "'genuinely blocked' is undefined; no criteria distinguish genuine blockage from ordinary uncertainty."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": 8,
+      "message": "'Trivial tasks' is vague; only one example given ('reading files'), leaving the boundary ambiguous."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/phone-input/SKILL.md",
+      "line": 9,
+      "message": "'significant task' has no size or scope criterion; any task could be argued significant by the model."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/phone-input/SKILL.md",
+      "line": 12,
+      "message": "'complex decisions' is undefined; no criteria for what makes a decision complex enough to warrant a phone call."
+    },
+    {
+      "rule": "SEC-runtime-autoinstall",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "server/package.json",
+      "line": 8,
+      "message": "'prestart' script runs 'bun install --silent' on every server start, fetching remote packages from the registry each invocation; combined with semver ranges, the installed dependency set can change between starts."
+    },
+    {
+      "rule": "SEC-network-tunnel",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "server/package.json",
+      "line": 14,
+      "message": "@ngrok/ngrok opens an outbound public internet tunnel on every server start; intentional for Twilio webhook delivery but means every run exposes a new public endpoint."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "server/package.json",
+      "line": 20,
+      "message": "'bun-types' is pinned to 'latest' with no semver range; resolves to whatever version is current at install time."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "server/package.json",
+      "line": 13,
+      "message": "Four runtime dependencies (@modelcontextprotocol/sdk, @ngrok/ngrok, openai, ws) use '^' ranges; minor/patch upgrades are pulled automatically on each bun install."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 2590,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/ZeframLou-call-me.md"
+  },
+  "generated_at": "2026-05-19T09:50:11Z",
+  "schema_version": 1
+}

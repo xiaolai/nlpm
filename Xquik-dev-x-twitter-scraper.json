@@ -1,0 +1,332 @@
+{
+  "project": "Xquik-dev/x-twitter-scraper",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 8,
+    "average_score": 97,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-mcp-external-server",
+          "severity": "medium",
+          "line": 3,
+          "message": "MCP config routes all tool calls through external server https://xquik.com/mcp via streamable-http; API key injected per user config"
+        }
+      ]
+    },
+    {
+      "path": "commands/post.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Command file declares no `allowed-tools`; needs at least `xquik` and `explore` MCP tools"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Command has at least four sequential steps (confirm, check account, post, show result) but none are numbered"
+        }
+      ]
+    },
+    {
+      "path": "commands/search.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+        }
+      ]
+    },
+    {
+      "path": "commands/trending.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+        }
+      ]
+    },
+    {
+      "path": "commands/user.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 51,
+          "message": "devDependency `@tanstack/intent` pinned to `\"latest\"` — resolves to a moving target on each install, creating a supply-chain risk for package maintainers"
+        },
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "low",
+          "line": 48,
+          "message": "`prepublishOnly` lifecycle script runs `node scripts/check-versions.mjs`; script is a read-only version-drift checker with no network calls or shell exec"
+        }
+      ]
+    },
+    {
+      "path": "skills/going-viral/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": 33,
+          "message": "Endpoint row shows `GET /x/tweets/search?sort=top&min_faves=5000`; the sort mode parameter is `queryType=Top`, not `sort=top`"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": 33,
+          "message": "Endpoint table shows `sort=top` for search endpoint; search-tweets SKILL.md documents the correct parameter as `queryType=Top`"
+        }
+      ]
+    },
+    {
+      "path": "skills/track-competitors/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 31,
+          "message": "Uses `tool=post_extractor` in extraction code example; correct key is `toolType` as documented by every other skill in the repo"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": 43,
+          "message": "Example uses `?limit=50&sort=top` on GET /x/users/{id}/tweets; user-tweets SKILL.md explicitly states `limit` and `sort` are not supported by this endpoint"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 31,
+          "message": "Uses `tool=post_extractor` while every other skill in the repo uses `toolType`; contradicts user-tweets, extract-followers, who-retweeted, and all other extraction skills"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 97,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/post.md",
+      "line": null,
+      "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/search.md",
+      "line": null,
+      "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/trending.md",
+      "line": null,
+      "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/user.md",
+      "line": null,
+      "message": "Missing `name` field in frontmatter; slash-command registration fails without it"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/track-competitors/SKILL.md",
+      "line": 31,
+      "message": "Uses `tool=post_extractor` in extraction code example; correct key is `toolType` as documented by every other skill in the repo"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/post.md",
+      "line": null,
+      "message": "Command file declares no `allowed-tools`; needs at least `xquik` and `explore` MCP tools"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/post.md",
+      "line": null,
+      "message": "Command has at least four sequential steps (confirm, check account, post, show result) but none are numbered"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/search.md",
+      "line": null,
+      "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/trending.md",
+      "line": null,
+      "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/user.md",
+      "line": null,
+      "message": "Command file declares no `allowed-tools`; needs `xquik` MCP tool"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/track-competitors/SKILL.md",
+      "line": 43,
+      "message": "Example uses `?limit=50&sort=top` on GET /x/users/{id}/tweets; user-tweets SKILL.md explicitly states `limit` and `sort` are not supported by this endpoint"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/going-viral/SKILL.md",
+      "line": 33,
+      "message": "Endpoint row shows `GET /x/tweets/search?sort=top&min_faves=5000`; the sort mode parameter is `queryType=Top`, not `sort=top`"
+    },
+    {
+      "rule": "SEC-mcp-external-server",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".mcp.json",
+      "line": 3,
+      "message": "MCP config routes all tool calls through external server https://xquik.com/mcp via streamable-http; API key injected per user config"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 51,
+      "message": "devDependency `@tanstack/intent` pinned to `\"latest\"` — resolves to a moving target on each install, creating a supply-chain risk for package maintainers"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 48,
+      "message": "`prepublishOnly` lifecycle script runs `node scripts/check-versions.mjs`; script is a read-only version-drift checker with no network calls or shell exec"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/track-competitors/SKILL.md",
+      "line": 31,
+      "message": "Uses `tool=post_extractor` while every other skill in the repo uses `toolType`; contradicts user-tweets, extract-followers, who-retweeted, and all other extraction skills"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/going-viral/SKILL.md",
+      "line": 33,
+      "message": "Endpoint table shows `sort=top` for search endpoint; search-tweets SKILL.md documents the correct parameter as `queryType=Top`"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 55,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/Xquik-dev-x-twitter-scraper.md"
+  },
+  "generated_at": "2026-05-19T09:50:11Z",
+  "schema_version": 1
+}

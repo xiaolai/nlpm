@@ -1,0 +1,878 @@
+{
+  "project": "levnikolaevich/claude-code-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 32,
+    "average_score": 77,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "*",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-examples-required",
+          "severity": "low",
+          "line": null,
+          "message": "No example blocks (input→output usage demos) present in any of the 100 audited SKILL.md or prompt template files"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/cross-pollinate-mcp.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-input-validation",
+          "severity": "info",
+          "line": null,
+          "message": "No empty/null $ARGUMENTS handling defined; command always runs against current repo — acceptable for a repo-scoped command but undocumented"
+        }
+      ]
+    },
+    {
+      "path": ".claude/commands/publish-mcp.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-allowed-tools",
+          "severity": "low",
+          "line": null,
+          "message": "Glob declared in allowed-tools but not directly invoked — Bash covers all file inspection; inflates the tool surface unnecessarily"
+        }
+      ]
+    },
+    {
+      "path": "mcp/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-UNPINNED-DEP",
+          "severity": "low",
+          "line": 22,
+          "message": "All dependencies use ^ semver ranges (e.g. @modelcontextprotocol/sdk: ^1.29.0); minor/patch upgrades are auto-pulled in distributed MCP servers without explicit lockfile review"
+        }
+      ]
+    },
+    {
+      "path": "plugins/*/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration in any of the 68 Codex adapter SKILL.md files in plugins/; thin adapters rely on canonical skill model but NLPM cannot select tier for direct adapter invocations"
+        },
+        {
+          "rule": "CC-2",
+          "severity": "low",
+          "line": null,
+          "message": "All 68 Codex adapter SKILL.md files carry Version: 1.0.0 regardless of canonical skill version; when canonical skills update the adapters show no drift signal and version numbers become meaningless"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-013-config-syncer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "R-no-vague-quantifiers",
+          "severity": "low",
+          "line": null,
+          "message": "'appropriate' in Phase 3 merge strategy description"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-112-project-core-creator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-160-docs-skill-extractor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "CC-3",
+          "severity": "info",
+          "line": null,
+          "message": "Skills ln-160, ln-140, ln-115, and ln-112 exist in both skills-catalog/ (canonical) and plugins/documentation-pipeline/ (adapter); description text must stay in sync — currently consistent but at risk on next canonical update"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-636-manual-test-auditor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "R-no-vague-quantifiers",
+          "severity": "low",
+          "line": null,
+          "message": "'relevant' in Layer 2 context analysis steps"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-651-query-efficiency-auditor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "R-no-vague-quantifiers",
+          "severity": "low",
+          "line": null,
+          "message": "'relevant' appears twice in Detection sections — vague quantifier that leaves detection scope undefined"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-741-linter-configurator/references/lint_script_template.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-EVAL-VAR",
+          "severity": "critical",
+          "line": 43,
+          "message": "eval \"$cmd\" in run_check() executes the second argument as a shell command; any caller supplying a malicious second argument achieves arbitrary code execution — template is designed for developer customization so the attack surface is real"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-761-secret-scanner/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration; NLPM cannot select appropriate tier for standalone invocations"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-774-healthcheck-setup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-paths-header",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing > **Paths:** header present on all other skills-catalog SKILL.md files; violates skill_contract.md path-resolution rule — agents may fail to locate referenced files when CWD != repo root"
+        },
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "R-no-vague-quantifiers",
+          "severity": "low",
+          "line": null,
+          "message": "'appropriate' appears in Phase 4 timing section"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-812-optimization-researcher/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        },
+        {
+          "rule": "R-no-vague-quantifiers",
+          "severity": "low",
+          "line": null,
+          "message": "Uses 'appropriate' (Phase 2 bottleneck section) and 'relevant' (Phase 3 local check) — vague quantifiers that leave agent behavior undefined"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-814-optimization-executor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-820-dependency-optimization-coordinator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-4",
+          "severity": "medium",
+          "line": 310,
+          "message": "Worker Invocation section (line 310) references optimization-runtime/cli.mjs but the Runtime Contract section at the top of the same file references dependency-runtime/cli.mjs — one path is stale"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-832-bundle-optimizer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-model-recommended",
+          "severity": "low",
+          "line": null,
+          "message": "No model: declaration"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/ln-840-benchmark-compare/scripts/run-benchmark.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-PERM-BYPASS",
+          "severity": "medium",
+          "line": 164,
+          "message": "--dangerously-skip-permissions passed to claude CLI for built-in session; bypasses Claude Code permission model — unsafe if the script is run against untrusted project trees"
+        },
+        {
+          "rule": "SEC-PERM-BYPASS",
+          "severity": "medium",
+          "line": 178,
+          "message": "Second --dangerously-skip-permissions in hex-line session invocation — same risk as line 164; both occurrences must be guarded together"
+        },
+        {
+          "rule": "SEC-HOOK-BYPASS",
+          "severity": "low",
+          "line": 53,
+          "message": "git commit --no-gpg-sign --no-verify in checkpoint_worktree() skips signing and pre-commit hooks on benchmark worktree commits; low risk in isolated worktrees but sets a permissive pattern"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-1",
+          "severity": "medium",
+          "line": null,
+          "message": "All 12 prompt templates under skills-catalog/shared/agents/prompt_templates/ have no YAML frontmatter and cannot be indexed by NL artifact scanners; variable contract between review_base.md and mode files is implicit — missing variables produce silent {placeholder} literals in rendered prompts"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/general_analysis.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) AND missing output format specification — {output_schema} placeholder has no default schema defined in-file; callers cannot rely on a stable output shape"
+        },
+        {
+          "rule": "R-output-format",
+          "severity": "medium",
+          "line": null,
+          "message": "{output_schema} is an unresolved placeholder — callers must supply the schema at render time but no default or in-file contract is documented; callers cannot rely on a stable output shape"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/iterative_refinement.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/modes/*.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-variable-contract",
+          "severity": "info",
+          "line": null,
+          "message": "Mode files use ## header, ## constraints, ## body markers that act as assembly keys for review_base.md but the protocol is undocumented; these are not standard Markdown headings and will confuse unaware editors"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/modes/code.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/modes/context.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/modes/plan_review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/modes/story.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/refinement_perspectives.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/review_base.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        },
+        {
+          "rule": "R-variable-contract",
+          "severity": "info",
+          "line": null,
+          "message": "Uses 18+ template variables ({mode_header}, {mode_constraints}, {mode_body}, etc.) with no variable contract document; the composition contract between review_base.md and the mode files is entirely implicit"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/scenario_validator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/scope_analysis.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/task_decomposition.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    },
+    {
+      "path": "skills-catalog/shared/agents/prompt_templates/traceability_validator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R-frontmatter-name",
+          "severity": "high",
+          "line": null,
+          "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-01T02:17:31Z",
+      "average_score": 77,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/scope_analysis.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/scenario_validator.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/review_base.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/iterative_refinement.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/task_decomposition.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/traceability_validator.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/refinement_perspectives.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/modes/code.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/modes/story.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/modes/context.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/modes/plan_review.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) — NL artifact scanner cannot discover or register this template"
+    },
+    {
+      "rule": "R-frontmatter-name",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/general_analysis.md",
+      "line": null,
+      "message": "Missing YAML frontmatter (name: and description:) AND missing output format specification — {output_schema} placeholder has no default schema defined in-file; callers cannot rely on a stable output shape"
+    },
+    {
+      "rule": "R-paths-header",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-774-healthcheck-setup/SKILL.md",
+      "line": null,
+      "message": "Missing > **Paths:** header present on all other skills-catalog SKILL.md files; violates skill_contract.md path-resolution rule — agents may fail to locate referenced files when CWD != repo root"
+    },
+    {
+      "rule": "SEC-EVAL-VAR",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-741-linter-configurator/references/lint_script_template.sh",
+      "line": 43,
+      "message": "eval \"$cmd\" in run_check() executes the second argument as a shell command; any caller supplying a malicious second argument achieves arbitrary code execution — template is designed for developer customization so the attack surface is real"
+    },
+    {
+      "rule": "SEC-PERM-BYPASS",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-840-benchmark-compare/scripts/run-benchmark.sh",
+      "line": 164,
+      "message": "--dangerously-skip-permissions passed to claude CLI for built-in session; bypasses Claude Code permission model — unsafe if the script is run against untrusted project trees"
+    },
+    {
+      "rule": "SEC-PERM-BYPASS",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-840-benchmark-compare/scripts/run-benchmark.sh",
+      "line": 178,
+      "message": "Second --dangerously-skip-permissions in hex-line session invocation — same risk as line 164; both occurrences must be guarded together"
+    },
+    {
+      "rule": "SEC-HOOK-BYPASS",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-840-benchmark-compare/scripts/run-benchmark.sh",
+      "line": 53,
+      "message": "git commit --no-gpg-sign --no-verify in checkpoint_worktree() skips signing and pre-commit hooks on benchmark worktree commits; low risk in isolated worktrees but sets a permissive pattern"
+    },
+    {
+      "rule": "SEC-UNPINNED-DEP",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mcp/package.json",
+      "line": 22,
+      "message": "All dependencies use ^ semver ranges (e.g. @modelcontextprotocol/sdk: ^1.29.0); minor/patch upgrades are auto-pulled in distributed MCP servers without explicit lockfile review"
+    },
+    {
+      "rule": "R-examples-required",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "*",
+      "line": null,
+      "message": "No example blocks (input→output usage demos) present in any of the 100 audited SKILL.md or prompt template files"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-761-secret-scanner/SKILL.md",
+      "line": null,
+      "message": "No model: declaration; NLPM cannot select appropriate tier for standalone invocations"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-812-optimization-researcher/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-651-query-efficiency-auditor/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-013-config-syncer/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-814-optimization-executor/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-636-manual-test-auditor/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-160-docs-skill-extractor/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-832-bundle-optimizer/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-112-project-core-creator/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-774-healthcheck-setup/SKILL.md",
+      "line": null,
+      "message": "No model: declaration"
+    },
+    {
+      "rule": "R-model-recommended",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/*/SKILL.md",
+      "line": null,
+      "message": "No model: declaration in any of the 68 Codex adapter SKILL.md files in plugins/; thin adapters rely on canonical skill model but NLPM cannot select tier for direct adapter invocations"
+    },
+    {
+      "rule": "R-output-format",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/general_analysis.md",
+      "line": null,
+      "message": "{output_schema} is an unresolved placeholder — callers must supply the schema at render time but no default or in-file contract is documented; callers cannot rely on a stable output shape"
+    },
+    {
+      "rule": "R-variable-contract",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/review_base.md",
+      "line": null,
+      "message": "Uses 18+ template variables ({mode_header}, {mode_constraints}, {mode_body}, etc.) with no variable contract document; the composition contract between review_base.md and the mode files is entirely implicit"
+    },
+    {
+      "rule": "R-variable-contract",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/modes/*.md",
+      "line": null,
+      "message": "Mode files use ## header, ## constraints, ## body markers that act as assembly keys for review_base.md but the protocol is undocumented; these are not standard Markdown headings and will confuse unaware editors"
+    },
+    {
+      "rule": "R-input-validation",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".claude/commands/cross-pollinate-mcp.md",
+      "line": null,
+      "message": "No empty/null $ARGUMENTS handling defined; command always runs against current repo — acceptable for a repo-scoped command but undocumented"
+    },
+    {
+      "rule": "R-allowed-tools",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/commands/publish-mcp.md",
+      "line": null,
+      "message": "Glob declared in allowed-tools but not directly invoked — Bash covers all file inspection; inflates the tool surface unnecessarily"
+    },
+    {
+      "rule": "R-no-vague-quantifiers",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-812-optimization-researcher/SKILL.md",
+      "line": null,
+      "message": "Uses 'appropriate' (Phase 2 bottleneck section) and 'relevant' (Phase 3 local check) — vague quantifiers that leave agent behavior undefined"
+    },
+    {
+      "rule": "R-no-vague-quantifiers",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-651-query-efficiency-auditor/SKILL.md",
+      "line": null,
+      "message": "'relevant' appears twice in Detection sections — vague quantifier that leaves detection scope undefined"
+    },
+    {
+      "rule": "R-no-vague-quantifiers",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-013-config-syncer/SKILL.md",
+      "line": null,
+      "message": "'appropriate' in Phase 3 merge strategy description"
+    },
+    {
+      "rule": "R-no-vague-quantifiers",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-774-healthcheck-setup/SKILL.md",
+      "line": null,
+      "message": "'appropriate' appears in Phase 4 timing section"
+    },
+    {
+      "rule": "R-no-vague-quantifiers",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-636-manual-test-auditor/SKILL.md",
+      "line": null,
+      "message": "'relevant' in Layer 2 context analysis steps"
+    },
+    {
+      "rule": "CC-1",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/shared/agents/prompt_templates/",
+      "line": null,
+      "message": "All 12 prompt templates under skills-catalog/shared/agents/prompt_templates/ have no YAML frontmatter and cannot be indexed by NL artifact scanners; variable contract between review_base.md and mode files is implicit — missing variables produce silent {placeholder} literals in rendered prompts"
+    },
+    {
+      "rule": "CC-2",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/*/SKILL.md",
+      "line": null,
+      "message": "All 68 Codex adapter SKILL.md files carry Version: 1.0.0 regardless of canonical skill version; when canonical skills update the adapters show no drift signal and version numbers become meaningless"
+    },
+    {
+      "rule": "CC-3",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-160-docs-skill-extractor/SKILL.md",
+      "line": null,
+      "message": "Skills ln-160, ln-140, ln-115, and ln-112 exist in both skills-catalog/ (canonical) and plugins/documentation-pipeline/ (adapter); description text must stay in sync — currently consistent but at risk on next canonical update"
+    },
+    {
+      "rule": "CC-4",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills-catalog/ln-820-dependency-optimization-coordinator/SKILL.md",
+      "line": 310,
+      "message": "Worker Invocation section (line 310) references optimization-runtime/cli.mjs but the Runtime Contract section at the top of the same file references dependency-runtime/cli.mjs — one path is stale"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 423,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/levnikolaevich-claude-code-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:15Z",
+  "schema_version": 1
+}

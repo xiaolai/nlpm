@@ -1,0 +1,346 @@
+{
+  "project": "musistudio/claude-code-router",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 12,
+    "average_score": 79,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R22",
+          "severity": "info",
+          "line": 50,
+          "message": "'background: Background tasks (typically lightweight models)' uses 'typically' without specifying which model tier or concrete example qualifies"
+        }
+      ]
+    },
+    {
+      "path": "docs/docs/cli/commands/other.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "Commands ccr stop, ccr restart, ccr code, ccr ui, and ccr activate have no output or 'produces no output' note; users cannot verify expected behavior"
+        }
+      ]
+    },
+    {
+      "path": "docs/docs/cli/commands/start.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 20,
+          "message": "EN start.md documents default port 8080; zh-CN start.md documents 3456; same binary, same option, one is wrong — affects start.md and status.md simultaneously"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": null,
+          "message": "Backup directory (dated 20260101_205603) in tracked repo contains preset.md and statusline.md that have diverged from current: wrong Router separator, wrong api_base_url, missing locale links"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603/cli/commands/preset.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 151,
+          "message": "Router manifest example uses 'openai:gpt-4' (colon separator) instead of correct 'openai,gpt-4' (comma separator)"
+        },
+        {
+          "rule": "R10",
+          "severity": "info",
+          "line": null,
+          "message": "Manifest example uses 'api_base_url': 'https://api.openai.com/v1' (bare) while EN and zh-CN current versions use '/v1/chat/completions'; backup has drifted"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603/cli/commands/statusline.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "low",
+          "line": 401,
+          "message": "Related command link '/docs/cli/commands/status' missing '/zh' locale prefix; navigates zh-CN users to English page"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/other.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "zh-CN translation of other.md inherits the same missing output coverage for all five auxiliary commands"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/start.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 20,
+          "message": "Default port documented as 3456 in zh-CN but 8080 in EN start.md; one value is incorrect"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/status.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 31,
+          "message": "Status example output shows port 3456 in zh-CN but 8080 in EN status.md; same root cause as start.md mismatch"
+        }
+      ]
+    },
+    {
+      "path": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/statusline.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "low",
+          "line": 400,
+          "message": "Related command link '/docs/cli/commands/status' missing locale prefix in current zh-CN doc; same bug as backup version, not fixed on promotion"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 36,
+          "message": "All four devDependencies use '^' semver ranges (@types/node, esbuild, shx, typescript); minor/patch bumps can silently alter build output or introduce compromised transitive deps"
+        }
+      ]
+    },
+    {
+      "path": "scripts/release.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-publish",
+          "severity": "medium",
+          "line": 65,
+          "message": "npm publish to public registry for @musistudio/llms without provenance attestation or OTP enforcement; compromised CI credentials enable malicious package release"
+        },
+        {
+          "rule": "SEC-network-publish",
+          "severity": "medium",
+          "line": 124,
+          "message": "npm publish to public registry for @CCR/cli without provenance attestation; same risk surface as line 65"
+        },
+        {
+          "rule": "SEC-network-publish",
+          "severity": "medium",
+          "line": 159,
+          "message": "docker push to Docker Hub without content signing (DOCKER_CONTENT_TRUST); compromised credentials enable silent image replacement"
+        },
+        {
+          "rule": "SEC-network-publish",
+          "severity": "medium",
+          "line": 162,
+          "message": "docker push of 'latest' tag to Docker Hub without content signing; 'latest' is the most widely pulled tag, making unsigned push highest-impact"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 79,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/start.md",
+      "line": 20,
+      "message": "Default port documented as 3456 in zh-CN but 8080 in EN start.md; one value is incorrect"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/status.md",
+      "line": 31,
+      "message": "Status example output shows port 3456 in zh-CN but 8080 in EN status.md; same root cause as start.md mismatch"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603/cli/commands/preset.md",
+      "line": 151,
+      "message": "Router manifest example uses 'openai:gpt-4' (colon separator) instead of correct 'openai,gpt-4' (comma separator)"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603/cli/commands/statusline.md",
+      "line": 401,
+      "message": "Related command link '/docs/cli/commands/status' missing '/zh' locale prefix; navigates zh-CN users to English page"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/statusline.md",
+      "line": 400,
+      "message": "Related command link '/docs/cli/commands/status' missing locale prefix in current zh-CN doc; same bug as backup version, not fixed on promotion"
+    },
+    {
+      "rule": "SEC-network-publish",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/release.sh",
+      "line": 65,
+      "message": "npm publish to public registry for @musistudio/llms without provenance attestation or OTP enforcement; compromised CI credentials enable malicious package release"
+    },
+    {
+      "rule": "SEC-network-publish",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/release.sh",
+      "line": 124,
+      "message": "npm publish to public registry for @CCR/cli without provenance attestation; same risk surface as line 65"
+    },
+    {
+      "rule": "SEC-network-publish",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/release.sh",
+      "line": 159,
+      "message": "docker push to Docker Hub without content signing (DOCKER_CONTENT_TRUST); compromised credentials enable silent image replacement"
+    },
+    {
+      "rule": "SEC-network-publish",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/release.sh",
+      "line": 162,
+      "message": "docker push of 'latest' tag to Docker Hub without content signing; 'latest' is the most widely pulled tag, making unsigned push highest-impact"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 36,
+      "message": "All four devDependencies use '^' semver ranges (@types/node, esbuild, shx, typescript); minor/patch bumps can silently alter build output or introduce compromised transitive deps"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docs/docs/cli/commands/other.md",
+      "line": null,
+      "message": "Commands ccr stop, ccr restart, ccr code, ccr ui, and ccr activate have no output or 'produces no output' note; users cannot verify expected behavior"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs/current/cli/commands/other.md",
+      "line": null,
+      "message": "zh-CN translation of other.md inherits the same missing output coverage for all five auxiliary commands"
+    },
+    {
+      "rule": "R22",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 50,
+      "message": "'background: Background tasks (typically lightweight models)' uses 'typically' without specifying which model tier or concrete example qualifies"
+    },
+    {
+      "rule": "R10",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603/cli/commands/preset.md",
+      "line": null,
+      "message": "Manifest example uses 'api_base_url': 'https://api.openai.com/v1' (bare) while EN and zh-CN current versions use '/v1/chat/completions'; backup has drifted"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "docs/docs/cli/commands/start.md",
+      "line": 20,
+      "message": "EN start.md documents default port 8080; zh-CN start.md documents 3456; same binary, same option, one is wrong — affects start.md and status.md simultaneously"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docs/i18n/zh-CN/docusaurus-plugin-content-docs.backup.20260101_205603",
+      "line": null,
+      "message": "Backup directory (dated 20260101_205603) in tracked repo contains preset.md and statusline.md that have diverged from current: wrong Router separator, wrong api_base_url, missing locale links"
+    }
+  ],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 32875,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/musistudio-claude-code-router.md"
+  },
+  "generated_at": "2026-05-19T09:50:42Z",
+  "schema_version": 1
+}

@@ -1,0 +1,36 @@
+{
+  "project": "OpenRaiser/NanoResearch",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 0,
+    "average_score": 73,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [],
+  "history": [
+    {
+      "timestamp": "2026-04-21T01:08:59Z",
+      "average_score": 73,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 690,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/OpenRaiser-NanoResearch.md"
+  },
+  "generated_at": "2026-05-19T09:50:10Z",
+  "schema_version": 1
+}

@@ -1,0 +1,591 @@
+{
+  "project": "PeonPing/peon-ping",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 17,
+    "average_score": 77,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".gitban/agents/dispatcher/inbox/SMARTPACK-dispatch-log.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "Phase 3 notes 'code intact' for recovered interrupted session but provides no verification method or commit hash."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/dispatcher/inbox/kr62ia-dispatch-log.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unresolved-template",
+          "severity": "low",
+          "line": 9,
+          "message": "Line 9 contains a literal shell expression `$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")` that was never substituted. The dispatch log shows a template artifact instead of an actual timestamp for the kr62ia executor dispatch date."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/planner/inbox/HOOKBUG-d5wz2f-planner-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'consider' used 3 times in task items."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/planner/inbox/HOOKBUG-kydihy-planner-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'consider' used twice as task instruction."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/planner/inbox/HOOKLOG-77eri8-planner-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'consider' used 4 times as an action verb in task items. Should be replaced with imperative verbs: 'implement', 'add', 'refactor', 'extract'."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/planner/inbox/SMARTPACKDEBT-exg19y-planner-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'appropriate' used once; 'consider' once."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/planner/inbox/WINFOCUS-w7eys1-planner-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'supplemented' and 'consider' are vague instruction verbs."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/reviewer/inbox/HOOKLOG-px9k89-reviewer-1.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'richer implementations' is subjective."
+        }
+      ]
+    },
+    {
+      "path": ".gitban/agents/reviewer/inbox/HOOKLOG-u48cb6-reviewer-2.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'Proportionality applies' is contextual but slightly vague."
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'proactively suggest a version bump' — 'proactively' is vague. Should specify a trigger condition."
+        },
+        {
+          "rule": "CC-cross-repo-enforcement",
+          "severity": "info",
+          "line": null,
+          "message": "Change Enforcement Rules reference files in peer repos (../openpeon/, ../homebrew-tap/, peonping-x-bot) that are not part of this repository. An AI agent working from a fresh clone cannot verify these. Rules are correct for human developers but create a verification gap for automated review."
+        }
+      ]
+    },
+    {
+      "path": "scripts/notify.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-bash-to-ps-interpolation",
+          "severity": "medium",
+          "line": 452,
+          "message": "Variables rgb_r, rgb_g, rgb_b, dismiss_secs, icon_win_path, y_offset interpolated directly into PowerShell -Command string in WSL popup path. icon_win_path derives from wslpath which could return paths with characters that break the PowerShell string literal."
+        },
+        {
+          "rule": "SEC-bash-to-ps-interpolation-msys2",
+          "severity": "medium",
+          "line": 566,
+          "message": "Same pattern as WSL path (finding #3) but for MSYS2. toast_xml_win from cygpath interpolated into PowerShell command string."
+        }
+      ]
+    },
+    {
+      "path": "scripts/pack-download.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-registry-trust",
+          "severity": "medium",
+          "line": 152,
+          "message": "Registry JSON fetched from peonping.github.io controls source_repo, source_ref, and source_path for all pack downloads. A compromised registry or MITM could redirect downloads to attacker-controlled GitHub repos. Input validation (is_safe_source_repo) limits but does not eliminate risk."
+        },
+        {
+          "rule": "SEC-first-download-no-verify",
+          "severity": "medium",
+          "line": 406,
+          "message": "Sound files are downloaded via curl and checksums are stored, but checksums are only verified on subsequent cache hits, not on the initial download. A tampered file downloaded for the first time would pass silently."
+        },
+        {
+          "rule": "SEC-python-path-interpolation",
+          "severity": "medium",
+          "line": 89,
+          "message": "py_path result interpolated via single-quote wrapping in python3 -c '...' string. Single quotes in the path (possible on some systems) would break the Python string literal. The is_safe_filename validator uses a permissive charset that allows special characters."
+        },
+        {
+          "rule": "SEC-hardcoded-fallback-repo",
+          "severity": "low",
+          "line": 24,
+          "message": "FALLBACK_REPO is hardcoded to 'PeonPing/og-packs' with no override mechanism. If the PeonPing GitHub org were compromised, all installs using the fallback path would silently download from the compromised repo."
+        }
+      ]
+    },
+    {
+      "path": "scripts/remote-hook.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unauthenticated-relay",
+          "severity": "medium",
+          "line": 40,
+          "message": "Sends category name to localhost:19998 relay without authentication. Currently safe as category is derived from a hardcoded case statement. If the relay endpoint or category mapping were ever extended to include user input, this becomes a SSRF/injection vector."
+        }
+      ]
+    },
+    {
+      "path": "skills/peon-ping-config/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-frontmatter-contradiction",
+          "severity": "medium",
+          "line": 5,
+          "message": "skill sets user_invocable: false but CLAUDE.md documents `/peon-ping-config` as a user-accessible slash command. This contradiction may prevent the skill from appearing in autocomplete."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Skill file has no explicit Output Format section. The document describes behavior and examples but does not specify what the assistant should output after completing the configuration change."
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Frontmatter does not include a model field."
+        },
+        {
+          "rule": "CC-skill-invocable-mismatch",
+          "severity": "medium",
+          "line": 5,
+          "message": "SKILL.md sets user_invocable: false but CLAUDE.md section 'Skills' lists /peon-ping-config as a user-accessible slash command. Either the frontmatter is wrong or CLAUDE.md is wrong."
+        }
+      ]
+    },
+    {
+      "path": "skills/peon-ping-log/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-hardcoded-path",
+          "severity": "medium",
+          "line": 16,
+          "message": "Uses hardcoded `~/.claude/hooks/peon-ping/peon.sh` instead of `${CLAUDE_CONFIG_DIR:-$HOME/.claude}`. All other skills (peon-ping-toggle, peon-ping-use, peon-ping-config, peon-ping-rename) use the config dir pattern. This breaks for users with non-default CLAUDE_CONFIG_DIR, including some Cursor setups."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Skill file has no explicit Output Format section."
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Frontmatter does not include a model field."
+        },
+        {
+          "rule": "R23",
+          "severity": "info",
+          "line": null,
+          "message": "'ensure' used as an instruction verb."
+        },
+        {
+          "rule": "CC-path-pattern-inconsistency",
+          "severity": "low",
+          "line": 16,
+          "message": "peon-ping-log uses ~/.claude/hooks/peon-ping/peon.sh while all other skills use ${CLAUDE_CONFIG_DIR:-$HOME/.claude}. Creates silent failures for users with non-default config directories."
+        }
+      ]
+    },
+    {
+      "path": "skills/peon-ping-rename/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Skill file has no explicit Output Format section documenting what the assistant should return after the rename succeeds or fails."
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Frontmatter does not include a model field. The agent model cannot be validated or pinned."
+        }
+      ]
+    },
+    {
+      "path": "skills/peon-ping-toggle/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Skill file has no explicit Output Format section. Reports two possible outputs in prose but does not use a structured Output heading."
+        },
+        {
+          "rule": "R08",
+          "severity": "info",
+          "line": null,
+          "message": "Frontmatter does not include a model field."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 77,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-unresolved-template",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".gitban/agents/dispatcher/inbox/kr62ia-dispatch-log.md",
+      "line": 9,
+      "message": "Line 9 contains a literal shell expression `$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")` that was never substituted. The dispatch log shows a template artifact instead of an actual timestamp for the kr62ia executor dispatch date."
+    },
+    {
+      "rule": "BUG-frontmatter-contradiction",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/peon-ping-config/SKILL.md",
+      "line": 5,
+      "message": "skill sets user_invocable: false but CLAUDE.md documents `/peon-ping-config` as a user-accessible slash command. This contradiction may prevent the skill from appearing in autocomplete."
+    },
+    {
+      "rule": "BUG-hardcoded-path",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/peon-ping-log/SKILL.md",
+      "line": 16,
+      "message": "Uses hardcoded `~/.claude/hooks/peon-ping/peon.sh` instead of `${CLAUDE_CONFIG_DIR:-$HOME/.claude}`. All other skills (peon-ping-toggle, peon-ping-use, peon-ping-config, peon-ping-rename) use the config dir pattern. This breaks for users with non-default CLAUDE_CONFIG_DIR, including some Cursor setups."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/peon-ping-config/SKILL.md",
+      "line": null,
+      "message": "Skill file has no explicit Output Format section. The document describes behavior and examples but does not specify what the assistant should output after completing the configuration change."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/peon-ping-toggle/SKILL.md",
+      "line": null,
+      "message": "Skill file has no explicit Output Format section. Reports two possible outputs in prose but does not use a structured Output heading."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/peon-ping-rename/SKILL.md",
+      "line": null,
+      "message": "Skill file has no explicit Output Format section documenting what the assistant should return after the rename succeeds or fails."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/peon-ping-log/SKILL.md",
+      "line": null,
+      "message": "Skill file has no explicit Output Format section."
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/peon-ping-rename/SKILL.md",
+      "line": null,
+      "message": "Frontmatter does not include a model field. The agent model cannot be validated or pinned."
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/peon-ping-config/SKILL.md",
+      "line": null,
+      "message": "Frontmatter does not include a model field."
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/peon-ping-toggle/SKILL.md",
+      "line": null,
+      "message": "Frontmatter does not include a model field."
+    },
+    {
+      "rule": "R08",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/peon-ping-log/SKILL.md",
+      "line": null,
+      "message": "Frontmatter does not include a model field."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/planner/inbox/HOOKLOG-77eri8-planner-1.md",
+      "line": null,
+      "message": "'consider' used 4 times as an action verb in task items. Should be replaced with imperative verbs: 'implement', 'add', 'refactor', 'extract'."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/planner/inbox/HOOKBUG-kydihy-planner-1.md",
+      "line": null,
+      "message": "'consider' used twice as task instruction."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/planner/inbox/HOOKBUG-d5wz2f-planner-1.md",
+      "line": null,
+      "message": "'consider' used 3 times in task items."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/planner/inbox/SMARTPACKDEBT-exg19y-planner-1.md",
+      "line": null,
+      "message": "'appropriate' used once; 'consider' once."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/planner/inbox/WINFOCUS-w7eys1-planner-1.md",
+      "line": null,
+      "message": "'supplemented' and 'consider' are vague instruction verbs."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/reviewer/inbox/HOOKLOG-u48cb6-reviewer-2.md",
+      "line": null,
+      "message": "'Proportionality applies' is contextual but slightly vague."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/reviewer/inbox/HOOKLOG-px9k89-reviewer-1.md",
+      "line": null,
+      "message": "'richer implementations' is subjective."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".gitban/agents/dispatcher/inbox/SMARTPACK-dispatch-log.md",
+      "line": null,
+      "message": "Phase 3 notes 'code intact' for recovered interrupted session but provides no verification method or commit hash."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "'proactively suggest a version bump' — 'proactively' is vague. Should specify a trigger condition."
+    },
+    {
+      "rule": "R23",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skills/peon-ping-log/SKILL.md",
+      "line": null,
+      "message": "'ensure' used as an instruction verb."
+    },
+    {
+      "rule": "SEC-registry-trust",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/pack-download.sh",
+      "line": 152,
+      "message": "Registry JSON fetched from peonping.github.io controls source_repo, source_ref, and source_path for all pack downloads. A compromised registry or MITM could redirect downloads to attacker-controlled GitHub repos. Input validation (is_safe_source_repo) limits but does not eliminate risk."
+    },
+    {
+      "rule": "SEC-first-download-no-verify",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/pack-download.sh",
+      "line": 406,
+      "message": "Sound files are downloaded via curl and checksums are stored, but checksums are only verified on subsequent cache hits, not on the initial download. A tampered file downloaded for the first time would pass silently."
+    },
+    {
+      "rule": "SEC-bash-to-ps-interpolation",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/notify.sh",
+      "line": 452,
+      "message": "Variables rgb_r, rgb_g, rgb_b, dismiss_secs, icon_win_path, y_offset interpolated directly into PowerShell -Command string in WSL popup path. icon_win_path derives from wslpath which could return paths with characters that break the PowerShell string literal."
+    },
+    {
+      "rule": "SEC-bash-to-ps-interpolation-msys2",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/notify.sh",
+      "line": 566,
+      "message": "Same pattern as WSL path (finding #3) but for MSYS2. toast_xml_win from cygpath interpolated into PowerShell command string."
+    },
+    {
+      "rule": "SEC-python-path-interpolation",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/pack-download.sh",
+      "line": 89,
+      "message": "py_path result interpolated via single-quote wrapping in python3 -c '...' string. Single quotes in the path (possible on some systems) would break the Python string literal. The is_safe_filename validator uses a permissive charset that allows special characters."
+    },
+    {
+      "rule": "SEC-unauthenticated-relay",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/remote-hook.sh",
+      "line": 40,
+      "message": "Sends category name to localhost:19998 relay without authentication. Currently safe as category is derived from a hardcoded case statement. If the relay endpoint or category mapping were ever extended to include user input, this becomes a SSRF/injection vector."
+    },
+    {
+      "rule": "SEC-hardcoded-fallback-repo",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scripts/pack-download.sh",
+      "line": 24,
+      "message": "FALLBACK_REPO is hardcoded to 'PeonPing/og-packs' with no override mechanism. If the PeonPing GitHub org were compromised, all installs using the fallback path would silently download from the compromised repo."
+    },
+    {
+      "rule": "CC-skill-invocable-mismatch",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "skills/peon-ping-config/SKILL.md",
+      "line": 5,
+      "message": "SKILL.md sets user_invocable: false but CLAUDE.md section 'Skills' lists /peon-ping-config as a user-accessible slash command. Either the frontmatter is wrong or CLAUDE.md is wrong."
+    },
+    {
+      "rule": "CC-path-pattern-inconsistency",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/peon-ping-log/SKILL.md",
+      "line": 16,
+      "message": "peon-ping-log uses ~/.claude/hooks/peon-ping/peon.sh while all other skills use ${CLAUDE_CONFIG_DIR:-$HOME/.claude}. Creates silent failures for users with non-default config directories."
+    },
+    {
+      "rule": "CC-cross-repo-enforcement",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "Change Enforcement Rules reference files in peer repos (../openpeon/, ../homebrew-tap/, peonping-x-bot) that are not part of this repository. An AI agent working from a fresh clone cannot verify these. Rules are correct for human developers but create a verification gap for automated review."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 4595,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/PeonPing-peon-ping.md"
+  },
+  "generated_at": "2026-05-19T09:50:11Z",
+  "schema_version": 1
+}

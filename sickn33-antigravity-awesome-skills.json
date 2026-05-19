@@ -1,0 +1,820 @@
+{
+  "project": "sickn33/antigravity-awesome-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 37,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "Multiple skills across all bundles",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Vague terms: \"relevant\", \"appropriate\", \"best practices\", \"comprehensive\", \"modern\", \"robust\" appearing 3–8 times per file"
+        }
+      ]
+    },
+    {
+      "path": "active-directory-attacks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "No security-allowlist annotation for DCSync, Golden Ticket, Pass-the-Hash content"
+        }
+      ]
+    },
+    {
+      "path": "agent-orchestrator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Workflow requires 3 external Python scripts to run before any response; skill non-functional without them"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills-claude/skills/active-directory-attacks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-credential-exfil",
+          "severity": "high",
+          "line": null,
+          "message": "Missing `<!-- security-allowlist -->` annotation for high-severity credential extraction techniques"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills/skills/active-directory-attacks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-duplication",
+          "severity": "info",
+          "line": null,
+          "message": "Same as above — duplicate in other collection"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills/skills/blog-writing-guide/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `date_added` field in frontmatter"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills/skills/docx-official/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-unclassified",
+          "severity": "info",
+          "line": null,
+          "message": "References `docx-js.md` and `ooxml.md` that are not bundled in the skill directory"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills/skills/prompt-engineer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-steps",
+          "severity": "info",
+          "line": null,
+          "message": "Multi-step workflow skips Step 2 — sequence goes 1 → 3 → 4.5 → 4.6"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-awesome-skills/skills/youtube-summarizer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-malformed-markdown",
+          "severity": "info",
+          "line": null,
+          "message": "Malformed markdown: unclosed code fence in output section (Step 5)"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-bundle-seo-specialist/skills/schema-markup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-frontmatter",
+          "severity": "info",
+          "line": 9,
+          "message": "Extra `---` separator line at line 9 (between frontmatter and body)"
+        }
+      ]
+    },
+    {
+      "path": "antigravity-bundle-seo-specialist/skills/seo-fundamentals/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-frontmatter",
+          "severity": "info",
+          "line": 9,
+          "message": "Extra `---` separator line at line 9"
+        }
+      ]
+    },
+    {
+      "path": "azure-ai-projects-dotnet/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "bash-linux/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "\"Use this skill\" section too vague; no examples"
+        }
+      ]
+    },
+    {
+      "path": "cloud-penetration-testing/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "docker-expert/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "dropbox-automation/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "critical",
+          "line": null,
+          "message": "No output format; risk:critical with no examples"
+        }
+      ]
+    },
+    {
+      "path": "environment-setup-guide/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "NodeSource curl-pipe-bash without annotation"
+        }
+      ]
+    },
+    {
+      "path": "ethical-hacking-methodology/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "risk:unknown despite containing backdoor installation and persistence commands"
+        }
+      ]
+    },
+    {
+      "path": "gdpr-data-handling/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Body is only \"open implementation-playbook.md\" — no actual content"
+        }
+      ]
+    },
+    {
+      "path": "git-pushing/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "critical",
+          "line": null,
+          "message": "risk:critical with no examples, no output format, only references external script"
+        }
+      ]
+    },
+    {
+      "path": "gitops-workflow/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unknown",
+          "severity": "info",
+          "line": null,
+          "message": "Flux CD curl-pipe-bash without annotation"
+        }
+      ]
+    },
+    {
+      "path": "kubernetes-architect/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "lint-and-validate/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "No examples; references external Python scripts without inline fallback"
+        }
+      ]
+    },
+    {
+      "path": "linux-privilege-escalation/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "nextjs-app-router-patterns/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Delegates entirely to implementation-playbook.md"
+        }
+      ]
+    },
+    {
+      "path": "nodejs-best-practices/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "\"Learn to THINK\" meta-instruction in body is valuable but not a substitute for examples"
+        }
+      ]
+    },
+    {
+      "path": "observability-monitoring-monitor-setup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Vague: \"relevant best practices\", \"appropriate monitoring\""
+        }
+      ]
+    },
+    {
+      "path": "one-drive-automation/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "critical",
+          "line": null,
+          "message": "No output format; risk:critical with no examples"
+        }
+      ]
+    },
+    {
+      "path": "react-best-practices/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "All detail deferred to external rules/*.md files; inline body is a table of contents only"
+        }
+      ]
+    },
+    {
+      "path": "security-auditor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "risk:unknown — inconsistent with rest of security-engineer bundle"
+        }
+      ]
+    },
+    {
+      "path": "seo-content-writer through seo-content-auditor (5 files)",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format in any of the 5 SEO skills"
+        }
+      ]
+    },
+    {
+      "path": "skill-router/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Only 1 example (partial credit)"
+        }
+      ]
+    },
+    {
+      "path": "tailwind-design-system/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Delegates entirely to implementation-playbook.md"
+        }
+      ]
+    },
+    {
+      "path": "tavily-web/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "info",
+          "line": null,
+          "message": "Stub with only external link; no examples, no workflow"
+        }
+      ]
+    },
+    {
+      "path": "terraform-specialist/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section"
+        }
+      ]
+    },
+    {
+      "path": "top-web-vulnerabilities/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "high",
+          "line": null,
+          "message": "risk:unknown — should be risk:offensive or risk:high for security education content"
+        }
+      ]
+    },
+    {
+      "path": "typescript-expert/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "No output format section despite comprehensive content"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-17T12:21:40Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-04-24T04:52:08Z",
+      "average_score": 96,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-steps",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills/skills/prompt-engineer/SKILL.md",
+      "line": null,
+      "message": "Multi-step workflow skips Step 2 — sequence goes 1 → 3 → 4.5 → 4.6"
+    },
+    {
+      "rule": "BUG-malformed-markdown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills/skills/youtube-summarizer/SKILL.md",
+      "line": null,
+      "message": "Malformed markdown: unclosed code fence in output section (Step 5)"
+    },
+    {
+      "rule": "BUG-invalid-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-bundle-seo-specialist/skills/schema-markup/SKILL.md",
+      "line": 9,
+      "message": "Extra `---` separator line at line 9 (between frontmatter and body)"
+    },
+    {
+      "rule": "BUG-invalid-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-bundle-seo-specialist/skills/seo-fundamentals/SKILL.md",
+      "line": 9,
+      "message": "Extra `---` separator line at line 9"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills/skills/blog-writing-guide/SKILL.md",
+      "line": null,
+      "message": "Missing `date_added` field in frontmatter"
+    },
+    {
+      "rule": "BUG-unclassified",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills/skills/docx-official/SKILL.md",
+      "line": null,
+      "message": "References `docx-js.md` and `ooxml.md` that are not bundled in the skill directory"
+    },
+    {
+      "rule": "SEC-credential-exfil",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills-claude/skills/active-directory-attacks/SKILL.md",
+      "line": null,
+      "message": "Missing `<!-- security-allowlist -->` annotation for high-severity credential extraction techniques"
+    },
+    {
+      "rule": "CC-duplication",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "antigravity-awesome-skills/skills/active-directory-attacks/SKILL.md",
+      "line": null,
+      "message": "Same as above — duplicate in other collection"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "active-directory-attacks/SKILL.md",
+      "line": null,
+      "message": "No security-allowlist annotation for DCSync, Golden Ticket, Pass-the-Hash content"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "ethical-hacking-methodology/SKILL.md",
+      "line": null,
+      "message": "risk:unknown despite containing backdoor installation and persistence commands"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "environment-setup-guide/SKILL.md",
+      "line": null,
+      "message": "NodeSource curl-pipe-bash without annotation"
+    },
+    {
+      "rule": "SEC-unknown",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "gitops-workflow/SKILL.md",
+      "line": null,
+      "message": "Flux CD curl-pipe-bash without annotation"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "gdpr-data-handling/SKILL.md",
+      "line": null,
+      "message": "Body is only \"open implementation-playbook.md\" — no actual content"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "tavily-web/SKILL.md",
+      "line": null,
+      "message": "Stub with only external link; no examples, no workflow"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "tailwind-design-system/SKILL.md",
+      "line": null,
+      "message": "Delegates entirely to implementation-playbook.md"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "nextjs-app-router-patterns/SKILL.md",
+      "line": null,
+      "message": "Delegates entirely to implementation-playbook.md"
+    },
+    {
+      "rule": "R09",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "git-pushing/SKILL.md",
+      "line": null,
+      "message": "risk:critical with no examples, no output format, only references external script"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "cloud-penetration-testing/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "linux-privilege-escalation/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "observability-monitoring-monitor-setup/SKILL.md",
+      "line": null,
+      "message": "Vague: \"relevant best practices\", \"appropriate monitoring\""
+    },
+    {
+      "rule": "R09",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "dropbox-automation/SKILL.md",
+      "line": null,
+      "message": "No output format; risk:critical with no examples"
+    },
+    {
+      "rule": "R09",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "one-drive-automation/SKILL.md",
+      "line": null,
+      "message": "No output format; risk:critical with no examples"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "azure-ai-projects-dotnet/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "skill-router/SKILL.md",
+      "line": null,
+      "message": "Only 1 example (partial credit)"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "seo-content-writer through seo-content-auditor (5 files)",
+      "line": null,
+      "message": "No output format in any of the 5 SEO skills"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "bash-linux/SKILL.md",
+      "line": null,
+      "message": "\"Use this skill\" section too vague; no examples"
+    },
+    {
+      "rule": "R09",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "lint-and-validate/SKILL.md",
+      "line": null,
+      "message": "No examples; references external Python scripts without inline fallback"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "agent-orchestrator/SKILL.md",
+      "line": null,
+      "message": "Workflow requires 3 external Python scripts to run before any response; skill non-functional without them"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "top-web-vulnerabilities/SKILL.md",
+      "line": null,
+      "message": "risk:unknown — should be risk:offensive or risk:high for security education content"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "security-auditor/SKILL.md",
+      "line": null,
+      "message": "risk:unknown — inconsistent with rest of security-engineer bundle"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "typescript-expert/SKILL.md",
+      "line": null,
+      "message": "No output format section despite comprehensive content"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "docker-expert/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "kubernetes-architect/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "terraform-specialist/SKILL.md",
+      "line": null,
+      "message": "No output format section"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "react-best-practices/SKILL.md",
+      "line": null,
+      "message": "All detail deferred to external rules/*.md files; inline body is a table of contents only"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "nodejs-best-practices/SKILL.md",
+      "line": null,
+      "message": "\"Learn to THINK\" meta-instruction in body is valuable but not a substitute for examples"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "Multiple skills across all bundles",
+      "line": null,
+      "message": "Vague terms: \"relevant\", \"appropriate\", \"best practices\", \"comprehensive\", \"modern\", \"robust\" appearing 3–8 times per file"
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 32502,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/sickn33-antigravity-awesome-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:37Z",
+  "schema_version": 1
+}

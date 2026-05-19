@@ -1,0 +1,514 @@
+{
+  "project": "czlonkowski/n8n-mcp",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 14,
+    "average_score": 81,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/agents/code-reviewer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 15,
+          "message": "3 vague quantifiers: 'Comprehensive Review' (line 15), 'Adequate test coverage' (line 20), 'relevant best practices' (line 32)"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/context-manager.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; multi-agent context orchestration requires sonnet-level reasoning"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 24,
+          "message": "10+ vague quantifiers: 'relevant' appears 8 times, 'appropriate categorization' (line 42), 'clear, concise language' (line 70) — penalty capped at -20"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/debugger.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; root-cause analysis and fix generation requires sonnet-level reasoning"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 36,
+          "message": "Minor vague quantifiers: 'analyze systematically' (line 36), 'minimal side effects' (line 51) — 2 qualifying instances"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/deployment-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; CI/CD pipeline and IaC generation requires sonnet-level reasoning"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 10,
+          "message": "12+ vague quantifiers: 'proper' 7+ times, 'appropriate' 3+ times, 'comprehensive deployment strategies' (line 10) — penalty capped at -20"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/mcp-backend-engineer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; MCP analysis and TypeScript code generation requires sonnet-level reasoning — undeclared model inherits from parent which may be haiku"
+        },
+        {
+          "rule": "R12",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent body has no output format section; response structure (what fields to include, in what order) is undefined and will vary per invocation"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 8,
+          "message": "8+ vague quantifiers throughout body: 'comprehensive knowledge' (line 8), 'proper TypeScript types' (line 24), 'appropriate comments' (line 25), 'proper error handling' (line 27), 'clean, maintainable' (line 27), 'high reliability' (line 58) — penalty capped at -20"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/n8n-mcp-tester.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 33,
+          "message": "Body references tool name `get_node_info` which is not in the declared tools frontmatter; closest declared tool is `mcp__n8n-mcp-testing__get_node`"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 34,
+          "message": "Body references tool name `get_node_essentials` which is not in the declared tools frontmatter"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 35,
+          "message": "Body references tool name `validate_node_config` (also at lines 67-68) which is not in the declared tools; declared tools have `mcp__n8n-mcp-testing__validate_node` and `mcp__n8n-mcp-testing__validate_workflow`"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": 37,
+          "message": "Body references tool name `get_node_example` which is not in the declared tools frontmatter"
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 67,
+          "message": "Example Test Execution section has two consecutive items labeled '6.' (lines 67 and 68); second item should be '7.'"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent requires MCP server `n8n-mcp-testing` and `supabase-telemetry` servers (inferred from declared tool namespaces) but neither is documented in CLAUDE.md setup instructions; missing servers cause silent tool failures"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/technical-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; multi-source research synthesis requires sonnet-level reasoning"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 11,
+          "message": "10+ vague quantifiers: 'comprehensive' 5+ times, 'appropriate' twice, 'relevant' 3 times, 'diverse sources' — penalty capped at -20"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/test-automator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "medium",
+          "line": null,
+          "message": "No model field in frontmatter; test suite design across multiple frameworks is a reasoning task"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 32,
+          "message": "12+ vague quantifiers: 'appropriate' 6 times, 'proper' 3 times, 'comprehensive' 3 times, 'reasonable execution time' (line 89) — penalty capped at -20"
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": 210,
+          "message": "CLAUDE.md line 210 embeds a marketing attribution instruction ('Add to every commit and PR: Concieved by Romuald Członkowski - link to www.aiadvisors.pl/en') in a file that R38 reserves for technical guidance; this mixes behavioral marketing into project-architecture documentation"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "low",
+          "line": 104,
+          "message": "\"prepare\": \"husky\" runs automatically on npm install for both the package author and anyone who installs the package as a dependency; if the package is compromised, prepare is a code execution vector"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "Multiple devDependencies use ^ ranges (nodemon ^3.1.14, ts-node ^10.9.2, typescript ^5.8.3, vitest ^3.2.4) allowing unintended version upgrades on fresh installs that could introduce breaking changes or supply-chain issues"
+        }
+      ]
+    },
+    {
+      "path": "scripts/deploy-to-vm.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "medium",
+          "line": 30,
+          "message": "source .env loads and executes an arbitrary file from the working directory; a maliciously crafted .env could inject shell commands run with deployer privileges"
+        }
+      ]
+    },
+    {
+      "path": "scripts/test-code-node-enhancements.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "critical",
+          "line": 78,
+          "message": "Line contains `eval(item.json.code)` inside a JavaScript string literal that represents n8n Code node test payload data — not an actual eval() call executed by the script"
+        }
+      ]
+    },
+    {
+      "path": "scripts/test-http.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "critical",
+          "line": 51,
+          "message": "eval \"$cmd\" executes a dynamically built curl command string; $cmd incorporates $1 (user-supplied server URL argument) and $4 (headers) without sanitization, enabling arbitrary shell command injection via script argument"
+        }
+      ]
+    },
+    {
+      "path": "scripts/test-n8n-integration.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "high",
+          "line": 89,
+          "message": "sudo apt-get, sudo gpg --dearmor, sudo tee, sudo usermod used in Docker auto-installer section; running this script on an unprovisioned host triggers elevated-privilege package installation"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:28:25Z",
+      "average_score": 81,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": 33,
+      "message": "Body references tool name `get_node_info` which is not in the declared tools frontmatter; closest declared tool is `mcp__n8n-mcp-testing__get_node`"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": 34,
+      "message": "Body references tool name `get_node_essentials` which is not in the declared tools frontmatter"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": 35,
+      "message": "Body references tool name `validate_node_config` (also at lines 67-68) which is not in the declared tools; declared tools have `mcp__n8n-mcp-testing__validate_node` and `mcp__n8n-mcp-testing__validate_workflow`"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": 37,
+      "message": "Body references tool name `get_node_example` which is not in the declared tools frontmatter"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "scripts/test-http.sh",
+      "line": 51,
+      "message": "eval \"$cmd\" executes a dynamically built curl command string; $cmd incorporates $1 (user-supplied server URL argument) and $4 (headers) without sanitization, enabling arbitrary shell command injection via script argument"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "scripts/test-code-node-enhancements.ts",
+      "line": 78,
+      "message": "Line contains `eval(item.json.code)` inside a JavaScript string literal that represents n8n Code node test payload data — not an actual eval() call executed by the script"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scripts/test-n8n-integration.sh",
+      "line": 89,
+      "message": "sudo apt-get, sudo gpg --dearmor, sudo tee, sudo usermod used in Docker auto-installer section; running this script on an unprovisioned host triggers elevated-privilege package installation"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/deploy-to-vm.sh",
+      "line": 30,
+      "message": "source .env loads and executes an arbitrary file from the working directory; a maliciously crafted .env could inject shell commands run with deployer privileges"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 104,
+      "message": "\"prepare\": \"husky\" runs automatically on npm install for both the package author and anyone who installs the package as a dependency; if the package is compromised, prepare is a code execution vector"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": null,
+      "message": "Multiple devDependencies use ^ ranges (nodemon ^3.1.14, ts-node ^10.9.2, typescript ^5.8.3, vitest ^3.2.4) allowing unintended version upgrades on fresh installs that could introduce breaking changes or supply-chain issues"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/mcp-backend-engineer.md",
+      "line": null,
+      "message": "No model field in frontmatter; MCP analysis and TypeScript code generation requires sonnet-level reasoning — undeclared model inherits from parent which may be haiku"
+    },
+    {
+      "rule": "R12",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/mcp-backend-engineer.md",
+      "line": null,
+      "message": "Agent body has no output format section; response structure (what fields to include, in what order) is undefined and will vary per invocation"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/mcp-backend-engineer.md",
+      "line": 8,
+      "message": "8+ vague quantifiers throughout body: 'comprehensive knowledge' (line 8), 'proper TypeScript types' (line 24), 'appropriate comments' (line 25), 'proper error handling' (line 27), 'clean, maintainable' (line 27), 'high reliability' (line 58) — penalty capped at -20"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/context-manager.md",
+      "line": null,
+      "message": "No model field in frontmatter; multi-agent context orchestration requires sonnet-level reasoning"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/context-manager.md",
+      "line": 24,
+      "message": "10+ vague quantifiers: 'relevant' appears 8 times, 'appropriate categorization' (line 42), 'clear, concise language' (line 70) — penalty capped at -20"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/deployment-engineer.md",
+      "line": null,
+      "message": "No model field in frontmatter; CI/CD pipeline and IaC generation requires sonnet-level reasoning"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/deployment-engineer.md",
+      "line": 10,
+      "message": "12+ vague quantifiers: 'proper' 7+ times, 'appropriate' 3+ times, 'comprehensive deployment strategies' (line 10) — penalty capped at -20"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/technical-researcher.md",
+      "line": null,
+      "message": "No model field in frontmatter; multi-source research synthesis requires sonnet-level reasoning"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/technical-researcher.md",
+      "line": 11,
+      "message": "10+ vague quantifiers: 'comprehensive' 5+ times, 'appropriate' twice, 'relevant' 3 times, 'diverse sources' — penalty capped at -20"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/test-automator.md",
+      "line": null,
+      "message": "No model field in frontmatter; test suite design across multiple frameworks is a reasoning task"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/test-automator.md",
+      "line": 32,
+      "message": "12+ vague quantifiers: 'appropriate' 6 times, 'proper' 3 times, 'comprehensive' 3 times, 'reasonable execution time' (line 89) — penalty capped at -20"
+    },
+    {
+      "rule": "R10",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/debugger.md",
+      "line": null,
+      "message": "No model field in frontmatter; root-cause analysis and fix generation requires sonnet-level reasoning"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/debugger.md",
+      "line": 36,
+      "message": "Minor vague quantifiers: 'analyze systematically' (line 36), 'minimal side effects' (line 51) — 2 qualifying instances"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/code-reviewer.md",
+      "line": 15,
+      "message": "3 vague quantifiers: 'Comprehensive Review' (line 15), 'Adequate test coverage' (line 20), 'relevant best practices' (line 32)"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": 67,
+      "message": "Example Test Execution section has two consecutive items labeled '6.' (lines 67 and 68); second item should be '7.'"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": ".claude/agents/n8n-mcp-tester.md",
+      "line": null,
+      "message": "Agent requires MCP server `n8n-mcp-testing` and `supabase-telemetry` servers (inferred from declared tool namespaces) but neither is documented in CLAUDE.md setup instructions; missing servers cause silent tool failures"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 210,
+      "message": "CLAUDE.md line 210 embeds a marketing attribution instruction ('Add to every commit and PR: Concieved by Romuald Członkowski - link to www.aiadvisors.pl/en') in a file that R38 reserves for technical guidance; this mixes behavioral marketing into project-architecture documentation"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 18662,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/czlonkowski-n8n-mcp.md"
+  },
+  "generated_at": "2026-05-19T09:50:13Z",
+  "schema_version": 1
+}

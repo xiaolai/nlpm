@@ -1,0 +1,346 @@
+{
+  "project": "mem0ai/mem0",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 10,
+    "average_score": 91,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "mem0-plugin/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-api-key-in-header",
+          "severity": "low",
+          "line": 7,
+          "message": "Authorization header template uses Token ${MEM0_API_KEY}; standard MCP auth pattern, key is injected at runtime from env, not hardcoded"
+        }
+      ]
+    },
+    {
+      "path": "mem0-plugin/scripts/capture_compact_summary.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call-in-hook",
+          "severity": "medium",
+          "line": 122,
+          "message": "SessionStart hook makes HTTP POST with MEM0_API_KEY to api.mem0.ai/v1/memories/, transmitting parsed session transcript content; intended plugin behavior but users should be aware conversation data is transmitted outbound"
+        }
+      ]
+    },
+    {
+      "path": "mem0-plugin/scripts/on_pre_compact.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call-in-hook",
+          "severity": "medium",
+          "line": 196,
+          "message": "Stop and PreCompact hooks make HTTP POST with MEM0_API_KEY to api.mem0.ai/v1/memories/ in background process, transmitting parsed transcript content; same disclosure concern as capture_compact_summary.py"
+        }
+      ]
+    },
+    {
+      "path": "mem0-plugin/skills/mem0-mcp/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers: 'appropriate' (line 51 'if appropriate, call get_memories'), 'significant' (line 61 'significant time has passed'), and multiple uses of 'relevant memories'"
+        }
+      ]
+    },
+    {
+      "path": "mem0-plugin/skills/mem0/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "high",
+          "line": null,
+          "message": "Declares name: mem0 (v0.1.1), identical to skills/mem0/SKILL.md (v3.0.0); skill loader cannot distinguish them by name, causing stale content to silently shadow the current version"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Plugin-bundled mem0 skill is version 0.1.1 while standalone skills/mem0/SKILL.md is 3.0.0; content diverges in cross-reference style (GitHub URLs vs. local paths) with no documented sync mechanism"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": null,
+          "message": "Two SKILL.md files in the same repo both declare name: mem0; plugin-bundled copy (v0.1.1) and standalone copy (v3.0.0) will conflict when both skill paths are on the load path"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": null,
+          "message": "Plugin-bundled mem0 skill at v0.1.1 is 2 major versions behind standalone v3.0.0; API surface, filter syntax, and compatibility notes differ between the two copies"
+        }
+      ]
+    },
+    {
+      "path": "openclaw/skills/memory-dream/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 6,
+          "message": "Description states the skill triggers automatically after sufficient activity (configurable) but no hook in hooks.json invokes this skill; the auto-trigger is not implemented"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers: 'sufficient activity' in description, 'obvious problems' in Phase 1 step 4"
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": 6,
+          "message": "memory-dream description claims automatic invocation after sufficient activity (configurable) but no entry in hooks.json triggers this skill; the auto-trigger path is an orphaned claim"
+        }
+      ]
+    },
+    {
+      "path": "openclaw/skills/memory-triage/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "High vague-quantifier density: relevant (x2), significant (x2), important (x2), genuinely (x3), notable (x1), comprehensive (x1) — 11 instances, penalty capped at -20"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 361,
+          "message": "Example headings 11 and 12 each appear twice in the file (mixed-categories example and consolidation example both labeled Example 11; greeting NOOP appears twice as Example 12)"
+        }
+      ]
+    },
+    {
+      "path": "scripts/oss-to-platform-migrate.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-hardcoded-analytics-key",
+          "severity": "medium",
+          "line": 31,
+          "message": "PostHog public capture key (phc_hgJkUVJFYtmaJqrvf6CYN67TIQ8yhXAkWzUn9AMU4yX) hardcoded in inline Python; indicates undisclosed third-party telemetry dependency"
+        },
+        {
+          "rule": "SEC-undisclosed-telemetry",
+          "severity": "medium",
+          "line": 240,
+          "message": "Migration script sends authenticated user email and OS info (platform, version, machine) to PostHog (us.i.posthog.com) without any disclosure in script output; opt-out via MEM0_TELEMETRY=false is not mentioned to the user"
+        }
+      ]
+    },
+    {
+      "path": "skills/mem0-integrate/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers across 620-line pipeline skill: 'relevant' (x2), 'plausible' (plan section), 'non-trivial' (description), 'minimal' (dependency surface)"
+        }
+      ]
+    },
+    {
+      "path": "skills/mem0/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Shares name: mem0 with mem0-plugin/skills/mem0/SKILL.md (v0.1.1); without resolving Bug #1, load-time behavior is non-deterministic"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-13T22:32:04Z",
+      "average_score": 91,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "mem0-plugin/skills/mem0/SKILL.md",
+      "line": null,
+      "message": "Declares name: mem0 (v0.1.1), identical to skills/mem0/SKILL.md (v3.0.0); skill loader cannot distinguish them by name, causing stale content to silently shadow the current version"
+    },
+    {
+      "rule": "SEC-hardcoded-analytics-key",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/oss-to-platform-migrate.sh",
+      "line": 31,
+      "message": "PostHog public capture key (phc_hgJkUVJFYtmaJqrvf6CYN67TIQ8yhXAkWzUn9AMU4yX) hardcoded in inline Python; indicates undisclosed third-party telemetry dependency"
+    },
+    {
+      "rule": "SEC-undisclosed-telemetry",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/oss-to-platform-migrate.sh",
+      "line": 240,
+      "message": "Migration script sends authenticated user email and OS info (platform, version, machine) to PostHog (us.i.posthog.com) without any disclosure in script output; opt-out via MEM0_TELEMETRY=false is not mentioned to the user"
+    },
+    {
+      "rule": "SEC-network-call-in-hook",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "mem0-plugin/scripts/capture_compact_summary.py",
+      "line": 122,
+      "message": "SessionStart hook makes HTTP POST with MEM0_API_KEY to api.mem0.ai/v1/memories/, transmitting parsed session transcript content; intended plugin behavior but users should be aware conversation data is transmitted outbound"
+    },
+    {
+      "rule": "SEC-network-call-in-hook",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "mem0-plugin/scripts/on_pre_compact.py",
+      "line": 196,
+      "message": "Stop and PreCompact hooks make HTTP POST with MEM0_API_KEY to api.mem0.ai/v1/memories/ in background process, transmitting parsed transcript content; same disclosure concern as capture_compact_summary.py"
+    },
+    {
+      "rule": "SEC-api-key-in-header",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mem0-plugin/.mcp.json",
+      "line": 7,
+      "message": "Authorization header template uses Token ${MEM0_API_KEY}; standard MCP auth pattern, key is injected at runtime from env, not hardcoded"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "openclaw/skills/memory-triage/SKILL.md",
+      "line": null,
+      "message": "High vague-quantifier density: relevant (x2), significant (x2), important (x2), genuinely (x3), notable (x1), comprehensive (x1) — 11 instances, penalty capped at -20"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "openclaw/skills/memory-triage/SKILL.md",
+      "line": 361,
+      "message": "Example headings 11 and 12 each appear twice in the file (mixed-categories example and consolidation example both labeled Example 11; greeting NOOP appears twice as Example 12)"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "openclaw/skills/memory-dream/SKILL.md",
+      "line": 6,
+      "message": "Description states the skill triggers automatically after sufficient activity (configurable) but no hook in hooks.json invokes this skill; the auto-trigger is not implemented"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "openclaw/skills/memory-dream/SKILL.md",
+      "line": null,
+      "message": "Vague quantifiers: 'sufficient activity' in description, 'obvious problems' in Phase 1 step 4"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mem0-plugin/skills/mem0/SKILL.md",
+      "line": null,
+      "message": "Plugin-bundled mem0 skill is version 0.1.1 while standalone skills/mem0/SKILL.md is 3.0.0; content diverges in cross-reference style (GitHub URLs vs. local paths) with no documented sync mechanism"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mem0-plugin/skills/mem0-mcp/SKILL.md",
+      "line": null,
+      "message": "Vague quantifiers: 'appropriate' (line 51 'if appropriate, call get_memories'), 'significant' (line 61 'significant time has passed'), and multiple uses of 'relevant memories'"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/mem0-integrate/SKILL.md",
+      "line": null,
+      "message": "Vague quantifiers across 620-line pipeline skill: 'relevant' (x2), 'plausible' (plan section), 'non-trivial' (description), 'minimal' (dependency surface)"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/mem0/SKILL.md",
+      "line": null,
+      "message": "Shares name: mem0 with mem0-plugin/skills/mem0/SKILL.md (v0.1.1); without resolving Bug #1, load-time behavior is non-deterministic"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "mem0-plugin/skills/mem0/SKILL.md",
+      "line": null,
+      "message": "Two SKILL.md files in the same repo both declare name: mem0; plugin-bundled copy (v0.1.1) and standalone copy (v3.0.0) will conflict when both skill paths are on the load path"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "mem0-plugin/skills/mem0/SKILL.md",
+      "line": null,
+      "message": "Plugin-bundled mem0 skill at v0.1.1 is 2 major versions behind standalone v3.0.0; API surface, filter syntax, and compatibility notes differ between the two copies"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "openclaw/skills/memory-dream/SKILL.md",
+      "line": 6,
+      "message": "memory-dream description claims automatic invocation after sufficient activity (configurable) but no entry in hooks.json triggers this skill; the auto-trigger path is an orphaned claim"
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": 55456,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/mem0ai-mem0.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

@@ -1,0 +1,708 @@
+{
+  "project": "aaron-he-zhu/seo-geo-claude-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 25,
+    "average_score": 91,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-version-drift",
+          "severity": "low",
+          "line": null,
+          "message": "Plugin manifest declares `\"version\": \"9.0.1\"` while all 20 SKILL.md files declare `version: \"9.0.0\"` in their frontmatter. This creates version drift that `/seo:validate-library` check #6 is designed to catch, suggesting the sync step was skipped after a patch release."
+        }
+      ]
+    },
+    {
+      "path": "All research skills",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "The `Next Best Skill` section uses markdown links to GitHub URLs. If the repo is forked or the library is installed locally, these links break."
+        }
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "info",
+          "line": null,
+          "message": "Contribution rules reference `scripts/sync-versions.py` and `scripts/validate-descriptions.py` in the past tense (\"replaces scripts/...\") but these files no longer exist in the repo. Stale references may confuse contributors."
+        }
+      ]
+    },
+    {
+      "path": "SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "info",
+          "line": null,
+          "message": "Vague quantifiers: \"comprehensive\", \"appropriate\", \"thorough\", \"significant\", \"relevant\" appear across nearly all skills"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "high",
+          "line": null,
+          "message": "`metadata.geo-relevance` values are hardcoded (\"high\", \"medium\") with no documented scoring rubric explaining what differentiates \"high\" from \"medium\" for GEO relevance"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "`Save Results` section is identical across all 20 skills — copied verbatim. The section asks \"Save these results for future sessions?\" but skills that are used in pipeline mode (handoff chain) may save redundantly."
+        }
+      ]
+    },
+    {
+      "path": "build/schema-markup-generator/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "FTC disclosure note for `aggregateRating` is present but applies only to US/FTC jurisdiction. EU users under the Digital Services Act (DSA) have additional requirements for review authenticity."
+        }
+      ]
+    },
+    {
+      "path": "build/seo-content-writer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Banned-vocabulary list (crucial, robust, leverage, delve, etc.) is comprehensive but has no mechanism to enforce it — the skill instructs Claude not to use these words but has no self-check step"
+        }
+      ]
+    },
+    {
+      "path": "commands/audit-domain.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `argument-hint` field"
+        }
+      ]
+    },
+    {
+      "path": "commands/contract-lint.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "high",
+          "line": null,
+          "message": "Command explicitly specifies SHA-256 hash verification (comparing `source_sha256` against live `shasum` output) and uses `awk`/Grep pattern inspection, but declares no `allowed-tools`. Without `Bash` and `Grep`, the hash comparison and pattern scanning steps cannot execute. The command's core functionality is non-functional as specified."
+        }
+      ]
+    },
+    {
+      "path": "commands/geo-drift-check.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "\"Experimental, v9.0+\" label in CLAUDE.md but the command body does not repeat this caveat or define what \"drift\" threshold triggers an alert"
+        }
+      ]
+    },
+    {
+      "path": "commands/keyword-research.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        }
+      ]
+    },
+    {
+      "path": "commands/optimize-meta.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `argument-hint` field"
+        }
+      ]
+    },
+    {
+      "path": "commands/p2-review.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `argument-hint` field"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Tombstone rule states \"tombstone review: 2026-07-10\" — a hard-coded date in a command definition. If the command is not updated by that date, the review instruction becomes permanently stale"
+        }
+      ]
+    },
+    {
+      "path": "commands/report.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "\"Cross-project mode\" is described but the command provides no guidance on how to discover which projects exist or where to find their `memory/` directories"
+        }
+      ]
+    },
+    {
+      "path": "commands/setup-alert.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        }
+      ]
+    },
+    {
+      "path": "commands/sync-versions.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Step 5 says to verify all 3 cross-agent manifests match but does not specify how to verify `gemini-extension.json` and `qwen-extension.json` — they aren't in the standard plugin path"
+        }
+      ]
+    },
+    {
+      "path": "commands/wiki-lint.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-steps",
+          "severity": "medium",
+          "line": null,
+          "message": "7-check validation table lists checks to perform but provides no numbered sequential workflow steps. The command has no procedural instruction for which tool to use per check or in what order. Agents cannot reliably reproduce consistent output without step ordering."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Missing `argument-hint` field"
+        }
+      ]
+    },
+    {
+      "path": "commands/write-content.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "info",
+          "line": null,
+          "message": "7 of 15 commands missing `allowed-tools` field entirely"
+        }
+      ]
+    },
+    {
+      "path": "cross-cutting/content-quality-auditor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Both auditor-class skills carry the identical `source_sha256` and `block_sha256` values in their runbook-sync markers. If the shared Auditor Runbook §1-5 source is updated, both files must be re-synced atomically. There is no automated CI check verifying the inline block matches the source."
+        }
+      ]
+    },
+    {
+      "path": "cross-cutting/domain-authority-auditor/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Both auditor-class skills carry the identical `source_sha256` and `block_sha256` values in their runbook-sync markers. If the shared Auditor Runbook §1-5 source is updated, both files must be re-synced atomically. There is no automated CI check verifying the inline block matches the source."
+        }
+      ]
+    },
+    {
+      "path": "cross-cutting/memory-management/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "GDPR Art 17 deletion flow is documented but the skill does not specify what happens to cross-references in `memory/hot-cache.md` and `memory/decisions.md` when a subject-data record is deleted from WARM tier"
+        }
+      ]
+    },
+    {
+      "path": "hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "critical",
+          "line": null,
+          "message": "Stop hook auto-appends critical veto items (`T04`, `C01`, `R10`, `T03`, `T05`, `T09`) to every session-end message. If the user has not run an audit, this produces confusing output referencing framework items with no prior context."
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "The FileChanged hook (matcher: \"hot-cache.md\") fires on any edit to hot-cache.md and instructs Claude to \"check HOT tier size, trim to 80 lines if needed\". If two concurrent sessions both edit hot-cache.md, the trim logic may produce a race condition"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "high",
+          "line": 36,
+          "message": "UserPromptSubmit hook (line 36) fires on every prompt submission and instructs Claude to \"check if hot-cache.md should be updated.\" For long sessions this creates a high-frequency background instruction that may inflate context"
+        }
+      ]
+    },
+    {
+      "path": "monitor/performance-reporter/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "11-step workflow integrates CORE-EEAT and CITE scores but does not specify which version of the scoring frameworks to use if the user has a custom override in `.claude/nlpm.local.md`"
+        }
+      ]
+    },
+    {
+      "path": "optimize/internal-linking-optimizer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Include a scraping legality note (\"verify robots.txt, respect Crawl-delay, confirm TOS permits automated access\") but do not enforce or prompt the user to confirm before proceeding"
+        }
+      ]
+    },
+    {
+      "path": "optimize/technical-seo-checker/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "LLM Crawler Handling section names specific bots (GPTBot, ClaudeBot, PerplexityBot) but does not note that this list changes as new AI crawlers emerge"
+        }
+      ]
+    },
+    {
+      "path": "research/competitor-analysis/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "info",
+          "line": null,
+          "message": "Include a scraping legality note (\"verify robots.txt, respect Crawl-delay, confirm TOS permits automated access\") but do not enforce or prompt the user to confirm before proceeding"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-20T12:28:37Z",
+      "average_score": 91,
+      "kind": "initial_audit"
+    },
+    {
+      "timestamp": "2026-04-24T08:48:08Z",
+      "average_score": 95,
+      "kind": "re_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/contract-lint.md",
+      "line": null,
+      "message": "Command explicitly specifies SHA-256 hash verification (comparing `source_sha256` against live `shasum` output) and uses `awk`/Grep pattern inspection, but declares no `allowed-tools`. Without `Bash` and `Grep`, the hash comparison and pattern scanning steps cannot execute. The command's core functionality is non-functional as specified."
+    },
+    {
+      "rule": "BUG-missing-steps",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/wiki-lint.md",
+      "line": null,
+      "message": "7-check validation table lists checks to perform but provides no numbered sequential workflow steps. The command has no procedural instruction for which tool to use per check or in what order. Agents cannot reliably reproduce consistent output without step ordering."
+    },
+    {
+      "rule": "CC-version-drift",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/plugin.json",
+      "line": null,
+      "message": "Plugin manifest declares `\"version\": \"9.0.1\"` while all 20 SKILL.md files declare `version: \"9.0.0\"` in their frontmatter. This creates version drift that `/seo:validate-library` check #6 is designed to catch, suggesting the sync step was skipped after a patch release."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/audit-domain.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/keyword-research.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/optimize-meta.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/p2-review.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/report.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/setup-alert.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/write-content.md",
+      "line": null,
+      "message": "7 of 15 commands missing `allowed-tools` field entirely"
+    },
+    {
+      "rule": "R01",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Vague quantifiers: \"comprehensive\", \"appropriate\", \"thorough\", \"significant\", \"relevant\" appear across nearly all skills"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/audit-domain.md",
+      "line": null,
+      "message": "Missing `argument-hint` field"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/optimize-meta.md",
+      "line": null,
+      "message": "Missing `argument-hint` field"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/wiki-lint.md",
+      "line": null,
+      "message": "Missing `argument-hint` field"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/p2-review.md",
+      "line": null,
+      "message": "Missing `argument-hint` field"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": null,
+      "message": "Stop hook auto-appends critical veto items (`T04`, `C01`, `R10`, `T03`, `T05`, `T09`) to every session-end message. If the user has not run an audit, this produces confusing output referencing framework items with no prior context."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/geo-drift-check.md",
+      "line": null,
+      "message": "\"Experimental, v9.0+\" label in CLAUDE.md but the command body does not repeat this caveat or define what \"drift\" threshold triggers an alert"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "Contribution rules reference `scripts/sync-versions.py` and `scripts/validate-descriptions.py` in the past tense (\"replaces scripts/...\") but these files no longer exist in the repo. Stale references may confuse contributors."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "cross-cutting/content-quality-auditor/SKILL.md",
+      "line": null,
+      "message": "Both auditor-class skills carry the identical `source_sha256` and `block_sha256` values in their runbook-sync markers. If the shared Auditor Runbook §1-5 source is updated, both files must be re-synced atomically. There is no automated CI check verifying the inline block matches the source."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "cross-cutting/domain-authority-auditor/SKILL.md",
+      "line": null,
+      "message": "Both auditor-class skills carry the identical `source_sha256` and `block_sha256` values in their runbook-sync markers. If the shared Auditor Runbook §1-5 source is updated, both files must be re-synced atomically. There is no automated CI check verifying the inline block matches the source."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "`metadata.geo-relevance` values are hardcoded (\"high\", \"medium\") with no documented scoring rubric explaining what differentiates \"high\" from \"medium\" for GEO relevance"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "research/competitor-analysis/SKILL.md",
+      "line": null,
+      "message": "Include a scraping legality note (\"verify robots.txt, respect Crawl-delay, confirm TOS permits automated access\") but do not enforce or prompt the user to confirm before proceeding"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "optimize/internal-linking-optimizer/SKILL.md",
+      "line": null,
+      "message": "Include a scraping legality note (\"verify robots.txt, respect Crawl-delay, confirm TOS permits automated access\") but do not enforce or prompt the user to confirm before proceeding"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": null,
+      "message": "The FileChanged hook (matcher: \"hot-cache.md\") fires on any edit to hot-cache.md and instructs Claude to \"check HOT tier size, trim to 80 lines if needed\". If two concurrent sessions both edit hot-cache.md, the trim logic may produce a race condition"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/report.md",
+      "line": null,
+      "message": "\"Cross-project mode\" is described but the command provides no guidance on how to discover which projects exist or where to find their `memory/` directories"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "build/seo-content-writer/SKILL.md",
+      "line": null,
+      "message": "Banned-vocabulary list (crucial, robust, leverage, delve, etc.) is comprehensive but has no mechanism to enforce it — the skill instructs Claude not to use these words but has no self-check step"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "monitor/performance-reporter/SKILL.md",
+      "line": null,
+      "message": "11-step workflow integrates CORE-EEAT and CITE scores but does not specify which version of the scoring frameworks to use if the user has a custom override in `.claude/nlpm.local.md`"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "cross-cutting/memory-management/SKILL.md",
+      "line": null,
+      "message": "GDPR Art 17 deletion flow is documented but the skill does not specify what happens to cross-references in `memory/hot-cache.md` and `memory/decisions.md` when a subject-data record is deleted from WARM tier"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "All research skills",
+      "line": null,
+      "message": "The `Next Best Skill` section uses markdown links to GitHub URLs. If the repo is forked or the library is installed locally, these links break."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/p2-review.md",
+      "line": null,
+      "message": "Tombstone rule states \"tombstone review: 2026-07-10\" — a hard-coded date in a command definition. If the command is not updated by that date, the review instruction becomes permanently stale"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "commands/sync-versions.md",
+      "line": null,
+      "message": "Step 5 says to verify all 3 cross-agent manifests match but does not specify how to verify `gemini-extension.json` and `qwen-extension.json` — they aren't in the standard plugin path"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "optimize/technical-seo-checker/SKILL.md",
+      "line": null,
+      "message": "LLM Crawler Handling section names specific bots (GPTBot, ClaudeBot, PerplexityBot) but does not note that this list changes as new AI crawlers emerge"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "build/schema-markup-generator/SKILL.md",
+      "line": null,
+      "message": "FTC disclosure note for `aggregateRating` is present but applies only to US/FTC jurisdiction. EU users under the Digital Services Act (DSA) have additional requirements for review authenticity."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "`Save Results` section is identical across all 20 skills — copied verbatim. The section asks \"Save these results for future sessions?\" but skills that are used in pipeline mode (handoff chain) may save redundantly."
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "hooks/hooks.json",
+      "line": 36,
+      "message": "UserPromptSubmit hook (line 36) fires on every prompt submission and instructs Claude to \"check if hot-cache.md should be updated.\" For long sessions this creates a high-frequency background instruction that may inflate context"
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 1050,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/aaron-he-zhu-seo-geo-claude-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:39Z",
+  "schema_version": 1
+}

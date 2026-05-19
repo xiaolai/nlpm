@@ -1,0 +1,626 @@
+{
+  "project": "zhsama/claude-sub-agent",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 14,
+    "average_score": 72,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 111,
+          "message": "CLAUDE.md refers to the utility agent as 'refactor-agent' but agents/utility/refactor-agent.md declares name: code-refactorer-agent; any call using the CLAUDE.md name will fail"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "medium",
+          "line": 43,
+          "message": "CLAUDE.md defines Gate 2 threshold as 80%; spec-orchestrator defines it as 85%; agent-workflow.md collapses all gates into a single 95% threshold — three incompatible models in one system"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 158,
+          "message": "CLAUDE.md documents --quality, --skip-agent, --phase, and --language flags for /agent-workflow but none of these are parsed in commands/agent-workflow.md; the command accepts only a raw $ARGUMENTS string"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": 55,
+          "message": "CLAUDE.md shows 'cp agents/* .claude/agents/' but agents are in subdirectories; the glob will copy directory names not contents; the correct form is 'cp -r agents/* .claude/agents/'"
+        }
+      ]
+    },
+    {
+      "path": "agents/backend/senior-backend-architect.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field; system default model will be used instead of an intentional tier choice"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "Agent has zero usage or invocation example blocks; only implementation code templates are present, not examples showing how to invoke or what to expect from the agent"
+        }
+      ]
+    },
+    {
+      "path": "agents/frontend/senior-frontend-architect.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No usage or invocation example blocks; the agent body contains framework reference YAML but no examples of agent invocation or expected output"
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit output format section; the agent has a Key Success Metrics section but no defined deliverable schema for what it produces"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-analyst.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field despite declaring other metadata like category and auto_activate"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No invocation example blocks; the agent documents output artifacts thoroughly but does not show how to invoke it or what a complete interaction looks like"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-architect.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No invocation example blocks"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-developer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No usage or invocation example blocks; code implementation patterns are present but not agent invocation examples"
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit output format section; agent describes implementation approach but not the deliverable schema"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-orchestrator.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No invocation example blocks; the workflow framework templates are present but no example shows how to invoke the orchestrator"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-planner.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "No invocation example blocks"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "High vague-quantifier density: 'comprehensive' x3, 'detailed' x2, 'actionable', 'clear' each contributing -2; total -14 approaching the -20 cap"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-reviewer.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers: 'appropriate' x2, 'proper', 'comprehensive', 'significant' — each -2, total -10"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-tester.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers: 'comprehensive' x3, 'appropriate', 'rigorous' — each -2, total -10"
+        }
+      ]
+    },
+    {
+      "path": "agents/spec-agents/spec-validator.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R03",
+          "severity": "low",
+          "line": null,
+          "message": "Only one substantive example (the validation report template); no invocation example showing how to call the agent"
+        },
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Vague quantifiers: 'comprehensive' x2, 'appropriate', 'thorough' x2, 'actionable' — each -2, total -12"
+        }
+      ]
+    },
+    {
+      "path": "agents/ui-ux/ui-ux-master.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R08",
+          "severity": "medium",
+          "line": 1,
+          "message": "Agent frontmatter has no tools field; agent cannot read existing design files or write output documents in production; registration defaults to conversation-only mode"
+        }
+      ]
+    },
+    {
+      "path": "agents/utility/refactor-agent.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R02",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent frontmatter has no model field"
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit output format section; the agent describes its analysis process but does not define the schema of refactoring proposals it produces"
+        },
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": 4,
+          "message": "NotebookEdit is declared in tools but the agent body makes no reference to Jupyter notebooks or notebook editing in its workflow"
+        }
+      ]
+    },
+    {
+      "path": "commands/agent-workflow.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command frontmatter is missing the required name field; only description and allowed-tools are present, so the slash command cannot be registered or invoked by name"
+        },
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": null,
+          "message": "Command uses $ARGUMENTS as the feature description but provides no guard or user prompt for the empty-arguments case; invoking /agent-workflow with no text starts the full chain with no feature description"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 72,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "commands/agent-workflow.md",
+      "line": 1,
+      "message": "Command frontmatter is missing the required name field; only description and allowed-tools are present, so the slash command cannot be registered or invoked by name"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 111,
+      "message": "CLAUDE.md refers to the utility agent as 'refactor-agent' but agents/utility/refactor-agent.md declares name: code-refactorer-agent; any call using the CLAUDE.md name will fail"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 43,
+      "message": "CLAUDE.md defines Gate 2 threshold as 80%; spec-orchestrator defines it as 85%; agent-workflow.md collapses all gates into a single 95% threshold — three incompatible models in one system"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 158,
+      "message": "CLAUDE.md documents --quality, --skip-agent, --phase, and --language flags for /agent-workflow but none of these are parsed in commands/agent-workflow.md; the command accepts only a raw $ARGUMENTS string"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 55,
+      "message": "CLAUDE.md shows 'cp agents/* .claude/agents/' but agents are in subdirectories; the glob will copy directory names not contents; the correct form is 'cp -r agents/* .claude/agents/'"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/backend/senior-backend-architect.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field; system default model will be used instead of an intentional tier choice"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/backend/senior-backend-architect.md",
+      "line": null,
+      "message": "Agent has zero usage or invocation example blocks; only implementation code templates are present, not examples showing how to invoke or what to expect from the agent"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/frontend/senior-frontend-architect.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/frontend/senior-frontend-architect.md",
+      "line": null,
+      "message": "No usage or invocation example blocks; the agent body contains framework reference YAML but no examples of agent invocation or expected output"
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/frontend/senior-frontend-architect.md",
+      "line": null,
+      "message": "No explicit output format section; the agent has a Key Success Metrics section but no defined deliverable schema for what it produces"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-analyst.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field despite declaring other metadata like category and auto_activate"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-analyst.md",
+      "line": null,
+      "message": "No invocation example blocks; the agent documents output artifacts thoroughly but does not show how to invoke it or what a complete interaction looks like"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-architect.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-architect.md",
+      "line": null,
+      "message": "No invocation example blocks"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-developer.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-developer.md",
+      "line": null,
+      "message": "No usage or invocation example blocks; code implementation patterns are present but not agent invocation examples"
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-developer.md",
+      "line": null,
+      "message": "No explicit output format section; agent describes implementation approach but not the deliverable schema"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-orchestrator.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-orchestrator.md",
+      "line": null,
+      "message": "No invocation example blocks; the workflow framework templates are present but no example shows how to invoke the orchestrator"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-planner.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-planner.md",
+      "line": null,
+      "message": "No invocation example blocks"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-planner.md",
+      "line": null,
+      "message": "High vague-quantifier density: 'comprehensive' x3, 'detailed' x2, 'actionable', 'clear' each contributing -2; total -14 approaching the -20 cap"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-reviewer.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-reviewer.md",
+      "line": null,
+      "message": "Vague quantifiers: 'appropriate' x2, 'proper', 'comprehensive', 'significant' — each -2, total -10"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-tester.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-tester.md",
+      "line": null,
+      "message": "Vague quantifiers: 'comprehensive' x3, 'appropriate', 'rigorous' — each -2, total -10"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-validator.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R03",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-validator.md",
+      "line": null,
+      "message": "Only one substantive example (the validation report template); no invocation example showing how to call the agent"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/spec-agents/spec-validator.md",
+      "line": null,
+      "message": "Vague quantifiers: 'comprehensive' x2, 'appropriate', 'thorough' x2, 'actionable' — each -2, total -12"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/ui-ux/ui-ux-master.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R08",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "agents/ui-ux/ui-ux-master.md",
+      "line": 1,
+      "message": "Agent frontmatter has no tools field; agent cannot read existing design files or write output documents in production; registration defaults to conversation-only mode"
+    },
+    {
+      "rule": "R02",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/utility/refactor-agent.md",
+      "line": 1,
+      "message": "Agent frontmatter has no model field"
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/utility/refactor-agent.md",
+      "line": null,
+      "message": "No explicit output format section; the agent describes its analysis process but does not define the schema of refactoring proposals it produces"
+    },
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/utility/refactor-agent.md",
+      "line": 4,
+      "message": "NotebookEdit is declared in tools but the agent body makes no reference to Jupyter notebooks or notebook editing in its workflow"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "commands/agent-workflow.md",
+      "line": null,
+      "message": "Command uses $ARGUMENTS as the feature description but provides no guard or user prompt for the empty-arguments case; invoking /agent-workflow with no text starts the full chain with no feature description"
+    }
+  ],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 576,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/zhsama-claude-sub-agent.md"
+  },
+  "generated_at": "2026-05-19T09:50:40Z",
+  "schema_version": 1
+}

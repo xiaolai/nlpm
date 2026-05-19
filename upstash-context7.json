@@ -1,0 +1,465 @@
+{
+  "project": "upstash/context7",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "All devDependencies use ^ (caret) ranges allowing minor/patch version drift on reinstall, which could pull in undiscovered vulnerabilities."
+        }
+      ]
+    },
+    {
+      "path": "packages/cli/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "All production dependencies use ^ ranges (e.g. commander ^13.1.0, open ^10.1.0) allowing minor version drift in CLI distribution."
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude/context7/.claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R48",
+          "severity": "low",
+          "line": null,
+          "message": "plugin.json has no `version` field; R48 marks version as recommended and R50 requires it to be bumped in four places on every release."
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude/context7/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 3,
+          "message": "MCP server configured as external HTTP endpoint (https://mcp.context7.com/mcp); all tool calls route over the network to a third-party service."
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude/context7/agents/docs-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has zero <example> blocks; R09 requires minimum 2 with Context + user message + assistant response for reliable triggering."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body lists response content (direct answer, code examples, links) but provides no formal output template; response structure will vary between invocations."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 11,
+          "message": "Five vague quantifiers: 'concise' and 'actionable' (L11), 'focused' (L5), 'relevant' (L26), 'appropriate' (L24)."
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude/context7/commands/docs.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Command frontmatter is missing the required `name` field; command discoverability and registration may fail in strict plugin systems."
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": null,
+          "message": "Command calls MCP tools `resolve-library-id` and `query-docs` but declares no `allowed-tools` frontmatter field; hosts enforcing tool allowlists will reject the calls."
+        },
+        {
+          "rule": "R15",
+          "severity": "medium",
+          "line": null,
+          "message": "Command takes a required <library> argument but specifies no behavior when $ARGUMENTS is blank — no error message or default behavior defined."
+        },
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "Command states 'Results include code examples and explanations' but defines no structured output template; format varies between invocations."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 33,
+          "message": "Two vague quantifiers: 'best' and 'relevant' both on L33 ('finds the best matching library', 'documentation relevant to your query')."
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude/context7/skills/context7-mcp/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 30,
+          "message": "Three vague quantifiers: 'better' (L30 and L55) and 'closest' (L39)."
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "info",
+          "line": null,
+          "message": "skills/context7-mcp/SKILL.md is byte-for-byte identical across plugins/claude/context7/skills/, plugins/cursor/context7/skills/, and skills/ — any fix requires three identical edits, making drift likely over time."
+        }
+      ]
+    },
+    {
+      "path": "plugins/cursor/context7/agents/docs-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": null,
+          "message": "Agent has zero <example> blocks; same issue as the Claude plugin variant."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "Same missing output template as the Claude plugin variant."
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "Agent frontmatter has no `model` field; the equivalent Claude plugin agent declares `model: sonnet`, indicating this was an oversight during copy."
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 11,
+          "message": "Same five vague quantifiers as the Claude plugin agent (identical content): 'concise', 'actionable', 'focused', 'relevant', 'appropriate'."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "info",
+          "line": null,
+          "message": "Cursor agent is a copy of the Claude agent but is missing the `model: sonnet` frontmatter field present in the original, the first visible sign of copy-paste drift between plugin variants."
+        }
+      ]
+    },
+    {
+      "path": "plugins/cursor/context7/mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 3,
+          "message": "MCP server configured as external HTTP OAuth endpoint (https://mcp.context7.com/mcp/oauth); same external data-routing concern as the Claude plugin variant."
+        }
+      ]
+    },
+    {
+      "path": "plugins/cursor/context7/skills/context7-mcp/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 30,
+          "message": "Same three vague quantifiers as the Claude plugin SKILL.md (identical content): 'better' (L30, L55), 'closest' (L39)."
+        }
+      ]
+    },
+    {
+      "path": "skills/context7-cli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 50,
+          "message": "Two vague quantifiers: 'best' (L50, 'use the best result you have') and 'closest' (L101, 'Use the closest match to what the user specified')."
+        }
+      ]
+    },
+    {
+      "path": "skills/context7-mcp/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 30,
+          "message": "Same three vague quantifiers as the two plugin SKILL.md copies (identical content): 'better' (L30, L55), 'closest' (L39)."
+        }
+      ]
+    },
+    {
+      "path": "skills/find-docs/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 50,
+          "message": "Four vague quantifiers: 'best' (L50), 'most relevant match' (L80), 'closest match' (L101), 'relevant details' (L116)."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/commands/docs.md",
+      "line": null,
+      "message": "Command frontmatter is missing the required `name` field; command discoverability and registration may fail in strict plugin systems."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/commands/docs.md",
+      "line": null,
+      "message": "Command calls MCP tools `resolve-library-id` and `query-docs` but declares no `allowed-tools` frontmatter field; hosts enforcing tool allowlists will reject the calls."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/.mcp.json",
+      "line": 3,
+      "message": "MCP server configured as external HTTP endpoint (https://mcp.context7.com/mcp); all tool calls route over the network to a third-party service."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/mcp.json",
+      "line": 3,
+      "message": "MCP server configured as external HTTP OAuth endpoint (https://mcp.context7.com/mcp/oauth); same external data-routing concern as the Claude plugin variant."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": null,
+      "message": "All devDependencies use ^ (caret) ranges allowing minor/patch version drift on reinstall, which could pull in undiscovered vulnerabilities."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "packages/cli/package.json",
+      "line": null,
+      "message": "All production dependencies use ^ ranges (e.g. commander ^13.1.0, open ^10.1.0) allowing minor version drift in CLI distribution."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Agent has zero <example> blocks; R09 requires minimum 2 with Context + user message + assistant response for reliable triggering."
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Agent has zero <example> blocks; same issue as the Claude plugin variant."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Agent body lists response content (direct answer, code examples, links) but provides no formal output template; response structure will vary between invocations."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Same missing output template as the Claude plugin variant."
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Agent frontmatter has no `model` field; the equivalent Claude plugin agent declares `model: sonnet`, indicating this was an oversight during copy."
+    },
+    {
+      "rule": "R15",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/commands/docs.md",
+      "line": null,
+      "message": "Command takes a required <library> argument but specifies no behavior when $ARGUMENTS is blank — no error message or default behavior defined."
+    },
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/commands/docs.md",
+      "line": null,
+      "message": "Command states 'Results include code examples and explanations' but defines no structured output template; format varies between invocations."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/agents/docs-researcher.md",
+      "line": 11,
+      "message": "Five vague quantifiers: 'concise' and 'actionable' (L11), 'focused' (L5), 'relevant' (L26), 'appropriate' (L24)."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/agents/docs-researcher.md",
+      "line": 11,
+      "message": "Same five vague quantifiers as the Claude plugin agent (identical content): 'concise', 'actionable', 'focused', 'relevant', 'appropriate'."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/commands/docs.md",
+      "line": 33,
+      "message": "Two vague quantifiers: 'best' and 'relevant' both on L33 ('finds the best matching library', 'documentation relevant to your query')."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/skills/context7-mcp/SKILL.md",
+      "line": 30,
+      "message": "Three vague quantifiers: 'better' (L30 and L55) and 'closest' (L39)."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/skills/context7-mcp/SKILL.md",
+      "line": 30,
+      "message": "Same three vague quantifiers as the Claude plugin SKILL.md (identical content): 'better' (L30, L55), 'closest' (L39)."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/context7-mcp/SKILL.md",
+      "line": 30,
+      "message": "Same three vague quantifiers as the two plugin SKILL.md copies (identical content): 'better' (L30, L55), 'closest' (L39)."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/context7-cli/SKILL.md",
+      "line": 50,
+      "message": "Two vague quantifiers: 'best' (L50, 'use the best result you have') and 'closest' (L101, 'Use the closest match to what the user specified')."
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/find-docs/SKILL.md",
+      "line": 50,
+      "message": "Four vague quantifiers: 'best' (L50), 'most relevant match' (L80), 'closest match' (L101), 'relevant details' (L116)."
+    },
+    {
+      "rule": "R48",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/.claude-plugin/plugin.json",
+      "line": null,
+      "message": "plugin.json has no `version` field; R48 marks version as recommended and R50 requires it to be bumped in four places on every release."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/claude/context7/skills/context7-mcp/SKILL.md",
+      "line": null,
+      "message": "skills/context7-mcp/SKILL.md is byte-for-byte identical across plugins/claude/context7/skills/, plugins/cursor/context7/skills/, and skills/ — any fix requires three identical edits, making drift likely over time."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "plugins/cursor/context7/agents/docs-researcher.md",
+      "line": null,
+      "message": "Cursor agent is a copy of the Claude agent but is missing the `model: sonnet` frontmatter field present in the original, the first visible sign of copy-paste drift between plugin variants."
+    }
+  ],
+  "repo_meta": {
+    "status": "contributed",
+    "stars": 53665,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/upstash-context7.md"
+  },
+  "generated_at": "2026-05-19T09:50:39Z",
+  "schema_version": 1
+}

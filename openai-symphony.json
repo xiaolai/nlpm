@@ -1,0 +1,269 @@
+{
+  "project": "openai/symphony",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 89,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".codex/skills/debug/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No ## Output section; skill drives a log investigation but does not specify what structured evidence or root-cause summary the agent should produce."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 23,
+          "message": "Vague quantifier \"relevant\" in \"Check these when the relevant run is older\" — does not define a measurable threshold for when to check rotated logs."
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/land/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No ## Output section; the terminal state (squash-merged PR) is implicit in the goals but not declared as a formal output."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 122,
+          "message": "Vague quantifier \"judgment\" in \"Use judgment to identify flaky failures\" — leaves flakiness detection undefined."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 211,
+          "message": "Vague quantifier \"brief\" in \"with a brief reason (e.g., out-of-scope, conflicts with intent, unnecessary)\" — length is undefined."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 213,
+          "message": "Vague quantifier \"brief\" (second occurrence) in \"offer a brief alternative or follow-up trigger\" — same pattern as line 211."
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/linear/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No ## Output section; pure reference guide but callers cannot infer what structured result (e.g. JSON payload, confirmation field) to expect from each operation."
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/pull/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No ## Output section; step 9 describes a merge summary inline but no dedicated declaration clarifies expected deliverable format."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 61,
+          "message": "Vague quantifier \"minimal\" in \"Prefer minimal, intention-preserving edits\" — does not specify how to measure edit minimality."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 63,
+          "message": "Vague quantifier \"complex\" in \"For complex conflicts, search for related files\" — leaves the threshold for \"complex\" undefined."
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": 33,
+          "message": "Reference to AGENTS.md without a path prefix; no root-level AGENTS.md exists in the repo — the file is at elixir/AGENTS.md. An agent searching from the workspace root will fail to locate it."
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/push/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No ## Output section; step 8 mentions \"Reply with the PR URL\" inline but no dedicated output declaration exists."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 44,
+          "message": "Vague quantifier \"proper\" in \"Write a proper PR title that clearly describes the change outcome\" — does not define what makes a title proper."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 44,
+          "message": "Vague quantifier \"clearly\" in \"Write a proper PR title that clearly describes the change outcome\" — paired with \"proper\", both in the same instruction without concrete criteria."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-05T02:34:23Z",
+      "average_score": 89,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/debug/SKILL.md",
+      "line": null,
+      "message": "No ## Output section; skill drives a log investigation but does not specify what structured evidence or root-cause summary the agent should produce."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/debug/SKILL.md",
+      "line": 23,
+      "message": "Vague quantifier \"relevant\" in \"Check these when the relevant run is older\" — does not define a measurable threshold for when to check rotated logs."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/linear/SKILL.md",
+      "line": null,
+      "message": "No ## Output section; pure reference guide but callers cannot infer what structured result (e.g. JSON payload, confirmation field) to expect from each operation."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/pull/SKILL.md",
+      "line": null,
+      "message": "No ## Output section; step 9 describes a merge summary inline but no dedicated declaration clarifies expected deliverable format."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/pull/SKILL.md",
+      "line": 61,
+      "message": "Vague quantifier \"minimal\" in \"Prefer minimal, intention-preserving edits\" — does not specify how to measure edit minimality."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/pull/SKILL.md",
+      "line": 63,
+      "message": "Vague quantifier \"complex\" in \"For complex conflicts, search for related files\" — leaves the threshold for \"complex\" undefined."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/push/SKILL.md",
+      "line": null,
+      "message": "No ## Output section; step 8 mentions \"Reply with the PR URL\" inline but no dedicated output declaration exists."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/push/SKILL.md",
+      "line": 44,
+      "message": "Vague quantifier \"proper\" in \"Write a proper PR title that clearly describes the change outcome\" — does not define what makes a title proper."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/push/SKILL.md",
+      "line": 44,
+      "message": "Vague quantifier \"clearly\" in \"Write a proper PR title that clearly describes the change outcome\" — paired with \"proper\", both in the same instruction without concrete criteria."
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/land/SKILL.md",
+      "line": null,
+      "message": "No ## Output section; the terminal state (squash-merged PR) is implicit in the goals but not declared as a formal output."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/land/SKILL.md",
+      "line": 122,
+      "message": "Vague quantifier \"judgment\" in \"Use judgment to identify flaky failures\" — leaves flakiness detection undefined."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/land/SKILL.md",
+      "line": 211,
+      "message": "Vague quantifier \"brief\" in \"with a brief reason (e.g., out-of-scope, conflicts with intent, unnecessary)\" — length is undefined."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/land/SKILL.md",
+      "line": 213,
+      "message": "Vague quantifier \"brief\" (second occurrence) in \"offer a brief alternative or follow-up trigger\" — same pattern as line 211."
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".codex/skills/pull/SKILL.md",
+      "line": 33,
+      "message": "Reference to AGENTS.md without a path prefix; no root-level AGENTS.md exists in the repo — the file is at elixir/AGENTS.md. An agent searching from the workspace root will fail to locate it."
+    }
+  ],
+  "repo_meta": {
+    "status": "audited",
+    "stars": null,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/openai-symphony.md"
+  },
+  "generated_at": "2026-05-19T09:50:16Z",
+  "schema_version": 1
+}

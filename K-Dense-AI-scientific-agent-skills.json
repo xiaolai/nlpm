@@ -1,0 +1,941 @@
+{
+  "project": "K-Dense-AI/scientific-agent-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 41,
+    "average_score": 83,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "benchling-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — the benchling-sdk Python package is MIT licensed per PyPI"
+        }
+      ]
+    },
+    {
+      "path": "citation-management/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": 39,
+          "message": "SKILL.md states 'Nano Banana Pro will automatically generate, review, and refine the schematic' as a standard workflow step, requiring undisclosed paid API key"
+        },
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 1079,
+          "message": "Installation commands in Dependencies section use bare `pip install requests`, `pip install bibtexparser`, etc. instead of `uv pip install`"
+        }
+      ]
+    },
+    {
+      "path": "clinical-reports/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates 'Nano Banana Pro will automatically generate' schematics, requiring undisclosed paid API credentials"
+        }
+      ]
+    },
+    {
+      "path": "dnanexus-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — the DNAnexus Python SDK is Apache-2.0 licensed. This field should be resolvable with a quick check of the library's repository."
+        }
+      ]
+    },
+    {
+      "path": "docx/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. Provenance and attribution cannot be determined."
+        }
+      ]
+    },
+    {
+      "path": "fluidsim/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": null,
+          "message": "Installation command reads `uv uv pip install fluidsim` (appears 3 times in installation section) — the doubled `uv` prefix is an invalid shell invocation"
+        }
+      ]
+    },
+    {
+      "path": "generate-image/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "low",
+          "line": null,
+          "message": "SKILL.md is the wrapper for 'Nano Banana 2' image generation. Skill description does not disclose the required OPENROUTER_API_KEY paid credential."
+        }
+      ]
+    },
+    {
+      "path": "geniml/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": 19,
+          "message": "Installation commands read `uv uv pip install geniml`, `uv uv pip install 'geniml[ml]'`, and `uv uv pip install git+https://...` — doubled `uv` prefix is invalid in all three forms"
+        }
+      ]
+    },
+    {
+      "path": "glycoengineering/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — glycoSHIELD is MIT licensed per its GitHub repository"
+        }
+      ]
+    },
+    {
+      "path": "gtars/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": null,
+          "message": "Installation command reads `uv uv pip install gtars` — the doubled `uv` prefix is an invalid shell invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — gtars is MIT licensed per its GitHub repository"
+        }
+      ]
+    },
+    {
+      "path": "labarchive-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — LabArchive is a commercial platform; the REST API client license should be confirmed with vendor"
+        }
+      ]
+    },
+    {
+      "path": "latchbio-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": null,
+          "message": "Installation command reads `python3 -m uv pip install latch` — calling uv as a Python module is not the standard invocation and may fail depending on how uv is installed"
+        }
+      ]
+    },
+    {
+      "path": "latex-posters/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md references 'Nano Banana Pro' for poster graphic generation as a standard tool without disclosing API key requirement. Also missing license field and metadata.skill-author."
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `metadata:` block (no skill-author) and also no `license` field at all"
+        }
+      ]
+    },
+    {
+      "path": "literature-review/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates Nano Banana Pro for figure generation without disclosing required paid API key"
+        }
+      ]
+    },
+    {
+      "path": "markitdown/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "low",
+          "line": null,
+          "message": "SKILL.md contains a brief Nano Banana Pro reference for optional diagram generation. Also uses `pip install` not `uv pip install`."
+        }
+      ]
+    },
+    {
+      "path": "neuropixels-analysis/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": null,
+          "message": "Installation commands use bare `pip install` instead of `uv pip install`"
+        }
+      ]
+    },
+    {
+      "path": "omero-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — OMERO.py is GPL-2.0 licensed"
+        }
+      ]
+    },
+    {
+      "path": "opentrons-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — the Opentrons Python SDK is Apache-2.0 licensed"
+        }
+      ]
+    },
+    {
+      "path": "paper-lookup/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `license` field"
+        }
+      ]
+    },
+    {
+      "path": "pdf/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. File also uses `license: Proprietary. LICENSE.txt has complete terms` which is non-standard."
+        }
+      ]
+    },
+    {
+      "path": "peer-review/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates 'Nano Banana Pro will automatically generate' schematics without disclosing required paid API key"
+        }
+      ]
+    },
+    {
+      "path": "phylogenetics/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — the referenced tools (MUSCLE, IQ-TREE, BioPython) have various OSS licenses"
+        }
+      ]
+    },
+    {
+      "path": "polars-bio/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+        }
+      ]
+    },
+    {
+      "path": "polars/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+        }
+      ]
+    },
+    {
+      "path": "pptx-posters/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates Nano Banana Pro for diagram generation without disclosing required paid API key"
+        }
+      ]
+    },
+    {
+      "path": "protocolsio-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has `license: Unknown` — the protocols.io Python client is MIT licensed"
+        }
+      ]
+    },
+    {
+      "path": "pyopenms/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": null,
+          "message": "Installation command reads `uv uv pip install pyopenms` — the doubled `uv` prefix is an invalid shell invocation that will fail immediately for users copying this command"
+        }
+      ]
+    },
+    {
+      "path": "research-lookup/research_lookup.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-outbound-api-call",
+          "severity": "medium",
+          "line": 55,
+          "message": "Script sends user research query text to https://api.parallel.ai (PARALLEL_API_KEY) and optionally to OpenRouter Perplexity backend (OPENROUTER_API_KEY). Two separate commercial services receive user query content. The research-lookup SKILL.md description does not disclose that queries are transmitted externally."
+        }
+      ]
+    },
+    {
+      "path": "scanpy/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-license-typo",
+          "severity": "medium",
+          "line": null,
+          "message": "frontmatter contains `license: SD-3-Clause license` — the leading `B` is missing from `BSD-3-Clause`. This is an apparent typo that results in an unrecognized SPDX identifier."
+        }
+      ]
+    },
+    {
+      "path": "scholar-evaluation/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates Nano Banana Pro for scientific schematic generation without disclosing the required API key"
+        }
+      ]
+    },
+    {
+      "path": "scientific-critical-thinking/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md references 'Nano Banana Pro' for diagram generation and 'Gemini 3.1 Pro Preview' for quality review — both proprietary paid services not disclosed in description"
+        }
+      ]
+    },
+    {
+      "path": "scientific-schematics/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md contains mandatory workflow instructions referencing 'Nano Banana 2' and 'Gemini 3.1 Pro Preview' — K-Dense Inc.'s proprietary paid AI image generation product. Skills invoking this workflow fail silently without an undisclosed paid API key (OPENROUTER_API_KEY). The description does not mention this requirement."
+        }
+      ]
+    },
+    {
+      "path": "scientific-schematics/scripts/generate_schematic_ai.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-outbound-api-call",
+          "severity": "medium",
+          "line": 189,
+          "message": "Script makes POST requests to https://openrouter.ai/api/v1 transmitting user diagram prompt text and receiving AI-generated images. API key sourced from OPENROUTER_API_KEY env var (correct practice). Risk: user natural-language prompts leave the local machine to a commercial third-party service. Skill descriptions referencing this script do not disclose data transmission."
+        }
+      ]
+    },
+    {
+      "path": "scientific-writing/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates Nano Banana Pro for figure generation without disclosing required paid API key"
+        }
+      ]
+    },
+    {
+      "path": "scikit-learn/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-invalid-install-cmd",
+          "severity": "high",
+          "line": null,
+          "message": "Installation command reads `uv uv pip install scikit-learn` — the doubled `uv` prefix is an invalid shell invocation that will fail immediately for users copying this command"
+        }
+      ]
+    },
+    {
+      "path": "scvelo/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 19,
+          "message": "Installation command reads `pip install scvelo` instead of the collection standard `uv pip install scvelo`"
+        }
+      ]
+    },
+    {
+      "path": "sympy/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+        }
+      ]
+    },
+    {
+      "path": "torch-geometric/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `license` field — PyTorch Geometric is MIT licensed"
+        }
+      ]
+    },
+    {
+      "path": "treatment-plans/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md contains mandatory instructions to call 'Nano Banana Pro' for schematic generation, implying this is a standard capability when it requires a paid API key not disclosed in the skill description"
+        }
+      ]
+    },
+    {
+      "path": "venue-templates/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R23",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md mandates Nano Banana Pro for diagram generation without disclosing required paid API key"
+        }
+      ]
+    },
+    {
+      "path": "xlsx/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. File also uses `license: Proprietary. LICENSE.txt has complete terms` which is non-standard."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-04-26T12:02:14Z",
+      "average_score": 83,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "scikit-learn/SKILL.md",
+      "line": null,
+      "message": "Installation command reads `uv uv pip install scikit-learn` — the doubled `uv` prefix is an invalid shell invocation that will fail immediately for users copying this command"
+    },
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "pyopenms/SKILL.md",
+      "line": null,
+      "message": "Installation command reads `uv uv pip install pyopenms` — the doubled `uv` prefix is an invalid shell invocation that will fail immediately for users copying this command"
+    },
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "fluidsim/SKILL.md",
+      "line": null,
+      "message": "Installation command reads `uv uv pip install fluidsim` (appears 3 times in installation section) — the doubled `uv` prefix is an invalid shell invocation"
+    },
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "gtars/SKILL.md",
+      "line": null,
+      "message": "Installation command reads `uv uv pip install gtars` — the doubled `uv` prefix is an invalid shell invocation"
+    },
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "geniml/SKILL.md",
+      "line": 19,
+      "message": "Installation commands read `uv uv pip install geniml`, `uv uv pip install 'geniml[ml]'`, and `uv uv pip install git+https://...` — doubled `uv` prefix is invalid in all three forms"
+    },
+    {
+      "rule": "BUG-invalid-install-cmd",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "latchbio-integration/SKILL.md",
+      "line": null,
+      "message": "Installation command reads `python3 -m uv pip install latch` — calling uv as a Python module is not the standard invocation and may fail depending on how uv is installed"
+    },
+    {
+      "rule": "BUG-license-typo",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scanpy/SKILL.md",
+      "line": null,
+      "message": "frontmatter contains `license: SD-3-Clause license` — the leading `B` is missing from `BSD-3-Clause`. This is an apparent typo that results in an unrecognized SPDX identifier."
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scientific-schematics/SKILL.md",
+      "line": null,
+      "message": "SKILL.md contains mandatory workflow instructions referencing 'Nano Banana 2' and 'Gemini 3.1 Pro Preview' — K-Dense Inc.'s proprietary paid AI image generation product. Skills invoking this workflow fail silently without an undisclosed paid API key (OPENROUTER_API_KEY). The description does not mention this requirement."
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "treatment-plans/SKILL.md",
+      "line": null,
+      "message": "SKILL.md contains mandatory instructions to call 'Nano Banana Pro' for schematic generation, implying this is a standard capability when it requires a paid API key not disclosed in the skill description"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "clinical-reports/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates 'Nano Banana Pro will automatically generate' schematics, requiring undisclosed paid API credentials"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scientific-critical-thinking/SKILL.md",
+      "line": null,
+      "message": "SKILL.md references 'Nano Banana Pro' for diagram generation and 'Gemini 3.1 Pro Preview' for quality review — both proprietary paid services not disclosed in description"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scholar-evaluation/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates Nano Banana Pro for scientific schematic generation without disclosing the required API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "venue-templates/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates Nano Banana Pro for diagram generation without disclosing required paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "pptx-posters/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates Nano Banana Pro for diagram generation without disclosing required paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scientific-writing/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates Nano Banana Pro for figure generation without disclosing required paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "peer-review/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates 'Nano Banana Pro will automatically generate' schematics without disclosing required paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "literature-review/SKILL.md",
+      "line": null,
+      "message": "SKILL.md mandates Nano Banana Pro for figure generation without disclosing required paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "citation-management/SKILL.md",
+      "line": 39,
+      "message": "SKILL.md states 'Nano Banana Pro will automatically generate, review, and refine the schematic' as a standard workflow step, requiring undisclosed paid API key"
+    },
+    {
+      "rule": "R23",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "latex-posters/SKILL.md",
+      "line": null,
+      "message": "SKILL.md references 'Nano Banana Pro' for poster graphic generation as a standard tool without disclosing API key requirement. Also missing license field and metadata.skill-author."
+    },
+    {
+      "rule": "R23",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "generate-image/SKILL.md",
+      "line": null,
+      "message": "SKILL.md is the wrapper for 'Nano Banana 2' image generation. Skill description does not disclose the required OPENROUTER_API_KEY paid credential."
+    },
+    {
+      "rule": "R23",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "markitdown/SKILL.md",
+      "line": null,
+      "message": "SKILL.md contains a brief Nano Banana Pro reference for optional diagram generation. Also uses `pip install` not `uv pip install`."
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "dnanexus-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — the DNAnexus Python SDK is Apache-2.0 licensed. This field should be resolvable with a quick check of the library's repository."
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "protocolsio-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — the protocols.io Python client is MIT licensed"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "glycoengineering/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — glycoSHIELD is MIT licensed per its GitHub repository"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "opentrons-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — the Opentrons Python SDK is Apache-2.0 licensed"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "omero-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — OMERO.py is GPL-2.0 licensed"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "labarchive-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — LabArchive is a commercial platform; the REST API client license should be confirmed with vendor"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "benchling-integration/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — the benchling-sdk Python package is MIT licensed per PyPI"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "phylogenetics/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — the referenced tools (MUSCLE, IQ-TREE, BioPython) have various OSS licenses"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "gtars/SKILL.md",
+      "line": null,
+      "message": "frontmatter has `license: Unknown` — gtars is MIT licensed per its GitHub repository"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "paper-lookup/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `license` field"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "torch-geometric/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `license` field — PyTorch Geometric is MIT licensed"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "sympy/SKILL.md",
+      "line": null,
+      "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "polars/SKILL.md",
+      "line": null,
+      "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "polars-bio/SKILL.md",
+      "line": null,
+      "message": "frontmatter `license` field contains a URL rather than an SPDX identifier"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "docx/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. Provenance and attribution cannot be determined."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "xlsx/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. File also uses `license: Proprietary. LICENSE.txt has complete terms` which is non-standard."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "pdf/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `metadata:` block, so `skill-author` is absent. File also uses `license: Proprietary. LICENSE.txt has complete terms` which is non-standard."
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "latex-posters/SKILL.md",
+      "line": null,
+      "message": "frontmatter has no `metadata:` block (no skill-author) and also no `license` field at all"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scvelo/SKILL.md",
+      "line": 19,
+      "message": "Installation command reads `pip install scvelo` instead of the collection standard `uv pip install scvelo`"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neuropixels-analysis/SKILL.md",
+      "line": null,
+      "message": "Installation commands use bare `pip install` instead of `uv pip install`"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "citation-management/SKILL.md",
+      "line": 1079,
+      "message": "Installation commands in Dependencies section use bare `pip install requests`, `pip install bibtexparser`, etc. instead of `uv pip install`"
+    },
+    {
+      "rule": "SEC-outbound-api-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scientific-schematics/scripts/generate_schematic_ai.py",
+      "line": 189,
+      "message": "Script makes POST requests to https://openrouter.ai/api/v1 transmitting user diagram prompt text and receiving AI-generated images. API key sourced from OPENROUTER_API_KEY env var (correct practice). Risk: user natural-language prompts leave the local machine to a commercial third-party service. Skill descriptions referencing this script do not disclose data transmission."
+    },
+    {
+      "rule": "SEC-outbound-api-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "research-lookup/research_lookup.py",
+      "line": 55,
+      "message": "Script sends user research query text to https://api.parallel.ai (PARALLEL_API_KEY) and optionally to OpenRouter Perplexity backend (OPENROUTER_API_KEY). Two separate commercial services receive user query content. The research-lookup SKILL.md description does not disclose that queries are transmitted externally."
+    }
+  ],
+  "repo_meta": {
+    "status": "complete",
+    "stars": 19356,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/K-Dense-AI-scientific-agent-skills.md"
+  },
+  "generated_at": "2026-05-19T09:50:38Z",
+  "schema_version": 1
+}
