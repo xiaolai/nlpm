@@ -176,10 +176,12 @@
       col.appendChild(bar);
 
       // Label: anchored just below the bar's bottom-center, rotated so
-      // text reads bottom-left → top-right. Right-edge of the label sits
-      // at the column horizontal center; CSS rotates around that anchor
-      // (top-right of the label box). The label body extends DOWN-LEFT
-      // from the pivot — entirely below the chart baseline.
+      // text reads bottom-left → top-right (ascending diagonal). Right-
+      // edge of the label sits at the column horizontal center; CSS
+      // rotates counter-clockwise around the label's top-right (anchor).
+      // Counter-clockwise rotation sends the label body down-LEFT of the
+      // pivot — entirely below the chart — and the glyphs read up-right.
+      // (rotate(+deg) clockwise would put labels up-left over the bars.)
       const label = document.createElement("div");
       label.textContent = it.rule_id;
       Object.assign(label.style, {
@@ -187,7 +189,7 @@
         top: "calc(100% + 6px)",
         right: "50%",
         transformOrigin: "100% 0",
-        transform: "rotate(50deg)",
+        transform: "rotate(-50deg)",
         fontSize: "10px",
         fontFamily: "inherit",
         color: "var(--vp-c-text-2, #5a6378)",
