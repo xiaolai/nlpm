@@ -171,41 +171,50 @@
     // Overlay rotated labels in a separate absolutely-positioned layer.
     // Coordinates are computed using G6's input coords; we then scale to
     // the rendered container size since autoFit may have resized the SVG.
+    //
+    // Direction: text reads bottom-left → top-right (the "natural"
+    // ascending-diagonal label style on bar charts). To achieve this we
+    // anchor each label by its TOP-RIGHT corner at (bar_bottom_center,
+    // just-below-baseline) and rotate clockwise. The whole label then
+    // extends down-LEFT from the anchor, keeping it under the chart;
+    // the text reads up-right when read left-to-right.
     const overlay = document.createElement("div");
     overlay.className = "rule-label-overlay";
     Object.assign(overlay.style, {
       position: "absolute",
       inset: "0",
       pointerEvents: "none",
-      // Match G6's internal coordinate system; the chart is rendered
-      // with viewBox-ish autoFit, so we use percentages.
     });
-    // To map coords correctly under autoFit, compute the visible scale.
     requestAnimationFrame(() => {
       const cw = container.clientWidth;
       const ch = container.clientHeight;
-      // G6's autoFit fits content into the container; preserve aspect.
+      // G6's autoFit fits content into the container preserving aspect.
       const sx = cw / W;
       const sy = ch / H;
       const s = Math.min(sx, sy);
       const offX = (cw - W * s) / 2;
       const offY = (ch - H * s) / 2;
+      const rotationDeg = 50; // balance: readable while compressing the horizontal extent enough to mostly avoid overlap with adjacent labels
 
       items.forEach((it, i) => {
         const cx = (margin + i * slot + slot / 2) * s + offX;
-        const top = baselineY * s + offY + 4;
+        const top = baselineY * s + offY + 6;
         const label = document.createElement("div");
         label.textContent = it.rule_id;
         Object.assign(label.style, {
           position: "absolute",
-          left: cx + "px",
+          // Anchor by the label's RIGHT edge (right offset from container
+          // edge = container width − bar center x). Rotating clockwise
+          // around top-right makes the text body extend down-left and
+          // the text glyphs read up-right.
+          right: (cw - cx) + "px",
           top: top + "px",
           fontSize: "10px",
           fontFamily: "inherit",
           color: "var(--vp-c-text-2, #5a6378)",
           whiteSpace: "nowrap",
-          transformOrigin: "left top",
-          transform: "rotate(35deg)",
+          transformOrigin: "100% 0",
+          transform: `rotate(${rotationDeg}deg)`,
         });
         overlay.appendChild(label);
       });
