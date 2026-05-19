@@ -23,37 +23,55 @@ hero:
       link: https://github.com/xiaolai/nlpm-for-claude
 
 features:
-  - icon: 📊
+  - icon:
+      src: /icons/bar-chart-3.svg
+      width: 32
+      height: 32
     title: 100-point scoring
     details: |
       Deterministic, penalty-based quality scoring for every NL artifact —
       skills, agents, commands, rules, hooks, CLAUDE.md. Anchored in 51
       rules with bright-line definitions and bad/good examples.
-  - icon: 🧭
+  - icon:
+      src: /icons/compass.svg
+      width: 32
+      height: 32
     title: Vocabulary discipline (R51)
     details: |
       Opt-in controlled-vocabulary enforcement. Bootstrap a registry
       from your corpus, declare canonical noun/verb pairs, and let
       `/nlpm:check` flag drift. Registry-free `/nlpm:vocab-drift`
       runs as a no-commitment health check.
-  - icon: 🔗
+  - icon:
+      src: /icons/link-2.svg
+      width: 32
+      height: 32
     title: Cross-component checks
     details: |
       Manifest-vs-disk consistency, broken references, orphan
       components, behavioral contradictions. The single check that
       no other Claude Code validator covers systematically.
-  - icon: 🌐
+  - icon:
+      src: /icons/globe.svg
+      width: 32
+      height: 32
     title: Auditor pipeline
     details: |
       Continuous audits of public Claude Code plugins. Findings,
       vocabulary drift, security signals — all on one cross-repo
       dashboard.
-  - icon: 📦
+  - icon:
+      src: /icons/package.svg
+      width: 32
+      height: 32
     title: Standalone CLI
     details: |
       `bin/nlpm-check` is a single-file Python (stdlib only). Drop into
       pre-commit hooks or CI without Claude Code installed.
-  - icon: 📚
+  - icon:
+      src: /icons/book-open.svg
+      width: 32
+      height: 32
     title: Self-evolving rules
     details: |
       Audits feed `rule-health.py`. Rules with high false-positive rate

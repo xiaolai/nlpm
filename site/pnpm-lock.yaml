@@ -11,6 +11,9 @@ importers:
       '@types/node':
         specifier: ^25.9.0
         version: 25.9.0
+      lucide-static:
+        specifier: ^1.16.0
+        version: 1.16.0
       markdown-it-footnote:
         specifier: ^4.0.0
         version: 4.0.0
@@ -985,6 +988,9 @@ packages:
 
   lodash-es@4.18.1:
     resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
+
+  lucide-static@1.16.0:
+    resolution: {integrity: sha512-/EH96rDLRLNKaxuhqHHbmUPx3+qHS/kQRzI1ZGZqnxmh6ljX9yX0xC2UZlQSfBE/n84eNIaxKsv9P8sMiOdCww==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -2193,6 +2199,8 @@ snapshots:
   layout-base@2.0.1: {}
 
   lodash-es@4.18.1: {}
+
+  lucide-static@1.16.0: {}
 
   magic-string@0.30.21:
     dependencies:

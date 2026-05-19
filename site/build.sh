@@ -47,6 +47,21 @@ mkdir -p "$PUBLIC"
 # CNAME so GitHub Pages binds the custom domain.
 echo "nlpm.com" > "$PUBLIC/CNAME"
 
+echo "==> Vendoring Lucide icons into site/public/icons/"
+# MUST run after the public/ wipe above. Pre-color with the brand blue
+# so the icons read in both light and dark modes (SVGs loaded via
+# <img src=...> can't inherit `currentColor` from the host page).
+ICONS_DST="$PUBLIC/icons"
+ICONS_SRC="$SITE/node_modules/lucide-static/icons"
+mkdir -p "$ICONS_DST"
+for icon in bar-chart-3 compass link-2 globe package book-open; do
+  if [ -f "$ICONS_SRC/${icon}.svg" ]; then
+    sed 's|stroke="currentColor"|stroke="#3b82f6"|' "$ICONS_SRC/${icon}.svg" > "$ICONS_DST/${icon}.svg"
+  else
+    echo "::warning::missing icon ${icon}.svg in lucide-static"
+  fi
+done
+
 echo "==> Building VitePress"
 cd "$SITE"
 pnpm install --silent

@@ -78,21 +78,21 @@ An audit tracking issue was also opened as [issue #3579](https://github.com/code
 
 ```mermaid
 graph LR
-    subgraph BUG["🔴 Bug-Grade (PR-worthy)"]
+    subgraph BUG["Bug-Grade (PR-worthy)"]
         B1["4× AGENTS.md\nmissing frontmatter"]
         B2["dev-browser/SKILL.md\n2 broken references"]
     end
-    subgraph SEC["🟡 Security (Issue-worthy)"]
+    subgraph SEC["Security (Issue-worthy)"]
         S1["postinstall.mjs\nsubprocess pattern"]
         S2["trustedDependencies\nauthor-owned package"]
         S3["posthog-node\ntelemetry undocumented"]
         S4["Unpinned dep versions"]
     end
-    subgraph QUAL["🟢 Quality (Future work)"]
+    subgraph QUAL["Quality (Future work)"]
         Q1["3× skills missing\noutput format"]
         Q2["Vague quantifiers\nin 2 skills"]
     end
-    B1 -->|"PR #3578\nmerged ✓"| DONE["Resolved"]
+    B1 -->|"PR #3578\nmerged"| DONE["Resolved"]
     B2 -->|"not submitted"| OPEN["Open"]
     S1 & S2 & S3 & S4 -->|"Issue #3579"| OPEN
     Q1 & Q2 -->|"informational"| OPEN

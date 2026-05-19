@@ -26,7 +26,7 @@
       const parts = [];
       if (m.security) parts.push(`security: ${escapeHtml(m.security)}`);
       if (m.status) parts.push(`status: ${escapeHtml(m.status)}`);
-      if (m.stars !== null && m.stars !== undefined) parts.push(`★ ${m.stars}`);
+      if (m.stars !== null && m.stars !== undefined) parts.push(`${m.stars} stars`);
       parts.push(`<a href="./docs/index.html#score-bands" class="doc-link">threshold ${threshold}</a>`);
       scoreMeta.innerHTML = parts.join(" · ");
     } else {

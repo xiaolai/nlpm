@@ -80,7 +80,7 @@ graph LR
   Audit["NLPM Audit\n2026-04-20\nIssue #20"] --> PR19
 
   subgraph Bug["Tier 1 — Mechanical bug (submitted)"]
-    PR19["PR #19 · Frontmatter\nAdd name + description\nto 3 subagents ✓ merged"]:::bugfix
+    PR19["PR #19 · Frontmatter\nAdd name + description\nto 3 subagents merged"]:::bugfix
   end
 
   subgraph Security["Tier 2 — Security (not submitted)"]

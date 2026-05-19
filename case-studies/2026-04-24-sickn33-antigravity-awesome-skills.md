@@ -61,16 +61,16 @@ The PR tracking log (prs.json) captured no open pull requests at query time — 
 ```mermaid
 graph LR
     FINDINGS["Submitted Findings"]
-    subgraph HIGH["🔴 High — security gate (2 findings)"]
+    subgraph HIGH["High — security gate (2 findings)"]
         H1["active-directory-attacks/SKILL.md\nantigravity-awesome-skills"]
         H2["active-directory-attacks/SKILL.md\nantigravity-awesome-skills-claude"]
     end
-    subgraph MED["🟡 Medium — security label (4 findings)"]
+    subgraph MED["Medium — security label (4 findings)"]
         M1["ethical-hacking-methodology/SKILL.md\nrisk:unknown → risk:offensive  (#538)"]
         M2["environment-setup-guide/SKILL.md ×2\ncurl-pipe-bash annotation"]
         M3["gitops-workflow/SKILL.md ×2\ncurl-pipe-bash annotation"]
     end
-    subgraph BUG["🟢 Bug — correctness (8 findings)"]
+    subgraph BUG["Bug — correctness (8 findings)"]
         B1["prompt-engineer/SKILL.md\nmissing Step 2  (#534)"]
         B2["youtube-summarizer/SKILL.md\nunclosed code fence  (#535)"]
         B3["schema-markup + seo-fundamentals\nextra frontmatter separator  (#536)"]
