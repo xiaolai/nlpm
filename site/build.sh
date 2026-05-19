@@ -19,6 +19,20 @@ SRC_REPORTS="$ROOT/auditor/reports"
 echo "==> Regenerating reference Markdown"
 python3 "$ROOT/bin/nlpm-build-reference-md" --out "$SITE/reference"
 
+echo "==> Syncing case studies into site/case-studies/"
+SRC_CASES="$ROOT/case-studies"
+DEST_CASES="$SITE/case-studies"
+rm -rf "$DEST_CASES"
+mkdir -p "$DEST_CASES"
+if [ -d "$SRC_CASES" ]; then
+  # Copy articles + cover images. Skip nothing — case-studies/ holds only
+  # publishable artifacts.
+  cp -R "$SRC_CASES"/. "$DEST_CASES/"
+  python3 "$ROOT/bin/nlpm-build-case-studies-index" --out "$DEST_CASES"
+else
+  echo "(no case-studies/ source — skipping)"
+fi
+
 echo "==> Syncing auditor outputs into site/public/"
 rm -rf "$PUBLIC"
 mkdir -p "$PUBLIC"

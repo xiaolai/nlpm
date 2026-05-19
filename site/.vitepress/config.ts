@@ -1,6 +1,30 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import footnote from 'markdown-it-footnote'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// Walk site/case-studies/ at build time and produce a sidebar that
+// lists every article newest first. Filenames are YYYY-MM-DD-<slug>.md;
+// the H1 of each article becomes the link label.
+function caseStudiesSidebar(): Array<{ text: string; link: string }> {
+  const dir = path.resolve(__dirname, '..', 'case-studies')
+  if (!fs.existsSync(dir)) return []
+  const files = fs.readdirSync(dir)
+    .filter((f: string) => f.endsWith('.md') && f !== 'index.md')
+    .sort()
+    .reverse() // YYYY-MM-DD prefix → reverse-sort gives newest first
+  return files.map((f: string) => {
+    const stem = f.replace(/\.md$/, '')
+    const content = fs.readFileSync(path.join(dir, f), 'utf-8')
+    const m = content.match(/^#\s+(.+?)\s*$/m)
+    const title = m ? m[1].trim() : stem
+    return { text: title, link: `/case-studies/${stem}` }
+  })
+}
 
 export default withMermaid(defineConfig({
   title: 'NLPM',
@@ -8,6 +32,19 @@ export default withMermaid(defineConfig({
     'Natural Language Programming Manager — scores, audits, and disciplines NL artifacts in Claude Code plugins.',
   cleanUrls: true,
   lastUpdated: true,
+
+  // Dead-link policy: case-study articles include relative links back
+  // to source paths (../auditor/, ../analysis/, ../bin/) and inter-
+  // article references that may not resolve in the deployed tree. These
+  // are historical content; we ship them as-is. Other parts of the site
+  // (install, how-it-works, reference/*) still fail on dead links.
+  ignoreDeadLinks: [
+    /^\.\.\//,                  // any relative path going up out of the tree
+    /\/auditor\//,              // back-refs to auditor source paths
+    /\/analysis\//,             // back-refs to analysis docs
+    /\/bin\//,                  // back-refs to scripts
+    /wshobson-agents$/,         // known typo in one article (link missing -learnings suffix)
+  ],
   // Where to write the build output and where static passthrough lives.
   outDir: '.vitepress/dist',
   // public/ is the standard VitePress static-passthrough directory; the
@@ -55,6 +92,7 @@ export default withMermaid(defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Install', link: '/install' },
       { text: 'How it works', link: '/how-it-works' },
+      { text: 'Case studies', link: '/case-studies/' },
       {
         text: 'Audit data',
         items: [
@@ -78,6 +116,15 @@ export default withMermaid(defineConfig({
             { text: 'Scoring & severity', link: '/reference/scoring' },
             { text: 'Artifact types', link: '/reference/artifact-types' },
             { text: 'Drift criteria', link: '/reference/drift' },
+          ],
+        },
+      ],
+      '/case-studies/': [
+        {
+          text: 'Case studies',
+          items: [
+            { text: 'Overview', link: '/case-studies/' },
+            ...caseStudiesSidebar(),
           ],
         },
       ],

@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Build the case-studies index page.
+
+Reads <out>/*.md (each YYYY-MM-DD-<slug>.md), extracts H1, sorts newest
+first, and writes <out>/index.md as a chronological listing with each
+article's title + date + first paragraph as a teaser.
+
+Stdlib only.
+
+Usage:
+  python3 bin/nlpm-build-case-studies-index --out site/case-studies/
+"""
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+
+FNAME = re.compile(r"^(\d{4}-\d{2}-\d{2})-(.+)\.md$")
+
+
+def extract_title(text: str, fallback: str) -> str:
+    m = re.search(r"^#\s+(.+?)\s*$", text, re.M)
+    return m.group(1).strip() if m else fallback
+
+
+def extract_teaser(text: str) -> str:
+    """First non-quote, non-image paragraph after the H1."""
+    lines = text.splitlines()
+    seen_h1 = False
+    para: list[str] = []
+    for line in lines:
+        if not seen_h1:
+            if line.startswith("# "):
+                seen_h1 = True
+            continue
+        s = line.strip()
+        if not s:
+            if para:
+                break
+            continue
+        # Skip cover image and disclosure block
+        if s.startswith("![") or s.startswith(">"):
+            continue
+        if s.startswith("#"):
+            if para:
+                break
+            continue
+        para.append(s)
+    if not para:
+        return ""
+    teaser = " ".join(para)
+    # Cap length
+    if len(teaser) > 280:
+        teaser = teaser[:277].rstrip() + "…"
+    return teaser
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--out", required=True, help="Directory holding the case-study .md files")
+    args = parser.parse_args(argv)
+
+    out_dir = Path(args.out).resolve()
+    if not out_dir.is_dir():
+        print(f"error: --out {out_dir} is not a directory", file=sys.stderr)
+        return 2
+
+    articles: list[tuple[str, str, str, str, str]] = []
+    for p in out_dir.glob("*.md"):
+        if p.name == "index.md":
+            continue
+        m = FNAME.match(p.name)
+        if not m:
+            continue
+        date = m.group(1)
+        slug = m.group(2)
+        text = p.read_text(encoding="utf-8")
+        title = extract_title(text, slug)
+        teaser = extract_teaser(text)
+        articles.append((date, slug, title, teaser, p.stem))
+
+    # Newest first
+    articles.sort(key=lambda x: x[0], reverse=True)
+
+    out_lines = [
+        "---",
+        "title: Case studies",
+        "outline: deep",
+        "---",
+        "",
+        "# Case Studies",
+        "",
+        f"Articles written from NLPM audits and re-audits — what we found, what got",
+        f"fixed, what we learned. {len(articles)} articles total, newest first.",
+        "",
+        "::: tip Authorship disclosure",
+        "Each article is drafted by Claude (Sonnet 4.6) based on session history",
+        "from the engagement, then fact-checked against the GitHub record. Articles",
+        "describe Claude's own work auditing third-party projects using NLPM, a tool",
+        "built by [xiaolai](https://github.com/xiaolai). Weigh claims accordingly.",
+        ":::",
+        "",
+    ]
+
+    # Group by year-month for navigability
+    current_month = ""
+    for date, slug, title, teaser, stem in articles:
+        month = date[:7]
+        if month != current_month:
+            out_lines.append(f"## {month}")
+            out_lines.append("")
+            current_month = month
+        out_lines.append(f"### [{title}](./{stem})")
+        out_lines.append("")
+        out_lines.append(f"*{date}*")
+        out_lines.append("")
+        if teaser:
+            out_lines.append(teaser)
+            out_lines.append("")
+
+    (out_dir / "index.md").write_text("\n".join(out_lines), encoding="utf-8")
+    print(f"Wrote {out_dir / 'index.md'} with {len(articles)} articles")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

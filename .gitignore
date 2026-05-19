@@ -18,3 +18,7 @@ site/public/
 # on every build, so the source-of-truth stays in skills/nlpm/*/SKILL.md
 # rather than drifting between committed and deployed versions.
 site/reference/*.md
+# site/case-studies/ is a build-time copy of /case-studies/, with an
+# auto-generated index page. Source of truth is /case-studies/ at repo
+# root (where the auditor pipeline writes articles).
+site/case-studies/
