@@ -127,99 +127,79 @@
   // ==================================================================
 
   function renderRuleBars(items) {
-    // Render the chart on a transparent canvas. Bars come from G6; the
-    // rotated rule-id labels are HTML elements absolutely positioned
-    // over the canvas — far easier than fighting G6's label rotation,
-    // gives us clean kerning + theme-adaptive text color via inherited CSS.
+    // Pure CSS/HTML bar chart — no G6. G6's autoFit coordinate mapping
+    // made it nearly impossible to land the rotated labels in the right
+    // place; with flex columns and absolutely-positioned labels per
+    // column, geometry is local and trivial.
     const container = document.getElementById("rule-graph");
-    container.style.position = "relative";
-    container.innerHTML = ""; // wipe any prior render
-    const N = items.length;
-    const W = 800;
-    const H = 280; // taller so rotated labels have room below the axis
-    const margin = 40;
-    const labelGutter = 90; // vertical room reserved for rotated labels
-    const baselineY = H - labelGutter;
-    const maxVal = Math.max(...items.map(i => i.total));
-    const slot = (W - 2 * margin) / Math.max(1, N);
+    container.innerHTML = "";
+    Object.assign(container.style, { position: "relative" });
 
-    const nodes = [];
-    items.forEach((it, i) => {
-      const h = (it.total / maxVal) * (baselineY - 20);
-      const cx = margin + i * slot + slot / 2;
-      nodes.push({
-        id: `r${i}`,
-        data: { label: it.rule_id, val: it.total, repos: it.repos_affected },
-        style: {
-          x: cx,
-          y: baselineY - h / 2,
-          size: [Math.max(8, slot * 0.7), Math.max(2, h)],
-          fill: "#2b5fff",
-        },
+    const maxVal = Math.max(...items.map(i => i.total)) || 1;
+
+    const wrap = document.createElement("div");
+    Object.assign(wrap.style, {
+      display: "flex",
+      alignItems: "flex-end",
+      gap: "4px",
+      // Bottom padding reserves vertical room for the rotated labels
+      // below the chart proper. With 50° rotation and ~10px font, a
+      // label up to 22 characters fits in ~96px vertical projection.
+      padding: "16px 16px 96px 16px",
+      height: "100%",
+      boxSizing: "border-box",
+    });
+
+    items.forEach(it => {
+      const col = document.createElement("div");
+      Object.assign(col.style, {
+        flex: "1 1 0",
+        minWidth: "0",
+        height: "100%",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        alignItems: "center",
       });
-    });
 
-    const graph = new G6.Graph({
-      container: "rule-graph",
-      data: { nodes, edges: [] },
-      node: { type: "rect" },
-      behaviors: ["zoom-canvas", "drag-canvas"],
-      autoFit: "view",
-    });
-    graph.render();
-
-    // Overlay rotated labels in a separate absolutely-positioned layer.
-    // Coordinates are computed using G6's input coords; we then scale to
-    // the rendered container size since autoFit may have resized the SVG.
-    //
-    // Direction: text reads bottom-left → top-right (the "natural"
-    // ascending-diagonal label style on bar charts). To achieve this we
-    // anchor each label by its TOP-RIGHT corner at (bar_bottom_center,
-    // just-below-baseline) and rotate clockwise. The whole label then
-    // extends down-LEFT from the anchor, keeping it under the chart;
-    // the text reads up-right when read left-to-right.
-    const overlay = document.createElement("div");
-    overlay.className = "rule-label-overlay";
-    Object.assign(overlay.style, {
-      position: "absolute",
-      inset: "0",
-      pointerEvents: "none",
-    });
-    requestAnimationFrame(() => {
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
-      // G6's autoFit fits content into the container preserving aspect.
-      const sx = cw / W;
-      const sy = ch / H;
-      const s = Math.min(sx, sy);
-      const offX = (cw - W * s) / 2;
-      const offY = (ch - H * s) / 2;
-      const rotationDeg = 50; // balance: readable while compressing the horizontal extent enough to mostly avoid overlap with adjacent labels
-
-      items.forEach((it, i) => {
-        const cx = (margin + i * slot + slot / 2) * s + offX;
-        const top = baselineY * s + offY + 6;
-        const label = document.createElement("div");
-        label.textContent = it.rule_id;
-        Object.assign(label.style, {
-          position: "absolute",
-          // Anchor by the label's RIGHT edge (right offset from container
-          // edge = container width − bar center x). Rotating clockwise
-          // around top-right makes the text body extend down-left and
-          // the text glyphs read up-right.
-          right: (cw - cx) + "px",
-          top: top + "px",
-          fontSize: "10px",
-          fontFamily: "inherit",
-          color: "var(--vp-c-text-2, #5a6378)",
-          whiteSpace: "nowrap",
-          transformOrigin: "100% 0",
-          transform: `rotate(${rotationDeg}deg)`,
-        });
-        overlay.appendChild(label);
+      const bar = document.createElement("div");
+      Object.assign(bar.style, {
+        width: "100%",
+        maxWidth: "30px",
+        height: ((it.total / maxVal) * 100) + "%",
+        minHeight: "2px",
+        background: "#2b5fff",
+        borderRadius: "1px 1px 0 0",
       });
-      container.appendChild(overlay);
+      bar.title = `${it.rule_id}: ${it.total} occurrences across ${it.repos_affected} repos`;
+      col.appendChild(bar);
+
+      // Label: anchored just below the bar's bottom-center, rotated so
+      // text reads bottom-left → top-right. Right-edge of the label sits
+      // at the column horizontal center; CSS rotates around that anchor
+      // (top-right of the label box). The label body extends DOWN-LEFT
+      // from the pivot — entirely below the chart baseline.
+      const label = document.createElement("div");
+      label.textContent = it.rule_id;
+      Object.assign(label.style, {
+        position: "absolute",
+        top: "calc(100% + 6px)",
+        right: "50%",
+        transformOrigin: "100% 0",
+        transform: "rotate(50deg)",
+        fontSize: "10px",
+        fontFamily: "inherit",
+        color: "var(--vp-c-text-2, #5a6378)",
+        whiteSpace: "nowrap",
+        pointerEvents: "none",
+      });
+      col.appendChild(label);
+
+      wrap.appendChild(col);
     });
+
+    container.appendChild(wrap);
   }
 
   function renderDriftNetwork(net) {
