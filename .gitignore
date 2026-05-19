@@ -13,3 +13,8 @@ site/node_modules/
 site/.vitepress/cache/
 site/.vitepress/dist/
 site/public/
+# site/reference/*.md is auto-generated from canonical SKILL.md sources
+# by bin/nlpm-build-reference-md. The deploy workflow regenerates it
+# on every build, so the source-of-truth stays in skills/nlpm/*/SKILL.md
+# rather than drifting between committed and deployed versions.
+site/reference/*.md

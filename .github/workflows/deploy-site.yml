@@ -1,0 +1,106 @@
+name: Deploy nlpm.com
+
+# Builds the VitePress site and pushes the dist tree to gh-pages.
+# Triggers:
+#   - push to main touching any input the site depends on (SKILL.md
+#     sources, principles doc, scanner agent, the reference-md builder,
+#     anything under site/, or any auditor/reports/ update that the
+#     site mirrors).
+#   - workflow_dispatch (operator-driven rebuild).
+#   - daily 23:00 UTC, after auditor-render-dashboard at 22:30 — so the
+#     dashboard's freshly-rendered cross-repo aggregate makes it onto
+#     the site without manual intervention.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'bin/nlpm-build-reference-md'
+      - 'skills/nlpm/rules/SKILL.md'
+      - 'skills/nlpm/vocabulary/SKILL.md'
+      - 'skills/nlpm/scoring/SKILL.md'
+      - 'skills/nlpm/conventions/SKILL.md'
+      - 'analysis/vocabulary-design-principles.md'
+      - 'agents/vocab-drift-scanner.md'
+      - 'auditor/reports/**'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nlpm-deploy-site
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Node + pnpm
+        run: |
+          node --version
+          npm install -g pnpm@10
+          pnpm --version
+
+      - name: Build site
+        run: bash site/build.sh
+
+      - name: Deploy to gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DIST="$GITHUB_WORKSPACE/site/.vitepress/dist"
+          [ -d "$DIST" ] || { echo "::error::dist missing at $DIST"; exit 1; }
+
+          # Fetch gh-pages so we can worktree it.
+          git fetch origin gh-pages:gh-pages 2>/dev/null || \
+            git branch gh-pages origin/gh-pages 2>/dev/null || true
+
+          # Build a deterministic deploy commit on a worktree of gh-pages.
+          # We replace contents wholesale — the dist tree IS the site.
+          WT=$(mktemp -d)
+          git worktree add "$WT" gh-pages
+          (cd "$WT" && git rm -rf . 2>/dev/null || true)
+          cp -R "$DIST/." "$WT/"
+
+          cd "$WT"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No content changes — nothing to deploy."
+            exit 0
+          fi
+
+          # Trigger source — for the commit message
+          REASON="${GITHUB_EVENT_NAME}"
+          [ "$REASON" = "schedule" ] && REASON="daily"
+          [ "$REASON" = "workflow_dispatch" ] && REASON="manual"
+          git commit -m "deploy: $(date -u +%Y-%m-%d) ($REASON)"
+
+          # Retry on push (handles concurrent updates from other workflows
+          # like auditor-* which also push to other branches).
+          for i in 1 2 3 4 5; do
+            if git push origin gh-pages 2>&1; then break; fi
+            echo "Push attempt $i failed — pulling + retrying"
+            git pull --rebase origin gh-pages || true
+            [ "$i" -eq 5 ] && { echo "::error::push failed after 5 attempts"; exit 1; }
+          done
+
+          cd "$GITHUB_WORKSPACE"
+          git worktree remove "$WT" --force
+          # Deploys are inferred from gh-pages commits; we deliberately do
+          # not append to auditor/logs/events.jsonl on main, since that
+          # would push deploy churn into the auditor's append-only log.
