@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-19T08:39:06Z",
+  "generated_at": "2026-05-19T09:11:01Z",
   "since": null,
   "summary": {
-    "total_repos": 211,
+    "total_repos": 212,
     "total_findings": 3132,
     "high_findings": 230,
     "total_advisories": 0,
@@ -2489,6 +2489,18 @@
       "stars": null,
       "score": 97,
       "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "xiaolai/nlpm-for-claude",
+      "status": "audited",
+      "stars": null,
+      "score": 100,
+      "security": "CLEAR",
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
