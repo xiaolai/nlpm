@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NLPM — Natural Language Programming Manager</title>
+  <meta name="description" content="NLPM is a Claude Code plugin that scores, audits, and disciplines natural-language programming artifacts (skills, agents, commands, rules). Reports include cross-repo dashboards, per-repo audits, and a framework reference.">
+  <link rel="stylesheet" href="./assets/nlpm-report.css">
+  <style>
+    body { max-width: 860px; }
+    .hero {
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .hero .tagline {
+      font-size: 18px;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .qlink {
+      display: block;
+      padding: 18px 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--fg);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .qlink:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .qlink .h {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--accent);
+    }
+    .qlink .d {
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin-top: 4px;
+    }
+    section.intro {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section.intro h2 {
+      font-size: 18px;
+      margin-top: 0;
+    }
+    pre.install {
+      background: var(--code-bg);
+      padding: 14px 18px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .feature {
+      padding: 12px 0;
+    }
+    .feature h3 {
+      font-size: 14px;
+      margin: 0 0 4px;
+      color: var(--accent);
+    }
+    .feature p {
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+    .footer-meta {
+      padding: 24px 0;
+      font-size: 12px;
+      color: var(--fg-muted);
+    }
+    .footer-meta a { color: var(--fg-muted); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>NLPM</h1>
+    <p class="tagline">Natural Language Programming Manager — scores, audits, and disciplines NL artifacts in Claude Code plugins.</p>
+  </div>
+
+  <div class="quick-links">
+    <a class="qlink" href="./dashboard.html">
+      <div class="h">Auditor dashboard →</div>
+      <div class="d">Cross-repo view across 200+ audited Claude Code plugins. Findings, vocab drift, activity.</div>
+    </a>
+    <a class="qlink" href="./docs/index.html">
+      <div class="h">Framework reference →</div>
+      <div class="d">All 51 rules, 6 vocabulary principles, warrant tags, score bands. Anchored sections.</div>
+    </a>
+    <a class="qlink" href="https://github.com/xiaolai/nlpm-for-claude">
+      <div class="h">Source on GitHub →</div>
+      <div class="d">MIT-licensed plugin. Install via the xiaolai marketplace.</div>
+    </a>
+  </div>
+
+  <section class="intro">
+    <h2>What NLPM does</h2>
+    <p>NLPM is a Claude Code plugin that treats natural-language artifacts — skills, agents, commands, rules, hooks, CLAUDE.md — as code. It scores them on a 100-point rubric anchored in 51 rules, checks cross-component consistency, and (optionally) enforces vocabulary discipline against a project's own canonical noun/verb registry.</p>
+    <p>An auditor pipeline runs against external Claude Code plugins continuously. The dashboard above shows aggregate findings; click any repo row to drill into its per-repo report.</p>
+  </section>
+
+  <section class="intro">
+    <h2>Install</h2>
+    <pre class="install">claude plugin install nlpm@xiaolai --scope project</pre>
+    <p>Then in your project:</p>
+    <pre class="install">/nlpm:ls              # discover NL artifacts
+/nlpm:score           # 100-point quality scoring
+/nlpm:check           # cross-component consistency
+/nlpm:vocab-init      # bootstrap a vocabulary skill
+/nlpm:report          # render a self-contained HTML report</pre>
+  </section>
+
+  <section class="intro">
+    <h2>What's in this site</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Auditor dashboard</h3>
+        <p>Cross-repo aggregate: 200+ audited plugins, sortable by score/findings, with rule-distribution bars and a force-directed vocab-drift network.</p>
+      </div>
+      <div class="feature">
+        <h3>Per-repo reports</h3>
+        <p>One HTML page per audited repo, linked from the dashboard. Shows the score, findings grouped by rule, drift candidates, vocabulary map (when the repo ships its own registry).</p>
+      </div>
+      <div class="feature">
+        <h3>Framework reference</h3>
+        <p>R01–R51, P1–P6, vocabulary concepts, severity levels, drift criteria — all anchored. Every finding in a report links to the rule that triggered it.</p>
+      </div>
+      <div class="feature">
+        <h3>Self-contained</h3>
+        <p>Visualizations use AntV G6, vendored. No CDN dependencies; the entire site works offline if you save it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-meta">
+    <p>NLPM is a project by <a href="https://github.com/xiaolai">@xiaolai</a>. Reports are regenerated by the auditor pipeline on every audit; the dashboard refreshes daily. Source: <a href="https://github.com/xiaolai/nlpm-for-claude">github.com/xiaolai/nlpm-for-claude</a>.</p>
+  </div>
+</body>
+</html>
