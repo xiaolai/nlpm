@@ -2291,3 +2291,4 @@
 {"timestamp":"2026-05-21T01:23:05Z","workflow":"vocab-drift","event":"repo_report_rendered","run_id":"26199469051","run_number":2,"data":{"repo":"Imbad0202/academic-research-skills","html":"auditor/reports/Imbad0202-academic-research-skills.html"}}
 {"timestamp":"2026-05-21T01:23:59Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"26199467293","run_number":485,"data":{"repo":"tinyhumansai/openhuman","queue_path":"auditor/disclosures-pending/tinyhumansai-openhuman.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
 {"timestamp":"2026-05-21T04:59:12Z","workflow":"classify","event":"classifications_emitted","run_id":"26206391205","run_number":30,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
+{"timestamp":"2026-05-21T05:37:14Z","workflow":"track","event":"status_check","run_id":"26207425345","run_number":195,"data":{"contributed":39,"tracked":29,"case_study_ready":33,"rule_adopted":2}}
