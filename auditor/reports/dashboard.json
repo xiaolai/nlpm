@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-05-23T22:46:35Z",
+  "generated_at": "2026-05-24T22:46:57Z",
   "since": null,
   "summary": {
-    "total_repos": 214,
-    "total_findings": 3323,
-    "high_findings": 230,
-    "total_advisories": 14,
+    "total_repos": 217,
+    "total_findings": 3365,
+    "high_findings": 264,
+    "total_advisories": 22,
     "high_advisories": 3,
-    "repos_with_drift": 2,
+    "repos_with_drift": 3,
     "repos_blocked": 53
   },
   "repo_rows": [
@@ -792,6 +792,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "elementalsouls/Claude-BugHunter",
+      "status": "audited",
+      "stars": null,
+      "score": 79,
+      "security": "CLEAR",
+      "total_findings": 20,
+      "high_findings": 16,
+      "medium_findings": 4,
+      "vocab_drift_count": 8,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "github/awesome-copilot",
       "status": "audited",
       "stars": 31146,
@@ -1052,6 +1064,18 @@
       "total_findings": 17,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Yuan1z0825/nature-skills",
+      "status": "audited",
+      "stars": null,
+      "score": 93,
+      "security": "REVIEW",
+      "total_findings": 16,
+      "high_findings": 15,
+      "medium_findings": 1,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1412,6 +1436,18 @@
       "total_findings": 6,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
+      "status": "audited",
+      "stars": null,
+      "score": 94,
+      "security": "CLEAR",
+      "total_findings": 6,
+      "high_findings": 3,
+      "medium_findings": 2,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -2583,23 +2619,28 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 255,
-      "repos_affected": 42
+      "total": 256,
+      "repos_affected": 43
     },
     {
       "rule_id": "UNCLASSIFIED",
-      "total": 204,
-      "repos_affected": 30
+      "total": 205,
+      "repos_affected": 31
     },
     {
       "rule_id": "BUG-missing-frontmatter",
-      "total": 186,
-      "repos_affected": 39
+      "total": 200,
+      "repos_affected": 40
+    },
+    {
+      "rule_id": "R14",
+      "total": 138,
+      "repos_affected": 31
     },
     {
       "rule_id": "R05",
-      "total": 134,
-      "repos_affected": 20
+      "total": 135,
+      "repos_affected": 21
     },
     {
       "rule_id": "R22",
@@ -2607,14 +2648,9 @@
       "repos_affected": 26
     },
     {
-      "rule_id": "R14",
-      "total": 127,
-      "repos_affected": 29
-    },
-    {
       "rule_id": "R12",
-      "total": 124,
-      "repos_affected": 29
+      "total": 126,
+      "repos_affected": 30
     },
     {
       "rule_id": "R09",
@@ -2623,8 +2659,8 @@
     },
     {
       "rule_id": "R08",
-      "total": 108,
-      "repos_affected": 26
+      "total": 110,
+      "repos_affected": 27
     },
     {
       "rule_id": "R07",
@@ -2633,8 +2669,8 @@
     },
     {
       "rule_id": "SEC-unpinned-semver",
-      "total": 98,
-      "repos_affected": 56
+      "total": 101,
+      "repos_affected": 58
     },
     {
       "rule_id": "R02",
@@ -2688,8 +2724,8 @@
     },
     {
       "rule_id": "CC-stale-count",
-      "total": 43,
-      "repos_affected": 31
+      "total": 44,
+      "repos_affected": 32
     },
     {
       "rule_id": "CC-broken-relative-path",
@@ -2698,8 +2734,8 @@
     },
     {
       "rule_id": "CC-orphan-component",
-      "total": 38,
-      "repos_affected": 32
+      "total": 39,
+      "repos_affected": 33
     },
     {
       "rule_id": "R20",
@@ -2709,6 +2745,24 @@
   ],
   "drift_network": {
     "nodes": [
+      {
+        "id": "validate",
+        "label": "validate",
+        "freq": 2,
+        "repos": [
+          "elementalsouls/Claude-BugHunter",
+          "tinyhumansai/openhuman"
+        ]
+      },
+      {
+        "id": "verify",
+        "label": "verify",
+        "freq": 2,
+        "repos": [
+          "elementalsouls/Claude-BugHunter",
+          "tinyhumansai/openhuman"
+        ]
+      },
       {
         "id": "revision plan",
         "label": "revision plan",
@@ -2886,22 +2940,6 @@
         ]
       },
       {
-        "id": "validate",
-        "label": "validate",
-        "freq": 1,
-        "repos": [
-          "tinyhumansai/openhuman"
-        ]
-      },
-      {
-        "id": "verify",
-        "label": "verify",
-        "freq": 1,
-        "repos": [
-          "tinyhumansai/openhuman"
-        ]
-      },
-      {
         "id": "coordinate",
         "label": "coordinate",
         "freq": 1,
@@ -2931,6 +2969,126 @@
         "freq": 1,
         "repos": [
           "tinyhumansai/openhuman"
+        ]
+      },
+      {
+        "id": "triage",
+        "label": "triage",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "osint",
+        "label": "osint",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "recon",
+        "label": "recon",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "bug bounty",
+        "label": "bug bounty",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "pentest",
+        "label": "pentest",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "wapt",
+        "label": "wapt",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "hunt",
+        "label": "hunt",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "test",
+        "label": "test",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "finding",
+        "label": "finding",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "lead",
+        "label": "lead",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "confirm",
+        "label": "confirm",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "log",
+        "label": "log",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "remember",
+        "label": "remember",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "pattern",
+        "label": "pattern",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "id": "technique",
+        "label": "technique",
+        "freq": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
         ]
       }
     ],
@@ -3045,6 +3203,86 @@
         "weight": 1,
         "repos": [
           "tinyhumansai/openhuman"
+        ]
+      },
+      {
+        "source": "triage",
+        "target": "validate",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "osint",
+        "target": "recon",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "bug bounty",
+        "target": "pentest",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "bug bounty",
+        "target": "wapt",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "pentest",
+        "target": "wapt",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "hunt",
+        "target": "test",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "finding",
+        "target": "lead",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "confirm",
+        "target": "verify",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "log",
+        "target": "remember",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
+        ]
+      },
+      {
+        "source": "pattern",
+        "target": "technique",
+        "weight": 1,
+        "repos": [
+          "elementalsouls/Claude-BugHunter"
         ]
       }
     ]
@@ -3541,6 +3779,22 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-05-24",
+      "counts": {
+        "scan_complete": 1,
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "proposals_prepared": 1,
+        "scorer_drift_check": 3,
+        "findings_aggregated": 3,
+        "repo_report_rendered": 4,
+        "audit_complete": 3,
+        "advisories_aggregated": 1,
         "report_generated": 1
       }
     }

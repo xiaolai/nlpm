@@ -2344,3 +2344,4 @@
 {"timestamp":"2026-05-24T16:32:51Z","workflow":"track","event":"status_check","run_id":"26366546087","run_number":216,"data":{"contributed":39,"tracked":29,"case_study_ready":33,"rule_adopted":2}}
 {"timestamp":"2026-05-24T20:30:57Z","workflow":"track","event":"status_check","run_id":"26371857786","run_number":217,"data":{"contributed":39,"tracked":29,"case_study_ready":33,"rule_adopted":2}}
 {"timestamp":"2026-05-24T22:19:09Z","workflow":"daily-report","event":"report_generated","run_id":"26374308023","run_number":50,"data":{"total_repos":217}}
+{"timestamp":"2026-05-24T22:46:57Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"26374898405","run_number":6,"data":{"repos":217,"findings":3365,"advisories":22}}
