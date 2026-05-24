@@ -7818,6 +7818,13 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "ChromeDevTools/chrome-devtools-mcp": {
+      "status": "audited",
+      "score": 94,
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "57f32b0cd4afe1775b96ba35c27f25d6f0770331"
     }
   }
 }

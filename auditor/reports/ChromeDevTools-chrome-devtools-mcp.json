@@ -1,0 +1,150 @@
+{
+  "project": "ChromeDevTools/chrome-devtools-mcp",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": null,
+          "message": "plugin.json has no explicit skills array; relies on auto-discovery of skills/ subdirectory, which is fragile if plugin loader behaviour changes"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 9,
+          "message": "MCP server runs chrome-devtools-mcp@latest via npx; version floats on every MCP client restart introducing supply-chain risk"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "medium",
+          "line": 27,
+          "message": "prepare script executes scripts/prepare.ts automatically on npm install and npm publish without explicit user invocation"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "Most devDependencies use ^ semver ranges allowing automatic minor and patch updates on each npm install"
+        }
+      ]
+    },
+    {
+      "path": "skills/a11y-debugging/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 87,
+          "message": "\"standard a11y queries\" uses imprecise adjective; reader cannot determine which tool calls or checks qualify as standard"
+        }
+      ]
+    },
+    {
+      "path": "skills/memory-leak-debugging/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R14",
+          "severity": "low",
+          "line": 13,
+          "message": "\"they are extremely large\" uses imprecise intensifier with no concrete size bound to guide the model"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-05-24T13:17:18Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/a11y-debugging/SKILL.md",
+      "line": 87,
+      "message": "\"standard a11y queries\" uses imprecise adjective; reader cannot determine which tool calls or checks qualify as standard"
+    },
+    {
+      "rule": "R14",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/memory-leak-debugging/SKILL.md",
+      "line": 13,
+      "message": "\"they are extremely large\" uses imprecise intensifier with no concrete size bound to guide the model"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "low",
+      "file": ".claude-plugin/plugin.json",
+      "line": null,
+      "message": "plugin.json has no explicit skills array; relies on auto-discovery of skills/ subdirectory, which is fragile if plugin loader behaviour changes"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "package.json",
+      "line": 27,
+      "message": "prepare script executes scripts/prepare.ts automatically on npm install and npm publish without explicit user invocation — \"prepare\": \"node --experimental-strip-types scripts/prepare.ts\" confirmed at line 27; npm runs prepare automatically on install and publish"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": ".claude-plugin/plugin.json",
+      "line": 9,
+      "message": "MCP server runs chrome-devtools-mcp@latest via npx; version floats on every MCP client restart introducing supply-chain risk — \"args\": [\"chrome-devtools-mcp@latest\"] confirmed at line 9 of .claude-plugin/plugin.json"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": "package.json",
+      "line": null,
+      "message": "Most devDependencies use ^ semver ranges allowing automatic minor and patch updates on each npm install — devDependencies block (lines 49-83) contains entries like \"@eslint/js\": \"^9.35.0\" using ^ range operator throughout"
+    }
+  ],
+  "repo_meta": {
+    "status": null,
+    "stars": null,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/ChromeDevTools-chrome-devtools-mcp.md"
+  },
+  "generated_at": "2026-05-24T13:17:48Z",
+  "schema_version": 1
+}
