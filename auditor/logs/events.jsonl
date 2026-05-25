@@ -2353,3 +2353,4 @@
 {"timestamp":"2026-05-25T07:45:00Z","workflow":"audit","event":"findings_aggregated","run_id":"26389220228","run_number":491,"data":{"repo":"viticci/shortcuts-playground-plugin","findings":20,"invalid_lines":0,"self_false_positives":2}}
 {"timestamp":"2026-05-25T07:45:00Z","workflow":"audit","event":"repo_report_rendered","run_id":"26389220228","run_number":491,"data":{"repo":"viticci/shortcuts-playground-plugin","html":"auditor/reports/viticci-shortcuts-playground-plugin.html"}}
 {"timestamp":"2026-05-25T07:45:00Z","workflow":"audit","event":"audit_complete","run_id":"26389220228","run_number":491,"data":{"repo":"viticci/shortcuts-playground-plugin","score":91,"artifacts":9,"strategy":"single"}}
+{"timestamp":"2026-05-25T09:34:51Z","workflow":"track","event":"status_check","run_id":"26393479362","run_number":220,"data":{"contributed":39,"tracked":29,"case_study_ready":33,"rule_adopted":2}}
