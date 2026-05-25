@@ -7856,7 +7856,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "14550f1c722aecbdaae158465666dc3d9da771bb"
+      "commit_sha_at_audit": "14550f1c722aecbdaae158465666dc3d9da771bb",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/viticci-shortcuts-playground-plugin.md"
     }
   }
 }
