@@ -391,12 +391,12 @@
       },
       {
         "source": "ls",
-        "target": "artifact",
+        "target": "inventory",
         "type": "produces"
       },
       {
         "source": "ls",
-        "target": "inventory",
+        "target": "artifact",
         "type": "produces"
       },
       {
@@ -483,6 +483,6 @@
     "security": "CLEAR",
     "audit_report_path": "auditor/audits/xiaolai-nlpm-for-claude.md"
   },
-  "generated_at": "2026-05-19T11:15:46Z",
+  "generated_at": "2026-05-20T04:07:30Z",
   "schema_version": 1
 }
