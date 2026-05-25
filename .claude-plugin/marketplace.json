@@ -11,14 +11,14 @@
       "name": "nlpm",
       "source": {
         "source": "github",
-        "repo": "xiaolai/nlpm-for-claude"
+        "repo": "xiaolai/nlpm"
       },
-      "description": "Natural-Language Programming Manager \u2014 scan, lint, and write NL artifacts with Claude-native quality scoring",
-      "version": "0.8.23",
+      "description": "Natural-Language Programming Manager \u2014 score, check, fix, and test NL artifacts across Claude Code, Codex CLI, and Antigravity. Tier-aware scoring with per-tool overlays.",
+      "version": "1.0.0",
       "author": {
         "name": "xiaolai"
       },
-      "repository": "https://github.com/xiaolai/nlpm-for-claude",
+      "repository": "https://github.com/xiaolai/nlpm",
       "license": "ISC",
       "keywords": [
         "nlp",
@@ -27,7 +27,11 @@
         "skill",
         "agent",
         "rules",
-        "quality"
+        "quality",
+        "claude",
+        "codex",
+        "antigravity",
+        "multi-tool"
       ],
       "category": "developer-tools"
     }
