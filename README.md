@@ -1,12 +1,12 @@
 # nlpm
 
-[![Validated by NLPM](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/xiaolai/nlpm-for-claude/main/nlpm-badge.json)](https://github.com/xiaolai/nlpm-for-claude/blob/main/nlpm-badge.json)
+[![Validated by NLPM](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/xiaolai/nlpm/main/nlpm-badge.json)](https://github.com/xiaolai/nlpm/blob/main/nlpm-badge.json)
 
-Natural-Language Programming Manager -- discover, score, check, and fix NL artifacts with Claude-native intelligence.
+Natural-Language Programming Manager — score, check, fix, and test NL artifacts across **Claude Code, Codex CLI, and Antigravity**. Tier-aware scoring with per-tool overlays.
 
-Part of the [xiaolai Claude plugin marketplace](https://github.com/xiaolai/claude-plugin-marketplace).
+Part of the [xiaolai plugin marketplace](https://github.com/xiaolai/claude-plugin-marketplace).
 
-NLPM is the only validator in the Claude Code plugin ecosystem that systematically checks **manifest-vs-disk consistency** — the bug class where a SKILL.md exists on disk but is silently missing from `plugin.json` (and therefore invisible after `claude plugin install`). Verified across 8+ tools including Anthropic's official `plugin-validator` and the Linux Foundation's `skills-ref`. See [`analysis/ecosystem-gap.md`](analysis/ecosystem-gap.md) for the research.
+NLPM is the only multi-tool NL artifact validator that systematically checks **manifest-vs-disk consistency** — the bug class where a SKILL.md exists on disk but is silently missing from `plugin.json` (and therefore invisible after `claude plugin install`). Verified across 8+ tools including Anthropic's official `plugin-validator` and the Linux Foundation's `skills-ref`. See [`analysis/ecosystem-gap.md`](analysis/ecosystem-gap.md) for the research.
 
 ## What it does
 
@@ -25,7 +25,7 @@ Eight commands, each doing one thing:
 | `/nlpm:init` | Initialize NLPM for a project |
 | `/nlpm:security-scan` | Scan plugins for security risks in executable artifacts |
 
-Claude-native slash commands (no API keys, no Codex, no external models) plus a standalone Python 3.11+ validator for pre-commit hooks and CI.
+Slash commands ship as a Claude Code plugin. The scoring rubric covers three ecosystems (Claude Code, Codex CLI, Antigravity) via tier-aware overlays — see [`analysis/multi-tool-design-2026-05.md`](analysis/multi-tool-design-2026-05.md). The standalone Python 3.11+ validator (`bin/nlpm-check`) has no Claude Code dependency and runs in pre-commit hooks or CI on any tool's artifacts.
 
 ### Beyond linting: the learning loop
 
@@ -67,7 +67,7 @@ From CI or a pre-commit hook (no Claude Code required):
 
 ```bash
 curl -fsSL -o /usr/local/bin/nlpm-check \
-  https://raw.githubusercontent.com/xiaolai/nlpm-for-claude/main/bin/nlpm-check
+  https://raw.githubusercontent.com/xiaolai/nlpm/main/bin/nlpm-check
 chmod +x /usr/local/bin/nlpm-check
 nlpm-check .               # exit 1 on high-confidence findings
 ```
@@ -79,7 +79,7 @@ If you author a plugin and want NLPM in your **pre-commit hook, CI, or pre-publi
 ```bash
 # One-line install
 curl -fsSL -o /usr/local/bin/nlpm-check \
-  https://raw.githubusercontent.com/xiaolai/nlpm-for-claude/main/bin/nlpm-check
+  https://raw.githubusercontent.com/xiaolai/nlpm/main/bin/nlpm-check
 chmod +x /usr/local/bin/nlpm-check
 
 # Run in your plugin repo

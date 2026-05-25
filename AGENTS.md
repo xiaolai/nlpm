@@ -4,7 +4,7 @@
 
 # nlpm
 
-Natural-Language Programming Manager for Claude Code.
+Natural-Language Programming Manager — multi-tool (Claude Code, Codex CLI, Antigravity) NL artifact scoring, checking, fixing, and testing. Delivered as a Claude Code plugin; the scoring rubric covers all three ecosystems via tier-aware overlays (see `analysis/multi-tool-design-2026-05.md`).
 
 ## Architecture
 
