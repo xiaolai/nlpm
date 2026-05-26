@@ -121,7 +121,7 @@ Rule overrides supported (suppress, max_penalty, threshold adjustments).
 
 ## Auditor (Self-Evolution Pipeline)
 
-The `auditor/` subdirectory contains a GitHub Actions pipeline that discovers, audits, and contributes to Claude Code plugin/skill repos across GitHub — then feeds learnings back into NLPM's rules.
+The `auditor/` subdirectory contains a GitHub Actions pipeline that discovers, audits, and contributes to NL programming plugin/skill repos across GitHub — then feeds learnings back into NLPM's rules. **Current scope**: discovery and contribution target Claude Code plugin/skill repos (matches the broadest published corpus). The scoring rubric itself is multi-tool (Tier 2-Claude / Tier 2-Codex / Tier 2-Antigravity per `analysis/multi-tool-design-2026-05.md`); Codex CLI and Antigravity discovery + contribution is a planned PR-D follow-up.
 
 ### Workflows (.github/workflows/auditor-*.yml)
 

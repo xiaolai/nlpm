@@ -49,8 +49,9 @@ CLAUDE.local.md
 !.codex/hooks.cc-suite.json
 !.codex/config.toml
 
-# Gemini CLI — local files, keep checked-in subdirs
+# Gemini CLI — local files, keep checked-in subdirs + shared project config
 .gemini/*
 !.gemini/skills/
 !.gemini/commands/
+!.gemini/settings.json
 # <<< cc-suite <<<

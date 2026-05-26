@@ -123,13 +123,14 @@ See `skills/nlpm/scoring/SKILL.md` for the full penalty tables. See `skills/nlpm
 
 ## What it scores
 
-13 artifact types across 3 categories:
+20+ artifact types across one universal floor and three per-tool overlays. The scorer auto-classifies each artifact by its path (see `agents/scorer.md` step 3 for the tier classifier) and applies the matching rules.
 
-| Category | Artifacts |
-|----------|-----------|
-| A: Plugin | commands, shared partials, agents, skills, hooks, plugin.json, .mcp.json |
-| B: Project | CLAUDE.md, .claude/rules/, settings files |
-| F: Memory | ~/.claude/projects/*/memory/*.md |
+| Tier | Artifacts |
+|------|-----------|
+| Universal (Tier 1, open spec at agentskills.io) | `SKILL.md`, `AGENTS.md` (canonical universal memory file, per nlpm decision) |
+| Claude Code (Tier 2-Claude) | `commands/`, `shared partials`, `agents/`, `skills/`, `hooks/hooks.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json`, `CLAUDE.md`, `.claude/rules/`, `.claude/settings.json`, `.lsp.json`, `monitors/monitors.json`, `~/.claude/projects/*/memory/*.md` |
+| Codex CLI (Tier 2-Codex) | `.agents/skills/<n>/SKILL.md`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.codex/config.toml` (TOML — `[mcp_servers.*]`, `[hooks.*]`, `[agents.*]`), `.codex/hooks.json`, `agents/openai.yaml` sidecar, root `AGENTS.md` (hierarchical) |
+| Antigravity (Tier 2-Antigravity, advisory) | `.gemini/skills/`, `.agent/skills/`, `.gemini/commands/<n>.toml`, `.gemini/settings.json` (with embedded `mcpServers` + `hooks`), `gemini-extension.json`, `GEMINI.md` |
 
 ## NL-TDD
 

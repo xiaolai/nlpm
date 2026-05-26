@@ -5,12 +5,15 @@ outline: [2, 3]
 
 # How it evolves
 
-NLPM is 8 weeks old. The first commit landed on 2026-03-25; the
-current release is v0.8.22. In between: 1,287 commits, five
-minor-version gates (v0.2 → v0.4 → v0.6 → v0.7 → v0.8), and 22 patch
-releases since v0.8.0 alone. The cadence is high because the rules
-keep getting proven wrong — or right in ways the rulebook didn't yet
-encode — by contact with real repositories.
+NLPM is 9 weeks old. The first commit landed on 2026-03-25; the
+current release is **v1.0.0** — the multi-tool branded release that
+expanded NLPM from Claude-Code-only to Claude Code + Codex CLI +
+Antigravity, splitting `nlpm:conventions` into a universal floor plus
+three per-tool overlays. In between: 1,300+ commits and six
+minor-version gates (v0.2 → v0.4 → v0.6 → v0.7 → v0.8 → v1.0). The
+cadence is high because the rules keep getting proven wrong — or right
+in ways the rulebook didn't yet encode — by contact with real
+repositories.
 
 This page describes the mechanism that absorbs that contact and turns
 it into rulebook changes. It is the closest thing NLPM has to a thesis:
