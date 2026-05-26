@@ -1,8 +1,8 @@
 # Privacy Policy — NLPM
 
-_Last updated: 2026-05-20_
+_Last updated: 2026-05-26_
 
-NLPM is a local Claude Code plugin that analyzes natural-language artifacts inside your repository. This policy describes the data NLPM handles.
+NLPM analyzes natural-language artifacts inside your repository — locally. The slash-command surface (`/nlpm:*`) is delivered as a Claude Code plugin; the scoring rubric covers artifacts authored for Claude Code, Codex CLI, and Antigravity. The standalone Python validator (`bin/nlpm-check`) runs without Claude Code at all. This policy describes the data NLPM handles.
 
 ## What NLPM reads
 
@@ -24,7 +24,7 @@ Optional badge fetching from shields.io occurs only if you opt in by embedding t
 
 ## What about the auditor pipeline?
 
-The `auditor/` directory inside the NLPM source repo runs a separate GitHub Actions pipeline that audits **other** public Claude Code plugin repositories. That pipeline runs on the maintainer's GitHub account, not on your machine. Installing NLPM as a plugin does **not** enroll your repository in that pipeline.
+The `auditor/` directory inside the NLPM source repo runs a separate GitHub Actions pipeline that audits **other** public plugin and skill repositories (today: Claude Code plugins; Codex CLI and Antigravity discovery is planned). That pipeline runs on the maintainer's GitHub account, not on your machine. Installing NLPM as a plugin does **not** enroll your repository in that pipeline.
 
 ## Data deletion
 

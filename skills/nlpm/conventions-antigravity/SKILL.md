@@ -134,11 +134,12 @@ Gemini (and inherited Antigravity) decomposes the lifecycle into Agent/Model/Too
 `GEMINI.md` is hierarchical: `~/.gemini/GEMINI.md` → workspace + ancestor `GEMINI.md` files → JIT-discovered `GEMINI.md` on file access. All concatenated per prompt.
 
 **Distinctive features (versus AGENTS.md and CLAUDE.md):**
-- Supports `@file.md` imports (relative + absolute paths).
+- Supports `@file.md` imports via the Memory Import Processor. Verified 2026-05-26 against `geminicli.com/docs/reference/memport/`: imports nest (configurable max depth, default 5), accept any filename (not just `GEMINI.md`), and take relative or absolute paths. A `GEMINI.md` containing only `@AGENTS.md` resolves to AGENTS.md's full contents. `validateImportPath` restricts imports to allowed directories (repo-root siblings are fine).
 - Filename is configurable via `context.fileName` in `settings.json`, which accepts an **array** — e.g., `context.fileName: ["AGENTS.md", "CONTEXT.md", "GEMINI.md"]`. This is the official interop hook for AGENTS.md (Codex's canonical) and CLAUDE.md (Claude Code's canonical).
 
-**Recommended pattern for multi-tool projects:**
-- Set `context.fileName: ["AGENTS.md"]` in `.gemini/settings.json` — makes Gemini/Antigravity read AGENTS.md directly. nlpm decision #5: AGENTS.md is the canonical universal memory file.
+**Recommended pattern for multi-tool projects (use `context.fileName`, NOT the @-import shim):**
+- Set `context.fileName: ["AGENTS.md"]` in `.gemini/settings.json` — makes Gemini/Antigravity read AGENTS.md directly. nlpm decision #5: AGENTS.md is the canonical universal memory file. nlpm itself ships this exact `.gemini/settings.json`.
+- **Why not rely on a `GEMINI.md` → `@AGENTS.md` shim?** It works per the import-processor docs, but every documented example uses an explicit `@./` / `@../` prefix; the bare `@AGENTS.md` form (which Claude Code accepts natively in CLAUDE.md) is a valid relative path but unconfirmed against a live Gemini run. `context.fileName` has no such ambiguity — Gemini reads the named file directly with no import resolution involved.
 
 ---
 

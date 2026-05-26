@@ -1,8 +1,8 @@
 # NLPM for plugin authors
 
-You're building a Claude Code plugin or skill kit. NLPM checks one thing the official validator doesn't: **does your manifest match what's on disk?**
+You're building a plugin or skill kit for Claude Code, Codex CLI, or Antigravity. NLPM checks one thing the official validators don't: **does your manifest match what's on disk?**
 
-That single check has caught manifest-vs-disk bugs in plugins from authors with 16k-69k stars (see `analysis/ecosystem-gap.md`). The check is mechanical, fast, and runs without Claude Code installed.
+That single check has caught manifest-vs-disk bugs in plugins from authors with 16k-69k stars (see `analysis/ecosystem-gap.md`). The check is mechanical, fast, and runs without Claude Code installed — so it works the same whether you're shipping a `.claude-plugin/plugin.json`, a `.codex-plugin/plugin.json`, or an open-spec `SKILL.md` collection.
 
 ## The two surfaces
 
