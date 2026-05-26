@@ -2364,3 +2364,5 @@
 {"timestamp":"2026-05-26T03:41:10Z","workflow":"contribute","event":"prs_submitted","run_id":"26430858749","run_number":2516,"data":{"repo":"viticci/shortcuts-playground-plugin","pr_count":0}}
 {"timestamp":"2026-05-26T04:54:17Z","workflow":"classify","event":"classifications_emitted","run_id":"26433040817","run_number":36,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-05-26T05:33:49Z","workflow":"track","event":"status_check","run_id":"26434062046","run_number":225,"data":{"contributed":40,"tracked":29,"case_study_ready":33,"rule_adopted":2}}
+{"timestamp":"2026-05-26T07:18:32Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"26438048589","run_number":2519,"data":{"repo":"ChromeDevTools/chrome-devtools-mcp","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/26438048589","retention_days":90}}
+{"timestamp":"2026-05-26T07:18:32Z","workflow":"contribute","event":"prs_submitted","run_id":"26438048589","run_number":2519,"data":{"repo":"ChromeDevTools/chrome-devtools-mcp","pr_count":1}}
