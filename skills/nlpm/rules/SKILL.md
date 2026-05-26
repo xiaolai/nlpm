@@ -1,7 +1,7 @@
 ---
 name: rules
-description: "The 50 rules of natural language programming. Loaded when writing, reviewing, or improving any NL artifact — skills, agents, commands, rules, hooks, prompts, plugins, CLAUDE.md. The definitive style guide for NL code quality."
-version: 0.1.0
+description: "The 50 rules of natural language programming. Loaded when writing, reviewing, or improving any NL artifact — skills, agents, commands, rules, hooks, prompts, plugins, and the project memory file (CLAUDE.md / AGENTS.md / GEMINI.md). The definitive style guide for NL code quality."
+version: 0.2.0
 ---
 
 # The Rules of Natural Language Programming
@@ -111,9 +111,11 @@ Good: `**Use specific types instead of any.** Without specific types, TypeScript
 
 ---
 
-## CLAUDE.md
+## Memory file (CLAUDE.md / AGENTS.md / GEMINI.md)
 
-**R33. Include build/run command.** How to build and run the project. Without it, Claude guesses.
+> R33–R39 govern the project memory file. The rules use `CLAUDE.md` as the running example, but they apply identically to **AGENTS.md** (Codex CLI's native file, and nlpm's canonical universal memory file) and **GEMINI.md** (Antigravity / Gemini CLI). Substitute whichever file your project uses; in multi-tool projects, AGENTS.md is the canonical content and CLAUDE.md / GEMINI.md import it.
+
+**R33. Include build/run command.** How to build and run the project. Without it, the agent guesses.
 
 **R34. Include test command.** How to run tests. Without it, Claude skips verification.
 

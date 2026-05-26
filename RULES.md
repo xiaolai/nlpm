@@ -15,7 +15,7 @@ Run `/nlpm:score` to enforce these rules. Run `/nlpm:fix` to auto-repair fixable
 | Shared Partials | R19-R20 | user-invocable: false, purpose description |
 | Rules | R21-R26 | Bold imperative + rationale, enforceable, budget, scoping |
 | Hooks | R27-R32 | Case-sensitive events, script existence, fail-open, block vs advise |
-| CLAUDE.md | R33-R39 | Build/test commands, architecture, no stale refs |
+| Memory file | R33-R39 | Build/test commands, architecture, no stale refs (CLAUDE.md / AGENTS.md / GEMINI.md) |
 | Prompts | R40-R42 | Five layers, exact output format, injection resistance |
 | Orchestration | R43-R47 | Parallel/sequential, QC gates, cost gates, retry limits |
-| Plugins | R48-R50 | Name required, CLAUDE.md vs README, four-place version bump |
+| Plugins | R48-R50 | Name required, memory file vs README, four-place version bump |
