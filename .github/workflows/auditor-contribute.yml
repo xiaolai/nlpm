@@ -320,6 +320,8 @@ jobs:
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           SIDECAR: auditor/audits/${{ steps.report.outputs.slug }}.findings.jsonl
+          # Read-only token for the duplicate-detection gate's gh queries.
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           source auditor/scripts/compute-fingerprint.sh
 
@@ -360,6 +362,49 @@ jobs:
             FP=$(printf '%s' "$line" | compute_fingerprint "$TARGET_REPO")
             printf '%s' "$line" | jq -c --arg fp "$FP" '. + {fingerprint: $fp}' >> "$OUT"
           done < "$SIDECAR"
+
+          # --- Duplicate-detection gate (added 2026-05-26) ---
+          # Drop any finding whose file is already modified by an OPEN PR
+          # on the target. The maintainer is already aware — filing
+          # another PR wastes the contribute cost and burdens the
+          # maintainer's queue. ChromeDevTools/chrome-devtools-mcp PR
+          # #2122 was closed by a maintainer as a duplicate of an existing
+          # open PR (#2118) for the exact same plugin.json fix; this gate
+          # is the structural fix for that class.
+          #
+          # Signal: an open PR's changed-files list contains the finding's
+          # `file`. This is precise (a PR literally touching the same
+          # file), unlike title/body keyword search which over- or
+          # under-matches. Fail-open: any gh/jq error leaves findings in,
+          # so a transient API failure never silently drops a real
+          # finding. Capped at 100 open PRs — best-effort guard, not a
+          # guarantee on very large repos.
+          OPEN_PR_FILES=$(gh pr list --repo "$TARGET_REPO" --state open \
+            --limit 100 --json number,files 2>/dev/null || echo '[]')
+          DEDUP=/tmp/findings-deduped.jsonl
+          : > "$DEDUP"
+          DUP_DROPPED=0
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            FILE=$(printf '%s' "$line" | jq -r '.file // empty')
+            if [ -z "$FILE" ]; then
+              printf '%s\n' "$line" >> "$DEDUP"
+              continue
+            fi
+            PR_HIT=$(printf '%s' "$OPEN_PR_FILES" | jq --arg f "$FILE" \
+              '[.[] | select(any(.files[]?; .path == $f))] | length' \
+              2>/dev/null || echo 0)
+            if [ "${PR_HIT:-0}" -gt 0 ]; then
+              DUP_DROPPED=$((DUP_DROPPED + 1))
+              echo "  dedup: an open PR already modifies $FILE on $TARGET_REPO — dropping finding"
+            else
+              printf '%s\n' "$line" >> "$DEDUP"
+            fi
+          done < "$OUT"
+          mv "$DEDUP" "$OUT"
+          if [ "$DUP_DROPPED" -gt 0 ]; then
+            echo "Duplicate-detection gate: dropped $DUP_DROPPED finding(s) already covered by an open PR on $TARGET_REPO."
+          fi
 
           COUNT=$(wc -l < "$OUT" | tr -d ' ')
           echo "findings_path=$OUT" >> "$GITHUB_OUTPUT"

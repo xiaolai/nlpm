@@ -86,6 +86,16 @@ CLA_REQUIRED_OWNERS: frozenset[str] = frozenset({
     "google-labs-code",
     "googleapis",
     "googlecloudplatform",
+    # Google-operated org under a non-"google*" name. Confirmed
+    # 2026-05-26: ChromeDevTools/chrome-devtools-mcp PR #2122 was gated
+    # by `cla/google` — the org uses Google's CLA bot despite the name.
+    # The maintainer signs the CONTRIBUTE_AUTHOR identity is CLA-covered
+    # (so PRs CAN pass), but the policy choice is to keep Google orgs
+    # filtered at discovery (conservative — avoid unsolicited PRs to a
+    # major vendor). Add other Google-operated orgs here as encountered
+    # (e.g. GoogleChrome, googlemaps) — keep the list documented, not
+    # speculative.
+    "chromedevtools",
 })
 
 # First-party / reference-implementation owners. Auditing produces
