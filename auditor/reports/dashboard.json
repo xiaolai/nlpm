@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T22:47:43Z",
+  "generated_at": "2026-05-26T22:53:20Z",
   "since": null,
   "summary": {
     "total_repos": 218,
@@ -793,7 +793,7 @@
     },
     {
       "repo": "elementalsouls/Claude-BugHunter",
-      "status": "audited",
+      "status": "tracked",
       "stars": null,
       "score": 79,
       "security": "CLEAR",
@@ -829,7 +829,7 @@
     },
     {
       "repo": "viticci/shortcuts-playground-plugin",
-      "status": "audited",
+      "status": "contributed",
       "stars": 615,
       "score": 91,
       "security": "CLEAR",
@@ -1081,7 +1081,7 @@
     },
     {
       "repo": "Yuan1z0825/nature-skills",
-      "status": "audited",
+      "status": "tracked",
       "stars": null,
       "score": 93,
       "security": "REVIEW",
@@ -1453,7 +1453,7 @@
     },
     {
       "repo": "ChromeDevTools/chrome-devtools-mcp",
-      "status": "audited",
+      "status": "tracked",
       "stars": null,
       "score": 94,
       "security": "CLEAR",
@@ -3821,6 +3821,18 @@
         "findings_aggregated": 1,
         "repo_report_rendered": 1,
         "audit_complete": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-05-26",
+      "counts": {
+        "status_check": 6,
+        "report_artifact_uploaded": 4,
+        "prs_submitted": 4,
+        "classifications_emitted": 1,
+        "finding_outcome": 14,
         "report_generated": 1
       }
     }

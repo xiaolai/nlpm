@@ -2389,3 +2389,4 @@
 {"timestamp":"2026-05-26T20:52:41Z","workflow":"track","event":"finding_outcome","run_id":"26474087888","run_number":229,"data":{"pr":"elementalsouls/Claude-BugHunter#6","pr_state":"closed_unmerged","fingerprints":["sha256:4129db9678322a42c92b14901e4da91a9ccd315581968432e8d298d339706718"],"rule_ids":["BUG-duplicate-entries"]}}
 {"timestamp":"2026-05-26T20:52:42Z","workflow":"track","event":"status_check","run_id":"26474087888","run_number":229,"data":{"contributed":40,"tracked":32,"case_study_ready":35,"rule_adopted":2}}
 {"timestamp":"2026-05-26T22:29:12Z","workflow":"daily-report","event":"report_generated","run_id":"26478805202","run_number":52,"data":{"total_repos":218}}
+{"timestamp":"2026-05-26T22:53:20Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"26479774100","run_number":8,"data":{"repos":218,"findings":3385,"advisories":22}}

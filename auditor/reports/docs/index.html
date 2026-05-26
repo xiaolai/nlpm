@@ -12,7 +12,7 @@
       <h1>NLPM Framework Reference</h1>
       <p class="proj">All rules, principles, and vocabulary concepts linked from reports.
         <span class="muted">·</span>
-        <span class="muted">2026-05-25T22:47:43Z</span>
+        <span class="muted">2026-05-26T22:53:20Z</span>
       </p>
     </div>
     <div class="hdr-right">
@@ -70,7 +70,7 @@
 <section class="rule" id="R30"><h3><a href="#R30" class="anchor">#</a> R30 — Use `${CLAUDE_PLUGIN_ROOT}` for paths</h3><p>Never hardcode absolute paths. They break on other machines.</p></section>
 <section class="rule" id="R31"><h3><a href="#R31" class="anchor">#</a> R31 — Fail-open by default</h3><p>If your hook script crashes, allow the action. Fail-closed only for critical security gates where a false-deny is safer than a false-allow.</p></section>
 <section class="rule" id="R32"><h3><a href="#R32" class="anchor">#</a> R32 — Block on PreToolUse, advise on PostToolUse</h3><p>PreToolUse can prevent actions. PostToolUse fires after the action — too late to block.</p></section>
-<section class="rule" id="R33"><h3><a href="#R33" class="anchor">#</a> R33 — Include build/run command</h3><p>How to build and run the project. Without it, Claude guesses.</p></section>
+<section class="rule" id="R33"><h3><a href="#R33" class="anchor">#</a> R33 — Include build/run command</h3><p>How to build and run the project. Without it, the agent guesses.</p></section>
 <section class="rule" id="R34"><h3><a href="#R34" class="anchor">#</a> R34 — Include test command</h3><p>How to run tests. Without it, Claude skips verification.</p></section>
 <section class="rule" id="R35"><h3><a href="#R35" class="anchor">#</a> R35 — Include architecture overview</h3><p>What lives where — component map, directory purpose.</p></section>
 <section class="rule" id="R36"><h3><a href="#R36" class="anchor">#</a> R36 — `@` imports must resolve</h3><p>Every <code>@path/to/file</code> import must point to an existing file.</p></section>
