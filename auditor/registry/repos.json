@@ -378,7 +378,7 @@
       "strategy": "single"
     },
     "ChromeDevTools/chrome-devtools-mcp": {
-      "status": "contributed",
+      "status": "tracked",
       "score": 94,
       "strategy": "single",
       "security": "CLEAR",
@@ -391,13 +391,13 @@
       "prs": [
         {
           "number": 2122,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-05-26T09:28:43Z",
           "title": "fix: pin chrome-devtools-mcp npx version in plugin.json",
-          "updatedAt": "2026-05-26T07:18:27Z",
+          "updatedAt": "2026-05-26T09:28:44Z",
           "createdAt": "2026-05-26T07:18:10Z",
-          "outcome": "cla_blocked",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:32ba60c0173cc7ca687047dbd351915f743b63f8a370da582839fc6e85e8d823"
           ],
