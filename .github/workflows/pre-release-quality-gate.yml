@@ -1,0 +1,203 @@
+name: Pre-Release Quality Gate
+
+# Gates release-bearing changes: when a PR bumps `.claude-plugin/plugin.json`
+# or `.codex-plugin/plugin.json` (i.e., is a release prep PR), this workflow
+# must pass before merge. Two assertions:
+#
+#   1. SCORE GATE — every NL artifact scores 100/100 against nlpm's own
+#      rubric. Combination of bin/nlpm-check (deterministic floor — manifest
+#      parsing, manifest-vs-disk diff, frontmatter required fields, hook
+#      event-name case) and the LLM-judged scorer (via claude-code-action)
+#      against the full Tier 2-Claude rubric (vague quantifiers, instruction
+#      quality, output format, scope notes, etc.).
+#
+#   2. VOCAB INTEGRITY GATE — zero vocabulary drift clusters detected by
+#      the vocab-drift-scanner on the nlpm corpus.
+#
+# Both gates must pass for release. Failures emit GitHub annotations and
+# block the PR; the score gate also writes /tmp/scores.tsv (kept as an
+# artifact) listing per-file scores so the author can see exactly which
+# artifacts need fixing.
+#
+# Triggers:
+#   - workflow_dispatch — manual run, e.g. before opening the release PR
+#     to verify cleanliness without making a plugin.json commit.
+#   - pull_request when plugin.json paths change — auto-fires on release
+#     PRs. Add this workflow to branch protection's required checks to make
+#     the gate truly blocking.
+#
+# NOT triggered on push to main — by then the PR has merged. The gate
+# belongs on the PR, before the marketplace propagation.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.claude-plugin/plugin.json'
+      - '.codex-plugin/plugin.json'
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: nlpm-pre-release-gate-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+
+      - name: Deterministic floor — bin/nlpm-check
+        # Catches the cheap, deterministic failures first so we don't pay
+        # the LLM cost when the basics are broken. Manifest-vs-disk diff,
+        # required frontmatter, hook event-name case, valid JSON/TOML.
+        run: |
+          if ! python3 bin/nlpm-check .; then
+            echo "::error::Deterministic floor FAILED — fix manifest/disk/frontmatter issues before release."
+            exit 1
+          fi
+          echo "::notice::Deterministic floor: clean."
+
+      - name: LLM-judged score + vocab drift
+        id: llm_gate
+        uses: anthropics/claude-code-action@v1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          show_full_output: true
+          # Defense-in-depth: pre-release gate reads + writes report files
+          # only; no network exfil channels needed. Block them.
+          claude_args: |
+            --allowedTools Read,Glob,Grep,Bash
+            --disallowedTools "Bash(curl:*)" "Bash(wget:*)" "Bash(nc:*)" "Bash(ncat:*)" "Bash(socat:*)" "Bash(telnet:*)" "Bash(ssh:*)" "Bash(scp:*)" "Bash(sftp:*)" WebFetch WebSearch
+          prompt: |
+            You are the pre-release quality gate for nlpm itself. Run two
+            checks against nlpm's own rubric and write the results to
+            specific files so the next workflow step can assert on them.
+
+            BEFORE SCORING, READ THESE OPERATING INSTRUCTIONS:
+              1. agents/scorer.md (full 5-step "Do Not Invent Findings"
+                 check + known false-positive table)
+              2. skills/nlpm/scoring/SKILL.md (penalty rubric v0.3.1 +
+                 Known False Positive Patterns appendix)
+              3. skills/nlpm/conventions/SKILL.md + conventions-claude/SKILL.md
+                 (universal + Claude overlay — nlpm IS a Claude Code plugin,
+                 Tier 2-Claude applies)
+              4. skills/nlpm/patterns/SKILL.md (P10 anchored-vague-quantifier
+                 exception, P11 paired CAN/CANNOT, etc.)
+
+            === CHECK 1: SCORE GATE ===
+
+            Score every NL artifact in nlpm. Apply Tier 2-Claude. Apply
+            the 5-step Do-Not-Invent check before EVERY finding. Apply
+            the Known False Positive Patterns table aggressively (nlpm
+            authors the rubric and intentionally adopts patterns the
+            rubric documents as not-bugs).
+
+            Targets — score all of:
+              - commands/*.md
+              - commands/shared/*.md  (must have user-invocable: false)
+              - agents/*.md
+              - skills/nlpm/*/SKILL.md  (Claude-side; skip codex/skills/
+                mirrors — auto-generated from these)
+              - AGENTS.md  (canonical universal memory file)
+              - CLAUDE.md + GEMINI.md  (one-line @AGENTS.md imports —
+                do NOT flag as missing build/test commands; content is
+                in AGENTS.md)
+
+            Write per-file scores to /tmp/scores.tsv with this exact
+            format (tab-separated, header row, ONE line per file, score
+            as integer 0-100):
+
+              file\tscore
+              commands/check.md\t100
+              commands/fix.md\t100
+              ...
+
+            === CHECK 2: VOCAB INTEGRITY GATE ===
+
+            Run the vocab-drift-scanner against the nlpm corpus.
+            BEFORE: read agents/vocab-drift-scanner.md and
+            skills/nlpm/vocabulary/SKILL.md for the protocol.
+
+            Use the "Write JSONL findings to {path}" alternate output
+            mode documented in vocab-drift-scanner.md. Write drift
+            clusters (if any) as JSONL to /tmp/drift.jsonl — one record
+            per cluster. If zero clusters, the file should be empty (or
+            absent — either is treated as zero by the assertion).
+
+            === DISCIPLINE ===
+            - Do NOT modify any files.
+            - Do NOT use WebFetch / curl / wget — local files only.
+            - The two output files (/tmp/scores.tsv, /tmp/drift.jsonl)
+              are the ONLY artifacts the next step reads. Make them
+              parseable. Verbose explanation in conversation is fine
+              but cannot substitute for correct file output.
+            - Report briefly when done: artifact count scored, drift
+              cluster count.
+
+      - name: Assert gates
+        # Parses the two files the LLM step wrote and fails the workflow
+        # on any sub-100 score or any drift cluster. Annotations land in
+        # the PR's Files tab so the author sees them in context.
+        run: |
+          set -u
+          FAILED=0
+
+          # --- Score gate ---
+          if [ ! -f /tmp/scores.tsv ]; then
+            echo "::error::Score gate produced no /tmp/scores.tsv — LLM step may have errored. Check the previous step's logs."
+            FAILED=1
+          else
+            TOTAL=$(awk 'NR>1' /tmp/scores.tsv | wc -l | tr -d ' ')
+            SUB_100=$(awk -F'\t' 'NR>1 && $2 != "" && ($2+0) < 100 {print $1 "\t" $2}' /tmp/scores.tsv)
+            if [ -n "$SUB_100" ]; then
+              echo "::error::Score gate FAILED — $(echo "$SUB_100" | wc -l | tr -d ' ') of $TOTAL artifacts score below 100:"
+              echo "$SUB_100" | while IFS=$'\t' read -r file score; do
+                echo "::error file=${file}::score=${score}/100 (release requires 100)"
+              done
+              FAILED=1
+            else
+              echo "::notice::Score gate PASSED — all $TOTAL artifacts at 100/100."
+            fi
+          fi
+
+          # --- Vocab integrity gate ---
+          if [ -s /tmp/drift.jsonl ]; then
+            CLUSTERS=$(wc -l < /tmp/drift.jsonl | tr -d ' ')
+            echo "::error::Vocab integrity gate FAILED — $CLUSTERS drift cluster(s) detected:"
+            cat /tmp/drift.jsonl | head -20
+            FAILED=1
+          else
+            echo "::notice::Vocab integrity gate PASSED — zero drift clusters."
+          fi
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo "::error::Pre-release gate did NOT pass. Fix the findings above before merging this release PR."
+            exit 1
+          fi
+          echo "::notice::Pre-release gate PASSED. Release PR is good to merge."
+
+      - name: Upload gate output as workflow artifact
+        # Keep the per-file scores around for 30 days so historical
+        # release-prep runs can be inspected.
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: pre-release-gate-${{ github.event.pull_request.number || github.run_id }}
+          path: |
+            /tmp/scores.tsv
+            /tmp/drift.jsonl
+          retention-days: 30
+          if-no-files-found: warn
