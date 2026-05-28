@@ -66,7 +66,18 @@ jobs:
             "claude code plugin in:name,description language:Markdown" \
             "claude code skill in:name,description language:Markdown" \
             "claude-plugin in:name language:Markdown" \
-            ".claude-plugin plugin.json in:path"; do
+            ".claude-plugin plugin.json in:path" \
+            '"program.md" autonomous in:description'; do
+            # The last query targets "agent workflow program" repos —
+            # project-root program.md driving an autonomous agent loop
+            # (canonical example: karpathy/autoresearch). The probe step
+            # below now matches program.md as an artifact path, so these
+            # surface alongside Claude plugin repos. Caveat: most agent-
+            # workflow-program repos have a SINGLE artifact (program.md),
+            # which is below the default MIN_ARTIFACTS=5 floor — a
+            # manual run with `min_artifacts: 1` is the path to audit
+            # them today. A per-repo-type floor is deferred until N≥3
+            # examples justify the floor-policy redesign.
 
             gh search repos "$query" \
               --sort stars \
@@ -162,6 +173,13 @@ jobs:
                 # Multi-tool agent spec (becoming a standard for
                 # cross-assistant skill repos)
                 test("^AGENTS\\.md$") or
+                # Agent workflow program (project-root .md driving an
+                # autonomous agent loop — karpathy/autoresearch style).
+                # See nlpm:conventions §2 + the karpathy-autoresearch
+                # exemplar. Typically a single-artifact repo, so will
+                # only pass the MIN_ARTIFACTS floor on manual runs with
+                # `min_artifacts: 1`.
+                test("^program\\.md$") or
                 # Non-canonical skill layouts seen in real-world repos
                 test("^[^/]+/skill\\.md$") or
                 test("^[^/]+/skill-[^/]+\\.md$") or
