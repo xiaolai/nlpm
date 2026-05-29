@@ -62,3 +62,7 @@ If the recommendation is PASS:
 SECURITY GATE: PASSED
 No Critical/High security issues found. Safe to proceed with audit and contribution.
 ```
+
+**Error handling:**
+- Target path does not exist → "Directory not found: {path}"
+- `security-scanner` agent returns no report → "Security scan failed: no report produced. Re-run /nlpm:security-scan {path}."

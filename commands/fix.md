@@ -15,7 +15,9 @@ $ARGUMENTS
 
 ### Step 1: Score First
 
-Dispatch the `nlpm:scorer` agent via Task tool to score all artifacts at the target path. Collect all issues.
+Parse `$ARGUMENTS` for a path (default: cwd if empty). Dispatch the `nlpm:scorer` agent via Task tool to score all artifacts at that path. Collect all issues.
+
+If no artifacts are found → "No NL programming artifacts found." and stop.
 
 ### Step 2: Classify Issues
 

@@ -1,6 +1,6 @@
 {
   "name": "nlpm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Natural-Language Programming Manager — score, check, fix, and test NL artifacts across Claude Code, Codex CLI, and Antigravity. Tier-aware scoring with per-tool overlays.",
   "author": {
     "name": "xiaolai"
