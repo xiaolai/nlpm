@@ -542,7 +542,7 @@ Not a log — a mutable state file, rewritten in place by the pipeline. Document
 
 | Field | Type | Written by | Notes |
 |-------|------|------------|-------|
-| `status` | enum | discover → batch → audit → contribute → track | One of `discovered`, `audited`, `contributed`, `tracked`, `complete`, `policy_denied`, `policy_cla_required` |
+| `status` | enum | discover → batch → audit → contribute → track | One of `discovered`, `audited`, `contributed`, `tracked`, `complete`, `policy_denied`, `policy_cla_required`, `orphaned` |
 | `audit_issue` | int | discover | Issue number in this repo, tracks the pipeline for the target |
 | `stars` | int | discover | Star count at discovery time |
 | `pipeline_prs` | array | contribute | PR numbers the auditor opened in the target repo |
@@ -551,10 +551,15 @@ Not a log — a mutable state file, rewritten in place by the pipeline. Document
 | `rule_adopted` | bool | track | `true` if the maintainer's own comments indicate rule-adoption |
 | `policy_no_external_prs` | bool | contribute | `true` if the owner is on the no-external-PR deny list (audit ran, contribute was skipped) |
 | `policy_cla_required` | bool | contribute | `true` if the owner requires a signed CLA (e.g., Google orgs) and the contributor identity has not signed (audit ran, contribute was skipped pending CLA) |
+| `terminal_reason` | enum | manual / future track | Why a repo entered the `orphaned` terminal state. Currently `prs_disabled`. |
+| `retired_at` | date | manual / future track | `YYYY-MM-DD` the repo was moved to `orphaned`. |
+| `retired_note` | string | manual / future track | Human-readable explanation of the retirement. |
 
 ### Status terminal states
 
 `policy_denied` (audit data captured, no PRs opened, repo is permanent dead-end for contribute) and `policy_cla_required` (audit data captured, no PRs opened, will become eligible once `vars.GOOGLE_CLA_SIGNED=true` is set on the workflow repo and the issue is re-labeled `contribute-approved`) are both terminal-but-recoverable states for the contribute pipeline. They never advance to `tracked`/`complete` automatically because no PRs exist to track. Daily report and rule-health filter on `status` to exclude these from "in flight" counts.
+
+`orphaned` is a terminal state for a repo where PRs **were** opened but can no longer be tracked through to an outcome because the target became unreachable — distinct from `policy_denied`/`policy_cla_required`, where no PRs were ever opened. The trigger seen in practice (2026-05-29, `iannuttall/claude-agents`): the maintainer disabled pull requests on the repository, so `gh pr view` returns *"Pull requests are disabled for this repository."* for every `pipeline_prs` entry. The track loop's `gh pr view ... || echo ""` swallows the failure and `continue`s, leaving `prs: []`; because the promotion gate at the bottom of the loop requires `jq length > 0`, the repo would otherwise sit in `contributed` forever, re-polling the dead PRs every 4 h and never reaching a case study. `orphaned` removes it from the track-poll `select(...)`. The `terminal_reason` field records the cause (`prs_disabled`; reserve room for `repo_deleted`, `repo_archived`, etc.). Like the policy states, `orphaned` is excluded from "in flight" counts and never auto-advances. The original `pipeline_prs` are preserved as the audit trail; the findings keep their last-observed `pr_state` in `events.jsonl` (no synthetic terminal `finding_outcome` is emitted, because the maintainer never adjudicated them — the door simply closed).
 
 ### PR record (`repos[owner/name].prs[i]`)
 

@@ -1,6 +1,6 @@
 {
   "name": "nlpm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Natural-Language Programming reference knowledge — the 50 Rules, the 100-point scoring rubric, per-tool conventions (Claude Code / Codex CLI / Antigravity), anti-patterns, vocabulary discipline, and authoring guides, as loadable Codex skills. The interactive linting commands remain a Claude Code plugin; the cross-tool deterministic checker ships as a standalone Python binary (bin/nlpm-check).",
   "author": {
     "name": "xiaolai"

@@ -4218,12 +4218,15 @@
         15
       ],
       "prs": [],
+      "retired_at": "2026-05-29",
+      "retired_note": "Maintainer disabled pull requests on the repository; pipeline_prs 12-15 can never merge or be tracked (gh pr view returns 'Pull requests are disabled for this repository.'). Excluded from the track-poll select().",
       "rule_adopted": false,
       "score": 88,
       "security": "CLEAR",
       "stars": 2046,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "orphaned",
+      "strategy": "single",
+      "terminal_reason": "prs_disabled"
     },
     "itsmostafa/aws-agent-skills": {
       "artifacts": 18,
