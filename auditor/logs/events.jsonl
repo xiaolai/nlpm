@@ -2415,3 +2415,4 @@
 {"timestamp":"2026-05-29T13:22:42Z","workflow":"track","event":"status_check","run_id":"26639407686","run_number":245,"data":{"contributed":39,"tracked":32,"case_study_ready":35,"rule_adopted":2}}
 {"timestamp":"2026-06-05T00:28:01Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"26987847638","run_number":18,"data":{"repos":218,"findings":3385,"advisories":22}}
 {"timestamp":"2026-06-05T00:28:04Z","workflow":"daily-report","event":"report_generated","run_id":"26987846476","run_number":62,"data":{"total_repos":218}}
+{"timestamp":"2026-06-05T00:35:29Z","workflow":"case-study","event":"no_narrative","run_id":"26988067754","run_number":282,"data":{"repo":"webdevtodayjason/sub-agents","reason":"thin narrative: score=78, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"}}
