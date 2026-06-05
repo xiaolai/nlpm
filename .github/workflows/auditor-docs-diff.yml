@@ -140,21 +140,10 @@ jobs:
             fi
           done < /tmp/changed-urls.txt
 
-      - name: Commit hash store
+      - name: Commit hash store via bot PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/docs-hashes.json
-          git diff --cached --quiet || {
-            git commit -m "docs-diff: $(date +%Y-%m-%d) — hash store update"
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "docs-diff: $(date +%Y-%m-%d) — hash store update"
