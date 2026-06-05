@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T22:57:17Z",
+  "generated_at": "2026-06-05T00:28:01Z",
   "since": null,
   "summary": {
     "total_repos": 218,
@@ -685,7 +685,7 @@
     },
     {
       "repo": "iannuttall/claude-agents",
-      "status": "contributed",
+      "status": "orphaned",
       "stars": 2046,
       "score": 88,
       "security": "CLEAR",
@@ -3851,7 +3851,15 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
-        "report_generated": 1
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-05-29",
+      "counts": {
+        "status_check": 4,
+        "classifications_emitted": 1
       }
     }
   ],

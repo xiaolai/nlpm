@@ -2413,3 +2413,4 @@
 {"timestamp":"2026-05-29T05:40:43Z","workflow":"track","event":"status_check","run_id":"26620041625","run_number":243,"data":{"contributed":40,"tracked":32,"case_study_ready":35,"rule_adopted":2}}
 {"timestamp":"2026-05-29T09:24:27Z","workflow":"track","event":"status_check","run_id":"26629004460","run_number":244,"data":{"contributed":40,"tracked":32,"case_study_ready":35,"rule_adopted":2}}
 {"timestamp":"2026-05-29T13:22:42Z","workflow":"track","event":"status_check","run_id":"26639407686","run_number":245,"data":{"contributed":39,"tracked":32,"case_study_ready":35,"rule_adopted":2}}
+{"timestamp":"2026-06-05T00:28:01Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"26987847638","run_number":18,"data":{"repos":218,"findings":3385,"advisories":22}}
