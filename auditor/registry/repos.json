@@ -2570,6 +2570,19 @@
           "fingerprints_backfilled": true
         },
         {
+          "number": 338,
+          "state": "CLOSED",
+          "mergedAt": null,
+          "closedAt": "2026-04-23T13:02:27Z",
+          "title": "fix(skills): replace hardcoded developer path in web-browse skill",
+          "updatedAt": "2026-04-23T13:02:27Z",
+          "createdAt": "2026-04-23T06:45:58Z",
+          "outcome": "applied_separately",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
           "number": 339,
           "state": "MERGED",
           "mergedAt": "2026-04-23T13:28:41Z",
@@ -3116,7 +3129,34 @@
         7,
         8
       ],
-      "prs": [],
+      "prs": [
+        {
+          "number": 7,
+          "state": "CLOSED",
+          "mergedAt": null,
+          "closedAt": "2026-05-15T14:54:09Z",
+          "title": "security: add input length guard to run-pm.sh",
+          "updatedAt": "2026-05-15T14:54:09Z",
+          "createdAt": "2026-04-07T06:10:34Z",
+          "outcome": "rejected",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 8,
+          "state": "MERGED",
+          "mergedAt": "2026-05-15T14:53:35Z",
+          "closedAt": "2026-05-15T14:53:35Z",
+          "title": "security: validate adapter names before dynamic source in add-a-skill.sh",
+          "updatedAt": "2026-05-15T14:54:07Z",
+          "createdAt": "2026-04-07T06:11:51Z",
+          "outcome": "merged",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        }
+      ],
       "rule_adopted": false,
       "score": 89,
       "security": "CLEAR",
@@ -3158,6 +3198,25 @@
           ],
           "rule_ids": [
             "BUG-undeclared-tool"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 47,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix(commands): add missing frontmatter to cook and cook_research_only",
+          "updatedAt": "2026-04-26T18:30:49Z",
+          "createdAt": "2026-04-26T18:30:49Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:a11a860b0a81ae252d352dd9f5524c5ba7e2e50107fbc4881c98b5aa4aaa19e7",
+            "sha256:36516f6a39351aa171f4f077859c5aa5b9f407e2fbead97ed5b554dafff8cc81"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter",
+            "BUG-missing-frontmatter"
           ],
           "stale_90d_emitted": false
         },
@@ -4823,6 +4882,19 @@
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
+        },
+        {
+          "number": 91,
+          "state": "MERGED",
+          "mergedAt": "2026-04-24T22:28:03Z",
+          "closedAt": "2026-04-24T22:28:03Z",
+          "title": "fix: constrain cross-reference resolution to repo root",
+          "updatedAt": "2026-04-24T22:28:03Z",
+          "createdAt": "2026-04-22T18:28:39Z",
+          "outcome": "merged",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
         }
       ],
       "rule_adopted": false,
@@ -5239,6 +5311,27 @@
         1363
       ],
       "prs": [
+        {
+          "number": 1361,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "docs: fix default port in EN docs (8080 → 3456)",
+          "updatedAt": "2026-04-26T06:50:19Z",
+          "createdAt": "2026-04-26T06:50:19Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:e7f19b9065eff45460cf37ca2b742aa7de14879101e82eba23f45beafb7b91ff",
+            "sha256:2e8cd28acec42b1f46890f53d8a6dfd98ca5713f30f5ef1795d64d5380d3067b",
+            "sha256:23b1cb3b8e6086f80c780f67d53f99071bcb8910ee988ef18f9a376498dd2324"
+          ],
+          "rule_ids": [
+            "CC-terminology-drift",
+            "CC-terminology-drift",
+            "CC-terminology-drift"
+          ],
+          "stale_90d_emitted": false
+        },
         {
           "number": 1362,
           "state": "OPEN",
@@ -7459,7 +7552,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: remove six non-existent skill paths from plugin.json",
-          "updatedAt": "2026-04-23T00:38:18Z",
+          "updatedAt": "2026-06-05T10:23:04Z",
           "createdAt": "2026-04-23T00:38:18Z",
           "outcome": "open",
           "fingerprints": [],
@@ -7472,7 +7565,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: correct language label for skills/nopua/SKILL.md and register nopua-zh",
-          "updatedAt": "2026-04-23T00:38:52Z",
+          "updatedAt": "2026-06-05T10:23:04Z",
           "createdAt": "2026-04-23T00:38:52Z",
           "outcome": "open",
           "fingerprints": [],
@@ -7485,7 +7578,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: register nopua-mentor-en and nopua-mentor-ja in plugin.json",
-          "updatedAt": "2026-04-23T00:39:15Z",
+          "updatedAt": "2026-06-05T10:23:04Z",
           "createdAt": "2026-04-23T00:39:15Z",
           "outcome": "open",
           "fingerprints": [],
