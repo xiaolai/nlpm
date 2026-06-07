@@ -183,12 +183,12 @@
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
-      "downstream_suppressions": 1,
+      "downstream_suppressions": 2,
       "verified_fixed": 0,
       "verified_persists": 0,
       "verify_rate": null,
       "introduced_since_audit": 0,
-      "state": "healthy"
+      "state": "disputed"
     },
     "R42": {
       "total_hits": 1,
@@ -3931,6 +3931,6 @@
     "total_prs_merged": 103,
     "total_prs_rejected": 54,
     "total_prs_applied_separately": 20,
-    "updated_at": "2026-06-06T22:22:34.998163Z"
+    "updated_at": "2026-06-07T22:22:31.240758Z"
   }
 }
