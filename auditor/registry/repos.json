@@ -2570,19 +2570,6 @@
           "fingerprints_backfilled": true
         },
         {
-          "number": 338,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-04-23T13:02:27Z",
-          "title": "fix(skills): replace hardcoded developer path in web-browse skill",
-          "updatedAt": "2026-04-23T13:02:27Z",
-          "createdAt": "2026-04-23T06:45:58Z",
-          "outcome": "applied_separately",
-          "fingerprints": [],
-          "rule_ids": [],
-          "stale_90d_emitted": false
-        },
-        {
           "number": 339,
           "state": "MERGED",
           "mergedAt": "2026-04-23T13:28:41Z",
