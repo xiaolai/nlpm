@@ -2455,3 +2455,4 @@
 {"timestamp":"2026-06-07T22:49:02Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27107179552","run_number":21,"data":{"repos":218,"findings":3385,"advisories":22}}
 {"timestamp":"2026-06-08T01:10:36Z","workflow":"track","event":"status_check","run_id":"27110364771","run_number":305,"data":{"contributed":38,"tracked":32,"case_study_ready":36,"rule_adopted":2}}
 {"timestamp":"2026-06-08T05:47:44Z","workflow":"track","event":"status_check","run_id":"27118313988","run_number":306,"data":{"contributed":38,"tracked":32,"case_study_ready":36,"rule_adopted":2}}
+{"timestamp":"2026-06-08T07:37:00Z","workflow":"discover","event":"search_complete","run_id":"27122845625","run_number":18,"data":{"candidates":93,"new":26,"worthy":1,"oversized":9}}
