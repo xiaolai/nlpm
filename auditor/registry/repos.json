@@ -2570,6 +2570,19 @@
           "fingerprints_backfilled": true
         },
         {
+          "number": 338,
+          "state": "CLOSED",
+          "mergedAt": null,
+          "closedAt": "2026-04-23T13:02:27Z",
+          "title": "fix(skills): replace hardcoded developer path in web-browse skill",
+          "updatedAt": "2026-04-23T13:02:27Z",
+          "createdAt": "2026-04-23T06:45:58Z",
+          "outcome": "applied_separately",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
           "number": 339,
           "state": "MERGED",
           "mergedAt": "2026-04-23T13:28:41Z",
@@ -7189,13 +7202,13 @@
       "prs": [
         {
           "number": 2508,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-08T15:44:39Z",
           "title": "fix(plugin): add missing name and allowed-tools to docs command frontmatter",
-          "updatedAt": "2026-04-26T05:49:54Z",
+          "updatedAt": "2026-06-08T15:44:40Z",
           "createdAt": "2026-04-26T00:37:50Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:de76bede1ce4edcdb14d261df159c1b414d78757f705174626648a9f9ed345d0",
             "sha256:c2f552d3c220e979d92596e9e0fe52fdeb0436bdcae135c57b8aaccefa15fe33"
@@ -7211,7 +7224,7 @@
       "score": 82,
       "security": "CLEAR",
       "stars": 53665,
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "single"
     },
     "vectorize-io/hindsight": {
