@@ -312,8 +312,17 @@ To rebuild locally:
 bash site/build.sh
 ```
 
-To deploy: copy `site/.vitepress/dist/.` into the `gh-pages` worktree,
-commit, push. (Automated pipeline TODO; today it's a manual step.)
+Deployment is automated by `.github/workflows/deploy-site.yml` — it builds
+and publishes to the `gh-pages` branch (served at <https://nlpm.com>) on:
+- every push to `main` touching site sources or their generators (`site/**`,
+  the `bin/nlpm-build-*` scripts, the canonical
+  `skills/nlpm/{rules,vocabulary,scoring,conventions}/SKILL.md`, `commands/**`,
+  `agents/**`, `auditor/reports/**`, `auditor/exemplars/**`),
+- a daily `0 23 * * *` UTC cron, and
+- manual `workflow_dispatch`.
+
+No manual copy-into-`gh-pages` step is needed. To force an off-cycle deploy,
+run `gh workflow run deploy-site.yml`.
 
 ### Model pinning
 
