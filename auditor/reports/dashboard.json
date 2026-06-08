@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-07T22:49:02Z",
+  "generated_at": "2026-06-08T22:58:43Z",
   "since": null,
   "summary": {
-    "total_repos": 218,
+    "total_repos": 219,
     "total_findings": 3385,
     "high_findings": 283,
     "total_advisories": 22,
@@ -661,7 +661,7 @@
     },
     {
       "repo": "upstash/context7",
-      "status": "contributed",
+      "status": "tracked",
       "stars": 53665,
       "score": 82,
       "security": "CLEAR",
@@ -1781,6 +1781,18 @@
       "stars": 776,
       "score": 92,
       "security": "BLOCKED",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "ReflexioAI/claude-smart",
+      "status": "discovered",
+      "stars": 596,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3886,6 +3898,16 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-08",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
+        "finding_outcome": 2,
         "report_generated": 1
       }
     }
