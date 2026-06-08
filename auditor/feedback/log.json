@@ -232,7 +232,7 @@
     "BUG-missing-frontmatter": {
       "total_hits": 200,
       "led_to_merged_pr": 16,
-      "led_to_rejected_pr": 4,
+      "led_to_rejected_pr": 5,
       "self_false_positive": 0,
       "maintainer_rejected": 3,
       "downstream_suppressions": 0,
@@ -349,7 +349,7 @@
     "BUG-undeclared-tool": {
       "total_hits": 52,
       "led_to_merged_pr": 1,
-      "led_to_rejected_pr": 1,
+      "led_to_rejected_pr": 2,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
@@ -3929,8 +3929,8 @@
     "total_audits": 10,
     "total_prs_submitted": 281,
     "total_prs_merged": 103,
-    "total_prs_rejected": 54,
+    "total_prs_rejected": 55,
     "total_prs_applied_separately": 20,
-    "updated_at": "2026-06-07T22:22:31.240758Z"
+    "updated_at": "2026-06-08T22:31:40.911740Z"
   }
 }
