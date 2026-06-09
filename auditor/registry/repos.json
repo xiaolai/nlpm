@@ -5913,13 +5913,13 @@
       "prs": [
         {
           "number": 92,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-08T21:03:55Z",
           "title": "security: replace new Function() eval with direct ESM import",
-          "updatedAt": "2026-04-29T01:14:35Z",
+          "updatedAt": "2026-06-08T21:03:56Z",
           "createdAt": "2026-04-10T14:31:55Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -5944,9 +5944,10 @@
       "score": 93,
       "security": "REVIEW",
       "security_findings": 5,
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "single",
-      "tracking_issue": 94
+      "tracking_issue": 94,
+      "case_study_candidate": true
     },
     "pe-menezes/fin-claude-plugin": {
       "artifacts": 8,
