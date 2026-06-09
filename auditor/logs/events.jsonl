@@ -2464,3 +2464,5 @@
 {"timestamp":"2026-06-08T21:05:30Z","workflow":"track","event":"status_check","run_id":"27166446110","run_number":310,"data":{"contributed":37,"tracked":33,"case_study_ready":36,"rule_adopted":2}}
 {"timestamp":"2026-06-08T22:31:41Z","workflow":"daily-report","event":"report_generated","run_id":"27171161566","run_number":66,"data":{"total_repos":219}}
 {"timestamp":"2026-06-08T22:58:43Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27172302833","run_number":22,"data":{"repos":219,"findings":3385,"advisories":22}}
+{"timestamp":"2026-06-09T01:02:16Z","workflow":"track","event":"finding_outcome","run_id":"27176831348","run_number":311,"data":{"pr":"pbakaus/impeccable#92","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-09T01:04:07Z","workflow":"track","event":"status_check","run_id":"27176831348","run_number":311,"data":{"contributed":36,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
