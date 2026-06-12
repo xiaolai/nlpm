@@ -628,6 +628,7 @@ jobs:
           steps.worthiness.outputs.worthy == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
           REASON: ${{ steps.worthiness.outputs.reason }}
@@ -666,22 +667,10 @@ jobs:
 
           log_event "case-study" "no_narrative" "$(jq -cn --arg repo "$TARGET_REPO" --arg reason "$REASON" '{repo: $repo, reason: $reason}')" || true
 
-          # Commit the registry + event.
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          # Commit the registry + event via bot PR.
           git add auditor/registry/repos.json auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "case-study: $TARGET_REPO — no narrative ($REASON)"
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "WARN: push failed after 5 attempts"; break; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "case-study: $TARGET_REPO — no narrative ($REASON)"
 
       - name: Compute write_article gate
         # Folds skipcheck + worthiness into a single output that every
@@ -1317,6 +1306,7 @@ jobs:
         if: steps.gate.outputs.write_article == 'true' || steps.skipcheck.outputs.skip == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
           SKIP: ${{ steps.skipcheck.outputs.skip }}
@@ -1343,28 +1333,13 @@ jobs:
 
           log_event "case-study" "published" "{\"repo\": \"$TARGET_REPO\", \"article_lines\": $LINES, \"has_cover\": $HAS_IMAGE}"
 
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          # Also stage re-audit artifacts written earlier in this run:
-          # .re-audit.md (scoring report), .re-audit.findings.jsonl
-          # (sidecar), .re-audit.diff.md (verification table). The diff
-          # script also appended finding_verified / finding_introduced
-          # events to logs/events.jsonl — already included above.
+          # Stage the case study + re-audit artifacts written earlier in
+          # this run (.re-audit.md, .re-audit.findings.jsonl,
+          # .re-audit.diff.md) and the appended finding_verified /
+          # finding_introduced events.
           git add case-studies/ auditor/logs/events.jsonl auditor/audits/
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "case-study: $TARGET_REPO ($LINES lines)"
-
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
-              echo "Push attempt $ATTEMPT failed, pulling..."
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "case-study: $TARGET_REPO ($LINES lines)"
 
           # Update registry
           jq --arg name "$TARGET_REPO" --arg cs "case-studies/${DATE}-${SLUG}.md" \
@@ -1374,18 +1349,7 @@ jobs:
 
           git add auditor/registry/repos.json
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "chore: mark $TARGET_REPO complete"
-
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
-              echo "Push attempt $ATTEMPT failed, pulling..."
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "chore: mark $TARGET_REPO complete"
 
           # Comment and close issue
           SUMMARY="Case study published"

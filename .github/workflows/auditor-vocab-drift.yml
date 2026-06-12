@@ -279,17 +279,14 @@ jobs:
       # ================================================================
       # COMMIT
       # ================================================================
-      - name: Commit advisory artifacts
+      - name: Commit advisory artifacts via bot PR
         if: steps.count.outputs.skip == 'false'
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           SLUG="${TARGET_REPO//\//-}"
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
           git add \
             "auditor/audits/${SLUG}.vocab-drift.md" \
             "auditor/audits/${SLUG}.vocab-drift.jsonl" \
@@ -297,10 +294,7 @@ jobs:
             "auditor/vocab-advisories.jsonl" \
             "auditor/logs/events.jsonl" 2>/dev/null || true
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "vocab-drift: ${TARGET_REPO} advisory ($(date +%Y-%m-%d))"
-            bash auditor/scripts/git-push-with-retry.sh
-          }
+          bash auditor/scripts/commit-via-pr.sh "vocab-drift: ${TARGET_REPO} advisory ($(date +%Y-%m-%d))"
 
       # ================================================================
       # COMMENT on the tracking issue (if there is one)

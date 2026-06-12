@@ -59,16 +59,11 @@ jobs:
             "$(jq -cn --argjson r "$REPO_COUNT" --argjson f "$FIND_COUNT" --argjson a "$ADV_COUNT" \
                '{repos: $r, findings: $f, advisories: $a}')" || true
 
-      - name: Commit dashboard
+      - name: Commit dashboard via bot PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/reports/ auditor/logs/events.jsonl 2>/dev/null || true
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "dashboard: $(date -u +%Y-%m-%d) render"
-            bash auditor/scripts/git-push-with-retry.sh
-          }
+          bash auditor/scripts/commit-via-pr.sh "dashboard: $(date -u +%Y-%m-%d) render"

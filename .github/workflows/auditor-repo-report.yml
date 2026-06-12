@@ -66,17 +66,12 @@ jobs:
             "$(jq -cn --arg r "$INPUT_REPO" --argjson ok "$OK" --argjson fail "$FAIL" \
                '{scope: $r, rendered: $ok, failed: $fail}')" || true
 
-      - name: Commit reports
+      - name: Commit reports via bot PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           INPUT_REPO: ${{ inputs.repo }}
         run: |
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/reports/ auditor/logs/events.jsonl 2>/dev/null || true
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "repo-report: backfill ${INPUT_REPO} ($(date -u +%Y-%m-%d))"
-            bash auditor/scripts/git-push-with-retry.sh
-          }
+          bash auditor/scripts/commit-via-pr.sh "repo-report: backfill ${INPUT_REPO} ($(date -u +%Y-%m-%d))"

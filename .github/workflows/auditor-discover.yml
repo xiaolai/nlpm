@@ -302,6 +302,7 @@ jobs:
         if: inputs.dry_run != true && inputs.dry_run != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           source auditor/scripts/log-event.sh
 
@@ -312,15 +313,9 @@ jobs:
 
           log_event "discover" "search_complete" "{\"candidates\": $CANDIDATES, \"new\": $NEW, \"worthy\": $WORTHY, \"oversized\": $OVERSIZED}"
 
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/registry/repos.json auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "chore: discovery $(date +%Y-%m-%d) — $WORTHY new repos"
-            bash auditor/scripts/git-push-with-retry.sh
-          }
+          bash auditor/scripts/commit-via-pr.sh "chore: discovery $(date +%Y-%m-%d) — $WORTHY new repos"
 
       - name: Summary
         run: |
