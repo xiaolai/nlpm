@@ -391,7 +391,7 @@
           "mergedAt": null,
           "closedAt": "2026-05-26T09:28:43Z",
           "title": "fix: pin chrome-devtools-mcp npx version in plugin.json",
-          "updatedAt": "2026-06-02T20:42:25Z",
+          "updatedAt": "2026-06-12T11:49:47Z",
           "createdAt": "2026-05-26T07:18:10Z",
           "outcome": "rejected",
           "fingerprints": [
