@@ -7549,39 +7549,39 @@
       "prs": [
         {
           "number": 13,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-13T17:07:05Z",
           "title": "fix: remove six non-existent skill paths from plugin.json",
-          "updatedAt": "2026-06-05T10:23:04Z",
+          "updatedAt": "2026-06-13T17:43:26Z",
           "createdAt": "2026-04-23T00:38:18Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 14,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-13T17:07:09Z",
           "title": "fix: correct language label for skills/nopua/SKILL.md and register nopua-zh",
-          "updatedAt": "2026-06-05T10:23:04Z",
+          "updatedAt": "2026-06-13T17:43:28Z",
           "createdAt": "2026-04-23T00:38:52Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 15,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-13T17:07:13Z",
           "title": "fix: register nopua-mentor-en and nopua-mentor-ja in plugin.json",
-          "updatedAt": "2026-06-05T10:23:04Z",
+          "updatedAt": "2026-06-13T17:43:30Z",
           "createdAt": "2026-04-23T00:39:15Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -7594,8 +7594,9 @@
       "star_anomaly": 0.0,
       "star_velocity": 1.0,
       "stars": 1229,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "tracked",
+      "strategy": "single",
+      "case_study_candidate": true
     },
     "xiaolai/codex-toolkit-for-claude": {
       "case_study_candidate": true,

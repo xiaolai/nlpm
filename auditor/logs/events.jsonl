@@ -2504,3 +2504,7 @@
 {"timestamp":"2026-06-13T09:18:26Z","workflow":"track","event":"status_check","run_id":"27462522388","run_number":337,"data":{"contributed":36,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
 {"timestamp":"2026-06-13T12:51:41Z","workflow":"track","event":"status_check","run_id":"27467106331","run_number":338,"data":{"contributed":36,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
 {"timestamp":"2026-06-13T16:42:40Z","workflow":"track","event":"status_check","run_id":"27472591361","run_number":339,"data":{"contributed":36,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
+{"timestamp":"2026-06-13T20:40:53Z","workflow":"track","event":"finding_outcome","run_id":"27478315456","run_number":340,"data":{"pr":"wuji-labs/nopua#13","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-13T20:40:54Z","workflow":"track","event":"finding_outcome","run_id":"27478315456","run_number":340,"data":{"pr":"wuji-labs/nopua#14","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-13T20:40:55Z","workflow":"track","event":"finding_outcome","run_id":"27478315456","run_number":340,"data":{"pr":"wuji-labs/nopua#15","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-13T20:41:25Z","workflow":"track","event":"status_check","run_id":"27478315456","run_number":340,"data":{"contributed":35,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
