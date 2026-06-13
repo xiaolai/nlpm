@@ -7594,8 +7594,10 @@
       "star_anomaly": 0.0,
       "star_velocity": 1.0,
       "stars": 1229,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "complete",
+      "strategy": "single",
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=80, security=CLEAR, merged=0, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "xiaolai/codex-toolkit-for-claude": {
       "case_study_candidate": true,
