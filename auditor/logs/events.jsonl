@@ -2508,3 +2508,7 @@
 {"timestamp":"2026-06-13T22:23:07Z","workflow":"daily-report","event":"report_generated","run_id":"27480877810","run_number":71,"data":{"total_repos":219}}
 {"timestamp":"2026-06-13T22:49:23Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27481452388","run_number":27,"data":{"repos":219,"findings":3385,"advisories":22}}
 {"timestamp":"2026-06-14T00:30:25Z","workflow":"suppressions","event":"scan_complete","run_id":"27483530220","run_number":8,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
+{"timestamp":"2026-06-14T01:12:26Z","workflow":"track","event":"finding_outcome","run_id":"27484262543","run_number":341,"data":{"pr":"wuji-labs/nopua#13","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-14T01:12:27Z","workflow":"track","event":"finding_outcome","run_id":"27484262543","run_number":341,"data":{"pr":"wuji-labs/nopua#14","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-14T01:12:28Z","workflow":"track","event":"finding_outcome","run_id":"27484262543","run_number":341,"data":{"pr":"wuji-labs/nopua#15","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-14T01:12:51Z","workflow":"track","event":"status_check","run_id":"27484262543","run_number":341,"data":{"contributed":35,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
