@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-06-08T07:36:57Z",
+    "last_discovery": "2026-06-15T07:52:48Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 205
+    "total_discovered": 206
   },
   "repos": {
     "0xfurai/claude-code-subagents": {
@@ -7976,6 +7976,16 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 319,
+      "prs": []
+    },
+    "data-goblin/power-bi-agentic-development": {
+      "discovered": "2026-06-15T07:52:48Z",
+      "stars": 698,
+      "artifacts": 47,
+      "description": "Power BI AI skills and Power BI agents for Claude Code and GitHub Copilot: a plugin marketplace of Power BI skills, subagents, and hooks for semantic models, DAX, TMDL, reports, and AI dashboards. Includes Microsoft Fabric skills and Fabric agents. Weekly updates.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 362,
       "prs": []
     }
   }
