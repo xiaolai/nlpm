@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-14T22:51:46Z",
+  "generated_at": "2026-06-15T23:08:44Z",
   "since": null,
   "summary": {
-    "total_repos": 219,
+    "total_repos": 220,
     "total_findings": 3385,
     "high_findings": 283,
     "total_advisories": 22,
@@ -2004,6 +2004,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "data-goblin/power-bi-agentic-development",
+      "status": "discovered",
+      "stars": 698,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "davepoon/buildwithclaude",
       "status": "audited",
       "stars": null,
@@ -3964,6 +3976,16 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-15",
+      "counts": {
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
