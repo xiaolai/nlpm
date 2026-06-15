@@ -2525,3 +2525,4 @@
 {"timestamp":"2026-06-15T05:17:56Z","workflow":"classify","event":"classifications_emitted","run_id":"27525647185","run_number":56,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-06-15T06:01:10Z","workflow":"track","event":"status_check","run_id":"27526882749","run_number":348,"data":{"contributed":35,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
 {"timestamp":"2026-06-15T07:52:51Z","workflow":"discover","event":"search_complete","run_id":"27531920621","run_number":19,"data":{"candidates":94,"new":27,"worthy":1,"oversized":9}}
+{"timestamp":"2026-06-15T10:22:33Z","workflow":"track","event":"status_check","run_id":"27539345846","run_number":349,"data":{"contributed":35,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
