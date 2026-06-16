@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T23:08:44Z",
+  "generated_at": "2026-06-16T23:01:08Z",
   "since": null,
   "summary": {
     "total_repos": 220,
@@ -25,7 +25,7 @@
     },
     {
       "repo": "Q00/ouroboros",
-      "status": "discovered",
+      "status": "audited",
       "stars": 3637,
       "score": 69,
       "security": null,
@@ -1645,7 +1645,7 @@
     },
     {
       "repo": "FlorianBruniaux/claude-code-ultimate-guide",
-      "status": "discovered",
+      "status": "audited",
       "stars": 3604,
       "score": null,
       "security": "BLOCKED",
@@ -1753,7 +1753,7 @@
     },
     {
       "repo": "Orchestra-Research/AI-Research-SKILLs",
-      "status": "contributed",
+      "status": "tracked",
       "stars": null,
       "score": 89,
       "security": "REVIEW",
@@ -2413,7 +2413,7 @@
     },
     {
       "repo": "superset-sh/superset",
-      "status": "discovered",
+      "status": "audited",
       "stars": 9749,
       "score": 64,
       "security": "BLOCKED",
@@ -2485,7 +2485,7 @@
     },
     {
       "repo": "tw93/Waza",
-      "status": "discovered",
+      "status": "audited",
       "stars": 3301,
       "score": 79,
       "security": "BLOCKED",
@@ -3986,6 +3986,16 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "search_complete": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-16",
+      "counts": {
+        "finding_outcome": 2,
+        "status_check": 6,
+        "classifications_emitted": 1,
         "report_generated": 1
       }
     }
