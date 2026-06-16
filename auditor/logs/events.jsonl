@@ -2531,3 +2531,6 @@
 {"timestamp":"2026-06-15T21:12:20Z","workflow":"track","event":"status_check","run_id":"27576344659","run_number":352,"data":{"contributed":35,"tracked":34,"case_study_ready":37,"rule_adopted":2}}
 {"timestamp":"2026-06-15T22:39:52Z","workflow":"daily-report","event":"report_generated","run_id":"27581088006","run_number":73,"data":{"total_repos":220}}
 {"timestamp":"2026-06-15T23:08:44Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27582363686","run_number":29,"data":{"repos":220,"findings":3385,"advisories":22}}
+{"timestamp":"2026-06-16T01:13:10Z","workflow":"track","event":"finding_outcome","run_id":"27587224073","run_number":353,"data":{"pr":"Orchestra-Research/AI-Research-SKILLs#52","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-16T01:13:11Z","workflow":"track","event":"finding_outcome","run_id":"27587224073","run_number":353,"data":{"pr":"Orchestra-Research/AI-Research-SKILLs#53","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-16T01:19:12Z","workflow":"track","event":"status_check","run_id":"27587224073","run_number":353,"data":{"contributed":34,"tracked":35,"case_study_ready":38,"rule_adopted":2}}

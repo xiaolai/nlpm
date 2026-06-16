@@ -1345,26 +1345,26 @@
       "prs": [
         {
           "number": 52,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-15T22:13:53Z",
           "title": "fix: correct category skill counts and listings in CLAUDE.md",
-          "updatedAt": "2026-04-21T12:27:38Z",
+          "updatedAt": "2026-06-15T22:13:53Z",
           "createdAt": "2026-04-21T12:27:38Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 53,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-15T22:09:52Z",
+          "closedAt": "2026-06-15T22:09:52Z",
           "title": "fix(security): pin npm dependency versions to exact ranges",
-          "updatedAt": "2026-04-21T12:28:12Z",
+          "updatedAt": "2026-06-15T22:10:02Z",
           "createdAt": "2026-04-21T12:28:12Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -1373,8 +1373,9 @@
       "rule_adopted": false,
       "score": 89,
       "security": "REVIEW",
-      "status": "contributed",
-      "strategy": "progressive"
+      "status": "tracked",
+      "strategy": "progressive",
+      "case_study_candidate": true
     },
     "OthmanAdi/planning-with-files": {
       "case_study_candidate": true,
