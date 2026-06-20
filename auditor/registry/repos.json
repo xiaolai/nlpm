@@ -8034,10 +8034,13 @@
       "stars": 3987,
       "artifacts": 1,
       "description": "Skill package for ML/CV/NLP paper writing, curated and adapted from Prof. Peng Sida's open notes for Codex, Claude Code, and Gemini.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 90,
       "audit_issue": 383,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "9ee5eddc10068cc52590b3a68a827d3a387f5af9"
     },
     "YishenTu/claudian": {
       "discovered": "2026-06-17T23:31:27Z",
