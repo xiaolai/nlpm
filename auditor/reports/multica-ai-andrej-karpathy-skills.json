@@ -1,0 +1,59 @@
+{
+  "project": "multica-ai/andrej-karpathy-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 1,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": null,
+          "message": "CLAUDE.md body duplicates skills/karpathy-guidelines/SKILL.md without @import; changes to the skill will not propagate automatically."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-20T18:35:28Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "low",
+      "file": "CLAUDE.md",
+      "line": null,
+      "message": "CLAUDE.md body duplicates skills/karpathy-guidelines/SKILL.md without @import; changes to the skill will not propagate automatically."
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 177619,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/multica-ai-andrej-karpathy-skills.md"
+  },
+  "generated_at": "2026-06-20T18:35:41Z",
+  "schema_version": 1
+}
