@@ -1586,8 +1586,13 @@
       "score": 92,
       "security": "REVIEW",
       "stars": 596,
-      "status": "audited",
-      "strategy": "batched"
+      "status": "contributed",
+      "strategy": "batched",
+      "pipeline_prs": [
+        81,
+        82,
+        83
+      ]
     },
     "SimoneAvogadro/android-reverse-engineering-skill": {
       "artifacts": 3,
