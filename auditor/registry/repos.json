@@ -1589,7 +1589,9 @@
       "security": "REVIEW",
       "stars": 596,
       "status": "audited",
-      "strategy": "batched"
+      "strategy": "batched",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/ReflexioAI-claude-smart.md"
     },
     "SimoneAvogadro/android-reverse-engineering-skill": {
       "artifacts": 3,
