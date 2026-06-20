@@ -8172,9 +8172,12 @@
       "description": "A Claude Code plugin that iteratively refines product specifications by debating between multiple LLMs until all models reach consensus.",
       "discovered": "2026-06-17T23:31:27Z",
       "prs": [],
-      "score": null,
+      "score": 84,
       "stars": 549,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "f90cf0c36c3999b8dc272c9c06dee9846076f369"
     },
     "zubair-trabzada/geo-seo-claude": {
       "artifacts": 19,
