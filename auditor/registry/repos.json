@@ -3208,7 +3208,9 @@
       "security": "UNKNOWN",
       "stars": 698,
       "status": "audited",
-      "strategy": "batched"
+      "strategy": "batched",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/data-goblin-power-bi-agentic-development.md"
     },
     "davepoon/buildwithclaude": {
       "score": 77,
