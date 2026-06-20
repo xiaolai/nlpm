@@ -1560,12 +1560,15 @@
     "ReflexioAI/claude-smart": {
       "artifacts": 36,
       "audit_issue": 319,
+      "commit_sha_at_audit": "3d1612c53f1497bd39ceecbffb0bde276ddc2cef",
       "description": "A Claude Code plugin that makes Claude Code self-improve \u2014 learning from your corrections, not just remembering them (also support codex now)",
       "discovered": "2026-06-08T07:36:57Z",
       "prs": [],
-      "score": null,
+      "score": 92,
+      "security": "REVIEW",
       "stars": 596,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "SimoneAvogadro/android-reverse-engineering-skill": {
       "artifacts": 3,
