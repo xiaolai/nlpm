@@ -8040,7 +8040,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "9ee5eddc10068cc52590b3a68a827d3a387f5af9"
+      "commit_sha_at_audit": "9ee5eddc10068cc52590b3a68a827d3a387f5af9",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Master-cai-Research-Paper-Writing-Skills.md"
     },
     "YishenTu/claudian": {
       "discovered": "2026-06-17T23:31:27Z",
