@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-06-19T22:46:40Z",
+  "generated_at": "2026-06-20T22:51:15Z",
   "since": null,
   "summary": {
     "total_repos": 233,
-    "total_findings": 3385,
-    "high_findings": 283,
+    "total_findings": 3526,
+    "high_findings": 372,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
-    "repos_blocked": 53
+    "repos_blocked": 57
   },
   "repo_rows": [
     {
@@ -152,6 +152,18 @@
       "total_findings": 50,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "ReflexioAI/claude-smart",
+      "status": "contributed",
+      "stars": 596,
+      "score": 92,
+      "security": "REVIEW",
+      "total_findings": 49,
+      "high_findings": 40,
+      "medium_findings": 9,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1164,6 +1176,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "data-goblin/power-bi-agentic-development",
+      "status": "audited",
+      "stars": 698,
+      "score": 95,
+      "security": "UNKNOWN",
+      "total_findings": 14,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "openai/symphony",
       "status": "audited",
       "stars": null,
@@ -1308,6 +1332,30 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "zscole/adversarial-spec",
+      "status": "audited",
+      "stars": 549,
+      "score": 84,
+      "security": "BLOCKED",
+      "total_findings": 11,
+      "high_findings": 6,
+      "medium_findings": 4,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Enderfga/claw-orchestrator",
+      "status": "audited",
+      "stars": 508,
+      "score": 95,
+      "security": "BLOCKED",
+      "total_findings": 10,
+      "high_findings": 4,
+      "medium_findings": 4,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "addyosmani/web-quality-skills",
       "status": "audited",
       "stars": 1804,
@@ -1316,6 +1364,18 @@
       "total_findings": 10,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "eze-is/web-access",
+      "status": "audited",
+      "stars": 7686,
+      "score": 95,
+      "security": "BLOCKED",
+      "total_findings": 10,
+      "high_findings": 4,
+      "medium_findings": 6,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1352,6 +1412,18 @@
       "total_findings": 10,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Kamalnrf/claude-plugins",
+      "status": "contributed",
+      "stars": 519,
+      "score": 98,
+      "security": "CLEAR",
+      "total_findings": 9,
+      "high_findings": 8,
+      "medium_findings": 1,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1428,6 +1500,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "AKCodez/hackingtool-plugin",
+      "status": "audited",
+      "stars": 766,
+      "score": 88,
+      "security": "BLOCKED",
+      "total_findings": 7,
+      "high_findings": 5,
+      "medium_findings": 2,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "axtonliu/axton-obsidian-visual-skills",
       "status": "audited",
       "stars": 2669,
@@ -1436,6 +1520,18 @@
       "total_findings": 7,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "kingbootoshi/cartographer",
+      "status": "audited",
+      "stars": 590,
+      "score": 85,
+      "security": "REVIEW",
+      "total_findings": 7,
+      "high_findings": 6,
+      "medium_findings": 1,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1464,6 +1560,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "Master-cai/Research-Paper-Writing-Skills",
+      "status": "contributed",
+      "stars": 3987,
+      "score": 90,
+      "security": "CLEAR",
+      "total_findings": 6,
+      "high_findings": 6,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "krodak/clickup-cli",
       "status": "tracked",
       "stars": 57,
@@ -1472,6 +1580,18 @@
       "total_findings": 6,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "YishenTu/claudian",
+      "status": "contributed",
+      "stars": 12895,
+      "score": 100,
+      "security": "REVIEW",
+      "total_findings": 5,
+      "high_findings": 3,
+      "medium_findings": 1,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1488,6 +1608,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "quant-sentiment-ai/claude-equity-research",
+      "status": "audited",
+      "stars": 574,
+      "score": 92,
+      "security": "CLEAR",
+      "total_findings": 5,
+      "high_findings": 3,
+      "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "2389-research/review-squad",
       "status": "audited",
       "stars": 1,
@@ -1500,6 +1632,30 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "CoderGamester/mcp-unity",
+      "status": "audited",
+      "stars": 1779,
+      "score": 90,
+      "security": "CLEAR",
+      "total_findings": 3,
+      "high_findings": 2,
+      "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "teng-lin/notebooklm-py",
+      "status": "audited",
+      "stars": 16576,
+      "score": 99,
+      "security": "CLEAR",
+      "total_findings": 3,
+      "high_findings": 1,
+      "medium_findings": 2,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "vladikk/modularity",
       "status": "audited",
       "stars": 337,
@@ -1507,6 +1663,18 @@
       "security": "CLEAR",
       "total_findings": 3,
       "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "blader/humanizer",
+      "status": "audited",
+      "stars": 24726,
+      "score": 98,
+      "security": "CLEAR",
+      "total_findings": 1,
+      "high_findings": 1,
       "medium_findings": 0,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
@@ -1536,23 +1704,23 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "777genius/claude-notifications-go",
+      "repo": "multica-ai/andrej-karpathy-skills",
       "status": "audited",
-      "stars": 528,
-      "score": 63,
-      "security": "BLOCKED",
-      "total_findings": 0,
+      "stars": 177619,
+      "score": 98,
+      "security": "CLEAR",
+      "total_findings": 1,
       "high_findings": 0,
       "medium_findings": 0,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
     {
-      "repo": "AKCodez/hackingtool-plugin",
-      "status": "discovered",
-      "stars": 766,
-      "score": null,
-      "security": null,
+      "repo": "777genius/claude-notifications-go",
+      "status": "audited",
+      "stars": 528,
+      "score": 63,
+      "security": "BLOCKED",
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -1620,18 +1788,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "CoderGamester/mcp-unity",
-      "status": "discovered",
-      "stars": 1779,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "ComposioHQ/awesome-claude-plugins",
       "status": "contributed",
       "stars": null,
@@ -1649,18 +1805,6 @@
       "stars": null,
       "score": 82,
       "security": "CLEAR",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "Enderfga/claw-orchestrator",
-      "status": "discovered",
-      "stars": 508,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -1740,18 +1884,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "Kamalnrf/claude-plugins",
-      "status": "discovered",
-      "stars": 519,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "LerianStudio/ring",
       "status": "audited",
       "stars": 174,
@@ -1769,18 +1901,6 @@
       "stars": null,
       "score": 86,
       "security": "CLEAR",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "Master-cai/Research-Paper-Writing-Skills",
-      "status": "discovered",
-      "stars": 3987,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -1848,35 +1968,11 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "ReflexioAI/claude-smart",
-      "status": "discovered",
-      "stars": 596,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "Yeachan-Heo/oh-my-claudecode",
       "status": "tracked",
       "stars": 29671,
       "score": 80,
       "security": "REVIEW",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "YishenTu/claudian",
-      "status": "discovered",
-      "stars": 12895,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -1992,18 +2088,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "blader/humanizer",
-      "status": "discovered",
-      "stars": 24726,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "caliber-ai-org/ai-setup",
       "status": "complete",
       "stars": 698,
@@ -2088,18 +2172,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "data-goblin/power-bi-agentic-development",
-      "status": "discovered",
-      "stars": 698,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "davepoon/buildwithclaude",
       "status": "audited",
       "stars": null,
@@ -2153,18 +2225,6 @@
       "stars": null,
       "score": 90,
       "security": "REVIEW",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "eze-is/web-access",
-      "status": "discovered",
-      "stars": 7686,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -2328,18 +2388,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "kingbootoshi/cartographer",
-      "status": "discovered",
-      "stars": 590,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "luongnv89/claude-howto",
       "status": "complete",
       "stars": 27150,
@@ -2369,18 +2417,6 @@
       "stars": 4317,
       "score": 79,
       "security": "REVIEW",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "multica-ai/andrej-karpathy-skills",
-      "status": "discovered",
-      "stars": 177619,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -2429,18 +2465,6 @@
       "stars": null,
       "score": 93,
       "security": "REVIEW",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "quant-sentiment-ai/claude-equity-research",
-      "status": "discovered",
-      "stars": 574,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -2573,18 +2597,6 @@
       "stars": null,
       "score": 93,
       "security": "CLEAR",
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
-      "repo": "teng-lin/notebooklm-py",
-      "status": "discovered",
-      "stars": 16576,
-      "score": null,
-      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -2784,18 +2796,6 @@
       "vocab_drift_high": 0
     },
     {
-      "repo": "zscole/adversarial-spec",
-      "status": "discovered",
-      "stars": 549,
-      "score": null,
-      "security": null,
-      "total_findings": 0,
-      "high_findings": 0,
-      "medium_findings": 0,
-      "vocab_drift_count": 0,
-      "vocab_drift_high": 0
-    },
-    {
       "repo": "zubair-trabzada/geo-seo-claude",
       "status": "complete",
       "stars": 5411,
@@ -2811,28 +2811,33 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 257,
-      "repos_affected": 44
-    },
-    {
-      "rule_id": "UNCLASSIFIED",
-      "total": 205,
-      "repos_affected": 31
+      "total": 258,
+      "repos_affected": 45
     },
     {
       "rule_id": "BUG-missing-frontmatter",
-      "total": 200,
-      "repos_affected": 40
+      "total": 215,
+      "repos_affected": 45
     },
     {
-      "rule_id": "R14",
-      "total": 138,
-      "repos_affected": 31
+      "rule_id": "UNCLASSIFIED",
+      "total": 211,
+      "repos_affected": 34
     },
     {
       "rule_id": "R05",
-      "total": 137,
-      "repos_affected": 22
+      "total": 143,
+      "repos_affected": 23
+    },
+    {
+      "rule_id": "R14",
+      "total": 140,
+      "repos_affected": 33
+    },
+    {
+      "rule_id": "R12",
+      "total": 133,
+      "repos_affected": 32
     },
     {
       "rule_id": "R22",
@@ -2840,29 +2845,24 @@
       "repos_affected": 26
     },
     {
-      "rule_id": "R12",
-      "total": 126,
+      "rule_id": "R09",
+      "total": 121,
       "repos_affected": 30
     },
     {
-      "rule_id": "R09",
-      "total": 116,
-      "repos_affected": 28
+      "rule_id": "R07",
+      "total": 113,
+      "repos_affected": 26
     },
     {
       "rule_id": "R08",
-      "total": 110,
-      "repos_affected": 27
-    },
-    {
-      "rule_id": "R07",
-      "total": 109,
-      "repos_affected": 24
+      "total": 111,
+      "repos_affected": 28
     },
     {
       "rule_id": "SEC-unpinned-semver",
-      "total": 101,
-      "repos_affected": 58
+      "total": 110,
+      "repos_affected": 63
     },
     {
       "rule_id": "R02",
@@ -2870,19 +2870,19 @@
       "repos_affected": 10
     },
     {
+      "rule_id": "R15",
+      "total": 92,
+      "repos_affected": 28
+    },
+    {
       "rule_id": "R11",
       "total": 91,
       "repos_affected": 13
     },
     {
-      "rule_id": "R15",
-      "total": 89,
-      "repos_affected": 26
-    },
-    {
       "rule_id": "R06",
-      "total": 87,
-      "repos_affected": 11
+      "total": 90,
+      "repos_affected": 14
     },
     {
       "rule_id": "R10",
@@ -2891,8 +2891,13 @@
     },
     {
       "rule_id": "BUG-broken-reference",
-      "total": 76,
-      "repos_affected": 33
+      "total": 79,
+      "repos_affected": 35
+    },
+    {
+      "rule_id": "CC-terminology-drift",
+      "total": 54,
+      "repos_affected": 43
     },
     {
       "rule_id": "R04",
@@ -2905,34 +2910,29 @@
       "repos_affected": 22
     },
     {
-      "rule_id": "CC-terminology-drift",
-      "total": 51,
-      "repos_affected": 40
+      "rule_id": "CC-stale-count",
+      "total": 48,
+      "repos_affected": 35
     },
     {
       "rule_id": "R03",
-      "total": 45,
-      "repos_affected": 14
-    },
-    {
-      "rule_id": "CC-stale-count",
-      "total": 45,
-      "repos_affected": 33
+      "total": 46,
+      "repos_affected": 15
     },
     {
       "rule_id": "CC-broken-relative-path",
-      "total": 42,
-      "repos_affected": 31
-    },
-    {
-      "rule_id": "CC-orphan-component",
-      "total": 39,
+      "total": 44,
       "repos_affected": 33
     },
     {
-      "rule_id": "R20",
-      "total": 38,
-      "repos_affected": 4
+      "rule_id": "CC-orphan-component",
+      "total": 44,
+      "repos_affected": 38
+    },
+    {
+      "rule_id": "SEC-curl-pipe-sh",
+      "total": 39,
+      "repos_affected": 20
     }
   ],
   "drift_network": {
@@ -4180,6 +4180,23 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-20",
+      "counts": {
+        "status_check": 5,
+        "classifications_emitted": 1,
+        "scorer_drift_check": 16,
+        "findings_aggregated": 16,
+        "repo_report_rendered": 16,
+        "audit_complete": 16,
+        "report_artifact_uploaded": 7,
+        "prs_submitted": 7,
+        "manual_disclosure_pending": 4,
+        "finding_outcome": 9,
         "report_generated": 1
       }
     }

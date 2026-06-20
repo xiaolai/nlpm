@@ -2669,3 +2669,4 @@
 {"timestamp":"2026-06-20T20:34:46Z","workflow":"track","event":"finding_outcome","run_id":"27883072528","run_number":382,"data":{"pr":"YishenTu/claudian#801","pr_state":"open","fingerprints":["sha256:74ec9eea07014b8ff71de966d41ee83dbaa7d8b601a7c3cea698177d57e60dc5"],"rule_ids":["SEC-unpinned-semver"]}}
 {"timestamp":"2026-06-20T20:41:06Z","workflow":"track","event":"status_check","run_id":"27883072528","run_number":382,"data":{"contributed":38,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-20T22:25:22Z","workflow":"daily-report","event":"report_generated","run_id":"27885734387","run_number":78,"data":{"total_repos":233}}
+{"timestamp":"2026-06-20T22:51:16Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27886322889","run_number":34,"data":{"repos":233,"findings":3526,"advisories":22}}
