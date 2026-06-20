@@ -2621,3 +2621,4 @@
 {"timestamp":"2026-06-20T12:42:34Z","workflow":"audit","event":"audit_complete","run_id":"27871442114","run_number":675,"data":{"repo":"blader/humanizer","score":98,"artifacts":1,"strategy":"single"}}
 {"timestamp":"2026-06-20T12:45:04Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"27871434382","run_number":2521,"data":{"repo":"ReflexioAI/claude-smart","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/27871434382","retention_days":90}}
 {"timestamp":"2026-06-20T12:45:05Z","workflow":"contribute","event":"prs_submitted","run_id":"27871434382","run_number":2521,"data":{"repo":"ReflexioAI/claude-smart","pr_count":3}}
+{"timestamp":"2026-06-20T12:46:24Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"27871443484","run_number":676,"data":{"repo":"eze-is/web-access","queue_path":"auditor/disclosures-pending/eze-is-web-access.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
