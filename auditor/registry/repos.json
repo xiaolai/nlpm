@@ -1111,8 +1111,13 @@
       "score": 98,
       "security": "CLEAR",
       "stars": 519,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        119,
+        120,
+        121
+      ]
     },
     "KhazP/vibe-coding-prompt-template": {
       "artifacts": 6,
