@@ -1845,8 +1845,12 @@
       "score": 100,
       "security": "REVIEW",
       "stars": 12895,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        800,
+        801
+      ]
     },
     "Yuan1z0825/nature-skills": {
       "case_study_candidate": true,
