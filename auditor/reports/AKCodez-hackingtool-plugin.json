@@ -1,0 +1,171 @@
+{
+  "project": "AKCodez/hackingtool-plugin",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 88,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/hackingtool/.claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": null,
+          "message": "Plugin manifest missing 'skills' array; pentest skill on disk is not registered and will not be loaded by the Claude Code plugin system"
+        }
+      ]
+    },
+    {
+      "path": "plugins/hackingtool/scripts/ht_index.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-path-traversal",
+          "severity": "low",
+          "line": 302,
+          "message": "--output argument allows writing tools.json to any filesystem path; risk is limited because ht_index.py is a developer build tool not invoked by the skill at runtime"
+        }
+      ]
+    },
+    {
+      "path": "plugins/hackingtool/scripts/ht_preflight.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 44,
+          "message": "Preflight makes an undisclosed outbound TCP connection to hardcoded Cloudflare IP 1.1.1.1:443 on every session start; not documented to users"
+        }
+      ]
+    },
+    {
+      "path": "plugins/hackingtool/scripts/ht_run.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "high",
+          "line": 206,
+          "message": "User-supplied --args are concatenated unquoted into a shell command string executed via bash -lc; target hostnames or other user data containing shell metacharacters enable command injection"
+        },
+        {
+          "rule": "SEC-sudo-usage",
+          "severity": "high",
+          "line": 204,
+          "message": "Automatic privilege escalation via sudo -n on any permission_denied error; tools that fail for unrelated reasons could silently gain elevated privileges"
+        },
+        {
+          "rule": "SEC-arbitrary-docker-image",
+          "severity": "medium",
+          "line": 379,
+          "message": "--docker-image argument value is written directly into DOCKER_IMAGE_OVERRIDES without allowlist validation; an attacker-controlled image name could execute a malicious container"
+        }
+      ]
+    },
+    {
+      "path": "plugins/hackingtool/skills/pentest/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-orphan-component",
+          "severity": "medium",
+          "line": null,
+          "message": "SKILL.md is not declared in plugin.json and will not be auto-loaded by the Claude Code plugin system on install"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-20T08:47:34Z",
+      "average_score": 88,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/hackingtool/.claude-plugin/plugin.json",
+      "line": null,
+      "message": "Plugin manifest missing 'skills' array; pentest skill on disk is not registered and will not be loaded by the Claude Code plugin system — plugin.json contains no 'skills' key; skills/pentest/SKILL.md is present on disk"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/hackingtool/scripts/ht_run.py",
+      "line": 206,
+      "message": "User-supplied --args are concatenated unquoted into a shell command string executed via bash -lc; target hostnames or other user data containing shell metacharacters enable command injection — run_native calls subprocess.run(['bash', '-lc', full]) where full = f\"{prefix}{command}\" and command = f\"{cmds[0]} {args.args}\" with args.args being the user-supplied --args value"
+    },
+    {
+      "rule": "SEC-sudo-usage",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/hackingtool/scripts/ht_run.py",
+      "line": 204,
+      "message": "Automatic privilege escalation via sudo -n on any permission_denied error; tools that fail for unrelated reasons could silently gain elevated privileges — run_native prepends 'sudo -n ' to command at line 204; auto-retry block at lines 386-393 re-runs any permission_denied failure with sudo without per-invocation user consent"
+    },
+    {
+      "rule": "SEC-arbitrary-docker-image",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "plugins/hackingtool/scripts/ht_run.py",
+      "line": 379,
+      "message": "--docker-image argument value is written directly into DOCKER_IMAGE_OVERRIDES without allowlist validation; an attacker-controlled image name could execute a malicious container"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/hackingtool/scripts/ht_preflight.py",
+      "line": 44,
+      "message": "Preflight makes an undisclosed outbound TCP connection to hardcoded Cloudflare IP 1.1.1.1:443 on every session start; not documented to users — socket.create_connection((\"1.1.1.1\", 443), timeout=3) at line 44 is unconditional on every preflight run"
+    },
+    {
+      "rule": "SEC-path-traversal",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/hackingtool/scripts/ht_index.py",
+      "line": 302,
+      "message": "--output argument allows writing tools.json to any filesystem path; risk is limited because ht_index.py is a developer build tool not invoked by the skill at runtime"
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/hackingtool/skills/pentest/SKILL.md",
+      "line": null,
+      "message": "SKILL.md is not declared in plugin.json and will not be auto-loaded by the Claude Code plugin system on install — plugin.json has no 'skills' key; skills/pentest/SKILL.md exists at that path on disk"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 766,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/AKCodez-hackingtool-plugin.md"
+  },
+  "generated_at": "2026-06-20T08:48:03Z",
+  "schema_version": 1
+}
