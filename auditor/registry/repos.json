@@ -6262,9 +6262,12 @@
       "description": "\ud83d\udd0c Claude Code Plugin for institutional-grade equity research.   Install with /plugin marketplace add. Generates professional   buy/sell recommendations with comprehensive fundamental   analysis, technical indicators, and risk assessment. Educational    use only - not financial advice.",
       "discovered": "2026-06-17T23:31:27Z",
       "prs": [],
-      "score": null,
+      "score": 92,
       "stars": 574,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "95130e5d9e410d879112644dc654c44428677e0f"
     },
     "qwibitai/nanoclaw": {
       "artifacts": 46,
