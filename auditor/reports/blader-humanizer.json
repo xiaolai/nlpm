@@ -1,0 +1,59 @@
+{
+  "project": "blader/humanizer",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 1,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R06",
+          "severity": "low",
+          "line": 79,
+          "message": "Vague quantifier \"some\" in instructional prose; the following sentences (tangents, asides, half-formed thoughts) partially resolve the ambiguity."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-20T12:42:23Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R06",
+      "severity": "low",
+      "confidence": "high",
+      "file": "SKILL.md",
+      "line": 79,
+      "message": "Vague quantifier \"some\" in instructional prose; the following sentences (tangents, asides, half-formed thoughts) partially resolve the ambiguity. — Instructional line reads: \"Let some mess in.\" — \"some\" is a vague quantifier; immediately followed by three concrete examples that narrow the meaning."
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 24726,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/blader-humanizer.md"
+  },
+  "generated_at": "2026-06-20T12:42:34Z",
+  "schema_version": 1
+}
