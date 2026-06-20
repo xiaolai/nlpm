@@ -463,12 +463,15 @@
     "CoderGamester/mcp-unity": {
       "artifacts": 1,
       "audit_issue": 380,
+      "commit_sha_at_audit": "cce8b57de9cb69633deb222c9162dad539a52b87",
       "description": "Model Context Protocol (MCP) plugin to connect with Unity Editor \u2014 designed for Cursor, Claude Code, Codex, Windsurf and other IDEs",
       "discovered": "2026-06-17T23:31:27Z",
       "prs": [],
-      "score": null,
+      "score": 90,
+      "security": "CLEAR",
       "stars": 1779,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "ComposioHQ/awesome-claude-plugins": {
       "pipeline_prs": [

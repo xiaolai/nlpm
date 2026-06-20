@@ -1,0 +1,87 @@
+{
+  "project": "CoderGamester/mcp-unity",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 1,
+    "average_score": 90,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": 115,
+          "message": "Vague duration quantifier 'long' in Common Pitfalls bullet; no threshold defined (e.g. >16ms or >1 frame)"
+        },
+        {
+          "rule": "R15",
+          "severity": "low",
+          "line": 116,
+          "message": "Vague duration quantifier 'long' repeated in the same bullet; no duration threshold specified"
+        },
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": 89,
+          "message": "'Adding a New Resource' section (lines 89-93) contains only two bullet points with no code example, unlike the fully exemplified 'Adding a New Tool' section which shows both C# and TypeScript implementations"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-20T08:44:13Z",
+      "average_score": 90,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "high",
+      "file": "CLAUDE.md",
+      "line": 115,
+      "message": "Vague duration quantifier 'long' in Common Pitfalls bullet; no threshold defined (e.g. >16ms or >1 frame) — Line 115: 'Long main-thread work' — 'long' used without any numeric threshold or frame budget"
+    },
+    {
+      "rule": "R15",
+      "severity": "low",
+      "confidence": "high",
+      "file": "CLAUDE.md",
+      "line": 116,
+      "message": "Vague duration quantifier 'long' repeated in the same bullet; no duration threshold specified — Line 116: 'use IsAsync = true with ExecuteAsync() for long operations' — 'long' unquantified"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "CLAUDE.md",
+      "line": 89,
+      "message": "'Adding a New Resource' section (lines 89-93) contains only two bullet points with no code example, unlike the fully exemplified 'Adding a New Tool' section which shows both C# and TypeScript implementations"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 1779,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/CoderGamester-mcp-unity.md"
+  },
+  "generated_at": "2026-06-20T08:44:29Z",
+  "schema_version": 1
+}
