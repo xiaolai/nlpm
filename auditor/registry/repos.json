@@ -474,7 +474,9 @@
       "security": "CLEAR",
       "stars": 1779,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/CoderGamester-mcp-unity.md"
     },
     "ComposioHQ/awesome-claude-plugins": {
       "pipeline_prs": [
