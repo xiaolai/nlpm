@@ -1112,7 +1112,9 @@
       "security": "CLEAR",
       "stars": 519,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Kamalnrf-claude-plugins.md"
     },
     "KhazP/vibe-coding-prompt-template": {
       "artifacts": 6,
