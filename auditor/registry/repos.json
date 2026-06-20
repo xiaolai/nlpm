@@ -1772,9 +1772,12 @@
       "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault",
       "discovered": "2026-06-17T23:31:27Z",
       "prs": [],
-      "score": null,
+      "score": 100,
       "stars": 12895,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "2ca77f03c7ed91f9374d5fb4d41891fae6d45b11"
     },
     "Yuan1z0825/nature-skills": {
       "case_study_candidate": true,
