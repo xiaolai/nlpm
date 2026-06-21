@@ -5808,13 +5808,13 @@
       "prs": [
         {
           "number": 287,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-21T12:05:21Z",
+          "closedAt": "2026-06-21T12:05:21Z",
           "title": "fix: remove unsubstituted template variable from slides/SKILL.md",
-          "updatedAt": "2026-04-26T06:52:25Z",
+          "updatedAt": "2026-06-21T12:07:21Z",
           "createdAt": "2026-04-26T06:52:25Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:1ccc6d7c8e050e29a3087d9ef10740d5b43b9aed4f17740296f52e9d115c23e7"
           ],
@@ -5829,7 +5829,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: correct style and stack counts in plugin.json description",
-          "updatedAt": "2026-04-26T06:54:06Z",
+          "updatedAt": "2026-06-21T09:58:48Z",
           "createdAt": "2026-04-26T06:43:45Z",
           "outcome": "open",
           "fingerprints": [
@@ -5848,7 +5848,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: replace execSync template string with execFileSync in sync-brand-to-tokens.cjs",
-          "updatedAt": "2026-04-26T06:55:47Z",
+          "updatedAt": "2026-06-21T09:43:09Z",
           "createdAt": "2026-04-26T06:44:33Z",
           "outcome": "open",
           "fingerprints": [

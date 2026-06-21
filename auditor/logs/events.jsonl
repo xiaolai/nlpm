@@ -2684,3 +2684,5 @@
 {"timestamp":"2026-06-21T05:50:54Z","workflow":"track","event":"status_check","run_id":"27894997391","run_number":384,"data":{"contributed":40,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-21T09:29:34Z","workflow":"track","event":"status_check","run_id":"27899904407","run_number":385,"data":{"contributed":40,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-21T10:18:56Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"27901231529","run_number":9,"data":{"proposals":6,"skipped_existing_open":0}}
+{"timestamp":"2026-06-21T12:53:13Z","workflow":"track","event":"finding_outcome","run_id":"27904791042","run_number":386,"data":{"pr":"nextlevelbuilder/ui-ux-pro-max-skill#287","pr_state":"merged","fingerprints":["sha256:1ccc6d7c8e050e29a3087d9ef10740d5b43b9aed4f17740296f52e9d115c23e7"],"rule_ids":["BUG-stale-template"]}}
+{"timestamp":"2026-06-21T12:55:32Z","workflow":"track","event":"status_check","run_id":"27904791042","run_number":386,"data":{"contributed":40,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
