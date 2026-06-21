@@ -2683,3 +2683,4 @@
 {"timestamp":"2026-06-21T05:15:19Z","workflow":"classify","event":"classifications_emitted","run_id":"27894426338","run_number":62,"data":{"classifications":1,"invalid":0}}
 {"timestamp":"2026-06-21T05:50:54Z","workflow":"track","event":"status_check","run_id":"27894997391","run_number":384,"data":{"contributed":40,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-21T09:29:34Z","workflow":"track","event":"status_check","run_id":"27899904407","run_number":385,"data":{"contributed":40,"tracked":35,"case_study_ready":38,"rule_adopted":2}}
+{"timestamp":"2026-06-21T10:18:56Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"27901231529","run_number":9,"data":{"proposals":6,"skipped_existing_open":0}}
