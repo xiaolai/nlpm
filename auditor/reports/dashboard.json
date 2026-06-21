@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T22:51:15Z",
+  "generated_at": "2026-06-21T22:50:51Z",
   "since": null,
   "summary": {
     "total_repos": 233,
@@ -1525,7 +1525,7 @@
     },
     {
       "repo": "kingbootoshi/cartographer",
-      "status": "audited",
+      "status": "contributed",
       "stars": 590,
       "score": 85,
       "security": "REVIEW",
@@ -1645,7 +1645,7 @@
     },
     {
       "repo": "teng-lin/notebooklm-py",
-      "status": "audited",
+      "status": "contributed",
       "stars": 16576,
       "score": 99,
       "security": "CLEAR",
@@ -4197,6 +4197,20 @@
         "prs_submitted": 7,
         "manual_disclosure_pending": 4,
         "finding_outcome": 9,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-21",
+      "counts": {
+        "scan_complete": 1,
+        "report_artifact_uploaded": 3,
+        "prs_submitted": 3,
+        "finding_outcome": 4,
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "proposals_prepared": 1,
         "report_generated": 1
       }
     }
