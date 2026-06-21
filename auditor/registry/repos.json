@@ -6359,7 +6359,9 @@
       "security": "CLEAR",
       "stars": 574,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/quant-sentiment-ai-claude-equity-research.md"
     },
     "qwibitai/nanoclaw": {
       "artifacts": 46,
