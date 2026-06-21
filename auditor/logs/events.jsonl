@@ -2671,3 +2671,5 @@
 {"timestamp":"2026-06-20T22:25:22Z","workflow":"daily-report","event":"report_generated","run_id":"27885734387","run_number":78,"data":{"total_repos":233}}
 {"timestamp":"2026-06-20T22:51:16Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27886322889","run_number":34,"data":{"repos":233,"findings":3526,"advisories":22}}
 {"timestamp":"2026-06-21T00:30:37Z","workflow":"suppressions","event":"scan_complete","run_id":"27888488797","run_number":9,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
+{"timestamp":"2026-06-21T00:54:42Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"27888948597","run_number":2529,"data":{"repo":"teng-lin/notebooklm-py","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/27888948597","retention_days":90}}
+{"timestamp":"2026-06-21T00:54:42Z","workflow":"contribute","event":"prs_submitted","run_id":"27888948597","run_number":2529,"data":{"repo":"teng-lin/notebooklm-py","pr_count":0}}

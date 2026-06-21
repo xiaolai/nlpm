@@ -7355,8 +7355,9 @@
       "score": 99,
       "security": "CLEAR",
       "stars": 16576,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": []
     },
     "thedotmack/claude-mem": {
       "score": 97,
