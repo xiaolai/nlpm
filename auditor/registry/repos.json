@@ -4969,8 +4969,12 @@
       "score": 85,
       "security": "REVIEW",
       "stars": 590,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        7,
+        8
+      ]
     },
     "krodak/clickup-cli": {
       "artifacts": 5,
