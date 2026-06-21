@@ -5844,13 +5844,13 @@
         },
         {
           "number": 283,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-21T17:54:22Z",
+          "closedAt": "2026-06-21T17:54:22Z",
           "title": "fix: replace execSync template string with execFileSync in sync-brand-to-tokens.cjs",
-          "updatedAt": "2026-06-21T09:43:09Z",
+          "updatedAt": "2026-06-21T17:55:50Z",
           "createdAt": "2026-04-26T06:44:33Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:3b2dc21792abe9222fed3a26d01b6bfdcde65fac8eba7f3db9da9f29d410acdb"
           ],
