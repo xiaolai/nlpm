@@ -5882,7 +5882,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: add SHA-256 checksum verification to GitHub release downloads",
-          "updatedAt": "2026-04-26T07:00:27Z",
+          "updatedAt": "2026-06-21T08:29:11Z",
           "createdAt": "2026-04-26T07:00:27Z",
           "outcome": "open",
           "fingerprints": [
