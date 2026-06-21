@@ -5493,7 +5493,9 @@
       "security": "CLEAR",
       "stars": 177619,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/multica-ai-andrej-karpathy-skills.md"
     },
     "muratcankoylan/Agent-Skills-for-Context-Engineering": {
       "artifacts": 21,
