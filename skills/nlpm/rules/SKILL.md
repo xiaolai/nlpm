@@ -72,6 +72,8 @@ Good: `<example>\nContext: Developer refactoring auth module before PR\nuser: "C
 
 **R19. `user-invocable: false` is mandatory.** Without it, the partial appears as a user command.
 
+*Does not apply to:* standalone commands, including commands whose body is a single unconditional message. `user-invocable: false` is only required for fragments designed to be imported by other commands — not for executable commands that happen to be simple. A command that issues one unconditional instruction is a command, not a shared partial.
+
 **R20. `description` must state purpose.** What the partial does, which commands use it.
 
 ---
