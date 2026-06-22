@@ -17,6 +17,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write  # required by claude-code-action (OIDC token exchange)
 
 concurrency:
   group: nlpm-refine-rules
