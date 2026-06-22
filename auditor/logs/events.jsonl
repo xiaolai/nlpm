@@ -2706,3 +2706,4 @@
 {"timestamp":"2026-06-22T21:05:27Z","workflow":"track","event":"finding_outcome","run_id":"27983949858","run_number":394,"data":{"pr":"AgriciDaniel/claude-ads#19","pr_state":"open","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-06-22T21:13:03Z","workflow":"track","event":"status_check","run_id":"27983949858","run_number":394,"data":{"contributed":39,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-22T22:33:27Z","workflow":"daily-report","event":"report_generated","run_id":"27988553049","run_number":80,"data":{"total_repos":233}}
+{"timestamp":"2026-06-22T23:00:42Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27989828985","run_number":36,"data":{"repos":233,"findings":3526,"advisories":22}}

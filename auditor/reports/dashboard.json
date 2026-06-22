@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T22:50:51Z",
+  "generated_at": "2026-06-22T23:00:42Z",
   "since": null,
   "summary": {
     "total_repos": 233,
@@ -1585,7 +1585,7 @@
     },
     {
       "repo": "YishenTu/claudian",
-      "status": "contributed",
+      "status": "tracked",
       "stars": 12895,
       "score": 100,
       "security": "REVIEW",
@@ -4211,6 +4211,18 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-22",
+      "counts": {
+        "status_check": 6,
+        "proposals_prepared": 3,
+        "classifications_emitted": 1,
+        "finding_outcome": 3,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
