@@ -1906,13 +1906,13 @@
       "prs": [
         {
           "number": 800,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-22T03:43:07Z",
           "title": "fix: use spawnSync to prevent shell injection in build.mjs",
-          "updatedAt": "2026-06-20T18:35:01Z",
+          "updatedAt": "2026-06-22T03:43:07Z",
           "createdAt": "2026-06-20T18:35:01Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:507431309aa3d6fdd46d4e381ec2059bdc639b62537f9d48cb769d863363f209"
           ],
@@ -1923,13 +1923,13 @@
         },
         {
           "number": 801,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-06-22T03:42:43Z",
           "title": "fix: pin obsidian devDependency to ^1.12.3 instead of latest",
-          "updatedAt": "2026-06-20T18:35:42Z",
+          "updatedAt": "2026-06-22T03:42:43Z",
           "createdAt": "2026-06-20T18:35:42Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:74ec9eea07014b8ff71de966d41ee83dbaa7d8b601a7c3cea698177d57e60dc5"
           ],
@@ -1943,7 +1943,7 @@
       "score": 100,
       "security": "REVIEW",
       "stars": 12895,
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "single"
     },
     "Yuan1z0825/nature-skills": {

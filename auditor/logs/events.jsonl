@@ -2696,3 +2696,6 @@
 {"timestamp":"2026-06-22T02:37:02Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"27926043273","run_number":11,"data":{"proposals":6,"skipped_existing_open":0}}
 {"timestamp":"2026-06-22T02:41:59Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"27926085971","run_number":12,"data":{"proposals":6,"skipped_existing_open":0}}
 {"timestamp":"2026-06-22T05:18:49Z","workflow":"classify","event":"classifications_emitted","run_id":"27931256144","run_number":63,"data":{"classifications":1,"invalid":0}}
+{"timestamp":"2026-06-22T05:58:02Z","workflow":"track","event":"finding_outcome","run_id":"27932599848","run_number":390,"data":{"pr":"YishenTu/claudian#800","pr_state":"closed_unmerged","fingerprints":["sha256:507431309aa3d6fdd46d4e381ec2059bdc639b62537f9d48cb769d863363f209"],"rule_ids":["SEC-shell-injection"]}}
+{"timestamp":"2026-06-22T05:58:03Z","workflow":"track","event":"finding_outcome","run_id":"27932599848","run_number":390,"data":{"pr":"YishenTu/claudian#801","pr_state":"closed_unmerged","fingerprints":["sha256:74ec9eea07014b8ff71de966d41ee83dbaa7d8b601a7c3cea698177d57e60dc5"],"rule_ids":["SEC-unpinned-semver"]}}
+{"timestamp":"2026-06-22T06:04:24Z","workflow":"track","event":"status_check","run_id":"27932599848","run_number":390,"data":{"contributed":39,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
