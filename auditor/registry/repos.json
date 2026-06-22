@@ -203,6 +203,19 @@
       ],
       "prs": [
         {
+          "number": 19,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: remove --break-system-packages silent fallback in install.sh",
+          "updatedAt": "2026-04-20T18:24:54Z",
+          "createdAt": "2026-04-20T18:24:54Z",
+          "outcome": "open",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
           "number": 20,
           "state": "OPEN",
           "mergedAt": null,
