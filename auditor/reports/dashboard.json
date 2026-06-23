@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T23:00:42Z",
+  "generated_at": "2026-06-23T22:52:10Z",
   "since": null,
   "summary": {
     "total_repos": 233,
@@ -1561,7 +1561,7 @@
     },
     {
       "repo": "Master-cai/Research-Paper-Writing-Skills",
-      "status": "contributed",
+      "status": "complete",
       "stars": 3987,
       "score": 90,
       "security": "CLEAR",
@@ -4223,6 +4223,18 @@
         "classifications_emitted": 1,
         "finding_outcome": 3,
         "search_complete": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-23",
+      "counts": {
+        "status_check": 5,
+        "classifications_emitted": 1,
+        "finding_verified": 6,
+        "no_narrative": 1,
+        "finding_outcome": 1,
         "report_generated": 1
       }
     }
