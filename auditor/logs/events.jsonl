@@ -2709,3 +2709,5 @@
 {"timestamp":"2026-06-22T23:00:42Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"27989828985","run_number":36,"data":{"repos":233,"findings":3526,"advisories":22}}
 {"timestamp":"2026-06-23T01:04:39Z","workflow":"track","event":"status_check","run_id":"27994607114","run_number":395,"data":{"contributed":39,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-23T04:53:24Z","workflow":"classify","event":"classifications_emitted","run_id":"28003041577","run_number":64,"data":{"classifications":2,"invalid":0}}
+{"timestamp":"2026-06-23T05:28:11Z","workflow":"track","event":"finding_outcome","run_id":"28004339804","run_number":396,"data":{"pr":"Master-cai/Research-Paper-Writing-Skills#6","pr_state":"merged","fingerprints":["sha256:684ef202760f37ae5be48546d2a2f7bc2bba0cf6165d0c2b78a6824ef7a5df24"],"rule_ids":["R01"]}}
+{"timestamp":"2026-06-23T05:35:22Z","workflow":"track","event":"status_check","run_id":"28004339804","run_number":396,"data":{"contributed":38,"tracked":37,"case_study_ready":39,"rule_adopted":2}}
