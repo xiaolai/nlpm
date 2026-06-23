@@ -1400,13 +1400,13 @@
       "prs": [
         {
           "number": 6,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-23T02:28:55Z",
+          "closedAt": "2026-06-23T02:28:55Z",
           "title": "fix: correct typo \"Paper Rview\" → \"Paper Review\" in section guide index",
-          "updatedAt": "2026-06-20T08:43:01Z",
+          "updatedAt": "2026-06-23T02:28:55Z",
           "createdAt": "2026-06-20T08:43:01Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:684ef202760f37ae5be48546d2a2f7bc2bba0cf6165d0c2b78a6824ef7a5df24"
           ],
