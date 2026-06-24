@@ -2727,3 +2727,5 @@
 {"timestamp":"2026-06-24T04:55:04Z","workflow":"classify","event":"classifications_emitted","run_id":"28076080424","run_number":65,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-06-24T05:32:15Z","workflow":"track","event":"status_check","run_id":"28077207862","run_number":402,"data":{"contributed":38,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
 {"timestamp":"2026-06-24T09:21:23Z","workflow":"track","event":"status_check","run_id":"28088041277","run_number":403,"data":{"contributed":38,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
+{"timestamp":"2026-06-24T12:57:51Z","workflow":"track","event":"finding_outcome","run_id":"28099816352","run_number":404,"data":{"pr":"nextlevelbuilder/ui-ux-pro-max-skill#284","pr_state":"merged","fingerprints":["sha256:3c24cc56309b9f06223a90749116fe7042f25f8f2e080e1d70316ba45f26fb2f"],"rule_ids":["SEC-unpinned-semver"]}}
+{"timestamp":"2026-06-24T12:59:58Z","workflow":"track","event":"status_check","run_id":"28099816352","run_number":404,"data":{"contributed":38,"tracked":36,"case_study_ready":38,"rule_adopted":2}}
