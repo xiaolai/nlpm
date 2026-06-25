@@ -753,6 +753,7 @@ jobs:
           TOTAL: ${{ steps.triage.outputs.total }}
           STRATEGY: ${{ steps.triage.outputs.strategy }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           SLUG="${TARGET_REPO//\//-}"
           mkdir -p "auditor/audits"
@@ -828,16 +829,10 @@ jobs:
             exit 1
           fi
 
-          # Re-enable git credentials for push
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          # Commit via bot PR.
           git add auditor/audits/ auditor/reports/ auditor/registry/ auditor/logs/events.jsonl auditor/findings.jsonl auditor/disagreements.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "audit: $TARGET_REPO ($SCORE/100, security:$SECURITY, $STRATEGY, $TOTAL artifacts)"
-            bash auditor/scripts/git-push-with-retry.sh 5
-          }
+          bash auditor/scripts/commit-via-pr.sh "audit: $TARGET_REPO ($SCORE/100, security:$SECURITY, $STRATEGY, $TOTAL artifacts)"
 
           gh issue edit "$ISSUE_NUM" --add-label "audit-complete" --remove-label "audit-ready" 2>/dev/null || true
 
@@ -979,11 +974,8 @@ jobs:
               # and the push retry logic still has to handle conflicts.
               git add auditor/disclosures-pending/ auditor/logs/events.jsonl
               bash auditor/scripts/guard-protected-paths.sh || exit 1
-              git diff --cached --quiet || {
-                git commit -m "disclosure-pending: $TARGET_REPO (security:$SECURITY)"
-                bash auditor/scripts/git-push-with-retry.sh 5 \
-                  || echo "WARN: disclosure-pending push failed after 5 attempts; file is staged but not pushed"
-              }
+              bash auditor/scripts/commit-via-pr.sh "disclosure-pending: $TARGET_REPO (security:$SECURITY)" \
+                || echo "WARN: disclosure-pending bot PR failed; file is staged locally but not pushed"
             fi
           fi
 

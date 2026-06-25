@@ -54,16 +54,11 @@ jobs:
           source auditor/scripts/log-event.sh
           log_event "suppressions" "scan_complete" "$SUMMARY" || true
 
-      - name: Commit and push
+      - name: Commit via bot PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/disagreements.jsonl auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "suppressions: $(date +%Y-%m-%d) scan"
-            bash auditor/scripts/git-push-with-retry.sh
-          }
+          bash auditor/scripts/commit-via-pr.sh "suppressions: $(date +%Y-%m-%d) scan"

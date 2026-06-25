@@ -73,26 +73,13 @@ jobs:
       - name: Log and commit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           source auditor/scripts/log-event.sh
 
           TOTAL=$(jq '.repos | length' auditor/registry/repos.json)
           log_event "daily-report" "report_generated" "$(jq -cn --arg total "$TOTAL" '{total_repos: ($total | tonumber)}')" || true
 
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add auditor/reports/ auditor/feedback/ auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "report: daily $(date +%Y-%m-%d)"
-
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push 2>/dev/null; then break; fi
-              echo "Push attempt $ATTEMPT failed, pulling..."
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "report: daily $(date +%Y-%m-%d)"
