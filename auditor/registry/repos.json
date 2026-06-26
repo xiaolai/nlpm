@@ -5896,7 +5896,7 @@
           "stale_90d_emitted": false
         }
       ],
-      "rule_adopted": false,
+      "rule_adopted": true,
       "score": 85,
       "security": "CLEAR",
       "stars": 70122,
