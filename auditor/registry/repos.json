@@ -8494,13 +8494,15 @@
       "stars": 277,
       "artifacts": 4,
       "description": "",
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "audit_issue": 451,
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "f3ce88a7ba830f53afd6d944c1d0278ed318e142"
+      "commit_sha_at_audit": "f3ce88a7ba830f53afd6d944c1d0278ed318e142",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/astral-sh-claude-code-plugins.md"
     },
     "makenotion/claude-code-notion-plugin": {
       "discovered": "2026-06-27T01:51:51Z",
@@ -8549,13 +8551,16 @@
       "stars": 131,
       "artifacts": 1,
       "description": "",
-      "status": "audited",
+      "status": "contributed",
       "score": 92,
       "audit_issue": 455,
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "7a524f6309b7213cc106b8ec7ff308af9287ada4"
+      "commit_sha_at_audit": "7a524f6309b7213cc106b8ec7ff308af9287ada4",
+      "pipeline_prs": [
+        19
+      ]
     },
     "buildatscale-tv/claude-code-plugins": {
       "discovered": "2026-06-27T01:56:32Z",
