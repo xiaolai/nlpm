@@ -1,0 +1,801 @@
+{
+  "project": "nicknisi/claude-plugins",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 29,
+    "average_score": 90,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/consultant/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-MEDIUM-unpinned-npx",
+          "severity": "medium",
+          "line": 5,
+          "message": "Unpinned npx MCP server; a compromised or yanked package version could run arbitrary code at session start"
+        },
+        {
+          "rule": "SEC-MEDIUM-unpinned-npx",
+          "severity": "medium",
+          "line": 12,
+          "message": "Unpinned npx MCP server for gemini-mcp-tool"
+        },
+        {
+          "rule": "SEC-MEDIUM-unpinned-npx",
+          "severity": "medium",
+          "line": 19,
+          "message": "Unpinned npx MCP server from a low-visibility npm org; heightened supply-chain risk"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "XCOMP-implicit-tool-scope",
+          "severity": "low",
+          "line": 1,
+          "message": "Researcher agents rely on Claude Code default tool grants rather than declaring an explicit tool scope; if defaults change the agents silently acquire or lose capabilities"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/claude-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/codex-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/gemini-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/grok-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/perplexity-researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/consultant/agents/researcher.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/coder.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent does not declare a model; runtime will use session default which may not match intended capability tier"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/dx-optimizer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples; evaluators and users cannot calibrate expected behavior"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/dx-sdk-advocate.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 4,
+          "message": "BashOutput is not a standard Claude Code tool; declaration will be ignored or cause errors at registration"
+        },
+        {
+          "rule": "BUG-undeclared-tool",
+          "severity": "medium",
+          "line": 4,
+          "message": "KillBash is not a standard Claude Code tool; Bash tool covers process termination"
+        },
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 1,
+          "message": "No output format section; response shape is undefined"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/readme-writer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent does not declare a model; runtime will use session default"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/security-agent.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent does not declare a model; runtime will use session default"
+        },
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        },
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 1,
+          "message": "No output format section; security findings have no declared structure (severity labels, finding schema)"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 12,
+          "message": "Vague quantifier 'proper' without a referenced standard or concrete criterion"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 18,
+          "message": "Second occurrence of vague quantifier 'proper'"
+        }
+      ]
+    },
+    {
+      "path": "plugins/developer-experience/agents/typescript-pro.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Zero user/assistant interaction examples"
+        },
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 1,
+          "message": "Output Standards is a quality checklist, not a response format spec; reader cannot determine response shape"
+        }
+      ]
+    },
+    {
+      "path": "plugins/essentials/agents/git-committer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Agent does not declare a model; runtime will use session default"
+        },
+        {
+          "rule": "R07",
+          "severity": "medium",
+          "line": 1,
+          "message": "Commit body templates do not count as interaction examples under R07"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 8,
+          "message": "Vague quantifier 'appropriate' leaves file-staging scope undefined"
+        }
+      ]
+    },
+    {
+      "path": "plugins/essentials/agents/thermo-nuclear-code-quality-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 1,
+          "message": "Partial credit: output format is defined in the referenced skill, but the agent does not summarize the format for standalone readability"
+        }
+      ]
+    },
+    {
+      "path": "plugins/essentials/skills/prototype/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "XCOMP-undeclared-sibling-dependency",
+          "severity": "low",
+          "line": 1,
+          "message": "Sibling file dependencies (LOGIC.md, UI.md) are referenced but not declared; behavior depends on undocumented skill-loader semantics"
+        }
+      ]
+    },
+    {
+      "path": "plugins/essentials/skills/ultrathink/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": 1,
+          "message": "Mode-setting skill does not specify how its activation affects output structure"
+        }
+      ]
+    },
+    {
+      "path": "plugins/meta/skills/claude-code-analyzer/scripts/fetch-features.sh",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-LOW-outbound-http",
+          "severity": "low",
+          "line": 3,
+          "message": "Script makes outbound HTTP request; fails silently on network unavailability and exposes session to external URL changes"
+        }
+      ]
+    },
+    {
+      "path": "plugins/meta/skills/claude-code-analyzer/scripts/github-discovery.sh",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-LOW-outbound-api",
+          "severity": "low",
+          "line": 1,
+          "message": "Script calls GitHub API without verifying authentication; may silently fail or consume API rate limit"
+        }
+      ]
+    },
+    {
+      "path": "plugins/sandbox/agents/cunningham.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 1,
+          "message": "No output format section; response shape is undefined"
+        }
+      ]
+    },
+    {
+      "path": "plugins/sidequest/.mcp.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-MEDIUM-unpinned-npx",
+          "severity": "medium",
+          "line": 5,
+          "message": "Unpinned npx MCP server for omnifocus-mcp-enhanced"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "XCOMP-systemic-omission",
+          "severity": "high",
+          "line": 1,
+          "message": "Systemic frontmatter omission across all commands in the spec-driven plugin; the plugin.json describes the plugin correctly but no individual commands can be registered"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/check-prp.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/check-spec.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/execute-prp.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/execute-spec.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/generate-prp.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    },
+    {
+      "path": "plugins/spec-driven/commands/generate-spec.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "high",
+          "line": 1,
+          "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-27T12:55:18Z",
+      "average_score": 90,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/check-prp.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Check PRP' — no YAML frontmatter block (--- delimiters absent); name and description fields missing"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/check-spec.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Check Feature Specification' — no YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/execute-prp.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Execute Product Requirements Proposal' — no YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/execute-spec.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Execute Feature Specification' — no YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/generate-prp.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Generate Product Requirements Proposal' — no YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/generate-spec.md",
+      "line": 1,
+      "message": "Command file lacks YAML frontmatter entirely; plugin system cannot register it — File begins with '# Generate Feature Specification' — no YAML frontmatter block"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/dx-sdk-advocate.md",
+      "line": 4,
+      "message": "BashOutput is not a standard Claude Code tool; declaration will be ignored or cause errors at registration — tools: frontmatter declares 'BashOutput' which is not in the standard Claude Code tool catalog (Bash, Read, Write, Edit, MultiEdit, Glob, Grep, LS, WebFetch, WebSearch, Task, TodoWrite)"
+    },
+    {
+      "rule": "BUG-undeclared-tool",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/dx-sdk-advocate.md",
+      "line": 4,
+      "message": "KillBash is not a standard Claude Code tool; Bash tool covers process termination — tools: frontmatter declares 'KillBash' which is not in the standard Claude Code tool catalog"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/coder.md",
+      "line": 1,
+      "message": "Agent does not declare a model; runtime will use session default which may not match intended capability tier — Frontmatter does not include a model: field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/readme-writer.md",
+      "line": 1,
+      "message": "Agent does not declare a model; runtime will use session default — Frontmatter does not include a model: field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/security-agent.md",
+      "line": 1,
+      "message": "Agent does not declare a model; runtime will use session default — Frontmatter does not include a model: field"
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/essentials/agents/git-committer.md",
+      "line": 1,
+      "message": "Agent does not declare a model; runtime will use session default — Frontmatter does not include a model: field"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/dx-optimizer.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples; evaluators and users cannot calibrate expected behavior — No User:/Assistant: example pairs found in document body; agent body describes workflow steps but omits interaction examples"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/security-agent.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/typescript-pro.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found; 'Output Standards' section describes quality criteria, not interaction examples"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/essentials/agents/git-committer.md",
+      "line": 1,
+      "message": "Commit body templates do not count as interaction examples under R07 — 'Example Commit Messages' section contains commit body templates, not user/assistant interaction examples"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/claude-researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/codex-researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/gemini-researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/grok-researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/perplexity-researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R07",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/agents/researcher.md",
+      "line": 1,
+      "message": "Zero user/assistant interaction examples — No User:/Assistant: example pairs found in document body"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/dx-sdk-advocate.md",
+      "line": 1,
+      "message": "No output format section; response shape is undefined — No '## Output Format' or equivalent section found; agent describes tool capabilities but not response structure"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/security-agent.md",
+      "line": 1,
+      "message": "No output format section; security findings have no declared structure (severity labels, finding schema) — No '## Output Format' or equivalent section found"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/typescript-pro.md",
+      "line": 1,
+      "message": "Output Standards is a quality checklist, not a response format spec; reader cannot determine response shape — '## Output Standards' section is a quality rubric (type safety criteria, naming conventions) not an output format specification"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/essentials/agents/thermo-nuclear-code-quality-review.md",
+      "line": 1,
+      "message": "Partial credit: output format is defined in the referenced skill, but the agent does not summarize the format for standalone readability — Output format deferred to rubric skill via 'Output in the priority order the rubric\\'s Output Expectations specifies'; skill is loaded but format is not declared inline"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/essentials/skills/ultrathink/SKILL.md",
+      "line": 1,
+      "message": "Mode-setting skill does not specify how its activation affects output structure — Skill sets reasoning mode ('think harder') but contains no '## Output Format' or equivalent section"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/sandbox/agents/cunningham.md",
+      "line": 1,
+      "message": "No output format section; response shape is undefined — No '## Output Format' or equivalent section found in document body"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/security-agent.md",
+      "line": 12,
+      "message": "Vague quantifier 'proper' without a referenced standard or concrete criterion — Term 'proper' used as quantifier (occurrence 1); e.g. 'proper security controls' — no specific standard cited"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/developer-experience/agents/security-agent.md",
+      "line": 18,
+      "message": "Second occurrence of vague quantifier 'proper' — Term 'proper' used as quantifier (occurrence 2)"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/essentials/agents/git-committer.md",
+      "line": 8,
+      "message": "Vague quantifier 'appropriate' leaves file-staging scope undefined — 'Stage Appropriate Files' uses 'appropriate' as a quantifier without defining the selection criterion"
+    },
+    {
+      "rule": "SEC-MEDIUM-unpinned-npx",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/.mcp.json",
+      "line": 5,
+      "message": "Unpinned npx MCP server; a compromised or yanked package version could run arbitrary code at session start — \"command\": \"npx\", \"args\": [\"-y\", \"@perplexity-ai/mcp-server\"] — no version pin; resolved at session start against npm registry"
+    },
+    {
+      "rule": "SEC-MEDIUM-unpinned-npx",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/.mcp.json",
+      "line": 12,
+      "message": "Unpinned npx MCP server for gemini-mcp-tool — \"command\": \"npx\", \"args\": [\"-y\", \"gemini-mcp-tool\"] — no version pin"
+    },
+    {
+      "rule": "SEC-MEDIUM-unpinned-npx",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/consultant/.mcp.json",
+      "line": 19,
+      "message": "Unpinned npx MCP server from a low-visibility npm org; heightened supply-chain risk — \"command\": \"npx\", \"args\": [\"-y\", \"@chinchillaenterprises/mcp-grok\"] — no version pin; third-party org with low npm visibility"
+    },
+    {
+      "rule": "SEC-MEDIUM-unpinned-npx",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/sidequest/.mcp.json",
+      "line": 5,
+      "message": "Unpinned npx MCP server for omnifocus-mcp-enhanced — \"command\": \"npx\", \"args\": [\"-y\", \"omnifocus-mcp-enhanced\"] — no version pin"
+    },
+    {
+      "rule": "SEC-LOW-outbound-http",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/meta/skills/claude-code-analyzer/scripts/fetch-features.sh",
+      "line": 3,
+      "message": "Script makes outbound HTTP request; fails silently on network unavailability and exposes session to external URL changes — curl -s -L \"$CLAUDE_DOCS_URL\" — outbound HTTP to docs.claude.com; no fallback if network unavailable"
+    },
+    {
+      "rule": "SEC-LOW-outbound-api",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/meta/skills/claude-code-analyzer/scripts/github-discovery.sh",
+      "line": 1,
+      "message": "Script calls GitHub API without verifying authentication; may silently fail or consume API rate limit — gh search code — outbound GitHub API call; rate-limits apply; no auth check before invocation"
+    },
+    {
+      "rule": "XCOMP-systemic-omission",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/spec-driven/commands/",
+      "line": 1,
+      "message": "Systemic frontmatter omission across all commands in the spec-driven plugin; the plugin.json describes the plugin correctly but no individual commands can be registered — All 6 command files (check-prp, check-spec, execute-prp, execute-spec, generate-prp, generate-spec) begin with H1 headings with no YAML frontmatter; plugin.json is correct; omission is systemic across the entire commands/ directory"
+    },
+    {
+      "rule": "XCOMP-implicit-tool-scope",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "plugins/consultant/agents/",
+      "line": 1,
+      "message": "Researcher agents rely on Claude Code default tool grants rather than declaring an explicit tool scope; if defaults change the agents silently acquire or lose capabilities — All 6 researcher agents (claude-researcher, codex-researcher, gemini-researcher, grok-researcher, perplexity-researcher, researcher) omit tools: from frontmatter; omission is consistent across all agents suggesting deliberate design rather than oversight"
+    },
+    {
+      "rule": "XCOMP-undeclared-sibling-dependency",
+      "severity": "low",
+      "confidence": "low",
+      "file": "plugins/essentials/skills/prototype/SKILL.md",
+      "line": 1,
+      "message": "Sibling file dependencies (LOGIC.md, UI.md) are referenced but not declared; behavior depends on undocumented skill-loader semantics — SKILL.md references LOGIC.md and UI.md as companion files; both files exist in the same directory but the skill does not declare how they are loaded or whether the skill loader co-loads sibling files automatically"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 108,
+    "security": null,
+    "audit_report_path": "auditor/audits/nicknisi-claude-plugins.md"
+  },
+  "generated_at": "2026-06-27T12:56:57Z",
+  "schema_version": 1
+}

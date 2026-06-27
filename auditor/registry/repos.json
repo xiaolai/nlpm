@@ -6127,12 +6127,15 @@
     "nicknisi/claude-plugins": {
       "artifacts": 59,
       "audit_issue": 460,
+      "commit_sha_at_audit": "4cb7c053d6c48fb0fd0e45fd1ae4348214f61ad1",
       "description": "Nick's own marketplace of Claude Plugins",
       "discovered": "2026-06-27T01:56:32Z",
       "prs": [],
-      "score": null,
+      "score": 90,
+      "security": "UNKNOWN",
       "stars": 108,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "nicobailon/visual-explainer": {
       "artifacts": 10,
