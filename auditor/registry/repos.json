@@ -8427,10 +8427,13 @@
       "stars": 648,
       "artifacts": 4,
       "description": "A Claude Code plugin that makes Opus behave like Fable — completion, evidence, and verification enforced as procedure. Ships only what a Fable-vs-Opus comparison proved transferable.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 448,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "d338460454c340736c16648df0920ca9eea6acea"
     },
     "zhaoxuya520/reverse-skill": {
       "discovered": "2026-06-27T00:15:44Z",
