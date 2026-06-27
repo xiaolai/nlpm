@@ -4091,12 +4091,15 @@
     "firecrawl/firecrawl-claude-plugin": {
       "artifacts": 12,
       "audit_issue": 457,
+      "commit_sha_at_audit": "52b6c0970b904b10641f223dbeb8f6b35643521c",
       "description": "Firecrawl plugin for Claude Code - web scraping and crawling",
       "discovered": "2026-06-27T01:56:32Z",
       "prs": [],
-      "score": null,
+      "score": 97,
+      "security": "CLEAR",
       "stars": 142,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "firetiger-oss/claude-plugin": {
       "artifacts": 8,
