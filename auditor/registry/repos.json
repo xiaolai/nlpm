@@ -8494,10 +8494,13 @@
       "stars": 277,
       "artifacts": 4,
       "description": "",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 97,
       "audit_issue": 451,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "f3ce88a7ba830f53afd6d944c1d0278ed318e142"
     },
     "makenotion/claude-code-notion-plugin": {
       "discovered": "2026-06-27T01:51:51Z",
