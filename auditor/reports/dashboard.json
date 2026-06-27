@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-06-26T22:51:36Z",
+  "generated_at": "2026-06-27T22:47:19Z",
   "since": null,
   "summary": {
-    "total_repos": 233,
-    "total_findings": 3526,
-    "high_findings": 372,
+    "total_repos": 246,
+    "total_findings": 3831,
+    "high_findings": 636,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
-    "repos_blocked": 57
+    "repos_blocked": 61
   },
   "repo_rows": [
     {
@@ -180,6 +180,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "Dong90/oh-my-taiyiforge",
+      "status": "audited",
+      "stars": 581,
+      "score": 95,
+      "security": "BLOCKED",
+      "total_findings": 45,
+      "high_findings": 37,
+      "medium_findings": 6,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "HKUDS/CLI-Anything",
       "status": "audited",
       "stars": null,
@@ -252,6 +264,30 @@
       "vocab_drift_high": 2
     },
     {
+      "repo": "nicknisi/claude-plugins",
+      "status": "audited",
+      "stars": 108,
+      "score": 90,
+      "security": "UNKNOWN",
+      "total_findings": 40,
+      "high_findings": 37,
+      "medium_findings": 2,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "makenotion/claude-code-notion-plugin",
+      "status": "contributed",
+      "stars": 426,
+      "score": 77,
+      "security": "CLEAR",
+      "total_findings": 39,
+      "high_findings": 36,
+      "medium_findings": 3,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "shinpr/claude-code-workflows",
       "status": "audited",
       "stars": 320,
@@ -260,6 +296,18 @@
       "total_findings": 38,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "mlunato47/claude-grc-plugin",
+      "status": "contributed",
+      "stars": 171,
+      "score": 68,
+      "security": "CLEAR",
+      "total_findings": 37,
+      "high_findings": 33,
+      "medium_findings": 4,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -492,6 +540,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "Chat2AnyLLM/awesome-claude-plugins",
+      "status": "audited",
+      "stars": 107,
+      "score": 69,
+      "security": "BLOCKED",
+      "total_findings": 28,
+      "high_findings": 28,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "parcadei/Continuous-Claude-v3",
       "status": "audited",
       "stars": 1200,
@@ -696,6 +756,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "buildatscale-tv/claude-code-plugins",
+      "status": "audited",
+      "stars": 134,
+      "score": 92,
+      "security": "BLOCKED",
+      "total_findings": 22,
+      "high_findings": 19,
+      "medium_findings": 3,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "iannuttall/claude-agents",
       "status": "orphaned",
       "stars": 2046,
@@ -788,6 +860,18 @@
       "total_findings": 21,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "nagisanzenin/claude-code-production-grade-plugin",
+      "status": "contributed",
+      "stars": 150,
+      "score": 93,
+      "security": "REVIEW",
+      "total_findings": 21,
+      "high_findings": 12,
+      "medium_findings": 6,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1092,6 +1176,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "zhaoxuya520/reverse-skill",
+      "status": "audited",
+      "stars": 6502,
+      "score": 81,
+      "security": "BLOCKED",
+      "total_findings": 17,
+      "high_findings": 17,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "Yuan1z0825/nature-skills",
       "status": "tracked",
       "stars": null,
@@ -1100,6 +1196,18 @@
       "total_findings": 16,
       "high_findings": 15,
       "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "fivetaku/fablize",
+      "status": "contributed",
+      "stars": 648,
+      "score": 95,
+      "security": "CLEAR",
+      "total_findings": 16,
+      "high_findings": 11,
+      "medium_findings": 3,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1152,6 +1260,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "firecrawl/firecrawl-claude-plugin",
+      "status": "contributed",
+      "stars": 142,
+      "score": 97,
+      "security": "CLEAR",
+      "total_findings": 15,
+      "high_findings": 14,
+      "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "obra/superpowers",
       "status": "tracked",
       "stars": 166779,
@@ -1196,6 +1316,18 @@
       "total_findings": 14,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "JoasASantos/ClaudeAdvancedPlugins",
+      "status": "contributed",
+      "stars": 154,
+      "score": 58,
+      "security": "CLEAR",
+      "total_findings": 13,
+      "high_findings": 10,
+      "medium_findings": 2,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1512,6 +1644,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "alizarion/openclaw-claude-code-plugin",
+      "status": "contributed",
+      "stars": 131,
+      "score": 92,
+      "security": "CLEAR",
+      "total_findings": 7,
+      "high_findings": 7,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "axtonliu/axton-obsidian-visual-skills",
       "status": "audited",
       "stars": 2669,
@@ -1592,6 +1736,18 @@
       "total_findings": 5,
       "high_findings": 3,
       "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "astral-sh/claude-code-plugins",
+      "status": "contributed",
+      "stars": 277,
+      "score": 97,
+      "security": "CLEAR",
+      "total_findings": 5,
+      "high_findings": 3,
+      "medium_findings": 0,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -2811,128 +2967,128 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 258,
-      "repos_affected": 45
+      "total": 283,
+      "repos_affected": 47
     },
     {
       "rule_id": "BUG-missing-frontmatter",
-      "total": 215,
-      "repos_affected": 45
+      "total": 245,
+      "repos_affected": 53
     },
     {
       "rule_id": "UNCLASSIFIED",
-      "total": 211,
-      "repos_affected": 34
+      "total": 225,
+      "repos_affected": 35
     },
     {
       "rule_id": "R05",
-      "total": 143,
-      "repos_affected": 23
+      "total": 158,
+      "repos_affected": 28
     },
     {
       "rule_id": "R14",
-      "total": 140,
-      "repos_affected": 33
-    },
-    {
-      "rule_id": "R12",
-      "total": 133,
-      "repos_affected": 32
+      "total": 147,
+      "repos_affected": 36
     },
     {
       "rule_id": "R22",
-      "total": 131,
-      "repos_affected": 26
-    },
-    {
-      "rule_id": "R09",
-      "total": 121,
+      "total": 145,
       "repos_affected": 30
     },
     {
-      "rule_id": "R07",
-      "total": 113,
-      "repos_affected": 26
-    },
-    {
-      "rule_id": "R08",
-      "total": 111,
-      "repos_affected": 28
-    },
-    {
-      "rule_id": "SEC-unpinned-semver",
-      "total": 110,
-      "repos_affected": 63
-    },
-    {
-      "rule_id": "R02",
-      "total": 97,
-      "repos_affected": 10
-    },
-    {
-      "rule_id": "R15",
-      "total": 92,
-      "repos_affected": 28
-    },
-    {
-      "rule_id": "R11",
-      "total": 91,
-      "repos_affected": 13
-    },
-    {
-      "rule_id": "R06",
-      "total": 90,
-      "repos_affected": 14
-    },
-    {
-      "rule_id": "R10",
-      "total": 82,
-      "repos_affected": 17
-    },
-    {
-      "rule_id": "BUG-broken-reference",
-      "total": 79,
-      "repos_affected": 35
-    },
-    {
-      "rule_id": "CC-terminology-drift",
-      "total": 54,
-      "repos_affected": 43
-    },
-    {
-      "rule_id": "R04",
-      "total": 53,
-      "repos_affected": 13
-    },
-    {
-      "rule_id": "BUG-undeclared-tool",
-      "total": 52,
-      "repos_affected": 22
-    },
-    {
-      "rule_id": "CC-stale-count",
-      "total": 48,
-      "repos_affected": 35
-    },
-    {
-      "rule_id": "R03",
-      "total": 46,
-      "repos_affected": 15
-    },
-    {
-      "rule_id": "CC-broken-relative-path",
-      "total": 44,
+      "rule_id": "R12",
+      "total": 135,
       "repos_affected": 33
     },
     {
-      "rule_id": "CC-orphan-component",
-      "total": 44,
+      "rule_id": "R07",
+      "total": 130,
+      "repos_affected": 29
+    },
+    {
+      "rule_id": "R09",
+      "total": 127,
+      "repos_affected": 31
+    },
+    {
+      "rule_id": "R08",
+      "total": 125,
+      "repos_affected": 30
+    },
+    {
+      "rule_id": "SEC-unpinned-semver",
+      "total": 119,
+      "repos_affected": 69
+    },
+    {
+      "rule_id": "R06",
+      "total": 118,
+      "repos_affected": 21
+    },
+    {
+      "rule_id": "R15",
+      "total": 111,
+      "repos_affected": 31
+    },
+    {
+      "rule_id": "R02",
+      "total": 99,
+      "repos_affected": 12
+    },
+    {
+      "rule_id": "R11",
+      "total": 94,
+      "repos_affected": 14
+    },
+    {
+      "rule_id": "BUG-broken-reference",
+      "total": 86,
+      "repos_affected": 39
+    },
+    {
+      "rule_id": "R10",
+      "total": 84,
+      "repos_affected": 19
+    },
+    {
+      "rule_id": "CC-terminology-drift",
+      "total": 57,
+      "repos_affected": 46
+    },
+    {
+      "rule_id": "R04",
+      "total": 57,
+      "repos_affected": 15
+    },
+    {
+      "rule_id": "BUG-undeclared-tool",
+      "total": 55,
+      "repos_affected": 24
+    },
+    {
+      "rule_id": "CC-stale-count",
+      "total": 51,
       "repos_affected": 38
     },
     {
+      "rule_id": "CC-broken-relative-path",
+      "total": 50,
+      "repos_affected": 35
+    },
+    {
+      "rule_id": "CC-orphan-component",
+      "total": 50,
+      "repos_affected": 44
+    },
+    {
+      "rule_id": "R03",
+      "total": 47,
+      "repos_affected": 16
+    },
+    {
       "rule_id": "SEC-curl-pipe-sh",
-      "total": 39,
-      "repos_affected": 20
+      "total": 42,
+      "repos_affected": 22
     }
   ],
   "drift_network": {
@@ -4263,6 +4419,24 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-27",
+      "counts": {
+        "search_complete": 3,
+        "scorer_drift_check": 15,
+        "findings_aggregated": 15,
+        "repo_report_rendered": 15,
+        "audit_complete": 15,
+        "manual_disclosure_pending": 5,
+        "report_artifact_uploaded": 13,
+        "prs_submitted": 13,
+        "classifications_emitted": 1,
+        "finding_outcome": 9,
+        "status_check": 4,
         "report_generated": 1
       }
     }

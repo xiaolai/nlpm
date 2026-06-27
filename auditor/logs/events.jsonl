@@ -2860,3 +2860,4 @@
 {"timestamp":"2026-06-27T20:34:55Z","workflow":"track","event":"finding_outcome","run_id":"28300884500","run_number":424,"data":{"pr":"nagisanzenin/claude-code-production-grade-plugin#2","pr_state":"open","fingerprints":["sha256:a61f524930c05acd9d4e3b9c15b6bca14b05d22cc929951316e6d24deac4d6e5"],"rule_ids":["SEC-unpinned-semver"]}}
 {"timestamp":"2026-06-27T20:37:17Z","workflow":"track","event":"status_check","run_id":"28300884500","run_number":424,"data":{"contributed":46,"tracked":36,"case_study_ready":38,"rule_adopted":3}}
 {"timestamp":"2026-06-27T22:21:58Z","workflow":"daily-report","event":"report_generated","run_id":"28303576999","run_number":85,"data":{"total_repos":246}}
+{"timestamp":"2026-06-27T22:47:19Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28304162021","run_number":41,"data":{"repos":246,"findings":3831,"advisories":22}}
