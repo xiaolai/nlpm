@@ -8417,10 +8417,13 @@
       "stars": 581,
       "artifacts": 24,
       "description": "AI workflow automation plugin for intelligent code generation with Claude/Codex",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 447,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "dad08d3a0f3fd66be7b0161e0464f28c4fcf1b86"
     },
     "fivetaku/fablize": {
       "discovered": "2026-06-27T00:15:44Z",

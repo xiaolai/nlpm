@@ -1,0 +1,479 @@
+{
+  "project": "Dong90/oh-my-taiyiforge",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 17,
+    "average_score": 95,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "high",
+          "line": 52,
+          "message": "postinstall script executes build pipeline (npm run build via spawnSync) on every npm install; supply chain risk if package is compromised"
+        },
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": null,
+          "message": "All production dependencies use ^ ranges allowing automatic minor/patch upgrades on fresh npm install without lockfile"
+        }
+      ]
+    },
+    {
+      "path": "postinstall.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-subprocess",
+          "severity": "medium",
+          "line": 10,
+          "message": "spawnSync runs npm build during postinstall; build failure is soft-warned but install proceeds; no integrity check on build output"
+        }
+      ]
+    },
+    {
+      "path": "scripts/taiyi-forge.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "critical",
+          "line": 71,
+          "message": "eval with variable TAIYI_CLI allows command injection via TAIYI_FORGE_ROOT env var or .taiyi/forge-root file; main execution path in run_taiyi()"
+        },
+        {
+          "rule": "SEC-new-function-eval",
+          "severity": "high",
+          "line": 53,
+          "message": "eval with variable TAIYI_CLI inside npx fallback error handler — same command injection vector as line 71"
+        },
+        {
+          "rule": "SEC-network-fetch",
+          "severity": "medium",
+          "line": 32,
+          "message": "npx fallback fetches oh-my-taiyiforge from npm without version pin; subject to package substitution or version hijack"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-architect/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 25,
+          "message": "Vague quantifier '显著' (significantly) in trigger criteria — no threshold defined for 运维负担差异"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-change/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — CHANGE.md template not defined with path and required sections"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-compress/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": null,
+          "message": "Refers to docs/taiyi/token-budget.yaml and docs/taiyi/token-compress-hooks.yaml for configuration; file existence not verified"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-design/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — DESIGN.md format, path, and required sections not formally defined"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-dev/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — dev output artifacts (.dev-complete, SUMMARY) have no defined path or format"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-diagram-render/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 69,
+          "message": "Vague qualifier '高质量' used without inline criteria — Visual Review checklist referenced but not specified"
+        },
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 58,
+          "message": "Unclosed Markdown code block in step 3 — steps 4+ are visually absorbed into the bash block in standard Markdown renderers"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": 48,
+          "message": "Link to ../../docs/diagrams/pipeline.md — file existence not verified; skill declares this as authoritative source for export path conventions"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-forge/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": null,
+          "message": "Missing output format section — engine/dispatch skill has no defined document output"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": null,
+          "message": "Refers to docs/taiyi/canonical-commands.md and docs/taiyi/commands.yaml as authoritative command sources; file existence not verified"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-health/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — health巡检 result path and format not defined"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-integration/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — CHANGELOG.md format and path not specified with template"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-intel-scan/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "low",
+          "line": 10,
+          "message": "Vague quantifier '相关' (relevant) used without criteria — 何时使用 table gives some signal but 相关 in prose is unquantified"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-requirement/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — REQUIREMENT.md format, path, and required sections not specified"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-review/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — REVIEW.md structure and path not defined"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-test/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — TEST.md output path and structure not defined"
+        }
+      ]
+    },
+    {
+      "path": "skills/taiyi-ultrawork/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "UNCLASSIFIED",
+          "severity": "medium",
+          "line": null,
+          "message": "Missing output format section — no persistent output format defined for ultrawork orchestration result"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-27T00:54:48Z",
+      "average_score": 95,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-test/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — TEST.md output path and structure not defined — No ## 输出 section present; file has only 步骤0, 第1轮, 第2-5轮, 禁止 — no output path or TEST.md template"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-health/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — health巡检 result path and format not defined — No ## 输出 section present; health scan produces no named persistent artifact with defined path"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-requirement/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — REQUIREMENT.md format, path, and required sections not specified — No ## 输出 section present; REQUIREMENT.md structure not specified beyond four numbered steps"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-dev/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — dev output artifacts (.dev-complete, SUMMARY) have no defined path or format — No ## 输出 section present; output artifacts .dev-complete and SUMMARY mentioned inline but without path or format definition"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-ultrawork/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — no persistent output format defined for ultrawork orchestration result — No ## 输出 section present; orchestration result is described only as merge + ralph + continue with no artifact format"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-review/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — REVIEW.md structure and path not defined — No ## 输出 section present; REVIEW.md structure not specified; 产出修复任务T-FIX-XX mentioned inline only"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-integration/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — CHANGELOG.md format and path not specified with template — No ## 输出 section present; CHANGELOG format described only as Added/Changed/Fixed keywords in a bullet point"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-design/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — DESIGN.md format, path, and required sections not formally defined — No ## 输出 section present; DESIGN.md format described only through step headings (0, 1, 2, 3, 9)"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/taiyi-forge/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — engine/dispatch skill has no defined document output — No ## 输出 section present; skill dispatches to taiyi CLI and produces no persistent document artifact"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/taiyi-change/SKILL.md",
+      "line": null,
+      "message": "Missing output format section — CHANGE.md template not defined with path and required sections — No ## 输出 section present; CHANGE.md sections (Motivation, Scope, Success Criteria, 影响面) described in step bodies but no path or template block"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/taiyi-intel-scan/SKILL.md",
+      "line": 10,
+      "message": "Vague quantifier '相关' (relevant) used without criteria — 何时使用 table gives some signal but 相关 in prose is unquantified — Found \"与本变更相关的代码现实\" in 目的 section — 相关 (relevant) has no quantitative boundary"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/taiyi-architect/SKILL.md",
+      "line": 25,
+      "message": "Vague quantifier '显著' (significantly) in trigger criteria — no threshold defined for 运维负担差异 — Found \"运维负担显著不同\" in 何时使用 table — 显著 (significantly) has no numeric or categorical threshold"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/taiyi-diagram-render/SKILL.md",
+      "line": 69,
+      "message": "Vague qualifier '高质量' used without inline criteria — Visual Review checklist referenced but not specified — Found \"高质量 / 视觉审查\" in step 5 — 高质量 (high quality) has no definition; Visual Review checklist referenced but not inline"
+    },
+    {
+      "rule": "UNCLASSIFIED",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/taiyi-diagram-render/SKILL.md",
+      "line": 58,
+      "message": "Unclosed Markdown code block in step 3 — steps 4+ are visually absorbed into the bash block in standard Markdown renderers — Opening ```bash at line 58 has no closing ``` before line 62 where step 4 text begins; step 4 and beyond are rendered inside the code block"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "scripts/taiyi-forge.sh",
+      "line": 71,
+      "message": "eval with variable TAIYI_CLI allows command injection via TAIYI_FORGE_ROOT env var or .taiyi/forge-root file; main execution path in run_taiyi() — eval \"$TAIYI_CLI\" \"$@\" — TAIYI_CLI is set from TAIYI_FORGE_ROOT env var (line 8) and .taiyi/forge-root file (lines 13-17) without sanitization; attacker controlling either can inject arbitrary shell commands"
+    },
+    {
+      "rule": "SEC-new-function-eval",
+      "severity": "high",
+      "confidence": "high",
+      "file": "scripts/taiyi-forge.sh",
+      "line": 53,
+      "message": "eval with variable TAIYI_CLI inside npx fallback error handler — same command injection vector as line 71 — _out=$(eval \"$TAIYI_CLI\" \"$@\" 2>\"$_err\") — same eval-with-variable pattern inside npx fallback branch (lines 49-69)"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "high",
+      "confidence": "high",
+      "file": "package.json",
+      "line": 52,
+      "message": "postinstall script executes build pipeline (npm run build via spawnSync) on every npm install; supply chain risk if package is compromised — \"postinstall\": \"node postinstall.mjs\" found in scripts section; runs automatically on npm install without user confirmation"
+    },
+    {
+      "rule": "SEC-network-fetch",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "scripts/taiyi-forge.sh",
+      "line": 32,
+      "message": "npx fallback fetches oh-my-taiyiforge from npm without version pin; subject to package substitution or version hijack — echo \"npx -p oh-my-taiyiforge taiyi\" — unpinned package name fetched from npm registry at runtime as CLI fallback"
+    },
+    {
+      "rule": "SEC-shell-subprocess",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "postinstall.mjs",
+      "line": 10,
+      "message": "spawnSync runs npm build during postinstall; build failure is soft-warned but install proceeds; no integrity check on build output — spawnSync(\"npm\", [\"run\", \"build\"], { cwd: pkgRoot, stdio: \"inherit\" }) — runs npm build during npm install"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": "package.json",
+      "line": null,
+      "message": "All production dependencies use ^ ranges allowing automatic minor/patch upgrades on fresh npm install without lockfile — 9 production deps use ^ ranges: @modelcontextprotocol/sdk ^1.29.0, handlebars ^4.7.9, proper-lockfile ^4.1.2, remark ^15.0.1, remark-gfm ^4.0.1, remark-parse ^11.0.0, unified ^11.0.5, zod ^4.4.3, zod-to-json-schema ^3.25.2"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/taiyi-diagram-render/SKILL.md",
+      "line": 48,
+      "message": "Link to ../../docs/diagrams/pipeline.md — file existence not verified; skill declares this as authoritative source for export path conventions"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/taiyi-forge/SKILL.md",
+      "line": null,
+      "message": "Refers to docs/taiyi/canonical-commands.md and docs/taiyi/commands.yaml as authoritative command sources; file existence not verified"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/taiyi-compress/SKILL.md",
+      "line": null,
+      "message": "Refers to docs/taiyi/token-budget.yaml and docs/taiyi/token-compress-hooks.yaml for configuration; file existence not verified"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 581,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/Dong90-oh-my-taiyiforge.md"
+  },
+  "generated_at": "2026-06-27T00:56:17Z",
+  "schema_version": 1
+}
