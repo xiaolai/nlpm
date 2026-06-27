@@ -4123,7 +4123,9 @@
       "security": "CLEAR",
       "stars": 142,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/firecrawl-firecrawl-claude-plugin.md"
     },
     "firetiger-oss/claude-plugin": {
       "artifacts": 8,
