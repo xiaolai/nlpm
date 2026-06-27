@@ -8507,10 +8507,13 @@
       "stars": 426,
       "artifacts": 16,
       "description": "Connect Claude Code to Notion via this Plugin",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 77,
       "audit_issue": 452,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "9847f2aa1a15f25df35ed1fb7b4557dbb60cd651"
     },
     "Chat2AnyLLM/awesome-claude-plugins": {
       "discovered": "2026-06-27T01:56:32Z",
