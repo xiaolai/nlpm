@@ -6196,7 +6196,9 @@
       "security": "UNKNOWN",
       "stars": 108,
       "status": "audited",
-      "strategy": "batched"
+      "strategy": "batched",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/nicknisi-claude-plugins.md"
     },
     "nicobailon/visual-explainer": {
       "artifacts": 10,
