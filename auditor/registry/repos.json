@@ -5604,12 +5604,15 @@
     "mlunato47/claude-grc-plugin": {
       "artifacts": 27,
       "audit_issue": 458,
+      "commit_sha_at_audit": "dc2c09cac045fe629dac5b6553f8265ba40b8d1c",
       "description": "A Claude Code plugin that turns Claude into a senior GRC (Governance, Risk, and Compliance) analyst. 72+ reference files covering 15 frameworks, 24 slash commands, and deep domain knowledge for federal and commercial compliance work.",
       "discovered": "2026-06-27T01:56:32Z",
       "prs": [],
-      "score": null,
+      "score": 68,
+      "security": "CLEAR",
       "stars": 171,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "mukul975/Anthropic-Cybersecurity-Skills": {
       "artifacts": 755,
