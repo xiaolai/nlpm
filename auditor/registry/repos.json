@@ -5952,12 +5952,15 @@
     "nagisanzenin/claude-code-production-grade-plugin": {
       "artifacts": 16,
       "audit_issue": 459,
+      "commit_sha_at_audit": "64795da2f91aa7b1c57b55e3b0fb1980cb2076b2",
       "description": "Claude Code Plugin: Fully autonomous production-grade SaaS pipeline \u2014 14 bundled skills, CEO/CTO command-driven, single install",
       "discovered": "2026-06-27T01:56:32Z",
       "prs": [],
-      "score": null,
+      "score": 93,
+      "security": "REVIEW",
       "stars": 150,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "navapbc/digital-service-orchestra": {
       "artifacts": 89,
