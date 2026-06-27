@@ -8527,10 +8527,13 @@
       "stars": 154,
       "artifacts": 56,
       "description": "Claude Code Advanced Plugins",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 58,
       "audit_issue": 454,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "2893acfae2f2e4b6a12e0aab55d2f864b995b1d2"
     },
     "alizarion/openclaw-claude-code-plugin": {
       "discovered": "2026-06-27T01:56:32Z",
