@@ -3095,12 +3095,15 @@
     "buildatscale-tv/claude-code-plugins": {
       "artifacts": 5,
       "audit_issue": 456,
+      "commit_sha_at_audit": "22ea178163403d08d9281916ec008ad938fbd229",
       "description": "Claude code plugin marketplace for the BuildAtScale YouTube Channel",
       "discovered": "2026-06-27T01:56:32Z",
       "prs": [],
-      "score": null,
+      "score": 92,
+      "security": "BLOCKED",
       "stars": 134,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "c0x12c/ai-toolkit": {
       "artifacts": 221,
