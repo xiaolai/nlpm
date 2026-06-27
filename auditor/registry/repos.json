@@ -4059,12 +4059,44 @@
         7,
         8
       ],
-      "prs": [],
+      "prs": [
+        {
+          "number": 7,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: register setup command in plugin.json",
+          "updatedAt": "2026-06-27T01:46:39Z",
+          "createdAt": "2026-06-27T01:46:39Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:ffe6da25c7de61c78fc3a13bdab8492a24ba108f67d5ba57b7d55990608f654f"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 8,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "fix: validate transcript_path prefix before opening in finish-the-work.sh",
+          "updatedAt": "2026-06-27T01:50:07Z",
+          "createdAt": "2026-06-27T01:47:57Z",
+          "outcome": "open",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        }
+      ],
       "score": 95,
       "security": "CLEAR",
       "stars": 648,
       "status": "contributed",
-      "strategy": "single"
+      "strategy": "single",
+      "rule_adopted": false
     },
     "forrestchang/andrej-karpathy-skills": {
       "artifacts": null,

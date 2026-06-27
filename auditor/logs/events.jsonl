@@ -2780,3 +2780,6 @@
 {"timestamp":"2026-06-27T01:51:57Z","workflow":"discover","event":"search_complete","run_id":"28275005108","run_number":24,"data":{"candidates":96,"new":15,"worthy":2,"oversized":9}}
 {"timestamp":"2026-06-27T01:56:57Z","workflow":"discover","event":"search_complete","run_id":"28275108928","run_number":25,"data":{"candidates":104,"new":21,"worthy":8,"oversized":9}}
 {"timestamp":"2026-06-27T04:50:11Z","workflow":"classify","event":"classifications_emitted","run_id":"28279046017","run_number":68,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
+{"timestamp":"2026-06-27T05:26:48Z","workflow":"track","event":"finding_outcome","run_id":"28279769301","run_number":420,"data":{"pr":"fivetaku/fablize#7","pr_state":"open","fingerprints":["sha256:ffe6da25c7de61c78fc3a13bdab8492a24ba108f67d5ba57b7d55990608f654f"],"rule_ids":["BUG-missing-frontmatter"]}}
+{"timestamp":"2026-06-27T05:26:49Z","workflow":"track","event":"finding_outcome","run_id":"28279769301","run_number":420,"data":{"pr":"fivetaku/fablize#8","pr_state":"open","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-06-27T05:31:01Z","workflow":"track","event":"status_check","run_id":"28279769301","run_number":420,"data":{"contributed":39,"tracked":36,"case_study_ready":38,"rule_adopted":3}}
