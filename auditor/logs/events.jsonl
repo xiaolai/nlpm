@@ -2779,3 +2779,4 @@
 {"timestamp":"2026-06-27T01:50:46Z","workflow":"contribute","event":"prs_submitted","run_id":"28274815961","run_number":2533,"data":{"repo":"fivetaku/fablize","pr_count":2}}
 {"timestamp":"2026-06-27T01:51:57Z","workflow":"discover","event":"search_complete","run_id":"28275005108","run_number":24,"data":{"candidates":96,"new":15,"worthy":2,"oversized":9}}
 {"timestamp":"2026-06-27T01:56:57Z","workflow":"discover","event":"search_complete","run_id":"28275108928","run_number":25,"data":{"candidates":104,"new":21,"worthy":8,"oversized":9}}
+{"timestamp":"2026-06-27T04:50:11Z","workflow":"classify","event":"classifications_emitted","run_id":"28279046017","run_number":68,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
