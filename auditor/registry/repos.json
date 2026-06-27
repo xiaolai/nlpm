@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-06-27T01:51:51Z",
+    "last_discovery": "2026-06-27T01:56:32Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 224
+    "total_discovered": 232
   },
   "repos": {
     "0xfurai/claude-code-subagents": {
@@ -8475,6 +8475,86 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 452,
+      "prs": []
+    },
+    "Chat2AnyLLM/awesome-claude-plugins": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 107,
+      "artifacts": 9,
+      "description": "A curated list of awesome claude marketplaces and plugins",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 453,
+      "prs": []
+    },
+    "JoasASantos/ClaudeAdvancedPlugins": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 154,
+      "artifacts": 56,
+      "description": "Claude Code Advanced Plugins",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 454,
+      "prs": []
+    },
+    "alizarion/openclaw-claude-code-plugin": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 131,
+      "artifacts": 1,
+      "description": "",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 455,
+      "prs": []
+    },
+    "buildatscale-tv/claude-code-plugins": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 134,
+      "artifacts": 5,
+      "description": "Claude code plugin marketplace for the BuildAtScale YouTube Channel",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 456,
+      "prs": []
+    },
+    "firecrawl/firecrawl-claude-plugin": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 142,
+      "artifacts": 12,
+      "description": "Firecrawl plugin for Claude Code - web scraping and crawling",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 457,
+      "prs": []
+    },
+    "mlunato47/claude-grc-plugin": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 171,
+      "artifacts": 27,
+      "description": "A Claude Code plugin that turns Claude into a senior GRC (Governance, Risk, and Compliance) analyst. 72+ reference files covering 15 frameworks, 24 slash commands, and deep domain knowledge for federal and commercial compliance work.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 458,
+      "prs": []
+    },
+    "nagisanzenin/claude-code-production-grade-plugin": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 150,
+      "artifacts": 16,
+      "description": "Claude Code Plugin: Fully autonomous production-grade SaaS pipeline — 14 bundled skills, CEO/CTO command-driven, single install",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 459,
+      "prs": []
+    },
+    "nicknisi/claude-plugins": {
+      "discovered": "2026-06-27T01:56:32Z",
+      "stars": 108,
+      "artifacts": 59,
+      "description": "Nick's own marketplace of Claude Plugins",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 460,
       "prs": []
     }
   }

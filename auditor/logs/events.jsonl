@@ -2778,3 +2778,4 @@
 {"timestamp":"2026-06-27T01:50:46Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"28274815961","run_number":2533,"data":{"repo":"fivetaku/fablize","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/28274815961","retention_days":90}}
 {"timestamp":"2026-06-27T01:50:46Z","workflow":"contribute","event":"prs_submitted","run_id":"28274815961","run_number":2533,"data":{"repo":"fivetaku/fablize","pr_count":2}}
 {"timestamp":"2026-06-27T01:51:57Z","workflow":"discover","event":"search_complete","run_id":"28275005108","run_number":24,"data":{"candidates":96,"new":15,"worthy":2,"oversized":9}}
+{"timestamp":"2026-06-27T01:56:57Z","workflow":"discover","event":"search_complete","run_id":"28275108928","run_number":25,"data":{"candidates":104,"new":21,"worthy":8,"oversized":9}}
