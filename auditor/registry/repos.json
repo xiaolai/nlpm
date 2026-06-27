@@ -6022,8 +6022,12 @@
       "score": 93,
       "security": "REVIEW",
       "stars": 150,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        1,
+        2
+      ]
     },
     "navapbc/digital-service-orchestra": {
       "artifacts": 89,
