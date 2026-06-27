@@ -5674,8 +5674,12 @@
       "score": 68,
       "security": "CLEAR",
       "stars": 171,
-      "status": "audited",
-      "strategy": "batched"
+      "status": "contributed",
+      "strategy": "batched",
+      "pipeline_prs": [
+        6,
+        7
+      ]
     },
     "mukul975/Anthropic-Cybersecurity-Skills": {
       "artifacts": 755,
