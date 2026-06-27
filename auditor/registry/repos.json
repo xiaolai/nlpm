@@ -8500,7 +8500,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "f3ce88a7ba830f53afd6d944c1d0278ed318e142"
+      "commit_sha_at_audit": "f3ce88a7ba830f53afd6d944c1d0278ed318e142",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/astral-sh-claude-code-plugins.md"
     },
     "makenotion/claude-code-notion-plugin": {
       "discovered": "2026-06-27T01:51:51Z",
