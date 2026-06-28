@@ -2863,3 +2863,4 @@
 {"timestamp":"2026-06-27T22:47:19Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28304162021","run_number":41,"data":{"repos":246,"findings":3831,"advisories":22}}
 {"timestamp":"2026-06-28T00:27:04Z","workflow":"suppressions","event":"scan_complete","run_id":"28306331305","run_number":10,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
 {"timestamp":"2026-06-28T01:09:19Z","workflow":"track","event":"status_check","run_id":"28307038552","run_number":425,"data":{"contributed":46,"tracked":36,"case_study_ready":38,"rule_adopted":3}}
+{"timestamp":"2026-06-28T05:04:03Z","workflow":"classify","event":"classifications_emitted","run_id":"28312036821","run_number":69,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
