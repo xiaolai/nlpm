@@ -2176,72 +2176,7 @@
         11,
         12
       ],
-      "prs": [
-        {
-          "number": 10,
-          "state": "MERGED",
-          "mergedAt": "2026-04-23T12:37:22Z",
-          "closedAt": "2026-04-23T12:37:22Z",
-          "title": "fix(contract-lint): add allowed-tools to enable hash verification",
-          "updatedAt": "2026-04-23T12:37:22Z",
-          "createdAt": "2026-04-23T06:43:35Z",
-          "outcome": "merged",
-          "fingerprints": [
-            "sha256:7903955ce1b6ab5449fff1bc6665f392bb6904daafb8334d4d61c8fcf91fc3c8"
-          ],
-          "rule_ids": [
-            "BUG-undeclared-tool"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
-        },
-        {
-          "number": 11,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-04-23T12:38:26Z",
-          "title": "fix(wiki-lint): add numbered sequential workflow steps",
-          "updatedAt": "2026-04-23T12:38:26Z",
-          "createdAt": "2026-04-23T06:44:17Z",
-          "outcome": "rejected",
-          "fingerprints": [
-            "sha256:8bd5ce1c0a293b6c039da85f6e77d4f724b7d1c6dd404650f3f885c2f9d45cbe",
-            "sha256:cae1318520c5cfeaec0c4769a88e90182e66f57c292d07d3dd2aa78ee1b8cefe"
-          ],
-          "rule_ids": [
-            "BUG-missing-steps",
-            "UNCLASSIFIED"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
-        },
-        {
-          "number": 12,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-04-23T12:37:32Z",
-          "title": "fix: sync SKILL.md versions to 9.0.1 to match plugin.json",
-          "updatedAt": "2026-04-23T12:37:32Z",
-          "createdAt": "2026-04-23T06:45:08Z",
-          "outcome": "applied_separately",
-          "fingerprints": [
-            "sha256:3442a8aa09a0c1b61253cd9ca16ff233f36e876fb95cc6c49cf503f511f6f797",
-            "sha256:db64e8eb9c801ec6c5a61021c09822ecbdcc997bd0c5ba7fb2cc11596f365798",
-            "sha256:91e3f90f1994f10465dbb8ce496beaddc41d9ac05822f8000190b46b4ef86862",
-            "sha256:d0e008a5a1f01c4012f1bffda2d175467e5de37ba22322e03f5c627e1b82674d",
-            "sha256:c06823cfb03f5808db823c00cffb992442b0f1c7bd964cf8785b61bfdb261f10",
-            "sha256:c896fbaa8166c4d53c074ae90d4928c737699a3fe7a20a407aa7d601919af196",
-            "sha256:ab35b0a00863a664e9fcafe2ea0560c400fa21078c9ed7a193a75168a30b6d8e",
-            "sha256:30ba4d86177be51fd755aca2c8456ff7cdd487359fba02445cd5161b06dda1ab",
-            "sha256:61c15dbaacf48a706aab377946e841006a052944ec207422468b40f87c113c21"
-          ],
-          "rule_ids": [
-            "UNCLASSIFIED"
-          ],
-          "stale_90d_emitted": false,
-          "fingerprints_backfilled": true
-        }
-      ],
+      "prs": [],
       "quality_issues": 21,
       "rule_adopted": false,
       "score": 91,
