@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-28T22:47:27Z",
+  "generated_at": "2026-06-29T22:46:38Z",
   "since": null,
   "summary": {
     "total_repos": 246,
@@ -157,7 +157,7 @@
     },
     {
       "repo": "ReflexioAI/claude-smart",
-      "status": "contributed",
+      "status": "complete",
       "stars": 596,
       "score": 92,
       "security": "REVIEW",
@@ -4448,6 +4448,20 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-06-29",
+      "counts": {
+        "finding_outcome": 3,
+        "status_check": 6,
+        "finding_verified": 26,
+        "finding_introduced": 13,
+        "no_narrative": 1,
+        "classifications_emitted": 1,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
