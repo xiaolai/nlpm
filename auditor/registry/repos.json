@@ -1719,13 +1719,13 @@
       "prs": [
         {
           "number": 81,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-28T21:19:38Z",
+          "closedAt": "2026-06-28T21:19:38Z",
           "title": "fix: restore CLAUDE.md in .agents/skills/sync-agent-instructions",
-          "updatedAt": "2026-06-20T12:44:17Z",
+          "updatedAt": "2026-06-28T21:19:38Z",
           "createdAt": "2026-06-20T12:42:33Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:16e56a7ff115192dbefb5c81c341f8e1346f8defbbca87ccf13774a1291ed208"
           ],
@@ -1736,13 +1736,13 @@
         },
         {
           "number": 82,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-28T21:21:56Z",
+          "closedAt": "2026-06-28T21:21:56Z",
           "title": "fix: add missing name frontmatter to plugin commands",
-          "updatedAt": "2026-06-20T12:45:46Z",
+          "updatedAt": "2026-06-28T21:22:05Z",
           "createdAt": "2026-06-20T12:43:46Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:fd21a1a77276d64f157876d416241c295340e50f5cb9cc1e6b3c770a3b36af81",
             "sha256:dddc0821cbccde44b170f5a875b72abfd4406b6aa0df0c837b478358f4dfbdcc",
@@ -1761,13 +1761,13 @@
         },
         {
           "number": 83,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-06-28T21:35:06Z",
+          "closedAt": "2026-06-28T21:35:06Z",
           "title": "fix: add filter='data' to tarfile.extractall in vendor-reflexio.py",
-          "updatedAt": "2026-06-20T12:47:03Z",
+          "updatedAt": "2026-06-28T21:35:06Z",
           "createdAt": "2026-06-20T12:44:31Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:569b4d10217cf37f40bfe72c265e8d3f4d798ba1c3a876df4f5f9a7e3db5a3a8"
           ],
@@ -1781,8 +1781,9 @@
       "score": 92,
       "security": "REVIEW",
       "stars": 596,
-      "status": "contributed",
-      "strategy": "batched"
+      "status": "tracked",
+      "strategy": "batched",
+      "case_study_candidate": true
     },
     "SimoneAvogadro/android-reverse-engineering-skill": {
       "artifacts": 3,
