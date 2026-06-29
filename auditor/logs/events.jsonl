@@ -2921,3 +2921,4 @@
 {"timestamp":"2026-06-29T07:36:42Z","workflow":"discover","event":"search_complete","run_id":"28356148437","run_number":26,"data":{"candidates":94,"new":14,"worthy":0,"oversized":9}}
 {"timestamp":"2026-06-29T09:50:00Z","workflow":"track","event":"status_check","run_id":"28363029398","run_number":433,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
 {"timestamp":"2026-06-29T13:45:08Z","workflow":"track","event":"status_check","run_id":"28376111233","run_number":434,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
+{"timestamp":"2026-06-29T17:13:29Z","workflow":"track","event":"status_check","run_id":"28389352931","run_number":435,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
