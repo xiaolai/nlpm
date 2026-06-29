@@ -2918,3 +2918,4 @@
 {"timestamp":"2026-06-29T01:14:27Z","workflow":"case-study","event":"no_narrative","run_id":"28342249366","run_number":285,"data":{"repo":"ReflexioAI/claude-smart","reason":"thin narrative: score=92, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"}}
 {"timestamp":"2026-06-29T05:07:01Z","workflow":"classify","event":"classifications_emitted","run_id":"28349897788","run_number":70,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-06-29T05:49:27Z","workflow":"track","event":"status_check","run_id":"28351124071","run_number":432,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
+{"timestamp":"2026-06-29T07:36:42Z","workflow":"discover","event":"search_complete","run_id":"28356148437","run_number":26,"data":{"candidates":94,"new":14,"worthy":0,"oversized":9}}
