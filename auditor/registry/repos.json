@@ -938,7 +938,25 @@
       "pipeline_prs": [
         1
       ],
-      "prs": [],
+      "prs": [
+        {
+          "number": 1,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "feat: add description frontmatter to all 56 command files",
+          "updatedAt": "2026-06-27T12:33:18Z",
+          "createdAt": "2026-06-27T12:33:18Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:c5df290686f7128c5f72987ef75a1d4d33ebf0faf552142b35fee9d590b34152"
+          ],
+          "rule_ids": [
+            "BUG-missing-frontmatter"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "rule_adopted": false,
       "score": 58,
       "security": "CLEAR",
