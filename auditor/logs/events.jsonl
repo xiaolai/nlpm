@@ -2930,3 +2930,5 @@
 {"timestamp":"2026-06-30T05:36:40Z","workflow":"track","event":"status_check","run_id":"28422513373","run_number":438,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
 {"timestamp":"2026-06-30T09:22:05Z","workflow":"track","event":"status_check","run_id":"28433501208","run_number":439,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
 {"timestamp":"2026-06-30T12:57:04Z","workflow":"track","event":"status_check","run_id":"28445441811","run_number":440,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
+{"timestamp":"2026-06-30T16:48:34Z","workflow":"track","event":"finding_outcome","run_id":"28461038922","run_number":441,"data":{"pr":"JoasASantos/ClaudeAdvancedPlugins#1","pr_state":"open","fingerprints":["sha256:c5df290686f7128c5f72987ef75a1d4d33ebf0faf552142b35fee9d590b34152"],"rule_ids":["BUG-missing-frontmatter"]}}
+{"timestamp":"2026-06-30T16:55:38Z","workflow":"track","event":"status_check","run_id":"28461038922","run_number":441,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
