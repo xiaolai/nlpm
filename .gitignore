@@ -55,3 +55,7 @@ CLAUDE.local.md
 !.gemini/commands/
 !.gemini/settings.json
 # <<< cc-suite <<<
+
+# Local MCP registrations — dev-only (e.g. cc-suite Codex delegation).
+# Must not ship in the published plugin; keep untracked.
+.mcp.json
