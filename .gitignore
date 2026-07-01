@@ -35,6 +35,7 @@ site/reports/
 site/privacy.md
 
 # >>> cc-suite >>>
+# cc-suite-schema: 3
 # AI assistant local state
 .claude/settings.local.json
 .claude/CLAUDE.local.md
@@ -49,13 +50,18 @@ CLAUDE.local.md
 !.codex/hooks.cc-suite.json
 !.codex/config.toml
 
-# Gemini CLI — local files, keep checked-in subdirs + shared project config
+# Gemini CLI — local files, keep checked-in subdirs
 .gemini/*
 !.gemini/skills/
 !.gemini/commands/
-!.gemini/settings.json
-# <<< cc-suite <<<
 
-# Local MCP registrations — dev-only (e.g. cc-suite Codex delegation).
-# Must not ship in the published plugin; keep untracked.
+# cc-suite-managed symlinks (created by bridge_skills.sh) — derived, not authored
+.claude/skills/cc-suite
+.agents/skills
+
+# cc-suite: plugin repo — keep the dev-only Codex MCP registration out of the
+# published plugin. Claude Code auto-registers a plugin-root .mcp.json, which
+# would start `codex mcp-server` for every installer. Local dev use is fine;
+# the file just stays untracked.
 .mcp.json
+# <<< cc-suite <<<

@@ -351,4 +351,4 @@ This keeps Claude Code, Codex CLI, and Gemini CLI on the same context.
 - `.codex/prompts/` — Codex slash-command prompts
 - `.codex/hooks.json` / `.codex/config.toml` — Codex hooks/config (optional)
 - `.gemini/skills/`, `.gemini/commands/` — Gemini skills and TOML commands
-- `.mcp.json` — MCP server registrations (shared by all three tools)
+- `.mcp.json` — dev-only MCP registration (cc-suite Codex delegation); gitignored, never shipped. Claude Code auto-registers a plugin-root `.mcp.json`, so it must stay untracked in this plugin repo.
