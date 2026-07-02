@@ -6011,26 +6011,26 @@
       "prs": [
         {
           "number": 1,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-02T04:15:45Z",
+          "closedAt": "2026-07-02T04:15:45Z",
           "title": "fix: replace non-existent smart_outline/smart_search tool calls with Glob/Grep",
-          "updatedAt": "2026-06-27T18:33:32Z",
+          "updatedAt": "2026-07-02T04:15:45Z",
           "createdAt": "2026-06-27T18:33:32Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 2,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-02T04:24:41Z",
           "title": "fix: resolve hook fallback path from installed_plugins.json after auto-update",
-          "updatedAt": "2026-06-27T18:35:20Z",
+          "updatedAt": "2026-07-02T04:24:41Z",
           "createdAt": "2026-06-27T18:35:20Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:a61f524930c05acd9d4e3b9c15b6bca14b05d22cc929951316e6d24deac4d6e5"
           ],
@@ -6044,8 +6044,9 @@
       "score": 93,
       "security": "REVIEW",
       "stars": 150,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "tracked",
+      "strategy": "single",
+      "case_study_candidate": true
     },
     "navapbc/digital-service-orchestra": {
       "artifacts": 89,
