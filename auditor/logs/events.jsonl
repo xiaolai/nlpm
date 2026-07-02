@@ -2946,3 +2946,6 @@
 {"timestamp":"2026-07-01T22:52:01Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28552986628","run_number":45,"data":{"repos":246,"findings":3831,"advisories":22}}
 {"timestamp":"2026-07-02T01:06:44Z","workflow":"track","event":"status_check","run_id":"28557928213","run_number":449,"data":{"contributed":45,"tracked":36,"case_study_ready":39,"rule_adopted":3}}
 {"timestamp":"2026-07-02T04:51:59Z","workflow":"classify","event":"classifications_emitted","run_id":"28566247678","run_number":73,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
+{"timestamp":"2026-07-02T07:39:24Z","workflow":"track","event":"finding_outcome","run_id":"28573400546","run_number":450,"data":{"pr":"nagisanzenin/claude-code-production-grade-plugin#1","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-07-02T07:39:25Z","workflow":"track","event":"finding_outcome","run_id":"28573400546","run_number":450,"data":{"pr":"nagisanzenin/claude-code-production-grade-plugin#2","pr_state":"closed_unmerged","fingerprints":["sha256:a61f524930c05acd9d4e3b9c15b6bca14b05d22cc929951316e6d24deac4d6e5"],"rule_ids":["SEC-unpinned-semver"]}}
+{"timestamp":"2026-07-02T07:41:33Z","workflow":"track","event":"status_check","run_id":"28573400546","run_number":450,"data":{"contributed":44,"tracked":37,"case_study_ready":40,"rule_adopted":3}}
