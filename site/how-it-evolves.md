@@ -264,7 +264,7 @@ selection from the last six weeks:
 | `v0.8.17` | Exemplar pipeline — clean high-scoring audits become teaching artifacts | Path B introduced — positive warrant, not just negative findings |
 | `v0.8.18` | Exemplar gallery + rule-citation auto-PR | Path B operationalized |
 | `v0.8.22` | Skip top-level `templates/` directory during scan | Tightening discovery filter; author-facing templates kept getting scored as if they were live artifacts |
-| `v1.1.1` | Unified `bin/nlpm-check` onto the plugin version line (was `0.8.22`) | The public "Validated by NLPM" badge showed the checker's own `0.x` version next to a `v1.1.1` plugin; one shared version is clearer. Tool and plugin now bump together |
+| `v1.1.2` | Unified `bin/nlpm-check` onto the plugin version line (was `0.8.22`) | The public "Validated by NLPM" badge showed the checker's own `0.x` version next to a `v1.1.x` plugin; one shared version is clearer. Tool and plugin now bump together |
 
 None of these were ideas at the start of the project. Each is a
 response to evidence the auditor produced.
