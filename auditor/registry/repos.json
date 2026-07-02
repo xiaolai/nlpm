@@ -6044,8 +6044,10 @@
       "score": 93,
       "security": "REVIEW",
       "stars": 150,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "complete",
+      "strategy": "single",
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=93, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "navapbc/digital-service-orchestra": {
       "artifacts": 89,
