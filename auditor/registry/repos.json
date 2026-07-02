@@ -1015,7 +1015,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(security): pin REPO_URL to tagged release instead of main branch",
-          "updatedAt": "2026-04-24T17:35:24Z",
+          "updatedAt": "2026-07-02T20:45:55Z",
           "createdAt": "2026-04-22T06:54:45Z",
           "outcome": "open",
           "fingerprints": [],
