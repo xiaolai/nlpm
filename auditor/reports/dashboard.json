@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T22:52:01Z",
+  "generated_at": "2026-07-02T22:49:22Z",
   "since": null,
   "summary": {
     "total_repos": 246,
@@ -865,7 +865,7 @@
     },
     {
       "repo": "nagisanzenin/claude-code-production-grade-plugin",
-      "status": "contributed",
+      "status": "complete",
       "stars": 150,
       "score": 93,
       "security": "REVIEW",
@@ -4481,6 +4481,19 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-02",
+      "counts": {
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "finding_outcome": 2,
+        "finding_verified": 21,
+        "finding_introduced": 6,
+        "no_narrative": 1,
         "report_generated": 1
       }
     }
