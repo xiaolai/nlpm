@@ -67,7 +67,18 @@ jobs:
             "claude code skill in:name,description language:Markdown" \
             "claude-plugin in:name language:Markdown" \
             ".claude-plugin plugin.json in:path" \
+            "agent skills in:name,description language:Markdown" \
+            "claude code subagents in:name,description" \
+            "SKILL.md in:path language:Markdown" \
             '"program.md" autonomous in:description'; do
+            # The "agent skills" / "subagents" / "SKILL.md in:path" queries
+            # were added 2026-07 after a manual sweep found 5+ auditable
+            # ≥500-star repos (vercel-labs/agent-skills, phuryn/pm-skills,
+            # VoltAgent/awesome-claude-code-subagents, greensock/gsap-skills,
+            # 0xSteph/pentest-ai-agents) that the original "claude code
+            # plugin/skill" query set missed — the "agent skills" naming is
+            # now as common as "claude code skill", so recent runs reported
+            # discovered:0 while real candidates existed.
             # The last query targets "agent workflow program" repos —
             # project-root program.md driving an autonomous agent loop
             # (canonical example: karpathy/autoresearch). The probe step
