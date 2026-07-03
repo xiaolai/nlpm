@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-06-27T01:56:32Z",
+    "last_discovery": "2026-07-03T15:59:17Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 232
+    "total_discovered": 250
   },
   "repos": {
     "0xfurai/claude-code-subagents": {
@@ -8714,6 +8714,186 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "0xSteph/pentest-ai-agents": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 1935,
+      "artifacts": 55,
+      "description": "Turn Claude Code into your offensive security research assistant. Specialized AI subagents for authorized penetration testing plan engagements, analyze recon, research exploits, build detections, audit STIGs, and write reports.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 501,
+      "prs": []
+    },
+    "MemTensor/MemOS": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 10090,
+      "artifacts": 9,
+      "description": "Self-evolving memory OS for LLM & AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 502,
+      "prs": []
+    },
+    "TheDecipherist/claude-code-mastery": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 537,
+      "artifacts": 7,
+      "description": "The complete guide to Claude Code: CLAUDE.md, hooks, skills, MCP servers, and commands",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 503,
+      "prs": []
+    },
+    "VoltAgent/awesome-claude-code-subagents": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 22784,
+      "artifacts": 10,
+      "description": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 504,
+      "prs": []
+    },
+    "bergside/awesome-design-skills": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 1533,
+      "artifacts": 67,
+      "description": "List of 67 awesome DESIGN.md and SKILL.md design skill files for agentic tools like Claude Design, Google Stitch, Codex, Cursor, and other AI tools",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 505,
+      "prs": []
+    },
+    "greensock/gsap-skills": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 10787,
+      "artifacts": 10,
+      "description": "Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 506,
+      "prs": []
+    },
+    "huggingface/skills": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 10761,
+      "artifacts": 22,
+      "description": "Give your agents the power of the Hugging Face ecosystem",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 507,
+      "prs": []
+    },
+    "larksuite/cli": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 15068,
+      "artifacts": 30,
+      "description": "The official Lark/Feishu CLI tool, maintained by the larksuite team — built for humans and AI Agents. Covers core business domains including Messenger, Docs, Base, Sheets, Calendar, Mail, Tasks, Meetings, and more, with 200+ commands and 20+ AI Agent Skills.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 508,
+      "prs": []
+    },
+    "lst97/claude-code-sub-agents": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 1605,
+      "artifacts": 37,
+      "description": "Collection of specialized AI subagents for Claude Code for personal use (full-stack development).",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 509,
+      "prs": []
+    },
+    "matt1398/claude-devtools": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 3649,
+      "artifacts": 7,
+      "description": "The missing DevTools for Claude Code — inspect session logs, tool calls, token usage, subagents, and context window in a visual UI. Free, open source.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 510,
+      "prs": []
+    },
+    "microsoft/SkillOpt": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 10542,
+      "artifacts": 5,
+      "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 511,
+      "prs": []
+    },
+    "multica-ai/multica": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 38976,
+      "artifacts": 11,
+      "description": "The open-source managed agents platform. Turn coding agents into real teammates — assign tasks, track progress, compound skills.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 512,
+      "prs": []
+    },
+    "prompt-security/clawsec": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 1057,
+      "artifacts": 17,
+      "description": "A complete security skill suite for OpenClaw, Hermes, PicoClaw and NanoClaw agents (and variants). Protect your SOUL.md (etc') with drift detection, live security recommendations, automated audits, and skill integrity verification. All from one installable suite.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 513,
+      "prs": []
+    },
+    "realrossmanngroup/no_ai_slop_writing_rules": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 536,
+      "artifacts": 5,
+      "description": "Claude Code reference: write in Louis Rossmann's voice, never like AI slop. Portable CLAUDE.md plus skills.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 514,
+      "prs": []
+    },
+    "tintinweb/pi-subagents": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 562,
+      "artifacts": 23,
+      "description": "Sub-agents for pi with Claude Code look and feel — parallel execution, live widget, custom agent types, mid-run steering and more ...",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 515,
+      "prs": []
+    },
+    "vercel-labs/agent-skills": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 28619,
+      "artifacts": 10,
+      "description": "Vercel's official collection of agent skills",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 516,
+      "prs": []
+    },
+    "volcengine/OpenViking": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 26295,
+      "artifacts": 43,
+      "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 517,
+      "prs": []
+    },
+    "zubair-trabzada/ai-marketing-claude": {
+      "discovered": "2026-07-03T15:59:17Z",
+      "stars": 2037,
+      "artifacts": 20,
+      "description": "AI Marketing Suite for Claude Code. 15 marketing skills with parallel subagents — audit any website, generate copy, email sequences, ad campaigns, content calendars, competitive intelligence, and client-ready PDF reports.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 518,
+      "prs": []
     }
   }
 }
