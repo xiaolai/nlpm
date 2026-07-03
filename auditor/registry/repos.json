@@ -8750,10 +8750,13 @@
       "stars": 22784,
       "artifacts": 10,
       "description": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 98,
       "audit_issue": 504,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "c193ad45419c13ceb49a43740186f680ad5ea264"
     },
     "bergside/awesome-design-skills": {
       "discovered": "2026-07-03T15:59:17Z",
