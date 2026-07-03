@@ -97,7 +97,13 @@ jobs:
       - name: Open PR
         if: steps.existing.outputs.open_count == '0' && steps.dryrun.outputs.drift == '1'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Must be PAT_TOKEN, not GITHUB_TOKEN: the default Actions token is
+          # blocked from opening PRs by repo policy ("Allow GitHub Actions to
+          # create and approve pull requests" is off), which failed this step
+          # on every run since 2026-05-17 with "GitHub Actions is not permitted
+          # to create or approve pull requests". auditor-contribute.yml uses
+          # PAT_TOKEN for gh pr create for the same reason.
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           {
             echo "## Exemplar citation refresh"
