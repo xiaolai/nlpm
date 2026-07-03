@@ -8730,10 +8730,13 @@
       "stars": 10090,
       "artifacts": 9,
       "description": "Self-evolving memory OS for LLM & AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 89,
       "audit_issue": 502,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "b051e6384d8c667ae7d521baa679f542f4488d19"
     },
     "TheDecipherist/claude-code-mastery": {
       "discovered": "2026-07-03T15:59:17Z",
