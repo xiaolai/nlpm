@@ -8740,10 +8740,13 @@
       "stars": 537,
       "artifacts": 7,
       "description": "The complete guide to Claude Code: CLAUDE.md, hooks, skills, MCP servers, and commands",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 503,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "0f05fa1a384c6886b9c4cfda8a9a75be9b0448ee"
     },
     "VoltAgent/awesome-claude-code-subagents": {
       "discovered": "2026-07-03T15:59:17Z",
