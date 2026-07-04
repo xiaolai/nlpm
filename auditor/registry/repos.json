@@ -5614,8 +5614,9 @@
       "score": 91,
       "security": "REVIEW",
       "stars": 3649,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": []
     },
     "mattpocock/skills": {
       "commit_sha_at_audit": "HEAD-at-2026-05-11",
