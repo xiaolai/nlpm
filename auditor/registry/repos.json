@@ -5447,12 +5447,15 @@
     "lst97/claude-code-sub-agents": {
       "artifacts": 37,
       "audit_issue": 509,
+      "commit_sha_at_audit": "96f5a506793d1c2e4a66c3ec3ce63c2cd2667728",
       "description": "Collection of specialized AI subagents for Claude Code for personal use (full-stack development).",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 70,
+      "security": "CLEAR",
       "stars": 1605,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "luongnv89/claude-howto": {
       "artifacts": 186,
