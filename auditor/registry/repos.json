@@ -8743,7 +8743,7 @@
       "stars": 537,
       "artifacts": 7,
       "description": "The complete guide to Claude Code: CLAUDE.md, hooks, skills, MCP servers, and commands",
-      "status": "audited",
+      "status": "contributed",
       "score": 94,
       "audit_issue": 503,
       "prs": [],
