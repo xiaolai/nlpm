@@ -1,0 +1,143 @@
+{
+  "project": "tintinweb/pi-subagents",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 3,
+    "average_score": 94,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".pi/agents/auditor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "Agent body has zero example/invocation blocks"
+        },
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": null,
+          "message": "No explicit output-format section defining the structure of the security findings report"
+        },
+        {
+          "rule": "BUG-missing-frontmatter",
+          "severity": "info",
+          "line": null,
+          "message": "Generic rubric check for missing 'name' frontmatter does not apply — this ecosystem derives the agent type name from the filename, not a frontmatter field, and this holds across all 22 scored files"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 29,
+          "message": "Dependencies and devDependencies use caret ranges instead of exact pins; a committed package-lock.json fully mitigates this in practice"
+        }
+      ]
+    },
+    {
+      "path": "test/fixtures/.pi/agents/",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "low",
+          "line": null,
+          "message": "21 e2e fixture agents lack a formatted example/invocation block; each instead describes an input config to expected-tool-set mapping in prose"
+        },
+        {
+          "rule": "R10",
+          "severity": "info",
+          "line": null,
+          "message": "Generic rubric check 'model not declared' misfires on these 21 e2e fixtures, which intentionally omit model to test tool/extension scoping, not model behavior"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-04T08:39:47Z",
+      "average_score": 94,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "low",
+      "file": "package.json",
+      "line": 29,
+      "message": "Dependencies and devDependencies use caret ranges instead of exact pins; a committed package-lock.json fully mitigates this in practice"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "high",
+      "file": ".pi/agents/auditor.md",
+      "line": null,
+      "message": "Agent body has zero example/invocation blocks — File body contains no '<example>' or '## Example' section and no sample Agent(...) invocation or sample output"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "high",
+      "file": ".pi/agents/auditor.md",
+      "line": null,
+      "message": "No explicit output-format section defining the structure of the security findings report — Body ends at 'Be concise.' with no structural template for the findings report"
+    },
+    {
+      "rule": "R09",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "test/fixtures/.pi/agents/",
+      "line": null,
+      "message": "21 e2e fixture agents lack a formatted example/invocation block; each instead describes an input config to expected-tool-set mapping in prose"
+    },
+    {
+      "rule": "BUG-missing-frontmatter",
+      "severity": "info",
+      "confidence": "medium",
+      "file": ".pi/agents/auditor.md",
+      "line": null,
+      "message": "Generic rubric check for missing 'name' frontmatter does not apply — this ecosystem derives the agent type name from the filename, not a frontmatter field, and this holds across all 22 scored files"
+    },
+    {
+      "rule": "R10",
+      "severity": "info",
+      "confidence": "medium",
+      "file": "test/fixtures/.pi/agents/",
+      "line": null,
+      "message": "Generic rubric check 'model not declared' misfires on these 21 e2e fixtures, which intentionally omit model to test tool/extension scoping, not model behavior"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 562,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/tintinweb-pi-subagents.md"
+  },
+  "generated_at": "2026-07-04T08:40:25Z",
+  "schema_version": 1
+}

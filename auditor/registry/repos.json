@@ -7950,9 +7950,12 @@
       "description": "Sub-agents for pi with Claude Code look and feel \u2014 parallel execution, live widget, custom agent types, mid-run steering and more ...",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 94,
       "stars": 562,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "8405e556acc8ab2c0fcfa02021f871365695f776"
     },
     "tinyhumansai/openhuman": {
       "commit_sha_at_audit": "369a39288c1d54e2af992df7c70f15c045d90130",
