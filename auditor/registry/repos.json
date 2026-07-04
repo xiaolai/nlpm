@@ -8268,7 +8268,9 @@
       "status": "audited",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "f8a72b9603728bb92a217a879b7e62e43ad76c81"
+      "commit_sha_at_audit": "f8a72b9603728bb92a217a879b7e62e43ad76c81",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/vercel-labs-agent-skills.md"
     },
     "viticci/shortcuts-playground-plugin": {
       "artifacts": 9,
