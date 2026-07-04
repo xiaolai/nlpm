@@ -5390,12 +5390,15 @@
     "larksuite/cli": {
       "artifacts": 30,
       "audit_issue": 508,
+      "commit_sha_at_audit": "c45ff569c4b436eb63064e709e5494d7155728c7",
       "description": "The official Lark/Feishu CLI tool, maintained by the larksuite team \u2014 built for humans and AI Agents. Covers core business domains including Messenger, Docs, Base, Sheets, Calendar, Mail, Tasks, Meetings, and more, with 200+ commands and 20+ AI Agent Skills.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 96,
+      "security": "REVIEW",
       "stars": 15068,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "leowux/pony": {
       "artifacts": 9,
