@@ -1,0 +1,507 @@
+{
+  "project": "huggingface/skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 17,
+    "average_score": 96,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 39,
+          "message": "marketplace.json description for huggingface-community-evals directly contradicts the skill's own stated scope boundary"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "medium",
+          "line": 75,
+          "message": "marketplace.json description for huggingface-datasets references a 'parquetlens' tool that does not exist anywhere in the actual skill"
+        },
+        {
+          "rule": "CC-stale-count",
+          "severity": "low",
+          "line": 99,
+          "message": "marketplace.json description for huggingface-vision-trainer omits SAM/SAM2 segmentation training, which the actual SKILL.md dedicates roughly a third of its content to"
+        }
+      ]
+    },
+    {
+      "path": "skills/hf-cli/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "medium",
+          "line": 6,
+          "message": "Documented install instruction pipes curl output from the first-party hf.co domain directly into bash"
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "medium",
+          "line": 225,
+          "message": "Documented install instruction pipes curl output from the first-party huggingface GitHub org directly into sh"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "One vague quantifier without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-best/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Three vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-community-evals/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 24,
+          "message": "References nonexistent skill `hugging-face-jobs` for remote/Jobs execution hand-off"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "One vague quantifier without measurable criteria, in addition to the R37 stale reference in this same file"
+        },
+        {
+          "rule": "R37",
+          "severity": "medium",
+          "line": 24,
+          "message": "Stale skill reference (`hugging-face-jobs`) — see BUG-broken-reference finding for the same issue"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-community-evals/examples/USAGE_EXAMPLES.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 20,
+          "message": "References nonexistent skill `hugging-face-jobs` in the remote-execution example"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-gradio/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "One vague quantifier without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-llm-trainer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Four vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-lora-space-builder/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Four vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-paper-publisher/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Three vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-tool-builder/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Two vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-trackio/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "One vague quantifier without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-vision-trainer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 24,
+          "message": "References nonexistent skills `hugging-face-jobs` and `hugging-face-model-trainer` in the Related Skills section (also lines 246, 363)"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Two vague quantifiers without measurable criteria, in addition to the R37 stale references in this same file"
+        },
+        {
+          "rule": "R37",
+          "severity": "medium",
+          "line": 24,
+          "message": "Two distinct stale skill references (`hugging-face-jobs`, `hugging-face-model-trainer`) — see BUG-broken-reference finding for the same issue"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-vision-trainer/references/hub_saving.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 257,
+          "message": "References the nonexistent `hugging-face-jobs` skill for the Token Usage Guide"
+        }
+      ]
+    },
+    {
+      "path": "skills/huggingface-zerogpu/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Three vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/train-sentence-transformers/references/hf_jobs_execution.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "low",
+          "line": 9,
+          "message": "Duplicate reference to the curl|bash hf CLI installer one-liner"
+        }
+      ]
+    },
+    {
+      "path": "skills/transformers-js/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 302,
+          "message": "Five vague quantifiers without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/trl-training/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 1,
+          "message": "Two vague quantifiers without measurable criteria"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-04T19:14:56Z",
+      "average_score": 96,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-vision-trainer/SKILL.md",
+      "line": 24,
+      "message": "References nonexistent skills `hugging-face-jobs` and `hugging-face-model-trainer` in the Related Skills section (also lines 246, 363) — grepped skills/ for a directory matching *jobs* or *model-trainer*; zero matches across all 19 skill directories, so the skill named `hugging-face-jobs` and `hugging-face-model-trainer` referenced here do not exist"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-vision-trainer/references/hub_saving.md",
+      "line": 257,
+      "message": "References the nonexistent `hugging-face-jobs` skill for the Token Usage Guide — same verification as huggingface-vision-trainer/SKILL.md: no `hugging-face-jobs` skill directory exists anywhere in the repo"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-community-evals/SKILL.md",
+      "line": 24,
+      "message": "References nonexistent skill `hugging-face-jobs` for remote/Jobs execution hand-off — grepped skills/ for a directory matching *jobs*; zero matches; six separate hand-off instructions (lines 24, 53, 67, 147, 182, 192) all point to this nonexistent skill"
+    },
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-community-evals/examples/USAGE_EXAMPLES.md",
+      "line": 20,
+      "message": "References nonexistent skill `hugging-face-jobs` in the remote-execution example — same verification as huggingface-community-evals/SKILL.md; lines 20 and 101 both reference the nonexistent skill"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude-plugin/marketplace.json",
+      "line": 39,
+      "message": "marketplace.json description for huggingface-community-evals directly contradicts the skill's own stated scope boundary — marketplace.json says the skill adds eval results to model cards and imports Artificial Analysis scores; skills/huggingface-community-evals/SKILL.md states verbatim 'It does not cover: ... model-card or model-index edits ... Artificial Analysis imports ... PR creation or community-evals automation'"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude-plugin/marketplace.json",
+      "line": 75,
+      "message": "marketplace.json description for huggingface-datasets references a 'parquetlens' tool that does not exist anywhere in the actual skill — repo-wide search for 'parquetlens' matches only marketplace.json and the generated README.md table; skills/huggingface-datasets/SKILL.md documents `hf datasets sql` (DuckDB via the hf CLI) instead and never mentions parquetlens"
+    },
+    {
+      "rule": "CC-stale-count",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude-plugin/marketplace.json",
+      "line": 99,
+      "message": "marketplace.json description for huggingface-vision-trainer omits SAM/SAM2 segmentation training, which the actual SKILL.md dedicates roughly a third of its content to"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/hf-cli/SKILL.md",
+      "line": 6,
+      "message": "Documented install instruction pipes curl output from the first-party hf.co domain directly into bash — line 6: 'Install: curl -LsSf https://hf.co/cli/install.sh | bash -s'"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/hf-cli/SKILL.md",
+      "line": 225,
+      "message": "Documented install instruction pipes curl output from the first-party huggingface GitHub org directly into sh — line 225: 'Install: curl -fsSL https://raw.githubusercontent.com/huggingface/hf-mount/main/install.sh | sh'"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/train-sentence-transformers/references/hf_jobs_execution.md",
+      "line": 9,
+      "message": "Duplicate reference to the curl|bash hf CLI installer one-liner — line 9 repeats the same hf.co/cli/install.sh | bash -s one-liner documented in skills/hf-cli/SKILL.md"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/transformers-js/SKILL.md",
+      "line": 302,
+      "message": "Five vague quantifiers without measurable criteria — grep count of vague-quantifier list terms across the file: 5 occurrences (lines 302, 315, 321, 519, 602)"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-llm-trainer/SKILL.md",
+      "line": 1,
+      "message": "Four vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-lora-space-builder/SKILL.md",
+      "line": 1,
+      "message": "Four vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-paper-publisher/SKILL.md",
+      "line": 1,
+      "message": "Three vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-zerogpu/SKILL.md",
+      "line": 1,
+      "message": "Three vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-best/SKILL.md",
+      "line": 1,
+      "message": "Three vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-tool-builder/SKILL.md",
+      "line": 1,
+      "message": "Two vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/trl-training/SKILL.md",
+      "line": 1,
+      "message": "Two vague quantifiers without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-gradio/SKILL.md",
+      "line": 1,
+      "message": "One vague quantifier without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-trackio/SKILL.md",
+      "line": 1,
+      "message": "One vague quantifier without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/hf-cli/SKILL.md",
+      "line": 1,
+      "message": "One vague quantifier without measurable criteria"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-vision-trainer/SKILL.md",
+      "line": 1,
+      "message": "Two vague quantifiers without measurable criteria, in addition to the R37 stale references in this same file"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/huggingface-community-evals/SKILL.md",
+      "line": 1,
+      "message": "One vague quantifier without measurable criteria, in addition to the R37 stale reference in this same file"
+    },
+    {
+      "rule": "R37",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-vision-trainer/SKILL.md",
+      "line": 24,
+      "message": "Two distinct stale skill references (`hugging-face-jobs`, `hugging-face-model-trainer`) — see BUG-broken-reference finding for the same issue — grepped skills/ for *jobs*/*model-trainer* directories; zero matches, confirming two distinct stale skill-name references in this file"
+    },
+    {
+      "rule": "R37",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/huggingface-community-evals/SKILL.md",
+      "line": 24,
+      "message": "Stale skill reference (`hugging-face-jobs`) — see BUG-broken-reference finding for the same issue — grepped skills/ for *jobs* directories; zero matches, confirming the stale skill-name reference repeated six times in this file"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 10761,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/huggingface-skills.md"
+  },
+  "generated_at": "2026-07-04T19:16:05Z",
+  "schema_version": 1
+}

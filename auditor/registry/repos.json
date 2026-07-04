@@ -4812,9 +4812,12 @@
       "description": "Give your agents the power of the Hugging Face ecosystem",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 96,
       "stars": 10761,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "4948baec814c92edd91024b76d8c2ffa6df4eb70"
     },
     "iOfficeAI/AionUi": {
       "artifacts": 13,
