@@ -8265,10 +8265,11 @@
       "prs": [],
       "score": 99,
       "stars": 28619,
-      "status": "audited",
+      "status": "contributed",
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "f8a72b9603728bb92a217a879b7e62e43ad76c81"
+      "commit_sha_at_audit": "f8a72b9603728bb92a217a879b7e62e43ad76c81",
+      "pipeline_prs": []
     },
     "viticci/shortcuts-playground-plugin": {
       "artifacts": 9,
