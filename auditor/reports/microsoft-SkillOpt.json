@@ -1,0 +1,157 @@
+{
+  "project": "microsoft/SkillOpt",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/claude-code/README.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "low",
+          "line": 43,
+          "message": "README instructs `/plugin marketplace add ./skillopt-sleep-plugin` but that directory does not exist; the real plugin root per marketplace.json is plugins/claude-code"
+        }
+      ]
+    },
+    {
+      "path": "plugins/claude-code/commands/skillopt-sleep.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-broken-reference",
+          "severity": "medium",
+          "line": 42,
+          "message": "Command doc tells the user to add --preferences to the sleep.sh invocation but the underlying python -m skillopt_sleep CLI has no such flag and errors with unrecognized arguments"
+        },
+        {
+          "rule": "SEC-unsanitized-arg-to-bash",
+          "severity": "high",
+          "line": 15,
+          "message": "allowed-tools: Bash, Read (line 4) plus a bash invocation template driven by the raw $ARGUMENTS value (line 15) with no explicit instruction in the artifact to validate the argument against the documented action whitelist before executing"
+        }
+      ]
+    },
+    {
+      "path": "plugins/openclaw/skillopt_sleep_openclaw.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-credential-to-configurable-endpoint",
+          "severity": "medium",
+          "line": 41,
+          "message": "DEEPSEEK_BASE_URL env var is used unchecked as the destination for a request carrying the DeepSeek API key in an Authorization header; mirrors a common SDK convenience pattern so may be intentional"
+        }
+      ]
+    },
+    {
+      "path": "plugins/openclaw/slash_sleep.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-os-system",
+          "severity": "high",
+          "line": 107,
+          "message": "Shells out via os.system instead of subprocess.run(list); current inputs are constrained (argparse choices, fixed paths) so not exploitable today, but the pattern is fragile against future unvalidated inputs"
+        }
+      ]
+    },
+    {
+      "path": "requirements.txt",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 2,
+          "message": "All core dependencies are pinned with a lower bound only, allowing an unvetted future major release to install silently"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-04T08:40:21Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-broken-reference",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "plugins/claude-code/commands/skillopt-sleep.md",
+      "line": 42,
+      "message": "Command doc tells the user to add --preferences to the sleep.sh invocation but the underlying python -m skillopt_sleep CLI has no such flag and errors with unrecognized arguments — skillopt_sleep/__main__.py _add_common() (lines 68-93) enumerates all accepted flags, no --preferences entry exists, and parser.parse_args(argv) at line 323 is strict, not parse_known_args"
+    },
+    {
+      "rule": "SEC-os-system",
+      "severity": "high",
+      "confidence": "high",
+      "file": "plugins/openclaw/slash_sleep.py",
+      "line": 107,
+      "message": "Shells out via os.system instead of subprocess.run(list); current inputs are constrained (argparse choices, fixed paths) so not exploitable today, but the pattern is fragile against future unvalidated inputs — rc = os.system(\" \".join(f'\"{c}\"' for c in cmd)) at line 107"
+    },
+    {
+      "rule": "SEC-unsanitized-arg-to-bash",
+      "severity": "high",
+      "confidence": "medium",
+      "file": "plugins/claude-code/commands/skillopt-sleep.md",
+      "line": 15,
+      "message": "allowed-tools: Bash, Read (line 4) plus a bash invocation template driven by the raw $ARGUMENTS value (line 15) with no explicit instruction in the artifact to validate the argument against the documented action whitelist before executing"
+    },
+    {
+      "rule": "SEC-credential-to-configurable-endpoint",
+      "severity": "medium",
+      "confidence": "low",
+      "file": "plugins/openclaw/skillopt_sleep_openclaw.py",
+      "line": 41,
+      "message": "DEEPSEEK_BASE_URL env var is used unchecked as the destination for a request carrying the DeepSeek API key in an Authorization header; mirrors a common SDK convenience pattern so may be intentional"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": "requirements.txt",
+      "line": 2,
+      "message": "All core dependencies are pinned with a lower bound only, allowing an unvetted future major release to install silently — all 7 core dependency lines (openai, pyyaml, numpy, openpyxl, azure-identity, azure-core, httpx) use only >= with no upper bound"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "low",
+      "confidence": "high",
+      "file": "plugins/claude-code/README.md",
+      "line": 43,
+      "message": "README instructs `/plugin marketplace add ./skillopt-sleep-plugin` but that directory does not exist; the real plugin root per marketplace.json is plugins/claude-code — directory listing of the repo confirms no skillopt-sleep-plugin directory exists anywhere; marketplace.json source.path is plugins/claude-code"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 10542,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/microsoft-SkillOpt.md"
+  },
+  "generated_at": "2026-07-04T08:40:57Z",
+  "schema_version": 1
+}

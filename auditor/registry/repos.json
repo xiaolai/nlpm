@@ -5695,9 +5695,12 @@
       "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 98,
       "stars": 10542,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "e4ea6a6771e797ef820cdd8bfea64c57e0481065"
     },
     "mikeyobrien/ralph-orchestrator": {
       "artifacts": 48,
