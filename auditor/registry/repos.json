@@ -4568,6 +4568,8 @@
       "commit_sha_at_audit": "aed9cfd3277740755f6bfc1155c7aa645403b760",
       "description": "Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.",
       "discovered": "2026-07-03T15:59:17Z",
+      "exemplar_path": "auditor/exemplars/greensock-gsap-skills.md",
+      "exemplar_published": true,
       "pipeline_prs": [],
       "prs": [],
       "score": 97,
