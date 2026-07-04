@@ -1,0 +1,136 @@
+{
+  "project": "realrossmanngroup/no_ai_slop_writing_rules",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 98,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/no-ai-slop/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No scope note or cross-reference to companion skill rossmann-voice, though CLAUDE.md and README.md present the two as an always-paired set"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/rossmann-voice/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No scope note or cross-reference to companion skill no-ai-slop, though CLAUDE.md and README.md present the two as an always-paired set"
+        }
+      ]
+    },
+    {
+      "path": "skills/no-ai-slop/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No scope note or cross-reference to companion skill rossmann-voice, though CLAUDE.md and README.md present the two as an always-paired set"
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": 83,
+          "message": "The 'Root-cause differentiation' section uses the same heading pattern as the numbered Rule N sections but has no rule number and no matching entry among CLAUDE.md's 24 canonical rules"
+        }
+      ]
+    },
+    {
+      "path": "skills/rossmann-voice/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R07",
+          "severity": "low",
+          "line": null,
+          "message": "No scope note or cross-reference to companion skill no-ai-slop, though CLAUDE.md and README.md present the two as an always-paired set"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-04T08:37:39Z",
+      "average_score": 98,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/no-ai-slop/SKILL.md",
+      "line": null,
+      "message": "No scope note or cross-reference to companion skill rossmann-voice, though CLAUDE.md and README.md present the two as an always-paired set"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": ".claude/skills/rossmann-voice/SKILL.md",
+      "line": null,
+      "message": "No scope note or cross-reference to companion skill no-ai-slop, though CLAUDE.md and README.md present the two as an always-paired set"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/no-ai-slop/SKILL.md",
+      "line": null,
+      "message": "No scope note or cross-reference to companion skill rossmann-voice, though CLAUDE.md and README.md present the two as an always-paired set"
+    },
+    {
+      "rule": "R07",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/rossmann-voice/SKILL.md",
+      "line": null,
+      "message": "No scope note or cross-reference to companion skill no-ai-slop, though CLAUDE.md and README.md present the two as an always-paired set"
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "low",
+      "file": "skills/no-ai-slop/SKILL.md",
+      "line": 83,
+      "message": "The 'Root-cause differentiation' section uses the same heading pattern as the numbered Rule N sections but has no rule number and no matching entry among CLAUDE.md's 24 canonical rules"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 536,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/realrossmanngroup-no_ai_slop_writing_rules.md"
+  },
+  "generated_at": "2026-07-04T08:38:09Z",
+  "schema_version": 1
+}
