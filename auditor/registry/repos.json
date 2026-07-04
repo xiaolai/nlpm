@@ -8262,9 +8262,12 @@
       "description": "Vercel's official collection of agent skills",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 99,
       "stars": 28619,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "f8a72b9603728bb92a217a879b7e62e43ad76c81"
     },
     "viticci/shortcuts-playground-plugin": {
       "artifacts": 9,
