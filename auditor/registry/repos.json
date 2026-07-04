@@ -4572,8 +4572,11 @@
       "score": 97,
       "security": "CLEAR",
       "stars": 10787,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        12
+      ]
     },
     "gsd-build/get-shit-done": {
       "artifacts": 118,
