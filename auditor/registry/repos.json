@@ -5927,9 +5927,12 @@
       "description": "The open-source managed agents platform. Turn coding agents into real teammates \u2014 assign tasks, track progress, compound skills.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 98,
       "stars": 38976,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "1ff99e5afc1f44ec58a4d3dff3b216a0e7898c07"
     },
     "muratcankoylan/Agent-Skills-for-Context-Engineering": {
       "artifacts": 21,
