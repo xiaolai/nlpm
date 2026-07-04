@@ -4563,12 +4563,15 @@
     "greensock/gsap-skills": {
       "artifacts": 10,
       "audit_issue": 506,
+      "commit_sha_at_audit": "aed9cfd3277740755f6bfc1155c7aa645403b760",
       "description": "Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 97,
+      "security": "CLEAR",
       "stars": 10787,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "gsd-build/get-shit-done": {
       "artifacts": 118,
