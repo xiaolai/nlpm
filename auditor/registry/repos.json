@@ -6968,7 +6968,9 @@
       "security": "CLEAR",
       "stars": 536,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/realrossmanngroup-no_ai_slop_writing_rules.md"
     },
     "refly-ai/refly": {
       "artifacts": 3,
