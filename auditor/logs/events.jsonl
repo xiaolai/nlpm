@@ -3104,3 +3104,4 @@
 {"timestamp":"2026-07-04T19:21:18Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"28716629934","run_number":719,"data":{"repo":"volcengine/OpenViking","queue_path":"auditor/disclosures-pending/volcengine-OpenViking.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
 {"timestamp":"2026-07-04T21:08:24Z","workflow":"track","event":"status_check","run_id":"28719474858","run_number":466,"data":{"contributed":52,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
 {"timestamp":"2026-07-04T22:51:09Z","workflow":"daily-report","event":"report_generated","run_id":"28722207407","run_number":92,"data":{"total_repos":264}}
+{"timestamp":"2026-07-04T23:29:00Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28723073010","run_number":48,"data":{"repos":264,"findings":4256,"advisories":22}}
