@@ -1881,6 +1881,8 @@
       "commit_sha_at_audit": "0f05fa1a384c6886b9c4cfda8a9a75be9b0448ee",
       "description": "The complete guide to Claude Code: CLAUDE.md, hooks, skills, MCP servers, and commands",
       "discovered": "2026-07-03T15:59:17Z",
+      "exemplar_path": "auditor/exemplars/TheDecipherist-claude-code-mastery.md",
+      "exemplar_published": true,
       "prs": [],
       "score": 94,
       "security": "CLEAR",
