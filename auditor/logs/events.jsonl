@@ -3066,3 +3066,4 @@
 {"timestamp":"2026-07-04T08:37:25Z","workflow":"contribute","event":"prs_submitted","run_id":"28700637064","run_number":2555,"data":{"repo":"greensock/gsap-skills","pr_count":1}}
 {"timestamp":"2026-07-04T08:40:32Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"28700639705","run_number":2557,"data":{"repo":"lst97/claude-code-sub-agents","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/28700639705","retention_days":90}}
 {"timestamp":"2026-07-04T08:40:32Z","workflow":"contribute","event":"prs_submitted","run_id":"28700639705","run_number":2557,"data":{"repo":"lst97/claude-code-sub-agents","pr_count":2}}
+{"timestamp":"2026-07-04T08:41:28Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"28700642032","run_number":707,"data":{"repo":"microsoft/SkillOpt","queue_path":"auditor/disclosures-pending/microsoft-SkillOpt.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
