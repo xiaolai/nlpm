@@ -6854,9 +6854,12 @@
       "description": "A complete security skill suite for OpenClaw, Hermes, PicoClaw and NanoClaw agents (and variants). Protect your SOUL.md (etc') with drift detection, live security recommendations, automated audits, and skill integrity verification. All from one installable suite.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 99,
       "stars": 1057,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "bc85af7203a20b369c470e6aeb5faf02d197e529"
     },
     "quant-sentiment-ai/claude-equity-research": {
       "artifacts": 3,
