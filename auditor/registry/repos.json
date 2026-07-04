@@ -8935,9 +8935,12 @@
       "description": "AI Marketing Suite for Claude Code. 15 marketing skills with parallel subagents \u2014 audit any website, generate copy, email sequences, ad campaigns, content calendars, competitive intelligence, and client-ready PDF reports.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 53,
       "stars": 2037,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "e5aa0ea4c5f30d8bc08771e8ea932463e76d3356"
     },
     "zubair-trabzada/geo-seo-claude": {
       "artifacts": 19,
