@@ -8315,9 +8315,12 @@
       "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 4,
       "stars": 26295,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "4b9d17db2f05601ab0daef4ce851b0415f1ae69d"
     },
     "vstorm-co/pydantic-deepagents": {
       "artifacts": 30,
