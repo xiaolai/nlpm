@@ -3011,3 +3011,5 @@
 {"timestamp":"2026-07-03T21:17:27Z","workflow":"track","event":"status_check","run_id":"28683460370","run_number":460,"data":{"contributed":44,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
 {"timestamp":"2026-07-03T22:56:13Z","workflow":"daily-report","event":"report_generated","run_id":"28686839005","run_number":91,"data":{"total_repos":264}}
 {"timestamp":"2026-07-03T23:32:08Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28687858797","run_number":47,"data":{"repos":264,"findings":3974,"advisories":22}}
+{"timestamp":"2026-07-04T02:37:05Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"28692331926","run_number":2548,"data":{"repo":"bergside/awesome-design-skills","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/28692331926","retention_days":90}}
+{"timestamp":"2026-07-04T02:37:05Z","workflow":"contribute","event":"prs_submitted","run_id":"28692331926","run_number":2548,"data":{"repo":"bergside/awesome-design-skills","pr_count":0}}
