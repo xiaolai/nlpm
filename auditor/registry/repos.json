@@ -6893,9 +6893,12 @@
       "description": "Claude Code reference: write in Louis Rossmann's voice, never like AI slop. Portable CLAUDE.md plus skills.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 98,
       "stars": 536,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "35e32ae45878148a6bd898572a9d15c96711affe"
     },
     "refly-ai/refly": {
       "artifacts": 3,
