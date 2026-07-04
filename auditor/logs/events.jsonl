@@ -3101,3 +3101,4 @@
 {"timestamp":"2026-07-04T19:08:12Z","workflow":"contribute","event":"prs_submitted","run_id":"28716622235","run_number":2559,"data":{"repo":"vercel-labs/agent-skills","pr_count":0}}
 {"timestamp":"2026-07-04T19:10:51Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"28716624235","run_number":2560,"data":{"repo":"vercel-labs/agent-skills","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/28716624235","retention_days":90}}
 {"timestamp":"2026-07-04T19:10:51Z","workflow":"contribute","event":"prs_submitted","run_id":"28716624235","run_number":2560,"data":{"repo":"vercel-labs/agent-skills","pr_count":0}}
+{"timestamp":"2026-07-04T19:21:18Z","workflow":"audit","event":"manual_disclosure_pending","run_id":"28716629934","run_number":719,"data":{"repo":"volcengine/OpenViking","queue_path":"auditor/disclosures-pending/volcengine-OpenViking.md","gh_error":"GraphQL: Resource not accessible by integration (createIssue)"}}
