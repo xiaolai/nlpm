@@ -8022,6 +8022,8 @@
       "commit_sha_at_audit": "8405e556acc8ab2c0fcfa02021f871365695f776",
       "description": "Sub-agents for pi with Claude Code look and feel \u2014 parallel execution, live widget, custom agent types, mid-run steering and more ...",
       "discovered": "2026-07-03T15:59:17Z",
+      "exemplar_path": "auditor/exemplars/tintinweb-pi-subagents.md",
+      "exemplar_published": true,
       "prs": [],
       "score": 94,
       "security": "CLEAR",
