@@ -5602,12 +5602,15 @@
     "matt1398/claude-devtools": {
       "artifacts": 7,
       "audit_issue": 510,
+      "commit_sha_at_audit": "16cc3c87c1e4d0e08ee101fb52dad1b85dbbe48a",
       "description": "The missing DevTools for Claude Code \u2014 inspect session logs, tool calls, token usage, subagents, and context window in a visual UI. Free, open source.",
       "discovered": "2026-07-03T15:59:17Z",
       "prs": [],
-      "score": null,
+      "score": 91,
+      "security": "REVIEW",
       "stars": 3649,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "single"
     },
     "mattpocock/skills": {
       "commit_sha_at_audit": "HEAD-at-2026-05-11",
