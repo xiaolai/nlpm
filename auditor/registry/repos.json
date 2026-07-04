@@ -5456,8 +5456,12 @@
       "score": 70,
       "security": "CLEAR",
       "stars": 1605,
-      "status": "audited",
-      "strategy": "batched"
+      "status": "contributed",
+      "strategy": "batched",
+      "pipeline_prs": [
+        18,
+        19
+      ]
     },
     "luongnv89/claude-howto": {
       "artifacts": 186,
