@@ -6925,8 +6925,9 @@
       "score": 99,
       "security": "CLEAR",
       "stars": 1057,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": []
     },
     "quant-sentiment-ai/claude-equity-research": {
       "artifacts": 3,
