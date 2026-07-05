@@ -3115,3 +3115,4 @@
 {"timestamp":"2026-07-05T03:43:29Z","workflow":"track","event":"status_check","run_id":"28728380324","run_number":467,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
 {"timestamp":"2026-07-05T06:55:26Z","workflow":"classify","event":"classifications_emitted","run_id":"28732579737","run_number":76,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-07-05T07:35:24Z","workflow":"track","event":"status_check","run_id":"28733343390","run_number":468,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
+{"timestamp":"2026-07-05T09:52:01Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"28736819143","run_number":14,"data":{"proposals":0,"skipped_existing_open":1}}
