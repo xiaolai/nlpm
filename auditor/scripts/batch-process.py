@@ -640,6 +640,18 @@ def phase3_retrigger_stuck(dry_run: bool, batch_size: int, available: int, picke
             continue
         num = issue["number"]
         repo = issue_to_repo(issue["title"])
+        # Terminal state: the auditor model refused this repo (offensive-
+        # security content trips the model's cybersecurity safeguards, so no
+        # report is ever produced). Never re-trigger — retrying always
+        # refuses and burns a full audit run. The audit workflow removes
+        # `audit-ready` when it marks a repo unsupported, so this normally
+        # won't be listed here; guard anyway in case that removal failed,
+        # and clean up the stale label so the dashboard stops counting it.
+        if "audit-unsupported" in labels:
+            print(f"  SKIP #{num} ({repo}): audit-unsupported (model refusal, terminal)")
+            if not dry_run and "audit-ready" in labels:
+                gh(["issue", "edit", str(num), "--remove-label", "audit-ready"])
+            continue
         status = registry_status(repo)
         if status not in ("none", "discovered"):
             # The audit already ran for this repo (registry shows it

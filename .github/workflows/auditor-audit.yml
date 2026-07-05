@@ -335,6 +335,7 @@ jobs:
           echo "Removed stale report (if any)"
 
       - name: Audit with Claude Code
+        id: audit_claude
         uses: anthropics/claude-code-action@v1
         env:
           SECURITY_RISK: ${{ steps.security.outputs.risk }}
@@ -521,6 +522,8 @@ jobs:
       - name: Validate audit report
         env:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
+          ISSUE_NUM: ${{ steps.target.outputs.issue }}
+          EXEC_FILE: ${{ steps.audit_claude.outputs.execution_file }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           SLUG="${TARGET_REPO//\//-}"
@@ -528,12 +531,46 @@ jobs:
 
           if [ ! -f "$REPORT" ]; then
             echo "ERROR: Report not found at $REPORT"
-            echo "Looking for any audit files Claude may have written..."
-            find . -name "*.md" -newer .git/HEAD -not -path './.github/*' -not -path './target-repo/*' | head -10
-            # Fail loudly — previous exit 0 let the aggregate/commit
-            # steps mark the audit complete with score 0/UNKNOWN,
-            # creating phantom registry entries that look audited but
-            # weren't.
+
+            # Distinguish a permanent model safety refusal from a transient
+            # bug. Offensive-security / red-team repos (C2, lateral movement,
+            # opsec evasion) trip the auditor model's cybersecurity
+            # safeguards: the model refuses mid-audit, writes no report, and
+            # retrying ALWAYS refuses. Without this branch the repo stays
+            # stuck at `audit-ready` and the batch-processor re-triggers it
+            # every cycle — a permanent compute drain (observed:
+            # 0xSteph/pentest-ai-agents, #501). Detect the refusal in the
+            # claude-code-action execution log and mark the repo terminal.
+            if [ -n "$EXEC_FILE" ] && [ -f "$EXEC_FILE" ] \
+               && grep -qiE 'model_refusal|"stop_reason"[[:space:]]*:[[:space:]]*"refusal"|safeguards flagged|cybersecurity topic' "$EXEC_FILE" 2>/dev/null; then
+              echo "DETECTED: auditor model safety refusal — marking repo audit-unsupported (terminal)."
+              {
+                echo "## Audit unsupported (model safety refusal)"
+                echo ""
+                echo "The auditor model refused to score this repository. Its content"
+                echo "(offensive-security / red-team tooling) trips the model's"
+                echo "cybersecurity safeguards, so no audit report can be produced."
+                echo "This is **not transient** — retrying always refuses."
+                echo ""
+                echo "Marked \`audit-unsupported\` and closed. The pipeline will not"
+                echo "re-trigger or reopen it, and no PRs will be opened."
+              } > /tmp/unsupported-comment.md
+              gh issue comment "$ISSUE_NUM" --body-file /tmp/unsupported-comment.md 2>/dev/null || true
+              # Remove audit-ready so Phase 3 stops re-triggering; add the
+              # terminal label; close so Phase 2 won't re-pick it. Phase 1.5
+              # only reopens closed *audit-candidate* issues, so a closed
+              # audit-unsupported issue is never reopened.
+              gh issue edit "$ISSUE_NUM" --add-label "audit-unsupported" --remove-label "audit-ready" 2>/dev/null || true
+              gh issue close "$ISSUE_NUM" --reason "not planned" 2>/dev/null || true
+            else
+              echo "Looking for any audit files Claude may have written..."
+              find . -name "*.md" -newer .git/HEAD -not -path './.github/*' -not -path './target-repo/*' | head -10
+            fi
+            # Fail loudly either way — previous exit 0 let the aggregate/commit
+            # steps mark the audit complete with score 0/UNKNOWN, creating
+            # phantom registry entries that look audited but weren't. On a
+            # refusal the issue is already marked terminal above, so exit 1
+            # here just skips aggregate/commit; the loop is already broken.
             exit 1
           fi
 
