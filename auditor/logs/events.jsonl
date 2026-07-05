@@ -3106,3 +3106,5 @@
 {"timestamp":"2026-07-04T22:51:09Z","workflow":"daily-report","event":"report_generated","run_id":"28722207407","run_number":92,"data":{"total_repos":264}}
 {"timestamp":"2026-07-04T23:29:00Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28723073010","run_number":48,"data":{"repos":264,"findings":4256,"advisories":22}}
 {"timestamp":"2026-07-05T00:24:17Z","workflow":"suppressions","event":"scan_complete","run_id":"28724286821","run_number":11,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
+{"timestamp":"2026-07-05T02:49:50Z","workflow":"contribute","event":"report_artifact_uploaded","run_id":"28727330940","run_number":2561,"data":{"repo":"huggingface/skills","artifact_run_url":"https://github.com/xiaolai/nlpm/actions/runs/28727330940","retention_days":90}}
+{"timestamp":"2026-07-05T02:49:50Z","workflow":"contribute","event":"prs_submitted","run_id":"28727330940","run_number":2561,"data":{"repo":"huggingface/skills","pr_count":2}}
