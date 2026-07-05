@@ -4814,7 +4814,7 @@
       "prs": [],
       "score": 96,
       "stars": 10761,
-      "status": "audited",
+      "status": "contributed",
       "strategy": "batched",
       "security": "REVIEW",
       "commit_sha_at_audit": "4948baec814c92edd91024b76d8c2ffa6df4eb70"
