@@ -3118,3 +3118,4 @@
 {"timestamp":"2026-07-05T09:52:01Z","workflow":"refine-rules","event":"proposals_prepared","run_id":"28736819143","run_number":14,"data":{"proposals":0,"skipped_existing_open":1}}
 {"timestamp":"2026-07-05T10:24:16Z","workflow":"track","event":"status_check","run_id":"28737391315","run_number":469,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
 {"timestamp":"2026-07-05T13:52:06Z","workflow":"track","event":"status_check","run_id":"28742775220","run_number":470,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
+{"timestamp":"2026-07-05T17:21:56Z","workflow":"track","event":"status_check","run_id":"28748547603","run_number":471,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
