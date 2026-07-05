@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T23:29:00Z",
+  "generated_at": "2026-07-05T23:32:58Z",
   "since": null,
   "summary": {
     "total_repos": 264,
@@ -745,7 +745,7 @@
     },
     {
       "repo": "huggingface/skills",
-      "status": "audited",
+      "status": "contributed",
       "stars": 10761,
       "score": 96,
       "security": "REVIEW",
@@ -4742,6 +4742,20 @@
         "classifications_emitted": 1,
         "manual_disclosure_pending": 4,
         "finding_outcome": 3,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-05",
+      "counts": {
+        "scan_complete": 1,
+        "report_artifact_uploaded": 2,
+        "prs_submitted": 2,
+        "finding_outcome": 2,
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "proposals_prepared": 1,
         "report_generated": 1
       }
     }
