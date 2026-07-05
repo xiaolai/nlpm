@@ -4817,7 +4817,9 @@
       "status": "audited",
       "strategy": "batched",
       "security": "REVIEW",
-      "commit_sha_at_audit": "4948baec814c92edd91024b76d8c2ffa6df4eb70"
+      "commit_sha_at_audit": "4948baec814c92edd91024b76d8c2ffa6df4eb70",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/huggingface-skills.md"
     },
     "iOfficeAI/AionUi": {
       "artifacts": 13,
