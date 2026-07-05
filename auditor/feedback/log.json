@@ -183,7 +183,7 @@
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
-      "downstream_suppressions": 5,
+      "downstream_suppressions": 6,
       "verified_fixed": 0,
       "verified_persists": 0,
       "verify_rate": null,
@@ -4746,10 +4746,10 @@
     "last_updated": "2026-04-10",
     "total_events": 16,
     "total_audits": 10,
-    "total_prs_submitted": 301,
+    "total_prs_submitted": 303,
     "total_prs_merged": 111,
     "total_prs_rejected": 57,
     "total_prs_applied_separately": 24,
-    "updated_at": "2026-07-04T22:51:09.265838Z"
+    "updated_at": "2026-07-05T22:55:44.943336Z"
   }
 }
