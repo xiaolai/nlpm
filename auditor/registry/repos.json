@@ -9094,10 +9094,13 @@
       "stars": 3333,
       "artifacts": 20,
       "description": "18 AI personas deliberate your hardest decisions across multiple LLM providers. Structured multi-round deliberation, confidence-weighted verdicts, genuine model diversity. Install as a Claude Code plugin — one command: /council",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 71,
       "audit_issue": 535,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "f996d386eb2c33601977915828f5f3ea383e9f49"
     },
     "Graphify-Labs/graphify": {
       "discovered": "2026-07-06T07:29:13Z",
