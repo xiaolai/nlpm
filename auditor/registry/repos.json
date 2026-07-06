@@ -9104,10 +9104,13 @@
       "stars": 78301,
       "artifacts": 25,
       "description": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 99,
       "audit_issue": 536,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "31211a0e7c512d63972b4f0438877d3777ae0e85"
     },
     "wesammustafa/Claude-Code-Everything-You-Need-to-Know": {
       "discovered": "2026-07-06T07:29:13Z",
