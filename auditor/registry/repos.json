@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-07-03T15:59:17Z",
+    "last_discovery": "2026-07-06T07:29:13Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 250
+    "total_discovered": 253
   },
   "repos": {
     "0xSteph/pentest-ai-agents": {
@@ -9088,6 +9088,36 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "0xNyk/council-of-high-intelligence": {
+      "discovered": "2026-07-06T07:29:13Z",
+      "stars": 3333,
+      "artifacts": 20,
+      "description": "18 AI personas deliberate your hardest decisions across multiple LLM providers. Structured multi-round deliberation, confidence-weighted verdicts, genuine model diversity. Install as a Claude Code plugin — one command: /council",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 535,
+      "prs": []
+    },
+    "Graphify-Labs/graphify": {
+      "discovered": "2026-07-06T07:29:13Z",
+      "stars": 78301,
+      "artifacts": 25,
+      "description": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 536,
+      "prs": []
+    },
+    "wesammustafa/Claude-Code-Everything-You-Need-to-Know": {
+      "discovered": "2026-07-06T07:29:13Z",
+      "stars": 2254,
+      "artifacts": 31,
+      "description": "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featured in Awesome Claude Code.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 537,
+      "prs": []
     }
   }
 }
