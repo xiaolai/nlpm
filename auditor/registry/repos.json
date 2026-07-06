@@ -739,7 +739,9 @@
       "security": "CLEAR",
       "stars": 78301,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Graphify-Labs-graphify.md"
     },
     "HKUDS/CLI-Anything": {
       "commit_sha_at_audit": "436a4f5c42452b86b64fe0373e1ed67a4347a18a",
