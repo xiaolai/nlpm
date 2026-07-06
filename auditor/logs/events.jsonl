@@ -3122,3 +3122,6 @@
 {"timestamp":"2026-07-05T21:10:50Z","workflow":"track","event":"status_check","run_id":"28754792220","run_number":472,"data":{"contributed":53,"tracked":36,"case_study_ready":40,"rule_adopted":3}}
 {"timestamp":"2026-07-05T22:55:45Z","workflow":"daily-report","event":"report_generated","run_id":"28757745713","run_number":93,"data":{"total_repos":264}}
 {"timestamp":"2026-07-05T23:32:58Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"28758719083","run_number":49,"data":{"repos":264,"findings":4256,"advisories":22}}
+{"timestamp":"2026-07-06T03:46:53Z","workflow":"track","event":"finding_outcome","run_id":"28766288075","run_number":473,"data":{"pr":"fivetaku/fablize#7","pr_state":"closed_unmerged","fingerprints":["sha256:ffe6da25c7de61c78fc3a13bdab8492a24ba108f67d5ba57b7d55990608f654f"],"rule_ids":["BUG-missing-frontmatter"]}}
+{"timestamp":"2026-07-06T03:46:54Z","workflow":"track","event":"finding_outcome","run_id":"28766288075","run_number":473,"data":{"pr":"fivetaku/fablize#8","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-07-06T03:51:14Z","workflow":"track","event":"status_check","run_id":"28766288075","run_number":473,"data":{"contributed":52,"tracked":37,"case_study_ready":41,"rule_adopted":3}}

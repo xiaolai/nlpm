@@ -4180,13 +4180,13 @@
       "prs": [
         {
           "number": 7,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-06T01:05:15Z",
           "title": "fix: register setup command in plugin.json",
-          "updatedAt": "2026-06-27T01:46:39Z",
+          "updatedAt": "2026-07-06T01:05:15Z",
           "createdAt": "2026-06-27T01:46:39Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:ffe6da25c7de61c78fc3a13bdab8492a24ba108f67d5ba57b7d55990608f654f"
           ],
@@ -4197,13 +4197,13 @@
         },
         {
           "number": 8,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-06T00:37:41Z",
+          "closedAt": "2026-07-06T00:37:41Z",
           "title": "fix: validate transcript_path prefix before opening in finish-the-work.sh",
-          "updatedAt": "2026-06-27T01:50:07Z",
+          "updatedAt": "2026-07-06T00:37:41Z",
           "createdAt": "2026-06-27T01:47:57Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4213,8 +4213,9 @@
       "score": 95,
       "security": "CLEAR",
       "stars": 648,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "tracked",
+      "strategy": "single",
+      "case_study_candidate": true
     },
     "forrestchang/andrej-karpathy-skills": {
       "artifacts": null,
