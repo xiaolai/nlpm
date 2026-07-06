@@ -12,11 +12,16 @@
       "commit_sha_at_audit": "f996d386eb2c33601977915828f5f3ea383e9f49",
       "description": "18 AI personas deliberate your hardest decisions across multiple LLM providers. Structured multi-round deliberation, confidence-weighted verdicts, genuine model diversity. Install as a Claude Code plugin — one command: /council",
       "discovered": "2026-07-06T07:29:13Z",
+      "pipeline_prs": [
+        49,
+        50,
+        51
+      ],
       "prs": [],
       "score": 71,
       "security": "REVIEW",
       "stars": 3333,
-      "status": "audited",
+      "status": "contributed",
       "strategy": "batched"
     },
     "0xSteph/pentest-ai-agents": {
@@ -734,6 +739,8 @@
       "commit_sha_at_audit": "31211a0e7c512d63972b4f0438877d3777ae0e85",
       "description": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
       "discovered": "2026-07-06T07:29:13Z",
+      "exemplar_path": "auditor/exemplars/Graphify-Labs-graphify.md",
+      "exemplar_published": true,
       "prs": [],
       "score": 99,
       "security": "CLEAR",
@@ -8536,11 +8543,15 @@
       "commit_sha_at_audit": "1149eaa1ee5499c7fd7295da662f9073fd059568",
       "description": "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featured in Awesome Claude Code.",
       "discovered": "2026-07-06T07:29:13Z",
+      "pipeline_prs": [
+        13,
+        14
+      ],
       "prs": [],
       "score": 71,
       "security": "CLEAR",
       "stars": 2254,
-      "status": "audited",
+      "status": "contributed",
       "strategy": "single"
     },
     "wshobson/agents": {
