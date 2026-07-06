@@ -9117,10 +9117,13 @@
       "stars": 2254,
       "artifacts": 31,
       "description": "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featured in Awesome Claude Code.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 71,
       "audit_issue": 537,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "1149eaa1ee5499c7fd7295da662f9073fd059568"
     }
   }
 }
