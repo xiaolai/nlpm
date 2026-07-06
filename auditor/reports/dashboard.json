@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-05T23:32:58Z",
+  "generated_at": "2026-07-06T23:35:00Z",
   "since": null,
   "summary": {
-    "total_repos": 264,
-    "total_findings": 4256,
-    "high_findings": 960,
+    "total_repos": 267,
+    "total_findings": 4427,
+    "high_findings": 1104,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
@@ -32,6 +32,18 @@
       "total_findings": 125,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "0xNyk/council-of-high-intelligence",
+      "status": "contributed",
+      "stars": 3333,
+      "score": 71,
+      "security": "REVIEW",
+      "total_findings": 111,
+      "high_findings": 104,
+      "medium_findings": 6,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -200,6 +212,18 @@
       "total_findings": 49,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "wesammustafa/Claude-Code-Everything-You-Need-to-Know",
+      "status": "contributed",
+      "stars": 2254,
+      "score": 71,
+      "security": "CLEAR",
+      "total_findings": 48,
+      "high_findings": 34,
+      "medium_findings": 13,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1297,7 +1321,7 @@
     },
     {
       "repo": "fivetaku/fablize",
-      "status": "contributed",
+      "status": "complete",
       "stars": 648,
       "score": 95,
       "security": "CLEAR",
@@ -1472,6 +1496,18 @@
       "total_findings": 12,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Graphify-Labs/graphify",
+      "status": "contributed",
+      "stars": 78301,
+      "score": 99,
+      "security": "CLEAR",
+      "total_findings": 12,
+      "high_findings": 6,
+      "medium_findings": 3,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -3183,23 +3219,23 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 425,
-      "repos_affected": 57
+      "total": 449,
+      "repos_affected": 60
     },
     {
       "rule_id": "BUG-missing-frontmatter",
-      "total": 268,
-      "repos_affected": 56
+      "total": 274,
+      "repos_affected": 57
     },
     {
       "rule_id": "UNCLASSIFIED",
-      "total": 230,
-      "repos_affected": 37
+      "total": 231,
+      "repos_affected": 38
     },
     {
       "rule_id": "R09",
-      "total": 175,
-      "repos_affected": 36
+      "total": 216,
+      "repos_affected": 38
     },
     {
       "rule_id": "R05",
@@ -3208,13 +3244,23 @@
     },
     {
       "rule_id": "R14",
-      "total": 147,
-      "repos_affected": 36
+      "total": 148,
+      "repos_affected": 37
     },
     {
       "rule_id": "R22",
       "total": 145,
       "repos_affected": 30
+    },
+    {
+      "rule_id": "R11",
+      "total": 144,
+      "repos_affected": 21
+    },
+    {
+      "rule_id": "SEC-unpinned-semver",
+      "total": 140,
+      "repos_affected": 79
     },
     {
       "rule_id": "R12",
@@ -3227,24 +3273,14 @@
       "repos_affected": 30
     },
     {
-      "rule_id": "SEC-unpinned-semver",
-      "total": 130,
-      "repos_affected": 77
-    },
-    {
       "rule_id": "R08",
       "total": 125,
       "repos_affected": 30
     },
     {
       "rule_id": "R15",
-      "total": 119,
-      "repos_affected": 33
-    },
-    {
-      "rule_id": "R11",
-      "total": 119,
-      "repos_affected": 19
+      "total": 121,
+      "repos_affected": 35
     },
     {
       "rule_id": "R06",
@@ -3268,18 +3304,18 @@
     },
     {
       "rule_id": "CC-terminology-drift",
-      "total": 63,
-      "repos_affected": 50
+      "total": 67,
+      "repos_affected": 53
     },
     {
       "rule_id": "CC-orphan-component",
-      "total": 63,
-      "repos_affected": 49
+      "total": 65,
+      "repos_affected": 51
     },
     {
       "rule_id": "SEC-curl-pipe-sh",
-      "total": 60,
-      "repos_affected": 28
+      "total": 61,
+      "repos_affected": 29
     },
     {
       "rule_id": "R04",
@@ -3292,14 +3328,14 @@
       "repos_affected": 42
     },
     {
+      "rule_id": "CC-broken-relative-path",
+      "total": 55,
+      "repos_affected": 39
+    },
+    {
       "rule_id": "BUG-undeclared-tool",
       "total": 55,
       "repos_affected": 24
-    },
-    {
-      "rule_id": "CC-broken-relative-path",
-      "total": 54,
-      "repos_affected": 38
     },
     {
       "rule_id": "R03",
@@ -4756,6 +4792,27 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-06",
+      "counts": {
+        "finding_verified": 8,
+        "finding_introduced": 2,
+        "no_narrative": 1,
+        "search_complete": 1,
+        "classifications_emitted": 1,
+        "finding_outcome": 7,
+        "status_check": 3,
+        "scorer_drift_check": 5,
+        "findings_aggregated": 5,
+        "repo_report_rendered": 5,
+        "audit_complete": 5,
+        "manual_disclosure_pending": 1,
+        "report_artifact_uploaded": 5,
+        "prs_submitted": 5,
         "report_generated": 1
       }
     }
