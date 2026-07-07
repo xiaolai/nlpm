@@ -9286,10 +9286,13 @@
       "stars": 205,
       "artifacts": 78,
       "description": "",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 77,
       "audit_issue": 544,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "1a16f36820d5db5516cf188712fcbb10ae63811c"
     },
     "arpitg1304/robotics-agent-skills": {
       "discovered": "2026-07-07T00:24:00Z",
