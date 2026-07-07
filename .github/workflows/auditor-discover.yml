@@ -198,14 +198,17 @@ jobs:
                 # MCP / hooks at non-canonical paths
                 test("^\\.mcp\\.json$") or
                 test("hooks/hooks\\.json$")
-              )] | length' 2>/dev/null)
+              )] | length' 2>/dev/null || echo 0)
 
-            # Empty repos return a 409 error body (not a tree) on stdout, and
-            # transient API errors yield non-numeric output. Coerce anything
-            # that isn't a plain non-negative integer to 0 so the arithmetic
-            # tests below can't crash the whole sweep under set -e. Observed
-            # 2026-07-07: the empty repo Sfedfcv/redesigned-pancake made
-            # ARTIFACT_COUNT the 409 JSON, killing a min_stars=200 run mid-probe.
+            # Empty repos return a 409 error body (not a tree), and transient
+            # API errors yield non-numeric output. Two guards are needed under
+            # `bash -e`: the `|| echo 0` above keeps the command substitution's
+            # exit status 0 so the assignment itself can't abort the step; the
+            # coercion below turns any leftover non-integer (e.g. a captured
+            # 409 JSON body) into 0 so the arithmetic tests can't crash either.
+            # Observed 2026-07-07: the empty repo Sfedfcv/redesigned-pancake
+            # killed a min_stars=200 sweep — first at the `[ -lt ]` test, then
+            # (after dropping `|| echo 0`) at the assignment itself.
             case "$ARTIFACT_COUNT" in
               ''|*[!0-9]*) ARTIFACT_COUNT=0 ;;
             esac
