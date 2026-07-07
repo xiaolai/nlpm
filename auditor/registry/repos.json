@@ -5650,12 +5650,15 @@
     "kwakseongjae/oh-my-design": {
       "artifacts": 88,
       "audit_issue": 548,
+      "commit_sha_at_audit": "812211f1aeaa264ac7a1a75eec82ecf7923da2ba",
       "description": "Give your AI coding agent a design system. One command installs 300+ hand-verified company DESIGN.md references + skills into Claude Code, Codex, Cursor, and OpenCode. Free, MIT, zero AI calls.",
       "discovered": "2026-07-07T00:24:00Z",
       "prs": [],
-      "score": null,
+      "score": 86,
+      "security": "REVIEW",
       "stars": 303,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "progressive"
     },
     "lackeyjb/playwright-skill": {
       "artifacts": null,
