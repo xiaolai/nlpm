@@ -198,7 +198,17 @@ jobs:
                 # MCP / hooks at non-canonical paths
                 test("^\\.mcp\\.json$") or
                 test("hooks/hooks\\.json$")
-              )] | length' 2>/dev/null || echo "0")
+              )] | length' 2>/dev/null)
+
+            # Empty repos return a 409 error body (not a tree) on stdout, and
+            # transient API errors yield non-numeric output. Coerce anything
+            # that isn't a plain non-negative integer to 0 so the arithmetic
+            # tests below can't crash the whole sweep under set -e. Observed
+            # 2026-07-07: the empty repo Sfedfcv/redesigned-pancake made
+            # ARTIFACT_COUNT the 409 JSON, killing a min_stars=200 run mid-probe.
+            case "$ARTIFACT_COUNT" in
+              ''|*[!0-9]*) ARTIFACT_COUNT=0 ;;
+            esac
 
             if [ "$ARTIFACT_COUNT" -lt "$MIN_ARTIFACTS" ]; then
               echo "  -> $ARTIFACT_COUNT artifacts — skipping (below floor)"
