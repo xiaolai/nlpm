@@ -5795,8 +5795,13 @@
       "score": 86,
       "security": "REVIEW",
       "stars": 303,
-      "status": "audited",
-      "strategy": "progressive"
+      "status": "contributed",
+      "strategy": "progressive",
+      "pipeline_prs": [
+        44,
+        45,
+        46
+      ]
     },
     "lackeyjb/playwright-skill": {
       "artifacts": null,
