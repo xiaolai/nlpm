@@ -4443,12 +4443,15 @@
     "gamedev-skills/awesome-gamedev-agent-skills": {
       "artifacts": 67,
       "audit_issue": 547,
+      "commit_sha_at_audit": "9d0fa9612225d51d9a89f0a0c6f0fe15d85e3ee0",
       "description": "Game-development Agent Skills for AI coding agents: install once and a master router loads the right skill for your engine and task. 66 original, version-pinned skills (plus a master router) in the portable SKILL.md format that runs across Claude Code, Cursor, Codex, Copilot, Gemini CLI and more, for Godot, Unity, Unreal, web and beyond.",
       "discovered": "2026-07-07T00:24:00Z",
       "prs": [],
-      "score": null,
+      "score": 99,
+      "security": "CLEAR",
       "stars": 226,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "progressive"
     },
     "github/awesome-copilot": {
       "artifacts": 527,
