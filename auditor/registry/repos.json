@@ -9273,10 +9273,13 @@
       "stars": 237,
       "artifacts": 25,
       "description": "Learn Claude Code by exploring it as it was designed - interactive IDE-style docs for commands, MCP, skills, CLAUDE.md and more.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 89,
       "audit_issue": 543,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "68ac333f62e350b95af22c2f967e7e70130b96ea"
     },
     "NicholasSpisak/claude-code-subagents": {
       "discovered": "2026-07-07T00:24:00Z",
