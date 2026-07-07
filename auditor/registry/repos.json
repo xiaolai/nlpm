@@ -6492,12 +6492,15 @@
     "mxyhi/ok-skills": {
       "artifacts": 34,
       "audit_issue": 549,
+      "commit_sha_at_audit": "1629338cbbe6e88fbc212d4a27097fa710f3bfc8",
       "description": "Curated AI coding agent skills and AGENTS.md playbooks for Codex, Claude Code, Cursor, OpenClaw, and other SKILL.md-compatible tools.",
       "discovered": "2026-07-07T00:24:00Z",
       "prs": [],
-      "score": null,
+      "score": 92,
+      "security": "BLOCKED",
       "stars": 448,
-      "status": "discovered"
+      "status": "audited",
+      "strategy": "batched"
     },
     "nagisanzenin/claude-code-production-grade-plugin": {
       "artifacts": 16,
