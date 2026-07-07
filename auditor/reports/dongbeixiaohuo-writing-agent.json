@@ -1,0 +1,1067 @@
+{
+  "project": "dongbeixiaohuo/writing-agent",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 27,
+    "average_score": 82,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/公众号文章获取/scripts/markdown_converter.js",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-remote-script-load",
+          "severity": "medium",
+          "line": 19,
+          "message": "Same CDN script-injection pattern for turndown@7.1.3 and (line 34) @mozilla/readability@0.5.0, no SRI hash; a vendored Readability.js already exists in the same directory and is not reused here"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/公众号文章获取/scripts/readability_loader.js",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-eval-file-read",
+          "severity": "critical",
+          "line": 30,
+          "message": "eval() executes file content whose path is derived from an overridable global; currently unreachable since nothing in-repo sets that global, but the primitive is a real arbitrary-file-read-into-eval if any caller ever does"
+        },
+        {
+          "rule": "SEC-remote-script-load",
+          "severity": "medium",
+          "line": 74,
+          "message": "CDN fallback dynamically loads and executes remote JS with no Subresource Integrity hash; version is pinned which mitigates but does not eliminate supply-chain risk"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/公众号文章获取/scripts/save_with_images.js",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 24,
+          "message": "Downloads every image URL found on an extracted page via raw http/https.get; a 30s timeout already exists but there is no max response size cap"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/article-illustrator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 7,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 7,
+          "message": "GenerateImage is declared in tools: but the actual mechanism used in the body is a Bash script call, not the declared tool"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/concretizer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/edit-diff-learner.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 7,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/editor-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/empathy-designer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/fact-checker.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 6,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 6,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/html-exporter.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 6,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/humanizer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 7,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 7,
+          "message": "model is not declared; changelog indicates this was a deliberate removal, but the rubric penalizes the absence regardless of intent"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/memory-loader.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 8,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/opening-tournament.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/outline-architect.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/position-engine.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/pre-publish-review.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/research-expert.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "WebFetch is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/title-designer.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/topic-generator.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/topic-research.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/wechat-reader-test.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 8,
+          "message": "Glob is declared in tools: but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/writing-clarifier.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/agents/writing-executor.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R09",
+          "severity": "medium",
+          "line": 2,
+          "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Glob is declared but never used in the agent body"
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": 4,
+          "message": "Grep is declared but never used in the agent body"
+        },
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": 5,
+          "message": "model is not declared; changelog indicates this was a deliberate removal to inherit the session model rather than an oversight, but the rubric penalizes the absence regardless of intent"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/skills/公众号文章获取/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-skill-name-mismatch",
+          "severity": "medium",
+          "line": 2,
+          "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/skills/工作流导演/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-skill-name-mismatch",
+          "severity": "medium",
+          "line": 2,
+          "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies"
+        },
+        {
+          "rule": "CC-incomplete-roster",
+          "severity": "low",
+          "line": 319,
+          "message": "The subagent roster table at the end of the workflow-producer SKILL.md omits memory-loader, which is otherwise an active, wired-in Stage-0 subagent"
+        }
+      ]
+    },
+    {
+      "path": "claude-runtime/skills/风格建模/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "BUG-skill-name-mismatch",
+          "severity": "medium",
+          "line": 2,
+          "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies"
+        }
+      ]
+    },
+    {
+      "path": "scripts/generate_image.ts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 57,
+          "message": "Sends user prompts to an external image-generation endpoint using an API key read from env; this is the tool's documented, intended feature, flagged per rubric pattern for completeness rather than as a defect"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-07T03:00:33Z",
+      "average_score": 82,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "BUG-skill-name-mismatch",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/skills/工作流导演/SKILL.md",
+      "line": 2,
+      "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies — frontmatter name: workflow-producer; parent directory basename: 工作流导演"
+    },
+    {
+      "rule": "BUG-skill-name-mismatch",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/skills/风格建模/SKILL.md",
+      "line": 2,
+      "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies — frontmatter name: style-modeler; parent directory basename: 风格建模"
+    },
+    {
+      "rule": "BUG-skill-name-mismatch",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/skills/公众号文章获取/SKILL.md",
+      "line": 2,
+      "message": "Frontmatter name does not match parent directory name, violating the open Agent Skills spec MUST rule; mirrored in .claude/ and plugins/writing-agent/ copies — frontmatter name: web-article-extractor; parent directory basename: 公众号文章获取"
+    },
+    {
+      "rule": "SEC-eval-file-read",
+      "severity": "critical",
+      "confidence": "high",
+      "file": ".claude/skills/公众号文章获取/scripts/readability_loader.js",
+      "line": 30,
+      "message": "eval() executes file content whose path is derived from an overridable global; currently unreachable since nothing in-repo sets that global, but the primitive is a real arbitrary-file-read-into-eval if any caller ever does — return eval(scriptContent); where scriptContent = fs.readFileSync(path.join(SKILL_PATH, 'readability_extractor.js')) and SKILL_PATH is overridable via globalThis.__WEB_ARTICLE_EXTRACTOR_PATH__ (lines 15-17)"
+    },
+    {
+      "rule": "SEC-remote-script-load",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/skills/公众号文章获取/scripts/readability_loader.js",
+      "line": 74,
+      "message": "CDN fallback dynamically loads and executes remote JS with no Subresource Integrity hash; version is pinned which mitigates but does not eliminate supply-chain risk — script.src = 'https://cdn.jsdelivr.net/npm/@mozilla/readability@0.6.0/Readability-readerable.min.js' injected via document.createElement('script')"
+    },
+    {
+      "rule": "SEC-remote-script-load",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/skills/公众号文章获取/scripts/markdown_converter.js",
+      "line": 19,
+      "message": "Same CDN script-injection pattern for turndown@7.1.3 and (line 34) @mozilla/readability@0.5.0, no SRI hash; a vendored Readability.js already exists in the same directory and is not reused here — script.src = 'https://cdn.jsdelivr.net/npm/turndown@7.1.3/dist/turndown.min.js' injected via document.createElement('script')"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "scripts/generate_image.ts",
+      "line": 57,
+      "message": "Sends user prompts to an external image-generation endpoint using an API key read from env; this is the tool's documented, intended feature, flagged per rubric pattern for completeness rather than as a defect — const apiKey = process.env.GEMINI_API_KEY || process.env.THIRD_PARTY_API_KEY; used to call an external image-generation API via fetch (lines 80-85)"
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "high",
+      "file": ".claude/skills/公众号文章获取/scripts/save_with_images.js",
+      "line": 24,
+      "message": "Downloads every image URL found on an extracted page via raw http/https.get; a 30s timeout already exists but there is no max response size cap — protocol.get(url, ...) where url comes from image.src extracted from arbitrary scraped web pages, downloaded to local disk"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/wechat-reader-test.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/wechat-reader-test.md",
+      "line": 8,
+      "message": "Glob is declared in tools: but never used in the agent body — 'Glob' appears exactly once in the file (the tools: frontmatter line); zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/article-illustrator.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/article-illustrator.md",
+      "line": 7,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/article-illustrator.md",
+      "line": 7,
+      "message": "GenerateImage is declared in tools: but the actual mechanism used in the body is a Bash script call, not the declared tool — body invokes image generation via Bash: npx tsx scripts/generate_image.ts (line 95), never through a tool literally named GenerateImage"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-clarifier.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-clarifier.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-clarifier.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/outline-architect.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/outline-architect.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/outline-architect.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/edit-diff-learner.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/edit-diff-learner.md",
+      "line": 7,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-executor.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-executor.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-executor.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/writing-executor.md",
+      "line": 5,
+      "message": "model is not declared; changelog indicates this was a deliberate removal to inherit the session model rather than an oversight, but the rubric penalizes the absence regardless of intent — frontmatter has name/description/tools but no model: field; changelog v1.3.0 line reads '移除 model 钉死（改为继承会话模型）'"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/opening-tournament.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/opening-tournament.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/fact-checker.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/fact-checker.md",
+      "line": 6,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/fact-checker.md",
+      "line": 6,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references; WebSearch and WebFetch are both used (line 111)"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/topic-generator.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/topic-generator.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "claude-runtime/agents/topic-generator.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only); no literal grep-style search shown in body, though '搜索工具' phrasing loosely implies WebSearch not Grep"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/pre-publish-review.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/pre-publish-review.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/humanizer.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/humanizer.md",
+      "line": 7,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/humanizer.md",
+      "line": 7,
+      "message": "model is not declared; changelog indicates this was a deliberate removal, but the rubric penalizes the absence regardless of intent — frontmatter has name/description/tools but no model: field; changelog v1.3.0 reads '移除 model 钉死（灵魂注入改为继承会话模型）'"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/title-designer.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/title-designer.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/editor-review.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/editor-review.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/editor-review.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/research-expert.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/research-expert.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/research-expert.md",
+      "line": 4,
+      "message": "WebFetch is declared but never used in the agent body — 'WebFetch' appears once (frontmatter only); WebSearch is used (line 57) but WebFetch is not"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/position-engine.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/position-engine.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/memory-loader.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/memory-loader.md",
+      "line": 8,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/concretizer.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/concretizer.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/topic-research.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/topic-research.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/topic-research.md",
+      "line": 4,
+      "message": "Grep is declared but never used in the agent body — 'Grep' appears once (frontmatter only), zero body references; WebSearch is used (line 21)"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/empathy-designer.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/empathy-designer.md",
+      "line": 4,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "R09",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "claude-runtime/agents/html-exporter.md",
+      "line": 2,
+      "message": "Agent frontmatter/description has zero <example> blocks demonstrating invocation — grep for <example> across .claude/agents/*.md returns zero matches in any of the 20 files"
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/agents/html-exporter.md",
+      "line": 6,
+      "message": "Glob is declared but never used in the agent body — 'Glob' appears once (frontmatter only), zero body references"
+    },
+    {
+      "rule": "CC-incomplete-roster",
+      "severity": "low",
+      "confidence": "high",
+      "file": "claude-runtime/skills/工作流导演/SKILL.md",
+      "line": 319,
+      "message": "The subagent roster table at the end of the workflow-producer SKILL.md omits memory-loader, which is otherwise an active, wired-in Stage-0 subagent — Subagent 清单 table lists 19 rows (topic-generator through edit-diff-learner); memory-loader is absent from the table despite being described in prose as the Stage-0 agent and being stage id \"0\" in .claude/workflows/collab_v2.json"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 312,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/dongbeixiaohuo-writing-agent.md"
+  },
+  "generated_at": "2026-07-07T03:02:38Z",
+  "schema_version": 1
+}

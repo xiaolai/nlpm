@@ -9309,10 +9309,13 @@
       "stars": 312,
       "artifacts": 72,
       "description": "🚀 一个基于 Claude Code (Skills + Subagents) 的“去AI味”全栈写作系统。不仅防套路，更通过专属规则强制注入人类观点与细节，搭配读者测试评估与自动图文排版。全面支持 DeepSeek / 智谱GLM / MiniMax 等国产低成本大模型，提供从选题、风格建模到审稿发布的高维全自动写作工作流。",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 82,
       "audit_issue": 546,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "91177b9c0a07bb731a2e3dac3d57ac1b45de8678"
     },
     "gamedev-skills/awesome-gamedev-agent-skills": {
       "discovered": "2026-07-07T00:24:00Z",
