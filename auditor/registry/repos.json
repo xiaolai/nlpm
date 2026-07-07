@@ -9299,13 +9299,18 @@
       "stars": 308,
       "artifacts": 10,
       "description": "Agent skills that make AI coding assistants write production-grade robotics software. ROS1, ROS2, design patterns, SOLID principles, and testing — for Claude Code, Cursor, Copilot, and any SKILL.md-compatible agent.",
-      "status": "audited",
+      "status": "contributed",
       "score": 74,
       "audit_issue": 545,
       "prs": [],
       "strategy": "single",
       "security": "REVIEW",
-      "commit_sha_at_audit": "54f7b578f3dc269d29c0beb623b3f2611fd3a430"
+      "commit_sha_at_audit": "54f7b578f3dc269d29c0beb623b3f2611fd3a430",
+      "pipeline_prs": [
+        7,
+        8,
+        9
+      ]
     },
     "dongbeixiaohuo/writing-agent": {
       "discovered": "2026-07-07T00:24:00Z",
