@@ -4590,7 +4590,9 @@
       "security": "CLEAR",
       "stars": 226,
       "status": "audited",
-      "strategy": "progressive"
+      "strategy": "progressive",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/gamedev-skills-awesome-gamedev-agent-skills.md"
     },
     "github/awesome-copilot": {
       "artifacts": 527,
