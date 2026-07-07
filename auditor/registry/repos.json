@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-07-06T07:29:13Z",
+    "last_discovery": "2026-07-07T00:24:00Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 253
+    "total_discovered": 261
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9257,6 +9257,86 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "JDArmy/Evasion-SubAgents": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 295,
+      "artifacts": 10,
+      "description": "Claude Code 免杀 SubAgents",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 542,
+      "prs": []
+    },
+    "LukeRenton/explore-claude-code": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 237,
+      "artifacts": 25,
+      "description": "Learn Claude Code by exploring it as it was designed - interactive IDE-style docs for commands, MCP, skills, CLAUDE.md and more.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 543,
+      "prs": []
+    },
+    "NicholasSpisak/claude-code-subagents": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 205,
+      "artifacts": 78,
+      "description": "",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 544,
+      "prs": []
+    },
+    "arpitg1304/robotics-agent-skills": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 308,
+      "artifacts": 10,
+      "description": "Agent skills that make AI coding assistants write production-grade robotics software. ROS1, ROS2, design patterns, SOLID principles, and testing — for Claude Code, Cursor, Copilot, and any SKILL.md-compatible agent.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 545,
+      "prs": []
+    },
+    "dongbeixiaohuo/writing-agent": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 312,
+      "artifacts": 72,
+      "description": "🚀 一个基于 Claude Code (Skills + Subagents) 的“去AI味”全栈写作系统。不仅防套路，更通过专属规则强制注入人类观点与细节，搭配读者测试评估与自动图文排版。全面支持 DeepSeek / 智谱GLM / MiniMax 等国产低成本大模型，提供从选题、风格建模到审稿发布的高维全自动写作工作流。",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 546,
+      "prs": []
+    },
+    "gamedev-skills/awesome-gamedev-agent-skills": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 226,
+      "artifacts": 67,
+      "description": "Game-development Agent Skills for AI coding agents: install once and a master router loads the right skill for your engine and task. 66 original, version-pinned skills (plus a master router) in the portable SKILL.md format that runs across Claude Code, Cursor, Codex, Copilot, Gemini CLI and more, for Godot, Unity, Unreal, web and beyond.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 547,
+      "prs": []
+    },
+    "kwakseongjae/oh-my-design": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 303,
+      "artifacts": 88,
+      "description": "Give your AI coding agent a design system. One command installs 300+ hand-verified company DESIGN.md references + skills into Claude Code, Codex, Cursor, and OpenCode. Free, MIT, zero AI calls.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 548,
+      "prs": []
+    },
+    "mxyhi/ok-skills": {
+      "discovered": "2026-07-07T00:24:00Z",
+      "stars": 448,
+      "artifacts": 34,
+      "description": "Curated AI coding agent skills and AGENTS.md playbooks for Codex, Claude Code, Cursor, OpenClaw, and other SKILL.md-compatible tools.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 549,
+      "prs": []
     }
   }
 }
