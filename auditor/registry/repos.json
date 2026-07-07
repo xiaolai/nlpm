@@ -5793,7 +5793,73 @@
       "commit_sha_at_audit": "812211f1aeaa264ac7a1a75eec82ecf7923da2ba",
       "description": "Give your AI coding agent a design system. One command installs 300+ hand-verified company DESIGN.md references + skills into Claude Code, Codex, Cursor, and OpenCode. Free, MIT, zero AI calls.",
       "discovered": "2026-07-07T00:24:00Z",
-      "prs": [],
+      "prs": [
+        {
+          "number": 44,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "Fix broken data/research/ reference in orchestrator boot sequence",
+          "updatedAt": "2026-07-07T14:31:17Z",
+          "createdAt": "2026-07-07T14:31:11Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:4eb3a981c6adc87d90c5ffd706f0b40b00493b4b03055ace7719613c861a4732",
+            "sha256:6faf829b7f52bcde4fa749a08b31616a57e47c1989801524f66efeb07a15dbab",
+            "sha256:0c21d91fbbff1330c58f8b60e9da7c70ca5c2f583c235906c26a89a2f1e16958"
+          ],
+          "rule_ids": [
+            "BUG-broken-reference",
+            "BUG-broken-reference",
+            "BUG-broken-reference"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 45,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "Fix broken data/research/ reference in kr-writer agent + skill",
+          "updatedAt": "2026-07-07T14:32:31Z",
+          "createdAt": "2026-07-07T14:32:27Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:1001def0fbbd7dcda363cf792b658d94aa45c1addb0dfd24064b05b9ce4400d0",
+            "sha256:aadd68df05c5e27ee4a3744478e110765cbe7d4a870b23a86b8dc1bdd7813c65",
+            "sha256:acd5693271304eefeb6d2cfdda4e36344aeabacf0b1b9826b782648e970f17c8"
+          ],
+          "rule_ids": [
+            "BUG-broken-reference",
+            "BUG-broken-reference",
+            "BUG-broken-reference"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 46,
+          "state": "OPEN",
+          "mergedAt": null,
+          "closedAt": null,
+          "title": "Declare Write tool on omd-final-qa and omd-designer-review agents",
+          "updatedAt": "2026-07-07T14:33:28Z",
+          "createdAt": "2026-07-07T14:33:24Z",
+          "outcome": "open",
+          "fingerprints": [
+            "sha256:30e61f19802404df36c908133f99db6e6f4945f72a87caaa9bf5d2d0d372dc8e",
+            "sha256:594a42b1e3fbc543739f9d26593d6bfc61fe814bcfb231037650a3e000513770",
+            "sha256:6c684f631124197b46fcdf6620c150b75ea237ca3534332ae9151cae2d7c248d",
+            "sha256:723009795894cb7565e887473e4b242b26dcb724d469310434be84d0d9bb856c"
+          ],
+          "rule_ids": [
+            "BUG-undeclared-tool",
+            "BUG-undeclared-tool",
+            "BUG-undeclared-tool",
+            "BUG-undeclared-tool"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "score": 86,
       "security": "REVIEW",
       "stars": 303,
@@ -5803,7 +5869,8 @@
         44,
         45,
         46
-      ]
+      ],
+      "rule_adopted": false
     },
     "lackeyjb/playwright-skill": {
       "artifacts": null,
