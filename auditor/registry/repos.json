@@ -8032,7 +8032,7 @@
           "fingerprints_backfilled": true
         }
       ],
-      "rule_adopted": true,
+      "rule_adopted": false,
       "score": 82,
       "security": "REVIEW",
       "stars": 32502,
