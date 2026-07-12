@@ -3288,3 +3288,4 @@
 {"timestamp":"2026-07-11T22:39:58Z","workflow":"daily-report","event":"report_generated","run_id":"29170879229","run_number":99,"data":{"total_repos":275}}
 {"timestamp":"2026-07-11T23:22:37Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"29172016320","run_number":55,"data":{"repos":275,"findings":5050,"advisories":22}}
 {"timestamp":"2026-07-12T01:42:30Z","workflow":"suppressions","event":"scan_complete","run_id":"29175649488","run_number":12,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
+{"timestamp":"2026-07-12T03:03:52Z","workflow":"track","event":"status_check","run_id":"29177445904","run_number":508,"data":{"contributed":59,"tracked":36,"case_study_ready":40,"rule_adopted":2}}
