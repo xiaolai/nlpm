@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T23:22:37Z",
+  "generated_at": "2026-07-12T23:14:31Z",
   "since": null,
   "summary": {
     "total_repos": 275,
@@ -4963,6 +4963,17 @@
       "counts": {
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-12",
+      "counts": {
+        "scan_complete": 1,
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "proposals_prepared": 1,
         "report_generated": 1
       }
     }
