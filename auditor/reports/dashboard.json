@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-12T23:14:31Z",
+  "generated_at": "2026-07-13T23:24:06Z",
   "since": null,
   "summary": {
-    "total_repos": 275,
-    "total_findings": 5050,
-    "high_findings": 1558,
+    "total_repos": 276,
+    "total_findings": 5189,
+    "high_findings": 1689,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
-    "repos_blocked": 69
+    "repos_blocked": 70
   },
   "repo_rows": [
     {
@@ -32,6 +32,18 @@
       "total_findings": 144,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "composio-community/awesome-claude-plugins",
+      "status": "audited",
+      "stars": 1821,
+      "score": 89,
+      "security": "BLOCKED",
+      "total_findings": 139,
+      "high_findings": 131,
+      "medium_findings": 5,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -3315,28 +3327,33 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 544,
-      "repos_affected": 66
+      "total": 562,
+      "repos_affected": 67
     },
     {
       "rule_id": "R09",
-      "total": 303,
-      "repos_affected": 42
+      "total": 312,
+      "repos_affected": 43
     },
     {
       "rule_id": "R11",
-      "total": 285,
-      "repos_affected": 25
+      "total": 292,
+      "repos_affected": 26
     },
     {
       "rule_id": "BUG-missing-frontmatter",
-      "total": 281,
-      "repos_affected": 59
+      "total": 286,
+      "repos_affected": 60
     },
     {
       "rule_id": "UNCLASSIFIED",
-      "total": 232,
-      "repos_affected": 39
+      "total": 250,
+      "repos_affected": 40
+    },
+    {
+      "rule_id": "R07",
+      "total": 177,
+      "repos_affected": 34
     },
     {
       "rule_id": "R05",
@@ -3344,13 +3361,18 @@
       "repos_affected": 32
     },
     {
-      "rule_id": "R07",
-      "total": 164,
-      "repos_affected": 33
+      "rule_id": "R06",
+      "total": 153,
+      "repos_affected": 25
     },
     {
       "rule_id": "R14",
-      "total": 150,
+      "total": 152,
+      "repos_affected": 39
+    },
+    {
+      "rule_id": "R12",
+      "total": 147,
       "repos_affected": 38
     },
     {
@@ -3359,19 +3381,19 @@
       "repos_affected": 30
     },
     {
-      "rule_id": "R06",
-      "total": 145,
-      "repos_affected": 24
-    },
-    {
-      "rule_id": "R12",
-      "total": 143,
-      "repos_affected": 37
-    },
-    {
       "rule_id": "SEC-unpinned-semver",
       "total": 141,
       "repos_affected": 80
+    },
+    {
+      "rule_id": "BUG-broken-reference",
+      "total": 128,
+      "repos_affected": 49
+    },
+    {
+      "rule_id": "R15",
+      "total": 128,
+      "repos_affected": 37
     },
     {
       "rule_id": "R08",
@@ -3379,19 +3401,9 @@
       "repos_affected": 30
     },
     {
-      "rule_id": "R15",
-      "total": 124,
-      "repos_affected": 36
-    },
-    {
-      "rule_id": "BUG-broken-reference",
-      "total": 121,
-      "repos_affected": 48
-    },
-    {
       "rule_id": "R10",
-      "total": 103,
-      "repos_affected": 26
+      "total": 107,
+      "repos_affected": 27
     },
     {
       "rule_id": "R02",
@@ -3415,8 +3427,8 @@
     },
     {
       "rule_id": "BUG-undeclared-tool",
-      "total": 68,
-      "repos_affected": 26
+      "total": 69,
+      "repos_affected": 27
     },
     {
       "rule_id": "SEC-curl-pipe-sh",
@@ -3434,9 +3446,9 @@
       "repos_affected": 43
     },
     {
-      "rule_id": "SEC-network-call",
-      "total": 49,
-      "repos_affected": 25
+      "rule_id": "BUG-name-mismatch",
+      "total": 53,
+      "repos_affected": 5
     }
   ],
   "drift_network": {
@@ -4974,6 +4986,21 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-13",
+      "counts": {
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "search_complete": 1,
+        "scorer_drift_check": 1,
+        "findings_aggregated": 1,
+        "repo_report_rendered": 1,
+        "audit_complete": 1,
+        "manual_disclosure_pending": 1,
         "report_generated": 1
       }
     }
