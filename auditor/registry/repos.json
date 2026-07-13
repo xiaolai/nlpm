@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-07-07T00:24:00Z",
+    "last_discovery": "2026-07-13T08:51:40Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 261
+    "total_discovered": 262
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9584,6 +9584,16 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "composio-community/awesome-claude-plugins": {
+      "discovered": "2026-07-13T08:51:40Z",
+      "stars": 1821,
+      "artifacts": 88,
+      "description": "A curated list of Plugins that let you extend Claude Code with custom commands, agents, hooks, and MCP servers through the plugin system.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 589,
+      "prs": []
     }
   }
 }
