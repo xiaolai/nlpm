@@ -9590,10 +9590,13 @@
       "stars": 1821,
       "artifacts": 88,
       "description": "A curated list of Plugins that let you extend Claude Code with custom commands, agents, hooks, and MCP servers through the plugin system.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 89,
       "audit_issue": 589,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "9ef49d0f2a270f569ec0baa987e64157b7d86858"
     }
   }
 }
