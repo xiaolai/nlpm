@@ -3329,3 +3329,4 @@
 {"timestamp":"2026-07-15T16:43:47Z","workflow":"track","event":"status_check","run_id":"29432937035","run_number":530,"data":{"contributed":59,"tracked":36,"case_study_ready":40,"rule_adopted":2}}
 {"timestamp":"2026-07-15T20:33:45Z","workflow":"track","event":"status_check","run_id":"29448176517","run_number":531,"data":{"contributed":59,"tracked":36,"case_study_ready":40,"rule_adopted":2}}
 {"timestamp":"2026-07-15T22:19:44Z","workflow":"daily-report","event":"report_generated","run_id":"29455017633","run_number":103,"data":{"total_repos":276}}
+{"timestamp":"2026-07-15T22:46:48Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"29456516091","run_number":59,"data":{"repos":276,"findings":5189,"advisories":22}}
