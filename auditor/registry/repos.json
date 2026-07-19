@@ -316,7 +316,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 20,
@@ -329,7 +329,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
@@ -7055,7 +7055,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 23,
@@ -7068,7 +7068,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
