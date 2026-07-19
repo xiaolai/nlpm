@@ -7703,7 +7703,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 33,
@@ -7716,7 +7716,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 34,
@@ -7729,7 +7729,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 35,
@@ -7742,7 +7742,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 36,
@@ -7755,7 +7755,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
@@ -8305,7 +8305,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 23,
@@ -8318,7 +8318,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 24,
@@ -8331,7 +8331,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 25,
@@ -8344,7 +8344,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 26,
@@ -8357,7 +8357,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
@@ -8482,7 +8482,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 105,
