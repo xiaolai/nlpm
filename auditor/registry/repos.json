@@ -5950,8 +5950,11 @@
       "score": 1,
       "security": "CLEAR",
       "stars": 655,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        16
+      ]
     },
     "larksuite/cli": {
       "artifacts": 30,
