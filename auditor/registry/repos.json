@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-07-13T08:51:40Z",
+    "last_discovery": "2026-07-20T08:43:07Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 262
+    "total_discovered": 266
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9597,6 +9597,46 @@
       "strategy": "progressive",
       "security": "BLOCKED",
       "commit_sha_at_audit": "9ef49d0f2a270f569ec0baa987e64157b7d86858"
+    },
+    "KKKKhazix/khazix-skills": {
+      "discovered": "2026-07-20T08:43:07Z",
+      "stars": 17461,
+      "artifacts": 5,
+      "description": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: neat-freak 洁癖 (docs/memory closeout), hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 631,
+      "prs": []
+    },
+    "earthtojake/text-to-cad": {
+      "discovered": "2026-07-20T08:43:07Z",
+      "stars": 8451,
+      "artifacts": 24,
+      "description": "A collection of agent skills for CAD, robotics and hardware design",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 632,
+      "prs": []
+    },
+    "gemini-cli-extensions/conductor": {
+      "discovered": "2026-07-20T08:43:07Z",
+      "stars": 3657,
+      "artifacts": 6,
+      "description": "A plugin for AI coding agents (Antigravity, Claude Code) enabling Spec-Driven Development to specify, plan, and implement software features.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 633,
+      "prs": []
+    },
+    "laolaoshiren/claude-code-skills-zh": {
+      "discovered": "2026-07-20T08:43:07Z",
+      "stars": 655,
+      "artifacts": 20,
+      "description": "面向中文开发者的 Claude Code Skills / Agents / Plugins 精选与原创技能库｜按场景分类｜复制即装｜持续更新",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 634,
+      "prs": []
     }
   }
 }
