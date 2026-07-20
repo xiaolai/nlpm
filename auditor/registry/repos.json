@@ -4643,8 +4643,11 @@
       "score": 90,
       "security": "REVIEW",
       "stars": 3657,
-      "status": "audited",
-      "strategy": "single"
+      "status": "contributed",
+      "strategy": "single",
+      "pipeline_prs": [
+        175
+      ]
     },
     "github/awesome-copilot": {
       "artifacts": 527,
