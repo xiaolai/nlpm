@@ -1,0 +1,339 @@
+{
+  "project": "earthtojake/text-to-cad",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 13,
+    "average_score": 95,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "plugins/cad/skills",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-bundle-mirror",
+          "severity": "info",
+          "line": null,
+          "message": "plugins/cad/skills/* is a byte-identical generated mirror of skills/*, confirming scripts/bundle/bundle-plugin.sh is up to date"
+        }
+      ]
+    },
+    {
+      "path": "requirements-dev.txt",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 22,
+          "message": "Third-party Python dependencies across all requirements.txt files in the repo have no version constraint"
+        }
+      ]
+    },
+    {
+      "path": "scripts/github-workflows/deploy-vercel-app.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-token-network",
+          "severity": "medium",
+          "line": 83,
+          "message": "Vercel deploy token is transmitted via Authorization header to Vercel's own API — correct, expected CI/CD usage"
+        }
+      ]
+    },
+    {
+      "path": "skills/bambu-labs/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "medium",
+          "line": null,
+          "message": "bambu-labs/SKILL.md does not define a required report shape despite being the highest-stakes (live-printer-control) skill in the repo"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 33,
+          "message": "One vague quantifier ('relevant') without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/bambu-labs/scripts/bambu_lan_print.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-tls-verify-disabled",
+          "severity": "medium",
+          "line": 379,
+          "message": "TLS certificate verification is disabled by default for the printer's MQTT/FTPS sockets, mitigated by a private-host-only guard for LAN-only Bambu firmware self-signed certs"
+        }
+      ]
+    },
+    {
+      "path": "skills/cad/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 76,
+          "message": "One vague quantifier ('relevant') without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/gcode/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R16",
+          "severity": "low",
+          "line": null,
+          "message": "gcode/SKILL.md does not define what the agent's final response must include"
+        },
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 41,
+          "message": "Two vague quantifiers ('appropriate', 'relevant') without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/implicit-cad/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 136,
+          "message": "Two vague quantifiers ('relevant' x2) without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/sdf/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 37,
+          "message": "One vague quantifier ('relevant') without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/sendcutsend/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 22,
+          "message": "Four vague quantifiers ('relevant' x2, 'as needed' x2) without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/srdf/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 26,
+          "message": "Two vague quantifiers ('relevant', 'when needed') without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/step-parts/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 14,
+          "message": "Three vague quantifiers ('relevant' x3) without measurable criteria"
+        }
+      ]
+    },
+    {
+      "path": "skills/urdf/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R01",
+          "severity": "low",
+          "line": 27,
+          "message": "Two vague quantifiers ('relevant', 'appropriate') without measurable criteria"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-20T12:54:43Z",
+      "average_score": 95,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R16",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/gcode/SKILL.md",
+      "line": null,
+      "message": "gcode/SKILL.md does not define what the agent's final response must include — No 'final response should include' or 'required report shape' statement anywhere in the file, unlike sibling skills sdf/cad/dxf/srdf/urdf/step-parts which all state one"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/gcode/SKILL.md",
+      "line": 41,
+      "message": "Two vague quantifiers ('appropriate', 'relevant') without measurable criteria — Line 41 contains 'appropriate'; line 63 contains 'relevant'"
+    },
+    {
+      "rule": "R16",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/bambu-labs/SKILL.md",
+      "line": null,
+      "message": "bambu-labs/SKILL.md does not define a required report shape despite being the highest-stakes (live-printer-control) skill in the repo — No 'final response should include' or 'required report shape' statement anywhere in the file, despite this skill controlling live 3D printer hardware"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/bambu-labs/SKILL.md",
+      "line": 33,
+      "message": "One vague quantifier ('relevant') without measurable criteria — Line 33 contains 'relevant'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/sendcutsend/SKILL.md",
+      "line": 22,
+      "message": "Four vague quantifiers ('relevant' x2, 'as needed' x2) without measurable criteria — Lines 22, 36 contain 'relevant'; lines 39, 40 contain 'as needed'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/step-parts/SKILL.md",
+      "line": 14,
+      "message": "Three vague quantifiers ('relevant' x3) without measurable criteria — Lines 14, 23, 31 all contain 'relevant'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/urdf/SKILL.md",
+      "line": 27,
+      "message": "Two vague quantifiers ('relevant', 'appropriate') without measurable criteria — Line 27 contains 'relevant'; line 38 contains 'appropriate'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/srdf/SKILL.md",
+      "line": 26,
+      "message": "Two vague quantifiers ('relevant', 'when needed') without measurable criteria — Line 26 contains 'relevant'; line 33 contains 'when needed'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/implicit-cad/SKILL.md",
+      "line": 136,
+      "message": "Two vague quantifiers ('relevant' x2) without measurable criteria — Lines 136 and 140 both contain 'relevant'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/sdf/SKILL.md",
+      "line": 37,
+      "message": "One vague quantifier ('relevant') without measurable criteria — Line 37 contains 'relevant'"
+    },
+    {
+      "rule": "R01",
+      "severity": "low",
+      "confidence": "high",
+      "file": "skills/cad/SKILL.md",
+      "line": 76,
+      "message": "One vague quantifier ('relevant') without measurable criteria — Line 76 contains 'relevant'"
+    },
+    {
+      "rule": "SEC-tls-verify-disabled",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "skills/bambu-labs/scripts/bambu_lan_print.py",
+      "line": 379,
+      "message": "TLS certificate verification is disabled by default for the printer's MQTT/FTPS sockets, mitigated by a private-host-only guard for LAN-only Bambu firmware self-signed certs — ssl.create_default_context() followed by check_hostname=False and verify_mode=ssl.CERT_NONE at lines 379-380 (repeats at 943-944, 1152-1153, 1210-1211); gated by validate_local_host() at line 329 which requires a private/loopback/link-local address per is_local_address() at line 308"
+    },
+    {
+      "rule": "SEC-env-token-network",
+      "severity": "medium",
+      "confidence": "high",
+      "file": "scripts/github-workflows/deploy-vercel-app.sh",
+      "line": 83,
+      "message": "Vercel deploy token is transmitted via Authorization header to Vercel's own API — correct, expected CI/CD usage — Line 83: curl --header \"Authorization: Bearer $VERCEL_TOKEN\" sent to https://api.vercel.com/v9/projects; VERCEL_TOKEN is read from environment at line 68"
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": "requirements-dev.txt",
+      "line": 22,
+      "message": "Third-party Python dependencies across all requirements.txt files in the repo have no version constraint — ezdxf, playwright, networkx, lxml, pytest, trimesh listed with zero version constraint across requirements-dev.txt and 15 sibling requirements.txt files"
+    },
+    {
+      "rule": "CC-bundle-mirror",
+      "severity": "info",
+      "confidence": "high",
+      "file": "plugins/cad/skills",
+      "line": null,
+      "message": "plugins/cad/skills/* is a byte-identical generated mirror of skills/*, confirming scripts/bundle/bundle-plugin.sh is up to date — diff on all 11 skills/<name>/SKILL.md vs plugins/cad/skills/<name>/SKILL.md pairs returned zero differences"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 8451,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/earthtojake-text-to-cad.md"
+  },
+  "generated_at": "2026-07-20T12:56:33Z",
+  "schema_version": 1
+}
