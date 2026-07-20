@@ -1,0 +1,444 @@
+{
+  "project": "KKKKhazix/khazix-skills",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 14,
+    "average_score": 96,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": "README.en.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 129,
+          "message": "English mirror of the same curl-pipe-to-shell install command."
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "critical",
+          "line": 129,
+          "message": "Root install instructions pipe a remote script directly into bash with no local review step; install.sh is hosted off-repo and unauditable from source control."
+        }
+      ]
+    },
+    {
+      "path": "aihot/README.md",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 29,
+          "message": "Process substitution is functionally equivalent to curl | bash; mitigated somewhat by preceding 'review the script first' guidance in the same doc."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 32,
+          "message": "Same process-substitution pattern, --target codex variant."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 35,
+          "message": "Same process-substitution pattern, --target gemini variant."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 38,
+          "message": "Same process-substitution pattern, --target copilot variant."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 41,
+          "message": "Same process-substitution pattern, --target opencode variant."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 44,
+          "message": "Same process-substitution pattern, generic ~/.agents/skills target variant."
+        },
+        {
+          "rule": "SEC-curl-pipe-sh",
+          "severity": "high",
+          "line": 50,
+          "message": "Same process-substitution pattern, custom --dir variant."
+        }
+      ]
+    },
+    {
+      "path": "hv-analysis/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unpinned-semver",
+          "severity": "low",
+          "line": 22,
+          "message": "Install command for weasyprint/markdown has no version pins (also repeated at line 212), so a breaking upstream release silently changes report output."
+        },
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 3,
+          "message": "Description is approximately 515 characters, in the R04 500-800 char band."
+        },
+        {
+          "rule": "CC-orphan-component",
+          "severity": "low",
+          "line": 8,
+          "message": "References a 'wechat-title' skill as the tool for title/summary generation, but no wechat-title/ directory exists in this repo and it is not among the 5 skills in README.md's own badge/table."
+        }
+      ]
+    },
+    {
+      "path": "hv-analysis/scripts/md_to_pdf.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unescaped-html-interpolation",
+          "severity": "medium",
+          "line": 229,
+          "message": "title, meta_line, and author are f-string-interpolated into the cover-page HTML with no html.escape(); meta_line derives from researched Markdown that can carry web-sourced content."
+        }
+      ]
+    },
+    {
+      "path": "khazix-writer/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": 1,
+          "message": "Body is approximately 409 lines, in the R05 400-500 line band."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R04",
+          "severity": "low",
+          "line": 3,
+          "message": "Description is approximately 800 characters, at or near the R04 800-char threshold; exact count is sensitive to YAML fold whitespace handling and could not be verified with a code interpreter in this run."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-1-routine-dev-sync/workspace/taskflow/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command and no Prerequisites section."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-2-memory-conflict/workspace/notesapp/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command and no Prerequisites section."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-4-cross-project/workspace/auth-center/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command; the env-var table partially substitutes for a Prerequisites section but doesn't state runtime/tool versions."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-4-cross-project/workspace/skills-hub/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command and no Prerequisites section."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-5-governance/workspace/pdf-tools/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command and no architecture/Prerequisites section."
+        }
+      ]
+    },
+    {
+      "path": "neat-freak/evals/fixtures/eval-6-scope-boundary/workspace/current-app/CLAUDE.md",
+      "type": "claude-md",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R34",
+          "severity": "low",
+          "line": null,
+          "message": "No test command and no Prerequisites section; file is deliberately minimal by eval design (scope-boundary fixture), so this gap may be intentional."
+        }
+      ]
+    },
+    {
+      "path": "storage-analyzer/assets/report_template.html",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-unescaped-script-json",
+          "severity": "low",
+          "line": 156,
+          "message": "const DATA = __REPORT_DATA__ embeds json.dumps() output raw inside a <script> tag without escaping </script> sequences; exploitation requires a local attacker who can already name a file on the scanned disk."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-07-20T12:56:35Z",
+      "average_score": 96,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "README.md",
+      "line": 129,
+      "message": "Root install instructions pipe a remote script directly into bash with no local review step; install.sh is hosted off-repo and unauditable from source control. — curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh | bash"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "critical",
+      "confidence": "high",
+      "file": "README.en.md",
+      "line": 129,
+      "message": "English mirror of the same curl-pipe-to-shell install command. — curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh | bash"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 29,
+      "message": "Process substitution is functionally equivalent to curl | bash; mitigated somewhat by preceding 'review the script first' guidance in the same doc. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target claude"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 32,
+      "message": "Same process-substitution pattern, --target codex variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target codex"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 35,
+      "message": "Same process-substitution pattern, --target gemini variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target gemini"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 38,
+      "message": "Same process-substitution pattern, --target copilot variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target copilot"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 41,
+      "message": "Same process-substitution pattern, --target opencode variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target opencode"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 44,
+      "message": "Same process-substitution pattern, generic ~/.agents/skills target variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --target agents"
+    },
+    {
+      "rule": "SEC-curl-pipe-sh",
+      "severity": "high",
+      "confidence": "high",
+      "file": "aihot/README.md",
+      "line": 50,
+      "message": "Same process-substitution pattern, custom --dir variant. — bash <(curl -fsSL https://aihot.virxact.com/aihot-skill/install.sh) --dir \"$HOME/path/to/skills/aihot\""
+    },
+    {
+      "rule": "SEC-unescaped-html-interpolation",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "hv-analysis/scripts/md_to_pdf.py",
+      "line": 229,
+      "message": "title, meta_line, and author are f-string-interpolated into the cover-page HTML with no html.escape(); meta_line derives from researched Markdown that can carry web-sourced content."
+    },
+    {
+      "rule": "SEC-unpinned-semver",
+      "severity": "low",
+      "confidence": "high",
+      "file": "hv-analysis/SKILL.md",
+      "line": 22,
+      "message": "Install command for weasyprint/markdown has no version pins (also repeated at line 212), so a breaking upstream release silently changes report output. — pip install weasyprint markdown --break-system-packages"
+    },
+    {
+      "rule": "SEC-unescaped-script-json",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "storage-analyzer/assets/report_template.html",
+      "line": 156,
+      "message": "const DATA = __REPORT_DATA__ embeds json.dumps() output raw inside a <script> tag without escaping </script> sequences; exploitation requires a local attacker who can already name a file on the scanned disk."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "hv-analysis/SKILL.md",
+      "line": 3,
+      "message": "Description is approximately 515 characters, in the R04 500-800 char band."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "khazix-writer/SKILL.md",
+      "line": 1,
+      "message": "Body is approximately 409 lines, in the R05 400-500 line band."
+    },
+    {
+      "rule": "R04",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/SKILL.md",
+      "line": 3,
+      "message": "Description is approximately 800 characters, at or near the R04 800-char threshold; exact count is sensitive to YAML fold whitespace handling and could not be verified with a code interpreter in this run."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/evals/fixtures/eval-1-routine-dev-sync/workspace/taskflow/CLAUDE.md",
+      "line": null,
+      "message": "No test command and no Prerequisites section."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/evals/fixtures/eval-2-memory-conflict/workspace/notesapp/CLAUDE.md",
+      "line": null,
+      "message": "No test command and no Prerequisites section."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/evals/fixtures/eval-4-cross-project/workspace/auth-center/CLAUDE.md",
+      "line": null,
+      "message": "No test command; the env-var table partially substitutes for a Prerequisites section but doesn't state runtime/tool versions."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/evals/fixtures/eval-4-cross-project/workspace/skills-hub/CLAUDE.md",
+      "line": null,
+      "message": "No test command and no Prerequisites section."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "neat-freak/evals/fixtures/eval-5-governance/workspace/pdf-tools/CLAUDE.md",
+      "line": null,
+      "message": "No test command and no architecture/Prerequisites section."
+    },
+    {
+      "rule": "R34",
+      "severity": "low",
+      "confidence": "low",
+      "file": "neat-freak/evals/fixtures/eval-6-scope-boundary/workspace/current-app/CLAUDE.md",
+      "line": null,
+      "message": "No test command and no Prerequisites section; file is deliberately minimal by eval design (scope-boundary fixture), so this gap may be intentional."
+    },
+    {
+      "rule": "CC-orphan-component",
+      "severity": "low",
+      "confidence": "low",
+      "file": "hv-analysis/SKILL.md",
+      "line": 8,
+      "message": "References a 'wechat-title' skill as the tool for title/summary generation, but no wechat-title/ directory exists in this repo and it is not among the 5 skills in README.md's own badge/table."
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 17461,
+    "security": "BLOCKED",
+    "audit_report_path": "auditor/audits/KKKKhazix-khazix-skills.md"
+  },
+  "generated_at": "2026-07-20T12:57:53Z",
+  "schema_version": 1
+}

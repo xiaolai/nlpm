@@ -9603,10 +9603,13 @@
       "stars": 17461,
       "artifacts": 5,
       "description": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: neat-freak 洁癖 (docs/memory closeout), hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 631,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "2b4a645cfdc894156ae347d897723562f719ce95"
     },
     "earthtojake/text-to-cad": {
       "discovered": "2026-07-20T08:43:07Z",
