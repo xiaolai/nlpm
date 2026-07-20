@@ -9623,10 +9623,13 @@
       "stars": 3657,
       "artifacts": 6,
       "description": "A plugin for AI coding agents (Antigravity, Claude Code) enabling Spec-Driven Development to specify, plan, and implement software features.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 90,
       "audit_issue": 633,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "fb6212e8faee3f9ecb69f0ee19bd5b2a0765bb0a"
     },
     "laolaoshiren/claude-code-skills-zh": {
       "discovered": "2026-07-20T08:43:07Z",
