@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-19T22:45:32Z",
+  "generated_at": "2026-07-20T22:46:49Z",
   "since": null,
   "summary": {
-    "total_repos": 276,
-    "total_findings": 5189,
-    "high_findings": 1689,
+    "total_repos": 280,
+    "total_findings": 5283,
+    "high_findings": 1765,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
-    "repos_blocked": 70
+    "repos_blocked": 71
   },
   "repo_rows": [
     {
@@ -684,6 +684,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "gemini-cli-extensions/conductor",
+      "status": "contributed",
+      "stars": 3657,
+      "score": 90,
+      "security": "REVIEW",
+      "total_findings": 31,
+      "high_findings": 28,
+      "medium_findings": 3,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "kbwo/ccmanager",
       "status": "audited",
       "stars": 1031,
@@ -704,6 +716,18 @@
       "total_findings": 30,
       "high_findings": 0,
       "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "KKKKhazix/khazix-skills",
+      "status": "audited",
+      "stars": 17461,
+      "score": 96,
+      "security": "BLOCKED",
+      "total_findings": 29,
+      "high_findings": 15,
+      "medium_findings": 10,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -1188,6 +1212,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "laolaoshiren/claude-code-skills-zh",
+      "status": "contributed",
+      "stars": 655,
+      "score": 1,
+      "security": "CLEAR",
+      "total_findings": 19,
+      "high_findings": 18,
+      "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "memvid/claude-brain",
       "status": "audited",
       "stars": 465,
@@ -1472,6 +1508,18 @@
       "total_findings": 15,
       "high_findings": 14,
       "medium_findings": 1,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "earthtojake/text-to-cad",
+      "status": "contributed",
+      "stars": 8451,
+      "score": 95,
+      "security": "CLEAR",
+      "total_findings": 15,
+      "high_findings": 15,
+      "medium_findings": 0,
       "vocab_drift_count": 0,
       "vocab_drift_high": 0
     },
@@ -3327,8 +3375,8 @@
   "rule_distribution": [
     {
       "rule_id": "R01",
-      "total": 562,
-      "repos_affected": 67
+      "total": 595,
+      "repos_affected": 69
     },
     {
       "rule_id": "R09",
@@ -3357,13 +3405,13 @@
     },
     {
       "rule_id": "R05",
-      "total": 175,
-      "repos_affected": 32
+      "total": 176,
+      "repos_affected": 33
     },
     {
       "rule_id": "R06",
-      "total": 153,
-      "repos_affected": 25
+      "total": 155,
+      "repos_affected": 26
     },
     {
       "rule_id": "R14",
@@ -3376,14 +3424,14 @@
       "repos_affected": 38
     },
     {
+      "rule_id": "SEC-unpinned-semver",
+      "total": 145,
+      "repos_affected": 83
+    },
+    {
       "rule_id": "R22",
       "total": 145,
       "repos_affected": 30
-    },
-    {
-      "rule_id": "SEC-unpinned-semver",
-      "total": 141,
-      "repos_affected": 80
     },
     {
       "rule_id": "BUG-broken-reference",
@@ -3412,8 +3460,8 @@
     },
     {
       "rule_id": "R04",
-      "total": 84,
-      "repos_affected": 19
+      "total": 86,
+      "repos_affected": 20
     },
     {
       "rule_id": "CC-terminology-drift",
@@ -3422,18 +3470,18 @@
     },
     {
       "rule_id": "CC-orphan-component",
-      "total": 69,
-      "repos_affected": 53
+      "total": 71,
+      "repos_affected": 55
+    },
+    {
+      "rule_id": "SEC-curl-pipe-sh",
+      "total": 70,
+      "repos_affected": 30
     },
     {
       "rule_id": "BUG-undeclared-tool",
       "total": 69,
       "repos_affected": 27
-    },
-    {
-      "rule_id": "SEC-curl-pipe-sh",
-      "total": 61,
-      "repos_affected": 29
     },
     {
       "rule_id": "CC-broken-relative-path",
@@ -5055,6 +5103,24 @@
         "scan_complete": 1,
         "proposals_prepared": 1,
         "finding_outcome": 15,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-20",
+      "counts": {
+        "classifications_emitted": 1,
+        "status_check": 4,
+        "search_complete": 1,
+        "finding_outcome": 22,
+        "scorer_drift_check": 5,
+        "findings_aggregated": 5,
+        "repo_report_rendered": 5,
+        "audit_complete": 5,
+        "manual_disclosure_pending": 2,
+        "report_artifact_uploaded": 6,
+        "prs_submitted": 6,
         "report_generated": 1
       }
     }
