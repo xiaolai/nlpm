@@ -4129,8 +4129,9 @@
       "score": 95,
       "security": "CLEAR",
       "stars": 8451,
-      "status": "audited",
-      "strategy": "batched"
+      "status": "contributed",
+      "strategy": "batched",
+      "pipeline_prs": []
     },
     "elementalsouls/Claude-BugHunter": {
       "case_study_candidate": true,
