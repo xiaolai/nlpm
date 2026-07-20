@@ -9633,10 +9633,13 @@
       "stars": 655,
       "artifacts": 20,
       "description": "面向中文开发者的 Claude Code Skills / Agents / Plugins 精选与原创技能库｜按场景分类｜复制即装｜持续更新",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 1,
       "audit_issue": 634,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "6034db4b6df3242803d8e16a4fd6fa4d80001d70"
     }
   }
 }
