@@ -4130,7 +4130,9 @@
       "security": "CLEAR",
       "stars": 8451,
       "status": "audited",
-      "strategy": "batched"
+      "strategy": "batched",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/earthtojake-text-to-cad.md"
     },
     "elementalsouls/Claude-BugHunter": {
       "case_study_candidate": true,
