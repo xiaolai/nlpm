@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T22:46:49Z",
+  "generated_at": "2026-07-21T22:46:39Z",
   "since": null,
   "summary": {
     "total_repos": 280,
@@ -5121,6 +5121,16 @@
         "manual_disclosure_pending": 2,
         "report_artifact_uploaded": 6,
         "prs_submitted": 6,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-21",
+      "counts": {
+        "finding_outcome": 15,
+        "status_check": 6,
+        "classifications_emitted": 1,
         "report_generated": 1
       }
     }
