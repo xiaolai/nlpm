@@ -5976,13 +5976,13 @@
       "prs": [
         {
           "number": 16,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-22T07:22:54Z",
           "title": "fix: 调试截图/结果文件写入仓库内 .tmp 目录而非系统临时目录",
-          "updatedAt": "2026-07-20T18:47:38Z",
+          "updatedAt": "2026-07-22T07:22:54Z",
           "createdAt": "2026-07-20T18:47:38Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:c949f71c4d1fa09e8c29690639cfb7dab79feca91ef138b5b9ad7628b062a60c",
             "sha256:fa5e9803f2ff3c1a834b85059c9727fc819a7d7316103668c27e40df2e83e529"
@@ -5997,7 +5997,7 @@
       "score": 1,
       "security": "CLEAR",
       "stars": 655,
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "single",
       "rule_adopted": false
     },
