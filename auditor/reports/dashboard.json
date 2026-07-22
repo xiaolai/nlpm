@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-21T22:46:39Z",
+  "generated_at": "2026-07-22T22:47:29Z",
   "since": null,
   "summary": {
     "total_repos": 280,
@@ -265,7 +265,7 @@
     },
     {
       "repo": "wesammustafa/Claude-Code-Everything-You-Need-to-Know",
-      "status": "contributed",
+      "status": "complete",
       "stars": 2254,
       "score": 71,
       "security": "CLEAR",
@@ -1213,7 +1213,7 @@
     },
     {
       "repo": "laolaoshiren/claude-code-skills-zh",
-      "status": "contributed",
+      "status": "tracked",
       "stars": 655,
       "score": 1,
       "security": "CLEAR",
@@ -5131,6 +5131,19 @@
         "finding_outcome": 15,
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-07-22",
+      "counts": {
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "finding_outcome": 3,
+        "finding_verified": 48,
+        "finding_introduced": 9,
+        "no_narrative": 1,
         "report_generated": 1
       }
     }
