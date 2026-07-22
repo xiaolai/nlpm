@@ -9066,13 +9066,13 @@
       "prs": [
         {
           "number": 15,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-22T10:48:21Z",
+          "closedAt": "2026-07-22T10:48:21Z",
           "title": "fix: add missing YAML frontmatter to six command files",
-          "updatedAt": "2026-07-06T15:36:48Z",
+          "updatedAt": "2026-07-22T10:48:21Z",
           "createdAt": "2026-07-06T15:36:48Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:94cb177e319ed4c2092f2d511a7dbc5225fa32f4831b0f9a6b251c751546adfe",
             "sha256:e27726e5819a1178bf9680ce99bab1d02c5f7933069f8dce478e082c67092f59",
@@ -9093,13 +9093,13 @@
         },
         {
           "number": 16,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-22T10:47:54Z",
+          "closedAt": "2026-07-22T10:47:54Z",
           "title": "fix: use bare uv command in notification.py instead of hardcoded path",
-          "updatedAt": "2026-07-06T15:37:26Z",
+          "updatedAt": "2026-07-22T10:47:54Z",
           "createdAt": "2026-07-06T15:37:26Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -9109,8 +9109,9 @@
       "score": 71,
       "security": "CLEAR",
       "stars": 2254,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "tracked",
+      "strategy": "single",
+      "case_study_candidate": true
     },
     "wshobson/agents": {
       "artifacts": 509,
