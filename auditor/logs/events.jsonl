@@ -3548,3 +3548,4 @@
 {"timestamp":"2026-07-23T20:28:03Z","workflow":"track","event":"finding_outcome","run_id":"30042098380","run_number":579,"data":{"pr":"JuliusBrussee/caveman#262","pr_state":"stale_90d","fingerprints":[],"rule_ids":[]}}
 {"timestamp":"2026-07-23T20:37:44Z","workflow":"track","event":"status_check","run_id":"30042098380","run_number":579,"data":{"contributed":60,"tracked":37,"case_study_ready":41,"rule_adopted":2}}
 {"timestamp":"2026-07-23T22:20:20Z","workflow":"daily-report","event":"report_generated","run_id":"30049514973","run_number":111,"data":{"total_repos":280}}
+{"timestamp":"2026-07-23T22:46:28Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"30051028714","run_number":67,"data":{"repos":280,"findings":5283,"advisories":22}}
