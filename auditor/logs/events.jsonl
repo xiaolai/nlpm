@@ -3545,3 +3545,5 @@
 {"timestamp":"2026-07-23T09:08:12Z","workflow":"track","event":"status_check","run_id":"29993207856","run_number":576,"data":{"contributed":60,"tracked":37,"case_study_ready":41,"rule_adopted":2}}
 {"timestamp":"2026-07-23T12:46:52Z","workflow":"track","event":"status_check","run_id":"30007734820","run_number":577,"data":{"contributed":60,"tracked":37,"case_study_ready":41,"rule_adopted":2}}
 {"timestamp":"2026-07-23T16:45:18Z","workflow":"track","event":"status_check","run_id":"30025653261","run_number":578,"data":{"contributed":60,"tracked":37,"case_study_ready":41,"rule_adopted":2}}
+{"timestamp":"2026-07-23T20:28:03Z","workflow":"track","event":"finding_outcome","run_id":"30042098380","run_number":579,"data":{"pr":"JuliusBrussee/caveman#262","pr_state":"stale_90d","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-07-23T20:37:44Z","workflow":"track","event":"status_check","run_id":"30042098380","run_number":579,"data":{"contributed":60,"tracked":37,"case_study_ready":41,"rule_adopted":2}}
