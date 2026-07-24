@@ -5,7 +5,7 @@ outline: [2, 2]
 
 # Featured audits
 
-A curated subset of the 210+ external repositories NLPM has audited — picked for **institutional credibility** (OpenAI, Google, CNCF), **scale** (10k+ stars), or **engagement** (merged PRs from the contribute pipeline, often paired with a case-study article). Each entry links to its full per-repo report, every merged PR we filed, and the long-form article when one exists.
+A curated subset of the 270+ external repositories NLPM has audited — picked for **institutional credibility** (OpenAI, Google, CNCF), **scale** (10k+ stars), or **engagement** (merged PRs from the contribute pipeline, often paired with a case-study article). Each entry links to its full per-repo report, every merged PR we filed, and the long-form article when one exists.
 
 For the complete data set, see the [dashboard](/dashboard).
 

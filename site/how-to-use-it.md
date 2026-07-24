@@ -445,7 +445,7 @@ The badge auto-updates each push to `main`:
 
 | State | Color | Message |
 |---|---|---|
-| Clean | green | `0 issues · v0.8.x` |
+| Clean | green | `0 issues · v1.1.x` |
 | Advisory | yellow | `0 high · N advisory` (medium/low findings only) |
 | Failing | red | `N high issues` |
 
