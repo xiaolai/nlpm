@@ -4655,7 +4655,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix: split malformed curl instruction into a fenced code block",
-          "updatedAt": "2026-07-24T00:21:28Z",
+          "updatedAt": "2026-07-24T00:48:11Z",
           "createdAt": "2026-07-20T18:44:05Z",
           "outcome": "open",
           "fingerprints": [],
