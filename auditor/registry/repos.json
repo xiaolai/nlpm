@@ -1572,8 +1572,10 @@
       "score": 89,
       "security": "REVIEW",
       "stars": 237,
-      "status": "contributed",
-      "strategy": "batched"
+      "status": "complete",
+      "strategy": "batched",
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=89, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "Lum1104/Understand-Anything": {
       "case_study_candidate": true,
