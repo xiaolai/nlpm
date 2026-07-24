@@ -1535,13 +1535,13 @@
       "prs": [
         {
           "number": 5,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-24T08:14:47Z",
           "title": "fix: use project-relative memory path in orchestrator-engineer agent",
-          "updatedAt": "2026-07-07T09:41:55Z",
+          "updatedAt": "2026-07-24T08:17:49Z",
           "createdAt": "2026-07-07T09:41:49Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:f25aa6984c6cae19b6f22e7603a8738ba132bab3d3d8f5ee563f14c5c71becf6"
           ],
@@ -1552,13 +1552,13 @@
         },
         {
           "number": 6,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-24T08:19:17Z",
+          "closedAt": "2026-07-24T08:19:17Z",
           "title": "fix: remove bypassPermissions from shared settings.json",
-          "updatedAt": "2026-07-07T09:42:56Z",
+          "updatedAt": "2026-07-24T08:19:17Z",
           "createdAt": "2026-07-07T09:42:49Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:872206c779b3eca94b9243284fb24eb1930543d5752f340c36f1d4afcb29c40a"
           ],
@@ -1572,8 +1572,9 @@
       "score": 89,
       "security": "REVIEW",
       "stars": 237,
-      "status": "contributed",
-      "strategy": "batched"
+      "status": "tracked",
+      "strategy": "batched",
+      "case_study_candidate": true
     },
     "Lum1104/Understand-Anything": {
       "case_study_candidate": true,
