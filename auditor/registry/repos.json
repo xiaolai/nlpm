@@ -4397,26 +4397,26 @@
         },
         {
           "number": 167,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-24T19:55:38Z",
           "title": "fix: add missing name frontmatter to update-readme, sync-claude-md, load-claude-md",
-          "updatedAt": "2026-04-26T09:12:32Z",
+          "updatedAt": "2026-07-24T19:55:39Z",
           "createdAt": "2026-04-22T06:45:03Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
         },
         {
           "number": 168,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-24T19:54:02Z",
           "title": "fix: add missing name and allowed-tools to tavily, azure, gcloud, paper-search setup commands",
-          "updatedAt": "2026-04-22T06:45:38Z",
+          "updatedAt": "2026-07-24T19:54:03Z",
           "createdAt": "2026-04-22T06:45:38Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": true
@@ -4436,13 +4436,13 @@
         },
         {
           "number": 170,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-07-24T19:57:29Z",
           "title": "fix: add path traversal guard in sync_marketplace_to_plugins.py",
-          "updatedAt": "2026-04-26T09:13:15Z",
+          "updatedAt": "2026-07-24T19:57:29Z",
           "createdAt": "2026-04-22T06:46:51Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4452,8 +4452,9 @@
       "score": 79,
       "security": "REVIEW",
       "stars": 590,
-      "status": "contributed",
-      "strategy": "progressive"
+      "status": "tracked",
+      "strategy": "progressive",
+      "case_study_candidate": true
     },
     "feiskyer/claude-code-settings": {
       "artifacts": 42,
@@ -9550,7 +9551,7 @@
           "rule_ids": [
             "BUG-missing-frontmatter"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 4,
@@ -9567,7 +9568,7 @@
           "rule_ids": [
             "BUG-broken-reference"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
