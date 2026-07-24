@@ -69,11 +69,15 @@ git -c user.name="nlpm-auditor[bot]" \
     -c user.email="nlpm-auditor[bot]@users.noreply.github.com" \
     commit -m "$MSG"
 HEAD_AFTER=$(git rev-parse HEAD)
+SHORT_SHA=$(git rev-parse --short=8 HEAD)
 
-# --- create the bot branch pointing at the new commit ---
+# --- create the bot branch pointing at the new commit. The short SHA
+#     in the branch name keeps multiple helper calls within ONE workflow
+#     run from colliding on the same branch (case-study and audit make
+#     several commits per run). ---
 SAFE_WF=$(echo "${GITHUB_WORKFLOW:-unknown-workflow}" | tr -c 'a-zA-Z0-9._-' '-')
 RUN_ID="${GITHUB_RUN_ID:-$(date +%s)}"
-BRANCH="auditor/bot/${SAFE_WF}/${RUN_ID}"
+BRANCH="auditor/bot/${SAFE_WF}/${RUN_ID}-${SHORT_SHA}"
 git branch -f "$BRANCH" "$HEAD_AFTER"
 
 # --- push the branch via the chosen token ---
@@ -89,6 +93,13 @@ for attempt in 1 2 3; do
   echo "commit-via-pr: push attempt ${attempt}/3 failed; retrying"
   sleep $((attempt * 3))
 done
+
+# --- ensure the auditor-bot label exists (idempotent; --force is a no-op
+#     when label already exists with this color/description) ---
+GH_TOKEN="$TOKEN" gh label create auditor-bot \
+  --color "ededed" \
+  --description "Automated commit from an auditor workflow" \
+  --force >/dev/null 2>&1 || true
 
 # --- open PR + enable auto-merge ---
 RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}"

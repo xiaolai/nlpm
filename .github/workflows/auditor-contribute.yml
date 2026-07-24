@@ -76,6 +76,7 @@ jobs:
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           OWNER=$(echo "$TARGET_REPO" | cut -d/ -f1)
           # Owners that don't accept external PRs (policy, not code).
@@ -100,20 +101,9 @@ jobs:
                  auditor/registry/repos.json > /tmp/reg.json \
                  && bash auditor/scripts/atomic-registry-write.sh
 
-              git config user.name "nlpm-auditor[bot]"
-              git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-              git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
               git add auditor/registry/repos.json
               bash auditor/scripts/guard-protected-paths.sh || exit 1
-              git diff --cached --quiet || {
-                git commit -m "policy: $TARGET_REPO — no external PRs (gated in contribute step)"
-                # Was `git push 2>/dev/null || true` — silently swallowing
-                # push failures meant the policy gate state could miss
-                # main and the target would be re-attempted on the next
-                # contribute run. Use the retry helper so we either land
-                # the change or fail loudly.
-                bash auditor/scripts/git-push-with-retry.sh
-              }
+              bash auditor/scripts/commit-via-pr.sh "policy: $TARGET_REPO — no external PRs (gated in contribute step)"
               exit 0
             fi
           done
@@ -145,6 +135,7 @@ jobs:
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
           CLA_SIGNED: ${{ vars.GOOGLE_CLA_SIGNED || 'false' }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           OWNER=$(echo "$TARGET_REPO" | cut -d/ -f1)
           # Orgs whose maintainers require a signed Google CLA before review.
@@ -194,15 +185,9 @@ jobs:
                    auditor/registry/repos.json > /tmp/reg.json \
                    && bash auditor/scripts/atomic-registry-write.sh
 
-                git config user.name "nlpm-auditor[bot]"
-                git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
-                git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
                 git add auditor/registry/repos.json
                 bash auditor/scripts/guard-protected-paths.sh || exit 1
-                git diff --cached --quiet || {
-                  git commit -m "policy: $TARGET_REPO — CLA gate ($GATE_REASON)"
-                  bash auditor/scripts/git-push-with-retry.sh
-                }
+                bash auditor/scripts/commit-via-pr.sh "policy: $TARGET_REPO — CLA gate ($GATE_REASON)"
                 exit 0
               fi
             fi
@@ -223,6 +208,7 @@ jobs:
         id: pushback_gate
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
         run: |
@@ -279,13 +265,8 @@ jobs:
           # the gated status to main, so the next contribute attempt
           # would re-process this target as if no gate decision had
           # been made.
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
           git add auditor/registry/repos.json
-          if ! git diff --cached --quiet; then
-            git commit -m "contribute: mark $TARGET_REPO pushback_gated"
-            bash auditor/scripts/git-push-with-retry.sh
-          fi
+          bash auditor/scripts/commit-via-pr.sh "contribute: mark $TARGET_REPO pushback_gated"
 
           # Persist the gate decision so subsequent steps skip cleanly.
           echo "gated=true" >> "$GITHUB_OUTPUT"
@@ -454,6 +435,7 @@ jobs:
           steps.sidecar.outputs.skip_contribute == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           ISSUE_NUM: ${{ steps.target.outputs.issue }}
           TARGET_REPO: ${{ steps.target.outputs.repo }}
         run: |
@@ -475,16 +457,11 @@ jobs:
              auditor/registry/repos.json > /tmp/reg.json \
              && bash auditor/scripts/atomic-registry-write.sh
 
-          # Same fix as the pushback gate above: commit + push the
-          # status change, otherwise the runner's mutation never lands
-          # on main and the target gets re-processed.
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          # Same fix as the pushback gate above: commit the status change
+          # via a bot PR, otherwise the runner's mutation never lands on
+          # main and the target gets re-processed.
           git add auditor/registry/repos.json
-          if ! git diff --cached --quiet; then
-            git commit -m "contribute: $TARGET_REPO — no high-confidence findings"
-            bash auditor/scripts/git-push-with-retry.sh
-          fi
+          bash auditor/scripts/commit-via-pr.sh "contribute: $TARGET_REPO — no high-confidence findings"
 
       - name: Contribute with Claude Code
         if: |
