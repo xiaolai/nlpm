@@ -3696,3 +3696,5 @@
 {"timestamp":"2026-07-29T09:10:54Z","workflow":"track","event":"status_check","run_id":"30437831340","run_number":612,"data":{"contributed":58,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
 {"timestamp":"2026-07-29T12:56:37Z","workflow":"track","event":"status_check","run_id":"30452952610","run_number":613,"data":{"contributed":58,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
 {"timestamp":"2026-07-29T16:41:32Z","workflow":"track","event":"status_check","run_id":"30471185210","run_number":614,"data":{"contributed":58,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
+{"timestamp":"2026-07-29T20:28:40Z","workflow":"track","event":"finding_outcome","run_id":"30488257103","run_number":615,"data":{"pr":"gemini-cli-extensions/conductor#175","pr_state":"merged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-07-29T20:34:33Z","workflow":"track","event":"status_check","run_id":"30488257103","run_number":615,"data":{"contributed":57,"tracked":38,"case_study_ready":43,"rule_adopted":2}}

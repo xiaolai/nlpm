@@ -4656,13 +4656,13 @@
       "prs": [
         {
           "number": 175,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-07-29T20:13:19Z",
+          "closedAt": "2026-07-29T20:13:19Z",
           "title": "fix: split malformed curl instruction into a fenced code block",
-          "updatedAt": "2026-07-24T00:48:11Z",
+          "updatedAt": "2026-07-29T20:13:19Z",
           "createdAt": "2026-07-20T18:44:05Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": false
@@ -4672,8 +4672,9 @@
       "score": 90,
       "security": "REVIEW",
       "stars": 3657,
-      "status": "contributed",
-      "strategy": "single"
+      "status": "tracked",
+      "strategy": "single",
+      "case_study_candidate": true
     },
     "github/awesome-copilot": {
       "artifacts": 527,
