@@ -49,6 +49,16 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 > the skills penalty). The validator at `auditor/scripts/validate-rule-ids.py`
 > catches this kind of drift in CI.
 
+> **`<example>`-block counting discipline** (added 2026-08-01, origin:
+> xiaolai/cc-suite v1.3.1 remediation): an `<example>` block counts only when
+> it sits outside fenced code blocks — in the body or in a frontmatter
+> description block scalar. Tags inside a fenced template (` ```markdown … ``` `)
+> are illustrative content, and prose that names the string `` `<example>` ``
+> is a mention, not a block. A 2026-07-31 scoring pass credited a skill with
+> example blocks that existed only inside a fenced template, hiding a real R06
+> violation across 13 files. Verify by reading the file, not by grepping for
+> the tag.
+
 > **`name` matches parent directory** (added 2026-05-25, audit:
 > google/skills): the open Agent Skills spec at agentskills.io makes this
 > a MUST. Mismatch is deterministic, high-confidence, and reproducible by
@@ -345,6 +355,17 @@ Type-specific penalty rows are deferred until N ≥ 3 examples surface — the e
 | R01 | Vague quantifier | Each occurrence of: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" without measurable criteria | -2 each |
 | R01 | Vague quantifier cap | Total vague quantifier penalty | max -20 |
 
+> **Mention-versus-use exclusion** (added 2026-08-01, origin: xiaolai/cc-suite
+> audit-family false positives; design reviewed via Codex consultation): do not
+> count a vague term when it is presented as a literal token AND the containing
+> clause explicitly instructs the reader or a tool to detect, flag, reject,
+> replace, avoid, or report that term — audit tooling must be able to name the
+> words it hunts (e.g. ``Flag uses of `some`, `several`, `various` without
+> concrete criteria`` is R01's own job description, not a violation). Backtick
+> or quotation formatting alone does NOT qualify: a term that still modifies an
+> action, criterion, or requirement is counted even when backticked —
+> ``handle errors `properly` `` remains a violation.
+
 ---
 
 ### All Artifact Types: Vocabulary Drift (R51 — opt-in, disabled by default)
@@ -358,6 +379,17 @@ Applied only when `R51: { enabled: true, vocabulary_skill: <path> }` appears in 
 | R51 | Missing registry | `enabled: true` but `vocabulary_skill:` not set or points to a directory with no `registry.yaml` | 0 (advisory only) |
 
 > **Why opt-in:** vocabulary discipline is high-leverage for projects with accumulated drift but premature for projects still discovering their domain. Each project decides when it has enough literary warrant (P6) to lock terms in. See `analysis/vocabulary-design-principles.md` for the six principles R51 operationalizes.
+
+> **Registry-declaration exclusion** (added 2026-08-01, origin: xiaolai/cc-suite
+> vocabulary-skill self-reference; design reviewed via Codex consultation): the
+> file that declares a deprecation must name the deprecated term to do so.
+> Within the configured `vocabulary_skill` path, do not count a deprecated term
+> where it occurs in the declaration that registers it or maps it to its
+> replacement — `registry.yaml` `deprecated:` lists and the SKILL.md deprecation
+> tables. The exclusion covers ONLY those declaration term fields: deprecated
+> terms in surrounding prose inside the `vocabulary_skill` path are counted, and
+> the path is not categorically exempt. The same mention-versus-use principle as
+> R01's exclusion above, applied to R51.
 
 ---
 
