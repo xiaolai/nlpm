@@ -7,6 +7,7 @@ Phases (in order):
   1.5 Reopen wrongly-closed audit-candidate issues
   2. Pick next batch of audit-candidate → audit-ready (FIFO, capped by BATCH_SIZE - RUNNING)
   3. Re-trigger stuck audit-ready issues (whose label event missed)
+  4. Close terminal audit issues (repo reached a terminal registry status) — housekeeping
 
 Each phase is its own function — fail-soft (failures in one phase don't
 block later phases). All gh-CLI interactions go through subprocess.run.
@@ -29,6 +30,7 @@ import os
 import subprocess
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -67,6 +69,33 @@ LANDING_SUPPRESSION_DISABLED = (
     os.environ.get("NLPM_DISABLE_LOW_LANDING_SUPPRESSION", "").lower() in ("1", "true", "yes")
 )
 RULE_HEALTH_SCRIPT = Path("auditor/scripts/rule-health.py")
+
+# --- Terminal-issue auto-close (phase 4, housekeeping) ---
+#
+# The pipeline never closed "Audit candidate" issues after processing, so
+# hundreds accumulated in terminal states (all audit-complete, none still
+# audit-candidate/audit-ready). Phase 4 closes an open audit-complete issue
+# once its repo reaches a terminal registry status, so the issue tracker
+# reflects only live work.
+#
+# Terminal statuses: the issue's work (audit + contribution decision) is
+# definitively done and nothing re-opens these — phase1_5 only reopens
+# status=discovered.
+TERMINAL_STATUSES = frozenset(
+    {"contributed", "tracked", "complete", "policy_denied", "orphaned"}
+)
+# `audited` is ambiguous: a just-audited repo may still await promotion in
+# phase1_promote. Close it only after a grace window (several 6h promote
+# cycles), by which point phase1 has definitively passed it over — no
+# verified findings, or low-landing suppression. Protects fresh audits from
+# an early close that would skip contribution.
+AUDITED_CLOSE_GRACE_DAYS = int(os.environ.get("NLPM_AUDITED_CLOSE_GRACE_DAYS", "3"))
+# Never close an issue still carrying an action-pending label — an audit,
+# contribution, or case-study may be queued or mid-run.
+CLOSE_SKIP_LABELS = frozenset({
+    "audit-candidate", "audit-ready", "contribute-approved",
+    "case-study-ready", "security-blocked",
+})
 
 
 def gh(args: list[str], check: bool = False) -> tuple[int, str]:
@@ -691,6 +720,81 @@ def phase3_retrigger_stuck(dry_run: bool, batch_size: int, available: int, picke
     return retriggered
 
 
+def _issue_age_days(updated_at: str | None) -> float:
+    """Days since `updated_at` (ISO8601, trailing 'Z' accepted). Returns 0.0
+    on a missing or unparseable timestamp so the grace guard treats it as
+    fresh and does NOT close it — a parse failure must never cause an early
+    close (the asymmetric risk: closing too early skips contribution)."""
+    if not updated_at:
+        return 0.0
+    try:
+        ts = datetime.fromisoformat(updated_at.replace("Z", "+00:00"))
+    except ValueError:
+        return 0.0
+    return (datetime.now(timezone.utc) - ts).total_seconds() / 86400.0
+
+
+def _terminal_close_note(status: str, labels: set[str], age_days: float) -> str | None:
+    """Return a human-readable close note if a phase-4 issue should be closed,
+    else None. Pure — no I/O — so the safety invariants are unit-testable.
+
+      * an action-pending label (CLOSE_SKIP_LABELS) always blocks close;
+      * TERMINAL_STATUSES close immediately;
+      * `audited` closes only past AUDITED_CLOSE_GRACE_DAYS;
+      * every other status (`discovered`/`none`/…) never closes here.
+    """
+    if labels & CLOSE_SKIP_LABELS:
+        return None
+    if status in TERMINAL_STATUSES:
+        return f"registry status: {status}"
+    if status == "audited" and age_days >= AUDITED_CLOSE_GRACE_DAYS:
+        return (
+            f"registry status: audited; no contribution after "
+            f"{AUDITED_CLOSE_GRACE_DAYS}d grace"
+        )
+    return None
+
+
+def phase4_close_terminal(dry_run: bool) -> int:
+    """Close open `audit-complete` issues whose repo reached a terminal
+    registry status. Housekeeping only — never dispatches or promotes.
+
+    Safety invariants (enforced by `_terminal_close_note`):
+      * skips any issue with an action-pending label (CLOSE_SKIP_LABELS);
+      * closes TERMINAL_STATUSES immediately;
+      * closes `audited` only after AUDITED_CLOSE_GRACE_DAYS, so
+        phase1_promote has had several cycles to promote a fresh audit;
+      * never touches `discovered`/`none` (backlog — phase1_5 owns those).
+    """
+    print("--- Phase 4: Close terminal audit issues ---")
+    issues = list_open_issues(
+        "audit-complete", ["number", "title", "labels", "updatedAt"]
+    )
+    closed = 0
+    for issue in issues:
+        labels = {l["name"] for l in issue.get("labels", [])}
+        num = issue["number"]
+        repo = issue_to_repo(issue["title"])
+        status = registry_status(repo)
+        note = _terminal_close_note(
+            status, labels, _issue_age_days(issue.get("updatedAt"))
+        )
+        if note is None:
+            continue
+        print(f"  CLOSE #{num} ({repo}): {note}")
+        if not dry_run:
+            gh([
+                "issue", "close", str(num), "--reason", "completed",
+                "--comment",
+                f"Auto-closed by the batch processor: audit lifecycle "
+                f"complete ({note}). Outcomes are tracked in "
+                f"`auditor/registry/repos.json`, not on this issue.",
+            ])
+        closed += 1
+    print(f"Closed: {closed} terminal audit issues\n")
+    return closed
+
+
 def print_summary() -> None:
     print("--- Summary ---")
     labels = [
@@ -732,6 +836,7 @@ def main() -> int:
     phase1_5_reopen_wrong(args.dry_run)
     picked, available = phase2_pick_next(args.dry_run, args.batch_size)
     phase3_retrigger_stuck(args.dry_run, args.batch_size, available, picked)
+    phase4_close_terminal(args.dry_run)
     print_summary()
     return 0
 
