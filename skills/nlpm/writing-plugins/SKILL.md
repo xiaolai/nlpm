@@ -1,21 +1,21 @@
 ---
 name: writing-plugins
-description: "How to design and build plugins -- architecture decisions, component selection, file structure, manifest configuration, marketplace publishing. Primarily Claude Code (.claude-plugin/plugin.json); the same architecture maps to Codex CLI (.codex-plugin/plugin.json) and Antigravity extensions. Use when planning, creating, or reviewing a plugin."
+description: "How to design and build plugins -- architecture decisions, artifact selection, file structure, manifest configuration, marketplace publishing. Primarily Claude Code (.claude-plugin/plugin.json); the same architecture maps to Codex CLI (.codex-plugin/plugin.json) and Antigravity extensions. Use when planning, creating, or reviewing a plugin."
 version: 0.2.0
 ---
 
 # Writing Plugins
 
-> Scope: covers plugin design and architecture. The examples use the **Claude Code** layout (`.claude-plugin/plugin.json` + auto-discovered `commands/`, `agents/`, `skills/`, `hooks/`). The same component-selection and architecture reasoning maps to the other tools — only the manifest path and packaging differ:
+> Scope: covers plugin design and architecture. The examples use the **Claude Code** layout (`.claude-plugin/plugin.json` + auto-discovered `commands/`, `agents/`, `skills/`, `hooks/`). The same artifact-selection and architecture reasoning maps to the other tools — only the manifest path and packaging differ:
 > - **Codex CLI**: `.codex-plugin/plugin.json` manifest + `.agents/plugins/marketplace.json`; skills live at `.agents/skills/`. See [[nlpm:conventions-codex]].
 > - **Antigravity**: `gemini-extension.json` (becoming "Antigravity plugins"); skills at `.agent/skills/`. See [[nlpm:conventions-antigravity]].
 > - **Cross-tool skills**: a `SKILL.md` collection with no plugin wrapper installs into any tool via `npx skills add`. See [[writing-skills]].
 >
-> For individual component authoring, see [[writing-skills]], [[writing-agents]], [[writing-hooks]], [[writing-rules]].
+> For individual artifact authoring, see [[writing-skills]], [[writing-agents]], [[writing-hooks]], [[writing-rules]].
 
 ## 1. Plugin = Commands + Agents + Skills + Hooks
 
-A plugin is a collection of NL artifacts that work together. Before writing anything, decide which components you need.
+A plugin is a collection of NL artifacts that work together. Before writing anything, decide which artifacts you need.
 
 ### Component Selection Guide
 
@@ -29,7 +29,7 @@ A plugin is a collection of NL artifacts that work together. Before writing anyt
 
 ### Minimum Viable Plugin
 
-The smallest useful plugin has **one component**:
+The smallest useful plugin has **one artifact**:
 
 ```
 my-plugin/
@@ -39,7 +39,7 @@ my-plugin/
     do-thing.md
 ```
 
-Don't add agents, skills, or hooks until you need them. Each component adds maintenance burden.
+Don't add agents, skills, or hooks until you need them. Each artifact adds maintenance burden.
 
 ## 2. Architecture Patterns
 
@@ -278,7 +278,7 @@ When bumping version, update in **four** places:
 
 ## 6. CLAUDE.md for Plugins
 
-Your plugin's CLAUDE.md is for **Claude** (the AI), not the user. It tells Claude how the plugin's components relate to each other.
+Your plugin's CLAUDE.md is for **Claude** (the AI), not the user. It tells Claude how the plugin's artifacts relate to each other.
 
 ### What to Include
 
@@ -286,7 +286,7 @@ Your plugin's CLAUDE.md is for **Claude** (the AI), not the user. It tells Claud
 # my-plugin
 
 ## Architecture
-Brief description of what the plugin does and how components interact.
+Brief description of what the plugin does and how artifacts interact.
 
 ## Components
 

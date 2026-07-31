@@ -1,6 +1,6 @@
 ---
 name: report
-description: "Render a self-contained HTML report — per-file scores, score trend, cross-component graph, vocabulary noun-verb map, drift candidates, and findings — into .claude/nlpm-reports/. Opens directly via file://. No server, no build, no network."
+description: "Render a self-contained HTML report — per-file scores, score trend, cross-artifact graph, vocabulary noun-verb map, drift candidates, and findings — into .claude/nlpm-reports/. Opens directly via file://. No server, no build, no network."
 argument-hint: "[path]"
 allowed-tools: Read, Write, Glob, Grep, Bash, Task
 ---

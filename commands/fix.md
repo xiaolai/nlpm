@@ -1,6 +1,6 @@
 ---
 name: fix
-description: "Auto-fix fixable issues in NL artifacts — missing fields, heading gaps, field renames"
+description: "Auto-fix fixable findings in NL artifacts — missing fields, heading gaps, field renames"
 argument-hint: "[path]"
 allowed-tools: Read, Write, Edit, Glob, Grep, Task
 ---
@@ -15,13 +15,13 @@ $ARGUMENTS
 
 ### Step 1: Score First
 
-Parse `$ARGUMENTS` for a path (default: cwd if empty). Dispatch the `nlpm:scorer` agent via Task tool to score all artifacts at that path. Collect all issues.
+Parse `$ARGUMENTS` for a path (default: cwd if empty). Dispatch the `nlpm:scorer` agent via Task tool to score all artifacts at that path. Collect all findings.
 
 If no artifacts are found → "No NL programming artifacts found." and stop.
 
-### Step 2: Classify Issues
+### Step 2: Classify Findings
 
-Separate issues into auto-fixable and not-auto-fixable:
+Separate findings into auto-fixable and not-auto-fixable:
 
 **Auto-fixable (will be applied):**
 - Missing `user-invocable: false` on shared partials → add to frontmatter
@@ -44,7 +44,7 @@ Separate issues into auto-fixable and not-auto-fixable:
 
 ### Step 3: Apply Fixes
 
-For each auto-fixable issue:
+For each auto-fixable finding:
 1. Read the file
 2. Apply the fix using Edit tool
 3. Log: "Fixed: {file}:{line} — {what was changed}"
@@ -58,13 +58,13 @@ Re-run scoring on all fixed files to compute new scores.
 ```markdown
 NLPM Fix Report
 
-Fixed {N} issues in {M} files:
+Fixed {N} findings in {M} files:
   {file}:{line} — added user-invocable: false (+25 points)
   {file}:{line} — renamed tools → allowed-tools (+0 points, consistency)
   {file}:{line} — inserted missing ### heading (+0 points)
 
-Not auto-fixable ({N} issues remain):
-  [{SEVERITY}] {file}:{line} — {issue} (requires human judgment)
+Not auto-fixable ({N} findings remain):
+  [{SEVERITY}] {file}:{line} — {finding} (requires human judgment)
 
 Score changes:
   {file}   {old_score} → {new_score}  (+{delta})
@@ -73,5 +73,5 @@ Overall: {old_avg} → {new_avg}
 ```
 
 **Error handling:**
-- No fixable issues found → "All issues require human judgment. Run /nlpm:score to see details."
+- No fixable findings → "All remaining findings require human judgment. Run /nlpm:score to see details."
 - File not writable → skip with warning

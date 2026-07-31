@@ -1,7 +1,7 @@
 ---
 name: scorer
 description: |
-  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin components, checking artifact quality, or running quality analysis on commands, agents, skills, rules, hooks, or CLAUDE.md.
+  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or running quality analysis on commands, agents, skills, rules, hooks, or CLAUDE.md.
 
   <example>
   Context: User runs /nlpm:score on a directory
@@ -12,8 +12,8 @@ description: |
   assistant: "I'll dispatch the scorer to verify all artifacts meet the threshold."
   </example>
   <example>
-  Context: Fix command needs to identify issues before applying repairs
-  assistant: "I'll use the scorer to identify issues and their penalties."
+  Context: Fix command needs to identify findings before applying repairs
+  assistant: "I'll use the scorer to identify findings and their penalties."
   </example>
 model: sonnet
 color: yellow
@@ -43,11 +43,11 @@ For each artifact you receive:
    - **R51 (opt-in vocabulary drift):** if `.claude/nlpm.local.md` declares `rule_overrides.R51.enabled: true`, load the registry at `<vocabulary_skill>/registry.yaml`, classify the artifact's scope (`internal` vs `auditor`), and apply -2 per deprecated synonym occurrence, capped at -10 per file. If the registry is missing, emit an advisory note and apply no penalty. Without `enabled: true`, R51 contributes zero regardless of content.
    - If rule overrides are provided, apply them (`suppress`, `enabled`, `max_penalty`, `threshold` adjustments)
    - Compute final_score = max(0, min(100, 100 + adjustments))
-3. List each issue found with:
+3. List each finding with:
    - Severity: HIGH (>=10 point penalty), MEDIUM (5-9 points), LOW (<5 points)
    - Rule number (R01-R50) when applicable
-   - Line number where the issue occurs
-   - What the issue is
+   - Line number where the finding occurs
+   - What the finding is
    - The penalty applied
    - Suggested fix
 
@@ -203,7 +203,7 @@ Penalize only when a field is entirely absent (per scoring rubric).
 
 ## Heuristic Checks
 
-Mark these as "(heuristic)" in the issue description:
+Mark these as "(heuristic)" in the finding description:
 - Model appropriateness: mechanical task = body has <20 instruction lines AND no judgment phrases ("evaluate", "decide", "judge", "assess quality", "determine if")
 - Ambiguity detection: flag vague quantifier uses but note confidence when usage may be legitimate in context
 - CLAUDE.md: check for build/test commands, architecture overview, valid `@` imports, stale file references, actionability ratio (>60% description is a flag), prerequisites section, and conflicts with `.claude/rules/` files
@@ -214,7 +214,7 @@ For each artifact:
 ```
 ### {filename} ({type}) -- {score}/100
 
-| # | Sev | Rule | Line | Issue | Penalty | Fix |
+| # | Sev | Rule | Line | Finding | Penalty | Fix |
 |---|-----|------|------|-------|---------|-----|
 | 1 | HIGH | R09 | 2 | No <example> blocks in description | -15 | Add 2+ <example> blocks |
 | 2 | LOW | R01 | 45 | "appropriate" without criteria | -2 | Replace with specific criteria |

@@ -1,6 +1,6 @@
 ---
 name: check
-description: "Check cross-component consistency — reference integrity, orphans, contradictions"
+description: "Check cross-artifact consistency — reference integrity, orphans, contradictions"
 argument-hint: "[path]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -19,11 +19,11 @@ Parse `$ARGUMENTS` for path (default: cwd). Use `commands/shared/discover.md` to
 
 If no artifacts found → "No NL programming artifacts found."
 
-If fewer than 2 artifacts → "Cross-component check requires multiple artifacts. Use /nlpm:score for individual files."
+If fewer than 2 artifacts → "Cross-artifact check requires multiple artifacts. Use /nlpm:score for individual files."
 
 ### Step 2: Run Cross-Component Analysis
 
-Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perform cross-component checks:
+Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perform cross-artifact checks:
 
 1. **Reference integrity**
    - Commands reference shared partials by path (`commands/shared/name.md`) → verify file exists
@@ -31,7 +31,7 @@ Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perf
    - Hooks reference scripts (`${CLAUDE_PLUGIN_ROOT}/scripts/name.sh`) → verify script exists
    - Any `Follow commands/shared/...` or `See commands/shared/...` in body → verify path
 
-2. **Orphaned components**
+2. **Orphaned artifacts**
    - Shared partials not referenced by any command → orphan
    - Skills not referenced by any agent → orphan
    - Scripts not referenced by any hook → orphan
@@ -68,7 +68,7 @@ Terminology:
   {N} inconsistencies
   {list}
 
-Verdict: {CLEAN | {N} issues found}
+Verdict: {CLEAN | {N} findings}
 ```
 
 **Error handling:**

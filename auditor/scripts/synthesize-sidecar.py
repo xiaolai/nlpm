@@ -303,7 +303,8 @@ COLUMN_ROLES: list[tuple[str, str]] = [
     (r"\bfiles?\b|\bartifacts?\b", "file"),
     (r"\btypes?\b", "type"),
     (r"\bscores?\b", "score"),
-    (r"\bissues?\b|\bdescription\b|\btop\s+issue\b|\btop\s+penalty\b",
+    (r"\bissues?\b|\bfindings?\b|\bdescription\b|\btop\s+issue\b"
+     r"|\btop\s+finding\b|\btop\s+penalty\b",
      "issue"),
     (r"\bimpact\b", "impact"),
     (r"\bpenalt(?:y|ies)\b", "penalty"),

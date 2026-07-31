@@ -49,14 +49,14 @@ Pass to both agents:
 - The artifact types (from classify.md)
 - Any rule overrides from the config (if `rule_overrides` is present in `.claude/nlpm.local.md`)
 
-Collect results: per-artifact score + issue list.
+Collect results: per-artifact score + finding list.
 
 ### Step 5: Report
 
 ```markdown
 NLPM Score Report
 
-File                              Type      Score   Issues
+File                              Type      Score   Findings
 ───────────────────────────────────────────────────────────
 {for each file}
 
@@ -64,8 +64,8 @@ Overall: {avg_score}/100 — {EXCELLENT|GOOD|ADEQUATE|WEAK|REWRITE}    [threshol
   High: {N} | Medium: {N} | Low: {N}
   Below threshold: {N} files
 
-Top issues:
-  1. [{SEVERITY}] {file}:{line} — {issue} ({penalty})
+Top findings:
+  1. [{SEVERITY}] {file}:{line} — {finding} ({penalty})
   2. ...
 
 Score guide: 90+ Excellent | 80-89 Good | 70-79 Adequate | 60-69 Weak | <60 Rewrite
@@ -74,7 +74,7 @@ Score guide: 90+ Excellent | 80-89 Good | 70-79 Adequate | 60-69 Weak | <60 Rewr
 **Error handling:**
 - File unreadable → skip with warning: "Skipped {path}: unreadable"
 - Malformed YAML frontmatter → score penalty -25, continue analysis on body
-- Empty file → score 0, issue: "Empty file"
+- Empty file → score 0, finding: "Empty file"
 
 ### Step 6: Append Snapshot to History
 

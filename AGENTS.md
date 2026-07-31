@@ -15,15 +15,15 @@ Each command does one thing -- no flags (except `--changed` on score).
 
 - commands/ls.md -- `/nlpm:ls` -- discover NL artifacts (dispatches scanner)
 - commands/score.md -- `/nlpm:score` -- 100-point quality scoring (dispatches scorer + vague-scanner in parallel)
-- commands/check.md -- `/nlpm:check` -- cross-component consistency (dispatches checker)
-- commands/fix.md -- `/nlpm:fix` -- auto-fix mechanical issues (dispatches scorer)
+- commands/check.md -- `/nlpm:check` -- cross-artifact consistency (dispatches checker)
+- commands/fix.md -- `/nlpm:fix` -- auto-fix mechanical findings (dispatches scorer)
 - commands/trend.md -- `/nlpm:trend` -- track score history over time (dispatches scorer + vague-scanner)
 - commands/test.md -- `/nlpm:test` -- run NL-TDD specs (dispatches tester)
-- commands/init.md -- `/nlpm:init` -- configure project
+- commands/init.md -- `/nlpm:init` -- init project
 - commands/security-scan.md -- `/nlpm:security-scan` -- scan plugin for security risks in executable artifacts
-- commands/vocab-init.md -- `/nlpm:vocab-init` -- bootstrap a vocabulary skill for any project (runs extractor, seeds canonical noun/verb tables, writes R51 opt-in stub). Adopter-facing entry point for vocabulary discipline.
+- commands/vocab-init.md -- `/nlpm:vocab-init` -- init a vocabulary skill for any project (runs extractor, seeds canonical noun/verb tables, writes R51 opt-in stub). Adopter-facing entry point for vocabulary discipline.
 - commands/vocab-drift.md -- `/nlpm:vocab-drift` -- registry-free vocabulary drift scan (dispatches vocab-drift-scanner). Advisory only; no penalty. Use before/alongside R51.
-- commands/report.md -- `/nlpm:report` -- self-contained HTML report (per-file scores, trend, cross-component graph, vocabulary noun-verb map via AntV G6, drift candidates, findings). Output: `.claude/nlpm-reports/index.html`. file://-openable, no server.
+- commands/report.md -- `/nlpm:report` -- self-contained HTML report (per-file scores, trend, cross-artifact graph, vocabulary noun-verb map via AntV G6, drift candidates, findings). Output: `.claude/nlpm-reports/index.html`. file://-openable, no server.
 - commands/spec-sync.md -- `/nlpm:spec-sync` -- sync the tool overlays (conventions-claude/codex/antigravity) with upstream official specs (dispatches spec-researcher per tool in parallel; applies corrections, propagates for self-consistency, verifies via bin/nlpm-check). Never commits/pushes.
 - commands/shared/discover.md -- artifact discovery patterns (not user-invocable)
 - commands/shared/classify.md -- artifact type classification (not user-invocable)
@@ -31,9 +31,9 @@ Each command does one thing -- no flags (except `--changed` on score).
 
 ## Agents
 
-- agents/scanner.md -- haiku, mechanical file discovery
+- agents/scanner.md -- haiku, mechanical artifact discovery
 - agents/scorer.md -- sonnet, 100-point quality scoring (skills: scoring, conventions, conventions-claude, conventions-codex, conventions-antigravity, vocabulary)
-- agents/checker.md -- sonnet, cross-component consistency (skills: conventions, conventions-claude, conventions-codex, conventions-antigravity, vocabulary)
+- agents/checker.md -- sonnet, cross-artifact consistency (skills: conventions, conventions-claude, conventions-codex, conventions-antigravity, vocabulary)
 - agents/vague-scanner.md -- haiku, mechanical vague-word counting (no skills)
 - agents/tester.md -- sonnet, evaluates artifacts against test specs (skills: testing, conventions, scoring)
 - agents/security-scanner.md -- sonnet, security risk detection in executable artifacts (skills: security)
@@ -109,7 +109,7 @@ Run `python3 -m unittest tests.test_nlpm_check` to verify the binary.
 
 When modifying this plugin:
 - Run `/nlpm:score ./` after changes to verify quality stays above 90
-- Run `/nlpm:check` to verify cross-component references
+- Run `/nlpm:check` to verify cross-artifact references
 - Run `/nlpm:test` to verify agent specs pass
 - Bump version in plugin.json AND marketplace.json
 - Push plugin repo, then update central marketplace
@@ -129,7 +129,7 @@ The `auditor/` subdirectory contains a GitHub Actions pipeline that discovers, a
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| auditor-discover | Weekly cron / manual | Find repos with 500+ stars and 5+ NL artifacts via `gh search repos` (popularity signal). Vendor-default filter (`auditor/scripts/vendor_default_filter.py`) drops anthropics/* and CLA-gated orgs before the artifact probe. Velocity signal (rising-but-not-yet-popular repos) is planned to arrive as inbound GitHub issues posted by `claudepot-office/bots/alan@repo-scout` — keeps the BQ scan + GCP credentials in one place rather than mirrored here. Also searches for **agent workflow program** repos (project-root `program.md` driving an autonomous loop, karpathy/autoresearch-style) via the `"program.md" autonomous in:description` query; the probe matches `^program\.md$` as an artifact path. These repos typically have a single artifact (program.md), below the default `MIN_ARTIFACTS=5` floor — manual runs with `min_artifacts: 1` are the path to audit them today (per-repo-type floor policy is a follow-up). |
+| auditor-discover | Weekly cron / manual | Discover repos with 500+ stars and 5+ NL artifacts via `gh search repos` (popularity signal). Vendor-default filter (`auditor/scripts/vendor_default_filter.py`) drops anthropics/* and CLA-gated orgs before the artifact probe. Velocity signal (rising-but-not-yet-popular repos) is planned to arrive as inbound GitHub issues posted by `claudepot-office/bots/alan@repo-scout` — keeps the BQ scan + GCP credentials in one place rather than mirrored here. Also searches for **agent workflow program** repos (project-root `program.md` driving an autonomous loop, karpathy/autoresearch-style) via the `"program.md" autonomous in:description` query; the probe matches `^program\.md$` as an artifact path. These repos typically have a single artifact (program.md), below the default `MIN_ARTIFACTS=5` floor — manual runs with `min_artifacts: 1` are the path to audit them today (per-repo-type floor policy is a follow-up). |
 | auditor-batch-processor | Every 6h cron / manual | Pick next batch, promote audits to contribution. v0.8.23: phase1 now skips promotion when every high-confidence finding sits on a "low-landing-rate" rule (`hits ≥ 20`, `contributed ≥ 5`, `merged/contributed < 0.15`, state not noisy/disputed). Calls `auditor/scripts/rule-health.py` once per run to compute the suppression set; fail-soft if it fails. Opt out via `NLPM_DISABLE_LOW_LANDING_SUPPRESSION=1`. The 2026-05-20 query found `BUG-broken-reference` + `BUG-missing-frontmatter` in this state — high verify_rate but zero direct merges; suppression catches them without touching the rulebook (refinement is the path for noisy/disputed rules; this is the orthogonal path for rules whose findings reproduce — high verify_rate — but rarely merge). **Phase 4 (housekeeping)** closes each open `audit-complete` "Audit candidate" issue once its repo reaches a terminal registry status (`contributed`/`tracked`/`complete`/`policy_denied`/`orphaned`, or `audited` after `NLPM_AUDITED_CLOSE_GRACE_DAYS`, default 3d). Never closes `discovered`/`none` backlog or any issue with an action-pending label (`audit-ready`/`contribute-approved`/`case-study-ready`/`security-blocked`); closing too early would make the pipeline skip contribution, so the grace window lets phase1 promote a fresh audit first. Decision logic is the pure `_terminal_close_note` predicate (unit-tested in `tests/test_batch_close.py`). Fixes the accumulation of hundreds of never-closed terminal issues. |
 | auditor-audit | Issue labeled `audit-ready` | Security scan + NL score; emits findings.jsonl + disagreements.jsonl |
 | auditor-contribute | Issue labeled `contribute-approved` | Reads target's CONTRIBUTING.md / PR template / CoC, forks, opens PRs for verified bugs only (max 3 first-contact, 5 thereafter); stamps each PR body with `nlpm-metadata` block; **never** opens an umbrella/summary issue on the target; backstop step verifies post-hoc. **Duplicate-detection gate** (in the `Prepare findings` step): drops any finding whose `file` is already modified by an OPEN PR on the target (precise signal — open PR's changed-files list contains the path; fail-open on gh error; capped at 100 open PRs). Added 2026-05-26 after ChromeDevTools/chrome-devtools-mcp#2122 was closed by a maintainer as a duplicate of an existing open PR for the same fix. If the gate drops all findings, `skip_contribute` fires and no PR is opened. |
@@ -225,8 +225,8 @@ gates. All preserve the audit data and only skip PR creation.
 | CLA-required (author identity missing) | Owner in `CLA_REQUIRED_OWNERS` **and** `GOOGLE_CLA_SIGNED == 'true'` **but** `CONTRIBUTE_AUTHOR_EMAIL` or `CONTRIBUTE_AUTHOR_NAME` is empty | `policy_cla_required` | `policy-cla-required` | Set both repo variables to the CLA-signed human identity, re-add `contribute-approved`. |
 | pushback-gated | Repo has any prior `maintainer_rejected` event, **or** any `pr_comments_snapshot` event with `pr_state: closed_unmerged`, in `auditor/logs/events.jsonl` | `pushback_gated` | `policy-pushback-gated` | Append a `gate_override` counter-event to `auditor/logs/events.jsonl` with the same `pr` value and a justification — only when the maintainer has explicitly invited a follow-up. |
 
-Why three separate trigger rows: a signed CLA is necessary but not
-sufficient. `claude-code-action`'s default commit identity is `claude[bot]
+Why three separate trigger rows: a signed CLA is required, and it does
+not by itself clear the gate. `claude-code-action`'s default commit identity is `claude[bot]
 <claude[bot]@users.noreply.github.com>`, which is not covered by any CLA.
 Even with `GOOGLE_CLA_SIGNED=true`, commits authored by the bot leave
 `cla/google` on FAILURE — confirmed by `googleworkspace/cli` #757–#760
@@ -349,8 +349,8 @@ This keeps Claude Code, Codex CLI, and Gemini CLI on the same context.
 
 ## Project Structure
 
-- `.claude/` — Claude Code skills, agents, rules, hooks, commands
-- `.agents/skills/` — symlink to `.claude/skills/` (Codex skill scan path)
+- `commands/`, `agents/`, `skills/nlpm/`, `hooks/` — the plugin artifacts, at repo root (auto-discovered by Claude Code)
+- `.claude/` — gitignored except `.claude/nlpm.local.md` (project NLPM config)
 - `.codex/prompts/` — Codex slash-command prompts
 - `.codex/hooks.json` / `.codex/config.toml` — Codex hooks/config (optional)
 - `.gemini/skills/`, `.gemini/commands/` — Gemini skills and TOML commands

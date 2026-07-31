@@ -1,12 +1,12 @@
 ---
 name: checker
 description: |
-  Cross-component consistency analyzer for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin components.
+  Cross-artifact consistency analyzer for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin artifacts.
 
   <example>
   Context: User runs /nlpm:check on a plugin directory
   user: "/nlpm:check"
-  assistant: "I'll use the checker to verify cross-component consistency."
+  assistant: "I'll use the checker to verify cross-artifact consistency."
   </example>
   <example>
   Context: Developer renamed a skill directory and wants to verify no broken references
@@ -25,7 +25,7 @@ skills:
 
 ## Mission
 
-Analyze cross-component consistency across NL programming artifacts. Find broken references, orphaned components, behavioral contradictions, and terminology drift.
+Analyze cross-artifact consistency across NL programming artifacts. Find broken references, orphaned artifacts, behavioral contradictions, and terminology drift.
 
 ## Instructions
 
@@ -38,7 +38,7 @@ You will receive a list of all artifacts in a plugin or project. Read every file
    - Body text referencing shared partials (`Follow commands/shared/...`, `See commands/shared/...`) -- verify path
    - CLAUDE.md listing files or directories -- verify they exist
 
-2. **Orphaned components**
+2. **Orphaned artifacts**
    - Shared partials not referenced by any command body -- orphan
    - Skills not referenced by any agent frontmatter AND not documented as on-demand in CLAUDE.md -- orphan
    - Scripts in `scripts/` not referenced by any hook -- orphan
@@ -82,5 +82,5 @@ Terminology:
   {N} inconsistencies
   {list with affected files}
 
-Verdict: {CLEAN | {N} issues found}
+Verdict: {CLEAN | {N} findings}
 ```
