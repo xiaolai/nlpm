@@ -202,6 +202,7 @@ jobs:
           EXEMPLAR_PATH: ${{ steps.ctx.outputs.exemplar_path }}
           SCORE: ${{ steps.ctx.outputs.score }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           source auditor/scripts/log-event.sh
 
@@ -215,15 +216,9 @@ jobs:
             exit 1
           fi
 
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/$GITHUB_REPOSITORY.git"
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
           git add "$EXEMPLAR_PATH" auditor/exemplars/README.md auditor/registry/repos.json auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "exemplar: $TARGET_REPO (score $SCORE/100)"
-            bash auditor/scripts/git-push-with-retry.sh 5
-          }
+          bash auditor/scripts/commit-via-pr.sh "exemplar: $TARGET_REPO (score $SCORE/100)"
 
           log_event "exemplar" "exemplar_published" "$(jq -cn \
             --arg repo "$TARGET_REPO" \

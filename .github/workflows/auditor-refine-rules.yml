@@ -194,14 +194,15 @@ jobs:
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           # Set the auth'd remote URL FIRST — if the earlier "Configure git
           # remote" step was skipped (because proposals == 0 or an open PR
           # exists), the remote still has no credentials from actions/checkout's
           # persist-credentials: false. This step runs with if: always(), so
-          # we can't assume any prior step set this up.
-          git config user.name "nlpm-auditor[bot]"
-          git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
+          # we can't assume any prior step set this up. commit-via-pr.sh
+          # re-sets the remote (with PAT_TOKEN) before pushing the bot branch;
+          # this set-url is what the fetch/checkout/pull below rely on.
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
           # Claude's step may have checked out a refine/rules-* branch. The
@@ -221,15 +222,4 @@ jobs:
 
           git add auditor/logs/events.jsonl
           bash auditor/scripts/guard-protected-paths.sh || exit 1
-          git diff --cached --quiet || {
-            git commit -m "log: refine-rules $(date +%Y-%m-%d)"
-
-            for ATTEMPT in 1 2 3 4 5; do
-              if git push origin main 2>/dev/null; then break; fi
-              echo "Push attempt $ATTEMPT failed, resolving..."
-              git pull --no-rebase origin main --no-edit 2>/dev/null || true
-              bash auditor/scripts/resolve-merge-conflicts.sh || true
-              git diff --cached --quiet 2>/dev/null || git commit --no-edit 2>/dev/null || true
-              [ "$ATTEMPT" -eq 5 ] && { echo "ERROR: push failed after 5 attempts"; exit 1; }
-            done
-          }
+          bash auditor/scripts/commit-via-pr.sh "log: refine-rules $(date +%Y-%m-%d)"

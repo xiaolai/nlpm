@@ -1,0 +1,45 @@
+name: Unstick Bot PRs
+
+# Reconcile any open auditor-bot PR that conflicts with main.
+#
+# Every auditor workflow commits through auditor/scripts/commit-via-pr.sh,
+# which opens one auto-merging bot PR per commit. Two bot PRs that touch the
+# same append-only file (events.jsonl, repos.json, findings.jsonl, …)
+# conflict at merge time — the first merges, the second stalls CONFLICTING.
+# commit-via-pr.sh clears conflicts that appear while its opening job is
+# still running; this janitor clears the rest (a sibling merging minutes
+# later, after that job exited). Without it, shared-log collisions pile up
+# exactly as the pre-migration track PRs did.
+#
+# Deterministic — no LLM. Rebases each DIRTY bot PR onto main with the same
+# per-file resolver (auditor/scripts/resolve-merge-conflicts.sh) the direct
+# push path uses, then force-pushes so auto-merge resumes.
+
+on:
+  schedule:
+    - cron: '15,45 * * * *'  # every 30 min, offset from the audit/track crons
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nlpm-unstick-bot-prs
+  cancel-in-progress: false
+
+jobs:
+  unstick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          fetch-depth: 0          # full history — janitor rebases bot branches
+          persist-credentials: false
+
+      - name: Reconcile conflicting auditor-bot PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: bash auditor/scripts/unstick-bot-prs.sh
