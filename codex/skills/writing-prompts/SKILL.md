@@ -132,7 +132,7 @@ Do not add fields not listed above.
 ```
 Return a markdown table with exactly these columns:
 
-| File | Line | Issue | Severity | Fix |
+| File | Line | Finding | Severity | Fix |
 |------|------|-------|----------|-----|
 
 One row per finding. Severity must be one of: critical, high, medium, low.

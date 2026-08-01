@@ -74,7 +74,7 @@ Expected elements in the output:
 
 The output should be a markdown report with:
 1. Summary section with counts
-2. Findings table with columns: File, Issue, Severity
+2. Findings table with columns: File, Finding, Severity
 3. Action items list
 ```
 

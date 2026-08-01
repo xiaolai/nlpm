@@ -274,7 +274,7 @@ A single unstructured block of instructions — no headings, no sections, no num
 
 ### A6: Rules Duplicating Linters (R24)
 
-If eslint, ruff, clippy, or another static analysis tool already catches a code-level issue, a Claude rule that re-states it is redundant noise. Rules should cover intent, architecture, and NL artifact quality — things linters can't check.
+If eslint, ruff, clippy, or another static analysis tool already catches a code-level finding, a Claude rule that re-states it is redundant noise. Rules should cover intent, architecture, and NL artifact quality — things linters can't check.
 
 **Fix:** Reference the tool instead: "Run `ruff check` before committing — it enforces all formatting rules."
 

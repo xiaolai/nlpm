@@ -316,5 +316,5 @@ If any Critical or High findings exist, the `contribute-approved` label must NOT
 This skill covers the security-pattern catalog and risk-gate logic used by
 the `security-scanner` agent. For the schemas of executable artifacts the
 scanner inspects (hooks, scripts, MCP configs), see `nlpm:conventions`.
-For the broader anti-pattern catalog covering NL-quality issues that are
+For the broader anti-pattern catalog covering NL-quality findings that are
 not security risks, see `nlpm:patterns`.

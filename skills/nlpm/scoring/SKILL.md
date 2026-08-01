@@ -187,7 +187,7 @@ Schema reference: `nlpm:conventions-codex` §3.
 | `name` kebab-case | Mixed case or underscores | -10 |
 | `version` is semver | Present but not valid semver | -10 |
 | `description` present | Missing | -5 |
-| Component paths relative | `skills`/`mcpServers`/`apps`/`hooks` paths absolute or missing `./` prefix | -5 each |
+| Artifact paths relative | `skills`/`mcpServers`/`apps`/`hooks` paths absolute or missing `./` prefix | -5 each |
 
 ---
 

@@ -112,7 +112,7 @@ Phase 4: Output
 |---------|-----------|--------|
 | PASS | All checks green | Deliver output directly |
 | WARN | Minor issues (< 3 low-severity) | Deliver output with warnings section |
-| FAIL | Any critical issue OR > 5 total issues | Stop, report what failed, suggest re-run |
+| FAIL | Any critical finding OR > 5 total findings | Stop, report what failed, suggest re-run |
 
 **Real examples**:
 - reading-assistant: QC agents verify summaries for accuracy, completeness, fidelity
@@ -341,7 +341,7 @@ Phase 5: Synthesize final report → opus   (cross-reference, prioritize)
 - Time elapsed: {duration}
 
 ### Recovery Options
-1. Fix the issue and run `/command --resume` to continue from this phase
+1. Fix the finding and run `/command --resume` to continue from this phase
 2. Run `/command --restart` to start fresh
 3. Run `/command --skip-phase {phase_name}` to skip this phase (not recommended)
 ```

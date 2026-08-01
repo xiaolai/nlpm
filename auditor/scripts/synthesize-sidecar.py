@@ -405,7 +405,7 @@ FILE_LINE_RE = re.compile(
     r"^\s*\*\*Files?:\*\*\s*(.+)$", re.IGNORECASE
 )
 ISSUE_LINE_RE = re.compile(
-    r"^\s*\*\*Issue:\*\*\s*(.+)$", re.IGNORECASE
+    r"^\s*\*\*(?:Issue|Finding):\*\*\s*(.+)$", re.IGNORECASE
 )
 SEVERITY_LINE_RE = re.compile(
     r"^\s*\*\*Severity:\*\*\s*(.+)$", re.IGNORECASE

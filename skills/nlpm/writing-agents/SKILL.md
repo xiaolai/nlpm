@@ -167,7 +167,7 @@ For each finding, output:
 **[SEVERITY] Finding title**
 - File: `path/to/file`
 - Line: {N}
-- Issue: {description}
+- Finding: {description}
 - Fix: {concrete suggestion}
 
 Severity levels: CRITICAL > HIGH > MEDIUM > LOW > INFO
@@ -273,7 +273,7 @@ Produce a structured report with severity-tagged findings.
 1. Use Glob to discover files matching the target pattern
 2. Use Read to examine each file
 3. Use Grep to cross-reference imports and usage patterns
-4. For each issue found, classify severity and provide a concrete fix
+4. For each finding, classify severity and provide a concrete fix
 5. Produce the output report
 
 ## Boundaries
@@ -286,10 +286,10 @@ Produce a structured report with severity-tagged findings.
 
 For each finding:
 
-**[SEVERITY] Issue title**
+**[SEVERITY] Finding title**
 - File: `path/to/file`
 - Line: {N}
-- Issue: {description}
+- Finding: {description}
 - Fix: {concrete fix}
 
 Final line:
