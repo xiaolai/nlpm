@@ -1,7 +1,7 @@
 ---
 name: conventions-codex
-description: "Use when scoring or writing Codex CLI artifacts — covers .codex/config.toml schema, .codex-plugin/plugin.json, .agents/skills/ layout, Codex hook events, AGENTS.md hierarchy, marketplace.json, and the agents/openai.yaml sidecar. Refreshed 2026-06-07 against Codex 0.137.0 (2026-06-04)."
-version: 0.2.0
+description: "Use when scoring or writing Codex CLI artifacts — covers .codex/config.toml schema, .codex-plugin/plugin.json, .agents/skills/ layout, Codex hook events, AGENTS.md hierarchy, marketplace.json, and the agents/openai.yaml sidecar. Refreshed 2026-08-02 against Codex 0.146.0 (2026-07-29)."
+version: 0.3.0
 ---
 
 # Codex CLI Conventions
@@ -9,13 +9,15 @@ version: 0.2.0
 Tool-specific overlay for OpenAI Codex CLI artifacts. Loaded by the scorer and checker when an artifact is classified as **Tier 2-Codex** (per `agents/scorer.md` step 3). The universal floor lives in `nlpm:conventions`; this overlay adds Codex-specific schemas on top.
 
 **Primary authoritative sources:**
-- <https://developers.openai.com/codex>
-- <https://developers.openai.com/codex/skills>
-- <https://developers.openai.com/codex/guides/agents-md>
-- <https://developers.openai.com/codex/config-reference>
-- <https://developers.openai.com/codex/hooks>
-- <https://developers.openai.com/codex/plugins>
-- <https://github.com/openai/codex>
+- <https://learn.chatgpt.com/docs> (the `developers.openai.com/codex/*` tree now 308-redirects here)
+- <https://learn.chatgpt.com/docs/build-skills>
+- <https://learn.chatgpt.com/docs/agent-configuration/agents-md>
+- <https://learn.chatgpt.com/docs/agent-configuration/subagents>
+- <https://learn.chatgpt.com/docs/config-file/config-reference>
+- <https://learn.chatgpt.com/docs/hooks>
+- <https://learn.chatgpt.com/docs/skills-and-plugins>
+- <https://learn.chatgpt.com/docs/changelog>
+- <https://github.com/openai/codex> (authoritative for `CLA.md`, `contributing.md`, and machine-readable spec samples like `plugin-json-spec.md`)
 
 ---
 
@@ -41,7 +43,7 @@ Codex separates the **cross-tool surface** (`.agents/`) from the **Codex-private
 
 ## 2. SKILL.md (Tier 1, open spec — `name`, `description` required only)
 
-Codex reads SKILL.md from `.agents/skills/`, not `.codex/skills/`. The required frontmatter is the agentskills.io baseline — `name` and `description` — same as every other tool.
+Codex reads SKILL.md from `.agents/skills/`, **not** `.codex/skills/` (reconfirmed 2026-08-02 against `build-skills`: *"Codex reads skills from `.agents/skills` directories, not `.codex/skills`"*; it scans `.agents/skills` from CWD up to the repo root, plus `~/.agents/skills` and `/etc/codex/skills`). Skills placed under `.codex/skills/` — a common mistake in repos ported from Claude Code's `.claude/skills/` habit — are **not discovered** by Codex; flag them. The required frontmatter is the agentskills.io baseline — `name` and `description` — same as every other tool.
 
 **Codex-specific extras live in a SIDECAR `agents/openai.yaml`**, not in SKILL.md frontmatter. Treat the sidecar as additive metadata, not a deviation from the open spec.
 
@@ -89,14 +91,14 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 }
 ```
 
-**Required fields:** `name` (kebab-case), `version` (semver), `description`.
+**Required field:** `name` (kebab-case) — and only when a `plugin.json` is present at all. **All other top-level fields are optional**, including `version`, `description`, `author`, and `interface` (corrected 2026-08-02 against the vendor's `plugin-json-spec.md`; the earlier "version + description required" claim was wrong).
 **Optional artifact paths** (all relative `./` paths only): `skills`, `mcpServers`, `apps`, `hooks`.
 **Optional identity fields (added 2026-06):** `author` (`{name, email, url}`), `homepage`, `repository`, `license`, `keywords`.
 **Optional UI block** `interface`:
 - `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`, `capabilities`
-- `defaultPrompt` — an **array** of starter prompts (not a single string)
+- `defaultPrompt` — an **array** of starter prompts (not a single string). **At most 3 entries** (extras ignored); **each capped at 128 characters** (longer entries truncated).
 - `websiteURL`, `privacyPolicyURL`, `termsOfServiceURL`
-- `brandColor`, `composerIcon`, `logo`, `screenshots`
+- `brandColor`, `composerIcon`, `logo`, `logoDark` (dark-mode logo variant), `screenshots` (PNG files stored under `./assets/`, paths relative to plugin root)
 
 ---
 
@@ -104,7 +106,7 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 
 Three marketplace tiers exist in Codex:
 
-- **Official Curated** — OpenAI-managed; self-serve publishing "coming soon" as of May 2026.
+- **Official Curated** — OpenAI-managed. Workspace plugin publishing and additional marketplaces (Amazon Bedrock, Claude Code interop) shipped in 0.146.0 (2026-07-29); the exact self-serve mechanics are still settling — verify before asserting.
 - **Repository** — `<repo-root>/.agents/plugins/marketplace.json` aggregates plugins shipped from that repo.
 - **Personal** — `~/.agents/plugins/marketplace.json`.
 
@@ -147,7 +149,7 @@ TOML — NOT JSON. Top-level sections nlpm cares about:
 - `[features]` — feature flags. **Breaking change ~2026-04 (CLI 0.129+):** `[features].codex_hooks` was renamed to `[features].hooks` (boolean; enables hooks from `hooks.json` or inline `[hooks]`). Old key is a deprecated alias and emits a warning. Flag config files that still use `codex_hooks`.
 - `[mcp_servers.<id>]` — MCP server registrations. Fields: `command`, `args`, `cwd`, `url`, `enabled`, `enabled_tools`, `disabled_tools`, `env`, `startup_timeout_sec`, `tool_timeout_sec` (per-tool, default 60s — added 2026-06).
 - `[hooks.<event>]` — inline hook registrations (alternative to `.codex/hooks.json`).
-- `[agents.<name>]` — subagent definitions (Codex multi-agent feature). Keys: `config_file`, `description`, `nickname_candidates`.
+- `[agents]` — **global** subagent settings ONLY: `enabled`, `max_concurrent_threads_per_session`, `default_subagent_model`, `default_subagent_reasoning_effort`, `interrupt_message`. Individual subagents are **not** `[agents.<name>]` tables — they are standalone TOML files at `.codex/agents/*.toml` (project) or `~/.codex/agents/*.toml` (personal), one file per agent, with required `name` + `description` + `developer_instructions` and optional `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_servers`, `skills.config` (corrected 2026-08-02 — the old `[agents.<name>]` / `config_file` / `nickname_candidates` schema is gone).
 - `[permissions.*]` — permission policy.
 - `project_doc_max_bytes`, `project_doc_fallback_filenames` — AGENTS.md controls (see §7).
 - Optional model-catalog JSON path loaded at startup, overridable per profile.
@@ -174,10 +176,11 @@ Codex hooks mostly mirror Claude Code's event names — easier than the Antigrav
 | `SubagentStart` | yes | — | In Claude too (2026-06 hook set); Codex added it 2026-05-21 in 0.133.0 |
 | `SubagentStop` | yes | — | — |
 | `Stop` | yes | — | — |
+| `SessionEnd` | yes | — | Real Codex event (confirmed 2026-08-02): fires on archive/delete of a still-open conversation, normal Codex close, or after ~30-min idle with no connected client; 1s default timeout (max 3s); advisory-only (output does not steer Codex) |
 
-**Absent in Codex (but present in Claude):** `Notification`, `SessionEnd`, `FileChanged`, `StopFailure`.
+**Absent in Codex (but present in Claude):** `Notification`, `FileChanged`, `StopFailure`.
 
-**Hook I/O contract:** Same JSON-on-stdin / JSON-on-stdout shape as Claude. Stdin: `session_id`, `cwd`, `hook_event_name`, `tool_name`, `tool_input`, etc. Stdout fields: `continue`, `stopReason`, `systemMessage`, `hookSpecificOutput`. Exit codes: `0` + JSON = success with directives; `0` + plain text = added as context; `2` = block (reason to **stderr**); other = warning.
+**Hook I/O contract:** Same JSON-on-stdin / JSON-on-stdout shape as Claude. Stdin: `session_id`, `cwd`, `hook_event_name`, `tool_name`, `tool_input`, etc. Stdout fields: `continue`, `stopReason`, `systemMessage`, `suppressOutput`, `hookSpecificOutput`. Exit codes: `0` + JSON = success with directives; `0` + plain text = added as context; `2` = block (reason to **stderr**); other = warning.
 
 **Caveats (added 2026-06):**
 - `SubagentStart` / `SubagentStop` hook inputs now carry subagent identity, including `permission_mode` (0.134.0).
@@ -222,8 +225,10 @@ Placeholders if scoring legacy prompts: `$1..$9`, `$ARGUMENTS`, `$FILE`, `$TICKE
 | 2026-05-28 | 0.135.0 | `/permissions` understands named permission profiles; expanded `codex doctor` diagnostics; `CODEX_NON_INTERACTIVE=1` |
 | 2026-06-01 | 0.136.0 | Session archive (`/archive`, `codex archive`/`unarchive`); `CODEX_API_KEY` remote-exec registration; 4 security fixes |
 | 2026-06-04 | 0.137.0 | `codex plugin list --json`; Multi-agent v2 per-thread runtime persistence; plugin skill manifest validation improvements; cloud-managed config bundles |
+| 2026-07-21 | 0.145.0 | Paginated thread history (experimental); `/import` migrates Cursor + Claude Code settings/MCP/plugins/sessions/commands/memories; experimental Amazon Bedrock auth; audio I/O; multi-agent V2 stabilized (opt-in) |
+| 2026-07-29 | 0.146.0 | Session naming/pinning + thread switching; **Agent Plugins manifests + workspace plugin publishing + additional marketplaces (Amazon Bedrock, Claude Code)**; paginated thread forks; discovery of executor-provided skills (a non-filesystem skill source §1 doesn't cover) |
 
-Latest stable as of 2026-06-07: **0.137.0** (pre-releases through `0.138.0-alpha.6`).
+Latest stable as of 2026-08-02: **0.146.0** (2026-07-29); pre-releases through ~`0.147.0-alpha` (verify the exact tag before quoting). Versions **0.138.0–0.144.x** are omitted here — only non-first-party aggregators carried them this refresh; add rows once a first-party changelog source is read.
 
 Repos relying on the removed built-in MCPs will silently regress under 0.131+. nlpm should flag MCP configs that name MCPs no longer shipped natively. Configs using `[profiles.*]` tables are stale under 0.134+.
 
@@ -236,10 +241,18 @@ This skill covers Codex CLI conventions. It does NOT cover:
 - Penalty tables → `nlpm:scoring`
 - Cross-artifact check → invoked by `agents/checker.md`
 
+**Resolved in the 2026-08-02 refresh:**
+- `plugin.json` required fields — only `name` is required; `version`/`description`/`author`/`interface` are optional (§3).
+- Subagent config mechanism — standalone `.codex/agents/*.toml` files, not `[agents.<name>]` tables (§5).
+- `SessionEnd` is a real Codex hook event (§6).
+- `.agents/skills/` (not `.codex/skills/`) reconfirmed as the sole filesystem skill-discovery path (§2).
+- Contributor / CLA policy for `openai/codex` **itself**: external contributions are **by invitation only** — unsolicited PRs are closed without review; invited contributors sign a lightweight bot-verified CLA via a PR comment. This governs the `openai/codex` repo only, NOT third-party repos that merely target Codex as a tool (the auditor's actual PR targets). If PR-D ever contributes to `openai/codex` directly it needs an invite-only DENY-style gate, not the Google URL-CLA flow.
+
 **Resolved in the 2026-06-07 refresh:**
-- `child_agents_md` feature flag — **not found** in any current doc (config-reference, config-advanced, agents-md). Treat as removed/never-shipped; do not score against it.
+- `child_agents_md` feature flag — **not found** in any current doc. Treat as removed/never-shipped; do not score against it.
 - AGENTS.md merge boundary — resolved (§7): pure positional override, one file per directory, walk stops at CWD.
 
 **Still open (verify before scoring with confidence):**
-- `.app.json` schema for the plugin `apps` field — the field is documented (points to a relative `.app.json` at plugin root for app/connector mappings) but the **full schema is still unpublished**.
-- OpenAI's contributor / CLA policy for PRs into `openai/codex`-ecosystem repos — no official doc located; research needed before the auditor pipeline (PR-C/PR-D) scales Codex contributions.
+- `.app.json` schema for the plugin `apps` field — documented but the **full schema is still unpublished**.
+- Sidecar `agents/openai.yaml` `dependencies.tools[].url` field — seen once in `build-skills`, not cleanly re-confirmed; do not hard-flag its presence or absence yet.
+- Codex versions 0.138.0–0.144.x — first-party changelog rows still pending (§9).

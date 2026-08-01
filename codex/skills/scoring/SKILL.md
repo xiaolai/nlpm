@@ -1,7 +1,7 @@
 ---
 name: scoring
-description: Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type and 4 worked calibration examples.
-version: 0.3.0
+description: Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type. Four worked calibration examples (Excellent Agent / Rewrite Agent / Excellent Rule / Weak Rule) live in `references/calibration-examples.md`, loaded on demand when anchoring borderline cases.
+version: 0.3.1
 ---
 
 # NLPM Quality Scoring Rubric
@@ -48,6 +48,16 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 > wrong (R07 is not example-related, and -15 is the agents penalty, not
 > the skills penalty). The validator at `auditor/scripts/validate-rule-ids.py`
 > catches this kind of drift in CI.
+
+> **`<example>`-block counting discipline** (added 2026-08-01, origin:
+> xiaolai/cc-suite v1.3.1 remediation): an `<example>` block counts only when
+> it sits outside fenced code blocks — in the body or in a frontmatter
+> description block scalar. Tags inside a fenced template (` ```markdown … ``` `)
+> are illustrative content, and prose that names the string `` `<example>` ``
+> is a mention, not a block. A 2026-07-31 scoring pass credited a skill with
+> example blocks that existed only inside a fenced template, hiding a real R06
+> violation across 13 files. Verify by reading the file, not by grepping for
+> the tag.
 
 > **`name` matches parent directory** (added 2026-05-25, audit:
 > google/skills): the open Agent Skills spec at agentskills.io makes this
@@ -319,12 +329,42 @@ Applies to `.md` files located in `~/.claude/projects/*/memory/` directories.
 
 ---
 
+### Agent Workflow Programs (project-root `program.md`-style files)
+
+A new artifact type recognized 2026-05-28 (see `nlpm:conventions` §2 and `auditor/exemplars/karpathy-autoresearch.md`): a project-root Markdown file driving an autonomous agent loop, hybrid between a memory file (AGENTS.md-shaped context) and a slash command (numbered workflow with output format + error paths).
+
+**No type-specific penalty rows.** This artifact type is scored as the UNION of:
+- **Command rules R14–R17**: numbered steps for multi-phase work, empty-input handling, output format, error paths.
+- **Memory file rules R33–R39**: build/run commands, architecture overview, no stale refs, instructive-not-descriptive.
+- **Universal R01** (vague quantifiers) and R03 (positive framing).
+
+Type-specific penalty rows are deferred until N ≥ 3 examples surface — the existing rules cover the artifact adequately as a hybrid, and inventing rows from N = 1 risks over-fitting (calibrated per the same discipline applied to multi-tool discovery deferrals).
+
+**Patterns this artifact type rewards** (loaded on demand from `nlpm:patterns`):
+- P10 (numeric anchoring of subjective principles)
+- P11 (paired CAN/CANNOT contract)
+- P12 (autonomy instruction + rationale + fallback ladder)
+- P13 (vivid closing use-case)
+
+---
+
 ### All Artifact Types: Vague Quantifiers
 
 | Rule | Check | Condition | Penalty |
 |------|-------|-----------|---------|
 | R01 | Vague quantifier | Each occurrence of: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" without measurable criteria | -2 each |
 | R01 | Vague quantifier cap | Total vague quantifier penalty | max -20 |
+
+> **Mention-versus-use exclusion** (added 2026-08-01, origin: xiaolai/cc-suite
+> audit-family false positives; design reviewed via Codex consultation): do not
+> count a vague term when it is presented as a literal token AND the containing
+> clause explicitly instructs the reader or a tool to detect, flag, reject,
+> replace, avoid, or report that term — audit tooling must be able to name the
+> words it hunts (e.g. ``Flag uses of `some`, `several`, `various` without
+> concrete criteria`` is R01's own job description, not a violation). Backtick
+> or quotation formatting alone does NOT qualify: a term that still modifies an
+> action, criterion, or requirement is counted even when backticked —
+> ``handle errors `properly` `` remains a violation.
 
 ---
 
@@ -339,6 +379,17 @@ Applied only when `R51: { enabled: true, vocabulary_skill: <path> }` appears in 
 | R51 | Missing registry | `enabled: true` but `vocabulary_skill:` not set or points to a directory with no `registry.yaml` | 0 (advisory only) |
 
 > **Why opt-in:** vocabulary discipline is high-leverage for projects with accumulated drift but premature for projects still discovering their domain. Each project decides when it has enough literary warrant (P6) to lock terms in. See `analysis/vocabulary-design-principles.md` for the six principles R51 operationalizes.
+
+> **Registry-declaration exclusion** (added 2026-08-01, origin: xiaolai/cc-suite
+> vocabulary-skill self-reference; design reviewed via Codex consultation): the
+> file that declares a deprecation must name the deprecated term to do so.
+> Within the configured `vocabulary_skill` path, do not count a deprecated term
+> where it occurs in the declaration that registers it or maps it to its
+> replacement — `registry.yaml` `deprecated:` lists and the SKILL.md deprecation
+> tables. The exclusion covers ONLY those declaration term fields: deprecated
+> terms in surrounding prose inside the `vocabulary_skill` path are counted, and
+> the path is not categorically exempt. The same mention-versus-use principle as
+> R01's exclusion above, applied to R51.
 
 ---
 
@@ -372,153 +423,9 @@ Applied when linting an entire plugin rather than individual files.
 
 ## Calibration Examples
 
-### Example 1: Excellent Agent (95/100)
+Four worked examples — *Excellent Agent (95)*, *Rewrite Agent (41)*, *Excellent Rule (92)*, *Weak Rule (40)* — live in [`references/calibration-examples.md`](references/calibration-examples.md). Load that file on demand when scoring a borderline case (around band boundaries: 88-92, 68-72, 58-62) and you need an anchored reference.
 
-**Artifact:**
-```markdown
----
-name: dependency-auditor
-description: |
-  Audits project dependencies for security vulnerabilities, outdated packages,
-  and license compliance issues. Use this agent when checking npm/pip/cargo
-  dependencies, reviewing package.json or requirements.txt, or running a
-  security audit before release.
-
-  <example>
-  Context: Developer preparing for production release
-  user: check if any of our dependencies have known CVEs
-  assistant: I'll audit your dependencies for security vulnerabilities using
-  the package manifest files...
-  </example>
-
-  <example>
-  Context: CI pipeline running pre-merge checks
-  user: /audit-deps
-  assistant: Running dependency audit. Scanning package.json and
-  package-lock.json for vulnerabilities and license issues...
-  </example>
-model: sonnet
-color: yellow
-tools: ["Read", "Glob", "Bash"]
-skills: ["nlpm:conventions"]
----
-
-You are a dependency security auditor. Read all package manifests in the
-project. For each dependency, check version ranges against known vulnerability
-patterns. Report findings in the format below.
-
-## Output Format
-### Summary
-Total dependencies: N | Vulnerable: N | Outdated: N | License issues: N
-
-### Findings
-| Package | Version | Issue | Severity |
-|---------|---------|-------|----------|
-```
-
-**Score breakdown:**
-- Base: 100. Passes: `description` with 3+ specific phrases, 2 `<example>` blocks, `model: sonnet` (analysis-tier), declared tools used, output format defined, read-only (no Write/Edit).
-- Minor: `Bash` declared but body doesn't invoke it (one unused tool): **-3**
-
-**Final: 97/100** — Excellent. The single unused-tool penalty costs 3 points; otherwise rubric-clean.
-
-*(For calibration: a 95 example would have zero unused tools and a scope note. The range 90-100 is Excellent regardless of the exact number.)*
-
----
-
-### Example 2: Rewrite Agent (41/100)
-
-**Artifact:**
-```markdown
----
-name: code-helper
-description: "Helps with code tasks in an appropriate and relevant way as needed."
-model: opus
-tools: ["Read", "Write", "Edit", "Bash", "Glob", "WebSearch", "WebFetch"]
----
-
-You are a helpful coding assistant. Analyze the code and make appropriate
-improvements. Handle edge cases as needed and ensure the output is relevant
-to the user's requirements.
-```
-
-**Score breakdown:**
-- Base: 100
-- Zero `<example>` blocks: **-15**
-- Description is generic (1 vague phrase, 0 specific phrases): **-15**
-- `opus` declared for a routine code-help task (haiku/sonnet appropriate): **-5**
-- `tools` declared but too many unused (WebSearch, WebFetch, Glob all declared without body justification): **-10** (judged as 3–4 unused, rounded)
-- "appropriate" + "relevant" + "as needed" (vague quantifiers, 2 instances): **-4**
-- No output format defined: **-10**
-
-Total penalties: -59
-
-**Final: max(0, 100 - 59) = 41/100** — Rewrite.
-
-*(For calibration: the exact number of unused tools and vague quantifier hits can vary by reviewer. The important thing is that this artifact scores well below 60 — multiple fundamental issues.)*
-
----
-
-### Example 3: Excellent Rule (92/100)
-
-**Artifact:**
-```markdown
----
-description: "Always use ${CLAUDE_PLUGIN_ROOT} for intra-plugin file references in hooks and scripts"
-paths: ["**/.claude/hooks.json", "**/scripts/*.sh"]
----
-
-**Use `${CLAUDE_PLUGIN_ROOT}` for all file paths within a plugin.**
-
-Because plugins are installed at different locations for different users and
-environments, hardcoded absolute paths (e.g. `/Users/alice/.claude/plugins/...`)
-break when the plugin is installed by anyone other than the original author.
-Using `${CLAUDE_PLUGIN_ROOT}` ensures paths resolve correctly regardless of
-install location.
-
-Correct:
-```json
-"command": "${CLAUDE_PLUGIN_ROOT}/scripts/check.sh"
-```
-
-Incorrect:
-```json
-"command": "/Users/alice/.claude/plugins/cache/my-plugin/1.0.0/scripts/check.sh"
-```
-```
-
-**Score breakdown:**
-- Base: 100. Passes: `description`, bold imperative, rationale, specificity (testable via grep for `/Users/` in hooks.json), `paths` scoping, length, no linter overlap, no vague quantifiers.
-- Minor: no reference to related portability rules (env vars in MCP configs, etc.): **-3** (judgment call, not a formal penalty)
-
-**Final: 92/100** — Excellent. The remaining ~5-point gap reflects scope coverage of related portability contexts rather than any rubric violation.
-
----
-
-### Example 4: Weak Rule (40/100)
-
-**Artifact:**
-```markdown
-Don't write bad code. Code should be clean and well-organized. Avoid using
-outdated patterns. Make sure to handle errors appropriately.
-```
-
-**Score breakdown:**
-- Base: 100
-- Missing frontmatter (no `description` field): **-10**
-- No bold imperative opening: **-5**
-- No rationale: **-10**
-- Not specific or testable ("bad code", "clean", "well-organized" are unmeasurable): **-10**
-- "appropriately" (vague quantifier): **-2**
-- "well-organized" (vague): **-2**
-- Duplicates what every linter/formatter already enforces ("clean code"): **-10**
-- Rule is not enforceable by NLPM or any automated tool: **-10** (enforceability)
-
-Total penalties: -59
-
-**Final: max(0, 100 - 59) = 41/100** — Rewrite.
-
-*(Calibrated near 40 as specified. The exact value depends on judgment on "well-organized" as a vague quantifier.)*
+The examples are not needed for routine scoring — the penalty tables above are self-contained. They were extracted from this file 2026-05-28 to keep the rubric under R05's 500-line body budget while preserving the calibration material verbatim.
 
 ---
 

@@ -158,6 +158,71 @@ Each failure mode should produce a clear, actionable error message — not a sil
 
 ---
 
+### P10: Numeric Anchoring of Subjective Principles (R22)
+
+When stating a principle that has a subjective threshold ("simpler is better", "small change", "meaningful improvement"), follow it immediately with one or more numeric examples that cover the trade-space corners (best case, worst case, neutral case). The principle becomes testable instead of aspirational.
+
+**Example** (from karpathy/autoresearch `program.md:37`, scored 90/100 — see [`auditor/exemplars/karpathy-autoresearch.md`](../../../auditor/exemplars/karpathy-autoresearch.md) for the full audit):
+
+> "All else being equal, simpler is better. … A 0.001 val_bpb improvement that adds 20 lines of hacky code? Probably not worth it. A 0.001 val_bpb improvement from deleting code? Definitely keep. An improvement of ~0 but much simpler code? Keep."
+
+The principle "simpler is better" alone fails R22 enforceability — different agents weigh "simpler" differently. The three anchored examples define the trade-space (gain × complexity-cost) by worked corner cases, so any agent following the rule reaches the same call on a borderline case.
+
+**Apply when** writing rules, agent constraints, or workflow instructions that include a subjective judgment word (small, meaningful, ugly, reasonable, simple, clean). Don't strip the subjective word — anchor it.
+
+---
+
+### P11: Paired CAN/CANNOT Contract (R03)
+
+When prohibitions are non-trivial, present capabilities and prohibitions as a paired list — "What you CAN do" / "What you CANNOT do" — rather than a stream of `do not`s. Each prohibition gains a positive complement; the agent reads both halves of the boundary in one pass.
+
+**Example** (from karpathy/autoresearch `program.md:25-31`):
+
+```
+**What you CAN do:**
+- Modify `train.py` — this is the only file you edit. Everything is fair game: model
+  architecture, optimizer, hyperparameters, training loop, batch size, model size, etc.
+
+**What you CANNOT do:**
+- Modify `prepare.py`. It is read-only…
+- Install new packages or add dependencies…
+- Modify the evaluation harness…
+```
+
+What makes this strong: prohibitions without alternatives are A2's Pink Elephant trap; the paired pattern structurally avoids it. The "CAN" half also doubles as a positive scope statement ("Everything is fair game") that prevents the agent from being overly conservative.
+
+**Apply when** an instruction set has more than two prohibitions on the same subject (file boundaries, tool boundaries, behavior boundaries). For a single prohibition, an inline "do X instead of Y" (P3) is enough.
+
+---
+
+### P12: Autonomy Instruction + Rationale + Fallback Ladder (R03, R17)
+
+When telling an agent to act autonomously, three pieces are required for the instruction to actually produce autonomous behavior: (1) state the rule clearly with example forbidden questions, (2) explain *why* in concrete terms the agent can reason about, (3) name the failure mode the agent is most likely to hit and give a numbered list of recovery moves *before* it encounters them. Bare "be autonomous" instructions produce timid agents that ask for permission.
+
+**Example** (from karpathy/autoresearch `program.md:112`, scored 90/100 — see [`auditor/exemplars/karpathy-autoresearch.md`](../../../auditor/exemplars/karpathy-autoresearch.md)):
+
+> "Once the experiment loop has begun (after the initial setup), do NOT pause to ask the human if you should continue. Do NOT ask 'should I keep going?' or 'is this a good stopping point?'. The human might be asleep, or gone from a computer and expects you to continue working *indefinitely* until you are manually stopped. You are autonomous. If you run out of ideas, think harder — read papers referenced in the code, re-read the in-scope files for new angles, try combining previous near-misses, try more radical architectural changes."
+
+What makes this strong: the rule names the failure mode by quoting it ("'should I keep going?'"), the rationale grounds it in a concrete world-state ("human might be asleep"), and the four recovery moves (read papers / re-read files / combine near-misses / radical changes) cover the trade-space when the agent's first instinct (ask) is removed.
+
+**Apply when** writing any instruction that asks an agent to operate without per-step human approval — long-running loops, overnight runs, batch processing, recursive workflows. Without the fallback ladder, the agent silently halts the first time it runs out of obvious moves.
+
+---
+
+### P13: Vivid Closing Use-Case (R16, R35)
+
+End a workflow document with a one-paragraph concrete scenario — named persona, named time of day, calculated quantity — that makes the workflow's duty cycle tangible. Agents follow workflows more reliably when they have a mental model of what success looks like in the wild, not just the per-step instructions.
+
+**Example** (from karpathy/autoresearch `program.md:114`):
+
+> "As an example use case, a user might leave you running while they sleep. If each experiment takes you ~5 minutes then you can run approx 12/hour, for a total of about 100 over the duration of the average human sleep. The user then wakes up to experimental results, all completed by you while they slept!"
+
+What makes this strong: it names the actor ("a user"), the time-of-day ("while they sleep"), and does the arithmetic explicitly (12/hour × ~8 hours ≈ 100 runs). The agent now has a vivid mental model — "I should produce ~100 experiment results overnight" — that the per-step instructions alone don't convey.
+
+**Apply when** a workflow document specifies a process whose value emerges from repetition or duration, not from a single execution. The closing use-case answers "what does success look like at scale?" — a question the per-step instructions implicitly assume but never state.
+
+---
+
 ## Anti-Patterns (Avoid These)
 
 ### A1: Vague Quantifiers (R01)

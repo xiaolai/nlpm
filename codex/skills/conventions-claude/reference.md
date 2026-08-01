@@ -67,3 +67,43 @@ Tool names valid in `tools:`, `allowed-tools:`, and `disallowed-tools:`. Do NOT 
 **MCP tools:** `mcp__<server-name>__<tool-name>` (e.g., `mcp__mermaider__validate_syntax`).
 
 Tool names are case-sensitive. Any string matching the patterns above is a valid tool reference regardless of whether this document pre-dates the tool's introduction — the catalog grows; never penalize an unrecognized-but-well-formed tool name.
+
+---
+
+## Hook Events (extended allow-list)
+
+The overlay's §7 table lists the load-bearing events; the following are also valid current events — never flag any of them as "unknown". Any documented event name is valid even if it post-dates this doc; verify against `code.claude.com/docs/en/hooks.md` rather than penalizing.
+
+- **Confirmed real (were "uncertain" pre-2026-06):** `SubagentStop`, `PreCompact`, `Notification`, `PostToolUseFailure`, `InstructionsLoaded`, `TaskCompleted` (exact spelling — not `TaskComplete`).
+- **Additional current events:** `Setup`, `SubagentStart`, `UserPromptExpansion`, `PermissionDenied`, `PostToolBatch`, `MessageDisplay`, `TaskCreated`, `TeammateIdle`, `ConfigChange`, `CwdChanged`, `WorktreeCreate`, `WorktreeRemove`, `PostCompact`, `Elicitation`, `ElicitationResult`.
+
+---
+
+## Plugin Distribution (marketplace.json)
+
+`.claude-plugin/marketplace.json` at the marketplace repo root. **Required top-level:** `name`, `owner` (maintainer-info object), `plugins`. **Optional top-level:** `$schema`, `description`, `version`, `metadata.pluginRoot`, `allowCrossMarketplaceDependenciesOn`, `renames`.
+
+```json
+{
+  "name": "marketplace-name",
+  "owner": { "name": "maintainer" },
+  "plugins": [
+    {
+      "name": "plugin-name",
+      "source": { "source": "github", "repo": "owner/repo" },
+      "description": "...",
+      "version": "1.0.0",
+      "author": { "name": "..." },
+      "repository": "https://github.com/owner/repo",
+      "license": "MIT",
+      "category": "developer-tools"
+    }
+  ]
+}
+```
+
+**Per-plugin entry** may add `category`, `tags`, `strict`, `relevance`, `defaultEnabled` on top of the plugin-manifest fields. `strict: false` makes the marketplace entry the sole authority over that plugin's `plugin.json`.
+
+**`source` types:** `relative path`, `github`, `url`, `git-subdir`, `npm`.
+
+**`renames`** (v2.1.193+): an append-only map (`{oldName: newName | null}`) letting a marketplace rename or remove a plugin without breaking existing installs.

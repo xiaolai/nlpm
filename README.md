@@ -129,7 +129,7 @@ See `skills/nlpm/scoring/SKILL.md` for the full penalty tables. See `skills/nlpm
 |------|-----------|
 | Universal (Tier 1, open spec at agentskills.io) | `SKILL.md`, `AGENTS.md` (canonical universal memory file, per nlpm decision) |
 | Claude Code (Tier 2-Claude) | `commands/`, `shared partials`, `agents/`, `skills/`, `hooks/hooks.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json`, `CLAUDE.md`, `.claude/rules/`, `.claude/settings.json`, `.lsp.json`, `monitors/monitors.json`, `~/.claude/projects/*/memory/*.md` |
-| Codex CLI (Tier 2-Codex) | `.agents/skills/<n>/SKILL.md`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.codex/config.toml` (TOML — `[mcp_servers.*]`, `[hooks.*]`, `[agents.*]`), `.codex/hooks.json`, `agents/openai.yaml` sidecar, root `AGENTS.md` (hierarchical) |
+| Codex CLI (Tier 2-Codex) | `.agents/skills/<n>/SKILL.md`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.codex/config.toml` (TOML — `[mcp_servers.*]`, `[hooks.*]`, `[agents]` global settings), `.codex/agents/*.toml` (subagent definitions), `.codex/hooks.json`, `agents/openai.yaml` sidecar, root `AGENTS.md` (hierarchical) |
 | Antigravity (Tier 2-Antigravity, advisory) | `.gemini/skills/`, `.agent/skills/`, `.gemini/commands/<n>.toml`, `.gemini/settings.json` (with embedded `mcpServers` + `hooks`), `gemini-extension.json`, `GEMINI.md` |
 
 ## NL-TDD
@@ -199,15 +199,19 @@ agents/             Dispatched by commands (6 agents)
   tester.md         sonnet -- evaluates artifacts against test specs
   security-scanner.md sonnet -- security risk detection in executable artifacts
 
-skills/nlpm/        Knowledge base (13 skills)
+skills/nlpm/        Knowledge base (17 skills)
 
   Core (loaded by agents):
-  conventions/      Claude Code schemas, hook events, naming patterns
-  patterns/         NL programming best practices + anti-patterns
-  scoring/          Penalty tables with rule number cross-references
-  rules/            The 50 Rules of Natural Language Programming (R01-R50)
-  testing/          NL-TDD spec format, test patterns
-  security/         Security pattern database for executable artifact scanning
+  conventions/              Universal NL floor: SKILL.md open spec, AGENTS.md, vague-quantifier list, naming
+  conventions-claude/       Claude Code overlay: .claude/* paths, plugin.json, hook events, CLAUDE.md, tool catalog
+  conventions-codex/        Codex CLI overlay: .codex/config.toml, .codex-plugin/plugin.json, .agents/skills/, openai.yaml sidecar
+  conventions-antigravity/  Antigravity overlay: .gemini/* + .agent/*, GEMINI.md (advisory)
+  patterns/                 NL programming best practices + anti-patterns
+  scoring/                  Penalty tables with rule number cross-references
+  rules/                    The 50 Rules of Natural Language Programming (R01-R50)
+  vocabulary/               Canonical noun/verb registry for R51 drift detection (opt-in)
+  testing/                  NL-TDD spec format, test patterns
+  security/                 Security pattern database for executable artifact scanning
 
   Writing Reference (loaded on demand):
   writing-skills/   How to write SKILL.md files
