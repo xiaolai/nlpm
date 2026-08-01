@@ -1,11 +1,11 @@
 ---
 name: scorer
 description: |
-  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or running quality analysis on commands, agents, skills, rules, hooks, or CLAUDE.md.
+  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or scoring commands, agents, skills, rules, hooks, or CLAUDE.md files.
 
   <example>
   Context: User runs /nlpm:score on a directory
-  assistant: "I'll use the scorer to analyze and score these artifacts."
+  assistant: "I'll use the scorer to score these artifacts and report findings."
   </example>
   <example>
   Context: Quality check before a plugin release

@@ -5,7 +5,7 @@ description: |
 
   <example>
   Context: Score command dispatches vague-scanner in parallel with scorer
-  assistant: "I'll scan for vague quantifiers while the scorer runs full analysis."
+  assistant: "I'll scan for vague quantifiers while the scorer runs the full scoring pass."
   </example>
   <example>
   Context: Quick check for vague language in a single file

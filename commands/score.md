@@ -1,6 +1,6 @@
 ---
 name: score
-description: "Score NL programming artifacts — 100-point quality analysis per file"
+description: "Score NL programming artifacts — 100-point quality score per file"
 argument-hint: "[path]"
 allowed-tools: Read, Write, Glob, Grep, Bash, Task
 ---
@@ -73,7 +73,7 @@ Score guide: 90+ Excellent | 80-89 Good | 70-79 Adequate | 60-69 Weak | <60 Rewr
 
 **Error handling:**
 - File unreadable → skip with warning: "Skipped {path}: unreadable"
-- Malformed YAML frontmatter → score penalty -25, continue analysis on body
+- Malformed YAML frontmatter → score penalty -25, continue scoring on body
 - Empty file → score 0, finding: "Empty file"
 
 ### Step 6: Append Snapshot to History

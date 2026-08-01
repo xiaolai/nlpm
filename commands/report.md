@@ -48,7 +48,7 @@ Discover artifacts via `commands/shared/discover.md` against the target. Then di
 
 If the corpus has more than 50 artifacts, batch into groups of 25 per dispatch.
 
-### Step 5: Cross-component check (fresh)
+### Step 5: Cross-artifact check (fresh)
 
 Dispatch the `nlpm:checker` agent against the target. Capture:
 
@@ -76,7 +76,7 @@ If no `vocabulary_skill` is configured, look for `<target>/skills/*/vocabulary/r
 
 If a vocabulary skill is configured **and** the corpus has at least 5 NL artifacts, dispatch the `nlpm:vocab-drift-scanner` agent (registry-free; reads existing `cross_scope_homonyms` to suppress false positives). Capture the JSONL records.
 
-If fewer than 5 artifacts, skip vocab drift; the panel will render "corpus too small for drift analysis."
+If fewer than 5 artifacts, skip vocab drift; the panel will render "corpus too small for drift detection."
 
 ### Step 8: Assemble data blob
 

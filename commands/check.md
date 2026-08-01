@@ -21,7 +21,7 @@ If no artifacts found → "No NL programming artifacts found."
 
 If fewer than 2 artifacts → "Cross-artifact check requires multiple artifacts. Use /nlpm:score for individual files."
 
-### Step 2: Run Cross-Component Analysis
+### Step 2: Run the Cross-Artifact Check
 
 Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perform cross-artifact checks:
 
@@ -48,9 +48,9 @@ Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perf
 ### Step 3: Report
 
 ```markdown
-NLPM Cross-Component Check
+NLPM Cross-Artifact Check
 
-Artifacts analyzed: {N}
+Artifacts checked: {N}
 
 Reference Integrity:
   {N} references checked, {N} broken

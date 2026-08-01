@@ -181,7 +181,7 @@ SECTION_CATEGORIES: list[tuple[str, str]] = [
     (r"^security\s+fixes?\b", "security"),
     (r"^bugs?\b", "bug"),
     (r"^quality\s+issues?\b", "nl_quality"),
-    (r"^cross[-\s]?component", "cross_component"),
+    (r"^cross[-\s]?(?:component|artifact)", "cross_component"),
 ]
 
 

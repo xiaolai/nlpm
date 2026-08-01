@@ -342,7 +342,7 @@ Applied only when `R51: { enabled: true, vocabulary_skill: <path> }` appears in 
 
 ---
 
-### Cross-Component (--plugin flag)
+### Cross-Artifact (--plugin flag)
 
 Applied when linting an entire plugin rather than individual files.
 

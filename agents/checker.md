@@ -1,7 +1,7 @@
 ---
 name: checker
 description: |
-  Cross-artifact consistency analyzer for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin artifacts.
+  Cross-artifact consistency checker for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin artifacts.
 
   <example>
   Context: User runs /nlpm:check on a plugin directory
@@ -25,7 +25,7 @@ skills:
 
 ## Mission
 
-Analyze cross-artifact consistency across NL programming artifacts. Find broken references, orphaned artifacts, behavioral contradictions, and terminology drift.
+Check cross-artifact consistency across NL programming artifacts. Find broken references, orphaned artifacts, behavioral contradictions, and terminology drift.
 
 ## Instructions
 
@@ -62,9 +62,9 @@ You will receive a list of all artifacts in a plugin or project. Read every file
 ## Output Format
 
 ```
-NLPM Cross-Component Check
+NLPM Cross-Artifact Check
 
-Artifacts analyzed: {N}
+Artifacts checked: {N}
 
 Reference Integrity:
   {N} references checked, {N} broken
