@@ -176,6 +176,8 @@ nouns:
   artifact_class:
     - canonical: artifact
       deprecated: [file, unit, component]
+      # 'component' is enforced via enforce_terms; 'file'/'unit' are generic English
+      enforce_terms: [component]
       definition: any NL programming file Claude Code consumes
     - canonical: command
       deprecated: [slash-command]
@@ -188,6 +190,7 @@ nouns:
       definition: skills/<plugin>/<name>/SKILL.md, auto-loaded by description match
     - canonical: rule
       deprecated: [guideline, convention]
+      enforce_terms: [guideline]
       definition: a numbered item inside skills/<plugin>/rules/SKILL.md
     - canonical: hook
       deprecated: [trigger]
@@ -197,19 +200,24 @@ nouns:
       definition: plugin.json or marketplace.json
     - canonical: frontmatter
       deprecated: [header, metadata-block]
+      enforce_terms: [metadata-block]
       definition: YAML block delimited by --- at top of a Markdown file
   output_class:
     - canonical: score
       deprecated: [grade, rating]
+      enforce_terms: [rating]
       definition: number 0-100 + penalty breakdown
     - canonical: finding
       deprecated: [issue, problem, defect]
+      # 'issue' enforced (GitHub-issue senses sanctioned below); 'problem'/'defect' generic
+      enforce_terms: [issue]
       definition: one problem detected; carries a fingerprint in auditor scope
     - canonical: violation
       deprecated: []
       definition: a finding specifically from cross-reference checking
     - canonical: penalty
       deprecated: [deduction]
+      enforce_terms: [deduction]
       definition: points subtracted by a single finding
     - canonical: snapshot
       deprecated: []
@@ -219,6 +227,7 @@ nouns:
       definition: list of artifacts discovered in a path
     - canonical: spec
       deprecated: [specification, test-case]
+      enforce_terms: [test-case]
       definition: a .nlpm-test/*.spec.md file defining expected behavior
   role_nouns:
     - canonical: scanner
@@ -233,3 +242,37 @@ nouns:
       paired_verb: scan
     - canonical: vague-scanner
       paired_verb: score  # sub-step
+
+# ── Sanctioned occurrences ────────────────────────────────────────────
+# Machine-readable counterpart of SKILL.md's sanctioned-homonyms table.
+# Each entry suppresses one (term, path-glob) pair for the enforcement
+# scanner (auditor/scripts/registry-drift-check.py) with the reason on
+# record. The advisory LLM clustering still sees everything.
+sanctioned:
+  - term: component
+    path: "skills/nlpm/rules/SKILL.md"
+    reason: R35/R49 "component map" — structural parts of the scored project's codebase, not NL artifacts
+  - term: component
+    path: "skills/nlpm/scoring/SKILL.md"
+    reason: R35 rubric row quotes the R35 sense
+  - term: component
+    path: "skills/nlpm/vocabulary/SKILL.md"
+    reason: the sanctioned-homonyms table quotes the term as data
+  - term: component
+    path: "skills/nlpm/writing-skills/SKILL.md"
+    reason: React-component teaching examples — a different domain's vocabulary
+  - term: issue
+    path: "AGENTS.md"
+    reason: GitHub issues — the platform object the auditor pipeline opens, labels, and closes
+  - term: issue
+    path: "skills/nlpm/security/SKILL.md"
+    reason: GitHub security/tracking issues the auditor files and links
+  - term: issue
+    path: "skills/nlpm/conventions-claude/SKILL.md"
+    reason: quotes a platform example argument list ("issue branch")
+  - term: issue
+    path: "skills/nlpm/vocabulary/SKILL.md"
+    reason: registry documentation quotes the term as data
+  - term: issue
+    path: "skills/nlpm/writing-agents/SKILL.md"
+    reason: user-voice dialogue in a trigger example ("debugging a production issue")

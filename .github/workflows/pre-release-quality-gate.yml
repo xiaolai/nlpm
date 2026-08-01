@@ -21,8 +21,15 @@ name: Pre-Release Quality Gate
 #      catching genuine multi-point defects. The deterministic floor
 #      (bin/nlpm-check) remains the exact, reproducible hard line.
 #
-#   2. VOCAB INTEGRITY GATE — zero vocabulary drift clusters detected by
-#      the vocab-drift-scanner on the nlpm corpus.
+#   2. VOCAB INTEGRITY GATE — deterministic: zero occurrences of
+#      registry-declared, enforce_terms-marked deprecated terms
+#      (auditor/scripts/registry-drift-check.py). The LLM
+#      vocab-drift-scanner still runs, but as ADVISORY output only —
+#      open-ended clustering is non-reproducible (each run judges the
+#      corpus afresh and can surface different clusters), which
+#      disqualifies it as a required check. Its job is to surface
+#      candidates for humans to curate into registry.yaml, where they
+#      become enforceable.
 #
 # Both gates must pass for release. Failures emit GitHub annotations and
 # block the PR; the score gate also writes /tmp/scores.tsv (kept as an
@@ -106,6 +113,25 @@ jobs:
             exit 1
           fi
           echo "::notice::Deterministic floor: clean."
+
+      - name: Deterministic vocab gate — registry-drift-check
+        if: steps.detect.outputs.release == 'true'
+        # The HARD vocab gate. Byte-deterministic: greps the corpus for
+        # terms the registry itself declares deprecated AND marks
+        # enforce_terms, honoring sanctioned (term, path) entries. Same
+        # corpus + same registry => same verdict, every run. The
+        # open-ended LLM clustering below is advisory only — five gate
+        # rounds on PR #708 each produced a different cluster set, which
+        # is disqualifying for a required check but exactly right for
+        # surfacing candidates to curate into the registry.
+        run: |
+          pip install --quiet pyyaml
+          python3 auditor/scripts/registry-drift-check.py --self-test
+          if ! python3 auditor/scripts/registry-drift-check.py --root .; then
+            echo "::error::Vocab gate FAILED — enforced registry-deprecated terms found (exact file:line above)."
+            exit 1
+          fi
+          echo "::notice::Vocab gate: clean (deterministic, registry-enforced pairs)."
 
       - name: LLM-judged score + vocab drift
         if: steps.detect.outputs.release == 'true'
@@ -219,14 +245,16 @@ jobs:
             fi
           fi
 
-          # --- Vocab integrity gate ---
+          # --- Vocab drift (ADVISORY) ---
+          # The hard vocab gate already ran deterministically in its own
+          # step. The LLM clustering below never fails the build: it
+          # surfaces candidates to curate into registry.yaml.
           if [ -s /tmp/drift.jsonl ]; then
             CLUSTERS=$(wc -l < /tmp/drift.jsonl | tr -d ' ')
-            echo "::error::Vocab integrity gate FAILED — $CLUSTERS drift cluster(s) detected:"
+            echo "::notice::Vocab drift advisory — $CLUSTERS candidate cluster(s) for registry curation (see artifact):"
             cat /tmp/drift.jsonl | head -20
-            FAILED=1
           else
-            echo "::notice::Vocab integrity gate PASSED — zero drift clusters."
+            echo "::notice::Vocab drift advisory — zero candidate clusters."
           fi
 
           if [ "$FAILED" -eq 1 ]; then
