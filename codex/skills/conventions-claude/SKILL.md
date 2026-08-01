@@ -137,7 +137,7 @@ Existing `.claude/commands/` files continue to function. New code should prefer 
 
 ## 3. Shared Partials
 
-Reusable command fragments located in `commands/shared/`.
+Reusable shared partials located in `commands/shared/`.
 
 **Rules:**
 - MUST include `user-invocable: false` in frontmatter — prevents appearing as top-level commands
