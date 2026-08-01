@@ -90,7 +90,7 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 ```
 
 **Required fields:** `name` (kebab-case), `version` (semver), `description`.
-**Optional component paths** (all relative `./` paths only): `skills`, `mcpServers`, `apps`, `hooks`.
+**Optional artifact paths** (all relative `./` paths only): `skills`, `mcpServers`, `apps`, `hooks`.
 **Optional identity fields (added 2026-06):** `author` (`{name, email, url}`), `homepage`, `repository`, `license`, `keywords`.
 **Optional UI block** `interface`:
 - `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`, `capabilities`

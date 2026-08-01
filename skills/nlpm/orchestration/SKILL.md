@@ -222,7 +222,7 @@ Phase 2: AI processing (sonnet/opus -- expensive)
 | sonnet | $0.01 | $0.10 | $1.00 | $10.00 |
 | opus | $0.03 | $0.30 | $3.00 | $30.00 |
 
-"Item" = one agent invocation processing one unit of work (one file, one chunk, one component).
+"Item" = one agent invocation processing one unit of work (one file, one chunk, one artifact).
 
 ### User Confirmation Pattern
 

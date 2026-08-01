@@ -17,9 +17,9 @@ version: 0.2.0
 
 A plugin is a collection of NL artifacts that work together. Before writing anything, decide which artifacts you need.
 
-### Component Selection Guide
+### Artifact Selection Guide
 
-| User need | Component | Example |
+| User need | Artifact | Example |
 |-----------|-----------|---------|
 | User runs a slash command | Command | `/nlpm:score path/to/file.md` |
 | AI works autonomously on a task | Agent | Security scanner dispatched by a command |
@@ -246,7 +246,7 @@ my-plugin/
 
 ### Naming Conventions
 
-| Component | File naming | Example |
+| Artifact | File naming | Example |
 |-----------|------------|---------|
 | Commands | kebab-case, descriptive verb | `scan-files.md`, `generate-report.md` |
 | Agents | kebab-case, role-noun | `security-reviewer.md`, `parser.md` |
@@ -288,7 +288,7 @@ Your plugin's CLAUDE.md is for **Claude** (the AI), not the user. It tells Claud
 ## Architecture
 Brief description of what the plugin does and how artifacts interact.
 
-## Components
+## Artifacts
 
 ### Commands
 | Command | Purpose |

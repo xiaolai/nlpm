@@ -56,7 +56,7 @@ Reference Integrity:
   {N} references checked, {N} broken
   {list broken references}
 
-Orphaned Components:
+Orphaned Artifacts:
   {N} orphans found
   {list orphans}
 

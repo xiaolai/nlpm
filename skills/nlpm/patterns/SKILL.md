@@ -19,9 +19,9 @@ Write agent and skill descriptions with 3+ specific trigger phrases rather than 
 **Good:**
 ```yaml
 description: |
-  Lints NL artifacts for quality issues. Use this agent when scoring plugin
-  components, running static analysis on prompts, checking command completeness,
-  or auditing skill descriptions for vagueness.
+  Scores NL artifacts and reports findings. Use this agent when scoring plugin
+  artifacts, checking prompts for quality findings, checking command
+  completeness, or auditing skill descriptions for vagueness.
 ```
 
 **Bad:**

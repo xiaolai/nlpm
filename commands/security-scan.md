@@ -48,7 +48,7 @@ Gate banners:
 If the recommendation is BLOCK:
 ```
 SECURITY GATE: BLOCKED
-Critical/High security issues found. Do NOT install or contribute to this plugin without resolving these issues first.
+Critical/High security findings. Do NOT install or contribute to this plugin without resolving these findings first.
 ```
 
 If the recommendation is REVIEW:
@@ -60,7 +60,7 @@ Medium-severity findings detected. Review the findings before proceeding.
 If the recommendation is PASS:
 ```
 SECURITY GATE: PASSED
-No Critical/High security issues found. Safe to proceed with audit and contribution.
+No Critical/High security findings. Safe to proceed with audit and contribution.
 ```
 
 **Error handling:**

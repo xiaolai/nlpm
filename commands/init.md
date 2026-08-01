@@ -1,6 +1,6 @@
 ---
 name: init
-description: "Initialize NLPM for this project — detect artifacts, set lint strictness, capture baseline trend snapshot"
+description: "Initialize NLPM for this project — detect artifacts, set strictness, capture baseline trend snapshot"
 allowed-tools: Read, Write, Glob, Bash, AskUserQuestion, Task
 ---
 
@@ -18,7 +18,7 @@ Run artifact discovery (same as /nlpm:ls) to show what's in the project.
 
 ```
 AskUserQuestion:
-  question: "What lint strictness level?"
+  question: "What strictness level?"
   header: "Strictness"
   options:
     - label: "Relaxed"
@@ -42,7 +42,7 @@ score_threshold: {60|70|80}
 
 # NLPM Settings
 
-When linting NL artifacts in this project, use **{strictness}** strictness.
+When scoring NL artifacts in this project, use **{strictness}** strictness.
 Flag artifacts scoring below **{threshold}/100** for improvement.
 ```
 

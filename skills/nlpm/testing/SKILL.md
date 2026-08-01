@@ -167,4 +167,4 @@ This is the natural-language analogue of `pytest` or `jest` — specs are the co
 
 This skill covers the spec format and runner contract for NL-TDD. For the
 scoring rubric the tester compares against, see `nlpm:scoring`. For the
-schemas of artifact frontmatter the spec validates, see `nlpm:conventions`.
+schemas of artifact frontmatter the spec checks, see `nlpm:conventions`.

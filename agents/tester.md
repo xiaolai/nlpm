@@ -1,7 +1,7 @@
 ---
 name: tester
 description: |
-  Evaluate NL artifacts against test specifications. Predicts trigger accuracy, checks output format expectations, validates frontmatter, and scores against thresholds.
+  Evaluate NL artifacts against test specifications. Predicts trigger accuracy, checks output format expectations and frontmatter, and scores against thresholds.
   <example>
   Context: Developer wrote a spec for a new agent and wants to check if it passes
   user: "/nlpm:test"

@@ -5,7 +5,7 @@ description: |
 
   <example>
   Context: Auditing an external plugin before submitting PRs
-  user: "Scan this plugin for security issues"
+  user: "Scan this plugin for security risks"
   assistant: "I'll use the security-scanner agent to check all executable artifacts."
   <commentary>
   Pre-contribution security gate. Must pass before any PRs are submitted to external repos.

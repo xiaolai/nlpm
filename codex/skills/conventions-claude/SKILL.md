@@ -30,7 +30,7 @@ The plugin manifest.
 **Required fields:**
 - `name` — string, kebab-case, unique identifier
 
-The manifest is **fully optional** — components auto-discover from conventional paths, and only `name` is required when present. Unrecognized top-level fields are ignored with a warning (error only under `claude plugin validate --strict`).
+The manifest is **fully optional** — artifacts auto-discover from conventional paths, and only `name` is required when present. Unrecognized top-level fields are ignored with a warning (error only under `claude plugin validate --strict`).
 
 **Optional fields:**
 - `version` — semver string (e.g. `"0.1.0"`). If omitted, commit SHA is used (every commit = new version). For stable releases, set explicit semver.
@@ -51,7 +51,7 @@ The manifest is **fully optional** — components auto-discover from conventiona
 - `agent` — this is a **settings.json** default key (a plugin's bundled `settings.json` supports only `agent` and `subagentStatusLine`), not a manifest field.
 - `category` — belongs to a **marketplace.json** plugin entry, not the manifest.
 
-**Component path fields (all optional, string or string[]):**
+**Artifact path fields (all optional, string or string[]):**
 - `commands` — path(s) to command markdown files
 - `agents` — path(s) to agent markdown files
 - `skills` — path(s) to skill directories

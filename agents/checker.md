@@ -6,7 +6,7 @@ description: |
   <example>
   Context: User runs /nlpm:check on a plugin directory
   user: "/nlpm:check"
-  assistant: "I'll use the checker to verify cross-artifact consistency."
+  assistant: "I'll dispatch the checker for cross-artifact consistency."
   </example>
   <example>
   Context: Developer renamed a skill directory and wants to verify no broken references
@@ -70,7 +70,7 @@ Reference Integrity:
   {N} references checked, {N} broken
   {list broken references with source file, target, and status}
 
-Orphaned Components:
+Orphaned Artifacts:
   {N} orphans found
   {list orphans with file path and reason}
 
