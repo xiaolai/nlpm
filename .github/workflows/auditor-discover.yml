@@ -22,9 +22,9 @@ on:
         type: number
         default: 5
       max_artifacts:
-        description: 'Maximum NL artifact count (above this, repo is likely generated/mirrored)'
+        description: 'Soft NL-artifact ceiling — above this a repo must pass the density check to stay worthy (see probe step)'
         type: number
-        default: 100
+        default: 250
 
 permissions:
   contents: write
@@ -151,9 +151,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MIN_ARTIFACTS: ${{ inputs.min_artifacts || 5 }}
-          MAX_ARTIFACTS: ${{ inputs.max_artifacts || 100 }}
+          MAX_ARTIFACTS: ${{ inputs.max_artifacts || 250 }}
+          # Above HARD_CEILING a repo is always a scraped/mirrored/generated
+          # mega-repo (thousands of files) — dropped regardless of density.
+          HARD_CEILING: 1000
+          # In the MAX_ARTIFACTS..HARD_CEILING band, keep repos whose NL
+          # artifacts are >= this percent of all files (curated, not scraped).
+          MIN_DENSITY_PCT: 15
         run: |
-          echo "Probe range: $MIN_ARTIFACTS <= artifacts <= $MAX_ARTIFACTS"
+          echo "Probe range: $MIN_ARTIFACTS <= artifacts <= $MAX_ARTIFACTS (hard ceiling $HARD_CEILING, min density ${MIN_DENSITY_PCT}%)"
           echo "[]" > /tmp/worthy.json
           : > /tmp/worthy_raw.jsonl   # truncate
           : > /tmp/oversized.jsonl    # truncate
@@ -171,8 +177,14 @@ jobs:
             # artifacts at `graphify/skill*.md` + AGENTS.md) was the
             # forcing function — the previous probe returned 0 for that
             # repo and silently dropped it from the queue.
-            ARTIFACT_COUNT=$(gh api "repos/$FULL_NAME/git/trees/HEAD?recursive=1" \
-              --jq '[.tree[].path | select(
+            # Fetch the recursive tree ONCE into a temp file and reuse it for
+            # both the artifact count and the total-file count. Reusing the
+            # payload (vs. a second API call) also computes the density signal
+            # for free.
+            gh api "repos/$FULL_NAME/git/trees/HEAD?recursive=1" > /tmp/tree.json 2>/dev/null \
+              || echo '{}' > /tmp/tree.json
+
+            ARTIFACT_COUNT=$(jq '[.tree[]?.path | select(
                 # Canonical Claude Code layouts
                 test("agents/.*\\.md$") or
                 test("commands/.*\\.md$") or
@@ -198,30 +210,48 @@ jobs:
                 # MCP / hooks at non-canonical paths
                 test("^\\.mcp\\.json$") or
                 test("hooks/hooks\\.json$")
-              )] | length' 2>/dev/null || echo 0)
+              )] | length' /tmp/tree.json 2>/dev/null || echo 0)
+
+            # Total file (blob) count — the denominator for the density check.
+            TOTAL_FILES=$(jq '[.tree[]? | select(.type == "blob")] | length' /tmp/tree.json 2>/dev/null || echo 0)
 
             # Empty repos return a 409 error body (not a tree), and transient
-            # API errors yield non-numeric output. Two guards are needed under
-            # `bash -e`: the `|| echo 0` above keeps the command substitution's
-            # exit status 0 so the assignment itself can't abort the step; the
-            # coercion below turns any leftover non-integer (e.g. a captured
-            # 409 JSON body) into 0 so the arithmetic tests can't crash either.
-            # Observed 2026-07-07: the empty repo Sfedfcv/redesigned-pancake
-            # killed a min_stars=200 sweep — first at the `[ -lt ]` test, then
-            # (after dropping `|| echo 0`) at the assignment itself.
-            case "$ARTIFACT_COUNT" in
-              ''|*[!0-9]*) ARTIFACT_COUNT=0 ;;
-            esac
+            # API errors yield non-numeric output. The `?` in `.tree[]?` plus
+            # `|| echo 0` keep the command substitutions from aborting the step
+            # under `bash -e`; the coercions below turn any leftover
+            # non-integer (e.g. a captured 409 JSON body) into 0 so the
+            # arithmetic tests can't crash either. Observed 2026-07-07: the
+            # empty repo Sfedfcv/redesigned-pancake killed a min_stars=200
+            # sweep at the `[ -lt ]` test.
+            case "$ARTIFACT_COUNT" in ''|*[!0-9]*) ARTIFACT_COUNT=0 ;; esac
+            case "$TOTAL_FILES" in ''|*[!0-9]*) TOTAL_FILES=0 ;; esac
 
             if [ "$ARTIFACT_COUNT" -lt "$MIN_ARTIFACTS" ]; then
               echo "  -> $ARTIFACT_COUNT artifacts — skipping (below floor)"
+            elif [ "$ARTIFACT_COUNT" -gt "$HARD_CEILING" ]; then
+              # Far over the ceiling — always a scraped/mirrored/generated
+              # mega-repo (thousands of files). Never worth an audit.
+              echo "  -> $ARTIFACT_COUNT artifacts — skipping (hard ceiling, scraped/mirrored)"
+              echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" '. + {artifact_count: $count, skip_reason: "hard_ceiling"}' >> /tmp/oversized.jsonl
             elif [ "$ARTIFACT_COUNT" -gt "$MAX_ARTIFACTS" ]; then
-              # Oversized repos are usually generated, mirrored, or scraped —
-              # not curated plugins. Audit cost scales with artifact count, so
-              # we skip rather than burn LLM cycles. Recorded for review in
-              # case a legitimate large repo (rare) needs an explicit override.
-              echo "  -> $ARTIFACT_COUNT artifacts — skipping (above ceiling, likely generated/mirrored)"
-              echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" '. + {artifact_count: $count, skip_reason: "above_artifact_ceiling"}' >> /tmp/oversized.jsonl
+              # Between the soft and hard ceilings. The old flat MAX=100
+              # silently dropped legitimate curated collections (e.g.
+              # microsoft/skills at 226, phuryn/pm-skills at 120) as
+              # "generated/mirrored". Separate curated from scraped by density:
+              # a curated repo is mostly NL artifacts; a scrape buries a few
+              # skills in a large tree.
+              if [ "$TOTAL_FILES" -gt 0 ]; then
+                DENSITY=$(( ARTIFACT_COUNT * 100 / TOTAL_FILES ))
+              else
+                DENSITY=0
+              fi
+              if [ "$DENSITY" -ge "$MIN_DENSITY_PCT" ]; then
+                echo "  -> $ARTIFACT_COUNT artifacts (${DENSITY}% density) — worthy (curated, over soft ceiling)"
+                echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" --argjson density "$DENSITY" '. + {artifact_count: $count, density_pct: $density, rescued_over_ceiling: true}' >> /tmp/worthy_raw.jsonl
+              else
+                echo "  -> $ARTIFACT_COUNT artifacts (${DENSITY}% density) — skipping (over soft ceiling, low density = scraped)"
+                echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" --argjson density "$DENSITY" '. + {artifact_count: $count, density_pct: $density, skip_reason: "low_density_over_ceiling"}' >> /tmp/oversized.jsonl
+              fi
             else
               echo "  -> $ARTIFACT_COUNT artifacts — worthy"
               echo "$repo" | jq --argjson count "$ARTIFACT_COUNT" '. + {artifact_count: $count}' >> /tmp/worthy_raw.jsonl
