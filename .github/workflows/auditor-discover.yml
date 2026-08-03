@@ -184,7 +184,27 @@ jobs:
             gh api "repos/$FULL_NAME/git/trees/HEAD?recursive=1" > /tmp/tree.json 2>/dev/null \
               || echo '{}' > /tmp/tree.json
 
-            ARTIFACT_COUNT=$(jq '[.tree[]?.path | select(
+            # Trust the tree before counting. A missing `.tree` means an API
+            # error or an empty (no-commit) repo — skip it (transient; the repo
+            # stays unregistered and is re-probed next run) rather than counting
+            # 0 and mislabeling it "below floor".
+            if ! jq -e 'has("tree")' /tmp/tree.json >/dev/null 2>&1; then
+              echo "  -> no tree (API error or empty repo) — skipping"
+              sleep 1
+              continue
+            fi
+            # A truncated response (>100k entries) is always a mega-repo whose
+            # partial counts can't be trusted — treat as oversized.
+            if [ "$(jq -r '.truncated // false' /tmp/tree.json 2>/dev/null)" = "true" ]; then
+              echo "  -> truncated tree (>100k entries) — skipping (mega-repo)"
+              echo "$repo" | jq '. + {skip_reason: "truncated_tree"}' >> /tmp/oversized.jsonl
+              sleep 1
+              continue
+            fi
+
+            # Count NL artifacts — blobs only, so a directory whose name matches
+            # a pattern can't inflate the count or the density denominator.
+            ARTIFACT_COUNT=$(jq '[.tree[]? | select(.type == "blob") | .path | select(
                 # Canonical Claude Code layouts
                 test("agents/.*\\.md$") or
                 test("commands/.*\\.md$") or
