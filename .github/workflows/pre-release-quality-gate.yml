@@ -4,13 +4,22 @@ name: Pre-Release Quality Gate
 # or `.codex-plugin/plugin.json` (i.e., is a release prep PR), this workflow
 # must pass before merge. Two assertions:
 #
-#   1. SCORE GATE — every NL artifact scores at least MIN_SCORE (95)
-#      against nlpm's own rubric. Combination of bin/nlpm-check
-#      (deterministic floor — manifest parsing, manifest-vs-disk diff,
-#      frontmatter required fields, hook event-name case) and the
-#      LLM-judged scorer (via claude-code-action) against the full Tier
-#      2-Claude rubric (vague quantifiers, instruction quality, output
-#      format, scope notes, etc.).
+#   1. SCORE GATE — the NL artifacts CHANGED IN THIS PR score at least
+#      MIN_SCORE (95) against nlpm's own rubric. Combination of
+#      bin/nlpm-check (deterministic floor — manifest parsing,
+#      manifest-vs-disk diff, frontmatter required fields, hook event-name
+#      case; runs on the whole repo) and the LLM-judged scorer (via
+#      claude-code-action) against the full Tier 2-Claude rubric (vague
+#      quantifiers, instruction quality, output format, scope notes, etc.).
+#
+#      The LLM scorer runs on ONLY the NL artifacts the PR changed, not the
+#      whole corpus. Because that scorer is non-deterministic (see below),
+#      scoring unchanged pre-existing artifacts blocked releases on pure
+#      noise — a version-bump-only PR was judged on 40+ files it never
+#      touched, and different borderline files dipped under 95 each run.
+#      Deterministic checks (bin/nlpm-check, the vocab gate) stay whole-repo;
+#      only the noisy LLM score is scoped to the diff. A manual
+#      workflow_dispatch scores everything (a deliberate full sweep).
 #
 #      Why >= 95 and not == 100: the LLM scorer is non-deterministic —
 #      back-to-back runs on the identical corpus flag near-disjoint sets
@@ -133,8 +142,37 @@ jobs:
           fi
           echo "::notice::Vocab gate: clean (deterministic, registry-enforced pairs)."
 
-      - name: LLM-judged score + vocab drift
+      - name: Select artifacts to score
         if: steps.detect.outputs.release == 'true'
+        id: select
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Score ONLY the NL artifacts this PR changed. The LLM scorer is
+        # non-deterministic across the whole corpus (see header), so scoring
+        # unchanged pre-existing artifacts blocked releases on noise — a
+        # version-bump-only PR would be judged on 40+ untouched files. The
+        # deterministic floor + vocab gate above stay whole-repo. A manual
+        # workflow_dispatch scores everything (deliberate full sweep).
+        run: |
+          NL_PATTERN='^(commands/[^/]+\.md|commands/shared/[^/]+\.md|agents/[^/]+\.md|skills/nlpm/[^/]+/SKILL\.md|AGENTS\.md|CLAUDE\.md|GEMINI\.md)$'
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git ls-files | grep -E "$NL_PATTERN" > /tmp/artifacts_to_score.txt || true
+          else
+            gh pr diff "${{ github.event.pull_request.number }}" \
+                 --repo "$GITHUB_REPOSITORY" --name-only \
+              | grep -E "$NL_PATTERN" > /tmp/artifacts_to_score.txt || true
+          fi
+          COUNT=$(wc -l < /tmp/artifacts_to_score.txt | tr -d ' ')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" = "0" ]; then
+            echo "::notice::No NL artifacts changed in this PR — LLM score gate skipped (deterministic floor + vocab gate still enforced)."
+          else
+            echo "::notice::Scoring $COUNT changed NL artifact(s):"
+            cat /tmp/artifacts_to_score.txt
+          fi
+
+      - name: LLM-judged score + vocab drift
+        if: steps.detect.outputs.release == 'true' && steps.select.outputs.count != '0'
         id: llm_gate
         uses: anthropics/claude-code-action@v1
         env:
@@ -171,16 +209,18 @@ jobs:
             authors the rubric and intentionally adopts patterns the
             rubric documents as not-bugs).
 
-            Targets — score all of:
-              - commands/*.md
-              - commands/shared/*.md  (must have user-invocable: false)
-              - agents/*.md
-              - skills/nlpm/*/SKILL.md  (Claude-side; skip codex/skills/
-                mirrors — auto-generated from these)
-              - AGENTS.md  (canonical universal memory file)
-              - CLAUDE.md + GEMINI.md  (one-line @AGENTS.md imports —
+            Targets — score ONLY the files listed in
+            /tmp/artifacts_to_score.txt. Read that file FIRST; it holds one
+            repo-relative path per line — the NL artifacts this PR changed.
+            Score every listed file and NO others (do not score the whole
+            corpus). Notes on the kinds you may see:
+              - commands/shared/*.md must have user-invocable: false
+              - skills/nlpm/*/SKILL.md are Claude-side (codex/skills/
+                mirrors are auto-generated and never appear in this list)
+              - AGENTS.md is the canonical universal memory file
+              - CLAUDE.md / GEMINI.md are one-line @AGENTS.md imports —
                 do NOT flag as missing build/test commands; content is
-                in AGENTS.md)
+                in AGENTS.md
 
             Write per-file scores to /tmp/scores.tsv with this exact
             format (tab-separated, header row, ONE line per file, score
@@ -228,7 +268,9 @@ jobs:
           MIN_SCORE=95
 
           # --- Score gate ---
-          if [ ! -f /tmp/scores.tsv ]; then
+          if [ "${{ steps.select.outputs.count }}" = "0" ]; then
+            echo "::notice::Score gate: this PR changed no NL artifacts — nothing to score. (bin/nlpm-check + the deterministic vocab gate above still ran on the whole repo.)"
+          elif [ ! -f /tmp/scores.tsv ]; then
             echo "::error::Score gate produced no /tmp/scores.tsv — LLM step may have errored. Check the previous step's logs."
             FAILED=1
           else
