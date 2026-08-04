@@ -135,7 +135,7 @@ Summary
   Most-drifted concept: {if one cluster has notably higher freq than others}
   Files with the most drift: {top 3 files by distinct drift terms appearing inside}
   Suggested next step: {one of:
-     - "Bootstrap a vocabulary skill via /nlpm:vocab-init" (if no registry exists)
+     - "Create a vocabulary skill via /nlpm:vocab-init" (if no registry exists)
      - "Add the high-confidence pairs to registry.yaml" (if a registry exists)
      - "Distinctions look intentional; corpus vocabulary is healthy" (if K is low)
   }

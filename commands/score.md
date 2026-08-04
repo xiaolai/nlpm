@@ -30,7 +30,7 @@ If `--changed` is present: run `git diff --name-only HEAD` to get changed files,
 
 ### Step 3: Discover Artifacts
 
-If path is a directory: use `commands/shared/discover.md` to find all NL artifacts.
+If path is a directory: use `commands/shared/discover.md` to discover all NL artifacts.
 If path is a file: use `commands/shared/classify.md` to determine its type.
 
 If no artifacts found → "No NL programming artifacts found."

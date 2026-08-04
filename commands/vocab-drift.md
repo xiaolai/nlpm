@@ -54,7 +54,7 @@ If multiple batches ran, merge findings:
 Print the scanner's output verbatim. Then append a single line:
 
 ```
-Run /nlpm:vocab-init to bootstrap a vocabulary skill, or edit your existing registry.yaml to incorporate the high-confidence pairs.
+Run /nlpm:vocab-init to create a vocabulary skill, or edit your existing registry.yaml to incorporate the high-confidence pairs.
 ```
 
 ## Error Handling
