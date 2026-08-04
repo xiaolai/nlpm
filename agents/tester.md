@@ -14,7 +14,7 @@ description: |
   </example>
 model: sonnet
 color: blue
-tools: Read, Glob, Grep
+tools: Read, Grep
 skills:
   - nlpm:testing
   - nlpm:conventions

@@ -1,6 +1,6 @@
 ---
 name: spec-sync
-description: "Sync nlpm's convention overlays with the latest official Claude Code / Codex / Antigravity specs — research upstream docs, diff, apply corrections, propagate, verify"
+description: "Sync nlpm's convention overlays with the latest official Claude Code / Codex / Antigravity specs — research upstream docs, diff, apply corrections, propagate, check"
 argument-hint: "[claude|codex|antigravity|all]"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Task
 ---
@@ -65,7 +65,7 @@ grep -rnF -- "<old-value>" agents/ commands/ skills/ hooks/ scripts/
 
 Exclude the overlay's intentional corrective text from the hits. For each real hit in a working artifact, fix it to a valid current value (or flag it if the right replacement needs a human call). Report these as "self-consistency fixes" — this is the step that catches nlpm contradicting its own refreshed spec.
 
-### Step 6: Verify
+### Step 6: Check
 
 1. Run `python3 bin/nlpm-check <repo-root>` — must report clean.
 2. For each removed/renamed term, grep to confirm no stale occurrence survives outside intentional corrective notes.

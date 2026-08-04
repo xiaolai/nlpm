@@ -173,7 +173,7 @@ categories. Before reporting any finding, run this 5-step check:
    declares "no skills" by design. Do not report intentional design choices
    as findings.
 
-5. **Tool catalog check** — Before flagging a tool as "undocumented", verify
+5. **Tool catalog check** — Before flagging a tool as "undocumented", check it
    against `nlpm:conventions` §14. Built-ins like `AskUserQuestion`, `Task`,
    `WebFetch`, `TodoWrite` are always valid.
 

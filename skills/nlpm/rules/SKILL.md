@@ -76,7 +76,7 @@ Mention versus use: a vague term presented as a literal token that the clause ex
 **R09. `<example>` blocks are mandatory.** Minimum 2. Each: Context (what user is doing) + user message + assistant response. Without them, triggering is unreliable.
 
 Bad: `<example>\nContext: User needs help\nuser: "help me"\nassistant: "I'll help."\n</example>`
-Good: `<example>\nContext: Developer refactoring auth module before PR\nuser: "Check if the auth changes have any security issues before I merge"\nassistant: "I'll dispatch the security-reviewer to audit the auth changes for vulnerabilities."\n</example>`
+Good: `<example>\nContext: Developer refactoring auth module before PR\nuser: "Check if the auth changes have any security vulnerabilities before I merge"\nassistant: "I'll dispatch the security-reviewer to audit the auth changes for vulnerabilities."\n</example>`
 
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [data-goblin-power-bi-agentic-development](../../../auditor/exemplars/data-goblin-power-bi-agentic-development.md), [matt1398-claude-devtools](../../../auditor/exemplars/matt1398-claude-devtools.md), [nicknisi-claude-plugins](../../../auditor/exemplars/nicknisi-claude-plugins.md), [ooiyeefei-ccc](../../../auditor/exemplars/ooiyeefei-ccc.md), [xiaolai-codex-toolkit-for-claude](../../../auditor/exemplars/xiaolai-codex-toolkit-for-claude.md), [xiaolai-grill-for-claude](../../../auditor/exemplars/xiaolai-grill-for-claude.md)

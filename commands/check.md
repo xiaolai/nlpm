@@ -15,7 +15,7 @@ $ARGUMENTS
 
 ### Step 1: Discover ALL Artifacts
 
-Parse `$ARGUMENTS` for path (default: cwd). Use `commands/shared/discover.md` to find all Category A+B artifacts. Read every file.
+Parse `$ARGUMENTS` for path (default: cwd). Use `commands/shared/discover.md` to discover all Category A+B artifacts. Read every file.
 
 If no artifacts found → "No NL programming artifacts found."
 
@@ -26,10 +26,10 @@ If fewer than 2 artifacts → "Cross-artifact check requires multiple artifacts.
 Dispatch the `nlpm:checker` agent with ALL artifacts and the instruction to perform cross-artifact checks:
 
 1. **Reference integrity**
-   - Commands reference shared partials by path (`commands/shared/name.md`) → verify file exists
-   - Agents reference skills in frontmatter (`skills: [plugin:skill]`) → verify skill SKILL.md exists
-   - Hooks reference scripts (`${CLAUDE_PLUGIN_ROOT}/scripts/name.sh`) → verify script exists
-   - Any `Follow commands/shared/...` or `See commands/shared/...` in body → verify path
+   - Commands reference shared partials by path (`commands/shared/name.md`) → check file exists
+   - Agents reference skills in frontmatter (`skills: [plugin:skill]`) → check skill SKILL.md exists
+   - Hooks reference scripts (`${CLAUDE_PLUGIN_ROOT}/scripts/name.sh`) → check script exists
+   - Any `Follow commands/shared/...` or `See commands/shared/...` in body → check path
 
 2. **Orphaned artifacts**
    - Shared partials not referenced by any command → orphan

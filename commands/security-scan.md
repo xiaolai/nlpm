@@ -15,7 +15,7 @@ Scan a plugin or skill repo for security risks before auditing or contributing.
 If arguments provided: use as target directory path.
 If no arguments: use the current working directory.
 
-Verify the target exists and contains at least one of:
+Check the target exists and contains at least one of:
 - `.claude-plugin/`
 - `agents/`
 - `commands/`

@@ -4,7 +4,7 @@ description: |
   Discover and classify all NL programming artifacts in a repository.
   <example>
   Context: User wants to inventory their NL artifacts
-  user: "/nlpm:scan"
+  user: "/nlpm:ls"
   assistant: "I'll use the scanner to discover all NL artifacts."
   </example>
   <example>
@@ -25,7 +25,7 @@ Discover all natural language programming artifacts in the given directory.
 
 ## Instructions
 
-1. Use the discovery patterns from `commands/shared/discover.md` to find all files in Category A (plugin artifacts) and Category B (project config).
+1. Use the discovery patterns from `commands/shared/discover.md` to discover all files in Category A (plugin artifacts) and Category B (project config).
 2. Skip directories: node_modules/, .git/, target/, dist/, build/, vendor/, __pycache__/, .next/, .venv/
 3. For each found file:
    a. Classify its type using the rules from `commands/shared/classify.md`

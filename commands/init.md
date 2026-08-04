@@ -1,6 +1,6 @@
 ---
 name: init
-description: "Initialize NLPM for this project — detect artifacts, set strictness, capture baseline trend snapshot"
+description: "Prepare NLPM for this project — detect artifacts, set strictness, capture baseline trend snapshot"
 allowed-tools: Read, Write, Glob, Bash, AskUserQuestion, Task
 ---
 

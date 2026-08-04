@@ -9,12 +9,12 @@ description: |
   assistant: "I'll dispatch the checker for cross-artifact consistency."
   </example>
   <example>
-  Context: Developer renamed a skill directory and wants to verify no broken references
+  Context: Developer renamed a skill directory and wants to check for broken references
   assistant: "I'll dispatch the checker to find any broken skill references across agents and commands."
   </example>
 model: sonnet
 color: cyan
-tools: Read, Glob, Grep
+tools: Read, Grep
 skills:
   - nlpm:conventions
   - nlpm:conventions-claude
@@ -32,11 +32,11 @@ Check cross-artifact consistency across NL programming artifacts. Find broken re
 You will receive a list of all artifacts in a plugin or project. Read every file, then run these checks:
 
 1. **Reference integrity**
-   - Commands referencing shared partials by path (`commands/shared/name.md`) -- verify file exists
-   - Agents referencing skills in frontmatter (`skills: [plugin:skill]`) -- verify skill SKILL.md exists at the expected path
-   - Hooks referencing scripts (`${CLAUDE_PLUGIN_ROOT}/scripts/name.sh`) -- verify script exists
-   - Body text referencing shared partials (`Follow commands/shared/...`, `See commands/shared/...`) -- verify path
-   - CLAUDE.md listing files or directories -- verify they exist
+   - Commands referencing shared partials by path (`commands/shared/name.md`) -- check file exists
+   - Agents referencing skills in frontmatter (`skills: [plugin:skill]`) -- check skill SKILL.md exists at the expected path
+   - Hooks referencing scripts (`${CLAUDE_PLUGIN_ROOT}/scripts/name.sh`) -- check script exists
+   - Body text referencing shared partials (`Follow commands/shared/...`, `See commands/shared/...`) -- check path
+   - CLAUDE.md listing files or directories -- check they exist
 
 2. **Orphaned artifacts**
    - Shared partials not referenced by any command body -- orphan

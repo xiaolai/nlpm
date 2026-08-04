@@ -13,7 +13,7 @@ description: |
   </example>
 model: haiku
 color: green
-tools: Read, Grep
+tools: Grep
 ---
 
 ## Mission

@@ -64,7 +64,7 @@ Always skip these directories during traversal:
 ## Instructions
 
 1. Receive: `directory` (absolute path), `category` ("A", "B", "F", or "both")
-2. Use Glob to find files matching each pattern within the directory
+2. Use Glob to discover files matching each pattern within the directory
 3. Filter out any results that fall inside skip directories
 4. For each found file, use Read to count lines
 5. Return a structured list with entries: `{ path, category, pattern_matched, line_count }`

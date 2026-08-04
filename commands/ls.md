@@ -1,6 +1,6 @@
 ---
 name: ls
-description: "Discover and inventory all natural language programming artifacts in a repository"
+description: "Discover all natural language programming artifacts in a repository"
 argument-hint: "[repo-path]"
 allowed-tools: Read, Glob, Grep, Task
 ---
@@ -24,8 +24,8 @@ $ARGUMENTS
 
 ### Step 2: Discover Artifacts
 
-Dispatch the `nlpm:scanner` agent with the target directory. The scanner follows the discovery patterns from `commands/shared/discover.md` to find all Category A (plugin) and Category B (project config) artifacts.
+Dispatch the `nlpm:scanner` agent with the target directory. The scanner follows the discovery patterns from `commands/shared/discover.md` to discover all Category A (plugin) and Category B (project config) artifacts.
 
 ### Step 3: Display Report
 
-Show the scanner's inventory report. If no artifacts found: "No NL programming artifacts found in {path}."
+Print the scanner's report verbatim, using the exact structure defined in `agents/scanner.md` (Output Format): the Category A (plugin) and Category B (project config) tables listing each artifact's path, line count, and token count, followed by the Total line. If no artifacts found: "No NL programming artifacts found in {path}."

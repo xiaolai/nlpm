@@ -1,6 +1,6 @@
 ---
 name: vocab-init
-description: "Bootstrap a vocabulary skill for the target project — detect layout, extract literary warrant from the corpus, seed canonical noun/verb tables, write the opt-in stub. Use to start adopting R51 vocabulary discipline in any Claude Code plugin or NL-artifact-heavy repo."
+description: "Create a vocabulary skill for the target project — detect layout, extract literary warrant from the corpus, seed canonical noun/verb tables, write the opt-in stub. Use to start adopting R51 vocabulary discipline in any Claude Code plugin or NL-artifact-heavy repo."
 argument-hint: "[path]"
 allowed-tools: Read, Write, Glob, Grep, Bash
 ---

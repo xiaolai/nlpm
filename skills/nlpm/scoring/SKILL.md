@@ -411,10 +411,10 @@ Applied when linting an entire plugin rather than individual files.
 
 | Range | Label | Meaning |
 |-------|-------|---------|
-| 90–100 | Excellent | Production-ready; minor or no issues |
+| 90–100 | Excellent | Production-ready; minor or no findings |
 | 80–89 | Good | Solid; one or two non-critical gaps |
 | 70–79 | Adequate | Meets threshold; noticeable gaps to address |
-| 60–69 | Weak | Below threshold; significant issues |
+| 60–69 | Weak | Below threshold; significant findings |
 | <60 | Rewrite | Fundamental problems; recommend rewriting from scratch |
 
 **Default pass threshold:** 70. Configurable in `.claude/nlpm.local.md`.
