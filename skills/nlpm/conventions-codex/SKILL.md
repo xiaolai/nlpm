@@ -92,7 +92,7 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 ```
 
 **Required field:** `name` (kebab-case) — and only when a `plugin.json` is present at all. **All other top-level fields are optional**, including `version`, `description`, `author`, and `interface` (corrected 2026-08-02 against the vendor's `plugin-json-spec.md`; the earlier "version + description required" claim was wrong).
-**Optional artifact paths — each a single relative-path STRING, not an array** (corrected 2026-08-04 against the vendor `plugin-json-spec.md`): `skills` (string), `hooks` (string), `apps` (string), `mcpServers` (string **or** object). A bare directory string like `"skills": "./skills/"` is the documented sample form; these paths are *supplemented on top of* default component discovery, not a replacement for it. Do NOT flag a scalar-string `skills`/`hooks`/`apps`/`mcpServers` as wrong — the array form the v0.3.0 overlay showed was incorrect.
+**Optional artifact paths — each a single relative-path STRING, not an array** (corrected 2026-08-04 against the vendor `plugin-json-spec.md`): `skills` (string), `hooks` (string), `apps` (string), `mcpServers` (string **or** object). A bare directory string like `"skills": "./skills/"` is the documented sample form; these paths *supplement* Codex's default discovery, they do not replace it. Do NOT flag a scalar-string `skills`/`hooks`/`apps`/`mcpServers` as wrong — the array form the v0.3.0 overlay showed was incorrect.
 **Optional identity fields (added 2026-06):** `author` (`{name, email, url}`), `homepage`, `repository`, `license`, `keywords`.
 **Optional UI block** `interface`:
 - `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`, `capabilities`
