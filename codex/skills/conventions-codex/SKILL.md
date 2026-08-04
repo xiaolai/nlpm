@@ -1,7 +1,7 @@
 ---
 name: conventions-codex
 description: Use when scoring or writing Codex CLI artifacts — covers .codex/config.toml schema, .codex-plugin/plugin.json, .agents/skills/ layout, Codex hook events, AGENTS.md hierarchy, marketplace.json, and the agents/openai.yaml sidecar. Refreshed 2026-08-02 against Codex 0.146.0 (2026-07-29).
-version: 0.3.0
+version: 0.3.1
 ---
 
 # Codex CLI Conventions
@@ -80,10 +80,10 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
   "name": "my-codex-plugin",
   "version": "1.0.0",
   "description": "Short summary",
-  "skills": ["./skills/foo"],
-  "mcpServers": ["./mcp/bar.toml"],
-  "apps": ["./apps/baz.app.json"],
-  "hooks": ["./hooks.json"],
+  "skills": "./skills/",
+  "mcpServers": "./mcp/servers.json",
+  "apps": "./apps/",
+  "hooks": "./hooks.json",
   "interface": {
     "displayName": "My Plugin",
     "longDescription": "Detailed description for installer UI"
@@ -92,7 +92,7 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 ```
 
 **Required field:** `name` (kebab-case) — and only when a `plugin.json` is present at all. **All other top-level fields are optional**, including `version`, `description`, `author`, and `interface` (corrected 2026-08-02 against the vendor's `plugin-json-spec.md`; the earlier "version + description required" claim was wrong).
-**Optional artifact paths** (all relative `./` paths only): `skills`, `mcpServers`, `apps`, `hooks`.
+**Optional artifact paths — each a single relative-path STRING, not an array** (corrected 2026-08-04 against the vendor `plugin-json-spec.md`): `skills` (string), `hooks` (string), `apps` (string), `mcpServers` (string **or** object). A bare directory string like `"skills": "./skills/"` is the documented sample form; do NOT flag a scalar-string `skills`/`hooks`/`apps`/`mcpServers` as wrong.
 **Optional identity fields (added 2026-06):** `author` (`{name, email, url}`), `homepage`, `repository`, `license`, `keywords`.
 **Optional UI block** `interface`:
 - `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`, `capabilities`
@@ -126,8 +126,8 @@ Schema:
         "repo": "xiaolai/nlpm"
       },
       "policy": {
-        "installation": "auto",
-        "authentication": "none"
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
       },
       "category": "developer-tools",
       "interface": {
@@ -139,6 +139,8 @@ Schema:
 ```
 
 Per-plugin `source` types: `"github"`, `"git"`, `"local"`.
+
+**`policy` values are UPPERCASE enums** (corrected 2026-08-04 against nlpm's own shipping `.agents/plugins/marketplace.json`): `installation` e.g. `"AVAILABLE"`; `authentication` e.g. `"ON_USE"` or `"ON_INSTALL"`. The lowercase `"auto"`/`"none"` shown earlier was wrong — do NOT flag `AVAILABLE`/`ON_USE`/`ON_INSTALL` as invalid.
 
 ---
 
