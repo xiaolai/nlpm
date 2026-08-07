@@ -213,6 +213,16 @@ jobs:
                 test("\\.claude/commands/.*\\.md$") or
                 test("\\.claude/agents/.*\\.md$") or
                 test("\\.claude/skills/.*/SKILL\\.md$") or
+                # Repo-root SKILL.md — the canonical single-skill layout in
+                # the open Agent Skills spec (the repo IS the skill dir).
+                # None of the patterns above anchor at the root: the
+                # `^[^/]+/SKILL\.md$` case below needs one leading
+                # directory, and the `skills/`-prefixed cases need that
+                # literal segment. Found 2026-08-07 auditing
+                # Vincentwei1021/video-shotcraft (3.7k stars, 660 files) —
+                # it probed at 1 artifact (`.claude-plugin/plugin.json`
+                # alone) and was invisible to discovery.
+                test("^SKILL\\.md$") or
                 # Multi-tool agent spec (becoming a standard for
                 # cross-assistant skill repos)
                 test("^AGENTS\\.md$") or
