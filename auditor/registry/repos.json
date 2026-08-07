@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-08-05T02:07:37Z",
+    "last_discovery": "2026-08-07T04:33:32Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 272
+    "total_discovered": 273
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9770,6 +9770,17 @@
       "score": null,
       "audit_issue": 762,
       "prs": []
+    },
+    "Vincentwei1021/video-shotcraft": {
+      "discovered": "2026-08-07T04:33:32Z",
+      "stars": 3749,
+      "artifacts": 116,
+      "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 106 shot recipe cards, 161 motion previews, a production-ready template",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 789,
+      "prs": [],
+      "discovery_strategy": "manual-seed"
     }
   }
 }
