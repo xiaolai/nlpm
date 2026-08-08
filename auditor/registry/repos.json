@@ -9746,10 +9746,13 @@
       "stars": 705,
       "artifacts": 203,
       "description": "Open-source AI marketing plugin for agencies & in-house teams — 158 skills, 25 specialist agents, 12-Part Strategy Flow, Cowork team-persistent, EU AI Act Article 50 ready, 6-platform AEO/GEO incl. Google AI Mode. Installs on Claude Code, Cowork, Codex, Cursor, Copilot CLI, Antigravity. MIT-licensed.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 91,
       "audit_issue": 760,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "e39f3940519ddb4103c197ccf7ec4951d5e8a8b9"
     },
     "microsoft/skills": {
       "discovered": "2026-08-05T02:07:37Z",
