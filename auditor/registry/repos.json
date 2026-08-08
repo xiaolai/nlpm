@@ -9726,10 +9726,13 @@
       "stars": 45129,
       "artifacts": 627,
       "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 758,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "4eab34c5cfcccaa4f1970554928feccce73ee930"
     },
     "hoangsonww/Claude-Code-Agent-Monitor": {
       "discovered": "2026-08-05T02:07:37Z",
