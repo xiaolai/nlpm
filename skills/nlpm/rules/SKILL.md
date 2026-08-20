@@ -118,6 +118,8 @@ Good: `<example>\nContext: Developer refactoring auth module before PR\nuser: "C
 
 **R15. Handle empty input.** What happens when `$ARGUMENTS` is blank? Default behavior or clear error.
 
+*Does not apply to:* commands whose body is a single unconditional message with no branching on `$ARGUMENTS`. If the command performs the same action regardless of input, there is no empty-input case to guard against.
+
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [BayramAnnakov-claude-reflect](../../../auditor/exemplars/BayramAnnakov-claude-reflect.md), [SukinShetty-Nemp-memory](../../../auditor/exemplars/SukinShetty-Nemp-memory.md), [agenticnotetaking-arscontexta](../../../auditor/exemplars/agenticnotetaking-arscontexta.md), [karpathy-autoresearch](../../../auditor/exemplars/karpathy-autoresearch.md), [taishi-i-awesome-japanese-nlp-resources](../../../auditor/exemplars/taishi-i-awesome-japanese-nlp-resources.md), [uppinote20-claude-dashboard](../../../auditor/exemplars/uppinote20-claude-dashboard.md)
 <!-- nlpm-exemplar-citation:end -->
