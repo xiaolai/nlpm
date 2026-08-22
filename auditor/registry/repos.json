@@ -9762,10 +9762,13 @@
       "stars": 2861,
       "artifacts": 226,
       "description": "Skills, MCP servers, Custom Agents, Agents.md for SDKs to ground Coding Agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 761,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "1f28ae4c5e5edc2cbe10b3756a20524fc92cee07"
     },
     "phuryn/pm-skills": {
       "discovered": "2026-08-05T02:07:37Z",
