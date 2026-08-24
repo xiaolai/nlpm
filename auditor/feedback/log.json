@@ -359,7 +359,7 @@
     "BUG-undeclared-tool": {
       "total_hits": 69,
       "led_to_merged_pr": 1,
-      "led_to_rejected_pr": 2,
+      "led_to_rejected_pr": 6,
       "self_false_positive": 0,
       "maintainer_rejected": 2,
       "downstream_suppressions": 0,
@@ -5603,8 +5603,8 @@
     "total_audits": 10,
     "total_prs_submitted": 322,
     "total_prs_merged": 124,
-    "total_prs_rejected": 70,
-    "total_prs_applied_separately": 30,
-    "updated_at": "2026-08-23T22:03:05.095999Z"
+    "total_prs_rejected": 71,
+    "total_prs_applied_separately": 32,
+    "updated_at": "2026-08-24T22:05:12.622692Z"
   }
 }
