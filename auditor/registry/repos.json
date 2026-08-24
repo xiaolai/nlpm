@@ -5956,8 +5956,10 @@
       "score": 86,
       "security": "REVIEW",
       "stars": 303,
-      "status": "contributed",
-      "strategy": "progressive"
+      "status": "complete",
+      "strategy": "progressive",
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=86, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "lackeyjb/playwright-skill": {
       "artifacts": null,
