@@ -5888,13 +5888,13 @@
       "prs": [
         {
           "number": 44,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-08-24T04:14:06Z",
           "title": "Fix broken data/research/ reference in orchestrator boot sequence",
-          "updatedAt": "2026-07-07T14:31:17Z",
+          "updatedAt": "2026-08-24T04:14:06Z",
           "createdAt": "2026-07-07T14:31:11Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:4eb3a981c6adc87d90c5ffd706f0b40b00493b4b03055ace7719613c861a4732",
             "sha256:6faf829b7f52bcde4fa749a08b31616a57e47c1989801524f66efeb07a15dbab",
@@ -5909,13 +5909,13 @@
         },
         {
           "number": 45,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-08-24T04:14:03Z",
           "title": "Fix broken data/research/ reference in kr-writer agent + skill",
-          "updatedAt": "2026-07-07T14:32:31Z",
+          "updatedAt": "2026-08-24T04:14:03Z",
           "createdAt": "2026-07-07T14:32:27Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [
             "sha256:1001def0fbbd7dcda363cf792b658d94aa45c1addb0dfd24064b05b9ce4400d0",
             "sha256:aadd68df05c5e27ee4a3744478e110765cbe7d4a870b23a86b8dc1bdd7813c65",
@@ -5930,13 +5930,13 @@
         },
         {
           "number": 46,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-08-24T04:14:01Z",
           "title": "Declare Write tool on omd-final-qa and omd-designer-review agents",
-          "updatedAt": "2026-07-07T14:33:28Z",
+          "updatedAt": "2026-08-24T04:14:01Z",
           "createdAt": "2026-07-07T14:33:24Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:30e61f19802404df36c908133f99db6e6f4945f72a87caaa9bf5d2d0d372dc8e",
             "sha256:594a42b1e3fbc543739f9d26593d6bfc61fe814bcfb231037650a3e000513770",
