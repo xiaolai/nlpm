@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-23T22:37:10Z",
+  "generated_at": "2026-08-24T22:39:50Z",
   "since": null,
   "summary": {
-    "total_repos": 291,
+    "total_repos": 293,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -13,7 +13,7 @@
   "repo_rows": [
     {
       "repo": "kwakseongjae/oh-my-design",
-      "status": "contributed",
+      "status": "complete",
       "stars": 303,
       "score": 86,
       "security": "REVIEW",
@@ -2700,6 +2700,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "ayghri/i-have-adhd",
+      "status": "discovered",
+      "stars": 23537,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "calesthio/OpenMontage",
       "status": "discovered",
       "stars": 45129,
@@ -2801,6 +2813,18 @@
       "stars": null,
       "score": 93,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "danny-avila/LibreChat",
+      "status": "discovered",
+      "stars": 42381,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -5607,6 +5631,17 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-08-24",
+      "counts": {
+        "status_check": 5,
+        "no_narrative": 1,
+        "search_complete": 1,
+        "finding_outcome": 4,
         "report_generated": 1
       }
     }
