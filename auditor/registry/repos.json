@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-08-17T06:09:36Z",
+    "last_discovery": "2026-08-24T06:12:16Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 275
+    "total_discovered": 277
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9858,6 +9858,26 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 905,
+      "prs": []
+    },
+    "ayghri/i-have-adhd": {
+      "discovered": "2026-08-24T06:12:16Z",
+      "stars": 23537,
+      "artifacts": 5,
+      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 967,
+      "prs": []
+    },
+    "danny-avila/LibreChat": {
+      "discovered": "2026-08-24T06:12:16Z",
+      "stars": 42381,
+      "artifacts": 5,
+      "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 968,
       "prs": []
     }
   }
