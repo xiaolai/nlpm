@@ -5462,7 +5462,7 @@
           "stale_90d_emitted": false
         }
       ],
-      "rule_adopted": true,
+      "rule_adopted": false,
       "score": 73,
       "security": "REVIEW",
       "stars": 1917,
