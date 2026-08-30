@@ -1,7 +1,8 @@
 ---
 name: rules
 description: The 50 rules of natural language programming. Loaded when writing, reviewing, or improving any NL artifact — skills, agents, commands, rules, hooks, prompts, plugins, and the project memory file (CLAUDE.md / AGENTS.md / GEMINI.md). The definitive style guide for NL code quality.
-version: 0.2.0
+metadata:
+  version: 0.2.0
 ---
 
 # The Rules of Natural Language Programming

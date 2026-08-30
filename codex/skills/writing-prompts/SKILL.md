@@ -1,7 +1,8 @@
 ---
 name: writing-prompts
 description: How to write effective system prompts for any LLM. Universal prompt engineering -- role clarity, structured output, injection resistance, few-shot examples. Use when writing prompts, system instructions, or AI configuration.
-version: 0.1.0
+metadata:
+  version: 0.1.0
 ---
 
 # Writing Prompts

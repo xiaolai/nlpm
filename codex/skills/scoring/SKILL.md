@@ -1,7 +1,8 @@
 ---
 name: scoring
 description: Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type. Four worked calibration examples (Excellent Agent / Rewrite Agent / Excellent Rule / Weak Rule) live in `references/calibration-examples.md`, loaded on demand when anchoring borderline cases.
-version: 0.3.1
+metadata:
+  version: 0.3.1
 ---
 
 # NLPM Quality Scoring Rubric
