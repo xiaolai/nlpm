@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-30T22:32:05Z",
+  "generated_at": "2026-08-31T22:32:08Z",
   "since": null,
   "summary": {
-    "total_repos": 293,
+    "total_repos": 294,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -2573,6 +2573,18 @@
       "stars": 776,
       "score": 92,
       "security": "BLOCKED",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "TencentCloud/TencentDB-Agent-Memory",
+      "status": "discovered",
+      "stars": 25310,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -5690,6 +5702,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-08-31",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
