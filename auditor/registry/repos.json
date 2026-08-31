@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-08-24T06:12:16Z",
+    "last_discovery": "2026-08-31T06:11:05Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 277
+    "total_discovered": 278
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9878,6 +9878,16 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 968,
+      "prs": []
+    },
+    "TencentCloud/TencentDB-Agent-Memory": {
+      "discovered": "2026-08-31T06:11:05Z",
+      "stars": 25310,
+      "artifacts": 18,
+      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1026,
       "prs": []
     }
   }
