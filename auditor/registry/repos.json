@@ -8614,13 +8614,13 @@
         },
         {
           "number": 105,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-09-01T17:30:49Z",
           "title": "fix(security): pin production dependency versions to lock-file values",
-          "updatedAt": "2026-05-26T09:15:17Z",
+          "updatedAt": "2026-09-01T17:30:50Z",
           "createdAt": "2026-04-20T12:37:03Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": true
