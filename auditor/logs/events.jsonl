@@ -4134,6 +4134,8 @@
 {"timestamp":"2026-09-02T08:30:49Z","workflow":"track","event":"status_check","run_id":"33608077127","run_number":821,"data":{"contributed":51,"tracked":40,"case_study_ready":43,"rule_adopted":1}}
 {"timestamp":"2026-09-02T12:31:28Z","workflow":"track","event":"status_check","run_id":"33629486802","run_number":822,"data":{"contributed":51,"tracked":40,"case_study_ready":43,"rule_adopted":1}}
 {"timestamp":"2026-09-02T16:25:40Z","workflow":"track","event":"status_check","run_id":"33653806922","run_number":823,"data":{"contributed":51,"tracked":40,"case_study_ready":43,"rule_adopted":1}}
+{"timestamp":"2026-09-02T20:22:53Z","workflow":"track","event":"finding_outcome","run_id":"33677977483","run_number":824,"data":{"pr":"timescale/pg-aiguide#104","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-09-02T20:23:48Z","workflow":"track","event":"status_check","run_id":"33677977483","run_number":824,"data":{"contributed":50,"tracked":41,"case_study_ready":44,"rule_adopted":1}}
 {"timestamp":"2026-09-02T20:23:30Z","workflow":"case-study","event":"no_narrative","run_id":"33678935445","run_number":298,"data":{"repo":"timescale/pg-aiguide","reason":"thin narrative: score=94, security=REVIEW, merged=0, applied_separately=0, rejected=1, rule_adopted=False"}}
 {"timestamp":"2026-09-02T22:05:43Z","workflow":"daily-report","event":"report_generated","run_id":"33688601934","run_number":152,"data":{"total_repos":294}}
 {"timestamp":"2026-09-02T22:33:24Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"33690932903","run_number":108,"data":{"repos":294,"findings":5338,"advisories":22}}
