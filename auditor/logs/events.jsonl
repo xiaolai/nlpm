@@ -4137,3 +4137,5 @@
 {"timestamp":"2026-09-02T20:23:30Z","workflow":"case-study","event":"no_narrative","run_id":"33678935445","run_number":298,"data":{"repo":"timescale/pg-aiguide","reason":"thin narrative: score=94, security=REVIEW, merged=0, applied_separately=0, rejected=1, rule_adopted=False"}}
 {"timestamp":"2026-09-02T22:05:43Z","workflow":"daily-report","event":"report_generated","run_id":"33688601934","run_number":152,"data":{"total_repos":294}}
 {"timestamp":"2026-09-02T22:33:24Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"33690932903","run_number":108,"data":{"repos":294,"findings":5338,"advisories":22}}
+{"timestamp":"2026-09-03T00:47:44Z","workflow":"track","event":"finding_outcome","run_id":"33700380304","run_number":825,"data":{"pr":"timescale/pg-aiguide#104","pr_state":"closed_unmerged","fingerprints":[],"rule_ids":[]}}
+{"timestamp":"2026-09-03T00:48:35Z","workflow":"track","event":"status_check","run_id":"33700380304","run_number":825,"data":{"contributed":50,"tracked":40,"case_study_ready":43,"rule_adopted":1}}
