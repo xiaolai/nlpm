@@ -8601,13 +8601,13 @@
       "prs": [
         {
           "number": 104,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-09-02T19:22:36Z",
           "title": "fix(security): escape SQL identifiers in migrate.ts and searchDocs.ts",
-          "updatedAt": "2026-04-20T12:43:58Z",
+          "updatedAt": "2026-09-02T19:22:36Z",
           "createdAt": "2026-04-20T12:36:32Z",
-          "outcome": "open",
+          "outcome": "applied_separately",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": true
