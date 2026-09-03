@@ -5601,10 +5601,10 @@
     "last_updated": "2026-04-10",
     "total_events": 16,
     "total_audits": 10,
-    "total_prs_submitted": 322,
+    "total_prs_submitted": 321,
     "total_prs_merged": 124,
     "total_prs_rejected": 72,
-    "total_prs_applied_separately": 32,
-    "updated_at": "2026-09-02T22:05:43.891267Z"
+    "total_prs_applied_separately": 33,
+    "updated_at": "2026-09-03T22:05:42.600895Z"
   }
 }
