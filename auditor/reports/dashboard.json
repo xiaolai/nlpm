@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-06T22:31:52Z",
+  "generated_at": "2026-09-07T22:31:51Z",
   "since": null,
   "summary": {
-    "total_repos": 294,
+    "total_repos": 297,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -2436,6 +2436,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "Gentleman-Programming/gentle-ai",
+      "status": "discovered",
+      "stars": 6328,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "IvanMurzak/Unity-MCP",
       "status": "tracked",
       "stars": null,
@@ -2513,6 +2525,18 @@
       "stars": null,
       "score": 86,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Nanako0129/sepia",
+      "status": "discovered",
+      "stars": 2355,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3089,6 +3113,18 @@
       "stars": 27150,
       "score": 77,
       "security": "REVIEW",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "michaelshimeles/skills",
+      "status": "discovered",
+      "stars": 648,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -5765,6 +5801,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-09-07",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
