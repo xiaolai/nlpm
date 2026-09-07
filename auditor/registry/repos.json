@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-08-31T06:11:05Z",
+    "last_discovery": "2026-09-07T06:10:37Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 278
+    "total_discovered": 281
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9872,6 +9872,36 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1026,
+      "prs": []
+    },
+    "Gentleman-Programming/gentle-ai": {
+      "discovered": "2026-09-07T06:10:37Z",
+      "stars": 6328,
+      "artifacts": 134,
+      "description": "Gentle-AI configures the AI coding agents you already use: Claude Code, Cursor, OpenCode, Codex, Pi, and more. Choose persistent memory, Spec-Driven Development, curated skills, MCP servers, personas, and optional bounded review. Open source, no agent lock-in.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1087,
+      "prs": []
+    },
+    "Nanako0129/sepia": {
+      "discovered": "2026-09-07T06:10:37Z",
+      "stars": 2355,
+      "artifacts": 8,
+      "description": "De-AI writing skill for any Agent Skills-compatible agent (77+ via the Skills CLI), with native plugins for Claude Code, Codex, Grok Build, and Antigravity. Narrative-architecture repair for fiction, venue-matched rules for professional prose. Based on StoryScope (arXiv:2604.03136).",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1088,
+      "prs": []
+    },
+    "michaelshimeles/skills": {
+      "discovered": "2026-09-07T06:10:37Z",
+      "stars": 648,
+      "artifacts": 8,
+      "description": "Agent skills and an AGENTS.md workflow template — isolate in worktrees, build to a service layer, prove with evidence, ship with before/after proof and Greptile review loops. For Claude Code, Cursor, and Codex.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1089,
       "prs": []
     }
   }
