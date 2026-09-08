@@ -1,7 +1,8 @@
 ---
 name: conventions-claude
 description: Use when scoring or writing Claude Code artifacts — covers .claude/ paths, plugin.json schema, command + agent + skill frontmatter, CLAUDE.md, hook events, hooks.json format, settings.json, LSP, monitors, memory file conventions, and the Claude Code built-in tool catalog. Refreshed 2026-08-02 against current docs (Claude Code ≥ v2.1.218).
-version: 0.3.0
+metadata:
+  version: 0.3.0
 ---
 
 # Claude Code Conventions

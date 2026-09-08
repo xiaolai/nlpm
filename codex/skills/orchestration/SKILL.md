@@ -1,7 +1,8 @@
 ---
 name: orchestration
 description: Multi-agent workflow patterns for Claude Code -- parallel dispatch, sequential pipelines, QC gates, retry loops, shared partials. Use when designing systems with multiple agents, commands, or processing stages.
-version: 0.1.0
+metadata:
+  version: 0.1.0
 ---
 
 # Orchestration

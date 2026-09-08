@@ -1,7 +1,8 @@
 ---
 name: writing-agents
 description: How to write Claude Code agents that trigger reliably, use the right model, and produce consistent output. Use when creating, improving, or reviewing agent definitions.
-version: 0.2.0
+metadata:
+  version: 0.2.0
 ---
 
 # Writing Agents

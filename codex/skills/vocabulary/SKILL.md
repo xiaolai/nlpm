@@ -1,7 +1,8 @@
 ---
 name: vocabulary
 description: Use when writing, reviewing, or naming any NLPM artifact (command, agent, skill, rule, workflow) — pick the canonical noun or verb from this registry rather than coining a synonym. Loaded by the scorer and checker agents to detect vocabulary drift across artifacts.
-version: 0.1.0
+metadata:
+  version: 0.1.0
 ---
 
 # NLPM Domain Vocabulary
