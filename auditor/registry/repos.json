@@ -9728,10 +9728,13 @@
       "stars": 870,
       "artifacts": 131,
       "description": "🚀 A real-time monitoring dashboard for Claude Code & Codex, built with SQLite3, Node.js, Express, React, Vite, TailwindCSS, & WebSockets. It tracks sessions, agent activity, tool usage, and subagent orchestration, providing live analytics, a Kanban status board, status notifications, a cute buddy, & an interactive web UI/MacOS/Windows native app.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 72,
       "audit_issue": 759,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "10d6b2ef6304017c93b31bfa817e31caa7de1403"
     },
     "indranilbanerjee/digital-marketing-pro": {
       "discovered": "2026-08-05T02:07:37Z",
