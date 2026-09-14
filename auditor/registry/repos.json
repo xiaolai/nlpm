@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-09-07T06:10:37Z",
+    "last_discovery": "2026-09-14T06:11:05Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 281
+    "total_discovered": 285
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9902,6 +9902,46 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1089,
+      "prs": []
+    },
+    "ciembor/agent-rules-books": {
+      "discovered": "2026-09-14T06:11:05Z",
+      "stars": 2771,
+      "artifacts": 14,
+      "description": "AGENTS.md rules / skills for AI coding agents: Codex, Cursor & Claude Code. Inspired by Clean Code, Refactoring, DDD, Clean Architecture and DDIA programming books.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1151,
+      "prs": []
+    },
+    "fivetaku/gptaku_plugins": {
+      "discovered": "2026-09-14T06:11:05Z",
+      "stars": 1136,
+      "artifacts": 5,
+      "description": "A Claude Code plugin marketplace for people who want to become AI Native",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1152,
+      "prs": []
+    },
+    "plugin87/ux-ui-agent-skills": {
+      "discovered": "2026-09-14T06:11:05Z",
+      "stars": 1258,
+      "artifacts": 26,
+      "description": "Turn Claude into a senior design architect - DTCG design tokens, 50 components, WCAG 2.2 AA to AAA, 138 design systems, any-framework code, and 38 objective gates that fail the build instead of claiming success. Install as a Claude Code plugin or with npx.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1153,
+      "prs": []
+    },
+    "zenstory-ai/oh-story-claudecode": {
+      "discovered": "2026-09-14T06:11:05Z",
+      "stars": 6845,
+      "artifacts": 57,
+      "description": "Claude Code / Codex / OpenCode agent skills for writing Chinese web novels (网文): 扫榜、拆文、写作、去AI味、封面全流程，长篇短篇都支持 | 13 skills for novel writing and long-form fiction with file-based continuity tracking. MIT.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1154,
       "prs": []
     }
   }
