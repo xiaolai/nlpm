@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-13T22:32:01Z",
+  "generated_at": "2026-09-14T22:32:44Z",
   "since": null,
   "summary": {
-    "total_repos": 297,
+    "total_repos": 301,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -2808,6 +2808,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "ciembor/agent-rules-books",
+      "status": "discovered",
+      "stars": 2771,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "code-yeongyu/oh-my-openagent",
       "status": "complete",
       "stars": 51912,
@@ -2957,6 +2969,18 @@
       "stars": 663,
       "score": 86,
       "security": "BLOCKED",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "fivetaku/gptaku_plugins",
+      "status": "discovered",
+      "stars": 1136,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3231,6 +3255,18 @@
       "repo": "phuryn/pm-skills",
       "status": "discovered",
       "stars": 24853,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "plugin87/ux-ui-agent-skills",
+      "status": "discovered",
+      "stars": 1258,
       "score": null,
       "security": null,
       "total_findings": 0,
@@ -3557,6 +3593,18 @@
       "stars": 3921,
       "score": 86,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "zenstory-ai/oh-story-claudecode",
+      "status": "discovered",
+      "stars": 6845,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -5861,6 +5909,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-09-14",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
