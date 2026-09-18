@@ -1332,7 +1332,7 @@
           "outcome": "open",
           "fingerprints": [],
           "rule_ids": [],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 120,
@@ -1349,7 +1349,7 @@
           "rule_ids": [
             "SEC-unpinned-semver"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 121,
@@ -1366,7 +1366,7 @@
           "rule_ids": [
             "SEC-unpinned-semver"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
