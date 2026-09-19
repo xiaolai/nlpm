@@ -5693,7 +5693,7 @@
           "rule_ids": [
             "BUG-missing-frontmatter"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 8,
@@ -5712,7 +5712,7 @@
             "SEC-unpinned-semver",
             "SEC-unpinned-semver"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
