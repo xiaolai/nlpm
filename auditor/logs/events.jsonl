@@ -3772,6 +3772,10 @@
 {"timestamp":"2026-08-05T20:41:36Z","workflow":"track","event":"status_check","run_id":"31044548240","run_number":657,"data":{"contributed":57,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
 {"timestamp":"2026-08-05T22:22:37Z","workflow":"daily-report","event":"report_generated","run_id":"31052498739","run_number":124,"data":{"total_repos":286}}
 {"timestamp":"2026-08-05T22:46:53Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"31054020346","run_number":80,"data":{"repos":286,"findings":5306,"advisories":22}}
+{"timestamp":"2026-08-06T00:51:15Z","workflow":"audit","event":"scorer_drift_check","run_id":"31059829946","run_number":753,"data":{"repo":"phuryn/pm-skills","sidecar":"auditor/audits/phuryn-pm-skills.findings.jsonl","drifts":0,"exit_code":0,"total_findings":226,"missing_confidence":0}}
+{"timestamp":"2026-08-06T00:51:22Z","workflow":"audit","event":"findings_aggregated","run_id":"31059829946","run_number":753,"data":{"repo":"phuryn/pm-skills","findings":226,"invalid_lines":0,"self_false_positives":0}}
+{"timestamp":"2026-08-06T00:51:22Z","workflow":"audit","event":"repo_report_rendered","run_id":"31059829946","run_number":753,"data":{"repo":"phuryn/pm-skills","html":"auditor/reports/phuryn-pm-skills.html"}}
+{"timestamp":"2026-08-06T00:51:22Z","workflow":"audit","event":"audit_complete","run_id":"31059829946","run_number":753,"data":{"repo":"phuryn/pm-skills","score":92,"artifacts":120,"strategy":"progressive"}}
 {"timestamp":"2026-08-06T00:44:06Z","workflow":"track","event":"status_check","run_id":"31060176934","run_number":658,"data":{"contributed":57,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
 {"timestamp":"2026-08-06T04:36:45Z","workflow":"classify","event":"classifications_emitted","run_id":"31071686723","run_number":108,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-08-06T05:15:13Z","workflow":"track","event":"status_check","run_id":"31073130542","run_number":659,"data":{"contributed":57,"tracked":37,"case_study_ready":42,"rule_adopted":2}}
