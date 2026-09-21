@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-20T22:31:48Z",
+  "generated_at": "2026-09-21T22:34:01Z",
   "since": null,
   "summary": {
-    "total_repos": 301,
+    "total_repos": 302,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -3072,6 +3072,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "hex/claude-council",
+      "status": "discovered",
+      "stars": 780,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "hoangsonww/Claude-Code-Agent-Monitor",
       "status": "discovered",
       "stars": 870,
@@ -5971,6 +5983,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-09-21",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
