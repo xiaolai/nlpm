@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-09-14T06:11:05Z",
+    "last_discovery": "2026-09-21T06:11:26Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 285
+    "total_discovered": 286
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9960,6 +9960,16 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1154,
+      "prs": []
+    },
+    "hex/claude-council": {
+      "discovered": "2026-09-21T06:11:26Z",
+      "stars": 780,
+      "artifacts": 11,
+      "description": "Claude Code plugin that asks several AI coding agents the same question and shows their answers side by side. Gemini, OpenAI, Grok, Perplexity, Kimi and any model OpenRouter routes to over API; codex, antigravity, grok and kimi CLIs on subscription auth; ollama locally.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1215,
       "prs": []
     }
   }
