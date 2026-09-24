@@ -1,7 +1,8 @@
 ---
 name: writing-rules
 description: How to write .claude/rules/ files that Claude actually follows. Use when creating, improving, or reviewing project rules.
-version: 0.2.0
+metadata:
+  version: 0.2.0
 ---
 
 # Writing Rules

@@ -1,7 +1,8 @@
 ---
 name: writing-hooks
 description: How to write Claude Code hooks -- event selection, hook types, matcher patterns, blocking vs advisory, portable paths. Use when creating hooks for quality gates, automation, or policy enforcement.
-version: 0.2.0
+metadata:
+  version: 0.2.0
 ---
 
 # Writing Hooks
