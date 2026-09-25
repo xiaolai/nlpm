@@ -6435,7 +6435,7 @@
             "BUG-missing-frontmatter",
             "BUG-missing-frontmatter"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 7,
@@ -6452,7 +6452,7 @@
           "rule_ids": [
             "SEC-unstable-api"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
