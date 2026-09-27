@@ -193,7 +193,7 @@
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
-      "downstream_suppressions": 15,
+      "downstream_suppressions": 16,
       "verified_fixed": 0,
       "verified_persists": 0,
       "verify_rate": null,
@@ -1425,7 +1425,7 @@
     "SEC-outbound-network-call": {
       "total_hits": 1,
       "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 0,
+      "led_to_rejected_pr": 1,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
@@ -5603,8 +5603,8 @@
     "total_audits": 10,
     "total_prs_submitted": 321,
     "total_prs_merged": 124,
-    "total_prs_rejected": 73,
+    "total_prs_rejected": 74,
     "total_prs_applied_separately": 33,
-    "updated_at": "2026-09-26T22:05:11.786555Z"
+    "updated_at": "2026-09-27T22:05:19.855055Z"
   }
 }
