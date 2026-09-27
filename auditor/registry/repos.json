@@ -847,13 +847,13 @@
       "prs": [
         {
           "number": 15,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-09-27T14:10:55Z",
           "title": "fix: cache update-check result to avoid curl on every session start",
-          "updatedAt": "2026-04-30T07:04:40Z",
+          "updatedAt": "2026-09-27T14:11:09Z",
           "createdAt": "2026-04-30T07:03:19Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [
             "sha256:f36a66cb582161ec87932ad56839892f3c49cde957950226ab0daa0036546f4c"
           ],
@@ -867,7 +867,7 @@
       "score": 89,
       "security": "REVIEW",
       "stars": 336,
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "progressive"
     },
     "Imbad0202/academic-research-skills": {
