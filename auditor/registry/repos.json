@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-09-21T06:11:26Z",
+    "last_discovery": "2026-09-28T06:12:10Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 286
+    "total_discovered": 288
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -9950,6 +9950,26 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1215,
+      "prs": []
+    },
+    "LibreChat-AI/LibreChat": {
+      "discovered": "2026-09-28T06:12:10Z",
+      "stars": 45010,
+      "artifacts": 6,
+      "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1275,
+      "prs": []
+    },
+    "NanmiCoder/cc-haha": {
+      "discovered": "2026-09-28T06:12:10Z",
+      "stars": 14740,
+      "artifacts": 7,
+      "description": "Local-first cross-platform desktop workspace for Claude Code / agents: multi-agent, Git worktrees, code diffs, skill marketplace, multi-model, Computer Use, task-aware desktop pets, with WeChat, Feishu, DingTalk, Telegram, WhatsApp and H5 access.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1276,
       "prs": []
     }
   }
