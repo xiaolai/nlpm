@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-27T22:34:32Z",
+  "generated_at": "2026-09-28T22:34:36Z",
   "since": null,
   "summary": {
-    "total_repos": 302,
+    "total_repos": 304,
     "total_findings": 5338,
     "high_findings": 1811,
     "total_advisories": 22,
@@ -2520,6 +2520,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "LibreChat-AI/LibreChat",
+      "status": "discovered",
+      "stars": 45010,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "Lum1104/Understand-Anything",
       "status": "tracked",
       "stars": null,
@@ -2535,6 +2547,18 @@
       "repo": "Nanako0129/sepia",
       "status": "discovered",
       "stars": 2355,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "NanmiCoder/cc-haha",
+      "status": "discovered",
+      "stars": 14740,
       "score": null,
       "security": null,
       "total_findings": 0,
@@ -6044,6 +6068,15 @@
         "status_check": 6,
         "proposals_prepared": 1,
         "finding_outcome": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-09-28",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
