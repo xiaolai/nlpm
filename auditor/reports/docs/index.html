@@ -12,7 +12,7 @@
       <h1>NLPM Framework Reference</h1>
       <p class="proj">All rules, principles, and vocabulary concepts linked from reports.
         <span class="muted">·</span>
-        <span class="muted">2026-09-28T22:34:36Z</span>
+        <span class="muted">2026-09-29T22:35:42Z</span>
       </p>
     </div>
     <div class="hdr-right">
@@ -278,7 +278,7 @@
 </blockquote>
 <p>&lt;!-- nlpm-exemplar-citation:end --&gt;</p></section>
 <section class="rule" id="R48"><h3><a href="#R48" class="anchor">#</a> R48 — `name` is the only required manifest field</h3><p>Version and description are recommended but optional.</p></section>
-<section class="rule" id="R49"><h3><a href="#R49" class="anchor">#</a> R49 — CLAUDE.md for Claude, README for humans</h3><p>CLAUDE.md: architecture, conventions, component map. README: installation, usage, features.</p>
+<section class="rule" id="R49"><h3><a href="#R49" class="anchor">#</a> R49 — AGENTS.md for the agent, README for humans</h3><p>AGENTS.md (or <code>CLAUDE.md</code> on Claude Code before 2.1.277): architecture, conventions, component map. README: installation, usage, features.</p>
 <p>&lt;!-- nlpm-exemplar-citation:begin --&gt;</p>
 <blockquote>
 <p>Real-world example: <a href="../../../auditor/exemplars/2389-research-simmer.md">2389-research-simmer</a>, <a href="../../../auditor/exemplars/JuliusBrussee-caveman.md">JuliusBrussee-caveman</a>, <a href="../../../auditor/exemplars/forrestchang-andrej-karpathy-skills.md">forrestchang-andrej-karpathy-skills</a>, <a href="../../../auditor/exemplars/jarrodwatts-claude-hud.md">jarrodwatts-claude-hud</a>, <a href="../../../auditor/exemplars/multica-ai-andrej-karpathy-skills.md">multica-ai-andrej-karpathy-skills</a></p>
@@ -611,15 +611,15 @@
 <ul>
 <li><strong>Codex CLI:</strong> reads AGENTS.md natively. Hierarchical (root→cwd; closer overrides earlier). 32 KiB cap. <code>~/.codex/AGENTS.override.md</code> for personal overlays.</li>
 <li><strong>Antigravity (and Gemini CLI):</strong> reads <code>GEMINI.md</code> natively, but <code>context.fileName</code> setting accepts an array — set to <code>[&quot;AGENTS.md&quot;, &quot;GEMINI.md&quot;]</code> to make it read AGENTS.md.</li>
-<li><strong>Claude Code:</strong> reads <code>CLAUDE.md</code> natively, supports <code>@file.md</code> import syntax. The canonical pattern is a one-line <code>CLAUDE.md</code> containing <code>@AGENTS.md</code>.</li>
+<li><strong>Claude Code:</strong> reads <code>AGENTS.md</code> natively from 2.1.277, but only when no <code>CLAUDE.md</code>, <code>.claude/CLAUDE.md</code>, or <code>CLAUDE.local.md</code> exists in the working directory or any directory above it (<code>~/.claude/CLAUDE.md</code> does not count). Older versions read only <code>CLAUDE.md</code>, which supports <code>@file.md</code> imports — there the compatibility pattern is a one-line <code>CLAUDE.md</code> containing <code>@AGENTS.md</code>. Plugin repositories ship <code>AGENTS.md</code> alone: <code>claude plugin validate</code> warns that a <code>CLAUDE.md</code> at the plugin root is not loaded as plugin context.</li>
 </ul>
 <p><strong>Recommended pattern for multi-tool projects:</strong></p>
 <pre><code>project-root/
 ├── AGENTS.md           # canonical content — all instructions live here
-├── CLAUDE.md           # one line: @AGENTS.md
+├── CLAUDE.md           # only for Claude Code &lt; 2.1.277: one line, @AGENTS.md (omit in plugin repos)
 ├── GEMINI.md           # one line: @AGENTS.md  (only if Gemini-native @-import works)
 └── .gemini/settings.json  # set context.fileName: [&quot;AGENTS.md&quot;]</code></pre>
-<p>This is exactly how nlpm itself is structured (<code>CLAUDE.md</code> → <code>@AGENTS.md</code>).</p>
+<p>This is exactly how nlpm itself is structured: <code>AGENTS.md</code> alone, which Claude Code reads natively.</p>
 <p><strong>Body conventions</strong> (universal):</p>
 <ul>
 <li>Open with a one-line project description.</li>
