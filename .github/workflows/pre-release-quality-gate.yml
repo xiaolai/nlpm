@@ -225,8 +225,9 @@ jobs:
               - skills/nlpm/*/SKILL.md are Claude-side (codex/skills/
                 mirrors are auto-generated and never appear in this list)
               - AGENTS.md is the canonical universal memory file
-              - CLAUDE.md / GEMINI.md are one-line @AGENTS.md imports —
-                do NOT flag as missing build/test commands; content is
+              - GEMINI.md is a one-line @AGENTS.md import and there is no
+                CLAUDE.md (Claude Code reads AGENTS.md natively) — do NOT
+                flag either as missing build/test commands; content is
                 in AGENTS.md
 
             Write per-file scores to /tmp/scores.tsv with this exact

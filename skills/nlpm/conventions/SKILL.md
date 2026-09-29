@@ -75,19 +75,19 @@ Per nlpm decision (`analysis/multi-tool-design-2026-05.md` §5), AGENTS.md is th
 **Tool-native support:**
 - **Codex CLI:** reads AGENTS.md natively. Hierarchical (root→cwd; closer overrides earlier). 32 KiB cap. `~/.codex/AGENTS.override.md` for personal overlays.
 - **Antigravity (and Gemini CLI):** reads `GEMINI.md` natively, but `context.fileName` setting accepts an array — set to `["AGENTS.md", "GEMINI.md"]` to make it read AGENTS.md.
-- **Claude Code:** reads `CLAUDE.md` natively, supports `@file.md` import syntax. The canonical pattern is a one-line `CLAUDE.md` containing `@AGENTS.md`.
+- **Claude Code:** reads `AGENTS.md` natively from 2.1.277, but only when no `CLAUDE.md`, `.claude/CLAUDE.md`, or `CLAUDE.local.md` exists in the working directory or any directory above it (`~/.claude/CLAUDE.md` does not count). Older versions read only `CLAUDE.md`, which supports `@file.md` imports — there the compatibility pattern is a one-line `CLAUDE.md` containing `@AGENTS.md`. Plugin repositories ship `AGENTS.md` alone: `claude plugin validate` warns that a `CLAUDE.md` at the plugin root is not loaded as plugin context.
 
 **Recommended pattern for multi-tool projects:**
 
 ```
 project-root/
 ├── AGENTS.md           # canonical content — all instructions live here
-├── CLAUDE.md           # one line: @AGENTS.md
+├── CLAUDE.md           # only for Claude Code < 2.1.277: one line, @AGENTS.md (omit in plugin repos)
 ├── GEMINI.md           # one line: @AGENTS.md  (only if Gemini-native @-import works)
 └── .gemini/settings.json  # set context.fileName: ["AGENTS.md"]
 ```
 
-This is exactly how nlpm itself is structured (`CLAUDE.md` → `@AGENTS.md`).
+This is exactly how nlpm itself is structured: `AGENTS.md` alone, which Claude Code reads natively.
 
 **Body conventions** (universal):
 - Open with a one-line project description.

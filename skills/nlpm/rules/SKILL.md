@@ -315,7 +315,7 @@ Good: `**Use specific types instead of any.** Without specific types, TypeScript
 
 **R48. `name` is the only required manifest field.** Version and description are recommended but optional.
 
-**R49. CLAUDE.md for Claude, README for humans.** CLAUDE.md: architecture, conventions, component map. README: installation, usage, features.
+**R49. AGENTS.md for the agent, README for humans.** AGENTS.md (or `CLAUDE.md` on Claude Code before 2.1.277): architecture, conventions, component map. README: installation, usage, features.
 
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [2389-research-simmer](../../../auditor/exemplars/2389-research-simmer.md), [JuliusBrussee-caveman](../../../auditor/exemplars/JuliusBrussee-caveman.md), [forrestchang-andrej-karpathy-skills](../../../auditor/exemplars/forrestchang-andrej-karpathy-skills.md), [jarrodwatts-claude-hud](../../../auditor/exemplars/jarrodwatts-claude-hud.md), [multica-ai-andrej-karpathy-skills](../../../auditor/exemplars/multica-ai-andrej-karpathy-skills.md)
@@ -409,7 +409,7 @@ Each rule earns its place via one of the four warrant types from `analysis/vocab
 | R46 | literary | Codifies the state-file-for-resumability pattern |
 | R47 | domain | Infinite-loop retry on failing QC |
 | R48 | structural | Claude Code manifest schema requires only `name` |
-| R49 | structural | CLAUDE.md and README serve different audiences |
+| R49 | structural | AGENTS.md (or CLAUDE.md) and README serve different audiences |
 | R50 | domain | Version-drift between manifest, marketplace, and README |
 | R51 | domain | Multi-author NL plugins drift terminology across artifacts within weeks; without an enforceable rule, the same concept accretes 2–4 names (linter/scorer/analyzer/validator) and consumers can't predict which fires |
 

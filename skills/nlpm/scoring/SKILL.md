@@ -299,7 +299,7 @@ Schema details: `nlpm:conventions-claude` §13. Stable in 2026.
 
 | Rule | Check | Condition | Penalty |
 |------|-------|-----------|---------|
-| R49 | File exists | No CLAUDE.md in plugin root | -10 |
+| R49 | File exists | Neither AGENTS.md nor CLAUDE.md in plugin root | -10 |
 | -- | Under 200 lines | CLAUDE.md exceeds 200 lines | -5 |
 | R38 | Actionable content | CLAUDE.md has no actionable guidance (just filler) | -10 |
 | R33 | Build/run command | No instructions for how to build or run the project | -10 |

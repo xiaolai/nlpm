@@ -385,7 +385,7 @@ For each agent, test with 3 types of queries:
 | Agents without examples | 40% trigger accuracy | Add 2-3 specific scenario examples |
 | Skills over 500 lines | Context bloat, slow loading | Extract to references/ subdirectory |
 | Hooks that block without explanation | Frustrating UX | Always include `permissionDecisionReason` |
-| No CLAUDE.md | Claude doesn't understand plugin architecture | Add architecture overview |
+| No AGENTS.md (or CLAUDE.md) | Claude doesn't understand plugin architecture | Add architecture overview |
 | README documents internals | Users confused by implementation details | README = user guide, CLAUDE.md = internals |
 | Hardcoded paths | Breaks on other machines | Use `${CLAUDE_PLUGIN_ROOT}` everywhere |
 | No error handling in commands | Silent failures | Add explicit error cases |

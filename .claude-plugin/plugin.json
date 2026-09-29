@@ -8,7 +8,6 @@
   "license": "ISC",
   "homepage": "https://nlpm.com",
   "repository": "https://github.com/xiaolai/nlpm",
-  "category": "developer-tools",
   "keywords": [
     "nlp",
     "lint",

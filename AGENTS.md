@@ -344,7 +344,7 @@ upgrades automatically.
 
 **Always write new instructions, rules, and memory to `AGENTS.md` only.**
 
-Never modify `CLAUDE.md` or `GEMINI.md` directly — they only import `AGENTS.md`.
+Never modify `GEMINI.md` directly — it only imports `AGENTS.md`. There is no `CLAUDE.md`: Claude Code 2.1.277+ reads `AGENTS.md` natively, and a `CLAUDE.md` at the plugin root would only draw a plugin-validator warning.
 This keeps Claude Code, Codex CLI, and Gemini CLI on the same context.
 
 ## Project Structure

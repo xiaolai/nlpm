@@ -343,13 +343,13 @@ Four memory scopes load in order (managed policy → user → project → local)
 
 Auto-memory is a **separate** system at `~/.claude/projects/<slug>/memory/` (see §15) — there is no `.claude/memory/*.md` convention.
 
-**Recommended pattern for multi-tool projects** (per `analysis/multi-tool-design-2026-05.md` decision #5): use a one-line `CLAUDE.md` that imports `AGENTS.md`:
+**Recommended pattern for multi-tool projects** (per `analysis/multi-tool-design-2026-05.md` decision #5): make `AGENTS.md` the canonical universal memory file and ship no `CLAUDE.md`. Claude Code 2.1.277+ reads `AGENTS.md` natively when no `CLAUDE.md`, `.claude/CLAUDE.md`, or `CLAUDE.local.md` sits in the working directory or above it (`~/.claude/CLAUDE.md` does not count); Codex reads it natively; Gemini/Antigravity can be configured to read it via the `context.fileName` array. This is how nlpm itself works. A plugin root must not carry a `CLAUDE.md` at all — `claude plugin validate` warns that it is not loaded as plugin context.
+
+For Claude Code older than 2.1.277, the compatibility shim is a one-line `CLAUDE.md` that imports `AGENTS.md`:
 
 ```markdown
 @AGENTS.md
 ```
-
-This makes AGENTS.md the canonical universal memory file. AGENTS.md is what Codex reads natively; Gemini/Antigravity can be configured to read it via `context.fileName` array. This is how nlpm itself works.
 
 **Body conventions** when content lives in CLAUDE.md directly:
 - Build/run instructions

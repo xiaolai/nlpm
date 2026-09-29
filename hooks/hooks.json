@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-artifact.sh",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/check-artifact.sh\"",
             "timeout": 5
           }
         ]
