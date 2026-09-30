@@ -1,0 +1,143 @@
+{
+  "project": "ayghri/i-have-adhd",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 5,
+    "average_score": 97,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".cursor/skills/i-have-adhd/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 105,
+          "message": "Mirror copy carries the same vague quantifier 'relevant' in Rule 9"
+        }
+      ]
+    },
+    {
+      "path": "hooks/always-on.mjs",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "medium",
+          "line": 16,
+          "message": "Reads CLAUDE_CONFIG_DIR to locate opt-in flag; read-only and benign"
+        }
+      ]
+    },
+    {
+      "path": "hooks/hooks.json",
+      "type": "hook-config",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-verbose-hook-trigger",
+          "severity": "low",
+          "line": 6,
+          "message": "SessionStart matcher covers startup, resume, clear and compact; hook exits early unless opt-in flag exists"
+        }
+      ]
+    },
+    {
+      "path": "scripts/check_pi_extension.py",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-var-access",
+          "severity": "medium",
+          "line": 159,
+          "message": "Iterates os.environ but filters out *_API_KEY variables before spawning child process"
+        }
+      ]
+    },
+    {
+      "path": "skills/i-have-adhd/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 105,
+          "message": "Vague quantifier 'relevant' used 3 times in Rule 9 without a ranking criterion"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-09-30T06:18:16Z",
+      "average_score": 97,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "skills/i-have-adhd/SKILL.md",
+      "line": 105,
+      "message": "Vague quantifier 'relevant' used 3 times in Rule 9 without a ranking criterion"
+    },
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "low",
+      "file": ".cursor/skills/i-have-adhd/SKILL.md",
+      "line": 105,
+      "message": "Mirror copy carries the same vague quantifier 'relevant' in Rule 9"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "medium",
+      "confidence": "low",
+      "file": "hooks/always-on.mjs",
+      "line": 16,
+      "message": "Reads CLAUDE_CONFIG_DIR to locate opt-in flag; read-only and benign"
+    },
+    {
+      "rule": "SEC-env-var-access",
+      "severity": "medium",
+      "confidence": "low",
+      "file": "scripts/check_pi_extension.py",
+      "line": 159,
+      "message": "Iterates os.environ but filters out *_API_KEY variables before spawning child process"
+    },
+    {
+      "rule": "SEC-verbose-hook-trigger",
+      "severity": "low",
+      "confidence": "low",
+      "file": "hooks/hooks.json",
+      "line": 6,
+      "message": "SessionStart matcher covers startup, resume, clear and compact; hook exits early unless opt-in flag exists"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 23537,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/ayghri-i-have-adhd.md"
+  },
+  "generated_at": "2026-09-30T06:18:27Z",
+  "schema_version": 1
+}
