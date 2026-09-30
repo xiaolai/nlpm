@@ -130,7 +130,7 @@ Only list tools the agent body actually references. Every extra tool is a potent
 | Grep | Agent searches file contents |
 | Bash | Agent runs shell commands (linters, tests, builds) |
 | Task | Agent dispatches sub-agents |
-| Fetch | Agent makes HTTP requests |
+| WebFetch | Agent fetches a URL |
 
 ## 4. Output Format
 
@@ -223,7 +223,7 @@ Total agent body: aim for 25-45 lines. Over 60 lines means the agent is doing to
 
 ## 6. Worked Example
 
-### Before (score 52/100)
+### Before (score 43/100)
 
 ```yaml
 ---
@@ -239,17 +239,19 @@ You are a code checker. Check the user's code for issues.
 Look at the files and find problems. Report what you find.
 ```
 
-**Problems:**
-- Description: 0 trigger phrases, no "Use when..." (-30)
-- Model: opus for a simple review task (-10)
-- Tools: 7 tools granted, body uses maybe 3 (-10)
-- No examples: unreliable triggering (-15)
-- No "Not for" clause: nothing tells routing what to rule out (-5)
-- No output format: inconsistent results (-15)
-- No boundaries: scope creep (-10)
-- No error handling: silent failures (-10)
+**Problems** (each scored line is a row in the `nlpm:scoring` Agents table):
+- R09 -- zero `<example>` blocks in the description: unreliable triggering (-15)
+- R09 -- no "Not for" clause: nothing tells routing what to rule out (-5)
+- R10 -- opus for a review task that sonnet handles (-5)
+- R11 -- Write, Edit, Bash, Task declared but no body step uses them (-3 each, -12)
+- R11 -- a review agent declares Write and Edit (-10)
+- R12 -- no output format: inconsistent results (-10)
+- Description has 0 trigger phrases and no "Use when..." (not scored for agents; R04 is a skills row, but routing still suffers)
+- No boundaries and no error handling (not scored; they cause scope creep and silent failures)
 
-### After (score 95/100)
+Total: -57, so 100 - 57 = 43.
+
+### After (score 100/100)
 
 ```yaml
 ---
@@ -308,14 +310,17 @@ Final line:
 - If a file cannot be read: skip it and note in the report
 ```
 
-**Changes made:**
-1. Description: 0 -> 6 trigger phrases (+30)
-2. Model: opus -> sonnet (analysis-tier task: reasoning, not orchestration; -20x cost) (+10)
-3. Tools: 7 -> 3 (read-only analysis needs read-only tools) (+10)
-4. Added 1 example in the description and a "Not for" clause (+20)
-5. Defined output format (+15)
-6. Added boundaries (+10)
-7. Added error handling (+5)
+**Changes made** (one per problem above):
+1. R09: added 1 `<example>` block in the description (+15)
+2. R09: added a "Not for" clause -- style issues and fixing code (+5)
+3. R10: opus -> sonnet (analysis-tier task: reasoning, not orchestration) (+5)
+4. R11: tools 7 -> 3; Glob, Read and Grep are each named by an instruction step (+12)
+5. R11: dropped Write and Edit from a read-only review agent (+10)
+6. R12: defined the output format (+10)
+7. Description: 0 -> 6 trigger phrases and a "Use when" sentence (not scored)
+8. Added boundaries and error handling (not scored)
+
+Total: +57, so 43 + 57 = 100.
 
 ## 7. Common Mistakes
 

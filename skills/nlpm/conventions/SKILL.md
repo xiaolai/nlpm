@@ -103,7 +103,7 @@ This is exactly how nlpm itself is structured: `AGENTS.md` alone, which Claude C
 
 An agent workflow program is a single project-root Markdown file that drives an autonomous agent loop — imperative numbered steps with output formats and error paths, sitting between a memory file (AGENTS.md-shaped context) and a slash command (workflow with verifiable side effects). Karpathy's `program.md` in [`karpathy/autoresearch`](https://github.com/karpathy/autoresearch) is the canonical example (audited 2026-05-28 at score ~90; see [`auditor/exemplars/karpathy-autoresearch.md`](../../../auditor/exemplars/karpathy-autoresearch.md)). The README explicitly frames it as natural-language programming: "you are programming the `program.md` Markdown files that provide context to the AI agents."
 
-nlpm recognizes the pattern but does not yet have a dedicated penalty rubric — the universal floor (R01 vague quantifiers, R03 positive framing, R40 prompt layers) + the command rules (R14–R17) + the memory-file rules (R33–R39) cover it adequately as a hybrid. A standalone rubric is deferred until N≥3 examples surface, per the same "don't build for an empty corpus" discipline applied to multi-tool discovery.
+nlpm recognizes the pattern but does not yet have a dedicated penalty rubric — the universal floor (R01 vague quantifiers, R03 positive framing, R40 prompt layers) + the command rules (R14–R17) + the memory-file rules (R33–R39) together cover every section such a file has — steps, output format, error paths, build/run commands, architecture — so it is scored as a hybrid with no type-specific rows. A standalone rubric is deferred until N≥3 examples surface, per the same "don't build for an empty corpus" discipline applied to multi-tool discovery.
 
 ---
 
@@ -118,7 +118,7 @@ Universal patterns applicable to any NL artifact (commands, agents, skills, prom
 4. Constraints — what to avoid, limits, edge cases
 5. Output format — exact structure of the response
 
-**Few-shot examples:** Include 2+ concrete input→output examples for any complex judgment task. Examples dramatically improve consistency.
+**Few-shot examples (prompt bodies):** In the body of a prompt, command, or skill, include 2+ concrete input→output examples for any complex judgment task. Examples dramatically improve consistency. This is about the instructions a model executes, not about an agent's `description`: there R09 asks for one `<example>` plus a "Not for …" sentence, because the description is always-on routing context.
 
 **Positive framing:** State what to do. "Use imperative verbs" beats "Don't use passive voice." The brain processes prohibitions poorly under inference load (Pink Elephant effect).
 
@@ -195,7 +195,7 @@ rule_overrides:
 | `enabled: true` | Activate a rule that ships disabled by default (currently only R51) | `R51: { enabled: true, vocabulary_skill: ... }` |
 | `max_penalty: N` | Cap the penalty (less negative = more lenient) | `R01: { max_penalty: -10 }` |
 | `threshold: N` | Adjust numeric thresholds | `R05: { threshold: 600 }` |
-| `min_examples: N` | Raise the minimum `<example>` count (default 1); each missing block below N costs -5, zero blocks stays -15 | `R09: { min_examples: 2 }` |
+| `min_examples: N` | Raise the minimum `<example>` count (default 1); each missing block below N costs -5, capped at -15, and zero blocks stays -15 (`nlpm:scoring`, Agents) | `R09: { min_examples: 2 }` |
 | `vocabulary_skill: <path>` | Path to project's `vocabulary` skill (R51 only) | `R51: { enabled: true, vocabulary_skill: ... }` |
 
 Rules not listed in `rule_overrides` use their defaults from `nlpm:scoring`. Rules that ship disabled (R51) contribute zero penalty unless `enabled: true` is set explicitly.

@@ -93,7 +93,15 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 > the description — moving them into the body hides them from routing. One
 > well-chosen example plus an explicit exclusion ("Not for …") carries the
 > routing signal at a fraction of the tokens; extra examples are allowed but
-> cost always-on context, which is what the 1,200-character cap bounds.
+> cost always-on context, which is why R09 deducts 5 points when the
+> description exceeds 1,200 characters.
+
+> **`min_examples` override** (`R09: { min_examples: N }` in the project's
+> `nlpm.local.md`, see `nlpm:conventions` §6): with N greater than 1, a
+> description that has at least one but fewer than N `<example>` blocks costs
+> -5 per missing block, capped at -15 so that a partial set never costs more
+> than none; zero blocks stays -15. The exclusion-clause and length rows are
+> unchanged. Without the override, N is 1 and the rows above apply as written.
 
 ---
 
@@ -364,7 +372,7 @@ A new artifact type recognized 2026-05-28 (see `nlpm:conventions` §2 and `audit
 - **Memory file rules R33–R39**: build/run commands, architecture overview, no stale refs, instructive-not-descriptive.
 - **Universal R01** (vague quantifiers) and R03 (positive framing).
 
-Type-specific penalty rows are deferred until N ≥ 3 examples surface — the existing rules cover the artifact adequately as a hybrid, and inventing rows from N = 1 risks over-fitting (calibrated per the same discipline applied to multi-tool discovery deferrals).
+Type-specific penalty rows are deferred until N ≥ 3 examples surface — the R14–R17 and R33–R39 rows, with R01 and R03, cover every section such a file has (steps, output, error paths, build/run commands, architecture), and inventing rows from N = 1 risks over-fitting (calibrated per the same discipline applied to multi-tool discovery deferrals).
 
 **Patterns this artifact type rewards** (loaded on demand from `nlpm:patterns`):
 - P10 (numeric anchoring of subjective principles)
@@ -449,7 +457,7 @@ Applied when linting an entire plugin rather than individual files.
 
 ## Calibration Examples
 
-Four worked examples — *Excellent Agent (95)*, *Rewrite Agent (36)*, *Excellent Rule (92)*, *Weak Rule (41)* — live in [`references/calibration-examples.md`](references/calibration-examples.md). Load that file on demand when scoring a borderline case (around band boundaries: 88-92, 68-72, 58-62) and you need an anchored reference.
+Four worked examples — *Excellent Agent (97)*, *Rewrite Agent (41)*, *Excellent Rule (92)*, *Weak Rule (41)* — live in [`references/calibration-examples.md`](references/calibration-examples.md). Load that file on demand when scoring a borderline case (around band boundaries: 88-92, 68-72, 58-62) and you need an anchored reference.
 
 The examples are not needed for routine scoring — the penalty tables above are self-contained. They were extracted from this file 2026-05-28 to keep the rubric under R05's 500-line body budget while preserving the calibration material verbatim.
 

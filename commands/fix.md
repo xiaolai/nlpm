@@ -34,7 +34,8 @@ Separate findings into auto-fixable and not-auto-fixable:
 
 **Suggested fixes (shown with diff, applied only if user approves):**
 - Agent using opus for mechanical task → suggest downgrade to sonnet/haiku with rationale
-- Agent with no `<example>` blocks → generate one skeleton example from the description (one is full R09 credit)
+- Agent with no `<example>` blocks → generate one skeleton example from the description (one is full R09 credit); when the description also lacks an exclusion, apply the next fix in the same edit
+- Agent whose description names nothing it is not for → add one "Not for …" sentence (the other R09 row, -5). Derive the exclusion from the agent's own body (its Boundaries or "Do NOT" lines) or from a sibling agent that owns the excluded work ("Not for X; use <sibling>"). If neither source names one, report the finding instead of writing a sentence — never invent a boundary
 - Skill >500 lines → suggest split points based on H2 sections
 
 **NOT auto-fixable (reported but not modified):**

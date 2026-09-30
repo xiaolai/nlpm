@@ -75,8 +75,36 @@ Mention versus use: a vague term presented as a literal token that the clause ex
 
 **R09. `<example>` blocks are mandatory; one well-chosen example plus an exclusion is enough.** At least one `<example>` in the description — Context (what user is doing) + user message + assistant response — and one sentence naming what the agent is NOT for ("Not for …" / "Do not use …", or an example where the assistant declines or routes elsewhere). Keep the whole description ≤1,200 characters. The description sits in the Agent tool's text on every turn and is the only thing Claude sees when choosing an agent: examples stay in the description (moved into the body, they are invisible to routing), and each extra example costs always-on context.
 
-Bad: `description: |\n  Reviews code.\n  <example>\nContext: User needs help\nuser: "help me"\nassistant: "I'll help."\n</example>\n  <example>\nContext: User needs help again\nuser: "help me more"\nassistant: "I'll help."\n</example>` — two vague examples, no boundary.
-Good: `description: |\n  Audits auth changes for security vulnerabilities before merge. Not for general style review; use code-reviewer.\n  <example>\nContext: Developer refactoring auth module before PR\nuser: "Check if the auth changes have any security vulnerabilities before I merge"\nassistant: "I'll dispatch the security-reviewer to audit the auth changes for vulnerabilities."\n</example>`
+Bad (two vague examples, no boundary):
+
+```yaml
+description: |
+  Reviews code.
+  <example>
+  Context: User needs help
+  user: "help me"
+  assistant: "I'll help."
+  </example>
+  <example>
+  Context: User needs help again
+  user: "help me more"
+  assistant: "I'll help."
+  </example>
+```
+
+Good (one specific example, an explicit exclusion, every description line indented inside the `|` block):
+
+```yaml
+description: |
+  Audits auth changes for security vulnerabilities before merge. Not for general style review; use code-reviewer.
+  <example>
+  Context: Developer refactoring auth module before PR
+  user: "Check if the auth changes have any security vulnerabilities before I merge"
+  assistant: "I'll dispatch the security-reviewer to audit the auth changes for vulnerabilities."
+  </example>
+model: sonnet
+tools: Read, Grep, Glob
+```
 
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [data-goblin-power-bi-agentic-development](../../../auditor/exemplars/data-goblin-power-bi-agentic-development.md), [matt1398-claude-devtools](../../../auditor/exemplars/matt1398-claude-devtools.md), [nicknisi-claude-plugins](../../../auditor/exemplars/nicknisi-claude-plugins.md), [ooiyeefei-ccc](../../../auditor/exemplars/ooiyeefei-ccc.md), [xiaolai-codex-toolkit-for-claude](../../../auditor/exemplars/xiaolai-codex-toolkit-for-claude.md), [xiaolai-grill-for-claude](../../../auditor/exemplars/xiaolai-grill-for-claude.md)

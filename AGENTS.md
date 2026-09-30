@@ -119,7 +119,7 @@ When modifying this plugin:
 100-point scale. Start at 100, apply deterministic penalties.
 Floor: 0. Ceiling: 100.
 Threshold configurable via .claude/nlpm.local.md (default: 70).
-Rule overrides supported (suppress, max_penalty, threshold adjustments).
+Rule overrides supported (suppress, enabled, max_penalty, threshold, min_examples adjustments; see `nlpm:conventions` §6).
 
 ## Auditor (Self-Evolution Pipeline)
 

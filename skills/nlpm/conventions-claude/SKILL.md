@@ -173,7 +173,7 @@ Agents live in `.claude/agents/<name>.md`.
 
 **Plugin-shipped agents are restricted:** `hooks`, `mcpServers`, and `permissionMode` are **ignored** for agents distributed inside a plugin (security). Score plugin agents accordingly.
 
-**Best practice: include `<example>` blocks in description.** The description is placed in the Agent tool's text on every turn and is the only thing Claude sees when choosing an agent, so examples belong there (not in the body). One well-chosen `<example>` plus a "Not for …" sentence carries the routing signal; extra examples are allowed but cost always-on context. nlpm R09 caps the description at 1,200 characters.
+**Best practice: include `<example>` blocks in description.** The description is placed in the Agent tool's text on every turn and is the only thing Claude sees when choosing an agent, so examples belong there (not in the body). One well-chosen `<example>` plus a "Not for …" sentence carries the routing signal; extra examples are allowed but cost always-on context. nlpm R09 deducts 5 points when the description exceeds 1,200 characters.
 
 ---
 
