@@ -73,11 +73,17 @@ STOPWORDS = {
     "agent", "agents", "command", "commands", "block", "blocks",
 }
 
+# A rubric heading names its artifact type first and may qualify it after a
+# space: "### Hooks (Codex CLI — Tier 2-Codex only)" is a Hooks table.
 ARTIFACT_TYPES = ("Skills", "Agents", "Commands", "Shared Partials", "Rules", "Hooks", "plugin.json", ".mcp.json", "CLAUDE.md", "Prompts", "Orchestration", "Plugins")
 
 # Rule-id prefixes that are out-of-scope for the per-artifact rubric check —
 # these are bug / cross-component / agent-only categories with their own
 # vocabulary, not R-numbered quality rules.
+# Rubric sections whose rows apply to every artifact type, e.g.
+# "### All Artifact Types: Vocabulary Drift (R51 …)".
+ALL_TYPES_HEADING = "All Artifact Types"
+
 NON_RUBRIC_PREFIXES = ("BUG-", "CC-", "SEC-", "AGENT-", "UNCLASSIFIED")
 
 # Universal rules from skills/nlpm/rules/SKILL.md — apply to every artifact
@@ -112,7 +118,17 @@ class Rubric:
     def allowed_for_path(self, path: str) -> set[str]:
         """Return the rubric rule_ids valid for the artifact at this path."""
         artifact_type = classify_path(path)
-        return self.by_type.get(artifact_type, set())
+        return self.by_type.get(artifact_type, set()) | self.by_type.get(ALL_TYPES_HEADING, set())
+
+
+def section_type(heading: str) -> str | None:
+    """Map a `### ` heading to the artifact type its table scores, or None."""
+    if heading.startswith(ALL_TYPES_HEADING):
+        return ALL_TYPES_HEADING
+    for artifact_type in ARTIFACT_TYPES:
+        if heading == artifact_type or heading.startswith(artifact_type + " "):
+            return artifact_type
+    return None
 
 
 def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
@@ -123,11 +139,15 @@ def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
     """
     if not rubric_path.exists():
         raise FileNotFoundError(f"rubric not found: {rubric_path}")
-    text = rubric_path.read_text()
     rubric = Rubric()
     rules_to_load = rules_path if rules_path is not None else DEFAULT_RULES
     rubric.keywords_by_rule = parse_rules(rules_to_load)
+    _parse_rubric_tables(rubric_path.read_text(), rubric)
+    return rubric
 
+
+def _parse_rubric_tables(text: str, rubric: Rubric) -> None:
+    """Add the rule_ids of every rubric table in `text` to `rubric`."""
     # Sections look like:  ### Skills    then a table starting with | Rule |
     # The table runs until a blank line or the next heading.
     current_section: str | None = None
@@ -135,18 +155,19 @@ def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
     for line in text.splitlines():
         m = re.match(r"^### (.+)$", line)
         if m:
-            section = m.group(1).strip()
-            if section in ARTIFACT_TYPES:
-                current_section = section
-                rubric.by_type.setdefault(section, set())
-                in_table = False
-            else:
-                current_section = None
+            current_section = section_type(m.group(1).strip())
+            if current_section is not None:
+                rubric.by_type.setdefault(current_section, set())
+            in_table = False
             continue
         if current_section is None:
             continue
-        if line.startswith("| Rule") or line.startswith("|------"):
+        # Only tables whose first column is `Rule` carry rule_ids; the
+        # manifest tables start with `Check`, whose text is not a rule_id.
+        if line.startswith("| Rule"):
             in_table = True
+            continue
+        if line.startswith("|------"):
             continue
         if in_table:
             if not line.startswith("|"):
@@ -160,7 +181,6 @@ def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
             for rid in re.findall(r"R\d{2}", rule_cell):
                 rubric.by_type[current_section].add(rid)
                 rubric.all_rnumbers.add(rid)
-    return rubric
 
 
 def _singularize(token: str) -> str:
@@ -329,7 +349,7 @@ def validate_findings(jsonl_path: Path, rubric: Rubric) -> list[Drift]:
             ))
             continue
         artifact_type = classify_path(rec.get("file", ""))
-        allowed = rubric.by_type.get(artifact_type, set())
+        allowed = rubric.allowed_for_path(rec.get("file", ""))
         if rule_id not in allowed:
             drifts.append(Drift(
                 audit_file=jsonl_path.name,
@@ -456,6 +476,34 @@ def self_test() -> int:
         type_drift = next(d for d in drifts if d.kind == "type")
         assert type_drift.rule_id == "R09"
         assert type_drift.file == "skills/foo/SKILL.md"
+
+        # Qualified headings, Check-first tables and all-types sections:
+        # every "Hooks …" table counts as Hooks; a manifest table's Check
+        # text is not a rule_id; an "All Artifact Types" row is valid on
+        # every type.
+        split_dir = Path(td) / "split"
+        split_dir.mkdir()
+        split_rubric = split_dir / "SKILL.md"
+        split_rubric.write_text(
+            "### Hooks — universal checks (apply to all tools)\n\n"
+            "| Rule | Check | Condition | Penalty |\n|------|-------|-----------|---------|\n"
+            "| R29 | Scripts exist | Missing | -20 |\n\n"
+            "### plugin.json (Claude Code)\n\n"
+            "| Check | Condition | Penalty |\n|-------|-----------|---------|\n"
+            "| R99 named in a check | Missing | -5 |\n\n"
+            "### All Artifact Types: Vocabulary Drift (R51)\n\n"
+            "| Rule | Check | Condition | Penalty |\n|------|-------|-----------|---------|\n"
+            "| R51 | Deprecated synonym | Each | -2 each |\n\n"
+            "### Hooks (Codex CLI — Tier 2-Codex only)\n\n"
+            "| Rule | Check | Condition | Penalty |\n|------|-------|-----------|---------|\n"
+            "| R27 | Event names valid (Codex) | Unknown | -15 |\n"
+        )
+        split = parse_rubric(split_rubric, rules_path)
+        assert split.by_type["Hooks"] == {"R27", "R29"}, split.by_type
+        assert split.by_type["plugin.json"] == set(), split.by_type
+        assert split.all_rnumbers == {"R27", "R29", "R51"}, split.all_rnumbers
+        assert "R51" in split.allowed_for_path("agents/x.md"), split.by_type
+        assert "R27" in split.allowed_for_path("hooks/hooks.json"), split.by_type
     print("self-test PASS")
     return 0
 
