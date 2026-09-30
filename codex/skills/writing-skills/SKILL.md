@@ -1,6 +1,6 @@
 ---
 name: writing-skills
-description: How to write SKILL.md files that trigger reliably and teach effectively. Use when creating, improving, or reviewing skills for any tool — SKILL.md is the cross-tool open spec (agentskills.io), read identically by Claude Code, Codex CLI, and Antigravity.
+description: "How to write SKILL.md files that trigger reliably, for any tool (open spec)."
 version: 0.2.0
 ---
 

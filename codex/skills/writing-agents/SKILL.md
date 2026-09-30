@@ -1,6 +1,6 @@
 ---
 name: writing-agents
-description: How to write Claude Code agents that trigger reliably, use the right model, and produce consistent output. Use when creating, improving, or reviewing agent definitions.
+description: "How to write Claude Code agents: example blocks, model choice, least-privilege tools."
 version: 0.2.0
 ---
 

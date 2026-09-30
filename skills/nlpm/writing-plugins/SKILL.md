@@ -1,6 +1,6 @@
 ---
 name: writing-plugins
-description: "How to design and build plugins -- architecture decisions, artifact selection, file structure, manifest configuration, marketplace publishing. Primarily Claude Code (.claude-plugin/plugin.json); the same architecture maps to Codex CLI (.codex-plugin/plugin.json) and Antigravity extensions. Use when planning, creating, or reviewing a plugin."
+description: "How to design plugins: architecture, artifact choice, manifests, marketplaces."
 version: 0.2.0
 user-invocable: false
 ---

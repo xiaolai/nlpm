@@ -1,6 +1,6 @@
 ---
 name: conventions
-description: "Universal NL programming conventions — SKILL.md open spec (agentskills.io), AGENTS.md as canonical universal memory file, vague-quantifier list, prompt engineering layers, naming conventions, the override system. Tool-specific schemas live in nlpm:conventions-claude / nlpm:conventions-codex / nlpm:conventions-antigravity."
+description: "Universal NL conventions: SKILL.md open spec, AGENTS.md, vague quantifiers, naming."
 version: 0.2.1
 ---
 

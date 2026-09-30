@@ -1,6 +1,6 @@
 ---
 name: conventions-claude
-description: "Use when scoring or writing Claude Code artifacts — covers .claude/ paths, plugin.json schema, command + agent + skill frontmatter, CLAUDE.md, hook events, hooks.json format, settings.json, LSP, monitors, memory file conventions, and the Claude Code built-in tool catalog. Refreshed 2026-08-02 against current docs (Claude Code ≥ v2.1.218)."
+description: "Claude Code artifact schemas: plugin.json, frontmatter, hooks, settings, tools."
 version: 0.3.0
 user-invocable: false
 ---
@@ -8,6 +8,8 @@ user-invocable: false
 # Claude Code Conventions
 
 Tool-specific overlay for Claude Code plugin artifacts. Loaded by the scorer and checker when an artifact is classified as **Tier 2-Claude** (per `agents/scorer.md` step 3). The universal floor lives in `nlpm:conventions`; this overlay adds Claude-Code-specific schemas on top.
+
+**Last refreshed:** 2026-08-02 against current docs (Claude Code ≥ v2.1.218).
 
 **Primary authoritative sources:**
 - <https://code.claude.com/docs/en/claude_code_docs_map.md>

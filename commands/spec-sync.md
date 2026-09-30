@@ -26,7 +26,7 @@ This command **never commits, pushes, or touches the marketplace.** It edits ove
 | `codex` | `skills/nlpm/conventions-codex/SKILL.md` |
 | `antigravity` | `skills/nlpm/conventions-antigravity/SKILL.md` |
 
-Resolve today's date with `date +%Y-%m-%d` (passed to the agents and used for the "Refreshed" note). Confirm each selected overlay file exists; if one is missing, report "Overlay not found: {path}" and continue with the rest.
+Resolve today's date with `date +%Y-%m-%d` (passed to the agents and used for the "Last refreshed" line). Confirm each selected overlay file exists; if one is missing, report "Overlay not found: {path}" and continue with the rest.
 
 ### Step 2: Research (parallel)
 
@@ -51,7 +51,7 @@ For each overlay, edit the SKILL.md to absorb its report:
 - **Apply** every `FIX`, `REMOVE`, `RESOLVED+` (uncertainty resolved — the thing exists), and `RESOLVED-` (uncertainty resolved — the thing is *confirmed removed/absent* against a first-party source) finding, plus every `ADD` the agent rated structural (high-confidence).
 - **Defer, do not guess:** skip anything in the agent's confidence notes — `verify-tag` (a version/date specific that needs pinning) and `not-found` (a claim the agent could *not* confirm against any source). Note the distinction from `RESOLVED-`: a `RESOLVED-` is a *confirmed* absence and gets applied; a bare `not-found` is *unconfirmed* and gets deferred. List deferred items in the final report rather than writing an unverified fact into the overlay.
 - When correcting a fact, leave a brief inline note of what the old value was and the refresh date (matches the existing overlay style, e.g. "`magenta` is NOT valid (old list had it; corrected {date})") — this keeps the overlay self-documenting and prevents a future pass from regressing it.
-- Refresh the overlay frontmatter: bump `version:` (**patch** if corrections-only, **minor** if additive sections were added) and update the "Refreshed {date}" clause in `description:`.
+- Refresh the overlay's version and date: bump `version:` in the frontmatter (**patch** if corrections-only, **minor** if additive sections were added) and update the `**Last refreshed:**` line under the overlay's title (add it if the overlay has none). Keep the refresh date out of `description:`, which is loaded into every session's skill listing.
 
 **Antigravity caveat:** that overlay is advisory-only against an unsettled spec. Apply only changes the agent confirmed against a first-party source; when sources disagree or the spec is still settling, report the finding instead of editing.
 

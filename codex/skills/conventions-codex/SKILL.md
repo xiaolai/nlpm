@@ -1,12 +1,14 @@
 ---
 name: conventions-codex
-description: Use when scoring or writing Codex CLI artifacts — covers .codex/config.toml schema, .codex-plugin/plugin.json, .agents/skills/ layout, Codex hook events, AGENTS.md hierarchy, marketplace.json, and the agents/openai.yaml sidecar. Refreshed 2026-08-02 against Codex 0.146.0 (2026-07-29).
+description: "Codex CLI artifact schemas: config.toml, .codex-plugin, skills, hooks, AGENTS.md."
 version: 0.3.1
 ---
 
 # Codex CLI Conventions
 
 Tool-specific overlay for OpenAI Codex CLI artifacts. Loaded by the scorer and checker when an artifact is classified as **Tier 2-Codex** (per `agents/scorer.md` step 3). The universal floor lives in `nlpm:conventions`; this overlay adds Codex-specific schemas on top.
+
+**Last refreshed:** 2026-08-02 against Codex 0.146.0 (2026-07-29); §3/§4 field-type + policy-enum corrections 2026-08-04.
 
 **Primary authoritative sources:**
 - <https://learn.chatgpt.com/docs> (the `developers.openai.com/codex/*` tree now 308-redirects here)
