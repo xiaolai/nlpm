@@ -369,7 +369,9 @@ jobs:
             Score each file on a 100-point scale, subtract penalties:
 
             - Missing required frontmatter (name, description): -25 each
-            - Missing example blocks on agents: -15 (zero examples) or -5 (one example)
+            - Missing example blocks on agents: -15 (zero examples; one example is full credit)
+            - Agent description names no situation the agent is not for: -5
+            - Agent description over 1,200 characters, examples included: -5
             - Model not declared on agents: -5
             - Missing output format: -10
             - Missing allowed-tools on commands: -5
