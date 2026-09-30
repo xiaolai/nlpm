@@ -81,7 +81,7 @@ The overlay's §7 table lists the load-bearing events; the following are also va
 
 ## Plugin Distribution (marketplace.json)
 
-`.claude-plugin/marketplace.json` at the marketplace repo root. **Required top-level:** `name`, `owner` (maintainer-info object), `plugins`. **Optional top-level:** `$schema`, `description`, `version`, `metadata.pluginRoot`, `allowCrossMarketplaceDependenciesOn`, `renames`.
+`.claude-plugin/marketplace.json` at the marketplace repo root. **Required top-level:** `name`, `owner` (maintainer-info object), `plugins`. `owner` requires `name`. **Optional top-level:** `$schema`, `description`, `version`, `metadata.description`, `metadata.version`, `metadata.pluginRoot`, `forceRemoveDeletedPlugins`, `allowCrossMarketplaceDependenciesOn`, `renames`. Each plugin entry requires `name` and `source`.
 
 ```json
 {
