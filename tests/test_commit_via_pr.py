@@ -43,6 +43,7 @@ FAKE_TOKEN = "test-token"
 #   FAKE_GH_DIRECT_MERGE_FAILS  number of direct merges that fail before one succeeds
 #   FAKE_GH_LIST                lines printed verbatim by `gh pr list`
 #   FAKE_GH_MERGE_STATES        JSON {pr number: mergeStateStatus} for `gh pr view --json mergeStateStatus`
+#   FAKE_GH_CREATE_502          number of `gh pr create` calls that open the PR, then fail before labelling it
 FAKE_GH = textwrap.dedent(
     r'''
     #!/usr/bin/env python3
@@ -70,7 +71,14 @@ FAKE_GH = textwrap.dedent(
                 sys.exit(1)
         num = str(state["next"])
         state["next"] += 1
-        state["prs"][num] = {"head": head, "state": "OPEN"}
+        state["prs"][num] = {"head": head, "state": "OPEN", "labels": []}
+        if state.get("create_502s", 0) < int(os.environ.get("FAKE_GH_CREATE_502", "0")):
+            # GitHub opened the PR, then the call failed before the label was added.
+            state["create_502s"] = state.get("create_502s", 0) + 1
+            save()
+            sys.stderr.write("pull request create failed: HTTP 502: 502 Bad Gateway\n")
+            sys.exit(1)
+        state["prs"][num]["labels"] = ["auditor-bot"]
         save()
         print(f"https://github.com/example/nlpm/pull/{num}")
     elif args[:2] == ["pr", "merge"]:
@@ -93,8 +101,19 @@ FAKE_GH = textwrap.dedent(
         num = args[2].rsplit("/", 1)[-1]
         pr = state["prs"].get(num, {"state": "OPEN"})
         print(f'{pr["state"]} CLEAN')
+    elif args[:2] == ["pr", "list"] and "--head" in args:
+        head = opt("--head")
+        for num, pr in state["prs"].items():
+            if pr["head"] == head and pr["state"] == "OPEN":
+                print(f"https://github.com/example/nlpm/pull/{num}")
+                break
     elif args[:2] == ["pr", "list"]:
         sys.stdout.write(os.environ.get("FAKE_GH_LIST", ""))
+    elif args[:2] == ["pr", "edit"]:
+        num = args[2].rsplit("/", 1)[-1]
+        pr = state["prs"].setdefault(num, {"head": "?", "state": "OPEN", "labels": []})
+        pr.setdefault("labels", []).append(opt("--add-label"))
+        save()
     elif args[:2] == ["pr", "close"]:
         pass
     else:
@@ -302,6 +321,22 @@ class CommitViaPr(FakeGhSandbox):
         self.assertIn("auditor/audits/r.md", files)
         self.assertIn("auditor/disclosures-pending/r.md", files)
 
+    def test_half_created_pr_is_adopted_labelled_and_merged(self) -> None:
+        # Write Exemplar run 36713682847: `gh pr create` returned HTTP 502 after
+        # GitHub had opened the PR (#1312) but before it was labelled. The job
+        # died and the unlabelled PR was invisible to the janitor.
+        write(self.job / "auditor/exemplars/r.md", "exemplar\n")
+        git(self.job, "add", "-A")
+        result = self.commit_via_pr("exemplar: r", FAKE_GH_CREATE_502="1")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        creates = [c for c in self.gh_calls() if c[:2] == ["pr", "create"]]
+        self.assertEqual(len(creates), 1, "an existing PR for the branch is adopted, not re-created")
+        state = json.loads(self.state.read_text())
+        self.assertEqual(len(state["prs"]), 1)
+        pr = next(iter(state["prs"].values()))
+        self.assertIn("auditor-bot", pr["labels"])
+        self.assertEqual(pr["state"], "MERGED")
+
     def test_direct_merge_is_retried_when_auto_merge_is_disabled(self) -> None:
         write(self.job / "auditor/audits/r.md", "audit\n")
         git(self.job, "add", "-A")
@@ -320,10 +355,10 @@ class UnstickMergesMergeable(FakeGhSandbox):
 
     def test_merges_young_clean_and_leaves_old(self) -> None:
         listing = "\n".join([
-            "11 auditor/bot/a/1 CLEAN 3",
-            "12 auditor/bot/a/2 UNSTABLE 3",
-            "13 auditor/bot/a/3 CLEAN 1300",
-            "14 auditor/bot/a/4 HAS_HOOKS 0",
+            "11 auditor/bot/a/1 CLEAN 3 1",
+            "12 auditor/bot/a/2 UNSTABLE 3 1",
+            "13 auditor/bot/a/3 CLEAN 1300 1",
+            "14 auditor/bot/a/4 HAS_HOOKS 0 1",
         ]) + "\n"
         result = subprocess.run(
             ["bash", "auditor/scripts/unstick-bot-prs.sh"],
@@ -336,14 +371,28 @@ class UnstickMergesMergeable(FakeGhSandbox):
         self.assertIn("#13 (1300h)", result.stdout)
         self.assertIn("no conflicting auditor-bot PRs", result.stdout)
 
+    def test_unlabelled_bot_pr_is_found_by_branch_and_labelled(self) -> None:
+        listing = "31 auditor/bot/a/1 CLEAN 1 0\n"
+        result = subprocess.run(
+            ["bash", "auditor/scripts/unstick-bot-prs.sh"],
+            cwd=self.job, env={**self.env, "FAKE_GH_LIST": listing},
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        calls = self.gh_calls()
+        self.assertIn(["pr", "edit", "31", "--repo", self.env["GITHUB_REPOSITORY"], "--add-label", "auditor-bot"], calls)
+        self.assertEqual([c[2] for c in calls if c[:2] == ["pr", "merge"]], ["31"])
+        lists = [c for c in calls if c[:2] == ["pr", "list"]]
+        self.assertNotIn("--label", lists[0], "bot PRs are selected by branch, since the label can be missing")
+
     def test_unknown_state_is_rechecked_per_pr(self) -> None:
         # GitHub recomputes every open PR's mergeability after main moves, and
         # `gh pr list` reports UNKNOWN until it finishes. The 2026-09-30 09:51
         # sweep, ten minutes after a merge to main, saw four CLEAN bot PRs as
         # UNKNOWN and merged none of them.
         listing = "\n".join([
-            "21 auditor/bot/a/1 UNKNOWN 2",
-            "22 auditor/bot/a/2 UNKNOWN 2",
+            "21 auditor/bot/a/1 UNKNOWN 2 1",
+            "22 auditor/bot/a/2 UNKNOWN 2 1",
         ]) + "\n"
         result = subprocess.run(
             ["bash", "auditor/scripts/unstick-bot-prs.sh"],

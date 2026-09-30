@@ -58,17 +58,31 @@ case "$MAX_AGE_HOURS" in
   ''|*[!0-9]*) echo "::error::UNSTICK_MERGE_MAX_AGE_HOURS must be a whole number of hours" >&2; exit 1 ;;
 esac
 
-# One snapshot of every open auditor-bot PR:
-# "<number> <branch> <mergeStateStatus> <age in whole hours>" per line.
+# One snapshot of every open bot PR:
+# "<number> <branch> <mergeStateStatus> <age in whole hours> <labelled 1|0>".
+# Bot PRs are selected by their auditor/bot/ branch, not by the auditor-bot
+# label: a PR whose create call failed after opening it has no label (#1311,
+# #1312), and filtering on the label hid it from every sweep.
 # Fail loud if the listing itself fails — an empty list must mean "no PRs",
 # never "gh errored".
 if ! OPEN_PRS=$(GH_TOKEN="$TOKEN" gh pr list \
-  --repo "$GITHUB_REPOSITORY" --label auditor-bot --state open --limit 100 \
-  --json number,headRefName,mergeStateStatus,createdAt \
-  --jq '.[] | "\(.number) \(.headRefName) \(.mergeStateStatus) \(((now - (.createdAt | fromdateiso8601)) / 3600) | floor)"'); then
+  --repo "$GITHUB_REPOSITORY" --state open --limit 200 \
+  --json number,headRefName,mergeStateStatus,createdAt,labels \
+  --jq '.[] | select(.headRefName | startswith("auditor/bot/")) | "\(.number) \(.headRefName) \(.mergeStateStatus) \(((now - (.createdAt | fromdateiso8601)) / 3600) | floor) \(if any(.labels[]; .name == "auditor-bot") then 1 else 0 end)"'); then
   echo "::error::unstick-bot-prs: could not list auditor-bot PRs" >&2
   exit 1
 fi
+
+# --- label bot PRs that lost their label ------------------------------------
+while read -r NUM _BRANCH _STATE _AGE LABELLED; do
+  [ -z "${NUM:-}" ] && continue
+  [ "$LABELLED" = "1" ] && continue
+  if GH_TOKEN="$TOKEN" gh pr edit "$NUM" --repo "$GITHUB_REPOSITORY" --add-label auditor-bot; then
+    echo "unstick-bot-prs: labelled unlabelled bot PR #$NUM"
+  else
+    echo "::warning::unstick-bot-prs: could not label bot PR #$NUM"
+  fi
+done <<< "$OPEN_PRS"
 
 # --- resolve UNKNOWN merge states ------------------------------------------
 # After main moves, GitHub recomputes every open PR's mergeability and
@@ -78,7 +92,7 @@ fi
 # re-query each UNKNOWN one a few times before giving up on it for this sweep.
 UNKNOWN_WAIT_SECS="${UNSTICK_UNKNOWN_WAIT_SECS:-5}"
 resolved=""
-while read -r NUM BRANCH STATE AGE; do
+while read -r NUM BRANCH STATE AGE LABELLED; do
   [ -z "${NUM:-}" ] && continue
   tries=0
   while [ "$STATE" = "UNKNOWN" ] && [ "$tries" -lt 3 ]; do
@@ -88,14 +102,14 @@ while read -r NUM BRANCH STATE AGE; do
     tries=$((tries + 1))
   done
   [ "$STATE" = "UNKNOWN" ] && echo "  #$NUM merge state still UNKNOWN after $tries re-checks; the next sweep retries"
-  resolved+="$NUM $BRANCH $STATE $AGE"$'\n'
+  resolved+="$NUM $BRANCH $STATE $AGE $LABELLED"$'\n'
 done <<< "$OPEN_PRS"
 OPEN_PRS="$resolved"
 
 # --- merge bot PRs that are already mergeable ---------------------------
 merged=0
 stale=()
-while read -r NUM _BRANCH STATE AGE; do
+while read -r NUM _BRANCH STATE AGE _LABELLED; do
   [ -z "${NUM:-}" ] && continue
   case "$STATE" in CLEAN|HAS_HOOKS) ;; *) continue ;; esac
   if [ "$AGE" -ge "$MAX_AGE_HOURS" ]; then
