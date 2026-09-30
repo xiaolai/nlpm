@@ -10046,7 +10046,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "893a88a6fce3a80c565bf39ac65021b43a8b2990"
+      "commit_sha_at_audit": "893a88a6fce3a80c565bf39ac65021b43a8b2990",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/ciembor-agent-rules-books.md"
     },
     "fivetaku/gptaku_plugins": {
       "discovered": "2026-09-14T06:11:05Z",
