@@ -9938,13 +9938,16 @@
       "stars": 710,
       "artifacts": 127,
       "description": "A plugin marketplace for Claude Code/GitHub Copilot that provides Power Platform development plugins, including reusable skills, agents, and commands for building and deploying solutions.",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 905,
       "prs": [],
       "strategy": "progressive",
       "security": "REVIEW",
-      "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f"
+      "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/microsoft-power-platform-skills.md",
+      "pipeline_prs": []
     },
     "ayghri/i-have-adhd": {
       "discovered": "2026-08-24T06:12:16Z",
@@ -9957,7 +9960,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "839872f9d1cd634fed642b4589ce7226199cc15f"
+      "commit_sha_at_audit": "839872f9d1cd634fed642b4589ce7226199cc15f",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/ayghri-i-have-adhd.md"
     },
     "danny-avila/LibreChat": {
       "discovered": "2026-08-24T06:12:16Z",
@@ -10005,40 +10010,52 @@
       "stars": 2355,
       "artifacts": 8,
       "description": "De-AI writing skill for any Agent Skills-compatible agent (77+ via the Skills CLI), with native plugins for Claude Code, Codex, Grok Build, and Antigravity. Narrative-architecture repair for fiction, venue-matched rules for professional prose. Based on StoryScope (arXiv:2604.03136).",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 1088,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "06a5233395299ff78558b15568679c2c5c0fe942"
     },
     "michaelshimeles/skills": {
       "discovered": "2026-09-07T06:10:37Z",
       "stars": 648,
       "artifacts": 8,
       "description": "Agent skills and an AGENTS.md workflow template — isolate in worktrees, build to a service layer, prove with evidence, ship with before/after proof and Greptile review loops. For Claude Code, Cursor, and Codex.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 1089,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "4b72f46b045e6fef52e6a98d4c162dd309826aed"
     },
     "ciembor/agent-rules-books": {
       "discovered": "2026-09-14T06:11:05Z",
       "stars": 2771,
       "artifacts": 14,
       "description": "AGENTS.md rules / skills for AI coding agents: Codex, Cursor & Claude Code. Inspired by Clean Code, Refactoring, DDD, Clean Architecture and DDIA programming books.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 1151,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "893a88a6fce3a80c565bf39ac65021b43a8b2990"
     },
     "fivetaku/gptaku_plugins": {
       "discovered": "2026-09-14T06:11:05Z",
       "stars": 1136,
       "artifacts": 5,
       "description": "A Claude Code plugin marketplace for people who want to become AI Native",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 1152,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "909f31c687d324da08825f993bc12432c1004777"
     },
     "plugin87/ux-ui-agent-skills": {
       "discovered": "2026-09-14T06:11:05Z",
