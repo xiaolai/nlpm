@@ -9847,10 +9847,13 @@
       "stars": 1667,
       "artifacts": 7,
       "description": "DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。  DSH official WeChat featured TUI plugin — Claude Code style: whale bar, live status, streaming thoughts, double-Esc rollback, context bar + TPS. npm one-click.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 904,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "8540a58f4e7315c8b7abe9220a5af453f032c2f0"
     },
     "microsoft/power-platform-skills": {
       "discovered": "2026-08-17T06:09:36Z",
