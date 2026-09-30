@@ -9827,7 +9827,9 @@
         }
       ],
       "rule_adopted": false,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Vincentwei1021-video-shotcraft.md"
     },
     "elementalsouls/Claude-OSINT": {
       "discovered": "2026-08-10T06:26:33Z",
