@@ -10,6 +10,13 @@ name: Deploy nlpm.com
 #   - daily 23:00 UTC, after auditor-render-dashboard at 22:30 — so the
 #     dashboard's freshly-rendered cross-repo aggregate makes it onto
 #     the site without manual intervention.
+#
+# No Cloudflare purge step: nlpm.com is served directly by GitHub Pages
+# on a DNS-only record, with no CF proxy in front. Proxying it broke
+# GitHub's Let's Encrypt renewal — CF intercepted the ACME HTTP-01
+# challenge, the cert expired 2026-08-17, and CF Full (Strict) then
+# returned 526 to every visitor. Do not re-add the proxy or a purge
+# step without re-checking that interaction first.
 
 on:
   push:
@@ -127,34 +134,3 @@ jobs:
           # Deploys are inferred from gh-pages commits; we deliberately do
           # not append to auditor/logs/events.jsonl on main, since that
           # would push deploy churn into the auditor's append-only log.
-
-      - name: Wait for GitHub Pages CDN to propagate
-        # Pushing to gh-pages doesn't instantly update what GitHub Pages
-        # serves at its edge — there's typically a 30–60s lag. Purging
-        # CF before that lag elapses just re-caches the OLD content from
-        # GitHub's edge. Wait first, then purge.
-        run: sleep 75
-
-      - name: Purge Cloudflare cache
-        # Two failure modes a deploy can leave behind without this:
-        #   - stale negative 404s for URLs that didn't exist on the prior
-        #     deploy (CF caches 404s up to ~10 min)
-        #   - stale content for URLs that existed but changed
-        # Both clear with a zone-wide purge_everything. Step gated on the
-        # three secrets so the workflow stays functional on forks.
-        env:
-          CF_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
-          CF_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-        run: |
-          if [ -z "$CF_API_KEY" ] || [ -z "$CF_EMAIL" ] || [ -z "$CF_ZONE_ID" ]; then
-            echo "Cloudflare secrets not configured — skipping purge."
-            exit 0
-          fi
-          RESP=$(curl -fsS -X POST \
-            -H "X-Auth-Key: $CF_API_KEY" \
-            -H "X-Auth-Email: $CF_EMAIL" \
-            -H "Content-Type: application/json" \
-            "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
-            --data '{"purge_everything":true}')
-          echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); print('cf-purge success=' + str(d.get('success')))"
