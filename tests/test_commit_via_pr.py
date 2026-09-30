@@ -42,6 +42,7 @@ FAKE_TOKEN = "test-token"
 # call is appended to $FAKE_GH_LOG. Behaviour knobs:
 #   FAKE_GH_DIRECT_MERGE_FAILS  number of direct merges that fail before one succeeds
 #   FAKE_GH_LIST                lines printed verbatim by `gh pr list`
+#   FAKE_GH_MERGE_STATES        JSON {pr number: mergeStateStatus} for `gh pr view --json mergeStateStatus`
 FAKE_GH = textwrap.dedent(
     r'''
     #!/usr/bin/env python3
@@ -84,6 +85,10 @@ FAKE_GH = textwrap.dedent(
             sys.exit(1)
         state["prs"].setdefault(num, {"head": "?", "state": "OPEN"})["state"] = "MERGED"
         save()
+    elif args[:2] == ["pr", "view"] and "mergeStateStatus" in (opt("--json") or "") and "state" not in (opt("--json") or "").split(","):
+        # Per-PR merge state, as the janitor re-queries an UNKNOWN from `gh pr list`.
+        num = args[2].rsplit("/", 1)[-1]
+        print(json.loads(os.environ.get("FAKE_GH_MERGE_STATES", "{}")).get(num, "UNKNOWN"))
     elif args[:2] == ["pr", "view"]:
         num = args[2].rsplit("/", 1)[-1]
         pr = state["prs"].get(num, {"state": "OPEN"})
@@ -330,6 +335,28 @@ class UnstickMergesMergeable(FakeGhSandbox):
         self.assertEqual(merged, ["11", "14"])
         self.assertIn("#13 (1300h)", result.stdout)
         self.assertIn("no conflicting auditor-bot PRs", result.stdout)
+
+    def test_unknown_state_is_rechecked_per_pr(self) -> None:
+        # GitHub recomputes every open PR's mergeability after main moves, and
+        # `gh pr list` reports UNKNOWN until it finishes. The 2026-09-30 09:51
+        # sweep, ten minutes after a merge to main, saw four CLEAN bot PRs as
+        # UNKNOWN and merged none of them.
+        listing = "\n".join([
+            "21 auditor/bot/a/1 UNKNOWN 2",
+            "22 auditor/bot/a/2 UNKNOWN 2",
+        ]) + "\n"
+        result = subprocess.run(
+            ["bash", "auditor/scripts/unstick-bot-prs.sh"],
+            cwd=self.job,
+            env={**self.env, "FAKE_GH_LIST": listing, "UNSTICK_UNKNOWN_WAIT_SECS": "0",
+                 "FAKE_GH_MERGE_STATES": json.dumps({"21": "CLEAN"})},
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        merged = [c[2] for c in self.gh_calls() if c[:2] == ["pr", "merge"]]
+        self.assertEqual(merged, ["21"])
+        self.assertIn("#22", result.stdout)
+        self.assertIn("still UNKNOWN", result.stdout)
 
 
 if __name__ == "__main__":

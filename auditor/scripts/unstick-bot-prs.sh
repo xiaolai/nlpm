@@ -30,6 +30,7 @@
 #   PAT_TOKEN (preferred) or GH_TOKEN — repo token for gh + push.
 # Optional:
 #   UNSTICK_MERGE_MAX_AGE_HOURS — merge CLEAN bot PRs up to this age (48).
+#   UNSTICK_UNKNOWN_WAIT_SECS   — pause before each re-check of an UNKNOWN merge state (5).
 #
 # Usage:
 #   bash auditor/scripts/unstick-bot-prs.sh
@@ -68,6 +69,28 @@ if ! OPEN_PRS=$(GH_TOKEN="$TOKEN" gh pr list \
   echo "::error::unstick-bot-prs: could not list auditor-bot PRs" >&2
   exit 1
 fi
+
+# --- resolve UNKNOWN merge states ------------------------------------------
+# After main moves, GitHub recomputes every open PR's mergeability and
+# `gh pr list` reports UNKNOWN until that finishes. A sweep shortly after a
+# merge would otherwise skip every PR (the 2026-09-30 09:51 sweep merged none
+# of four CLEAN ones). Asking for one PR's state starts its computation, so
+# re-query each UNKNOWN one a few times before giving up on it for this sweep.
+UNKNOWN_WAIT_SECS="${UNSTICK_UNKNOWN_WAIT_SECS:-5}"
+resolved=""
+while read -r NUM BRANCH STATE AGE; do
+  [ -z "${NUM:-}" ] && continue
+  tries=0
+  while [ "$STATE" = "UNKNOWN" ] && [ "$tries" -lt 3 ]; do
+    sleep "$UNKNOWN_WAIT_SECS"
+    STATE=$(GH_TOKEN="$TOKEN" gh pr view "$NUM" --repo "$GITHUB_REPOSITORY" \
+      --json mergeStateStatus --jq .mergeStateStatus) || STATE=UNKNOWN
+    tries=$((tries + 1))
+  done
+  [ "$STATE" = "UNKNOWN" ] && echo "  #$NUM merge state still UNKNOWN after $tries re-checks; the next sweep retries"
+  resolved+="$NUM $BRANCH $STATE $AGE"$'\n'
+done <<< "$OPEN_PRS"
+OPEN_PRS="$resolved"
 
 # --- merge bot PRs that are already mergeable ---------------------------
 merged=0
