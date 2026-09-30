@@ -16,6 +16,9 @@ Properties under test:
 * A job may call commit-via-pr.sh twice (audit, then disclosure-pending)
   while the first PR is still open, without dying on `gh pr create`
   (run 36677482481).
+* With auto-merge disabled on the repo, the watch loop keeps retrying a
+  direct merge instead of leaving the PR open forever.
+* The janitor merges young CLEAN bot PRs and leaves old ones for a human.
 """
 
 from __future__ import annotations
@@ -293,6 +296,40 @@ class CommitViaPr(FakeGhSandbox):
         files = git(self.origin, "ls-tree", "-r", "--name-only", heads[1]).stdout.split()
         self.assertIn("auditor/audits/r.md", files)
         self.assertIn("auditor/disclosures-pending/r.md", files)
+
+    def test_direct_merge_is_retried_when_auto_merge_is_disabled(self) -> None:
+        write(self.job / "auditor/audits/r.md", "audit\n")
+        git(self.job, "add", "-A")
+        result = self.commit_via_pr("audit: r", FAKE_GH_DIRECT_MERGE_FAILS="1")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("commit-via-pr: merged", result.stdout)
+        merges = [c for c in self.gh_calls() if c[:2] == ["pr", "merge"]]
+        direct = [c for c in merges if "--auto" not in c]
+        self.assertEqual(len(direct), 2, "failed direct merge must be retried in the loop")
+        self.assertEqual(len(merges) - len(direct), 1,
+                         "--auto is tried once, not re-asserted every tick once known unavailable")
+
+
+class UnstickMergesMergeable(FakeGhSandbox):
+    """unstick-bot-prs.sh merges young CLEAN bot PRs, warns about old ones."""
+
+    def test_merges_young_clean_and_leaves_old(self) -> None:
+        listing = "\n".join([
+            "11 auditor/bot/a/1 CLEAN 3",
+            "12 auditor/bot/a/2 UNSTABLE 3",
+            "13 auditor/bot/a/3 CLEAN 1300",
+            "14 auditor/bot/a/4 HAS_HOOKS 0",
+        ]) + "\n"
+        result = subprocess.run(
+            ["bash", "auditor/scripts/unstick-bot-prs.sh"],
+            cwd=self.job, env={**self.env, "FAKE_GH_LIST": listing},
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        merged = [c[2] for c in self.gh_calls() if c[:2] == ["pr", "merge"]]
+        self.assertEqual(merged, ["11", "14"])
+        self.assertIn("#13 (1300h)", result.stdout)
+        self.assertIn("no conflicting auditor-bot PRs", result.stdout)
 
 
 if __name__ == "__main__":

@@ -45,9 +45,10 @@
 #
 # Behavior:
 #   - No-op (exit 0) if nothing is staged.
-#   - Otherwise: branch off origin/main, commit as nlpm-auditor[bot],
-#     push the branch (3 retries), open a PR labeled `auditor-bot`,
-#     enable auto-merge (merge-commit method).
+#   - Otherwise: commit on HEAD as nlpm-auditor[bot], push a fresh branch
+#     (3 retries), open a PR labeled `auditor-bot`, and merge it: auto-merge
+#     (merge-commit method) when the repo allows it, otherwise a direct merge
+#     retried on every watch tick.
 #
 # Concurrency:
 #   Each call gets its own branch
@@ -64,10 +65,19 @@
 #   script briefly watches the PR; if it goes CONFLICTING it rebases the
 #   bot branch onto latest main — unioning append-only logs and 3-way
 #   merging the registry via resolve-merge-conflicts.sh, the SAME resolver
-#   git-push-with-retry.sh uses for direct pushes — then force-pushes so
-#   auto-merge resumes. Fail-soft: on timeout or a resolver failure it
-#   leaves the PR open with auto-merge enabled; the auditor-unstick-bot-prs
-#   janitor reconciles anything that conflicts after this job exits.
+#   git-push-with-retry.sh uses for direct pushes — then force-pushes and
+#   merges again.
+#
+#   Auto-merge is disabled on xiaolai/nlpm (allow_auto_merge=false), so
+#   `gh pr merge --auto` always fails there. A PR that was not mergeable at
+#   the instant it opened (the usual case in a batch: a sibling merged first
+#   and it went DIRTY) used to be rebased and then left open forever, because
+#   only --auto was re-asserted. The loop now retries a direct merge on every
+#   tick until the PR merges or the window ends.
+#
+#   Fail-soft: on timeout or a resolver failure it leaves the PR open; the
+#   auditor-unstick-bot-prs janitor rebases anything that conflicts after
+#   this job exits and merges what is left mergeable.
 
 set -euo pipefail
 
@@ -132,21 +142,38 @@ PR_URL=$(GH_TOKEN="$TOKEN" gh pr create \
 echo "commit-via-pr: opened $PR_URL"
 
 # Auto-merge: lands as soon as required checks (if any) pass. When no
-# checks are required on main, --auto merges effectively immediately.
-if ! GH_TOKEN="$TOKEN" gh pr merge "$PR_URL" --auto --merge; then
-  echo "::warning::commit-via-pr: --auto unavailable (auto-merge disabled on repo?); attempting direct merge"
-  GH_TOKEN="$TOKEN" gh pr merge "$PR_URL" --merge \
-    || echo "::warning::commit-via-pr: direct merge failed; the reconcile loop will retry"
-fi
+# checks are required on main, --auto merges effectively immediately. When
+# the repo disallows auto-merge, fall back to a direct merge; AUTO_MERGE
+# records which mode is in force so the loop knows whether it must keep
+# retrying the merge itself.
+AUTO_MERGE=0
+AUTO_UNAVAILABLE=0
+try_merge() {
+  if [ "$AUTO_UNAVAILABLE" -eq 0 ]; then
+    if GH_TOKEN="$TOKEN" gh pr merge "$PR_URL" --auto --merge; then
+      AUTO_MERGE=1
+      return 0
+    fi
+    AUTO_UNAVAILABLE=1
+    echo "commit-via-pr: --auto unavailable (auto-merge disabled on repo?); merging directly instead"
+  fi
+  AUTO_MERGE=0
+  if GH_TOKEN="$TOKEN" gh pr merge "$PR_URL" --merge; then
+    return 0
+  fi
+  echo "commit-via-pr: direct merge of $PR_URL not possible yet; the reconcile loop will retry"
+  return 1
+}
+try_merge || true
 
 # --- reconcile loop: unstick a PR that conflicts with main -------------
 # Watch the PR briefly. On CONFLICTING (mergeStateStatus=DIRTY), rebase the
 # bot branch onto latest main using the shared resolver, force-push, and
-# re-assert auto-merge. Mirrors git-push-with-retry.sh's proven
-# rebase+resolve sequence, so the conflict-stage semantics match. Fail-soft
-# throughout: a resolver failure or timeout leaves the PR open with
-# auto-merge enabled for the janitor to finish — a stuck bot PR must never
-# fail the workflow that opened it.
+# merge again. Otherwise, when auto-merge is unavailable, retry the direct
+# merge. Mirrors git-push-with-retry.sh's rebase+resolve sequence, so the
+# conflict-stage semantics match. Fail-soft throughout: a resolver failure
+# or timeout leaves the PR open for the janitor to finish — a stuck bot PR
+# must never fail the workflow that opened it.
 MAX_WATCH="${COMMIT_VIA_PR_MAX_WATCH:-8}"
 SHORT_SLEEP="${COMMIT_VIA_PR_SHORT_SLEEP:-5}"
 LONG_SLEEP="${COMMIT_VIA_PR_LONG_SLEEP:-15}"
@@ -162,7 +189,14 @@ for i in $(seq 1 "$MAX_WATCH"); do
     MERGED) echo "commit-via-pr: merged $PR_URL"; exit 0 ;;
     CLOSED) echo "::warning::commit-via-pr: $PR_URL closed unmerged"; exit 0 ;;
   esac
-  [ "$MERGE_STATE" = "DIRTY" ] || continue
+  if [ "$MERGE_STATE" != "DIRTY" ]; then
+    # Not conflicting. With auto-merge in force GitHub lands it on its own;
+    # without it nothing will unless we merge it ourselves.
+    if [ "$AUTO_MERGE" -eq 0 ] && [ "$PR_STATE" = "OPEN" ]; then
+      try_merge || true
+    fi
+    continue
+  fi
 
   echo "commit-via-pr: $PR_URL conflicts with main — rebasing $BRANCH"
   git fetch origin main
@@ -200,9 +234,15 @@ for i in $(seq 1 "$MAX_WATCH"); do
     echo "::warning::commit-via-pr: force-push after rebase failed; leaving $PR_URL for the janitor"
     exit 0
   fi
-  # Force-push can drop the auto-merge enablement; re-assert it.
-  GH_TOKEN="$TOKEN" gh pr merge "$PR_URL" --auto --merge || true
+  # Force-push can drop the auto-merge enablement; re-assert it, or merge
+  # directly when auto-merge is unavailable. A failure here (GitHub still
+  # computing mergeability after the push) is retried on the next tick.
+  try_merge || true
 done
 
-echo "::warning::commit-via-pr: $PR_URL not merged within the watch window; auto-merge stays enabled (auditor-unstick-bot-prs will finish it)"
+if [ "$AUTO_MERGE" -eq 1 ]; then
+  echo "::warning::commit-via-pr: $PR_URL not merged within the watch window; auto-merge stays enabled (auditor-unstick-bot-prs reconciles conflicts)"
+else
+  echo "::warning::commit-via-pr: $PR_URL not merged within the watch window and auto-merge is unavailable; auditor-unstick-bot-prs will merge it"
+fi
 exit 0

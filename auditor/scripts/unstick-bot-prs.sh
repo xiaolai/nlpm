@@ -14,9 +14,22 @@
 #   that rebases every DIRTY bot PR onto latest main using the shared
 #   per-file resolver, then force-pushes so auto-merge resumes.
 #
+#   It also merges bot PRs that are already mergeable (CLEAN). Auto-merge
+#   is disabled on xiaolai/nlpm (allow_auto_merge=false), so a bot PR that
+#   commit-via-pr.sh could not merge inside its watch window — or that this
+#   sweep just rebased — otherwise stays open forever. Observed 2026-09-30:
+#   19 CLEAN bot PRs open, the oldest from 2026-08-05, i.e. audit, track and
+#   contribute output that never reached main. Only PRs younger than
+#   UNSTICK_MERGE_MAX_AGE_HOURS (default 48) are merged: an older PR's
+#   snapshot of shared state (registry statuses, track counts) may have been
+#   superseded by later commits in ways git cannot see as a conflict, so
+#   merging it is a human decision. Those are listed as a warning instead.
+#
 # Required environment (set by Actions):
 #   GITHUB_REPOSITORY
 #   PAT_TOKEN (preferred) or GH_TOKEN — repo token for gh + push.
+# Optional:
+#   UNSTICK_MERGE_MAX_AGE_HOURS — merge CLEAN bot PRs up to this age (48).
 #
 # Usage:
 #   bash auditor/scripts/unstick-bot-prs.sh
@@ -39,11 +52,50 @@ git config user.email "nlpm-auditor[bot]@users.noreply.github.com"
 git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 git fetch origin main
 
-# Open auditor-bot PRs that conflict with main, "<number> <branch>" per line.
-mapfile -t PRS < <(GH_TOKEN="$TOKEN" gh pr list \
+MAX_AGE_HOURS="${UNSTICK_MERGE_MAX_AGE_HOURS:-48}"
+case "$MAX_AGE_HOURS" in
+  ''|*[!0-9]*) echo "::error::UNSTICK_MERGE_MAX_AGE_HOURS must be a whole number of hours" >&2; exit 1 ;;
+esac
+
+# One snapshot of every open auditor-bot PR:
+# "<number> <branch> <mergeStateStatus> <age in whole hours>" per line.
+# Fail loud if the listing itself fails — an empty list must mean "no PRs",
+# never "gh errored".
+if ! OPEN_PRS=$(GH_TOKEN="$TOKEN" gh pr list \
   --repo "$GITHUB_REPOSITORY" --label auditor-bot --state open --limit 100 \
-  --json number,headRefName,mergeStateStatus \
-  --jq '.[] | select(.mergeStateStatus == "DIRTY") | "\(.number) \(.headRefName)"')
+  --json number,headRefName,mergeStateStatus,createdAt \
+  --jq '.[] | "\(.number) \(.headRefName) \(.mergeStateStatus) \(((now - (.createdAt | fromdateiso8601)) / 3600) | floor)"'); then
+  echo "::error::unstick-bot-prs: could not list auditor-bot PRs" >&2
+  exit 1
+fi
+
+# --- merge bot PRs that are already mergeable ---------------------------
+merged=0
+stale=()
+while read -r NUM _BRANCH STATE AGE; do
+  [ -z "${NUM:-}" ] && continue
+  case "$STATE" in CLEAN|HAS_HOOKS) ;; *) continue ;; esac
+  if [ "$AGE" -ge "$MAX_AGE_HOURS" ]; then
+    stale+=("#$NUM (${AGE}h)")
+    continue
+  fi
+  # A sibling merged earlier in this loop can make this one conflict;
+  # GitHub then refuses the merge and the next sweep rebases it.
+  if GH_TOKEN="$TOKEN" gh pr merge "$NUM" --repo "$GITHUB_REPOSITORY" --merge; then
+    echo "unstick-bot-prs: merged mergeable PR #$NUM"
+    merged=$((merged + 1))
+  else
+    echo "  could not merge #$NUM yet; the next sweep retries"
+  fi
+done <<< "$OPEN_PRS"
+echo "unstick-bot-prs: merged ${merged} mergeable bot PR(s)"
+if [ "${#stale[@]}" -gt 0 ]; then
+  echo "::warning::unstick-bot-prs: ${#stale[@]} mergeable bot PR(s) older than ${MAX_AGE_HOURS}h left for a human (their state snapshot may be superseded): ${stale[*]}"
+fi
+
+# --- rebase bot PRs that conflict with main -----------------------------
+# "<number> <branch>" per line.
+mapfile -t PRS < <(awk '$3 == "DIRTY" { print $1, $2 }' <<< "$OPEN_PRS")
 
 if [ "${#PRS[@]}" -eq 0 ]; then
   echo "unstick-bot-prs: no conflicting auditor-bot PRs"
