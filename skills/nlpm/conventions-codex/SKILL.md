@@ -1,7 +1,7 @@
 ---
 name: conventions-codex
 description: "Codex CLI artifact schemas: config.toml, .codex-plugin, skills, hooks, AGENTS.md."
-version: 0.3.1
+version: 0.3.2
 user-invocable: false
 ---
 
@@ -9,7 +9,7 @@ user-invocable: false
 
 Tool-specific overlay for OpenAI Codex CLI artifacts. Loaded by the scorer and checker when an artifact is classified as **Tier 2-Codex** (per `agents/scorer.md` step 3). The universal floor lives in `nlpm:conventions`; this overlay adds Codex-specific schemas on top.
 
-**Last refreshed:** 2026-08-02 against Codex 0.146.0 (2026-07-29); §3/§4 field-type + policy-enum corrections 2026-08-04.
+**Last refreshed:** 2026-08-02 against Codex 0.146.0 (2026-07-29); §3/§4 field-type + policy-enum corrections 2026-08-04; §3 artifact-path, `commands` and symlink corrections 2026-10-01, observed on Codex 0.159.2.
 
 **Primary authoritative sources:**
 - <https://learn.chatgpt.com/docs> (the `developers.openai.com/codex/*` tree now 308-redirects here)
@@ -87,6 +87,7 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
   "mcpServers": "./mcp/servers.json",
   "apps": "./apps/",
   "hooks": "./hooks.json",
+  "commands": [],
   "interface": {
     "displayName": "My Plugin",
     "longDescription": "Detailed description for installer UI"
@@ -94,14 +95,26 @@ Duplicate-name skills across scopes are NOT merged — both appear in selectors,
 }
 ```
 
-**Required field:** `name` (kebab-case) — and only when a `plugin.json` is present at all. **All other top-level fields are optional**, including `version`, `description`, `author`, and `interface` (corrected 2026-08-02 against the vendor's `plugin-json-spec.md`; the earlier "version + description required" claim was wrong).
-**Optional artifact paths — each a single relative-path STRING, not an array** (corrected 2026-08-04 against the vendor `plugin-json-spec.md`): `skills` (string), `hooks` (string), `apps` (string), `mcpServers` (string **or** object). A bare directory string like `"skills": "./skills/"` is the documented sample form; these paths *supplement* Codex's default discovery, they do not replace it. Do NOT flag a scalar-string `skills`/`hooks`/`apps`/`mcpServers` as wrong — the array form the v0.3.0 overlay showed was incorrect.
+**Required field:** `name` (kebab-case) — and only when a `plugin.json` is present at all. **All other top-level fields are optional**, including `version`, `description`, `author`, and `interface` (corrected 2026-08-02 against the vendor's `plugin-json-spec.md`; the earlier "version + description required" claim was wrong). Codex 0.159.2 installs a plugin whose manifest lacks `name` but loads none of its skills, so a missing `name` fails silently.
+**Optional artifact paths — each a relative-path STRING** (corrected 2026-08-04 against the vendor `plugin-json-spec.md`): `skills` (string), `hooks` (string), `apps` (string), `mcpServers` (string **or** object). A bare directory string like `"skills": "./skills/"` is the documented sample form. Do NOT flag a scalar-string `skills`/`hooks`/`apps`/`mcpServers` as wrong. (The v0.3.0 overlay showed only an array form; Codex 0.159.2 also accepts a one-element array for `skills`, but the string is the documented form.)
+
 **Optional identity fields (added 2026-06):** `author` (`{name, email, url}`), `homepage`, `repository`, `license`, `keywords`.
 **Optional UI block** `interface`:
 - `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`, `capabilities`
 - `defaultPrompt` — an **array** of starter prompts (not a single string). **At most 3 entries** (extras ignored); **each capped at 128 characters** (longer entries truncated).
 - `websiteURL`, `privacyPolicyURL`, `termsOfServiceURL`
 - `brandColor`, `composerIcon`, `logo`, `logoDark` (dark-mode logo variant), `screenshots` (PNG files stored under `./assets/`, paths relative to plugin root)
+
+**Notation:** `$+ARGUMENTS` and `$+{CLAUDE_PLUGIN_ROOT}` in this file are split by a `+` so Claude Code does not replace them when it loads this skill; the real tokens have no `+` (`nlpm:conventions-claude` §2.4).
+
+**A manifest path REPLACES the default location; it does not add to it** (observed on Codex 0.159.2 on 2026-10-01 through the app-server `skills/list` and `hooks/list` methods; this corrects the earlier "paths supplement default discovery" claim):
+- `skills` — with no `skills` key, Codex loads the plugin-root `skills/` directory. With `"skills": "./codex/skills/"`, root `skills/` is not loaded.
+- `hooks` — with no `hooks` key, Codex loads the plugin-root `hooks/hooks.json`, including a Claude Code plugin's hooks file (it expands `$+{CLAUDE_PLUGIN_ROOT}` there). With `"hooks": "./codex/hooks.json"`, the root file is not loaded. To keep a plugin's Claude hooks out of Codex, point `hooks` at a file holding `{"hooks": {}}`.
+- `apps`, `mcpServers` — replacement vs. addition not verified this pass.
+
+**`"commands": []`** stops Codex turning a plugin's Claude Code `commands/*.md` into extra skills. Without it, Codex 0.159.2 converts commands into skills named `source-command-<command>` (written under `.codex-plugin/migrated-command-skills/` in the installed copy), which duplicate a Codex port's own skills. It converts only some commands (commands whose body uses `$+ARGUMENTS` were skipped in testing, and a few without it were too), so the duplicates are easy to miss. A plugin that ships a Claude `commands/` directory alongside a Codex skill tree should set `"commands": []`; do NOT flag the key as unknown.
+
+**A symlinked skill directory is dropped on install** (Codex 0.159.2, local and Git marketplace sources alike): the installed copy omits it, so the skill never loads. Ship real directories in a Codex skill tree.
 
 ---
 
@@ -214,7 +227,7 @@ The nlpm pattern of `CLAUDE.md` → one line `@AGENTS.md` does NOT work for Code
 
 Codex's slash-command / prompt format lives at `~/.codex/prompts/<name>.md` (project form `.codex/prompts/`). The "deprecated in favor of skills" framing is **not confirmed in current docs** (2026-06-07) — prompts are still documented. nlpm should NOT penalize their presence, and should treat any migration recommendation as advisory/soft rather than asserting deprecation.
 
-Placeholders if scoring legacy prompts: `$1..$9`, `$ARGUMENTS`, `$FILE`, `$TICKET_ID`, `$$`.
+Placeholders if scoring legacy prompts: `$1..$9`, `$+ARGUMENTS`, `$FILE`, `$TICKET_ID`, `$$`.
 
 ---
 
