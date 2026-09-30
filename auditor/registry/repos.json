@@ -9916,7 +9916,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "14f7b2865692d27364c934ecb9912496371018bb"
+      "commit_sha_at_audit": "14f7b2865692d27364c934ecb9912496371018bb",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/danny-avila-LibreChat.md"
     },
     "TencentCloud/TencentDB-Agent-Memory": {
       "discovered": "2026-08-31T06:11:05Z",
