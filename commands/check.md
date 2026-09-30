@@ -15,7 +15,7 @@ $ARGUMENTS
 
 ### Step 1: Discover ALL Artifacts
 
-Parse `$ARGUMENTS` for path (default: cwd). Use `commands/shared/discover.md` to discover all Category A+B artifacts. Read every file.
+Parse `$ARGUMENTS` for path (default: cwd). Use `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md` to discover all Category A+B artifacts. Read every file.
 
 If no artifacts found → "No NL programming artifacts found."
 

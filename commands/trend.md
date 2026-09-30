@@ -26,7 +26,7 @@ Dispatch the `nlpm:scorer` and `nlpm:vague-scanner` agents in parallel to score 
 
 ### Step 3: Compare Against History
 
-Filter the loaded snapshots to **only those whose `scope` matches the current scope** — otherwise a path-bound trend would be compared against full-repo baselines and produce nonsense deltas. The scope is derived from the current invocation's arguments using the same mapping as `commands/shared/append-history.md`.
+Filter the loaded snapshots to **only those whose `scope` matches the current scope** — otherwise a path-bound trend would be compared against full-repo baselines and produce nonsense deltas. The scope is derived from the current invocation's arguments using the same mapping as `${CLAUDE_PLUGIN_ROOT}/commands/shared/append-history.md`.
 
 For each artifact in the current score:
 - Find its most recent entry in the filtered history
@@ -37,7 +37,7 @@ If the filtered history is empty (first run for this scope), skip the delta comp
 
 ### Step 4: Save Snapshot
 
-Persist this run by following `commands/shared/append-history.md` with the scope determined in Step 3, the per-file scores from Step 2, and the file count. The partial handles file creation, deduplication, and atomic write.
+Persist this run by following `${CLAUDE_PLUGIN_ROOT}/commands/shared/append-history.md` with the scope determined in Step 3, the per-file scores from Step 2, and the file count. The partial handles file creation, deduplication, and atomic write.
 
 ### Step 5: Report
 

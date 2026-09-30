@@ -471,7 +471,7 @@ having no backing in this rubric. They MUST NOT be penalized:
 |---|---|
 | Missing `namespace:` on skill | Not in the skill schema; `conventions` §5 does not list it |
 | Missing inline `hooks:`/`skills:` registration blocks in plugin.json | `conventions` §1 defines these as optional path strings |
-| `AskUserQuestion` / `Task` / `WebFetch` flagged as undocumented tool | Built-in per `conventions` §14 |
+| `AskUserQuestion` / `Task` / `WebFetch` flagged as undocumented tool | Built-in per `conventions-claude` §16 |
 | Agent missing `skills:` when omission is documented in CLAUDE.md | Intentional architectural choice |
 | plugin.json missing `engines:` / `minClaudeVersion:` / `main:` | All optional per `conventions` §1 |
 | plugin.json description shorter than sibling marketplace.json description | Desynchronization ≠ defect; only penalize if required field is absent |

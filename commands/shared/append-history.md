@@ -1,6 +1,7 @@
 ---
-description: "Append a scoring snapshot to .claude/nlpm-history.json. Used by /nlpm:init, /nlpm:score, and /nlpm:trend so trend data accumulates without manual upkeep."
+description: "Shared partial: append a scoring snapshot to .claude/nlpm-history.json. Used by /nlpm:init, /nlpm:score, and /nlpm:trend so trend data accumulates without manual upkeep."
 user-invocable: false
+disable-model-invocation: true
 ---
 
 # Append Scoring Snapshot to History

@@ -1,6 +1,7 @@
 ---
-description: "Discover NL programming artifact files in a directory by category (A: plugin, B: project config, F: memory). Used by /nlpm:ls, /nlpm:score, /nlpm:check, and /nlpm:trend."
+description: "Shared partial: discover NL programming artifact files in a directory by category (A: plugin, B: project config, F: memory). Used by /nlpm:ls, /nlpm:score, /nlpm:check, and /nlpm:trend."
 user-invocable: false
+disable-model-invocation: true
 ---
 
 # Discover NL Programming Artifacts

@@ -25,10 +25,10 @@ Discover all natural language programming artifacts in the given directory.
 
 ## Instructions
 
-1. Use the discovery patterns from `commands/shared/discover.md` to discover all files in Category A (plugin artifacts) and Category B (project config).
+1. Use the discovery patterns from `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md` to discover all files in Category A (plugin artifacts) and Category B (project config).
 2. Skip directories: node_modules/, .git/, target/, dist/, build/, vendor/, __pycache__/, .next/, .venv/
 3. For each found file:
-   a. Classify its type using the rules from `commands/shared/classify.md`
+   a. Classify its type using the rules from `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md`
    b. Count its lines (Read the file, count newlines)
    c. Record: path, category (A or B), type, line_count
 4. Compute totals: files per category, total lines, estimated tokens (lines * 3.5)
@@ -52,4 +52,4 @@ Total: {N} artifacts, {L} lines, ~{T} tokens
 
 If a category has no files, show: `Category X — {Name}    0 files`
 
-Remove `.gitkeep` if present in agents/ directory before reporting.
+Exclude `.gitkeep` from counts if present in the agents/ directory.

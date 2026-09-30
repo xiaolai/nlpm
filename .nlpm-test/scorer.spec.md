@@ -39,7 +39,7 @@ Expected elements in the output:
 
 - Score out of 100 (e.g., "85/100")
 - Severity classification (HIGH, MEDIUM, LOW)
-- Rule numbers (R01-R50)
+- Rule numbers (R01-R51)
 - Line numbers for each issue
 - Penalty values
 - Suggested fixes
