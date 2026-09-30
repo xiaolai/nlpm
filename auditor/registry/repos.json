@@ -9883,10 +9883,13 @@
       "stars": 42381,
       "artifacts": 5,
       "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 97,
       "audit_issue": 968,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "14f7b2865692d27364c934ecb9912496371018bb"
     },
     "TencentCloud/TencentDB-Agent-Memory": {
       "discovered": "2026-08-31T06:11:05Z",
