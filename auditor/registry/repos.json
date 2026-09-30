@@ -10123,10 +10123,13 @@
       "stars": 14740,
       "artifacts": 7,
       "description": "Local-first cross-platform desktop workspace for Claude Code / agents: multi-agent, Git worktrees, code diffs, skill marketplace, multi-model, Computer Use, task-aware desktop pets, with WeChat, Feishu, DingTalk, Telegram, WhatsApp and H5 access.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 80,
       "audit_issue": 1276,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "da51feb8cf0e90718d9c7f3f29af3703eaf0d5d4"
     }
   }
 }
