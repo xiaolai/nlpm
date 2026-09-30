@@ -1,6 +1,6 @@
 ---
 name: vocabulary
-description: Use when writing, reviewing, or naming any NLPM artifact (command, agent, skill, rule, workflow) — pick the canonical noun or verb from this registry rather than coining a synonym. Loaded by the scorer and checker agents to detect vocabulary drift across artifacts.
+description: "NLPM noun/verb registry (R51): pick the canonical term, detect vocabulary drift."
 version: 0.1.0
 ---
 

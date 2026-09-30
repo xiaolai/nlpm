@@ -1,6 +1,6 @@
 ---
 name: rules
-description: "The 50 rules of natural language programming. Loaded when writing, reviewing, or improving any NL artifact — skills, agents, commands, rules, hooks, prompts, plugins, and the project memory file (CLAUDE.md / AGENTS.md / GEMINI.md). The definitive style guide for NL code quality."
+description: "The 50 NL programming rules (R01-R50) for skills, agents, commands, hooks, prompts."
 version: 0.2.0
 user-invocable: false
 ---
@@ -8,6 +8,8 @@ user-invocable: false
 # The Rules of Natural Language Programming
 
 > These rules govern how to write NL artifacts that Claude Code and other LLMs consume. They are enforced by `/nlpm:score` (penalty-based) and referenced by `/nlpm:fix` (auto-repair). When writing any NL artifact, follow these rules.
+>
+> **Notation:** `$+ARGUMENTS` and `$+{CLAUDE_PLUGIN_ROOT}` in this file are Claude Code's argument token and plugin-root variable, split by a `+` so Claude Code does not replace them when it loads this skill; the real tokens have no `+` (`nlpm:conventions-claude` §2.4).
 
 ---
 
@@ -145,7 +147,7 @@ tools: Read, Grep, Glob
 > Real-world example: [BayramAnnakov-claude-reflect](../../../auditor/exemplars/BayramAnnakov-claude-reflect.md), [SukinShetty-Nemp-memory](../../../auditor/exemplars/SukinShetty-Nemp-memory.md), [TheDecipherist-claude-code-mastery](../../../auditor/exemplars/TheDecipherist-claude-code-mastery.md), [gemini-cli-extensions-conductor](../../../auditor/exemplars/gemini-cli-extensions-conductor.md), [jarrodwatts-claude-hud](../../../auditor/exemplars/jarrodwatts-claude-hud.md), [karpathy-autoresearch](../../../auditor/exemplars/karpathy-autoresearch.md), [mattpocock-skills](../../../auditor/exemplars/mattpocock-skills.md), [nicknisi-claude-plugins](../../../auditor/exemplars/nicknisi-claude-plugins.md), [uppinote20-claude-dashboard](../../../auditor/exemplars/uppinote20-claude-dashboard.md)
 <!-- nlpm-exemplar-citation:end -->
 
-**R15. Handle empty input.** What happens when `$ARGUMENTS` is blank? Default behavior or clear error.
+**R15. Handle empty input.** What happens when `$+ARGUMENTS` is blank? Default behavior or clear error.
 
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [BayramAnnakov-claude-reflect](../../../auditor/exemplars/BayramAnnakov-claude-reflect.md), [SukinShetty-Nemp-memory](../../../auditor/exemplars/SukinShetty-Nemp-memory.md), [agenticnotetaking-arscontexta](../../../auditor/exemplars/agenticnotetaking-arscontexta.md), [karpathy-autoresearch](../../../auditor/exemplars/karpathy-autoresearch.md), [taishi-i-awesome-japanese-nlp-resources](../../../auditor/exemplars/taishi-i-awesome-japanese-nlp-resources.md), [uppinote20-claude-dashboard](../../../auditor/exemplars/uppinote20-claude-dashboard.md)
@@ -224,7 +226,7 @@ Good: `**Use specific types instead of any.** Without specific types, TypeScript
 
 **R29. Referenced scripts must exist.** A hook pointing to a missing script silently fails.
 
-**R30. Use `${CLAUDE_PLUGIN_ROOT}` for paths.** Never hardcode absolute paths. They break on other machines.
+**R30. Use `$+{CLAUDE_PLUGIN_ROOT}` for paths.** Never hardcode absolute paths. They break on other machines.
 
 <!-- nlpm-exemplar-citation:begin -->
 > Real-world example: [AgriciDaniel-claude-seo](../../../auditor/exemplars/AgriciDaniel-claude-seo.md), [BayramAnnakov-claude-reflect](../../../auditor/exemplars/BayramAnnakov-claude-reflect.md), [CloudAI-X-claude-workflow-v2](../../../auditor/exemplars/CloudAI-X-claude-workflow-v2.md), [MemPalace-mempalace](../../../auditor/exemplars/MemPalace-mempalace.md), [SukinShetty-Nemp-memory](../../../auditor/exemplars/SukinShetty-Nemp-memory.md), [agenticnotetaking-arscontexta](../../../auditor/exemplars/agenticnotetaking-arscontexta.md), [alexgreensh-token-optimizer](../../../auditor/exemplars/alexgreensh-token-optimizer.md), [data-goblin-power-bi-agentic-development](../../../auditor/exemplars/data-goblin-power-bi-agentic-development.md), [fivetaku-fablize](../../../auditor/exemplars/fivetaku-fablize.md), [jnMetaCode-superpowers-zh](../../../auditor/exemplars/jnMetaCode-superpowers-zh.md), [mem0ai-mem0](../../../auditor/exemplars/mem0ai-mem0.md), [nicknisi-claude-plugins](../../../auditor/exemplars/nicknisi-claude-plugins.md), [openai-codex-plugin-cc](../../../auditor/exemplars/openai-codex-plugin-cc.md), [tanweai-pua](../../../auditor/exemplars/tanweai-pua.md), [viticci-shortcuts-playground-plugin](../../../auditor/exemplars/viticci-shortcuts-playground-plugin.md), [xiaolai-codex-toolkit-for-claude](../../../auditor/exemplars/xiaolai-codex-toolkit-for-claude.md)
@@ -404,7 +406,7 @@ Each rule earns its place via one of the four warrant types from `analysis/vocab
 | R12 | structural | Without a defined output format, variance breaks downstream parsers |
 | R13 | literary | Codifies the pattern observed in well-written agents |
 | R14 | literary | Codifies the numbered-step pattern in well-written commands |
-| R15 | domain | Crashes on blank `$ARGUMENTS` |
+| R15 | domain | Crashes on blank `$+ARGUMENTS` |
 | R16 | structural | Same as R12 for commands |
 | R17 | domain | Silent error propagation |
 | R18 | structural | Claude Code uses `argument-hint` in `/help` |

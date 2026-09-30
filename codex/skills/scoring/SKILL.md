@@ -1,6 +1,6 @@
 ---
 name: scoring
-description: Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type; tables for Codex, Antigravity, memory-file and workflow-program artifacts live in `references/` (indexed under Penalty Tables). Four worked calibration examples (Excellent Agent / Rewrite Agent / Excellent Rule / Weak Rule) live in `references/calibration-examples.md`, loaded on demand when anchoring borderline cases.
+description: "100-point NL artifact rubric: penalty tables per artifact type, calibration cases."
 version: 0.4.0
 ---
 

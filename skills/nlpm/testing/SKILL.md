@@ -1,6 +1,6 @@
 ---
 name: testing
-description: "Use when writing test specs for NL artifacts, running /nlpm:test, or setting up TDD workflows for skills, agents, commands, rules, hooks, and prompts."
+description: "NL artifact test specs for /nlpm:test: spec format, TDD for skills and agents."
 version: 0.1.0
 user-invocable: false
 ---

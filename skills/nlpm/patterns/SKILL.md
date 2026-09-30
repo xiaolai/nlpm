@@ -1,6 +1,6 @@
 ---
 name: patterns
-description: "Use when writing or reviewing NL artifacts and need to check for anti-patterns — vague quantifiers, prohibitions without alternatives, oversized skills, write-on-read-only agents, monolithic prompts, or linter-duplicating rules."
+description: "NL artifact anti-patterns: vague quantifiers, bare prohibitions, oversized skills."
 version: 0.1.0
 user-invocable: false
 ---
@@ -8,6 +8,8 @@ user-invocable: false
 # NL Programming Patterns
 
 Best practices and anti-patterns for writing NL programming artifacts (Claude Code, Codex CLI, Antigravity). Each pattern includes a rationale and a concrete example. The patterns are tool-agnostic — they describe how to write effective natural-language instructions, not tool-specific schemas. Use this skill when authoring or reviewing skills, agents, commands, rules, or hooks.
+
+**Notation:** `$+{CLAUDE_PLUGIN_ROOT}` in this file is Claude Code's plugin-root variable, split by a `+` so Claude Code does not replace it with a path when it loads this skill; the real token has no `+` (`nlpm:conventions-claude` §2.4).
 
 ---
 
@@ -57,7 +59,7 @@ Write rules as "**Do X** because Y" not "Don't do Z". The Pink Elephant effect: 
 
 **Good:**
 ```markdown
-**Use `${CLAUDE_PLUGIN_ROOT}` for all intra-plugin file references.**
+**Use `$+{CLAUDE_PLUGIN_ROOT}` for all intra-plugin file references.**
 
 Because absolute paths break when the plugin is installed by different users
 or on different machines, portable path variables ensure the plugin works
@@ -244,7 +246,7 @@ Words like "appropriate", "relevant", "as needed", "sufficient", "adequate", "re
 "Don't use X" without explaining what to use instead violates P3 and leaves the reader with no actionable path.
 
 **Fix:** Always pair a prohibition with an alternative:
-- "Don't hardcode paths" → "Use `${CLAUDE_PLUGIN_ROOT}` instead of absolute paths, because..."
+- "Don't hardcode paths" → "Use `$+{CLAUDE_PLUGIN_ROOT}` instead of absolute paths, because..."
 - "Don't use passive voice" → "Use imperative verbs (Use, Run, Check, Return) because they reduce ambiguity"
 
 ---
@@ -304,7 +306,7 @@ Absolute paths in hooks, scripts, or plugin configs break when:
 - The project is moved
 - CI/CD runs in a container
 
-**Fix:** Use `${CLAUDE_PLUGIN_ROOT}` for paths within a plugin. Use relative paths where the base is well-defined.
+**Fix:** Use `$+{CLAUDE_PLUGIN_ROOT}` for paths within a plugin. Use relative paths where the base is well-defined.
 
 ---
 

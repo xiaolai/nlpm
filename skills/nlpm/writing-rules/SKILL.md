@@ -1,7 +1,8 @@
 ---
 name: writing-rules
-description: "How to write .claude/rules/ files that Claude actually follows. Use when creating, improving, or reviewing project rules."
+description: "How to write .claude/rules/ files: golden format, enforceability, budget, scope."
 version: 0.2.0
+user-invocable: false
 ---
 
 # Writing Rules

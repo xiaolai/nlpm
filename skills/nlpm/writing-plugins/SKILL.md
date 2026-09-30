@@ -1,6 +1,6 @@
 ---
 name: writing-plugins
-description: "How to design and build plugins -- architecture decisions, artifact selection, file structure, manifest configuration, marketplace publishing. Primarily Claude Code (.claude-plugin/plugin.json); the same architecture maps to Codex CLI (.codex-plugin/plugin.json) and Antigravity extensions. Use when planning, creating, or reviewing a plugin."
+description: "How to design plugins: architecture, artifact choice, manifests, marketplaces."
 version: 0.2.0
 user-invocable: false
 ---
@@ -388,7 +388,7 @@ For each agent, test with 3 types of queries:
 | Hooks that block without explanation | Frustrating UX | Always include `permissionDecisionReason` |
 | No AGENTS.md | Claude doesn't understand plugin architecture | Add architecture overview to AGENTS.md (no root CLAUDE.md) |
 | README documents internals | Users confused by implementation details | README = user guide, AGENTS.md = internals |
-| Hardcoded paths | Breaks on other machines | Use `${CLAUDE_PLUGIN_ROOT}` everywhere |
+| Hardcoded paths | Breaks on other machines | Use the plugin-root variable `$+{CLAUDE_PLUGIN_ROOT}` everywhere (split by a `+` so Claude Code does not replace it when it loads this skill; the real token has no `+`) |
 | No error handling in commands | Silent failures | Add explicit error cases |
 | Version not updated in all 4 places | Marketplace shows wrong version | Use the four-place update checklist |
 | Premature extraction into shared/ | Over-abstracted, harder to understand | Extract only when 3+ consumers exist |

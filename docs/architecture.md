@@ -60,6 +60,7 @@ Per-component reference moved out of `AGENTS.md` so the memory file stays instru
 
 - hooks/hooks.json -- PostToolUse command hook on Write|Edit|MultiEdit
 - scripts/check-artifact.sh -- classifies written file, emits advisory only for NL artifacts
+- codex/hooks.json -- empty on purpose. `.codex-plugin/plugin.json` points `hooks` at it because Codex otherwise loads hooks/hooks.json, whose advisory names `/nlpm:score`, a command the Codex plugin does not ship. Its `"commands": []` likewise stops Codex turning commands/*.md into `source-command-*` skills.
 
 ## Standalone Author Surface (v0.8.0+)
 

@@ -1,12 +1,14 @@
 ---
 name: writing-hooks
-description: How to write Claude Code hooks -- event selection, hook types, matcher patterns, blocking vs advisory, portable paths. Use when creating hooks for quality gates, automation, or policy enforcement.
+description: "How to write Claude Code hooks: events, matchers, blocking vs advisory, paths."
 version: 0.2.0
 ---
 
 # Writing Hooks
 
 > Scope: covers Claude Code `hooks.json` authoring and hook script design. **Hook event vocabularies are per-tool and NOT 1:1 mappable** (nlpm design decision #4): Claude uses `PreToolUse`/`PostToolUse`/`Stop`/etc.; Codex overlaps with Claude plus `PostCompact`/`SubagentStart`; Antigravity/Gemini uses a different `Before*/After* Agent/Model/Tool` decomposition. The hook-script design principles here (idempotency, fail-open, exit codes, portable paths) transfer across tools; the event names and config locations do not. For the authoritative per-tool event tables see [[nlpm:conventions-claude]] §7, [[nlpm:conventions-codex]] §6, [[nlpm:conventions-antigravity]] §5. For plugin architecture, see [[writing-plugins]]. For rules (which are simpler but static), see [[writing-rules]].
+
+**Notation:** `$+{CLAUDE_PLUGIN_ROOT}` in this file is Claude Code's plugin-root variable, split by a `+` so Claude Code does not replace it with a path when it loads this skill; the real token has no `+` (`nlpm:conventions-claude` §2.4).
 
 ## 1. Three Hook Types
 
@@ -37,7 +39,7 @@ Is the check deterministic (regex, file exists, JSON schema)?
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-loc.sh",
+            "command": "$+{CLAUDE_PLUGIN_ROOT}/scripts/check-loc.sh",
             "timeout": 10000
           }
         ]
@@ -192,13 +194,13 @@ Before deploying, verify your matcher with test cases:
 
 ## 5. Portable Paths
 
-Always use `${CLAUDE_PLUGIN_ROOT}` for script paths in hooks.json. This variable resolves to the plugin's installation directory at runtime.
+Always use `$+{CLAUDE_PLUGIN_ROOT}` for script paths in hooks.json. This variable resolves to the plugin's installation directory at runtime.
 
 ### Correct
 
 ```json
 {
-  "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-loc.sh"
+  "command": "$+{CLAUDE_PLUGIN_ROOT}/scripts/check-loc.sh"
 }
 ```
 
@@ -323,7 +325,7 @@ echo "$result"
 | Wrong event case | `pretooluse` instead of `PreToolUse` -- case-sensitive | Use exact case: `PreToolUse`, `PostToolUse`, etc. |
 | Script not executable | Hook fails silently | Run `chmod +x scripts/*.sh` |
 | Missing shebang | Script may run with wrong interpreter | Add `#!/bin/bash` or `#!/usr/bin/env node` |
-| Hardcoded paths | Breaks on other machines | Use `${CLAUDE_PLUGIN_ROOT}` |
+| Hardcoded paths | Breaks on other machines | Use `$+{CLAUDE_PLUGIN_ROOT}` |
 | stdout pollution | Debug output mixed into JSON response | Use stderr for logging: `echo "debug" >&2` |
 | No timeout | Slow script blocks Claude indefinitely | Set `"timeout": 10000` (10 seconds) |
 | Matcher too broad (`".*"`) | Fires on every tool call, performance impact | Narrow to specific tools |
@@ -336,7 +338,7 @@ Before deploying hooks, verify:
 - [ ] Each hook has the correct event type for its purpose
 - [ ] Blocking hooks use `PreToolUse`, not `PostToolUse`
 - [ ] Matchers are tested against expected and unexpected tool names
-- [ ] All script paths use `${CLAUDE_PLUGIN_ROOT}`
+- [ ] All script paths use `$+{CLAUDE_PLUGIN_ROOT}`
 - [ ] All scripts have shebangs and executable permissions
 - [ ] All scripts output valid JSON to stdout
 - [ ] Debug logging goes to stderr, not stdout

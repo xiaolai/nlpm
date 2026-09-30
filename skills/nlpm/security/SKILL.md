@@ -1,6 +1,6 @@
 ---
 name: security
-description: "Detects execution surface risks, supply chain vulnerabilities, data exfiltration vectors, and prompt injection patterns in Claude Code plugins. Use when auditing plugins for security risks, reviewing MCP server configurations, scanning hooks and scripts for vulnerabilities, or checking extensions before installation."
+description: "Plugin security risks: hooks, scripts, MCP configs, supply chain, prompt injection."
 version: 0.1.0
 user-invocable: false
 ---
