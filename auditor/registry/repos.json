@@ -9856,7 +9856,7 @@
       "stars": 2257,
       "artifacts": 10,
       "description": "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.",
-      "status": "tracked",
+      "status": "complete",
       "score": 97,
       "audit_issue": 827,
       "prs": [
@@ -9901,7 +9901,9 @@
         15
       ],
       "rule_adopted": false,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "case_study_skipped": true,
+      "case_study_skip_reason": "thin narrative: score=97, security=REVIEW, merged=2, applied_separately=0, rejected=0, rule_adopted=False"
     },
     "deepseek-ai/deepseek-harness": {
       "artifacts": 28,
