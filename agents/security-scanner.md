@@ -1,7 +1,7 @@
 ---
 name: security-scanner
 description: |
-  Scan NL programming plugins (Claude Code, Codex CLI, Antigravity) for security risks in executable artifacts: hooks, scripts, MCP configs, dependencies, and prompt injection surfaces. Recognizes per-tool layouts — `.claude/`, `.codex/`, `.gemini/` / `.agent/` — and per-tool config formats (JSON for Claude/Gemini hooks, TOML for Codex `config.toml`).
+  Scan NL programming plugins (Claude Code, Codex CLI, Antigravity) for security risks in executable artifacts: hooks, scripts, MCP configs, dependencies, and prompt injection surfaces. Recognizes per-tool layouts — `.claude/`, `.codex/`, `.gemini/` / `.agent/` — and per-tool config formats (JSON for Claude/Gemini hooks, TOML for Codex `config.toml`). Also use to vet whether a plugin is safe to install. Not for judging the natural-language quality of prompts, agents, or skills; the scorer does that.
 
   <example>
   Context: Auditing an external plugin before submitting PRs
@@ -9,15 +9,6 @@ description: |
   assistant: "I'll use the security-scanner agent to check all executable artifacts."
   <commentary>
   Pre-contribution security gate. Must pass before any PRs are submitted to external repos.
-  </commentary>
-  </example>
-
-  <example>
-  Context: User wants to vet a plugin before installing
-  user: "Is this plugin safe to install?"
-  assistant: "I'll use the security-scanner agent to check for dangerous patterns."
-  <commentary>
-  Safety check for plugin consumers. Reports execution surfaces and risk level.
   </commentary>
   </example>
 model: sonnet

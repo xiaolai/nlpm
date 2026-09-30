@@ -1,16 +1,12 @@
 ---
 name: checker
 description: |
-  Cross-artifact consistency checker for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin artifacts.
+  Cross-artifact consistency checker for NL programming artifacts. Checks reference integrity, detects orphans, finds behavioral contradictions, and identifies terminology drift across plugin artifacts. Use after renaming or moving a skill, partial, or script to find references across agents and commands that now break. Not for scoring a single file's quality on the 100-point rubric; that is the scorer's per-file job.
 
   <example>
   Context: User runs /nlpm:check on a plugin directory
   user: "/nlpm:check"
   assistant: "I'll dispatch the checker for cross-artifact consistency."
-  </example>
-  <example>
-  Context: Developer renamed a skill directory and wants to check for broken references
-  assistant: "I'll dispatch the checker to find any broken skill references across agents and commands."
   </example>
 model: sonnet
 color: cyan

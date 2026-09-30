@@ -1,19 +1,11 @@
 ---
 name: scorer
 description: |
-  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or scoring commands, agents, skills, rules, hooks, or CLAUDE.md files.
+  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or scoring commands, agents, skills, rules, hooks, or CLAUDE.md files — including a pre-release check that all artifacts meet the threshold, and identifying findings and their penalties for /nlpm:fix before it applies repairs. Not for cross-artifact checks such as broken references or orphans (use the checker), and not for running .nlpm-test specs (use the tester).
 
   <example>
   Context: User runs /nlpm:score on a directory
   assistant: "I'll use the scorer to score these artifacts and report findings."
-  </example>
-  <example>
-  Context: Quality check before a plugin release
-  assistant: "I'll dispatch the scorer to verify all artifacts meet the threshold."
-  </example>
-  <example>
-  Context: Fix command needs to identify findings before applying repairs
-  assistant: "I'll use the scorer to identify findings and their penalties."
   </example>
 model: sonnet
 color: yellow
@@ -217,6 +209,6 @@ For each artifact:
 
 | # | Sev | Rule | Line | Finding | Penalty | Fix |
 |---|-----|------|------|-------|---------|-----|
-| 1 | HIGH | R09 | 2 | No <example> blocks in description | -15 | Add 2+ <example> blocks |
+| 1 | HIGH | R09 | 2 | No <example> blocks in description | -15 | Add one <example> block to the description |
 | 2 | LOW | R01 | 45 | "appropriate" without criteria | -2 | Replace with specific criteria |
 ```

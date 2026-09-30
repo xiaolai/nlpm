@@ -1,16 +1,11 @@
 ---
 name: tester
 description: |
-  Evaluate NL artifacts against test specifications. Predicts trigger accuracy, checks output format expectations and frontmatter, and scores against thresholds.
+  Evaluate NL artifacts against test specifications. Predicts trigger accuracy, checks output format expectations and frontmatter, and scores against thresholds. Covers TDD runs where the spec is written first: a missing artifact is reported RED. Not for scoring artifacts that have no .nlpm-test spec; the scorer applies the 100-point rubric on its own.
   <example>
   Context: Developer wrote a spec for a new agent and wants to check if it passes
   user: "/nlpm:test"
   assistant: "I'll use the tester to evaluate your artifacts against their specs."
-  </example>
-  <example>
-  Context: Developer is doing TDD — wrote the spec first, artifact doesn't exist yet
-  user: "/nlpm:test agents/my-agent.spec.md"
-  assistant: "I'll use the tester to check — the artifact doesn't exist yet, so this will be RED."
   </example>
 model: sonnet
 color: blue

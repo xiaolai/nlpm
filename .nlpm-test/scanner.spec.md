@@ -7,7 +7,7 @@ min_score: 85
 ## Frontmatter Valid
 
 Required fields:
-- description: present with 2+ example blocks
+- description: present with at least one example block and a "Not for" sentence, ≤ 1,200 characters
 - model: haiku
 - tools: includes Read, Glob (no Write, Edit, or Grep — scanner uses Glob for discovery and Read for line counting; grep-style content matching is not required)
 - skills: includes nlpm:conventions
