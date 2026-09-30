@@ -25,6 +25,10 @@
 #   superseded by later commits in ways git cannot see as a conflict, so
 #   merging it is a human decision. Those are listed as a warning instead.
 #
+#   Before any of that, it opens the PR for a pushed auditor/bot/ branch
+#   that never got one (the run died between `git push` and `gh pr create`),
+#   under the same age limit; see the section below for the rules.
+#
 # Required environment (set by Actions):
 #   GITHUB_REPOSITORY
 #   PAT_TOKEN (preferred) or GH_TOKEN — repo token for gh + push.
@@ -57,6 +61,66 @@ MAX_AGE_HOURS="${UNSTICK_MERGE_MAX_AGE_HOURS:-48}"
 case "$MAX_AGE_HOURS" in
   ''|*[!0-9]*) echo "::error::UNSTICK_MERGE_MAX_AGE_HOURS must be a whole number of hours" >&2; exit 1 ;;
 esac
+
+# --- open a PR for any bot branch that has none -----------------------------
+# commit-via-pr.sh pushes the branch, then opens the PR. When opening fails
+# (the June-September OAuth outage; HTTP 502/504 at 2026-09-30 12:16, before
+# open-bot-pr.sh adopted half-created PRs) the run dies with its output on a
+# branch no PR points at. Nothing merges it, and every pass below selects
+# PRs, so none of them sees it: seven branches from that one batch held four
+# audits, two exemplars and a contribute record that never reached main
+# (recovered by hand in #1323).
+# Branches come from this repository's own refs, so each was pushed by
+# someone with write access, the same trust boundary as the
+# isCrossRepository filter below. Only a branch with commits not on main
+# counts (a merged PR's branch has none), and a branch with ANY PR (open,
+# merged or closed) is skipped, since a closed PR was a decision. A branch
+# whose tip is younger than MAX_AGE_HOURS gets a PR, opened through the
+# same helper commit-via-pr.sh uses; the passes below then merge or rebase
+# it in this same sweep. An older one is reported instead, for the reason
+# old CLEAN PRs are: its snapshot of shared state may be superseded.
+source auditor/scripts/open-bot-pr.sh
+if ! BOT_REFS=$(git ls-remote --heads origin 'auditor/bot/*'); then
+  echo "::error::unstick-bot-prs: could not list auditor/bot/ branches" >&2
+  exit 1
+fi
+if [ -n "$BOT_REFS" ] && ! git fetch --quiet origin '+refs/heads/auditor/bot/*:refs/remotes/origin/auditor/bot/*'; then
+  echo "::error::unstick-bot-prs: could not fetch auditor/bot/ branches" >&2
+  exit 1
+fi
+NOW=$(date +%s)
+opened=0
+orphans_old=()
+while read -r _SHA REF; do
+  [ -z "${REF:-}" ] && continue
+  BRANCH="${REF#refs/heads/}"
+  [ "$(git rev-list --count "origin/main..origin/$BRANCH")" -gt 0 ] || continue
+  if ! HAS_PR=$(GH_TOKEN="$TOKEN" gh pr list --repo "$GITHUB_REPOSITORY" \
+      --head "$BRANCH" --state all --json number --jq '.[0].number // empty'); then
+    echo "::warning::unstick-bot-prs: could not look up PRs for $BRANCH; the next sweep retries"
+    continue
+  fi
+  [ -n "$HAS_PR" ] && continue
+  AGE=$(( (NOW - $(git log -1 --format=%ct "origin/$BRANCH")) / 3600 ))
+  if [ "$AGE" -ge "$MAX_AGE_HOURS" ]; then
+    orphans_old+=("$BRANCH (${AGE}h)")
+    continue
+  fi
+  RUN_PART="${BRANCH#auditor/bot/*/}"
+  RUN_ID="${RUN_PART%%-*}"
+  BODY=$(printf 'Automated bot commit from run [%s](https://github.com/%s/actions/runs/%s). The run pushed this branch but never opened its PR; `auditor/scripts/unstick-bot-prs.sh` opened it.\n\nMerged via the auditor PR-flow (see `auditor/scripts/commit-via-pr.sh`).' \
+         "$RUN_ID" "$GITHUB_REPOSITORY" "$RUN_ID")
+  if open_bot_pr "$BRANCH" "$(git log -1 --format=%s "origin/$BRANCH")" "$BODY"; then
+    echo "unstick-bot-prs: opened $PR_URL for bot branch $BRANCH, which had no PR"
+    opened=$((opened + 1))
+  else
+    echo "::warning::unstick-bot-prs: could not open a PR for bot branch $BRANCH; the next sweep retries"
+  fi
+done <<< "$BOT_REFS"
+echo "unstick-bot-prs: opened ${opened} PR(s) for bot branches that had none"
+if [ "${#orphans_old[@]}" -gt 0 ]; then
+  echo "::warning::unstick-bot-prs: ${#orphans_old[@]} bot branch(es) with commits not on main, no PR, and older than ${MAX_AGE_HOURS}h left for a human (their state snapshot may be superseded): ${orphans_old[*]}"
+fi
 
 # One snapshot of every open bot PR:
 # "<number> <branch> <mergeStateStatus> <age in whole hours> <labelled 1|0>".
