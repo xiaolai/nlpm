@@ -216,15 +216,18 @@ jobs:
             exit 1
           fi
 
-          git add "$EXEMPLAR_PATH" auditor/exemplars/README.md auditor/registry/repos.json auditor/logs/events.jsonl
-          bash auditor/scripts/guard-protected-paths.sh || exit 1
-          bash auditor/scripts/commit-via-pr.sh "exemplar: $TARGET_REPO (score $SCORE/100)"
-
+          # Log before staging: the commit below is this job's last, so an event
+          # appended after it never reached main (no exemplar_published event
+          # was ever recorded before this was moved).
           log_event "exemplar" "exemplar_published" "$(jq -cn \
             --arg repo "$TARGET_REPO" \
             --arg path "$EXEMPLAR_PATH" \
             --arg score "$SCORE" \
             '{repo: $repo, exemplar_path: $path, score: ($score | tonumber)}')" || true
+
+          git add "$EXEMPLAR_PATH" auditor/exemplars/README.md auditor/registry/repos.json auditor/logs/events.jsonl
+          bash auditor/scripts/guard-protected-paths.sh || exit 1
+          bash auditor/scripts/commit-via-pr.sh "exemplar: $TARGET_REPO (score $SCORE/100)"
 
           # Post on the audit issue (it's already closed, but the comment is searchable)
           REPORT_URL="https://github.com/${GITHUB_REPOSITORY}/blob/main/${EXEMPLAR_PATH}"
