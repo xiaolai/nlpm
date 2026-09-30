@@ -1,0 +1,150 @@
+{
+  "project": "danny-avila/LibreChat",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 4,
+    "average_score": 97,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude/skills/improve-codebase-architecture/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R12",
+          "severity": "low",
+          "line": 23,
+          "message": "Vague phrases 'a good stretch of the commit history' and 'explore organically'"
+        },
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 27,
+          "message": "No explicit output format for sub-agent exploration notes"
+        },
+        {
+          "rule": "CC-broken-relative-path",
+          "severity": "info",
+          "line": null,
+          "message": "References /grilling and /domain-modeling skills not present in .claude/skills/"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-postinstall-script",
+          "severity": "low",
+          "line": 15,
+          "message": "prepare script initializes husky and swallows errors"
+        }
+      ]
+    },
+    {
+      "path": "scripts/redis-mode.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-sudo",
+          "severity": "low",
+          "line": 13,
+          "message": "sudo appears only inside an echoed install hint"
+        }
+      ]
+    },
+    {
+      "path": "scripts/static-checks.mts",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-shell-true",
+          "severity": "low",
+          "line": 321,
+          "message": "Windows-only npm.cmd spawn with fixed args and no user input"
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-09-30T06:18:31Z",
+      "average_score": 97,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R12",
+      "severity": "low",
+      "confidence": "low",
+      "file": ".claude/skills/improve-codebase-architecture/SKILL.md",
+      "line": 23,
+      "message": "Vague phrases 'a good stretch of the commit history' and 'explore organically'"
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "low",
+      "file": ".claude/skills/improve-codebase-architecture/SKILL.md",
+      "line": 27,
+      "message": "No explicit output format for sub-agent exploration notes"
+    },
+    {
+      "rule": "SEC-shell-true",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scripts/static-checks.mts",
+      "line": 321,
+      "message": "Windows-only npm.cmd spawn with fixed args and no user input"
+    },
+    {
+      "rule": "SEC-sudo",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "scripts/redis-mode.sh",
+      "line": 13,
+      "message": "sudo appears only inside an echoed install hint"
+    },
+    {
+      "rule": "SEC-postinstall-script",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "package.json",
+      "line": 15,
+      "message": "prepare script initializes husky and swallows errors"
+    },
+    {
+      "rule": "CC-broken-relative-path",
+      "severity": "info",
+      "confidence": "low",
+      "file": ".claude/skills/improve-codebase-architecture/SKILL.md",
+      "line": null,
+      "message": "References /grilling and /domain-modeling skills not present in .claude/skills/"
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 42381,
+    "security": "CLEAR",
+    "audit_report_path": "auditor/audits/danny-avila-LibreChat.md"
+  },
+  "generated_at": "2026-09-30T06:18:42Z",
+  "schema_version": 1
+}
