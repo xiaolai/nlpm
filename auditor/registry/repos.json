@@ -9825,6 +9825,25 @@
             "SEC-unescaped-attribute-interpolation"
           ],
           "stale_90d_emitted": false
+        },
+        {
+          "number": 31,
+          "state": "MERGED",
+          "mergedAt": "2026-08-09T09:38:42Z",
+          "closedAt": "2026-08-09T09:38:42Z",
+          "title": "fix: exact-pin devDependency versions in template/package.json",
+          "updatedAt": "2026-08-09T09:38:42Z",
+          "createdAt": "2026-08-07T12:22:38Z",
+          "outcome": "merged",
+          "fingerprints": [
+            "sha256:df19dd4eff2d1c1ad1010c2ddee404ab7438f1ede59488b2a792f58ebe8485a7",
+            "sha256:da82d7cfbf59b7a19d1d2759314e782f64c7c0ab8eba84e0d04c867ef3cfc4ed"
+          ],
+          "rule_ids": [
+            "SEC-unpinned-semver",
+            "SEC-unpinned-semver"
+          ],
+          "stale_90d_emitted": false
         }
       ],
       "rule_adopted": false,
@@ -9837,10 +9856,41 @@
       "stars": 2257,
       "artifacts": 10,
       "description": "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.",
-      "status": "contributed",
+      "status": "tracked",
       "score": 97,
       "audit_issue": 827,
-      "prs": [],
+      "prs": [
+        {
+          "number": 14,
+          "state": "MERGED",
+          "mergedAt": "2026-08-10T20:36:17Z",
+          "closedAt": "2026-08-10T20:36:17Z",
+          "title": "fix(osint-autopilot): validate domain arg to prevent path traversal",
+          "updatedAt": "2026-08-10T20:36:17Z",
+          "createdAt": "2026-08-10T12:20:20Z",
+          "outcome": "merged",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 15,
+          "state": "MERGED",
+          "mergedAt": "2026-08-10T20:45:08Z",
+          "closedAt": "2026-08-10T20:45:08Z",
+          "title": "fix(osint-autopilot): declare openpyxl as a required dependency",
+          "updatedAt": "2026-08-10T20:45:08Z",
+          "createdAt": "2026-08-10T12:21:08Z",
+          "outcome": "merged",
+          "fingerprints": [
+            "sha256:0b7ac2ca36a26d70f5d00b2e0b25059d879af6d7496f38db59b9e5697258c38b"
+          ],
+          "rule_ids": [
+            "SEC-undeclared-dependency"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "strategy": "single",
       "security": "REVIEW",
       "commit_sha_at_audit": "7d1516291f24a48696a1db7f86ecb15c75249754",
@@ -9849,7 +9899,9 @@
       "pipeline_prs": [
         14,
         15
-      ]
+      ],
+      "rule_adopted": false,
+      "case_study_candidate": true
     },
     "deepseek-ai/deepseek-harness": {
       "artifacts": 28,
