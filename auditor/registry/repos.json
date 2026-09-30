@@ -9836,7 +9836,7 @@
       "stars": 2257,
       "artifacts": 10,
       "description": "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.",
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "audit_issue": 827,
       "prs": [],
@@ -9844,7 +9844,11 @@
       "security": "REVIEW",
       "commit_sha_at_audit": "7d1516291f24a48696a1db7f86ecb15c75249754",
       "exemplar_published": true,
-      "exemplar_path": "auditor/exemplars/elementalsouls-Claude-OSINT.md"
+      "exemplar_path": "auditor/exemplars/elementalsouls-Claude-OSINT.md",
+      "pipeline_prs": [
+        14,
+        15
+      ]
     },
     "deepseek-ai/deepseek-harness": {
       "artifacts": 28,
