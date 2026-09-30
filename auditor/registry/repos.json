@@ -9794,7 +9794,9 @@
       "prs": [],
       "security": "CLEAR",
       "strategy": "progressive",
-      "commit_sha_at_audit": "18468a95b427e70e258b51389796367c6f684e7d"
+      "commit_sha_at_audit": "18468a95b427e70e258b51389796367c6f684e7d",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/phuryn-pm-skills.md"
     },
     "Vincentwei1021/video-shotcraft": {
       "status": "tracked",
