@@ -4512,3 +4512,4 @@
 {"timestamp":"2026-09-30T18:13:45Z","workflow":"exemplar","event":"exemplar_published","run_id":"36756939168","run_number":239,"data":{"repo":"michaelshimeles/skills","exemplar_path":"auditor/exemplars/michaelshimeles-skills.md","score":95}}
 {"timestamp":"2026-09-30T18:13:50Z","workflow":"exemplar","event":"exemplar_published","run_id":"36756950822","run_number":240,"data":{"repo":"Nanako0129/sepia","exemplar_path":"auditor/exemplars/Nanako0129-sepia.md","score":100}}
 {"timestamp":"2026-09-30T18:13:56Z","workflow":"exemplar","event":"exemplar_published","run_id":"36756928845","run_number":238,"data":{"repo":"ciembor/agent-rules-books","exemplar_path":"auditor/exemplars/ciembor-agent-rules-books.md","score":100}}
+{"timestamp":"2026-09-30T18:14:02Z","workflow":"exemplar","event":"exemplar_published","run_id":"36756962067","run_number":241,"data":{"repo":"phuryn/pm-skills","exemplar_path":"auditor/exemplars/phuryn-pm-skills.md","score":92}}
