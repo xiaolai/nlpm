@@ -1,7 +1,7 @@
 ---
 name: conventions-claude
 description: "Claude Code artifact schemas: plugin.json, frontmatter, hooks, settings, tools."
-version: 0.3.0
+version: 0.3.1
 user-invocable: false
 ---
 
@@ -9,7 +9,7 @@ user-invocable: false
 
 Tool-specific overlay for Claude Code plugin artifacts. Loaded by the scorer and checker when an artifact is classified as **Tier 2-Claude** (per `agents/scorer.md` step 3). The universal floor lives in `nlpm:conventions`; this overlay adds Claude-Code-specific schemas on top.
 
-**Last refreshed:** 2026-08-02 against current docs (Claude Code ≥ v2.1.218).
+**Last refreshed:** 2026-08-02 against current docs (Claude Code ≥ v2.1.218); §2.2, §2.4 and §14 corrected 2026-10-01 against Claude Code 2.1.285. **Notation:** a `+` splits `$+ARGUMENTS` and the dollar-brace variables such as `$+{CLAUDE_PLUGIN_ROOT}` throughout this file. The real tokens have no `+`. They are split because Claude Code replaces the contiguous tokens with their values whenever it loads a skill, including when an agent preloads it, so a literal token here would reach the reader as an empty string or a path (§2.4).
 
 **Primary authoritative sources:**
 - <https://code.claude.com/docs/en/claude_code_docs_map.md>
@@ -47,7 +47,7 @@ The manifest is **fully optional** — artifacts auto-discover from conventional
 - `keywords` — string array for discovery
 - `$schema` — URL to the manifest JSON Schema (editor validation)
 - `defaultEnabled` — boolean; whether the plugin is enabled on install (v2.1.154+)
-- `userConfig` — object; per-key prompts shown to the user at enable time; values exposed as `${user_config.<key>}` substitutions
+- `userConfig` — object; per-key prompts shown to the user at enable time; values exposed as `$+{user_config.<key>}` substitutions
 - `channels` — array; message-injection channel bindings
 - `dependencies` — array of other plugins this one requires (supports semver constraints)
 
@@ -117,7 +117,7 @@ Boolean frontmatter fields accept `yes`/`no`/`on`/`off`/`1`/`0` (any case) in ad
 
 - Write imperative instructions directed at Claude (not the user)
 - Use numbered steps for multi-phase workflows
-- Reference shared partials by relative path: `commands/shared/name.md`
+- Reference shared partials by plugin-root path, not a bare relative path (§14)
 - Define expected output format explicitly in the body
 
 ### 2.3 Dynamic context injection
@@ -128,7 +128,22 @@ Boolean frontmatter fields accept `yes`/`no`/`on`/`off`/`1`/`0` (any case) in ad
 
 ### 2.4 String substitutions (valid in command/skill bodies)
 
-`$ARGUMENTS`, `$ARGUMENTS[N]`, `$N` (positional), `$name` (named argument), `${CLAUDE_SESSION_ID}`, `${CLAUDE_EFFORT}`, `${CLAUDE_SKILL_DIR}`, `${CLAUDE_PLUGIN_ROOT}`. Do NOT flag these as undefined variables.
+Claude Code replaces these tokens in command and skill bodies. Do NOT flag them as undefined variables. Each is written with this file's `+` split (see Notation at the top); drop the `+` to get the real token.
+
+| Token | Replaced with |
+|---|---|
+| `$+ARGUMENTS` | every argument passed on invocation |
+| `$+ARGUMENTS[N]` | the argument at index N, 0-based |
+| `$+N` (a digit, e.g. `$+0`) | shorthand for `$+ARGUMENTS[N]` |
+| `$+name` | a named argument declared in `arguments:` (§2.1) |
+| `$+{CLAUDE_SESSION_ID}` | the current session ID |
+| `$+{CLAUDE_EFFORT}` | the current effort level |
+| `$+{CLAUDE_SKILL_DIR}` | the directory that holds the skill's `SKILL.md` |
+| `$+{CLAUDE_PLUGIN_ROOT}` | the plugin's install directory |
+| `$+{CLAUDE_PLUGIN_DATA}` | the plugin's persistent data directory |
+| `$+{CLAUDE_PROJECT_DIR}` | the project directory |
+
+**Preloading substitutes too** (observed on Claude Code 2.1.285, 2026-10-01): when an agent preloads a skill through `skills:`, `$+ARGUMENTS` becomes an empty string and every `$+{CLAUDE_…}` token above becomes its value; `$+N` and `$+name` stay literal because a preload passes no arguments. A backslash protects `$+ARGUMENTS` but not the braced tokens. A reference skill that *describes* these tokens must therefore split them as this file does, or its reader sees the substituted values instead of the token names.
 
 ---
 
@@ -324,7 +339,7 @@ For Claude Code older than 2.1.277, the compatibility shim is a one-line `CLAUDE
 
 ## 14. Reference Syntax
 
-**Commands referencing shared partials:** point at the file by absolute path — "Follow the steps in `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md`". Claude Code substitutes `${CLAUDE_PLUGIN_ROOT}` in command, skill and agent bodies; a bare `commands/shared/…` path does not resolve, because a command is not told where its plugin lives.
+**Commands referencing shared partials:** point at the file by absolute path — "Follow the steps in `$+{CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md`". Claude Code substitutes `$+{CLAUDE_PLUGIN_ROOT}` in command, skill and agent bodies; a bare `commands/shared/…` path does not resolve, because a command is not told where its plugin lives.
 Give each partial `user-invocable: false` and `disable-model-invocation: true`, so it stays out of the skill listing while commands still read it.
 
 **Agents referencing skills in frontmatter:**
@@ -334,10 +349,10 @@ skills: ["nlpm:conventions", "nlpm:conventions-claude"]
 
 **Hooks referencing scripts:**
 ```json
-"command": "${CLAUDE_PLUGIN_ROOT}/scripts/check.sh"
+"command": "$+{CLAUDE_PLUGIN_ROOT}/scripts/check.sh"
 ```
 
-**Always use `${CLAUDE_PLUGIN_ROOT}` for intra-plugin file references.** Hardcoded absolute paths break portability.
+**Always use `$+{CLAUDE_PLUGIN_ROOT}` for intra-plugin file references.** Hardcoded absolute paths break portability.
 
 **Cross-plugin skill references** use the same `plugin:skill` format. The plugin must be installed for the reference to resolve.
 

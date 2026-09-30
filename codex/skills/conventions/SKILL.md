@@ -8,6 +8,8 @@ version: 0.2.1
 
 The cross-tool floor for all artifact schemas. Use this skill when scoring or writing any NL programming artifact regardless of which tool (Claude Code / Codex CLI / Antigravity) it targets.
 
+**Notation:** `$+{CLAUDE_PLUGIN_ROOT}` in this file is Claude Code's plugin-root variable, split by a `+` so Claude Code does not replace it with a path when it loads this skill; the real token has no `+` (`nlpm:conventions-claude` §2.4).
+
 **Tool-specific overlays** load on top of this universal floor:
 - `nlpm:conventions-claude` — Claude Code artifacts (`.claude/`, `plugin.json`, etc.)
 - `nlpm:conventions-codex` — Codex CLI artifacts (`.codex/`, `.agents/`, `AGENTS.md`)
@@ -154,7 +156,7 @@ See `nlpm:scoring` for the full vague-quantifier penalty table and cap (-2 each,
 | Environment variables | SCREAMING_SNAKE | `OPENAI_API_KEY`, `CLAUDE_PLUGIN_ROOT` |
 | Plugin directory env vars | tool-specific (no universal `<TOOL>_PLUGIN_ROOT` pattern) | Claude: `CLAUDE_PLUGIN_ROOT`. Codex: `PLUGIN_ROOT` / `PLUGIN_DATA` (also mirrors `CLAUDE_PLUGIN_ROOT` for compat — there is **no** `CODEX_PLUGIN_ROOT`) |
 
-**Portable paths:** Within a plugin, always reference files via the tool's plugin-root environment variable — `${CLAUDE_PLUGIN_ROOT}` in Claude Code, `${PLUGIN_ROOT}` in Codex (Codex additionally sets `CLAUDE_PLUGIN_ROOT` / `CLAUDE_PLUGIN_DATA` for compatibility with existing plugin hooks). Hardcoded absolute paths break portability.
+**Portable paths:** Within a plugin, always reference files via the tool's plugin-root environment variable — `$+{CLAUDE_PLUGIN_ROOT}` in Claude Code, `${PLUGIN_ROOT}` in Codex (Codex additionally sets `CLAUDE_PLUGIN_ROOT` / `CLAUDE_PLUGIN_DATA` for compatibility with existing plugin hooks). Hardcoded absolute paths break portability.
 
 Tool-specific naming details (e.g., the exact `CLAUDE_PLUGIN_ROOT` semantics) live in the per-tool overlays.
 
