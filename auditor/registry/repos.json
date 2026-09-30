@@ -10087,10 +10087,13 @@
       "stars": 6845,
       "artifacts": 57,
       "description": "Claude Code / Codex / OpenCode agent skills for writing Chinese web novels (网文): 扫榜、拆文、写作、去AI味、封面全流程，长篇短篇都支持 | 13 skills for novel writing and long-form fiction with file-based continuity tracking. MIT.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 89,
       "audit_issue": 1154,
-      "prs": []
+      "prs": [],
+      "strategy": "batched",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "4a50d5583590eb7f207037e35136c1168bc02201"
     },
     "hex/claude-council": {
       "discovered": "2026-09-21T06:11:26Z",
