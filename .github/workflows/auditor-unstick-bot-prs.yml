@@ -16,6 +16,8 @@ name: Unstick Bot PRs
 # push path uses, then force-pushes so auto-merge resumes. Because auto-merge
 # is disabled on this repo, it also merges CLEAN bot PRs younger than
 # UNSTICK_MERGE_MAX_AGE_HOURS (default 48) and warns about older ones.
+# First, it opens the PR for any auditor/bot/ branch in this repo that has
+# commits not on main and no PR at all (same age limit).
 
 on:
   schedule:

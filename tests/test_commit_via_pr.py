@@ -19,6 +19,8 @@ Properties under test:
 * With auto-merge disabled on the repo, the watch loop keeps retrying a
   direct merge instead of leaving the PR open forever.
 * The janitor merges young CLEAN bot PRs and leaves old ones for a human.
+* The janitor opens the PR for a young pushed bot branch that has none, and
+  only reports an old one; a branch with any PR, or already on main, is left alone.
 """
 
 from __future__ import annotations
@@ -29,6 +31,7 @@ import shutil
 import subprocess
 import tempfile
 import textwrap
+import time
 import unittest
 from pathlib import Path
 
@@ -103,8 +106,9 @@ FAKE_GH = textwrap.dedent(
         print(f'{pr["state"]} CLEAN')
     elif args[:2] == ["pr", "list"] and "--head" in args:
         head = opt("--head")
+        any_state = opt("--state") == "all"
         for num, pr in state["prs"].items():
-            if pr["head"] == head and pr["state"] == "OPEN":
+            if pr["head"] == head and (any_state or pr["state"] == "OPEN"):
                 print(f"https://github.com/example/nlpm/pull/{num}")
                 break
     elif args[:2] == ["pr", "list"]:
@@ -396,7 +400,8 @@ class UnstickMergesMergeable(FakeGhSandbox):
         # The listing's jq filter is what keeps a fork PR named auditor/bot/…
         # from being labelled and merged. Check the filter itself with jq.
         script = (REPO_ROOT / "auditor/scripts/unstick-bot-prs.sh").read_text()
-        jq_filter = script.split("--jq '", 1)[1].split("'", 1)[0]
+        filters = [part.split("'", 1)[0] for part in script.split("--jq '")[1:]]
+        jq_filter = next(f for f in filters if "isCrossRepository" in f)
         prs = [
             {"number": 41, "headRefName": "auditor/bot/a/1", "mergeStateStatus": "CLEAN",
              "createdAt": "2026-09-30T00:00:00Z", "labels": [], "isCrossRepository": True},
@@ -429,6 +434,105 @@ class UnstickMergesMergeable(FakeGhSandbox):
         self.assertEqual(merged, ["21"])
         self.assertIn("#22", result.stdout)
         self.assertIn("still UNKNOWN", result.stdout)
+
+
+class UnstickOpensPrForOrphanBranch(FakeGhSandbox):
+    """unstick-bot-prs.sh opens a PR for a pushed bot branch that has none.
+
+    The 2026-09-30 12:16 batch pushed seven bot branches, then `gh pr create`
+    failed with HTTP 502/504; four audits, two exemplars and a contribute
+    record sat on branches no PR pointed at, invisible to every PR-selecting
+    pass.
+    """
+
+    HOUR = 3600
+
+    def push_branch(self, branch: str, age_hours: int, on_main: bool = False) -> None:
+        slug = branch.replace("/", "-")
+        work = self.clone(f"w-{slug}")
+        git(work, "checkout", "-q", "-b", "tmp")
+        write(work / "auditor/audits" / f"{slug}.md", branch + "\n")
+        git(work, "add", "-A")
+        when = f"@{int(time.time()) - age_hours * self.HOUR} +0000"
+        subprocess.run(["git", "commit", "-q", "-m", f"audit: {branch}"], cwd=work, check=True,
+                       env={**os.environ, "GIT_COMMITTER_DATE": when, "GIT_AUTHOR_DATE": when})
+        git(work, "push", "-q", "origin", f"HEAD:refs/heads/{branch}")
+        if on_main:
+            git(work, "push", "-q", "origin", "HEAD:refs/heads/main")
+
+    def seed_prs(self, prs: dict) -> None:
+        self.state.write_text(json.dumps({"prs": prs, "next": 100, "direct_failures": 0}))
+
+    def sweep(self) -> subprocess.CompletedProcess:
+        result = subprocess.run(
+            ["bash", "auditor/scripts/unstick-bot-prs.sh"],
+            cwd=self.job, env={**self.env, "FAKE_GH_LIST": "", "OPEN_BOT_PR_RETRY_SLEEP": "0"},
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        return result
+
+    def creates(self) -> list[list[str]]:
+        return [c for c in self.gh_calls() if c[:2] == ["pr", "create"]]
+
+    def test_young_branch_without_pr_gets_a_labelled_pr(self) -> None:
+        branch = "auditor/bot/Audit-Repo-/36713714129-d4ddc2d6b415"
+        self.push_branch(branch, age_hours=2)
+        result = self.sweep()
+        creates = self.creates()
+        self.assertEqual(len(creates), 1)
+        c = creates[0]
+        self.assertEqual(c[c.index("--head") + 1], branch)
+        self.assertEqual(c[c.index("--base") + 1], "main")
+        self.assertEqual(c[c.index("--title") + 1], f"audit: {branch}",
+                         "title is the branch tip's subject, as commit-via-pr.sh would have used")
+        self.assertIn("runs/36713714129", c[c.index("--body") + 1])
+        prs = json.loads(self.state.read_text())["prs"]
+        self.assertEqual(len(prs), 1)
+        self.assertEqual(next(iter(prs.values()))["labels"], ["auditor-bot"])
+        self.assertIn("opened 1 PR(s) for bot branches that had none", result.stdout)
+
+    def test_half_created_pr_is_adopted_not_duplicated(self) -> None:
+        self.push_branch("auditor/bot/Write-Exemplar-/1-abc", age_hours=1)
+        result = subprocess.run(
+            ["bash", "auditor/scripts/unstick-bot-prs.sh"],
+            cwd=self.job,
+            env={**self.env, "FAKE_GH_LIST": "", "FAKE_GH_CREATE_502": "1", "OPEN_BOT_PR_RETRY_SLEEP": "0"},
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(len(self.creates()), 1)
+        prs = json.loads(self.state.read_text())["prs"]
+        self.assertEqual(len(prs), 1)
+        self.assertIn("auditor-bot", next(iter(prs.values()))["labels"])
+
+    def test_old_branch_without_pr_is_reported_not_opened(self) -> None:
+        branch = "auditor/bot/Track-PR-Status-/33137767838"
+        self.push_branch(branch, age_hours=800)
+        result = self.sweep()
+        self.assertEqual(self.creates(), [])
+        self.assertIn("::warning::", result.stdout)
+        self.assertIn(f"{branch} (800h)", result.stdout)
+
+    def test_branch_with_any_pr_is_left_alone(self) -> None:
+        for state in ("OPEN", "MERGED", "CLOSED"):
+            self.push_branch(f"auditor/bot/a/{state}", age_hours=1)
+        self.seed_prs({str(n): {"head": f"auditor/bot/a/{s}", "state": s, "labels": ["auditor-bot"]}
+                       for n, s in enumerate(("OPEN", "MERGED", "CLOSED"), start=1)})
+        self.sweep()
+        self.assertEqual(self.creates(), [], "a closed PR was a decision; never reopen it as a new PR")
+
+    def test_branch_already_on_main_is_skipped_without_a_lookup(self) -> None:
+        self.push_branch("auditor/bot/a/merged", age_hours=1, on_main=True)
+        self.sweep()
+        self.assertEqual(self.creates(), [])
+        lookups = [c for c in self.gh_calls() if c[:2] == ["pr", "list"] and "--head" in c]
+        self.assertEqual(lookups, [], "a branch with no commits off main needs no PR lookup")
+
+    def test_only_auditor_bot_branches_are_considered(self) -> None:
+        self.push_branch("feature/x", age_hours=1)
+        self.sweep()
+        self.assertEqual(self.creates(), [])
 
 
 if __name__ == "__main__":
