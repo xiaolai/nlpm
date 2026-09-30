@@ -13,7 +13,9 @@ name: Unstick Bot PRs
 #
 # Deterministic — no LLM. Rebases each DIRTY bot PR onto main with the same
 # per-file resolver (auditor/scripts/resolve-merge-conflicts.sh) the direct
-# push path uses, then force-pushes so auto-merge resumes.
+# push path uses, then force-pushes so auto-merge resumes. Because auto-merge
+# is disabled on this repo, it also merges CLEAN bot PRs younger than
+# UNSTICK_MERGE_MAX_AGE_HOURS (default 48) and warns about older ones.
 
 on:
   schedule:
