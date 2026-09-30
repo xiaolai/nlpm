@@ -10018,10 +10018,13 @@
       "stars": 648,
       "artifacts": 8,
       "description": "Agent skills and an AGENTS.md workflow template — isolate in worktrees, build to a service layer, prove with evidence, ship with before/after proof and Greptile review loops. For Claude Code, Cursor, and Codex.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 1089,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "4b72f46b045e6fef52e6a98d4c162dd309826aed"
     },
     "ciembor/agent-rules-books": {
       "discovered": "2026-09-14T06:11:05Z",
