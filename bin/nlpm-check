@@ -585,11 +585,19 @@ def check_command_frontmatter(plugin_root: Path, findings: list[Finding], nested
 
 def check_hook_event_names(plugin_root: Path, findings: list[Finding]) -> None:
     """Hook event names are case-sensitive. Catch common miscapitalizations."""
+    # Every event on code.claude.com/docs/en/hooks.md (33 as of 2026-09-30).
+    # Keep in step with skills/nlpm/conventions-claude/reference.md.
     VALID_EVENTS = {
-        "PreToolUse", "PostToolUse", "PostToolUseFailure",
-        "PermissionRequest", "UserPromptSubmit", "Stop", "SubagentStop",
-        "SessionStart", "SessionEnd", "PreCompact", "Notification",
-        "InstructionsLoaded", "TaskCompleted",
+        "ConfigChange", "CwdChanged", "DirectoryAdded", "Elicitation",
+        "ElicitationResult", "FileChanged", "InstructionsLoaded",
+        "MessageDisplay", "Notification", "PermissionDenied",
+        "PermissionRequest", "PostCompact", "PostModelSwitch",
+        "PostToolBatch", "PostToolUse", "PostToolUseFailure", "PreCompact",
+        "PreModelSwitch", "PreToolUse", "SessionEnd", "SessionStart",
+        "Setup", "Stop", "StopFailure", "SubagentStart", "SubagentStop",
+        "TaskCompleted", "TaskCreated", "TeammateIdle",
+        "UserPromptExpansion", "UserPromptSubmit", "WorktreeCreate",
+        "WorktreeRemove",
     }
     VALID_LOWER = {e.lower(): e for e in VALID_EVENTS}
     for hook_path in CANONICAL_HOOK_PATHS:
