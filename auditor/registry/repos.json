@@ -9857,10 +9857,13 @@
       "stars": 710,
       "artifacts": 127,
       "description": "A plugin marketplace for Claude Code/GitHub Copilot that provides Power Platform development plugins, including reusable skills, agents, and commands for building and deploying solutions.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 905,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "REVIEW",
+      "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f"
     },
     "ayghri/i-have-adhd": {
       "discovered": "2026-08-24T06:12:16Z",
