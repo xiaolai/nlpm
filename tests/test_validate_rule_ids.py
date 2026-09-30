@@ -82,7 +82,7 @@ class RubricParser(unittest.TestCase):
         """Regression: the 2026-05-13 ljg-skills fix added an R06 row for skills."""
         rubric_text = RUBRIC.read_text()
         self.assertIn(
-            "Zero `<example>` blocks on a `user_invocable: true` skill",
+            "Zero `<example>` blocks on a user-invocable skill (`user-invocable` absent or `true`)",
             rubric_text,
             msg="R06 example-block rule for skills must be in the Skills rubric; "
                 "this fix prevents the ljg-skills R07/-15 mislabel from regressing.",

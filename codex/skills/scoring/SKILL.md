@@ -38,7 +38,7 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 | R05 | Body length | >500 lines | -10 |
 | R06 | Code examples | Complex concepts with no examples | -5 |
 | R06 | Code examples | No examples at all in a technical skill | -10 |
-| R06 | `<example>` blocks | Zero `<example>` blocks on a `user_invocable: true` skill | -10 |
+| R06 | `<example>` blocks | Zero `<example>` blocks on a user-invocable skill (`user-invocable` absent or `true`) | -10 |
 | R07 | Scope note | No scope note / cross-references | -3 |
 
 > **Scope-note discipline:** R07 means "scope note when related skills exist."
