@@ -9875,7 +9875,9 @@
       "prs": [],
       "strategy": "single",
       "security": "REVIEW",
-      "commit_sha_at_audit": "8540a58f4e7315c8b7abe9220a5af453f032c2f0"
+      "commit_sha_at_audit": "8540a58f4e7315c8b7abe9220a5af453f032c2f0",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/ccch1mneyyy-dsh-TUI.md"
     },
     "microsoft/power-platform-skills": {
       "discovered": "2026-08-17T06:09:36Z",
