@@ -1,0 +1,255 @@
+{
+  "project": "hex/claude-council",
+  "score_threshold": 70,
+  "r51_enabled": false,
+  "summary": {
+    "total_files": 9,
+    "average_score": 95,
+    "pass_count": 0,
+    "fail_count": 0
+  },
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "type": "manifest",
+      "score": null,
+      "findings": [
+        {
+          "rule": "CC-broken-reference",
+          "severity": "low",
+          "line": null,
+          "message": "userConfig refers to a /specialists command with no commands/specialists.md; it may be provided by the mod."
+        }
+      ]
+    },
+    {
+      "path": "agents/council-advisor.md",
+      "type": "agent",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R05",
+          "severity": "low",
+          "line": null,
+          "message": "Agent description including examples exceeds 1,200 characters."
+        }
+      ]
+    },
+    {
+      "path": "commands/ask.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": null,
+          "message": "Command body is 16.7 KB with broad allowed-tools."
+        }
+      ]
+    },
+    {
+      "path": "commands/status.md",
+      "type": "command",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R10",
+          "severity": "low",
+          "line": null,
+          "message": "Status check and background-jobs listing are sequential stages but not numbered."
+        },
+        {
+          "rule": "R11",
+          "severity": "low",
+          "line": null,
+          "message": "Command does not state how arguments are handled."
+        }
+      ]
+    },
+    {
+      "path": "scripts/check-status.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-network-call",
+          "severity": "medium",
+          "line": 145,
+          "message": "Provider connectivity probes via curl with keys in a mode-600 config file; expected behaviour."
+        }
+      ]
+    },
+    {
+      "path": "scripts/lib/cache.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-rm-rf",
+          "severity": "low",
+          "line": 102,
+          "message": "rm -rf on cache dir is guarded with ${VAR:?}."
+        }
+      ]
+    },
+    {
+      "path": "scripts/providers/openai.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-env-access",
+          "severity": "medium",
+          "line": null,
+          "message": "Provider scripts read API keys from the environment and send them only to their own endpoints."
+        }
+      ]
+    },
+    {
+      "path": "scripts/stop-review-gate.sh",
+      "type": "?",
+      "score": null,
+      "findings": [
+        {
+          "rule": "SEC-diff-exfil-optin",
+          "severity": "medium",
+          "line": 53,
+          "message": "Opt-in Stop hook sends the uncommitted diff to a third-party provider; provider name allowlisted and fails open."
+        }
+      ]
+    },
+    {
+      "path": "skills/council-execution/SKILL.md",
+      "type": "skill",
+      "score": null,
+      "findings": [
+        {
+          "rule": "R20",
+          "severity": "low",
+          "line": 3,
+          "message": "Description names only Gemini, OpenAI, Grok, Perplexity while the plugin supports more providers."
+        },
+        {
+          "rule": "CC-terminology-drift",
+          "severity": "low",
+          "line": null,
+          "message": "Provider lists differ across council-execution, council-advisor, plugin.json and ask.md."
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-09-30T18:15:00Z",
+      "average_score": 95,
+      "kind": "initial_audit"
+    }
+  ],
+  "cross_component": {
+    "nodes": [],
+    "edges": []
+  },
+  "vocabulary": null,
+  "vocab_drift": {
+    "candidates": []
+  },
+  "findings": [
+    {
+      "rule": "R10",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "commands/status.md",
+      "line": null,
+      "message": "Status check and background-jobs listing are sequential stages but not numbered."
+    },
+    {
+      "rule": "R11",
+      "severity": "low",
+      "confidence": "low",
+      "file": "commands/status.md",
+      "line": null,
+      "message": "Command does not state how arguments are handled."
+    },
+    {
+      "rule": "R05",
+      "severity": "low",
+      "confidence": "medium",
+      "file": "agents/council-advisor.md",
+      "line": null,
+      "message": "Agent description including examples exceeds 1,200 characters."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "low",
+      "file": "skills/council-execution/SKILL.md",
+      "line": 3,
+      "message": "Description names only Gemini, OpenAI, Grok, Perplexity while the plugin supports more providers."
+    },
+    {
+      "rule": "R20",
+      "severity": "low",
+      "confidence": "low",
+      "file": "commands/ask.md",
+      "line": null,
+      "message": "Command body is 16.7 KB with broad allowed-tools."
+    },
+    {
+      "rule": "SEC-network-call",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/check-status.sh",
+      "line": 145,
+      "message": "Provider connectivity probes via curl with keys in a mode-600 config file; expected behaviour."
+    },
+    {
+      "rule": "SEC-diff-exfil-optin",
+      "severity": "medium",
+      "confidence": "medium",
+      "file": "scripts/stop-review-gate.sh",
+      "line": 53,
+      "message": "Opt-in Stop hook sends the uncommitted diff to a third-party provider; provider name allowlisted and fails open."
+    },
+    {
+      "rule": "SEC-env-access",
+      "severity": "medium",
+      "confidence": "low",
+      "file": "scripts/providers/openai.sh",
+      "line": null,
+      "message": "Provider scripts read API keys from the environment and send them only to their own endpoints."
+    },
+    {
+      "rule": "SEC-rm-rf",
+      "severity": "low",
+      "confidence": "low",
+      "file": "scripts/lib/cache.sh",
+      "line": 102,
+      "message": "rm -rf on cache dir is guarded with ${VAR:?}."
+    },
+    {
+      "rule": "CC-terminology-drift",
+      "severity": "low",
+      "confidence": "low",
+      "file": "skills/council-execution/SKILL.md",
+      "line": null,
+      "message": "Provider lists differ across council-execution, council-advisor, plugin.json and ask.md."
+    },
+    {
+      "rule": "CC-broken-reference",
+      "severity": "low",
+      "confidence": "low",
+      "file": ".claude-plugin/plugin.json",
+      "line": null,
+      "message": "userConfig refers to a /specialists command with no commands/specialists.md; it may be provided by the mod."
+    }
+  ],
+  "repo_meta": {
+    "status": "discovered",
+    "stars": 780,
+    "security": "REVIEW",
+    "audit_report_path": "auditor/audits/hex-claude-council.md"
+  },
+  "generated_at": "2026-09-30T18:15:14Z",
+  "schema_version": 1
+}
