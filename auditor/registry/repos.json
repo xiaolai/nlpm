@@ -9736,50 +9736,65 @@
       "stars": 45129,
       "artifacts": 627,
       "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 95,
       "audit_issue": 758,
-      "prs": []
+      "prs": [],
+      "security": "REVIEW",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "4eab34c5cfcccaa4f1970554928feccce73ee930"
     },
     "hoangsonww/Claude-Code-Agent-Monitor": {
       "discovered": "2026-08-05T02:07:37Z",
       "stars": 870,
       "artifacts": 131,
       "description": "🚀 A real-time monitoring dashboard for Claude Code & Codex, built with SQLite3, Node.js, Express, React, Vite, TailwindCSS, & WebSockets. It tracks sessions, agent activity, tool usage, and subagent orchestration, providing live analytics, a Kanban status board, status notifications, a cute buddy, & an interactive web UI/MacOS/Windows native app.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 72,
       "audit_issue": 759,
-      "prs": []
+      "prs": [],
+      "security": "REVIEW",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "10d6b2ef6304017c93b31bfa817e31caa7de1403"
     },
     "indranilbanerjee/digital-marketing-pro": {
       "discovered": "2026-08-05T02:07:37Z",
       "stars": 705,
       "artifacts": 203,
       "description": "Open-source AI marketing plugin for agencies & in-house teams — 158 skills, 25 specialist agents, 12-Part Strategy Flow, Cowork team-persistent, EU AI Act Article 50 ready, 6-platform AEO/GEO incl. Google AI Mode. Installs on Claude Code, Cowork, Codex, Cursor, Copilot CLI, Antigravity. MIT-licensed.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 91,
       "audit_issue": 760,
-      "prs": []
+      "prs": [],
+      "security": "BLOCKED",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "e39f3940519ddb4103c197ccf7ec4951d5e8a8b9"
     },
     "microsoft/skills": {
       "discovered": "2026-08-05T02:07:37Z",
       "stars": 2861,
       "artifacts": 226,
       "description": "Skills, MCP servers, Custom Agents, Agents.md for SDKs to ground Coding Agents",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 94,
       "audit_issue": 761,
-      "prs": []
+      "prs": [],
+      "security": "BLOCKED",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "1f28ae4c5e5edc2cbe10b3756a20524fc92cee07"
     },
     "phuryn/pm-skills": {
       "discovered": "2026-08-05T02:07:37Z",
       "stars": 24853,
       "artifacts": 120,
       "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 762,
-      "prs": []
+      "prs": [],
+      "security": "CLEAR",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "18468a95b427e70e258b51389796367c6f684e7d"
     },
     "Vincentwei1021/video-shotcraft": {
       "status": "tracked",
@@ -9788,7 +9803,8 @@
       "security": "REVIEW",
       "commit_sha_at_audit": "0022ec45d28800cecb5b16624a3179093c93f4e9",
       "pipeline_prs": [
-        30
+        30,
+        31
       ],
       "prs": [
         {
@@ -9812,14 +9828,16 @@
         }
       ],
       "rule_adopted": false,
-      "case_study_candidate": true
+      "case_study_candidate": true,
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Vincentwei1021-video-shotcraft.md"
     },
     "elementalsouls/Claude-OSINT": {
       "discovered": "2026-08-10T06:26:33Z",
       "stars": 2257,
       "artifacts": 10,
       "description": "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.",
-      "status": "audited",
+      "status": "contributed",
       "score": 97,
       "audit_issue": 827,
       "prs": [],
@@ -9827,7 +9845,11 @@
       "security": "REVIEW",
       "commit_sha_at_audit": "7d1516291f24a48696a1db7f86ecb15c75249754",
       "exemplar_published": true,
-      "exemplar_path": "auditor/exemplars/elementalsouls-Claude-OSINT.md"
+      "exemplar_path": "auditor/exemplars/elementalsouls-Claude-OSINT.md",
+      "pipeline_prs": [
+        14,
+        15
+      ]
     },
     "deepseek-ai/deepseek-harness": {
       "artifacts": 28,
