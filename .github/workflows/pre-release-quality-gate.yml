@@ -230,14 +230,28 @@ jobs:
                 flag either as missing build/test commands; content is
                 in AGENTS.md
 
+            Read EVERY listed file in full and score it against the
+            rubric. Do not sample or spot-check: a score you did not
+            derive from reading the file is a false pass. If you cannot
+            finish a file, score it 0 — the gate then fails loudly
+            instead of passing silently.
+
             Write per-file scores to /tmp/scores.tsv with this exact
             format (tab-separated, header row, ONE line per file, score
-            as integer 0-100):
+            as integer 0-100, then a quote):
 
-              file\tscore
-              commands/check.md\t100
-              commands/fix.md\t100
+              file\tscore\tquote
+              commands/check.md\t100\t<verbatim line from the file's body>
+              commands/fix.md\t95\t<verbatim line the -5 finding cites>
               ...
+
+            The quote is copied character-for-character from the file's
+            body (below the frontmatter), at least 24 characters, no
+            tabs. For a file with findings, quote the line of the
+            largest deduction; otherwise quote the line you checked
+            last. The next step verifies every quote against the file
+            and fails the release on any quote it cannot find, any
+            listed file without a row, or any duplicate row.
 
             === CHECK 2: VOCAB INTEGRITY GATE ===
 
@@ -263,8 +277,9 @@ jobs:
 
       - name: Assert gates
         if: steps.detect.outputs.release == 'true'
-        # Parses the two files the LLM step wrote and fails the workflow
-        # on any sub-100 score or any drift cluster. Annotations land in
+        # Checks the scores the LLM step wrote (complete, >= MIN_SCORE, each
+        # grounded in a verified quote) and reports drift clusters as advisory
+        # notices. Annotations land in
         # the PR's Files tab so the author sees them in context.
         run: |
           set -u
@@ -276,23 +291,13 @@ jobs:
           MIN_SCORE=95
 
           # --- Score gate ---
+          # check-gate-scores.py fails closed: every listed file scored once,
+          # integer scores >= MIN_SCORE, and each row's quote found verbatim
+          # in that file's body, so a row cannot be written without a read.
           if [ "${{ steps.select.outputs.count }}" = "0" ]; then
             echo "::notice::Score gate: this PR changed no NL artifacts — nothing to score. (bin/nlpm-check + the deterministic vocab gate above still ran on the whole repo.)"
-          elif [ ! -f /tmp/scores.tsv ]; then
-            echo "::error::Score gate produced no /tmp/scores.tsv — LLM step may have errored. Check the previous step's logs."
+          elif ! python3 auditor/scripts/check-gate-scores.py --list /tmp/artifacts_to_score.txt --scores /tmp/scores.tsv --min "$MIN_SCORE"; then
             FAILED=1
-          else
-            TOTAL=$(awk 'NR>1' /tmp/scores.tsv | wc -l | tr -d ' ')
-            SUB=$(awk -F'\t' -v min="$MIN_SCORE" 'NR>1 && $2 != "" && ($2+0) < min {print $1 "\t" $2}' /tmp/scores.tsv)
-            if [ -n "$SUB" ]; then
-              echo "::error::Score gate FAILED — $(echo "$SUB" | wc -l | tr -d ' ') of $TOTAL artifacts score below ${MIN_SCORE}:"
-              echo "$SUB" | while IFS=$'\t' read -r file score; do
-                echo "::error file=${file}::score=${score}/100 (release requires >= ${MIN_SCORE})"
-              done
-              FAILED=1
-            else
-              echo "::notice::Score gate PASSED — all $TOTAL artifacts >= ${MIN_SCORE}/100."
-            fi
           fi
 
           # --- Vocab drift (ADVISORY) ---
