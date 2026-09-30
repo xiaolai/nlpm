@@ -104,6 +104,6 @@ The overlay's §7 table lists the load-bearing events; the following are also va
 
 **Per-plugin entry** may add `category`, `tags`, `strict`, `relevance`, `defaultEnabled` on top of the plugin-manifest fields. `strict: false` makes the marketplace entry the sole authority over that plugin's `plugin.json`.
 
-**`source` types:** `relative path`, `github`, `url`, `git-subdir`, `npm`.
+**`source` types:** a relative-path string (starting with `./`, or a bare name under `metadata.pluginRoot`), or an object whose `source.source` is one of six types (required fields in parentheses): `github` (`repo`), `url` (`url`), `git-subdir` (`url`, `path`), `npm` (`package`), `archive` (`url`, v2.1.224+), `command` (`command`, v2.1.229+).
 
 **`renames`** (v2.1.193+): an append-only map (`{oldName: newName | null}`) letting a marketplace rename or remove a plugin without breaking existing installs.

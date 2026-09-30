@@ -35,7 +35,7 @@ Score NL programming artifacts on a 100-point scale. Apply penalties determinist
 
 For each artifact you receive:
 
-1. Identify its type using path-based classification: command, agent, skill, rule, hook-config, manifest, mcp-config, claude-md, shared-partial, settings, memory
+1. Identify its type using path-based classification: command, agent, skill, rule, hook-config, manifest, marketplace, mcp-config, claude-md, shared-partial, settings, memory
 2. Apply the scoring rubric from `nlpm:scoring`:
    - Start at 100
    - Apply all penalties for this artifact type (each penalty maps to a rule number)
