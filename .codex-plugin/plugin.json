@@ -22,6 +22,8 @@
     "multi-tool"
   ],
   "skills": "./codex/skills/",
+  "commands": [],
+  "hooks": "./codex/hooks.json",
   "interface": {
     "displayName": "nlpm",
     "shortDescription": "Natural-Language Programming reference knowledge — 50 Rules, scoring rubric, per-tool conventions, authoring guides — as Codex skills.",
