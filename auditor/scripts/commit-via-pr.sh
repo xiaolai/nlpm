@@ -29,7 +29,13 @@
 # Sequential calls in one job:
 #   The commit advances HEAD and is NOT reset afterward, so a second call in
 #   the same job commits on top of the first — its PR branch then contains
-#   both commits. This is safe: the two PRs merge idempotently (the shared
+#   both commits. Each call gets its OWN branch and PR (the branch name ends
+#   in the new commit's SHA). Until 2026-09-30 the branch was named after the
+#   run only, so a second call pushed onto the first call's branch and then
+#   died on `gh pr create` ("a pull request for branch ... already exists")
+#   whenever the first PR was still open — failing every security:BLOCKED
+#   audit at the disclosure-pending commit (run 36677482481).
+#   Stacking is safe: the two PRs merge idempotently (the shared
 #   append-only logs union and the registry 3-way merges via
 #   resolve-merge-conflicts.sh), so main converges to the same state
 #   regardless of merge order. The one hazard — a rebase that finds the
@@ -44,9 +50,10 @@
 #     enable auto-merge (merge-commit method).
 #
 # Concurrency:
-#   Each bot run gets its own branch (auditor/bot/<workflow>/<run_id>),
-#   so branch pushes never conflict between concurrent runs. Two bot PRs
-#   that touch the same file (e.g. events.jsonl, repos.json) DO conflict
+#   Each call gets its own branch
+#   (auditor/bot/<workflow>/<run_id>-<commit sha>), so branch pushes never
+#   conflict between concurrent runs, sequential calls, or re-run attempts.
+#   Two bot PRs that touch the same file (e.g. events.jsonl, repos.json) DO conflict
 #   at merge time: the first auto-merges, the second goes CONFLICTING and
 #   its auto-merge stalls. Once every auditor workflow commits through
 #   this script, those shared-log collisions are frequent, so the stall
@@ -95,7 +102,7 @@ HEAD_AFTER=$(git rev-parse HEAD)
 # --- create the bot branch pointing at the new commit ---
 SAFE_WF=$(echo "${GITHUB_WORKFLOW:-unknown-workflow}" | tr -c 'a-zA-Z0-9._-' '-')
 RUN_ID="${GITHUB_RUN_ID:-$(date +%s)}"
-BRANCH="auditor/bot/${SAFE_WF}/${RUN_ID}"
+BRANCH="auditor/bot/${SAFE_WF}/${RUN_ID}-${HEAD_AFTER:0:12}"
 git branch -f "$BRANCH" "$HEAD_AFTER"
 
 # --- push the branch via the chosen token ---
@@ -141,8 +148,10 @@ fi
 # auto-merge enabled for the janitor to finish — a stuck bot PR must never
 # fail the workflow that opened it.
 MAX_WATCH="${COMMIT_VIA_PR_MAX_WATCH:-8}"
+SHORT_SLEEP="${COMMIT_VIA_PR_SHORT_SLEEP:-5}"
+LONG_SLEEP="${COMMIT_VIA_PR_LONG_SLEEP:-15}"
 for i in $(seq 1 "$MAX_WATCH"); do
-  if [ "$i" -lt 4 ]; then sleep 5; else sleep 15; fi
+  if [ "$i" -lt 4 ]; then sleep "$SHORT_SLEEP"; else sleep "$LONG_SLEEP"; fi
   STATE=$(GH_TOKEN="$TOKEN" gh pr view "$PR_URL" \
             --json state,mergeStateStatus \
             --jq '.state + " " + .mergeStateStatus' 2>/dev/null || echo "UNKNOWN UNKNOWN")

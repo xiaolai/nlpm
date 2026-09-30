@@ -4,7 +4,8 @@ Every auditor workflow lands its output through
 auditor/scripts/commit-via-pr.sh; concurrent runs (the Audit Repo batch
 dispatches ~5 at the same minute) race on the shared files, and the loser
 rebases through auditor/scripts/resolve-merge-conflicts.sh. These tests
-drive the real scripts against real git repositories.
+drive the real scripts against real git repositories, with a fake `gh` on
+PATH standing in for GitHub.
 
 Properties under test:
 
@@ -12,6 +13,9 @@ Properties under test:
   caller uses — not upstream's. Git's `:2`/`--ours` means upstream during a
   rebase; the resolver used to assume the merge mapping and silently
   discarded the bot's registry fields and files.
+* A job may call commit-via-pr.sh twice (audit, then disclosure-pending)
+  while the first PR is still open, without dying on `gh pr create`
+  (run 36677482481).
 """
 
 from __future__ import annotations
@@ -21,6 +25,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import textwrap
 import unittest
 from pathlib import Path
 
@@ -29,6 +34,67 @@ SCRIPTS = REPO_ROOT / "auditor" / "scripts"
 
 FAKE_REPO = "example/nlpm"
 FAKE_TOKEN = "test-token"
+
+# A stand-in for the gh CLI. State lives in $FAKE_GH_STATE (JSON); every
+# call is appended to $FAKE_GH_LOG. Behaviour knobs:
+#   FAKE_GH_DIRECT_MERGE_FAILS  number of direct merges that fail before one succeeds
+#   FAKE_GH_LIST                lines printed verbatim by `gh pr list`
+FAKE_GH = textwrap.dedent(
+    r'''
+    #!/usr/bin/env python3
+    import json, os, sys
+    args = sys.argv[1:]
+    state_path = os.environ["FAKE_GH_STATE"]
+    try:
+        state = json.load(open(state_path))
+    except FileNotFoundError:
+        state = {"prs": {}, "next": 1, "direct_failures": 0}
+    with open(os.environ["FAKE_GH_LOG"], "a") as log:
+        log.write(json.dumps(args) + "\n")
+
+    def save():
+        json.dump(state, open(state_path, "w"))
+
+    def opt(name):
+        return args[args.index(name) + 1] if name in args else None
+
+    if args[:2] == ["pr", "create"]:
+        head = opt("--head")
+        for pr in state["prs"].values():
+            if pr["head"] == head and pr["state"] == "OPEN":
+                sys.stderr.write(f'a pull request for branch "{head}" into branch "main" already exists:\n')
+                sys.exit(1)
+        num = str(state["next"])
+        state["next"] += 1
+        state["prs"][num] = {"head": head, "state": "OPEN"}
+        save()
+        print(f"https://github.com/example/nlpm/pull/{num}")
+    elif args[:2] == ["pr", "merge"]:
+        if "--auto" in args:
+            sys.stderr.write("GraphQL: Auto merge is not allowed for this repository\n")
+            sys.exit(1)
+        num = args[2].rsplit("/", 1)[-1]
+        if state["direct_failures"] < int(os.environ.get("FAKE_GH_DIRECT_MERGE_FAILS", "0")):
+            state["direct_failures"] += 1
+            save()
+            sys.stderr.write("Pull request is not mergeable\n")
+            sys.exit(1)
+        state["prs"].setdefault(num, {"head": "?", "state": "OPEN"})["state"] = "MERGED"
+        save()
+    elif args[:2] == ["pr", "view"]:
+        num = args[2].rsplit("/", 1)[-1]
+        pr = state["prs"].get(num, {"state": "OPEN"})
+        print(f'{pr["state"]} CLEAN')
+    elif args[:2] == ["pr", "list"]:
+        sys.stdout.write(os.environ.get("FAKE_GH_LIST", ""))
+    elif args[:2] == ["pr", "close"]:
+        pass
+    else:
+        sys.stderr.write(f"fake gh: unhandled {args}\n")
+        sys.exit(2)
+    '''
+).lstrip()
+
 
 def git(cwd: Path, *args: str, check: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -161,6 +227,72 @@ class ResolverKeepsThisCommit(GitSandbox):
 
     def test_merge_keeps_this_commits_work(self) -> None:
         self._assert_bot_work_survives(self._race(["merge", "--no-edit"]))
+
+
+class FakeGhSandbox(GitSandbox):
+    """A job checkout plus a fake gh (auto-merge disabled) on PATH."""
+
+    def setUp(self) -> None:
+        super().setUp()
+        bindir = self.tmp / "bin"
+        bindir.mkdir()
+        gh = bindir / "gh"
+        gh.write_text(FAKE_GH)
+        gh.chmod(0o755)
+        self.state = self.tmp / "gh-state.json"
+        self.log = self.tmp / "gh-log.jsonl"
+        self.env = {
+            **os.environ,
+            "PATH": f"{bindir}{os.pathsep}{os.environ['PATH']}",
+            "FAKE_GH_STATE": str(self.state),
+            "FAKE_GH_LOG": str(self.log),
+            "GITHUB_REPOSITORY": FAKE_REPO,
+            "GITHUB_WORKFLOW": "Audit Repo",
+            "GITHUB_RUN_ID": "123",
+            "PAT_TOKEN": FAKE_TOKEN,
+            "COMMIT_VIA_PR_MAX_WATCH": "2",
+            "COMMIT_VIA_PR_SHORT_SLEEP": "0",
+            "COMMIT_VIA_PR_LONG_SLEEP": "0",
+        }
+        self.job = self.clone("job")
+
+    def gh_calls(self) -> list[list[str]]:
+        return [json.loads(line) for line in self.log.read_text().splitlines()]
+
+
+class CommitViaPr(FakeGhSandbox):
+    """commit-via-pr.sh against a fake gh with auto-merge disabled."""
+
+    def commit_via_pr(self, message: str, **env: str) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            ["bash", "auditor/scripts/commit-via-pr.sh", message],
+            cwd=self.job, env={**self.env, **env}, capture_output=True, text=True,
+        )
+
+    def test_second_call_in_one_job_gets_its_own_pr(self) -> None:
+        # Direct merges keep failing, so the first PR is still open when the
+        # second call runs — the state of run 36677482481.
+        stuck = {"FAKE_GH_DIRECT_MERGE_FAILS": "99"}
+        write(self.job / "auditor/audits/r.md", "audit\n")
+        git(self.job, "add", "-A")
+        first = self.commit_via_pr("audit: r", **stuck)
+        self.assertEqual(first.returncode, 0, first.stdout + first.stderr)
+
+        write(self.job / "auditor/disclosures-pending/r.md", "disclosure\n")
+        git(self.job, "add", "-A")
+        second = self.commit_via_pr("disclosure-pending: r", **stuck)
+        self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
+
+        heads = [c[c.index("--head") + 1] for c in self.gh_calls() if c[:2] == ["pr", "create"]]
+        self.assertEqual(len(heads), 2)
+        self.assertNotEqual(heads[0], heads[1], "each call must open its own PR branch")
+        remote = git(self.origin, "for-each-ref", "--format=%(refname:short)",
+                     "refs/heads/auditor/bot/").stdout.split()
+        self.assertEqual(sorted(remote), sorted(heads))
+        # The second branch carries both commits; nothing staged was dropped.
+        files = git(self.origin, "ls-tree", "-r", "--name-only", heads[1]).stdout.split()
+        self.assertIn("auditor/audits/r.md", files)
+        self.assertIn("auditor/disclosures-pending/r.md", files)
 
 
 if __name__ == "__main__":
