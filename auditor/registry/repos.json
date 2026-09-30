@@ -10016,7 +10016,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "06a5233395299ff78558b15568679c2c5c0fe942"
+      "commit_sha_at_audit": "06a5233395299ff78558b15568679c2c5c0fe942",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/Nanako0129-sepia.md"
     },
     "michaelshimeles/skills": {
       "discovered": "2026-09-07T06:10:37Z",
