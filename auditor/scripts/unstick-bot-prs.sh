@@ -82,7 +82,8 @@ fi
 while read -r NUM _BRANCH _STATE _AGE LABELLED; do
   [ -z "${NUM:-}" ] && continue
   [ "$LABELLED" = "1" ] && continue
-  if GH_TOKEN="$TOKEN" gh pr edit "$NUM" --repo "$GITHUB_REPOSITORY" --add-label auditor-bot; then
+  # REST, not `gh pr edit` (it needs read:org for reviewer logins and fails).
+  if GH_TOKEN="$TOKEN" gh api --silent -X POST "repos/${GITHUB_REPOSITORY}/issues/${NUM}/labels" -f "labels[]=auditor-bot"; then
     echo "unstick-bot-prs: labelled unlabelled bot PR #$NUM"
   else
     echo "::warning::unstick-bot-prs: could not label bot PR #$NUM"

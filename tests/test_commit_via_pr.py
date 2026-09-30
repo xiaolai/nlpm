@@ -110,9 +110,14 @@ FAKE_GH = textwrap.dedent(
     elif args[:2] == ["pr", "list"]:
         sys.stdout.write(os.environ.get("FAKE_GH_LIST", ""))
     elif args[:2] == ["pr", "edit"]:
-        num = args[2].rsplit("/", 1)[-1]
+        # The real `gh pr edit` needs read:org, which the bot token lacks.
+        sys.stderr.write("GraphQL: Your token has not been granted the required scopes (read:org)\n")
+        sys.exit(1)
+    elif args[:1] == ["api"] and args[-2:-1] == ["-f"] and "/labels" in " ".join(args):
+        path = next(a for a in args if a.startswith("repos/"))
+        num = path.split("/issues/")[1].split("/")[0]
         pr = state["prs"].setdefault(num, {"head": "?", "state": "OPEN", "labels": []})
-        pr.setdefault("labels", []).append(opt("--add-label"))
+        pr.setdefault("labels", []).append(args[-1].split("=", 1)[1])
         save()
     elif args[:2] == ["pr", "close"]:
         pass
@@ -380,7 +385,9 @@ class UnstickMergesMergeable(FakeGhSandbox):
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         calls = self.gh_calls()
-        self.assertIn(["pr", "edit", "31", "--repo", self.env["GITHUB_REPOSITORY"], "--add-label", "auditor-bot"], calls)
+        state = json.loads(self.state.read_text())
+        self.assertIn("auditor-bot", state["prs"]["31"]["labels"])
+        self.assertIn("unstick-bot-prs: labelled unlabelled bot PR #31", result.stdout)
         self.assertEqual([c[2] for c in calls if c[:2] == ["pr", "merge"]], ["31"])
         lists = [c for c in calls if c[:2] == ["pr", "list"]]
         self.assertNotIn("--label", lists[0], "bot PRs are selected by branch, since the label can be missing")
