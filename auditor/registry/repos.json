@@ -9938,7 +9938,7 @@
       "stars": 710,
       "artifacts": 127,
       "description": "A plugin marketplace for Claude Code/GitHub Copilot that provides Power Platform development plugins, including reusable skills, agents, and commands for building and deploying solutions.",
-      "status": "audited",
+      "status": "contributed",
       "score": 96,
       "audit_issue": 905,
       "prs": [],
@@ -9946,7 +9946,8 @@
       "security": "REVIEW",
       "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f",
       "exemplar_published": true,
-      "exemplar_path": "auditor/exemplars/microsoft-power-platform-skills.md"
+      "exemplar_path": "auditor/exemplars/microsoft-power-platform-skills.md",
+      "pipeline_prs": []
     },
     "ayghri/i-have-adhd": {
       "discovered": "2026-08-24T06:12:16Z",
