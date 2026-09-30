@@ -201,7 +201,13 @@ jobs:
               1. agents/scorer.md (full 5-step "Do Not Invent Findings"
                  check + known false-positive table)
               2. skills/nlpm/scoring/SKILL.md (penalty rubric v0.4.0 +
-                 Known False Positive Patterns appendix)
+                 Known False Positive Patterns appendix). Its Penalty
+                 Tables section indexes files under
+                 skills/nlpm/scoring/references/ that hold the tables for
+                 Codex, Antigravity, memory-file and workflow-program
+                 artifacts; before scoring such an artifact, read the
+                 file the index names for it and apply its rows as rubric
+                 rows
               3. skills/nlpm/conventions/SKILL.md + conventions-claude/SKILL.md
                  (universal + Claude overlay — nlpm IS a Claude Code plugin,
                  Tier 2-Claude applies)
