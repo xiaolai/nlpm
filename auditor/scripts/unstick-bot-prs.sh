@@ -63,12 +63,17 @@ esac
 # Bot PRs are selected by their auditor/bot/ branch, not by the auditor-bot
 # label: a PR whose create call failed after opening it has no label (#1311,
 # #1312), and filtering on the label hid it from every sweep.
+# The branch must live in THIS repository (isCrossRepository == false).
+# Anyone can open a PR from a fork branch they name auditor/bot/…; this
+# script labels and merges what it selects, so a branch-name match alone
+# would let an outside PR be merged. Pushing a branch here needs write
+# access, which is the trust boundary.
 # Fail loud if the listing itself fails — an empty list must mean "no PRs",
 # never "gh errored".
 if ! OPEN_PRS=$(GH_TOKEN="$TOKEN" gh pr list \
   --repo "$GITHUB_REPOSITORY" --state open --limit 200 \
-  --json number,headRefName,mergeStateStatus,createdAt,labels \
-  --jq '.[] | select(.headRefName | startswith("auditor/bot/")) | "\(.number) \(.headRefName) \(.mergeStateStatus) \(((now - (.createdAt | fromdateiso8601)) / 3600) | floor) \(if any(.labels[]; .name == "auditor-bot") then 1 else 0 end)"'); then
+  --json number,headRefName,mergeStateStatus,createdAt,labels,isCrossRepository \
+  --jq '.[] | select(.isCrossRepository == false and (.headRefName | startswith("auditor/bot/"))) | "\(.number) \(.headRefName) \(.mergeStateStatus) \(((now - (.createdAt | fromdateiso8601)) / 3600) | floor) \(if any(.labels[]; .name == "auditor-bot") then 1 else 0 end)"'); then
   echo "::error::unstick-bot-prs: could not list auditor-bot PRs" >&2
   exit 1
 fi

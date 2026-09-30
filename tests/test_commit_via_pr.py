@@ -385,6 +385,22 @@ class UnstickMergesMergeable(FakeGhSandbox):
         lists = [c for c in calls if c[:2] == ["pr", "list"]]
         self.assertNotIn("--label", lists[0], "bot PRs are selected by branch, since the label can be missing")
 
+    def test_listing_excludes_fork_branches(self) -> None:
+        # The listing's jq filter is what keeps a fork PR named auditor/bot/…
+        # from being labelled and merged. Check the filter itself with jq.
+        script = (REPO_ROOT / "auditor/scripts/unstick-bot-prs.sh").read_text()
+        jq_filter = script.split("--jq '", 1)[1].split("'", 1)[0]
+        prs = [
+            {"number": 41, "headRefName": "auditor/bot/a/1", "mergeStateStatus": "CLEAN",
+             "createdAt": "2026-09-30T00:00:00Z", "labels": [], "isCrossRepository": True},
+            {"number": 42, "headRefName": "auditor/bot/a/2", "mergeStateStatus": "CLEAN",
+             "createdAt": "2026-09-30T00:00:00Z", "labels": [], "isCrossRepository": False},
+        ]
+        out = subprocess.run(["jq", "-r", jq_filter], input=json.dumps(prs),
+                             capture_output=True, text=True, check=True).stdout.split()
+        self.assertIn("42", out)
+        self.assertNotIn("41", out, "a fork PR must never be selected, whatever its branch is called")
+
     def test_unknown_state_is_rechecked_per_pr(self) -> None:
         # GitHub recomputes every open PR's mergeability after main moves, and
         # `gh pr list` reports UNKNOWN until it finishes. The 2026-09-30 09:51
