@@ -152,7 +152,9 @@ for attempt in 1 2 3; do
     --head "$BRANCH" --state open --json url --jq '.[0].url // empty') || PR_URL=""
   if [ -n "$PR_URL" ]; then
     echo "commit-via-pr: create reported an error but $PR_URL is open for $BRANCH; adopting it"
-    GH_TOKEN="$TOKEN" gh pr edit "$PR_URL" --repo "$GITHUB_REPOSITORY" --add-label "auditor-bot" \
+    # REST, not `gh pr edit`: pr edit also reads reviewer logins, which needs
+    # the read:org scope this token lacks, so it always failed here.
+    GH_TOKEN="$TOKEN" gh api --silent -X POST "repos/${GITHUB_REPOSITORY}/issues/${PR_URL##*/}/labels" -f "labels[]=auditor-bot" \
       || echo "::warning::commit-via-pr: could not label $PR_URL; unstick-bot-prs.sh adds it on its next sweep"
     break
   fi
