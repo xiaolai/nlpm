@@ -119,7 +119,7 @@ Scores start at 100 and go down. Every issue has a fixed penalty. The score is d
 
 Default pass threshold: 70. Configure in `.claude/nlpm.local.md`.
 
-See `skills/nlpm/scoring/SKILL.md` for the full penalty tables. See `skills/nlpm/rules/SKILL.md` for the 50 Rules of Natural Language Programming.
+See `skills/nlpm/scoring/SKILL.md` for the full penalty tables (the Codex, Antigravity, memory-file and workflow-program tables are in `skills/nlpm/scoring/references/`, indexed from SKILL.md). See `skills/nlpm/rules/SKILL.md` for the 50 Rules of Natural Language Programming.
 
 ## What it scores
 

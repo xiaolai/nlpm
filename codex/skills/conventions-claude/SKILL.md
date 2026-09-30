@@ -105,7 +105,7 @@ Existing `.claude/commands/` files continue to function. New code should prefer 
 - `agent` — which subagent type (built-in: `Explore`, `Plan`, `general-purpose`)
 - `hooks` — `{...}` skill-scoped hooks (same shape as settings.json hooks)
 - `paths` — glob patterns; auto-load only for matching files (e.g., `"src/**/*.ts,lib/**/*.ts"`)
-- `shell` — `bash` (default) or `powershell` for `!`cmd`` blocks
+- `shell` — `bash` (default) or `powershell` for the dynamic context blocks in §2.3
 - `background` — boolean; only meaningful with `context: fork`. `false` waits for the forked subagent's result in the invoking turn instead of backgrounding it (default `true`; v2.1.218+).
 
 Boolean frontmatter fields accept `yes`/`no`/`on`/`off`/`1`/`0` (any case) in addition to `true`/`false` (v2.1.218+). The combined `description` + `when_to_use` shown in the skill listing is truncated at 1,536 characters — keep triggers within that budget.
@@ -119,8 +119,8 @@ Boolean frontmatter fields accept `yes`/`no`/`on`/`off`/`1`/`0` (any case) in ad
 
 ### 2.3 Dynamic context injection
 
-- `` !`git diff HEAD` `` — runs command before Claude sees the skill; replaces line with output.
-- ` ```! ` fenced blocks — multi-line commands.
+- Inline form: an exclamation mark placed directly before a single-backtick code span holding a command (e.g. `git diff HEAD`) — runs the command before Claude sees the skill and replaces the span with its output.
+- Fenced form: a code fence whose opening three backticks are followed directly by an exclamation mark — runs its multi-line commands the same way. Both forms are described in words here because Claude Code would execute them when this skill is preloaded.
 - Disabled if `"disableSkillShellExecution": true` in settings.
 
 ### 2.4 String substitutions (valid in command/skill bodies)

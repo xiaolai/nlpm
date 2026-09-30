@@ -29,9 +29,10 @@ For each artifact you receive:
 
 1. Identify its type using the path-based classification in `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md`: command, user-command, agent, skill, rule, hook-config, manifest, marketplace, mcp-config, lsp-config, claude-md, shared-partial, plugin-config, settings, memory
 2. Apply the scoring rubric from `nlpm:scoring`:
+   - Only `nlpm:scoring`'s SKILL.md is preloaded. For a Codex, Antigravity, memory-file or agent-workflow-program artifact, first Read the reference file its Penalty Tables index names for that artifact — `${CLAUDE_PLUGIN_ROOT}/skills/nlpm/scoring/references/codex.md`, `antigravity.md` or `memory-and-workflow.md` — and apply its tables with the same weight as the preloaded ones
    - Start at 100
    - Apply all penalties for this artifact type (each penalty maps to a rule number)
-   - Apply vague quantifier penalties: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" -- penalty -2 each, capped at -20
+   - Apply vague quantifier penalties: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" -- penalty -2 each, capped at -20. Grep the artifact for each term to get its line numbers, then read each line to apply the mention-versus-use exclusion
    - **R51 (opt-in vocabulary drift):** if `.claude/nlpm.local.md` declares `rule_overrides.R51.enabled: true`, load the registry at `<vocabulary_skill>/registry.yaml`, classify the artifact's scope (`internal` vs `auditor`), and apply -2 per deprecated synonym occurrence, capped at -10 per file. If the registry is missing, emit an advisory note and apply no penalty. Without `enabled: true`, R51 contributes zero regardless of content.
    - If rule overrides are provided, apply them (`suppress`, `enabled`, `max_penalty`, `threshold`, `min_examples` adjustments)
    - **R09 `min_examples`:** if `.claude/nlpm.local.md` declares `rule_overrides.R09.min_examples: N` with N greater than 1, score an agent description that has at least one but fewer than N `<example>` blocks at -5 per missing block, capped at -15; zero blocks stays -15. The exclusion-clause and length rows are unchanged (`nlpm:scoring`, Agents).
@@ -50,7 +51,8 @@ Apply ONLY penalties enumerated in `nlpm:scoring`. Do not invent penalty
 categories. Before reporting any finding, run this 5-step check:
 
 1. **Rubric check** — Does the penalty appear in the `nlpm:scoring` penalty
-   tables for this artifact type? If no, do not report (unless marked
+   tables for this artifact type, including the reference file indexed for
+   it? If no, do not report (unless marked
    `(heuristic)` per the Heuristic Checks section below).
 
 2. **Schema check** — If the finding is "missing field X", is X listed as
@@ -92,8 +94,7 @@ categories. Before reporting any finding, run this 5-step check:
    which live at `skills/<category>/<name>/SKILL.md` with no surrounding
    plugin scaffolding. Applying a tool-specific overlay would over-penalize
    them for fields the open spec does not require. Detection is
-   deterministic: a multi-marker directory/file existence check on the
-   repo root.
+   deterministic: Glob the repo root for the marker paths listed below.
 
    **Tier 2-Claude — Claude Code project.** Markers (presence of ANY):
    `.claude/` directory, `.claude-plugin/plugin.json`,
@@ -175,7 +176,7 @@ categories. Before reporting any finding, run this 5-step check:
    "X declared in plugin.json's skills/agents/commands array but missing
    from disk" OR "Y exists on disk at a canonical path but missing from
    the manifest array", mark the finding as `confidence: high`. The gap
-   is deterministic — list the manifest entries, list the disk files,
+   is deterministic — list the manifest entries, Glob the disk files,
    diff. No judgment required. Populate `evidence` with the concrete
    diff. This class of bug was under-classified as `medium` in past
    audits (mattpocock/skills 2026-05-11: 4 unregistered skills marked

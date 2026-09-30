@@ -74,7 +74,9 @@ Score each file on a 100-point scale. Start at 100, subtract penalties:
 **Rule-ID discipline (strict, enforced by validate-rule-ids.py in CI):**
 
 Every NL-quality finding's `rule_id` must come from the table in
-`skills/nlpm/scoring/SKILL.md` for the artifact's type. Do NOT:
+`skills/nlpm/scoring/SKILL.md` for the artifact's type, or from the
+`skills/nlpm/scoring/references/` file that SKILL.md's Penalty Tables index
+names for Codex, Antigravity, memory-file and workflow-program artifacts. Do NOT:
 
 - Apply agent rules (R09–R13) to skills. Skills use R04–R07.
 - Reuse R07 ("scope note") for example-block findings — that is R06 for skills,
