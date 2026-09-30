@@ -9867,10 +9867,13 @@
       "stars": 23537,
       "artifacts": 5,
       "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 97,
       "audit_issue": 967,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "839872f9d1cd634fed642b4589ce7226199cc15f"
     },
     "danny-avila/LibreChat": {
       "discovered": "2026-08-24T06:12:16Z",
