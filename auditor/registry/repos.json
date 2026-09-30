@@ -10031,10 +10031,13 @@
       "stars": 2771,
       "artifacts": 14,
       "description": "AGENTS.md rules / skills for AI coding agents: Codex, Cursor & Claude Code. Inspired by Clean Code, Refactoring, DDD, Clean Architecture and DDIA programming books.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 1151,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "893a88a6fce3a80c565bf39ac65021b43a8b2990"
     },
     "fivetaku/gptaku_plugins": {
       "discovered": "2026-09-14T06:11:05Z",
