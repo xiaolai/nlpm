@@ -9788,10 +9788,13 @@
       "stars": 24853,
       "artifacts": 120,
       "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 92,
       "audit_issue": 762,
-      "prs": []
+      "prs": [],
+      "security": "CLEAR",
+      "strategy": "progressive",
+      "commit_sha_at_audit": "18468a95b427e70e258b51389796367c6f684e7d"
     },
     "Vincentwei1021/video-shotcraft": {
       "status": "tracked",
