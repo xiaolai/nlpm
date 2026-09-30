@@ -9912,10 +9912,13 @@
       "stars": 6328,
       "artifacts": 134,
       "description": "Gentle-AI configures the AI coding agents you already use: Claude Code, Cursor, OpenCode, Codex, Pi, and more. Choose persistent memory, Spec-Driven Development, curated skills, MCP servers, personas, and optional bounded review. Open source, no agent lock-in.",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 78,
       "audit_issue": 1087,
-      "prs": []
+      "prs": [],
+      "strategy": "progressive",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "5bf23ad922b833278c2b99fb0ea3a8065655074c"
     },
     "Nanako0129/sepia": {
       "discovered": "2026-09-07T06:10:37Z",
