@@ -10029,7 +10029,9 @@
       "prs": [],
       "strategy": "single",
       "security": "REVIEW",
-      "commit_sha_at_audit": "4b72f46b045e6fef52e6a98d4c162dd309826aed"
+      "commit_sha_at_audit": "4b72f46b045e6fef52e6a98d4c162dd309826aed",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/michaelshimeles-skills.md"
     },
     "ciembor/agent-rules-books": {
       "discovered": "2026-09-14T06:11:05Z",
