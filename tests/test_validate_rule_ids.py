@@ -255,5 +255,57 @@ class DriftDetection(unittest.TestCase):
             self.assertEqual(self.mod.validate_findings(sidecar, rubric), [])
 
 
+class SplitRubric(unittest.TestCase):
+    """The rubric is SKILL.md plus the reference files it indexes.
+
+    Tables for Codex, Antigravity, memory-file and workflow-program artifacts
+    moved to `skills/nlpm/scoring/references/` to keep SKILL.md under R05's
+    400-line band. Every consumer that reads the rubric must still see every
+    rule row, and neither half may drift from the Codex mirror.
+    """
+
+    def setUp(self):
+        self.mod = _load_validator_module()
+        self.refs = sorted((RUBRIC.parent / "references").glob("*.md"))
+        self.codex_dir = REPO_ROOT / "codex" / "skills" / "scoring"
+
+    def test_rule_set_is_union_across_skill_and_references(self):
+        rubric = self.mod.parse_rubric(RUBRIC)
+        union_by_type: dict[str, set[str]] = {}
+        for source in [RUBRIC, *self.refs]:
+            part = self.mod.Rubric()
+            self.mod._parse_rubric_tables(source.read_text(), part)
+            for artifact_type, rule_ids in part.by_type.items():
+                union_by_type.setdefault(artifact_type, set()).update(rule_ids)
+        self.assertEqual(rubric.by_type, union_by_type)
+        self.assertEqual(rubric.all_rnumbers, set().union(*union_by_type.values()))
+
+    def test_reference_rule_rows_reach_the_parsed_rubric(self):
+        """A Rule-column row in a reference file must be visible to the validator."""
+        rubric = self.mod.parse_rubric(RUBRIC)
+        codex_hooks = (RUBRIC.parent / "references" / "codex.md").read_text()
+        self.assertIn("| R27 | Event names valid (Codex) |", codex_hooks)
+        self.assertIn("R27", rubric.by_type["Hooks"])
+        self.assertIn("R29", rubric.by_type["Hooks"])
+
+    def test_skill_indexes_every_reference_file(self):
+        skill_text = RUBRIC.read_text()
+        self.assertGreaterEqual(len(self.refs), 4, "references/ lost files")
+        for ref in self.refs:
+            self.assertTrue(f"references/{ref.name}" in skill_text,
+                            f"{ref.name} is not indexed from SKILL.md, so no scorer will read it")
+
+    def test_skill_body_stays_under_r05_band(self):
+        """R05 deducts 5 from 400 body lines; the rubric must not fail its own rule."""
+        body = RUBRIC.read_text().split("\n---\n", 1)[1]
+        self.assertLess(len(body.splitlines()), 400)
+
+    def test_codex_mirror_references_are_byte_identical(self):
+        codex_refs = sorted((self.codex_dir / "references").glob("*.md"))
+        self.assertEqual([p.name for p in codex_refs], [p.name for p in self.refs])
+        for ref, mirror in zip(self.refs, codex_refs):
+            self.assertEqual(ref.read_bytes(), mirror.read_bytes(), f"{ref.name} differs in codex/")
+
+
 if __name__ == "__main__":
     unittest.main()

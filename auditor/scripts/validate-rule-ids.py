@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """validate-rule-ids.py — catch scorer drift between rubric and findings.
 
-Parses `skills/nlpm/scoring/SKILL.md` for the per-artifact-type rule_id
-catalog, then walks `auditor/audits/*.findings.jsonl` (or a path on argv)
+Parses `skills/nlpm/scoring/SKILL.md` and the reference files beside it
+(`skills/nlpm/scoring/references/*.md`, which hold the per-tool tables the
+SKILL.md indexes) for the per-artifact-type rule_id catalog, then walks `auditor/audits/*.findings.jsonl` (or a path on argv)
 and reports every NL-quality finding whose `rule_id` is not documented in
 the rubric for that artifact's path category.
 
@@ -121,6 +122,19 @@ class Rubric:
         return self.by_type.get(artifact_type, set()) | self.by_type.get(ALL_TYPES_HEADING, set())
 
 
+def rubric_sources(rubric_path: Path) -> list[Path]:
+    """The rubric file plus every `references/*.md` beside it, in a fixed order.
+
+    The scoring skill keeps tables for artifact types most projects lack
+    (Codex, Antigravity, memory files) in `references/`, indexed from
+    SKILL.md. Rows there are as binding as rows in SKILL.md, so the rule
+    catalog is the union across all of these files.
+    """
+    refs_dir = rubric_path.parent / "references"
+    refs = sorted(refs_dir.glob("*.md")) if refs_dir.is_dir() else []
+    return [rubric_path, *refs]
+
+
 def section_type(heading: str) -> str | None:
     """Map a `### ` heading to the artifact type its table scores, or None."""
     if heading.startswith(ALL_TYPES_HEADING):
@@ -134,6 +148,7 @@ def section_type(heading: str) -> str | None:
 def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
     """Extract rule_ids per artifact type from the rubric markdown.
 
+    Reads `rubric_path` and every file `rubric_sources()` lists beside it.
     If `rules_path` is provided (default: skills/nlpm/rules/SKILL.md), also
     populates `rubric.keywords_by_rule` for the semantic-drift check.
     """
@@ -142,7 +157,8 @@ def parse_rubric(rubric_path: Path, rules_path: Path | None = None) -> Rubric:
     rubric = Rubric()
     rules_to_load = rules_path if rules_path is not None else DEFAULT_RULES
     rubric.keywords_by_rule = parse_rules(rules_to_load)
-    _parse_rubric_tables(rubric_path.read_text(), rubric)
+    for source in rubric_sources(rubric_path):
+        _parse_rubric_tables(source.read_text(), rubric)
     return rubric
 
 
@@ -477,12 +493,12 @@ def self_test() -> int:
         assert type_drift.rule_id == "R09"
         assert type_drift.file == "skills/foo/SKILL.md"
 
-        # Qualified headings, Check-first tables and all-types sections:
-        # every "Hooks …" table counts as Hooks; a manifest table's Check
-        # text is not a rule_id; an "All Artifact Types" row is valid on
-        # every type.
+        # Qualified headings, the references/ split, Check-first tables and
+        # all-types sections: the per-tool Hooks table lives in a reference
+        # file and still counts; a manifest table's Check text is not a
+        # rule_id; an "All Artifact Types" row is valid on every type.
         split_dir = Path(td) / "split"
-        split_dir.mkdir()
+        (split_dir / "references").mkdir(parents=True)
         split_rubric = split_dir / "SKILL.md"
         split_rubric.write_text(
             "### Hooks — universal checks (apply to all tools)\n\n"
@@ -493,8 +509,10 @@ def self_test() -> int:
             "| R99 named in a check | Missing | -5 |\n\n"
             "### All Artifact Types: Vocabulary Drift (R51)\n\n"
             "| Rule | Check | Condition | Penalty |\n|------|-------|-----------|---------|\n"
-            "| R51 | Deprecated synonym | Each | -2 each |\n\n"
-            "### Hooks (Codex CLI — Tier 2-Codex only)\n\n"
+            "| R51 | Deprecated synonym | Each | -2 each |\n"
+        )
+        (split_dir / "references" / "codex.md").write_text(
+            "# Codex tables\n\n### Hooks (Codex CLI — Tier 2-Codex only)\n\n"
             "| Rule | Check | Condition | Penalty |\n|------|-------|-----------|---------|\n"
             "| R27 | Event names valid (Codex) | Unknown | -15 |\n"
         )

@@ -29,6 +29,7 @@ For each artifact you receive:
 
 1. Identify its type using the path-based classification in `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md`: command, user-command, agent, skill, rule, hook-config, manifest, marketplace, mcp-config, lsp-config, claude-md, shared-partial, plugin-config, settings, memory
 2. Apply the scoring rubric from `nlpm:scoring`:
+   - Only `nlpm:scoring`'s SKILL.md is preloaded. For a Codex, Antigravity, memory-file or agent-workflow-program artifact, first Read the reference file its Penalty Tables index names for that artifact — `${CLAUDE_PLUGIN_ROOT}/skills/nlpm/scoring/references/codex.md`, `antigravity.md` or `memory-and-workflow.md` — and apply its tables with the same weight as the preloaded ones
    - Start at 100
    - Apply all penalties for this artifact type (each penalty maps to a rule number)
    - Apply vague quantifier penalties: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" -- penalty -2 each, capped at -20
@@ -50,7 +51,8 @@ Apply ONLY penalties enumerated in `nlpm:scoring`. Do not invent penalty
 categories. Before reporting any finding, run this 5-step check:
 
 1. **Rubric check** — Does the penalty appear in the `nlpm:scoring` penalty
-   tables for this artifact type? If no, do not report (unless marked
+   tables for this artifact type, including the reference file indexed for
+   it? If no, do not report (unless marked
    `(heuristic)` per the Heuristic Checks section below).
 
 2. **Schema check** — If the finding is "missing field X", is X listed as
