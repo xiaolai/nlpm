@@ -176,6 +176,23 @@ Authoritative event list: `nlpm:conventions-antigravity` §5. **All Antigravity-
 
 ---
 
+### .claude-plugin/marketplace.json (Claude Code — Tier 2-Claude)
+
+Schema reference: `nlpm:conventions-claude` §17 and its `reference.md` (Plugin Distribution).
+
+| Check | Condition | Penalty |
+|-------|-----------|---------|
+| Valid JSON | File fails JSON parse | -25 |
+| `name` present | Missing | -25 |
+| `owner.name` present | `owner` missing, or it has no `name` | -10 |
+| `plugins` array present | Missing or empty | -10 |
+| Per-plugin `name` and `source` | Either missing | -10 each |
+| Per-plugin `source` valid | A relative path that doesn't start with `./` (bare names are valid only under `metadata.pluginRoot`), or an object whose `source.source` isn't one of the six object types in `reference.md` or that lacks that type's required field | -10 each |
+| Per-plugin `version` in step | Differs from the `version` in the `plugin.json` it describes, when that file is in the same repository (`plugin.json` wins at load, so the entry is stale) | -5 each |
+| Per-plugin `description` present | Missing (the `/plugin` browser shows it) | -3 each |
+
+---
+
 ### .codex-plugin/plugin.json (Codex CLI — Tier 2-Codex only)
 
 Schema reference: `nlpm:conventions-codex` §3.

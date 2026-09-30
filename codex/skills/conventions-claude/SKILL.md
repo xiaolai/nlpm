@@ -465,7 +465,7 @@ Tool names valid in `tools:`, `allowed-tools:`, `disallowed-tools:`. **Never fla
 
 ## 17. Plugin distribution
 
-**Marketplace manifest:** `.claude-plugin/marketplace.json` at the marketplace repo root. **Required top-level:** `name`, `owner` (maintainer-info object), `plugins`. Optional: `$schema`, `description`, `version`, `metadata.pluginRoot`, `renames`. Per-plugin entries may add `category`, `tags`, `strict`, `relevance`, `defaultEnabled`. **Full schema, `source` types, and `renames`/`strict` semantics → [reference.md](reference.md#plugin-distribution-marketplacejson).**
+**Marketplace manifest:** `.claude-plugin/marketplace.json` at the marketplace repo root. **Required top-level:** `name`, `owner` (maintainer-info object), `plugins`. Optional: `$schema`, `description`, `version`, `metadata.description`, `metadata.version`, `metadata.pluginRoot`, `forceRemoveDeletedPlugins`, `allowCrossMarketplaceDependenciesOn`, `renames`. Per-plugin entries may add `category`, `tags`, `strict`, `relevance`, `defaultEnabled`. **Full schema, `source` types, and `renames`/`strict` semantics → [reference.md](reference.md#plugin-distribution-marketplacejson).**
 
 **Plugin from URL (v2.1.x):** `--plugin-url` and `--plugin-dir` flags accept `.zip` archives.
 
