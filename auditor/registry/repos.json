@@ -9944,7 +9944,9 @@
       "prs": [],
       "strategy": "progressive",
       "security": "REVIEW",
-      "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f"
+      "commit_sha_at_audit": "c97753299937976aae38710c190dc64be605051f",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/microsoft-power-platform-skills.md"
     },
     "ayghri/i-have-adhd": {
       "discovered": "2026-08-24T06:12:16Z",
