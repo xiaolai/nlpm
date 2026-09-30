@@ -222,8 +222,11 @@ jobs:
             Score every listed file and NO others (do not score the whole
             corpus). Notes on the kinds you may see:
               - commands/shared/*.md must have user-invocable: false
-              - skills/nlpm/*/SKILL.md are Claude-side (codex/skills/
-                mirrors are auto-generated and never appear in this list)
+              - skills/nlpm/*/SKILL.md are Claude-side; their
+                codex/skills/<name>/SKILL.md mirrors appear in the list
+                too. Score a mirror's body exactly as its Claude
+                original. The R06 <example> row and user-invocable are
+                Claude-only, so they do not apply to a mirror.
               - AGENTS.md is the canonical universal memory file
               - GEMINI.md is a one-line @AGENTS.md import and there is no
                 CLAUDE.md (Claude Code reads AGENTS.md natively) — do NOT
