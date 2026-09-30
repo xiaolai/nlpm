@@ -75,7 +75,7 @@ Tool names are case-sensitive. Any string matching the patterns above is a valid
 The overlay's §7 table lists the load-bearing events; the following are also valid current events — never flag any of them as "unknown". Any documented event name is valid even if it post-dates this doc; verify against `code.claude.com/docs/en/hooks.md` rather than penalizing.
 
 - **Confirmed real (were "uncertain" pre-2026-06):** `SubagentStop`, `PreCompact`, `Notification`, `PostToolUseFailure`, `InstructionsLoaded`, `TaskCompleted` (exact spelling — not `TaskComplete`).
-- **Additional current events:** `Setup`, `SubagentStart`, `UserPromptExpansion`, `PermissionDenied`, `PostToolBatch`, `MessageDisplay`, `TaskCreated`, `TeammateIdle`, `ConfigChange`, `CwdChanged`, `WorktreeCreate`, `WorktreeRemove`, `PostCompact`, `Elicitation`, `ElicitationResult`.
+- **Additional current events:** `Setup`, `SubagentStart`, `UserPromptExpansion`, `PermissionDenied`, `PostToolBatch`, `MessageDisplay`, `TaskCreated`, `TeammateIdle`, `ConfigChange`, `CwdChanged`, `WorktreeCreate`, `WorktreeRemove`, `PostCompact`, `Elicitation`, `ElicitationResult`, `DirectoryAdded`, `PreModelSwitch`, `PostModelSwitch`.
 
 ---
 

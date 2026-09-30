@@ -219,6 +219,34 @@ class TestNlpmCheck(unittest.TestCase):
         code, _out, _ = self.run_check()
         self.assertEqual(code, 0)
 
+    def test_every_documented_hook_event_passes_strict(self) -> None:
+        # Every event on code.claude.com/docs/en/hooks.md (33 as of 2026-09-30).
+        # A stale allow-list here flags real events such as SubagentStop as
+        # unknown, which is what this test pins down.
+        documented = [
+            "ConfigChange", "CwdChanged", "DirectoryAdded", "Elicitation",
+            "ElicitationResult", "FileChanged", "InstructionsLoaded",
+            "MessageDisplay", "Notification", "PermissionDenied",
+            "PermissionRequest", "PostCompact", "PostModelSwitch",
+            "PostToolBatch", "PostToolUse", "PostToolUseFailure", "PreCompact",
+            "PreModelSwitch", "PreToolUse", "SessionEnd", "SessionStart",
+            "Setup", "Stop", "StopFailure", "SubagentStart", "SubagentStop",
+            "TaskCompleted", "TaskCreated", "TeammateIdle",
+            "UserPromptExpansion", "UserPromptSubmit", "WorktreeCreate",
+            "WorktreeRemove",
+        ]
+        make_plugin(self.tmp, {"name": "p"}, {
+            "hooks/hooks.json": json.dumps({
+                "hooks": {
+                    event: [{"matcher": "", "hooks": [{"type": "command", "command": "echo"}]}]
+                    for event in documented
+                }
+            }),
+        })
+        code, out, _ = self.run_check("--strict")
+        self.assertEqual(code, 0, out)
+        self.assertNotIn("not in documented event list", out)
+
     # ----- strict mode -----
 
     def test_strict_mode_fails_on_medium(self) -> None:

@@ -136,11 +136,11 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 
 ### Hooks (Claude Code — Tier 2-Claude only)
 
-Authoritative event list: `nlpm:conventions-claude` §7. Per the multi-tool design (`analysis/multi-tool-design-2026-05.md` decision #4), Claude / Codex / Antigravity hook event vocabularies are NOT 1:1 mappable — three separate tables, no translation.
+Authoritative event list: `nlpm:conventions-claude` §7 together with its extended allow-list in `conventions-claude/reference.md`. Per the multi-tool design (`analysis/multi-tool-design-2026-05.md` decision #4), Claude / Codex / Antigravity hook event vocabularies are NOT 1:1 mappable — three separate tables, no translation.
 
 | Rule | Check | Condition | Penalty |
 |------|-------|-----------|---------|
-| R27 | Event names valid (Claude) | Uses unrecognized event name — confirmed Claude events: `SessionStart`, `SessionEnd`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `StopFailure`, `FileChanged` | -15 |
+| R27 | Event names valid (Claude) | Uses an event name that is in neither the `nlpm:conventions-claude` §7 table nor its extended allow-list (`conventions-claude/reference.md`, Hook Events). Those two lists together are the confirmed set (33 events, including `SubagentStop`, `SubagentStart`, `PreCompact` and `Notification`); a name missing from both still passes if `code.claude.com/docs/en/hooks.md` documents it | -15 |
 | R27 | Case correct (Claude) | Event name has wrong case (e.g. `pretooluse`) | -10 |
 | -- | Hook type valid (Claude) | Uses unrecognized `type` value — confirmed Claude types: `command`, `http`, `mcp_tool`, `prompt`, `agent` | -10 |
 | -- | MCP matcher format (Claude) | Matcher targets MCP tool but doesn't use `mcp__<server>__<tool>` pattern | -5 |
