@@ -9957,7 +9957,9 @@
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "839872f9d1cd634fed642b4589ce7226199cc15f"
+      "commit_sha_at_audit": "839872f9d1cd634fed642b4589ce7226199cc15f",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/ayghri-i-have-adhd.md"
     },
     "danny-avila/LibreChat": {
       "discovered": "2026-08-24T06:12:16Z",
