@@ -2,6 +2,7 @@
 name: writing-hooks
 description: "How to write Claude Code hooks: events, matchers, blocking vs advisory, paths."
 version: 0.2.0
+user-invocable: false
 ---
 
 # Writing Hooks

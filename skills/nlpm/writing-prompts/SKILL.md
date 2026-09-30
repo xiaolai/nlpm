@@ -2,6 +2,7 @@
 name: writing-prompts
 description: "How to write LLM system prompts: role, structured output, injection resistance."
 version: 0.1.0
+user-invocable: false
 ---
 
 # Writing Prompts

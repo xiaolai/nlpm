@@ -2,6 +2,7 @@
 name: orchestration
 description: "Multi-agent workflow patterns: parallel dispatch, pipelines, QC gates, retries."
 version: 0.1.0
+user-invocable: false
 ---
 
 # Orchestration

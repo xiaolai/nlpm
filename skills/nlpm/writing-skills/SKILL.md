@@ -2,6 +2,7 @@
 name: writing-skills
 description: "How to write SKILL.md files that trigger reliably, for any tool (open spec)."
 version: 0.2.0
+user-invocable: false
 ---
 
 # Writing Skills
