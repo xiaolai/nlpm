@@ -10044,10 +10044,13 @@
       "stars": 1136,
       "artifacts": 5,
       "description": "A Claude Code plugin marketplace for people who want to become AI Native",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 96,
       "audit_issue": 1152,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "BLOCKED",
+      "commit_sha_at_audit": "909f31c687d324da08825f993bc12432c1004777"
     },
     "plugin87/ux-ui-agent-skills": {
       "discovered": "2026-09-14T06:11:05Z",
