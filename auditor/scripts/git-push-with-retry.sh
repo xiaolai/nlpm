@@ -4,7 +4,8 @@
 # On failure, rebases against origin/<current-branch>. If the rebase
 # hits a conflict, delegates to auditor/scripts/resolve-merge-conflicts.sh
 # (which knows the per-file strategy: 3-way merge for the registry,
-# line-union for append-only logs, --ours for everything else).
+# line-union for append-only logs, this commit's version for everything
+# else).
 #
 # Usage:
 #   bash auditor/scripts/git-push-with-retry.sh [max_attempts]

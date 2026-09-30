@@ -1,18 +1,31 @@
 #!/usr/bin/env bash
 # Resolve merge conflicts for auditor-managed files using the right strategy per file.
 #
-# Called by push-retry loops in auditor-audit.yml, auditor-contribute.yml,
-# and auditor-daily-report.yml after `git pull` when a concurrent push has
-# created conflicts. Uses :2 (ours = this commit) and :3 (theirs = remote).
+# Called while a rebase (or merge) of this workflow's commit onto the latest
+# main is stopped on conflicts: by commit-via-pr.sh's reconcile loop,
+# unstick-bot-prs.sh and git-push-with-retry.sh. "Mine" below means the
+# commit this workflow is trying to land; "upstream" means what already
+# reached main.
 #
 # Strategies:
-#   auditor/registry/repos.json  → jq deep merge (ours wins on overlap, union on additions)
-#   auditor/logs/events.jsonl    → line union (concat + dedupe, preserves events from both sides)
-#   everything else              → --ours (keep this commit's work; never silently revert to remote)
+#   auditor/registry/repos.json  → 3-way merge (mine wins on overlap, union on additions)
+#   append-only *.jsonl logs     → line union (upstream lines first, then mine; dedupe)
+#   auditor/exemplars/README.md  → regenerate from disk
+#   everything else              → mine (keep this commit's work; never silently revert to upstream)
 #
-# Why `--ours` as default: the previous `--theirs` default silently dropped
-# the current workflow's own data whenever a concurrent push beat it to main.
-# Lost pipeline_prs on wshobson/agents #488-#492 is a concrete example.
+# Why "mine" as default: the previous default silently dropped the current
+# workflow's own data whenever a concurrent push beat it to main. Lost
+# pipeline_prs on wshobson/agents #488-#492 is a concrete example.
+#
+# Stage mapping — the part that is easy to get backwards. Git's :2/--ours and
+# :3/--theirs are relative to the operation, not to "this workflow":
+#   merge  (git pull --no-rebase): :2/--ours = mine,     :3/--theirs = upstream
+#   rebase (git pull --rebase, git rebase origin/main):
+#                                  :2/--ours = upstream, :3/--theirs = mine
+# Every caller rebases. Until 2026-09-30 this script assumed the merge
+# mapping, so during those rebases the registry's "ours wins on overlap" and
+# the "--ours for everything else" default both kept upstream and silently
+# discarded the bot commit's own version. The mapping is now detected below.
 
 set -euo pipefail
 
@@ -25,6 +38,13 @@ trap 'rm -rf "$RESOLVE_TMPDIR"' EXIT
 conflicted_paths() {
   git diff --name-only --diff-filter=U 2>/dev/null || true
 }
+
+# Detect whether we are inside a rebase and map stages accordingly (see header).
+if [ -d "$(git rev-parse --git-path rebase-merge)" ] || [ -d "$(git rev-parse --git-path rebase-apply)" ]; then
+  MINE_STAGE=3; UPSTREAM_STAGE=2; MINE_SIDE=--theirs
+else
+  MINE_STAGE=2; UPSTREAM_STAGE=3; MINE_SIDE=--ours
+fi
 
 # Registry: 3-way merge preserves remote updates to entries this workflow
 # didn't touch. The previous strategy (`jq -s '.[0] * .[1]' theirs ours`)
@@ -43,8 +63,8 @@ conflicted_paths() {
 if conflicted_paths | grep -qx "auditor/registry/repos.json"; then
   echo "Resolving auditor/registry/repos.json via 3-way merge"
   git show :1:auditor/registry/repos.json > "$RESOLVE_TMPDIR/reg-base.json"   # merge base
-  git show :2:auditor/registry/repos.json > "$RESOLVE_TMPDIR/reg-ours.json"   # our commit
-  git show :3:auditor/registry/repos.json > "$RESOLVE_TMPDIR/reg-theirs.json" # remote
+  git show ":${MINE_STAGE}:auditor/registry/repos.json" > "$RESOLVE_TMPDIR/reg-ours.json"       # this commit
+  git show ":${UPSTREAM_STAGE}:auditor/registry/repos.json" > "$RESOLVE_TMPDIR/reg-theirs.json" # upstream
   python3 auditor/scripts/three-way-merge-registry.py \
       "$RESOLVE_TMPDIR/reg-base.json" "$RESOLVE_TMPDIR/reg-ours.json" "$RESOLVE_TMPDIR/reg-theirs.json" \
       > "$RESOLVE_TMPDIR/reg.json" \
@@ -71,9 +91,9 @@ fi
 for log in auditor/logs/events.jsonl auditor/findings.jsonl auditor/disagreements.jsonl; do
   if conflicted_paths | grep -qx "$log"; then
     echo "Resolving $log via line union"
-    git show ":2:$log" > "$RESOLVE_TMPDIR/log-ours.jsonl"
-    git show ":3:$log" > "$RESOLVE_TMPDIR/log-theirs.jsonl"
-    cat "$RESOLVE_TMPDIR/log-theirs.jsonl" "$RESOLVE_TMPDIR/log-ours.jsonl" | awk '!seen[$0]++' > "$log"
+    git show ":${MINE_STAGE}:$log" > "$RESOLVE_TMPDIR/log-mine.jsonl"
+    git show ":${UPSTREAM_STAGE}:$log" > "$RESOLVE_TMPDIR/log-upstream.jsonl"
+    cat "$RESOLVE_TMPDIR/log-upstream.jsonl" "$RESOLVE_TMPDIR/log-mine.jsonl" | awk '!seen[$0]++' > "$log"
     git add "$log"
   fi
 done
@@ -89,15 +109,15 @@ if conflicted_paths | grep -qx "auditor/exemplars/README.md"; then
   echo "Resolving auditor/exemplars/README.md via regenerate-from-disk"
   # Accept either side's blob temporarily to clear the conflict, then
   # overwrite with the freshly regenerated gallery.
-  git checkout --ours auditor/exemplars/README.md
+  git checkout "$MINE_SIDE" auditor/exemplars/README.md
   python3 auditor/scripts/build-exemplar-gallery.py >/dev/null
   git add auditor/exemplars/README.md
 fi
 
-# Everything else: prefer ours so the current workflow's work survives
+# Everything else: prefer mine so the current workflow's work survives
 conflicted_paths | while read -r f; do
   [ -z "$f" ] && continue
-  echo "Resolving $f via --ours"
-  git checkout --ours "$f"
+  echo "Resolving $f via $MINE_SIDE (this commit's version)"
+  git checkout "$MINE_SIDE" "$f"
   git add "$f"
 done
