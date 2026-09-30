@@ -123,7 +123,7 @@ not cluster these against the canonical nouns above):
 | Term | Sanctioned sense | Where |
 |------|------------------|-------|
 | `component` | a structural part of the *scored project's* codebase — code modules, directories, services; may not be NL artifacts at all | R35/R49 rule text ("component map"), `skills/nlpm/scoring/SKILL.md` R35 row |
-| `issue` | a GitHub issue — the platform object the auditor opens, tracks, and closes | auditor scope: workflows, `auditor-rule-review.yml`, AGENTS.md auditor pipeline prose |
+| `issue` | a GitHub issue — the platform object the auditor opens, tracks, and closes | auditor scope: workflows, `auditor-rule-review.yml`, auditor pipeline prose in `docs/auditor.md` |
 
 Everywhere else, `component` naming plugin pieces (command/agent/skill/hook)
 and `issue` naming a detected problem are drift: the canonical nouns are

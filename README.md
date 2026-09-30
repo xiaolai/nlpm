@@ -247,6 +247,9 @@ templates/          Drop-in author templates
 
 docs/
   for-authors.md    Full guide for plugin/skill authors
+  architecture.md   Per-component inventory (commands, agents, skills, hooks)
+  auditor.md        Auditor pipeline reference (workflows, data, gates, scripts)
+  site.md           nlpm.com site reference (pages, build, deploy workflows)
 
 analysis/
   ecosystem-gap.md                  Why this validator exists (stable ref)
