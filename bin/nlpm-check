@@ -541,7 +541,7 @@ def check_agent_frontmatter(plugin_root: Path, findings: list[Finding], nested_s
                 path=str(rel),
                 line=1,
                 message="agent frontmatter missing `description`",
-                fix="Add `description: <when to use>` with at least one `<example>` block",
+                fix="Add `description: <when to use>` with one `<example>` block and a \"Not for …\" sentence",
             ))
 
 

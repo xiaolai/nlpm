@@ -43,7 +43,7 @@ Used by `/nlpm:report` locally and by `auditor/reports/<slug>.html` + the upcomi
           "rule": "R09",                        // string  — rule id; see /reference/rules
           "severity": "low",                    // enum    — "high" | "medium" | "low"
           "line": 12,                           // int | null
-          "message": "agent has only one example block"
+          "message": "agent description names no situation it is not for"
         }
       ]
     }
@@ -92,7 +92,7 @@ Used by `/nlpm:report` locally and by `auditor/reports/<slug>.html` + the upcomi
       "confidence": "medium",                    // enum — auditor-only; absent for local
       "file": "agents/foo.md",
       "line": 12,
-      "message": "agent has only one example block"
+      "message": "agent description names no situation it is not for"
     }
   ],
   "repo_meta": null                              // object | null — auditor-side metadata; null for local runs. Shape below.

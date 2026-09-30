@@ -7,7 +7,7 @@ min_score: 85
 ## Frontmatter Valid
 
 Required fields:
-- description: present with 2+ example blocks
+- description: present with at least one example block and a "Not for" sentence, ≤ 1,200 characters
 - model: sonnet
 - tools: includes Read, Glob, Grep (no Write or Edit)
 - skills: includes nlpm:testing, nlpm:conventions, nlpm:scoring

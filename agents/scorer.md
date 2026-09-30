@@ -1,19 +1,11 @@
 ---
 name: scorer
 description: |
-  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or scoring commands, agents, skills, rules, hooks, or CLAUDE.md files.
+  Scores NL programming artifacts on a 100-point scale using deterministic penalties. Use this agent when scoring plugin artifacts, checking artifact quality, or scoring commands, agents, skills, rules, hooks, or CLAUDE.md files — including a pre-release check that all artifacts meet the threshold, and identifying findings and their penalties for /nlpm:fix before it applies repairs. Not for cross-artifact checks such as broken references or orphans (use the checker), and not for running .nlpm-test specs (use the tester).
 
   <example>
   Context: User runs /nlpm:score on a directory
   assistant: "I'll use the scorer to score these artifacts and report findings."
-  </example>
-  <example>
-  Context: Quality check before a plugin release
-  assistant: "I'll dispatch the scorer to verify all artifacts meet the threshold."
-  </example>
-  <example>
-  Context: Fix command needs to identify findings before applying repairs
-  assistant: "I'll use the scorer to identify findings and their penalties."
   </example>
 model: sonnet
 color: yellow
@@ -41,7 +33,8 @@ For each artifact you receive:
    - Apply all penalties for this artifact type (each penalty maps to a rule number)
    - Apply vague quantifier penalties: "appropriate", "relevant", "as needed", "sufficient", "adequate", "reasonable", "properly", "correctly", "some", "several", "various" -- penalty -2 each, capped at -20
    - **R51 (opt-in vocabulary drift):** if `.claude/nlpm.local.md` declares `rule_overrides.R51.enabled: true`, load the registry at `<vocabulary_skill>/registry.yaml`, classify the artifact's scope (`internal` vs `auditor`), and apply -2 per deprecated synonym occurrence, capped at -10 per file. If the registry is missing, emit an advisory note and apply no penalty. Without `enabled: true`, R51 contributes zero regardless of content.
-   - If rule overrides are provided, apply them (`suppress`, `enabled`, `max_penalty`, `threshold` adjustments)
+   - If rule overrides are provided, apply them (`suppress`, `enabled`, `max_penalty`, `threshold`, `min_examples` adjustments)
+   - **R09 `min_examples`:** if `.claude/nlpm.local.md` declares `rule_overrides.R09.min_examples: N` with N greater than 1, score an agent description that has at least one but fewer than N `<example>` blocks at -5 per missing block, capped at -15; zero blocks stays -15. The exclusion-clause and length rows are unchanged (`nlpm:scoring`, Agents).
    - Compute final_score = max(0, min(100, 100 + adjustments))
 3. List each finding with:
    - Severity: HIGH (>=10 point penalty), MEDIUM (5-9 points), LOW (<5 points)
@@ -217,6 +210,6 @@ For each artifact:
 
 | # | Sev | Rule | Line | Finding | Penalty | Fix |
 |---|-----|------|------|-------|---------|-----|
-| 1 | HIGH | R09 | 2 | No <example> blocks in description | -15 | Add 2+ <example> blocks |
+| 1 | HIGH | R09 | 2 | No <example> blocks in description | -15 | Add one <example> block to the description |
 | 2 | LOW | R01 | 45 | "appropriate" without criteria | -2 | Replace with specific criteria |
 ```

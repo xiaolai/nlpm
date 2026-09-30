@@ -156,7 +156,7 @@ Create `.claude/nlpm.local.md` (or run `/nlpm:init`):
 strictness: standard
 score_threshold: 70
 rule_overrides:
-  R09: { min_examples: 1 }      # require only 1 example block
+  R09: { min_examples: 2 }      # restore the stricter two-example bar
   R05: { threshold: 600 }       # allow skills up to 600 lines
   R23: { budget: 800 }          # increase rules budget
 ---
@@ -247,6 +247,9 @@ templates/          Drop-in author templates
 
 docs/
   for-authors.md    Full guide for plugin/skill authors
+  architecture.md   Per-component inventory (commands, agents, skills, hooks)
+  auditor.md        Auditor pipeline reference (workflows, data, gates, scripts)
+  site.md           nlpm.com site reference (pages, build, deploy workflows)
 
 analysis/
   ecosystem-gap.md                  Why this validator exists (stable ref)

@@ -2,6 +2,7 @@
 name: patterns
 description: "Use when writing or reviewing NL artifacts and need to check for anti-patterns — vague quantifiers, prohibitions without alternatives, oversized skills, write-on-read-only agents, monolithic prompts, or linter-duplicating rules."
 version: 0.1.0
+user-invocable: false
 ---
 
 # NL Programming Patterns
@@ -35,7 +36,7 @@ The bad example won't trigger reliably — "analyzes files" matches too broadly 
 
 ### P2: Example-Driven Agents (R09)
 
-Include 2+ `<example>` blocks in agent descriptions with realistic Context, user turn, and assistant response. Examples anchor the agent's behavior and dramatically improve triggering consistency.
+Include one well-chosen `<example>` block in the agent description — realistic Context, user turn, and assistant response — plus a sentence naming what the agent is not for ("Not for …; use <sibling>"). The description is the only thing Claude sees when choosing an agent and it is loaded on every turn, so examples belong in the description (not the body), and each extra example costs always-on context. Keep the whole description ≤1,200 characters.
 
 **Minimum structure per example:**
 ```
@@ -46,7 +47,7 @@ assistant: <what this agent does in response>
 </example>
 ```
 
-**Diverse scenarios:** Cover at least one user-direct invocation and one command-as-orchestrator invocation if applicable.
+**Pick the example that carries the main positive trigger.** Add a second only when a distinct trigger (e.g. a command-as-orchestrator invocation) cannot be stated in the prose; state secondary trigger phrases in the prose instead.
 
 ---
 
@@ -284,7 +285,7 @@ If eslint, ruff, clippy, or another static analysis tool already catches a code-
 
 An agent description with no `<example>` blocks has unreliable triggering. Without examples, Claude must infer invocation criteria from the description alone, which degrades with ambiguous wording.
 
-**NLPM penalty:** -15 for zero examples on an agent.
+**NLPM penalty:** -15 for zero examples on an agent; -5 when the description names no situation the agent is not for; -5 when the description exceeds 1,200 characters.
 
 ---
 

@@ -6,7 +6,7 @@ For the formula, penalty tables, and score bands, see `../SKILL.md`.
 
 ---
 
-## Example 1: Excellent Agent (95/100)
+## Example 1: Excellent Agent (97/100)
 
 **Artifact:**
 ```markdown
@@ -16,7 +16,8 @@ description: |
   Audits project dependencies for security vulnerabilities, outdated packages,
   and license compliance issues. Use this agent when checking npm/pip/cargo
   dependencies, reviewing package.json or requirements.txt, or running a
-  security audit before release.
+  security audit before release. Not for upgrading or fixing dependencies;
+  it reports only.
 
   <example>
   Context: Developer preparing for production release
@@ -51,12 +52,12 @@ Total dependencies: N | Vulnerable: N | Outdated: N | License issues: N
 ```
 
 **Score breakdown:**
-- Base: 100. Passes: `description` with 3+ specific phrases, 2 `<example>` blocks, `model: sonnet` (analysis-tier), declared tools used, output format defined, read-only (no Write/Edit).
-- Minor: `Bash` declared but body doesn't invoke it (one unused tool): **-3**
+- Base: 100. Passes every other Agents row: R09 `<example>` blocks present (one would be full credit; the second costs context but no points), a "Not for" clause, description 755 characters (under 1,200); R10 `model: sonnet` (analysis-tier); R11 `Read` and `Glob` used ("Read all package manifests in the project" needs both finding and reading them), no Write/Edit on a read-only agent; R12 output format defined; R01 no vague quantifiers.
+- R11: `Bash` declared but no body step runs a command (one unused tool): **-3**
 
 **Final: 97/100** — Excellent. The single unused-tool penalty costs 3 points; otherwise rubric-clean.
 
-*(For calibration: a 95 example would have zero unused tools and a scope note. The range 90-100 is Excellent regardless of the exact number.)*
+*(For calibration: dropping `Bash` from `tools` makes this agent a 100. A scope note is a skills row (R07) and does not apply to agents. The range 90-100 is Excellent regardless of the exact number.)*
 
 ---
 
@@ -78,18 +79,19 @@ to the user's requirements.
 
 **Score breakdown:**
 - Base: 100
-- Zero `<example>` blocks: **-15**
-- Description is generic (1 vague phrase, 0 specific phrases): **-15**
-- `opus` declared for a routine code-help task (haiku/sonnet appropriate): **-5**
-- `tools` declared but too many unused (WebSearch, WebFetch, Glob all declared without body justification): **-10** (judged as 3–4 unused, rounded)
-- "appropriate" + "relevant" + "as needed" (vague quantifiers, 2 instances): **-4**
-- No output format defined: **-10**
+- R09: zero `<example>` blocks in the description: **-15**
+- R09: description names no situation the agent is not for: **-5**
+- R10: `opus` declared for a routine code-help task (sonnet is the analysis tier): **-5**
+- R11: 4 unused tools, -3 each: **-12**. The body's two instructions use `Read` and `Glob` ("Analyze the code": find and read it) and `Edit` ("make … improvements" to existing code); no step creates a file (`Write`), runs a command (`Bash`), or searches or fetches the web (`WebSearch`, `WebFetch`).
+- R01: 6 vague quantifiers, -2 each: **-12**. The description and the body each use "appropriate", "relevant" and "as needed" once.
+- R12: no output format defined: **-10**
+- Not scored: the generic description. "Description is generic" is the skills R04 row; the Agents table has no such row, and the missing example and exclusion clause already carry the routing cost.
 
 Total penalties: -59
 
 **Final: max(0, 100 - 59) = 41/100** — Rewrite.
 
-*(For calibration: the exact number of unused tools and vague quantifier hits can vary by reviewer. The important thing is that this artifact scores well below 60 — multiple fundamental issues.)*
+*(For calibration: a reviewer who reads "Analyze the code" as not requiring `Glob` counts 5 unused tools and lands on 38. The important thing is that this artifact scores well below 60 — multiple fundamental issues.)*
 
 ---
 
@@ -129,7 +131,7 @@ Incorrect:
 
 ---
 
-## Example 4: Weak Rule (40/100)
+## Example 4: Weak Rule (41/100)
 
 **Artifact:**
 ```markdown
@@ -152,4 +154,4 @@ Total penalties: -59
 
 **Final: max(0, 100 - 59) = 41/100** — Rewrite.
 
-*(Calibrated near 40 as specified. The exact value depends on judgment on "well-organized" as a vague quantifier.)*
+*(Calibrated near 40. The exact value depends on judgment on "well-organized" as a vague quantifier.)*

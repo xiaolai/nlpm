@@ -2,6 +2,7 @@
 name: writing-plugins
 description: "How to design and build plugins -- architecture decisions, artifact selection, file structure, manifest configuration, marketplace publishing. Primarily Claude Code (.claude-plugin/plugin.json); the same architecture maps to Codex CLI (.codex-plugin/plugin.json) and Antigravity extensions. Use when planning, creating, or reviewing a plugin."
 version: 0.2.0
+user-invocable: false
 ---
 
 # Writing Plugins
@@ -179,10 +180,11 @@ Ship with these for discoverability and marketplace listing:
   "description": "What this plugin does in one sentence",
   "author": { "name": "your-name" },
   "license": "MIT",
-  "keywords": ["relevant", "search", "terms"],
-  "category": "developer-tools"
+  "keywords": ["relevant", "search", "terms"]
 }
 ```
+
+`category` is not a manifest field: it belongs to the plugin's entry in a `marketplace.json` (see §9 and `nlpm:conventions-claude` §1). Claude Code ignores it in `plugin.json`.
 
 ### Field Reference
 
@@ -194,7 +196,6 @@ Ship with these for discoverability and marketplace listing:
 | `author.name` | Creator attribution | `"xiaolai"` |
 | `license` | Open source license | `"MIT"` |
 | `keywords` | Search terms for marketplace discovery | `["linter", "quality"]` |
-| `category` | Marketplace category | `"developer-tools"` |
 
 ## 4. File Structure
 
@@ -227,7 +228,7 @@ my-plugin/
   scripts/                   # hook scripts, utilities
     check.sh
     validate.sh
-  CLAUDE.md                  # architecture guide (for Claude)
+  AGENTS.md                  # developer notes and architecture (for the model); no root CLAUDE.md
   README.md                  # user documentation (for humans)
   LICENSE
 ```
@@ -276,9 +277,9 @@ When bumping version, update in **four** places:
 
 **Order**: push plugin repo first, then update central marketplace. The marketplace points to the repo -- if the repo isn't updated yet, users pull stale code.
 
-## 6. CLAUDE.md for Plugins
+## 6. AGENTS.md for Plugins
 
-Your plugin's CLAUDE.md is for **Claude** (the AI), not the user. It tells Claude how the plugin's artifacts relate to each other.
+Your plugin's AGENTS.md is for the **model** (Claude, Codex), not the user. It tells the model how the plugin's artifacts relate to each other. Claude Code 2.1.277+ reads AGENTS.md natively. Do not put a `CLAUDE.md` at the plugin root: it is not loaded as plugin context, `claude plugin validate` warns about it, and while it exists Claude Code skips AGENTS.md in that directory (see `nlpm:conventions-claude` §10).
 
 ### What to Include
 
@@ -382,11 +383,11 @@ For each agent, test with 3 types of queries:
 | Mistake | Impact | Fix |
 |---------|--------|-----|
 | Commands that do too much | Hard to maintain, unreliable | Split into focused commands |
-| Agents without examples | 40% trigger accuracy | Add 2-3 specific scenario examples |
+| Agents without examples | 40% trigger accuracy | Add 1 specific scenario example in the description + a "Not for" sentence |
 | Skills over 500 lines | Context bloat, slow loading | Extract to references/ subdirectory |
 | Hooks that block without explanation | Frustrating UX | Always include `permissionDecisionReason` |
-| No AGENTS.md (or CLAUDE.md) | Claude doesn't understand plugin architecture | Add architecture overview |
-| README documents internals | Users confused by implementation details | README = user guide, CLAUDE.md = internals |
+| No AGENTS.md | Claude doesn't understand plugin architecture | Add architecture overview to AGENTS.md (no root CLAUDE.md) |
+| README documents internals | Users confused by implementation details | README = user guide, AGENTS.md = internals |
 | Hardcoded paths | Breaks on other machines | Use `${CLAUDE_PLUGIN_ROOT}` everywhere |
 | No error handling in commands | Silent failures | Add explicit error cases |
 | Version not updated in all 4 places | Marketplace shows wrong version | Use the four-place update checklist |

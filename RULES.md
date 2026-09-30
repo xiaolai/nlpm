@@ -10,7 +10,7 @@ Run `/nlpm:score` to enforce these rules. Run `/nlpm:fix` to auto-repair fixable
 |---------|-------|---------|
 | Universal | R01-R03 | No vague quantifiers, every line earns tokens, positive framing |
 | Skills | R04-R08 | Trigger descriptions, 500-line limit, runnable examples, scope notes |
-| Agents | R09-R13 | Example blocks, model tier, least-privilege tools, output format |
+| Agents | R09-R13 | One example block + a "Not for" clause, model tier, least-privilege tools, output format |
 | Commands | R14-R18 | Numbered steps, empty input, output format, error paths |
 | Shared Partials | R19-R20 | user-invocable: false, purpose description |
 | Rules | R21-R26 | Bold imperative + rationale, enforceable, budget, scoping |

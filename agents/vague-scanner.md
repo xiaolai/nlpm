@@ -1,15 +1,11 @@
 ---
 name: vague-scanner
 description: |
-  Mechanical scanner for vague quantifier words in NL artifacts. Counts occurrences of flagged words and reports exact locations. Use this agent for fast, deterministic vague-word counting before the scorer applies judgment.
+  Mechanical scanner for vague quantifier words in NL artifacts. Counts occurrences of flagged words and reports exact locations. Use this agent for fast, deterministic vague-word counting before the scorer applies judgment, or for a quick check of vague language in a single file. Not for judging whether a usage is legitimate or for computing a score; the scorer does that.
 
   <example>
   Context: Score command dispatches vague-scanner in parallel with scorer
   assistant: "I'll scan for vague quantifiers while the scorer runs the full scoring pass."
-  </example>
-  <example>
-  Context: Quick check for vague language in a single file
-  assistant: "I'll scan for vague quantifier words and report exact locations."
   </example>
 model: haiku
 color: green

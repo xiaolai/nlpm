@@ -77,7 +77,7 @@ DENY_REPOS: frozenset[str] = frozenset({
 # CLA-gated: PRs land but block on signed-commit verification unless
 # the contribute identity matches the CLA signer. The current GHA
 # setup uses claude-code-action's bot identity which is not CLA-
-# signed, so PRs to these orgs stall by default. See AGENTS.md
+# signed, so PRs to these orgs stall by default. See docs/auditor.md
 # "Policy Gates" section.
 CLA_REQUIRED_OWNERS: frozenset[str] = frozenset({
     "google",

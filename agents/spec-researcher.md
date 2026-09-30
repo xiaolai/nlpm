@@ -1,22 +1,12 @@
 ---
 name: spec-researcher
 description: |
-  Researches one tool's CURRENT official documentation and diffs it against an nlpm convention overlay, returning a structured gap report (ADD / FIX / REMOVE / CONFIRM / RESOLVED) so the overlay can be brought up to date. Read-only on both the web and the repo — it never edits nlpm files. Use when an overlay (conventions-claude, conventions-codex, conventions-antigravity) may have drifted from the upstream spec it documents.
+  Researches one tool's CURRENT official documentation and diffs it against an nlpm convention overlay, returning a structured gap report (ADD / FIX / REMOVE / CONFIRM / RESOLVED) so the overlay can be brought up to date. Read-only on both the web and the repo — it never edits nlpm files. Use when an overlay (conventions-claude, conventions-codex, conventions-antigravity) may have drifted from the upstream spec it documents — for example after a new tool release, or as a report-only drift check before cutting a release. Not for applying the corrections: /nlpm:spec-sync applies them in the main thread.
 
   <example>
   Context: User runs /nlpm:spec-sync to refresh the Claude Code overlay
   user: "/nlpm:spec-sync claude"
   assistant: "I'll dispatch the spec-researcher on the conventions-claude overlay to fetch the current Claude Code docs and report what changed."
-  </example>
-  <example>
-  Context: A new Codex CLI release shipped and the overlay's changes table stops months ago
-  user: "Has the Codex overlay fallen behind the latest releases?"
-  assistant: "I'll use the spec-researcher to pull the latest Codex docs and GitHub releases and diff them against conventions-codex."
-  </example>
-  <example>
-  Context: Maintainer wants to verify the overlays before a release without editing anything
-  user: "Check the overlays for drift before I cut the release, but don't change anything."
-  assistant: "I'll dispatch the spec-researcher in report-only mode for each overlay to surface stale field names and resolved uncertainties."
   </example>
 model: sonnet
 color: orange

@@ -2,6 +2,7 @@
 name: writing-agents
 description: "How to write Claude Code agents that trigger reliably, use the right model, and produce consistent output. Use when creating, improving, or reviewing agent definitions."
 version: 0.2.0
+user-invocable: false
 ---
 
 # Writing Agents
@@ -12,7 +13,9 @@ version: 0.2.0
 
 Without `<example>` blocks, Claude guesses when to dispatch your agent. With them, it pattern-matches against real scenarios.
 
-**Minimum**: 2 examples. **Ideal**: 3 -- one obvious trigger, one edge case, one non-obvious.
+**Target**: 1 well-chosen example + 1 "Not for …" sentence, whole description ≤1,200 characters.
+
+The description sits in the Agent tool's text on every turn and is the only thing Claude sees when choosing an agent. Examples therefore stay in the description -- moved into the body, they are invisible to routing -- but every extra example is always-on context. One example that shows the main positive trigger, trigger phrases in the prose, and an explicit exclusion carry the routing signal at a fraction of the tokens.
 
 ### Example Block Anatomy
 
@@ -48,38 +51,31 @@ assistant: "I'll dispatch the security-reviewer agent to check the auth changes 
 
 **Why it works**: specific context (auth module, pre-PR), realistic query (how users actually talk), decision logic visible (what the agent will check).
 
-### The Three-Example Pattern
+### One Example, Prose Triggers, One Exclusion
 
-| Example | Purpose | What it demonstrates |
-|---------|---------|---------------------|
-| 1. Obvious trigger | Baseline dispatch | User explicitly asks for what the agent does |
-| 2. Edge case | Boundary behavior | User asks something adjacent -- agent should still trigger |
-| 3. Non-obvious | Discovery | User doesn't know the agent exists but their need matches |
+| Part | Purpose | What it carries |
+|------|---------|-----------------|
+| Prose trigger phrases | Breadth | Obvious, edge-case and non-obvious triggers, one short phrase each |
+| 1 `<example>` | Anchor | The main positive trigger: user asks, assistant dispatches |
+| "Not for …" sentence | Boundary | The adjacent request that belongs to a sibling agent or to no agent |
 
 Example for a "performance-profiler" agent:
 
-```xml
-<!-- Example 1: Obvious -->
-<example>
-Context: User wants to profile their API
-user: "Profile the /api/users endpoint, it's slow"
-assistant: "I'll dispatch the performance-profiler to trace the /api/users endpoint..."
-</example>
+```yaml
+description: |
+  Profiles slow endpoints, memory growth and query plans. Use when a request is
+  slow, memory climbs over time (possible leak), or the user is choosing between
+  two implementations on speed. Not for fixing the code it measures; it reports
+  hot spots only.
 
-<!-- Example 2: Edge case -->
-<example>
-Context: User notices high memory usage but doesn't mention profiling
-user: "The app uses 2GB of RAM after running for an hour, is there a leak?"
-assistant: "I'll dispatch the performance-profiler to analyze memory allocation patterns..."
-</example>
-
-<!-- Example 3: Non-obvious -->
-<example>
-Context: User is comparing two implementation approaches
-user: "Should I use a JOIN here or two separate queries?"
-assistant: "I'll dispatch the performance-profiler to benchmark both approaches..."
-</example>
+  <example>
+  Context: User wants to profile their API
+  user: "Profile the /api/users endpoint, it's slow"
+  assistant: "I'll dispatch the performance-profiler to trace the /api/users endpoint..."
+  </example>
 ```
+
+A second example is allowed when a distinct trigger cannot be said in prose, but it costs context on every turn; nlpm's R09 gives full credit for one.
 
 ## 2. Model Selection
 
@@ -135,7 +131,7 @@ Only list tools the agent body actually references. Every extra tool is a potent
 | Grep | Agent searches file contents |
 | Bash | Agent runs shell commands (linters, tests, builds) |
 | Task | Agent dispatches sub-agents |
-| Fetch | Agent makes HTTP requests |
+| WebFetch | Agent fetches a URL |
 
 ## 4. Output Format
 
@@ -228,7 +224,7 @@ Total agent body: aim for 25-45 lines. Over 60 lines means the agent is doing to
 
 ## 6. Worked Example
 
-### Before (score 52/100)
+### Before (score 43/100)
 
 ```yaml
 ---
@@ -244,21 +240,34 @@ You are a code checker. Check the user's code for issues.
 Look at the files and find problems. Report what you find.
 ```
 
-**Problems:**
-- Description: 0 trigger phrases, no "Use when..." (-30)
-- Model: opus for a simple review task (-10)
-- Tools: 7 tools granted, body uses maybe 3 (-10)
-- No examples: unreliable triggering (-15)
-- No output format: inconsistent results (-15)
-- No boundaries: scope creep (-10)
-- No error handling: silent failures (-10)
+**Problems** (each scored line is a row in the `nlpm:scoring` Agents table):
+- R09 -- zero `<example>` blocks in the description: unreliable triggering (-15)
+- R09 -- no "Not for" clause: nothing tells routing what to rule out (-5)
+- R10 -- opus for a review task that sonnet handles (-5)
+- R11 -- Write, Edit, Bash, Task declared but no body step uses them (-3 each, -12)
+- R11 -- a review agent declares Write and Edit (-10)
+- R12 -- no output format: inconsistent results (-10)
+- Description has 0 trigger phrases and no "Use when..." (not scored for agents; R04 is a skills row, but routing still suffers)
+- No boundaries and no error handling (not scored; they cause scope creep and silent failures)
 
-### After (score 95/100)
+Total: -57, so 100 - 57 = 43.
+
+### After (score 100/100)
 
 ```yaml
 ---
 name: code-checker
-description: "Static analysis agent — checks code for bugs, type errors, and anti-patterns. Use when reviewing code quality, running pre-commit checks, or validating changes before PR."
+description: |
+  Static analysis agent — checks code for bugs, type errors, and anti-patterns.
+  Use when reviewing code quality, running pre-commit checks, validating changes
+  before PR, or scanning a module suspected of a production defect. Not for style
+  issues (defer to the linter) or for fixing code; it reports only.
+
+  <example>
+  Context: User just finished implementing a new feature and wants a quality check
+  user: "Check the auth module for any bugs before I push"
+  assistant: "I'll dispatch the code-checker agent to analyze src/auth/ for bugs, type errors, and anti-patterns."
+  </example>
 model: sonnet
 tools: [Read, Glob, Grep]
 ---
@@ -302,34 +311,24 @@ Final line:
 - If a file cannot be read: skip it and note in the report
 ```
 
-```xml
-<example>
-Context: User just finished implementing a new feature and wants a quality check
-user: "Check the auth module for any bugs before I push"
-assistant: "I'll dispatch the code-checker agent to analyze src/auth/ for bugs, type errors, and anti-patterns."
-</example>
+**Changes made** (one per problem above):
+1. R09: added 1 `<example>` block in the description (+15)
+2. R09: added a "Not for" clause -- style issues and fixing code (+5)
+3. R10: opus -> sonnet (analysis-tier task: reasoning, not orchestration) (+5)
+4. R11: tools 7 -> 3; Glob, Read and Grep are each named by an instruction step (+12)
+5. R11: dropped Write and Edit from a read-only review agent (+10)
+6. R12: defined the output format (+10)
+7. Description: 0 -> 6 trigger phrases and a "Use when" sentence (not scored)
+8. Added boundaries and error handling (not scored)
 
-<example>
-Context: User is debugging a production issue and suspects a code defect
-user: "Something's wrong with the payment flow, can you scan it?"
-assistant: "I'll dispatch the code-checker to analyze the payment module for potential bugs and logic errors."
-</example>
-```
-
-**Changes made:**
-1. Description: 0 -> 6 trigger phrases (+30)
-2. Model: opus -> sonnet (analysis-tier task: reasoning, not orchestration; -20x cost) (+10)
-3. Tools: 7 -> 3 (read-only analysis needs read-only tools) (+10)
-4. Added 2 examples (+15)
-5. Defined output format (+15)
-6. Added boundaries (+10)
-7. Added error handling (+5)
+Total: +57, so 43 + 57 = 100.
 
 ## 7. Common Mistakes
 
 | Mistake | Impact | Fix |
 |---------|--------|-----|
-| No examples | 40% trigger accuracy | Add 2-3 specific scenario examples |
+| No examples | 40% trigger accuracy | Add 1 specific scenario example + a "Not for" sentence |
+| 3-4 examples in the description | Always-on context on every turn | Keep the best one; move trigger phrases into the prose |
 | Opus for mechanical work | 30x cost for same result | Use haiku for parsing, sonnet for analysis |
 | All tools granted | Agent writes when it should only read | List only tools the body references |
 | No output format | Different format each run | Define exact output template |

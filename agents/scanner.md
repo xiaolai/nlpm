@@ -1,16 +1,11 @@
 ---
 name: scanner
 description: |
-  Discover and classify all NL programming artifacts in a repository.
+  Discover and classify all NL programming artifacts in a repository — the current directory or a given project path — with per-file line counts. Not for scoring artifacts or checking cross-artifact consistency; it only inventories them (the scorer and checker do those).
   <example>
   Context: User wants to see all their NL artifacts
   user: "/nlpm:ls"
   assistant: "I'll use the scanner to discover all NL artifacts."
-  </example>
-  <example>
-  Context: User wants to check a specific project
-  user: "/nlpm:ls ~/github/myproject"
-  assistant: "I'll scan that project for NL programming artifacts."
   </example>
 model: haiku
 color: cyan

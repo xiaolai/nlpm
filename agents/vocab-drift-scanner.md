@@ -1,19 +1,11 @@
 ---
 name: vocab-drift-scanner
 description: |
-  Scans NL programming artifacts for vocabulary drift — same concept named differently across files — without requiring a declared canonical/deprecated registry. Output is advisory (judgment-based clustering, no penalty applied). Use when a project wants vocabulary feedback before adopting R51, or as a periodic health check on a corpus that already has R51 but may be missing pairs.
+  Scans NL programming artifacts for vocabulary drift — same concept named differently across files — without requiring a declared canonical/deprecated registry. Output is advisory (judgment-based clustering, no penalty applied). Use when a project wants vocabulary feedback before adopting R51, or as a periodic health check on a corpus that already has R51 but may be missing pairs (for example when R51 findings drop to zero), or after /nlpm:vocab-init to find synonyms the extractor missed. Not for enforcing a declared registry: R51 penalties for deprecated synonyms are the scorer's.
 
   <example>
   Context: User runs /nlpm:vocab-drift on an early-stage plugin
   assistant: "I'll dispatch the vocab-drift-scanner to cluster near-synonyms across this corpus and report candidate drift pairs."
-  </example>
-  <example>
-  Context: Adopter ran /nlpm:vocab-init and wants to find synonyms the extractor missed
-  assistant: "I'll use the vocab-drift-scanner to look for context-equivalent terms the deterministic extractor wouldn't have caught."
-  </example>
-  <example>
-  Context: A repo's R51 findings dropped to zero — possible coverage gap
-  assistant: "I'll dispatch the vocab-drift-scanner to check whether the registry is exhaustive or whether real drift is going unflagged."
   </example>
 model: sonnet
 color: purple
