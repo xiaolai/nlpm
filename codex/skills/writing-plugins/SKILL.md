@@ -382,7 +382,7 @@ For each agent, test with 3 types of queries:
 | Mistake | Impact | Fix |
 |---------|--------|-----|
 | Commands that do too much | Hard to maintain, unreliable | Split into focused commands |
-| Agents without examples | 40% trigger accuracy | Add 2-3 specific scenario examples |
+| Agents without examples | 40% trigger accuracy | Add 1 specific scenario example in the description + a "Not for" sentence |
 | Skills over 500 lines | Context bloat, slow loading | Extract to references/ subdirectory |
 | Hooks that block without explanation | Frustrating UX | Always include `permissionDecisionReason` |
 | No AGENTS.md (or CLAUDE.md) | Claude doesn't understand plugin architecture | Add architecture overview |

@@ -398,7 +398,7 @@ def self_test() -> int:
 
 | Rule | Check | Condition | Penalty |
 |------|-------|-----------|---------|
-| R09 | `<example>` blocks | Zero examples | -15 |
+| R09 | `<example>` blocks | Zero `<example>` blocks in the description | -15 |
 | R11 | Tools | Unused | -3 |
 """
     fake_rules = """\

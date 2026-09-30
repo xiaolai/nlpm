@@ -1,7 +1,7 @@
 ---
 name: scoring
 description: Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type. Four worked calibration examples (Excellent Agent / Rewrite Agent / Excellent Rule / Weak Rule) live in `references/calibration-examples.md`, loaded on demand when anchoring borderline cases.
-version: 0.3.1
+version: 0.4.0
 ---
 
 # NLPM Quality Scoring Rubric
@@ -77,14 +77,23 @@ Penalties stack. The floor is 0; the ceiling is 100. No bonuses — the default 
 | Rule | Check | Condition | Penalty |
 |------|-------|-----------|---------|
 | R09 | `description` present | Missing | -25 |
-| R09 | `<example>` blocks | Exactly 1 example | -5 |
-| R09 | `<example>` blocks | Zero examples | -15 |
+| R09 | `<example>` blocks | Zero `<example>` blocks in the description | -15 |
+| R09 | Exclusion clause | Description names no situation the agent is not for (a "Not for …"/"Do not use …" sentence, or an example where the assistant declines or routes elsewhere) | -5 |
+| R09 | Description length | Description value over 1,200 characters, examples included | -5 |
 | R10 | `model` declared | Not declared | -5 |
 | R10 | `model` appropriate | Wrong tier for task (e.g. opus for parsing) | -5 |
 | R11 | `tools` declared | Not declared | -5 |
 | R11 | Unused tools | Each tool declared but not used in body | -3 each |
 | R12 | Output format | No output format spec in body | -10 |
 | R11 | Write on read-only | Audit/review/scan agent declares Write or Edit | -10 |
+
+> **R09 example budget** (changed in 1.4.0): one `<example>` block is full
+> credit. An agent's `description` sits in the Agent tool's text on every turn
+> and is the only thing Claude sees when choosing an agent, so examples stay in
+> the description — moving them into the body hides them from routing. One
+> well-chosen example plus an explicit exclusion ("Not for …") carries the
+> routing signal at a fraction of the tokens; extra examples are allowed but
+> cost always-on context, which is what the 1,200-character cap bounds.
 
 ---
 
@@ -440,7 +449,7 @@ Applied when linting an entire plugin rather than individual files.
 
 ## Calibration Examples
 
-Four worked examples — *Excellent Agent (95)*, *Rewrite Agent (41)*, *Excellent Rule (92)*, *Weak Rule (40)* — live in [`references/calibration-examples.md`](references/calibration-examples.md). Load that file on demand when scoring a borderline case (around band boundaries: 88-92, 68-72, 58-62) and you need an anchored reference.
+Four worked examples — *Excellent Agent (95)*, *Rewrite Agent (36)*, *Excellent Rule (92)*, *Weak Rule (41)* — live in [`references/calibration-examples.md`](references/calibration-examples.md). Load that file on demand when scoring a borderline case (around band boundaries: 88-92, 68-72, 58-62) and you need an anchored reference.
 
 The examples are not needed for routine scoring — the penalty tables above are self-contained. They were extracted from this file 2026-05-28 to keep the rubric under R05's 500-line body budget while preserving the calibration material verbatim.
 

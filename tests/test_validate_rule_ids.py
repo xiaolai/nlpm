@@ -88,6 +88,23 @@ class RubricParser(unittest.TestCase):
                 "this fix prevents the ljg-skills R07/-15 mislabel from regressing.",
         )
 
+    def test_r09_one_example_is_full_credit(self):
+        """R09 (1.4.0): one example is full credit; exclusion and length rows exist."""
+        rubric_text = RUBRIC.read_text()
+        self.assertNotIn("Exactly 1 example", rubric_text)
+        for row in (
+            "| R09 | `<example>` blocks | Zero `<example>` blocks in the description | -15 |",
+            "| R09 | Exclusion clause | Description names no situation the agent is not for",
+            "| R09 | Description length | Description value over 1,200 characters, examples included | -5 |",
+        ):
+            self.assertIn(row, rubric_text)
+
+    def test_codex_scoring_mirror_matches_rubric_tables(self):
+        """The Codex scoring mirror must carry the same penalty tables as the Claude original."""
+        codex = RUBRIC.parents[3] / "codex" / "skills" / "scoring" / "SKILL.md"
+        body = lambda p: p.read_text().split("\n---\n", 1)[1]
+        self.assertEqual(body(RUBRIC), body(codex))
+
     def test_r04_now_covers_description_length(self):
         """Regression: description-length penalty must exist under R04 for skills."""
         rubric_text = RUBRIC.read_text()

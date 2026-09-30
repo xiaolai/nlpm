@@ -4,7 +4,7 @@ Real before/after examples showing NLPM improving actual artifacts. Each example
 
 ---
 
-## Example 1: Fixing a Weak Agent (41 --> 92)
+## Example 1: Fixing a Weak Agent (29 --> 92)
 
 ### Before
 
@@ -22,11 +22,12 @@ best practices. Handle edge cases properly and suggest improvements where
 you see fit.
 ```
 
-### Score breakdown: 41/100
+### Score breakdown: 29/100
 
 | Penalty | Points | Rule |
 |---------|--------|------|
 | Zero `<example>` blocks | -15 | R09 |
+| Description names no situation the agent is not for | -5 | R09 |
 | Description is generic ("Helps with code review" -- 0 specific phrases) | -15 | R04 |
 | `opus` for a code review task (sonnet is the correct tier for analysis) | -5 | R10 |
 | Write and Edit declared on a review agent (read-only task) | -10 | R11 |
@@ -36,7 +37,7 @@ you see fit.
 | "as needed" without criteria | -2 | R01 |
 | "relevant" without criteria | -2 | R01 |
 | "properly" without criteria | -2 | R01 |
-| **Total penalties** | **-66** | |
+| **Total penalties** | **-71** | |
 
 ### After
 
@@ -47,7 +48,7 @@ description: |
   Reviews pull request diffs for correctness, performance, and maintainability
   issues. Use when reviewing a PR before merge, auditing code changes for
   security vulnerabilities, or checking that new code follows project
-  conventions.
+  conventions. Not for fixing the code or running tests; it reports only.
 
   <example>
   Context: Developer reviewing a teammate's PR that adds a new API endpoint
@@ -68,25 +69,6 @@ description: |
 
   ### Suggestions
   - src/api/users.ts:23 -- Extract validation logic into `validateUserInput()` for reuse
-  </example>
-
-  <example>
-  Context: Pre-merge security audit on authentication changes
-  user: Check if the auth refactor introduced any vulnerabilities
-  assistant: Reviewing authentication-related changes for security
-  regressions...
-
-  ## Code Review: Auth Refactor
-
-  ### Summary
-  5 files changed | 1 issue found | 0 suggestions
-
-  ### Issues
-  | File | Line | Severity | Finding |
-  |------|------|----------|---------|
-  | src/auth/session.ts | 31 | High | Session token not invalidated on password change |
-
-  ### No regressions in: CSRF protection, rate limiting, input sanitization
   </example>
 model: sonnet
 color: green
@@ -130,7 +112,9 @@ require human approval.
 | Check | Points | Notes |
 |-------|--------|-------|
 | Description: 3+ specific phrases | 0 | "reviewing a PR", "auditing code changes for security", "checking conventions" |
-| 2 `<example>` blocks | 0 | Both have Context + user + assistant |
+| 1 `<example>` block | 0 | Context + user + assistant; one is full credit |
+| "Not for" clause | 0 | "Not for fixing the code or running tests" |
+| Description ≤1,200 characters | 0 | Examples included |
 | Model: sonnet for analysis | 0 | Correct tier |
 | Tools: only Read, Glob, Grep, Bash | 0 | No Write/Edit on a read-only agent |
 | Output format defined | 0 | Table structure specified |
@@ -142,7 +126,8 @@ require human approval.
 ### What changed
 
 - **Description**: "Helps with code review" --> 3 specific trigger phrases (+15)
-- **Examples**: Added 2 full examples with context, user message, and assistant response (+15)
+- **Examples**: Added 1 full example with context, user message, and assistant response (+15)
+- **Exclusion**: Added "Not for fixing the code or running tests" to the description (+5)
 - **Model**: opus --> sonnet (correct tier for analysis work, +5)
 - **Tools**: Removed Write, Edit, WebSearch; kept only read-path tools (+13)
 - **Output format**: Added table structure with severity levels (+10)

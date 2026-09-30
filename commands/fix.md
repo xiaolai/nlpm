@@ -34,7 +34,7 @@ Separate findings into auto-fixable and not-auto-fixable:
 
 **Suggested fixes (shown with diff, applied only if user approves):**
 - Agent using opus for mechanical task → suggest downgrade to sonnet/haiku with rationale
-- Agent with no `<example>` blocks → generate skeleton examples from description
+- Agent with no `<example>` blocks → generate one skeleton example from the description (one is full R09 credit)
 - Skill >500 lines → suggest split points based on H2 sections
 
 **NOT auto-fixable (reported but not modified):**

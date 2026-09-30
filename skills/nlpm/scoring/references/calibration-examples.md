@@ -16,7 +16,8 @@ description: |
   Audits project dependencies for security vulnerabilities, outdated packages,
   and license compliance issues. Use this agent when checking npm/pip/cargo
   dependencies, reviewing package.json or requirements.txt, or running a
-  security audit before release.
+  security audit before release. Not for upgrading or fixing dependencies;
+  it reports only.
 
   <example>
   Context: Developer preparing for production release
@@ -51,7 +52,7 @@ Total dependencies: N | Vulnerable: N | Outdated: N | License issues: N
 ```
 
 **Score breakdown:**
-- Base: 100. Passes: `description` with 3+ specific phrases, 2 `<example>` blocks, `model: sonnet` (analysis-tier), declared tools used, output format defined, read-only (no Write/Edit).
+- Base: 100. Passes: `description` with 3+ specific phrases, `<example>` blocks present (one would be full credit; the second costs context but no points), a "Not for" clause, description under 1,200 characters, `model: sonnet` (analysis-tier), declared tools used, output format defined, read-only (no Write/Edit).
 - Minor: `Bash` declared but body doesn't invoke it (one unused tool): **-3**
 
 **Final: 97/100** — Excellent. The single unused-tool penalty costs 3 points; otherwise rubric-clean.
@@ -60,7 +61,7 @@ Total dependencies: N | Vulnerable: N | Outdated: N | License issues: N
 
 ---
 
-## Example 2: Rewrite Agent (41/100)
+## Example 2: Rewrite Agent (36/100)
 
 **Artifact:**
 ```markdown
@@ -79,15 +80,16 @@ to the user's requirements.
 **Score breakdown:**
 - Base: 100
 - Zero `<example>` blocks: **-15**
+- Description names no situation the agent is not for: **-5**
 - Description is generic (1 vague phrase, 0 specific phrases): **-15**
 - `opus` declared for a routine code-help task (haiku/sonnet appropriate): **-5**
 - `tools` declared but too many unused (WebSearch, WebFetch, Glob all declared without body justification): **-10** (judged as 3–4 unused, rounded)
 - "appropriate" + "relevant" + "as needed" (vague quantifiers, 2 instances): **-4**
 - No output format defined: **-10**
 
-Total penalties: -59
+Total penalties: -64
 
-**Final: max(0, 100 - 59) = 41/100** — Rewrite.
+**Final: max(0, 100 - 64) = 36/100** — Rewrite.
 
 *(For calibration: the exact number of unused tools and vague quantifier hits can vary by reviewer. The important thing is that this artifact scores well below 60 — multiple fundamental issues.)*
 
@@ -129,7 +131,7 @@ Incorrect:
 
 ---
 
-## Example 4: Weak Rule (40/100)
+## Example 4: Weak Rule (41/100)
 
 **Artifact:**
 ```markdown
@@ -152,4 +154,4 @@ Total penalties: -59
 
 **Final: max(0, 100 - 59) = 41/100** — Rewrite.
 
-*(Calibrated near 40 as specified. The exact value depends on judgment on "well-organized" as a vague quantifier.)*
+*(Calibrated near 40. The exact value depends on judgment on "well-organized" as a vague quantifier.)*

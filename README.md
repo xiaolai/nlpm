@@ -156,7 +156,7 @@ Create `.claude/nlpm.local.md` (or run `/nlpm:init`):
 strictness: standard
 score_threshold: 70
 rule_overrides:
-  R09: { min_examples: 1 }      # require only 1 example block
+  R09: { min_examples: 2 }      # restore the stricter two-example bar
   R05: { threshold: 600 }       # allow skills up to 600 lines
   R23: { budget: 800 }          # increase rules budget
 ---

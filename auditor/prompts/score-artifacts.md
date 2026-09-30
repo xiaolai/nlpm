@@ -54,7 +54,9 @@ Score each file on a 100-point scale. Start at 100, subtract penalties:
 - Missing required frontmatter (`name`, `description`): -25 each
 - **SKILL.md only** — `name` field MUST match the parent directory name
   (per agentskills.io spec); mismatch is a bug not a quality issue: -25
-- Missing `<example>` blocks on **agents**: -15 (zero) or -5 (one) — rule_id R09
+- Missing `<example>` blocks on **agents**: -15 (zero; one block is full credit) — rule_id R09
+- Agent description names no situation the agent is not for (no "Not for …"/"Do not use …" sentence and no declining/routing example): -5 — rule_id R09
+- Agent description value over 1,200 characters, examples included: -5 — rule_id R09
 - Missing `<example>` blocks on **user_invocable: true skills**: -10 — rule_id R06
 - Description length on **skills**: -5 if 500–800 chars, -10 if >800 chars — rule_id R04
 - Model not declared on agents: -5

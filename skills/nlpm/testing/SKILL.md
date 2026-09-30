@@ -136,7 +136,7 @@ Overall: 1 passed, 1 failed (50%)
 
 RED items (fix these):
   1. skills/core/SKILL.md — trigger gap: "optimize React hooks" not covered by description
-  2. skills/core/SKILL.md — score 68 < min 85: missing <example> blocks (-15)
+  2. skills/core/SKILL.md — score 68 < min 85: missing <example> blocks (R06, -10)
 ```
 
 ## Best Practices for Specs
