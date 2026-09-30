@@ -77,7 +77,7 @@ Every NL-quality finding's `rule_id` must come from the table in
 - Apply agent rules (R09–R13) to skills. Skills use R04–R07.
 - Reuse R07 ("scope note") for example-block findings — that is R06 for skills,
   R09 for agents. The 2026-05-13 ljg-skills audit mislabeled this 14 times.
-- Invent new R-numbers beyond R01–R50.
+- Invent new R-numbers beyond R01–R51.
 - Apply the -15 agents-example penalty to skills. The skills penalty for zero
   examples on a user_invocable skill is -10, label R06.
 
@@ -114,12 +114,13 @@ agent — `agents/scorer.md`):
    in plugin.json; inline `hooks:` / `skills:` arrays in plugin.json;
    `tools:` on reference-only skills; `commentary:` tags in agent examples;
    **`name:` on commands** — Claude Code commands register by filename;
-   `description:` is the only required command field per
-   `skills/nlpm/conventions/` §2. Primary-source citation:
-   <https://code.claude.com/docs/en/slash-commands> — "the `name` field
+   `description:` is the only recommended command field per
+   `skills/nlpm/conventions-claude/` §2.1. Primary source:
+   <https://code.claude.com/docs/en/skills>. Its retired predecessor,
+   the `slash-commands` page, said "the `name` field
    is explicitly optional, and Claude Code falls back to the filename
    (or the enclosing directory for SKILL.md-style layouts) when it's
-   omitted." Maintainer Jeffallan cited this URL when merging
+   omitted." Maintainer Jeffallan cited that page when merging
    Jeffallan/claude-skills#184 (2026-05-07) and noted that pre-v0.7.15
    audits flagged this incorrectly. The v0.7.15 fix is correct; this
    citation is preserved so the rule doesn't regress.

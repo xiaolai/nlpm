@@ -2,6 +2,7 @@
 name: scoring
 description: "Use when scoring NL artifact quality, applying penalties, or calibrating lint judgment — contains the 100-point rubric with penalty tables per artifact type. Four worked calibration examples (Excellent Agent / Rewrite Agent / Excellent Rule / Weak Rule) live in `references/calibration-examples.md`, loaded on demand when anchoring borderline cases."
 version: 0.3.1
+user-invocable: false
 ---
 
 # NLPM Quality Scoring Rubric
@@ -471,7 +472,7 @@ having no backing in this rubric. They MUST NOT be penalized:
 |---|---|
 | Missing `namespace:` on skill | Not in the skill schema; `conventions` §5 does not list it |
 | Missing inline `hooks:`/`skills:` registration blocks in plugin.json | `conventions` §1 defines these as optional path strings |
-| `AskUserQuestion` / `Task` / `WebFetch` flagged as undocumented tool | Built-in per `conventions` §14 |
+| `AskUserQuestion` / `Task` / `WebFetch` flagged as undocumented tool | Built-in per `conventions-claude` §16 |
 | Agent missing `skills:` when omission is documented in CLAUDE.md | Intentional architectural choice |
 | plugin.json missing `engines:` / `minClaudeVersion:` / `main:` | All optional per `conventions` §1 |
 | plugin.json description shorter than sibling marketplace.json description | Desynchronization ≠ defect; only penalize if required field is absent |

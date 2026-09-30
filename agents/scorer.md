@@ -35,7 +35,7 @@ Score NL programming artifacts on a 100-point scale. Apply penalties determinist
 
 For each artifact you receive:
 
-1. Identify its type using the path-based classification in `commands/shared/classify.md`: command, user-command, agent, skill, rule, hook-config, manifest, marketplace, mcp-config, lsp-config, claude-md, shared-partial, plugin-config, settings, memory
+1. Identify its type using the path-based classification in `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md`: command, user-command, agent, skill, rule, hook-config, manifest, marketplace, mcp-config, lsp-config, claude-md, shared-partial, plugin-config, settings, memory
 2. Apply the scoring rubric from `nlpm:scoring`:
    - Start at 100
    - Apply all penalties for this artifact type (each penalty maps to a rule number)
@@ -45,7 +45,7 @@ For each artifact you receive:
    - Compute final_score = max(0, min(100, 100 + adjustments))
 3. List each finding with:
    - Severity: HIGH (>=10 point penalty), MEDIUM (5-9 points), LOW (<5 points)
-   - Rule number (R01-R50) when applicable
+   - Rule number (R01-R51) when applicable
    - Line number where the finding occurs
    - What the finding is
    - The penalty applied
@@ -66,12 +66,12 @@ categories. Before reporting any finding, run this 5-step check:
    - `namespace:` on skills
    - `main:`, `engines:`, `minClaudeVersion:` in plugin.json
    - Inline `hooks:` / `skills:` registration arrays in plugin.json
-     (conventions §1 defines these as optional path strings, not inline blocks)
+     (`nlpm:conventions-claude` §1 defines these as optional path strings, not inline blocks)
    - `tools:` on reference-only skills (no tool calls in body)
    - `commentary:` tags in agent examples (style preference, not a rule)
    - `name:` on commands (filename-based registration; only `description:`
-     is required per `nlpm:conventions` §2; primary source:
-     <https://code.claude.com/docs/en/slash-commands>)
+     is recommended per `nlpm:conventions-claude` §2.1; primary source:
+     <https://code.claude.com/docs/en/skills>)
 
 3. **Path scope check** — multi-tier classification, evaluated in this order.
    See `analysis/multi-tool-design-2026-05.md` for the design rationale and
@@ -174,7 +174,8 @@ categories. Before reporting any finding, run this 5-step check:
    as findings.
 
 5. **Tool catalog check** — Before flagging a tool as "undocumented", check it
-   against `nlpm:conventions` §14. Built-ins like `AskUserQuestion`, `Task`,
+   against `nlpm:conventions-claude` §16 (full list in its
+   `reference.md`, Tool Catalog). Built-ins like `AskUserQuestion`, `Task`,
    `WebFetch`, `TodoWrite` are always valid.
 
 6. **Confidence-high for manifest-vs-disk diffs** — When the finding is

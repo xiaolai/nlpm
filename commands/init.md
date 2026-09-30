@@ -2,6 +2,7 @@
 name: init
 description: "Prepare NLPM for this project — detect artifacts, set strictness, capture baseline trend snapshot"
 allowed-tools: Read, Write, Glob, Bash, AskUserQuestion, Task
+disable-model-invocation: true
 ---
 
 ## Workflow
@@ -60,7 +61,7 @@ Append the following to `.gitignore` (skip lines already present):
 Score every NL artifact discovered in Step 2 so `/nlpm:trend` has a starting point.
 
 1. Dispatch `nlpm:scorer` and `nlpm:vague-scanner` in parallel over the discovered artifacts (same dispatch pattern as `/nlpm:score`). The vague-scanner's counts override the scorer's heuristic detection.
-2. Persist the result by following `commands/shared/append-history.md` with `scope: "full"` and `files_scored` equal to the artifact count.
+2. Persist the result by following `${CLAUDE_PLUGIN_ROOT}/commands/shared/append-history.md` with `scope: "full"` and `files_scored` equal to the artifact count.
 
 If Step 2 found zero artifacts, skip this step — there is nothing to score and the partial declines to write empty snapshots.
 

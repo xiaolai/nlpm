@@ -2,6 +2,7 @@
 name: conventions-codex
 description: "Use when scoring or writing Codex CLI artifacts — covers .codex/config.toml schema, .codex-plugin/plugin.json, .agents/skills/ layout, Codex hook events, AGENTS.md hierarchy, marketplace.json, and the agents/openai.yaml sidecar. Refreshed 2026-08-02 against Codex 0.146.0 (2026-07-29); §3/§4 field-type + policy-enum corrections 2026-08-04."
 version: 0.3.1
+user-invocable: false
 ---
 
 # Codex CLI Conventions

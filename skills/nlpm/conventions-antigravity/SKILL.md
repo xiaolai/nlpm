@@ -2,6 +2,7 @@
 name: conventions-antigravity
 description: "Use when scoring or writing Antigravity (or legacy Gemini CLI) artifacts — covers .gemini/ paths, .agent/ workspace skills, gemini-extension.json, GEMINI.md, TOML slash commands, Gemini-lineage hook events. Spec is unsettled (Antigravity 2.0 launched 2026-05-19); many checks are advisory until PR-B verification."
 version: 0.1.0
+user-invocable: false
 ---
 
 # Antigravity Conventions (with Gemini CLI legacy)

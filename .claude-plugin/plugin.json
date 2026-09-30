@@ -20,5 +20,8 @@
     "codex",
     "antigravity",
     "multi-tool"
+  ],
+  "skills": [
+    "./skills/nlpm"
   ]
 }

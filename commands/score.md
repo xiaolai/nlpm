@@ -26,12 +26,12 @@ Read `.claude/nlpm.local.md` if it exists. Extract `score_threshold` (default: 7
 | file path | Score that single file |
 | --changed | Score only files changed since last commit (uses `git diff --name-only HEAD`) |
 
-If `--changed` is present: run `git diff --name-only HEAD` to get changed files, then filter through `commands/shared/classify.md` to keep only NL artifacts. Skip the full discovery step.
+If `--changed` is present: run `git diff --name-only HEAD` to get changed files, then filter through `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md` to keep only NL artifacts. Skip the full discovery step.
 
 ### Step 3: Discover Artifacts
 
-If path is a directory: use `commands/shared/discover.md` to discover all NL artifacts.
-If path is a file: use `commands/shared/classify.md` to determine its type.
+If path is a directory: use `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md` to discover all NL artifacts.
+If path is a file: use `${CLAUDE_PLUGIN_ROOT}/commands/shared/classify.md` to determine its type.
 
 If no artifacts found → "No NL programming artifacts found."
 
@@ -78,7 +78,7 @@ Score guide: 90+ Excellent | 80-89 Good | 70-79 Adequate | 60-69 Weak | <60 Rewr
 
 ### Step 6: Append Snapshot to History
 
-Persist this scoring run so `/nlpm:trend` has data to compare against. Follow `commands/shared/append-history.md` with:
+Persist this scoring run so `/nlpm:trend` has data to compare against. Follow `${CLAUDE_PLUGIN_ROOT}/commands/shared/append-history.md` with:
 
 - `files`: the per-file scores from Step 4 (one entry per scored artifact, with score + type)
 - `files_scored`: the count

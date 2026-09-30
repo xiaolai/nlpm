@@ -2,6 +2,7 @@
 name: conventions-claude
 description: "Use when scoring or writing Claude Code artifacts — covers .claude/ paths, plugin.json schema, command + agent + skill frontmatter, CLAUDE.md, hook events, hooks.json format, settings.json, LSP, monitors, memory file conventions, and the Claude Code built-in tool catalog. Refreshed 2026-08-02 against current docs (Claude Code ≥ v2.1.218)."
 version: 0.3.0
+user-invocable: false
 ---
 
 # Claude Code Conventions
@@ -66,20 +67,7 @@ The manifest is **fully optional** — artifacts auto-discover from conventional
 
 **Plugin structure note:** a `bin/` directory in a plugin root puts its executables on the Bash tool's `PATH` — files there are invokable as bare commands in any Bash call while the plugin is enabled.
 
-**Example:**
-```json
-{
-  "name": "my-plugin",
-  "version": "0.2.1",
-  "description": "Does useful things",
-  "author": { "name": "dev" },
-  "license": "MIT",
-  "keywords": ["tools", "productivity"],
-  "commands": "commands/",
-  "agents": "agents/",
-  "skills": "skills/"
-}
-```
+**Example manifest → [reference.md](reference.md#pluginjson-example).**
 
 ---
 
@@ -270,43 +258,7 @@ A `command` hook may add `"shell": "powershell"` to run that hook in PowerShell 
 
 Located at `.claude/hooks.json` or `<plugin>/hooks/hooks.json`.
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pre-write-check.sh"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "prompt",
-            "prompt": "You are now in strict TDD mode."
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-**Structure rules:**
-- Top-level key: `"hooks"`
-- Second-level keys: event names (case-sensitive)
-- Each event maps to an array of matcher objects: `{ "matcher": "<regex>", "hooks": [...] }`
-- Each hook object: `{ "type": "command"|"http"|"mcp_tool"|"prompt"|"agent", "<type-field>": "..." }`
-- Field name matches the type: `"command"` for type `command`, `"prompt"` for type `prompt`, etc.
-
-**Optional hook-object fields (current — do NOT flag as malformed):** `if` (Bash-pattern, permission-scoped condition), `timeout` (seconds), `statusMessage`, `once` (v2.1+; skills/agents only), exec-form `args` (array, as an alternative to shell-form `command`), and `async` / `asyncRewake` for background command hooks.
+**Full example, structure rules and optional hook-object fields → [reference.md](reference.md#hooksjson-format).**
 
 ---
 
@@ -314,17 +266,7 @@ Located at `.claude/hooks.json` or `<plugin>/hooks/hooks.json`.
 
 Claude Code reads MCP server registrations from a **standalone JSON file** at the repo root (NOT embedded in `settings.json` like Gemini, NOT inside `config.toml` like Codex).
 
-```json
-{
-  "mcpServers": {
-    "my-server": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["./server.js"]
-    }
-  }
-}
-```
+**Example → [reference.md](reference.md#mcpjson-example).**
 
 Plugin scope: `<plugin>/.mcp.json` at the plugin root, or inline in `plugin.json` under `mcpServers`. (Only the plugin-root form is documented; the older `.claude-plugin/.mcp.json` variant is not.)
 
@@ -362,28 +304,7 @@ For Claude Code older than 2.1.277, the compatibility shim is a one-line `CLAUDE
 
 ## 11. `.claude/settings.json` and `.claude/settings.local.json`
 
-| Field | Purpose |
-|---|---|
-| `permissions` | Permission policy (allow/deny rules, modes); incl. `permissions.additionalDirectories` |
-| `hooks` | Hook event registrations (alternative to `hooks/hooks.json` for project-scoped hooks) |
-| `model` | Default model selection |
-| `disableSkillShellExecution` | If `true`, disables `!`...`` and ` ```! ` dynamic blocks in skills |
-| `env` | Environment variables injected into the session |
-| `statusLine` | Custom status line command/config |
-| `agent` | Default agent (also the only default-settings key, besides `subagentStatusLine`, a plugin may set) |
-| `effortLevel` | Default effort |
-| `language`, `outputStyle` | Locale / output style defaults |
-| `enabledPlugins` | Plugins enabled for the project |
-| `claudeMd`, `claudeMdExcludes` | Extra memory file globs / exclusions. **`claudeMd` is honored only in managed/policy settings — it has no effect in user/project/local settings.** |
-| `skillOverrides` | Per-skill visibility from settings (keys = skill name; values `on` / `name-only` / `user-invocable-only` / `off`); overrides the skill's own frontmatter |
-| `pluginConfigs` | Stores non-sensitive plugin `userConfig` values under `pluginConfigs[<plugin-id>].options` |
-| `autoMemoryEnabled`, `autoMemoryDirectory` | Auto-memory toggle + location (see §15) |
-| `sandbox.enabled` | Sandbox execution toggle |
-| `extraKnownMarketplaces`, `strictKnownMarketplaces` | Marketplace trust config |
-
-> `theme` is **not** a documented `settings.json` field — do not flag its absence or treat it as valid here (removed from this list 2026-06-07). The above is representative, not exhaustive; treat unrecognized-but-plausible keys as advisory, not errors.
-
-**Rule:** `.local.json` is gitignored (per-user); the non-local file is shared. NEVER set `bypassPermissions: true` in the shared file.
+`.local.json` is gitignored (per-user); the non-local file is shared — never set `bypassPermissions: true` in the shared file. **Field table (incl. `autoMemoryEnabled`/`autoMemoryDirectory`, see §15) → [reference.md](reference.md#settings-fields).**
 
 ---
 
@@ -401,11 +322,8 @@ For Claude Code older than 2.1.277, the compatibility shim is a one-line `CLAUDE
 
 ## 14. Reference Syntax
 
-**Commands referencing shared partials:**
-```
-<!-- Include: commands/shared/discover.md -->
-```
-Or by instruction: "Follow the steps in commands/shared/discover.md"
+**Commands referencing shared partials:** point at the file by absolute path — "Follow the steps in `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md`". Claude Code substitutes `${CLAUDE_PLUGIN_ROOT}` in command, skill and agent bodies; a bare `commands/shared/…` path does not resolve, because a command is not told where its plugin lives.
+Give each partial `user-invocable: false` and `disable-model-invocation: true`, so it stays out of the skill listing while commands still read it.
 
 **Agents referencing skills in frontmatter:**
 ```yaml
@@ -425,33 +343,7 @@ skills: ["nlpm:conventions", "nlpm:conventions-claude"]
 
 ## 15. Memory File Conventions (`~/.claude/projects/<slug>/memory/`)
 
-Claude Code writes per-project persistent memory at `~/.claude/projects/<project-slug>/memory/` ("Auto memory", v2.1.59+). Toggled by `autoMemoryEnabled`; location overridable via `autoMemoryDirectory` (§11). At session start the first ~200 lines / 25 KB of `MEMORY.md` plus topic files are loaded into context.
-
-**Index file:** `MEMORY.md` (no frontmatter; one-line-per-entry index).
-
-**Individual memory files** MUST include YAML frontmatter:
-
-```yaml
----
-name: "short identifier"
-description: "one-line summary"
-type: user | feedback | project | reference
----
-```
-
-**`type` values:**
-
-| Value | Meaning |
-|---|---|
-| `user` | Preferences, habits, or facts about the user |
-| `feedback` | Corrections or lessons from past sessions |
-| `project` | Project-specific facts, decisions, or context |
-| `reference` | External reference material copied into memory |
-
-**Rules:**
-- Every memory file must appear in `MEMORY.md` (orphans are flagged).
-- `MEMORY.md` itself is the index; not scored as a memory file.
-- Memory files should not reference removed files or functions.
+Auto memory (v2.1.59+) lives at `~/.claude/projects/<project-slug>/memory/`, toggled by `autoMemoryEnabled` / relocated by `autoMemoryDirectory` (§11); individual files need `name`/`description`/`type` frontmatter and an entry in the `MEMORY.md` index. **Full schema, `type` values and rules → [reference.md](reference.md#memory-file-conventions).**
 
 ---
 

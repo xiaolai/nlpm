@@ -44,7 +44,7 @@ If the file is missing or has zero snapshots → emit the report with the trend 
 
 ### Step 4: Score artifacts (fresh)
 
-Discover artifacts via `commands/shared/discover.md` against the target. Then dispatch the `nlpm:scorer` and `nlpm:vague-scanner` agents in parallel (same pattern as `/nlpm:score`). Collect per-file scores and findings.
+Discover artifacts via `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md` against the target. Then dispatch the `nlpm:scorer` and `nlpm:vague-scanner` agents in parallel (same pattern as `/nlpm:score`). Collect per-file scores and findings.
 
 If the corpus has more than 50 artifacts, batch into groups of 25 per dispatch.
 

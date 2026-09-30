@@ -25,7 +25,7 @@ If the target does not exist or is not a directory → "Target path not found: {
 
 ### Step 2: Discover artifacts
 
-Use `commands/shared/discover.md` against the target path to collect all NL artifacts. Filter to Category A (plugin) and Category B (project config) — these are where vocabulary lives. Skip Category F (memory files) — they are user-specific and not part of the project's published surface.
+Use `${CLAUDE_PLUGIN_ROOT}/commands/shared/discover.md` against the target path to collect all NL artifacts. Filter to Category A (plugin) and Category B (project config) — these are where vocabulary lives. Skip Category F (memory files) — they are user-specific and not part of the project's published surface.
 
 If the discovery returns fewer than 5 artifacts → "Target has minimal NL surface ({N} artifacts). Vocabulary drift analysis is uninformative on small corpora; re-run when the corpus grows past 5 artifacts." Stop.
 
