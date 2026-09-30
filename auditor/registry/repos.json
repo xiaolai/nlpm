@@ -10005,10 +10005,13 @@
       "stars": 2355,
       "artifacts": 8,
       "description": "De-AI writing skill for any Agent Skills-compatible agent (77+ via the Skills CLI), with native plugins for Claude Code, Codex, Grok Build, and Antigravity. Narrative-architecture repair for fiction, venue-matched rules for professional prose. Based on StoryScope (arXiv:2604.03136).",
-      "status": "discovered",
-      "score": null,
+      "status": "audited",
+      "score": 100,
       "audit_issue": 1088,
-      "prs": []
+      "prs": [],
+      "strategy": "single",
+      "security": "CLEAR",
+      "commit_sha_at_audit": "06a5233395299ff78558b15568679c2c5c0fe942"
     },
     "michaelshimeles/skills": {
       "discovered": "2026-09-07T06:10:37Z",
