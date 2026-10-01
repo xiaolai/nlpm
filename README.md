@@ -6,7 +6,7 @@ Natural-Language Programming Manager — score, check, fix, and test NL artifact
 
 Part of the [xiaolai plugin marketplace](https://github.com/xiaolai/claude-plugin-marketplace).
 
-NLPM is the only multi-tool NL artifact validator that systematically checks **manifest-vs-disk consistency** — the bug class where a SKILL.md exists on disk but is silently missing from `plugin.json` (and therefore invisible after `claude plugin install`). Verified across 8+ tools including Anthropic's official `plugin-validator` and the Linux Foundation's `skills-ref`. See [`analysis/ecosystem-gap.md`](analysis/ecosystem-gap.md) for the research.
+NLPM includes multi-tool validation that checks **manifest-vs-disk consistency** — the bug class where a SKILL.md exists on disk but is silently missing from `plugin.json` (and therefore invisible after `claude plugin install`). Verified across 8+ tools including Anthropic's official `plugin-validator` and the Linux Foundation's `skills-ref`. See [`analysis/ecosystem-gap.md`](analysis/ecosystem-gap.md) for the research.
 
 ## What it does
 
@@ -338,3 +338,10 @@ See [auditor/README.md](auditor/README.md) for the full pipeline documentation a
 ## License
 
 ISC
+
+## Native validation and behavioral evidence
+
+Run Claude's current `plugin validate --strict` alongside NLPM, then native `plugin eval --no-publish`
+for behavior with and without the plugin. Manifest consistency, rubric scores and observed behavior are
+separate evidence. A 100-point score is not a runtime guarantee. Revisit ecosystem comparisons when
+the host validator changes; the linked gap analysis records its research date, not perpetual exclusivity.
