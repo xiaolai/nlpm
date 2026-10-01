@@ -4549,3 +4549,4 @@
 {"timestamp":"2026-09-30T18:13:53Z","workflow":"contribute","event":"prs_submitted","run_id":"36756986604","run_number":2596,"data":{"repo":"phuryn/pm-skills","pr_count":0}}
 {"timestamp":"2026-09-30T22:06:12Z","workflow":"daily-report","event":"report_generated","run_id":"36783551685","run_number":180,"data":{"total_repos":304}}
 {"timestamp":"2026-09-30T22:36:28Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"36786532671","run_number":136,"data":{"repos":304,"findings":6244,"advisories":22}}
+{"timestamp":"2026-10-01T00:32:55Z","workflow":"exemplar","event":"exemplar_published","run_id":"36796651719","run_number":243,"data":{"repo":"hex/claude-council","exemplar_path":"auditor/exemplars/hex-claude-council.md","score":95}}

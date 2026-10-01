@@ -5550,7 +5550,9 @@
       "security": "REVIEW",
       "stars": 780,
       "status": "audited",
-      "strategy": "single"
+      "strategy": "single",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/hex-claude-council.md"
     },
     "hoangsonww/Claude-Code-Agent-Monitor": {
       "artifacts": 131,
