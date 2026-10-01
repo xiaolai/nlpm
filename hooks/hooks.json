@@ -1,5 +1,4 @@
 {
-  "description": "Advise when an NL artifact is written or edited; remind to run /nlpm:score on the changed file. Fail-open per R31 — script exits 0 on any error.",
   "hooks": {
     "PostToolUse": [
       {
