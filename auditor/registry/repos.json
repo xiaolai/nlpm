@@ -8005,7 +8005,9 @@
       "security": "REVIEW",
       "stars": 1258,
       "status": "audited",
-      "strategy": "batched"
+      "strategy": "batched",
+      "exemplar_published": true,
+      "exemplar_path": "auditor/exemplars/plugin87-ux-ui-agent-skills.md"
     },
     "prompt-security/clawsec": {
       "artifacts": 17,
