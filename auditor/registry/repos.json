@@ -5570,7 +5570,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(plugins): point dashboard-operator self-update at an existing script",
-          "updatedAt": "2026-09-30T18:16:30Z",
+          "updatedAt": "2026-10-01T16:34:59Z",
           "createdAt": "2026-09-30T18:14:29Z",
           "outcome": "open",
           "fingerprints": [
