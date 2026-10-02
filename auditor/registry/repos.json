@@ -550,26 +550,26 @@
       "prs": [
         {
           "number": 15,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-10-02T05:55:17Z",
           "title": "fix: add allowed-tools declaration to parallel command files",
-          "updatedAt": "2026-04-22T00:33:47Z",
+          "updatedAt": "2026-10-02T05:55:17Z",
           "createdAt": "2026-04-22T00:33:47Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": true
         },
         {
           "number": 16,
-          "state": "OPEN",
+          "state": "CLOSED",
           "mergedAt": null,
-          "closedAt": null,
+          "closedAt": "2026-10-02T05:55:19Z",
           "title": "fix: remove broken AGENTS.md cross-references from skill files",
-          "updatedAt": "2026-04-22T00:34:37Z",
+          "updatedAt": "2026-10-02T05:55:19Z",
           "createdAt": "2026-04-22T00:34:37Z",
-          "outcome": "open",
+          "outcome": "rejected",
           "fingerprints": [],
           "rule_ids": [],
           "stale_90d_emitted": true
@@ -578,7 +578,7 @@
       "rule_adopted": false,
       "score": 93,
       "security": "CLEAR",
-      "status": "contributed",
+      "status": "tracked",
       "strategy": "batched"
     },
     "CoderGamester/mcp-unity": {
