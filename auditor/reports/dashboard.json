@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T22:34:58Z",
+  "generated_at": "2026-10-02T22:35:45Z",
   "since": null,
   "summary": {
     "total_repos": 304,
@@ -2593,7 +2593,7 @@
     },
     {
       "repo": "CloudAI-X/claude-workflow-v2",
-      "status": "contributed",
+      "status": "tracked",
       "stars": null,
       "score": 93,
       "security": "CLEAR",
@@ -6123,6 +6123,16 @@
         "exemplar_published": 2,
         "status_check": 6,
         "classifications_emitted": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-10-02",
+      "counts": {
+        "status_check": 6,
+        "classifications_emitted": 1,
+        "finding_outcome": 5,
         "report_generated": 1
       }
     }
