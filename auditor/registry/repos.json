@@ -5357,7 +5357,7 @@
           "rule_ids": [
             "SEC-cdn-script-import"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
@@ -6504,7 +6504,7 @@
           "rule_ids": [
             "BUG-name-mismatch"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 19,
@@ -6525,7 +6525,7 @@
             "BUG-duplicate-tool-entry",
             "BUG-duplicate-tool-entry"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
