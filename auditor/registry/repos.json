@@ -5527,13 +5527,13 @@
       "prs": [
         {
           "number": 355,
-          "state": "OPEN",
-          "mergedAt": null,
-          "closedAt": null,
+          "state": "MERGED",
+          "mergedAt": "2026-10-03T18:08:44Z",
+          "closedAt": "2026-10-03T18:08:44Z",
           "title": "fix(plugins): point dashboard-operator self-update at an existing script",
-          "updatedAt": "2026-10-01T16:34:59Z",
+          "updatedAt": "2026-10-03T18:08:53Z",
           "createdAt": "2026-09-30T18:14:29Z",
-          "outcome": "open",
+          "outcome": "merged",
           "fingerprints": [
             "sha256:7a951b601c015107c0b892b60b99b50f51278d0fe7872240b91a63bc2ba4c4d9"
           ],
