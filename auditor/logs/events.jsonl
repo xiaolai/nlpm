@@ -4902,3 +4902,4 @@
 {"timestamp":"2026-10-04T17:39:21Z","workflow":"track","event":"status_check","run_id":"37220698668","run_number":1015,"data":{"contributed":50,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
 {"timestamp":"2026-10-04T21:01:56Z","workflow":"track","event":"status_check","run_id":"37233714073","run_number":1016,"data":{"contributed":50,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
 {"timestamp":"2026-10-04T22:05:30Z","workflow":"daily-report","event":"report_generated","run_id":"37238661505","run_number":184,"data":{"total_repos":304}}
+{"timestamp":"2026-10-04T22:34:54Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"37240552717","run_number":140,"data":{"repos":304,"findings":6244,"advisories":22}}
