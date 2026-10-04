@@ -4889,3 +4889,4 @@
 {"timestamp":"2026-10-03T21:12:07Z","workflow":"case-study","event":"no_narrative","run_id":"37154005031","run_number":307,"data":{"repo":"hoangsonww/Claude-Code-Agent-Monitor","reason":"thin narrative: score=72, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"}}
 {"timestamp":"2026-10-03T22:53:48Z","workflow":"daily-report","event":"report_generated","run_id":"37159956675","run_number":183,"data":{"total_repos":304}}
 {"timestamp":"2026-10-03T23:21:39Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"37161517399","run_number":139,"data":{"repos":304,"findings":6244,"advisories":22}}
+{"timestamp":"2026-10-04T00:52:33Z","workflow":"suppressions","event":"scan_complete","run_id":"37166273063","run_number":24,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
