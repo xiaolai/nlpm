@@ -10219,13 +10219,14 @@
       "stars": 7817,
       "artifacts": 6,
       "description": "Autoharness — a self-learning skill layer for Claude Code — distills skills from your real sessions, updates them as you work, and prunes the ones that stop getting used. No daemon, no benchmark.",
-      "status": "audited",
+      "status": "contributed",
       "score": 87,
       "audit_issue": 1390,
       "prs": [],
       "strategy": "single",
       "security": "CLEAR",
-      "commit_sha_at_audit": "6bf36182dcdb95a55bc8fd8b522ce845f855cbc6"
+      "commit_sha_at_audit": "6bf36182dcdb95a55bc8fd8b522ce845f855cbc6",
+      "pipeline_prs": []
     }
   }
 }
