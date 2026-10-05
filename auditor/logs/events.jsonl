@@ -4909,3 +4909,7 @@
 {"timestamp":"2026-10-05T03:53:36Z","workflow":"classify","event":"classifications_emitted","run_id":"37261153077","run_number":168,"data":{"classifications":0,"invalid":0,"no_dissent":true}}
 {"timestamp":"2026-10-05T04:33:56Z","workflow":"track","event":"status_check","run_id":"37263210148","run_number":1018,"data":{"contributed":50,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
 {"timestamp":"2026-10-05T06:15:46Z","workflow":"discover","event":"search_complete","run_id":"37271387197","run_number":48,"data":{"candidates":162,"new":50,"worthy":1,"oversized":18}}
+{"timestamp":"2026-10-05T06:27:53Z","workflow":"audit","event":"scorer_drift_check","run_id":"37272433897","run_number":1547,"data":{"repo":"tigerless-labs/autoharness","sidecar":"auditor/audits/tigerless-labs-autoharness.findings.jsonl","drifts":0,"exit_code":0,"total_findings":8,"missing_confidence":0}}
+{"timestamp":"2026-10-05T06:27:53Z","workflow":"audit","event":"findings_aggregated","run_id":"37272433897","run_number":1547,"data":{"repo":"tigerless-labs/autoharness","findings":8,"invalid_lines":0,"self_false_positives":1}}
+{"timestamp":"2026-10-05T06:27:53Z","workflow":"audit","event":"repo_report_rendered","run_id":"37272433897","run_number":1547,"data":{"repo":"tigerless-labs/autoharness","html":"auditor/reports/tigerless-labs-autoharness.html"}}
+{"timestamp":"2026-10-05T06:27:53Z","workflow":"audit","event":"audit_complete","run_id":"37272433897","run_number":1547,"data":{"repo":"tigerless-labs/autoharness","score":87,"artifacts":5,"strategy":"single"}}
