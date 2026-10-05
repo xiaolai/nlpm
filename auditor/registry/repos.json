@@ -2250,7 +2250,46 @@
         30,
         31
       ],
-      "prs": [],
+      "prs": [
+        {
+          "number": 30,
+          "state": "CLOSED",
+          "mergedAt": null,
+          "closedAt": "2026-08-09T09:53:10Z",
+          "title": "fix: escape media.url in gallery data-src attributes",
+          "updatedAt": "2026-08-09T09:53:10Z",
+          "createdAt": "2026-08-07T12:19:47Z",
+          "outcome": "applied_separately",
+          "fingerprints": [
+            "sha256:fe9bcce17b04db042b1843e383c797e9f8c507d99e5377e649272db1bbf664c5",
+            "sha256:feb1039c429e3ace708ddb25e1cb7d9238d2c588b33843a9785be78a245d7a57"
+          ],
+          "rule_ids": [
+            "SEC-unescaped-attribute-interpolation",
+            "SEC-unescaped-attribute-interpolation"
+          ],
+          "stale_90d_emitted": false
+        },
+        {
+          "number": 31,
+          "state": "MERGED",
+          "mergedAt": "2026-08-09T09:38:42Z",
+          "closedAt": "2026-08-09T09:38:42Z",
+          "title": "fix: exact-pin devDependency versions in template/package.json",
+          "updatedAt": "2026-08-09T09:38:42Z",
+          "createdAt": "2026-08-07T12:22:38Z",
+          "outcome": "merged",
+          "fingerprints": [
+            "sha256:df19dd4eff2d1c1ad1010c2ddee404ab7438f1ede59488b2a792f58ebe8485a7",
+            "sha256:da82d7cfbf59b7a19d1d2759314e782f64c7c0ab8eba84e0d04c867ef3cfc4ed"
+          ],
+          "rule_ids": [
+            "SEC-unpinned-semver",
+            "SEC-unpinned-semver"
+          ],
+          "stale_90d_emitted": false
+        }
+      ],
       "rule_adopted": false,
       "score": 100,
       "security": "REVIEW",
