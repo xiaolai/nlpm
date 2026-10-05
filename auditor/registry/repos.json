@@ -1820,7 +1820,7 @@
             "BUG-undeclared-tool",
             "BUG-undeclared-tool"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 7,
@@ -1837,7 +1837,7 @@
           "rule_ids": [
             "CC-duplicate-agent-name"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 8,
@@ -1854,7 +1854,7 @@
           "rule_ids": [
             "CC-stale-count"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
@@ -10226,7 +10226,8 @@
       "strategy": "single",
       "security": "CLEAR",
       "commit_sha_at_audit": "6bf36182dcdb95a55bc8fd8b522ce845f855cbc6",
-      "pipeline_prs": []
+      "pipeline_prs": [],
+      "rule_adopted": false
     }
   }
 }
