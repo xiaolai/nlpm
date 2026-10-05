@@ -305,7 +305,7 @@
       "state": "healthy"
     },
     "UNCLASSIFIED": {
-      "total_hits": 241,
+      "total_hits": 248,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
       "self_false_positive": 0,
@@ -604,10 +604,10 @@
       "state": "healthy"
     },
     "SEC-curl-pipe-sh": {
-      "total_hits": 78,
+      "total_hits": 79,
       "led_to_merged_pr": 0,
       "led_to_rejected_pr": 0,
-      "self_false_positive": 14,
+      "self_false_positive": 15,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
       "verified_fixed": 3,
@@ -5572,7 +5572,7 @@
     "SEC-unescaped-attribute-interpolation": {
       "total_hits": 2,
       "led_to_merged_pr": 0,
-      "led_to_rejected_pr": 2,
+      "led_to_rejected_pr": 0,
       "self_false_positive": 0,
       "maintainer_rejected": 0,
       "downstream_suppressions": 0,
@@ -6108,10 +6108,10 @@
     "last_updated": "2026-04-10",
     "total_events": 16,
     "total_audits": 10,
-    "total_prs_submitted": 326,
-    "total_prs_merged": 127,
+    "total_prs_submitted": 328,
+    "total_prs_merged": 128,
     "total_prs_rejected": 77,
-    "total_prs_applied_separately": 32,
-    "updated_at": "2026-10-04T22:05:30.638918Z"
+    "total_prs_applied_separately": 33,
+    "updated_at": "2026-10-05T22:06:06.254849Z"
   }
 }
