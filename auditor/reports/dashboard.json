@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-04T22:34:54Z",
+  "generated_at": "2026-10-05T22:35:13Z",
   "since": null,
   "summary": {
-    "total_repos": 304,
-    "total_findings": 6244,
-    "high_findings": 2420,
+    "total_repos": 305,
+    "total_findings": 6252,
+    "high_findings": 2421,
     "total_advisories": 22,
     "high_advisories": 3,
     "repos_with_drift": 3,
@@ -2172,6 +2172,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "tigerless-labs/autoharness",
+      "status": "contributed",
+      "stars": 7817,
+      "score": 87,
+      "security": "CLEAR",
+      "total_findings": 8,
+      "high_findings": 1,
+      "medium_findings": 6,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "vercel-labs/agent-browser",
       "status": "audited",
       "stars": 32739,
@@ -3683,8 +3695,8 @@
     },
     {
       "rule_id": "UNCLASSIFIED",
-      "total": 254,
-      "repos_affected": 42
+      "total": 261,
+      "repos_affected": 43
     },
     {
       "rule_id": "R07",
@@ -3768,8 +3780,8 @@
     },
     {
       "rule_id": "SEC-curl-pipe-sh",
-      "total": 78,
-      "repos_affected": 35
+      "total": 79,
+      "repos_affected": 36
     },
     {
       "rule_id": "SEC-network-call",
@@ -6158,6 +6170,23 @@
         "status_check": 6,
         "classifications_emitted": 1,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-10-05",
+      "counts": {
+        "finding_outcome": 5,
+        "status_check": 5,
+        "classifications_emitted": 1,
+        "search_complete": 1,
+        "scorer_drift_check": 1,
+        "findings_aggregated": 1,
+        "repo_report_rendered": 1,
+        "audit_complete": 1,
+        "report_artifact_uploaded": 2,
+        "prs_submitted": 2,
         "report_generated": 1
       }
     }
