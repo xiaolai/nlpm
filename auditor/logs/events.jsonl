@@ -4968,3 +4968,4 @@
 {"timestamp":"2026-10-10T22:36:13Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"38092037261","run_number":146,"data":{"repos":305,"findings":6252,"advisories":22}}
 {"timestamp":"2026-10-11T00:09:48Z","workflow":"suppressions","event":"search_failed","run_id":"38097476846","run_number":25,"data":{"reason":"gh api search returned non-zero — partial or empty results"}}
 {"timestamp":"2026-10-11T00:09:48Z","workflow":"suppressions","event":"scan_complete","run_id":"38097476846","run_number":25,"data":{"candidates":0,"emitted":0,"skipped_self":0,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":false}}
+{"timestamp":"2026-10-11T00:56:28Z","workflow":"track","event":"status_check","run_id":"38099496442","run_number":1053,"data":{"contributed":51,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
