@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-01T22:31:39Z",
+  "generated_at": "2026-11-02T22:31:54Z",
   "since": null,
   "summary": {
-    "total_repos": 313,
+    "total_repos": 315,
     "total_findings": 6252,
     "high_findings": 2421,
     "total_advisories": 22,
@@ -2844,6 +2844,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "WenyuChiou/ai-research-skills",
+      "status": "discovered",
+      "stars": 540,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "Yeachan-Heo/oh-my-claudecode",
       "status": "tracked",
       "stars": 29671,
@@ -2981,6 +2993,18 @@
       "stars": 698,
       "score": 100,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "career-ops-hq/career-ops",
+      "status": "discovered",
+      "stars": 79346,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -6512,6 +6536,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-11-02",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
