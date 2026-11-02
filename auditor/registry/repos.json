@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-10-26T06:11:08Z",
+    "last_discovery": "2026-11-02T06:07:32Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 297
+    "total_discovered": 299
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -10241,6 +10241,26 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1578,
+      "prs": []
+    },
+    "WenyuChiou/ai-research-skills": {
+      "discovered": "2026-11-02T06:07:32Z",
+      "stars": 540,
+      "artifacts": 5,
+      "description": "Universal SKILL.md catalog for research workflows: literature review, research design, project memory, manuscript writing, and cross-agent delegation for Claude Code, Codex, Gemini, Cursor, OpenClaw, and generic AI clients.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1638,
+      "prs": []
+    },
+    "career-ops-hq/career-ops": {
+      "discovered": "2026-11-02T06:07:32Z",
+      "stars": 79346,
+      "artifacts": 24,
+      "description": "Open-source AI job search agent and job finder: scan job boards, score each job 1-5 against your CV before you apply, tailor an ATS-friendly resume and cover letter, get interview prep and an application tracker. It helps you fill in each application; you press Submit. Runs locally in Codex, OpenCode and other AI CLIs, or as a Claude Code plugin.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1639,
       "prs": []
     }
   }
