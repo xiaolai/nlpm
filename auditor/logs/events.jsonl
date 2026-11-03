@@ -5169,3 +5169,4 @@
 {"timestamp":"2026-11-03T16:21:15Z","workflow":"track","event":"status_check","run_id":"41671201167","run_number":1195,"data":{"contributed":51,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
 {"timestamp":"2026-11-03T20:21:26Z","workflow":"track","event":"status_check","run_id":"41709756073","run_number":1196,"data":{"contributed":51,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
 {"timestamp":"2026-11-03T22:03:12Z","workflow":"daily-report","event":"report_generated","run_id":"41727274350","run_number":214,"data":{"total_repos":315}}
+{"timestamp":"2026-11-03T22:31:45Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"41731558266","run_number":170,"data":{"repos":315,"findings":6252,"advisories":22}}
