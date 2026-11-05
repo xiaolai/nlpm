@@ -5591,7 +5591,7 @@
             "BUG-broken-reference",
             "BUG-broken-reference"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         },
         {
           "number": 190,
@@ -5610,7 +5610,7 @@
             "BUG-broken-reference",
             "BUG-broken-reference"
           ],
-          "stale_90d_emitted": false
+          "stale_90d_emitted": true
         }
       ],
       "rule_adopted": false,
