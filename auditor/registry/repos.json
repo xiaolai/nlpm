@@ -8037,6 +8037,19 @@
       ],
       "prs": [
         {
+          "number": 327,
+          "state": "MERGED",
+          "mergedAt": "2026-05-11T18:55:26Z",
+          "closedAt": "2026-05-11T18:55:27Z",
+          "title": "fix: add missing YAML frontmatter to all 82 plugin command files",
+          "updatedAt": "2026-05-11T18:55:27Z",
+          "createdAt": "2026-04-22T12:28:34Z",
+          "outcome": "merged",
+          "fingerprints": [],
+          "rule_ids": [],
+          "stale_90d_emitted": false
+        },
+        {
           "number": 328,
           "state": "MERGED",
           "mergedAt": "2026-05-11T18:55:31Z",
