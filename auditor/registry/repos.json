@@ -3647,7 +3647,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(motion-graphics): correct relative reference paths in agents",
-          "updatedAt": "2026-09-30T18:14:34Z",
+          "updatedAt": "2026-11-07T23:26:34Z",
           "createdAt": "2026-09-30T18:14:33Z",
           "outcome": "open",
           "fingerprints": [
@@ -3668,7 +3668,7 @@
           "mergedAt": null,
           "closedAt": null,
           "title": "fix(skills): repair broken relative links",
-          "updatedAt": "2026-09-30T18:14:36Z",
+          "updatedAt": "2026-11-07T23:26:30Z",
           "createdAt": "2026-09-30T18:14:35Z",
           "outcome": "open",
           "fingerprints": [
