@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T22:31:38Z",
+  "generated_at": "2026-11-08T22:31:45Z",
   "since": null,
   "summary": {
     "total_repos": 315,
@@ -241,7 +241,7 @@
     },
     {
       "repo": "calesthio/OpenMontage",
-      "status": "contributed",
+      "status": "tracked",
       "stars": 45129,
       "score": 95,
       "security": "REVIEW",
@@ -6587,6 +6587,18 @@
       "day": "2026-11-07",
       "counts": {
         "status_check": 6,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-11-08",
+      "counts": {
+        "scan_complete": 1,
+        "status_check": 6,
+        "no_narrative": 1,
+        "finding_outcome": 2,
+        "proposals_prepared": 1,
         "report_generated": 1
       }
     }
