@@ -5207,3 +5207,4 @@
 {"timestamp":"2026-11-07T22:31:38Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"42421016767","run_number":174,"data":{"repos":315,"findings":6252,"advisories":22}}
 {"timestamp":"2026-11-08T00:05:37Z","workflow":"suppressions","event":"scan_complete","run_id":"42428163799","run_number":29,"data":{"candidates":2,"emitted":2,"skipped_self":1,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":true}}
 {"timestamp":"2026-11-08T00:37:53Z","workflow":"track","event":"status_check","run_id":"42429685536","run_number":1221,"data":{"contributed":51,"tracked":44,"case_study_ready":45,"rule_adopted":1}}
+{"timestamp":"2026-11-08T04:14:20Z","workflow":"case-study","event":"no_narrative","run_id":"42445938030","run_number":308,"data":{"repo":"calesthio/OpenMontage","reason":"thin narrative: score=95, security=REVIEW, merged=0, applied_separately=0, rejected=0, rule_adopted=False"}}
