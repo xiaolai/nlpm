@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-11-02T06:07:32Z",
+    "last_discovery": "2026-11-09T06:07:39Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 299
+    "total_discovered": 302
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -10265,6 +10265,36 @@
       "stars": 5411,
       "status": "complete",
       "strategy": "single"
+    },
+    "ChatCut-Inc/agent-plugin": {
+      "discovered": "2026-11-09T06:07:39Z",
+      "stars": 1019,
+      "artifacts": 128,
+      "description": "AI video editor for agents. ChatCut plugin and MCP server for Codex, ChatGPT, Claude Code, Cursor, Grok, Gemini CLI, WorkBuddy, Doubao Work and Qwen Work: edit your own footage by chatting, add captions and subtitles, remove silences and filler words, create motion graphics, and export an editable timeline.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1700,
+      "prs": []
+    },
+    "OpenMontageInc/OpenMontage": {
+      "discovered": "2026-11-09T06:07:39Z",
+      "stars": 78769,
+      "artifacts": 641,
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1701,
+      "prs": []
+    },
+    "vercel-labs/skills": {
+      "discovered": "2026-11-09T06:07:39Z",
+      "stars": 38651,
+      "artifacts": 6,
+      "description": "The open agent skills tool - npx skills",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1702,
+      "prs": []
     }
   }
 }
