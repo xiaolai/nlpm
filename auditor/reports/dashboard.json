@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-08T22:31:45Z",
+  "generated_at": "2026-11-09T22:31:31Z",
   "since": null,
   "summary": {
-    "total_repos": 315,
+    "total_repos": 318,
     "total_findings": 6252,
     "high_findings": 2421,
     "total_advisories": 22,
@@ -2592,6 +2592,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "ChatCut-Inc/agent-plugin",
+      "status": "discovered",
+      "stars": 1019,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "ChrisWiles/claude-code-showcase",
       "status": "contributed",
       "stars": null,
@@ -2789,6 +2801,18 @@
       "stars": 94145,
       "score": 80,
       "security": "BLOCKED",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "OpenMontageInc/OpenMontage",
+      "status": "discovered",
+      "stars": 78769,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3629,6 +3653,18 @@
       "stars": 3612,
       "score": 88,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "vercel-labs/skills",
+      "status": "discovered",
+      "stars": 38651,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -6599,6 +6635,15 @@
         "no_narrative": 1,
         "finding_outcome": 2,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-11-09",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
