@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-15T22:31:24Z",
+  "generated_at": "2026-11-16T22:31:47Z",
   "since": null,
   "summary": {
-    "total_repos": 318,
+    "total_repos": 321,
     "total_findings": 6252,
     "high_findings": 2421,
     "total_advisories": 22,
@@ -3324,6 +3324,18 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "irinabuht12-oss/marketing-skills",
+      "status": "discovered",
+      "stars": 7887,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "jnMetaCode/superpowers-zh",
       "status": "tracked",
       "stars": 1001,
@@ -3341,6 +3353,18 @@
       "stars": 115,
       "score": 76,
       "security": "REVIEW",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "langfuse/langfuse",
+      "status": "discovered",
+      "stars": 37471,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3413,6 +3437,18 @@
       "stars": 974,
       "score": 96,
       "security": "REVIEW",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "obsidianmd/obsidian-skills",
+      "status": "discovered",
+      "stars": 52854,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -6695,6 +6731,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-11-16",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
