@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-11-09T06:07:39Z",
+    "last_discovery": "2026-11-16T06:08:59Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 302
+    "total_discovered": 305
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -10294,6 +10294,36 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1702,
+      "prs": []
+    },
+    "irinabuht12-oss/marketing-skills": {
+      "discovered": "2026-11-16T06:08:59Z",
+      "stars": 7887,
+      "artifacts": 50,
+      "description": "Claude skills for marketing: 49 free marketing skills for Claude Code and claude.ai (Google Ads, Meta Ads, SEO, AI visibility) + the Ryze Google Ads MCP / Meta Ads MCP: claude mcp add ryze --transport http https://connector.get-ryze.ai/mcp",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1762,
+      "prs": []
+    },
+    "langfuse/langfuse": {
+      "discovered": "2026-11-16T06:08:59Z",
+      "stars": 37471,
+      "artifacts": 217,
+      "description": "🪢 Open source AI engineering platform: AI Gateway, agent observability, evals, and prompt/skill management, built on OpenTelemetry. One open platform for every AI call and every agent. Self-host or use Langfuse Cloud.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1763,
+      "prs": []
+    },
+    "obsidianmd/obsidian-skills": {
+      "discovered": "2026-11-16T06:08:59Z",
+      "stars": 52854,
+      "artifacts": 8,
+      "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1764,
       "prs": []
     }
   }
