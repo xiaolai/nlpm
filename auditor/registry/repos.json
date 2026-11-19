@@ -8723,47 +8723,7 @@
         974,
         975
       ],
-      "prs": [
-        {
-          "number": 973,
-          "state": "MERGED",
-          "mergedAt": "2026-05-10T00:58:49Z",
-          "closedAt": "2026-05-10T00:58:50Z",
-          "title": "fix(skills): remove broken doc references in orca-cli SKILL.md",
-          "updatedAt": "2026-05-10T00:58:50Z",
-          "createdAt": "2026-04-23T06:43:17Z",
-          "outcome": "merged",
-          "fingerprints": [],
-          "rule_ids": [],
-          "stale_90d_emitted": false
-        },
-        {
-          "number": 974,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-05-11T03:50:46Z",
-          "title": "fix(scripts): restrict ORCA_ELECTRON_VITE_CLI override to test environments",
-          "updatedAt": "2026-05-11T03:50:46Z",
-          "createdAt": "2026-04-23T06:43:49Z",
-          "outcome": "rejected",
-          "fingerprints": [],
-          "rule_ids": [],
-          "stale_90d_emitted": false
-        },
-        {
-          "number": 975,
-          "state": "CLOSED",
-          "mergedAt": null,
-          "closedAt": "2026-05-11T03:53:04Z",
-          "title": "fix(deps): pin critical native dependencies to exact versions",
-          "updatedAt": "2026-05-11T03:53:04Z",
-          "createdAt": "2026-04-23T06:44:27Z",
-          "outcome": "rejected",
-          "fingerprints": [],
-          "rule_ids": [],
-          "stale_90d_emitted": false
-        }
-      ],
+      "prs": [],
       "rule_adopted": false,
       "score": 96,
       "security": "REVIEW",
