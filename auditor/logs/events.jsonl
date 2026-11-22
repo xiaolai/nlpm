@@ -5330,3 +5330,5 @@
 {"timestamp":"2026-11-21T20:18:28Z","workflow":"track","event":"status_check","run_id":"44944569878","run_number":1304,"data":{"contributed":50,"tracked":45,"case_study_ready":46,"rule_adopted":1}}
 {"timestamp":"2026-11-21T22:03:21Z","workflow":"daily-report","event":"report_generated","run_id":"44954691233","run_number":232,"data":{"total_repos":321}}
 {"timestamp":"2026-11-21T22:31:34Z","workflow":"dashboard","event":"dashboard_rendered","run_id":"44957184639","run_number":188,"data":{"repos":321,"findings":6252,"advisories":22}}
+{"timestamp":"2026-11-22T00:05:22Z","workflow":"suppressions","event":"search_failed","run_id":"44964897988","run_number":31,"data":{"reason":"gh api search returned non-zero — partial or empty results"}}
+{"timestamp":"2026-11-22T00:05:22Z","workflow":"suppressions","event":"scan_complete","run_id":"44964897988","run_number":31,"data":{"candidates":0,"emitted":0,"skipped_self":0,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":false}}
