@@ -5334,3 +5334,4 @@
 {"timestamp":"2026-11-22T00:05:22Z","workflow":"suppressions","event":"scan_complete","run_id":"44964897988","run_number":31,"data":{"candidates":0,"emitted":0,"skipped_self":0,"skipped_dup":0,"skipped_no_overrides":0,"search_ok":false}}
 {"timestamp":"2026-11-22T00:35:45Z","workflow":"track","event":"status_check","run_id":"44966484578","run_number":1305,"data":{"contributed":50,"tracked":45,"case_study_ready":46,"rule_adopted":1}}
 {"timestamp":"2026-11-22T04:21:33Z","workflow":"track","event":"status_check","run_id":"44983811459","run_number":1306,"data":{"contributed":50,"tracked":45,"case_study_ready":46,"rule_adopted":1}}
+{"timestamp":"2026-11-22T08:23:10Z","workflow":"track","event":"status_check","run_id":"45001584443","run_number":1307,"data":{"contributed":50,"tracked":45,"case_study_ready":46,"rule_adopted":1}}
