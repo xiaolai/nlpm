@@ -36,7 +36,14 @@ esac
 
 if [ "$is_artifact" = true ]; then
   basename=$(basename "$file_path")
-  echo "NL artifact edited: ${basename}. Run /nlpm:score ${file_path} to check quality." >&2
+  msg="NL artifact edited: ${basename}. /nlpm:score ${file_path} checks its quality."
+  # Claude reads a PostToolUse hook's message only from stdout JSON
+  # (hookSpecificOutput.additionalContext) or from stderr with exit 2.
+  # stderr with exit 0 never reaches Claude:
+  # https://code.claude.com/docs/en/hooks
+  # JSON-escape the two characters a file path can carry that break a JSON string.
+  esc=$(printf '%s' "$msg" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+  printf '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"%s"}}\n' "$esc"
 fi
 
 exit 0
