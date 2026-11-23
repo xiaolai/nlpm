@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "last_discovery": "2026-11-16T06:08:59Z",
+    "last_discovery": "2026-11-23T06:08:14Z",
     "total_audited": 12,
     "total_contributed": 6,
-    "total_discovered": 305
+    "total_discovered": 308
   },
   "repos": {
     "0xNyk/council-of-high-intelligence": {
@@ -10324,6 +10324,36 @@
       "status": "discovered",
       "score": null,
       "audit_issue": 1764,
+      "prs": []
+    },
+    "Piebald-AI/claude-code-system-prompts": {
+      "discovered": "2026-11-23T06:08:14Z",
+      "stars": 13213,
+      "artifacts": 100,
+      "description": "All parts of Claude Code's system prompt, builtin tool descriptions, subagent prompts (Plan/Explore/Task), and utility prompts.  Updated for each Claude Code version.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1825,
+      "prs": []
+    },
+    "Trystan-SA/product-engineer-skills": {
+      "discovered": "2026-11-23T06:08:14Z",
+      "stars": 2066,
+      "artifacts": 16,
+      "description": "Agent skills for product engineers: count the clicks on your happy path, test flows against a UX budget, plan adoption, instrument analytics, and design and read A/B tests. For Claude Code, Codex and any SKILL.md agent.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1826,
+      "prs": []
+    },
+    "kajisho5/ffmpeg-skill": {
+      "discovered": "2026-11-23T06:08:14Z",
+      "stars": 9859,
+      "artifacts": 20,
+      "description": "Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MCP server, for Claude Code, Cursor and Codex. Cut, captions, reframe, loudness, platform exports. No cloud, no API keys.",
+      "status": "discovered",
+      "score": null,
+      "audit_issue": 1827,
       "prs": []
     }
   }
