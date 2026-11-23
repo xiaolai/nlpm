@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-22T22:31:33Z",
+  "generated_at": "2026-11-23T22:31:43Z",
   "since": null,
   "summary": {
-    "total_repos": 321,
+    "total_repos": 324,
     "total_findings": 6252,
     "high_findings": 2421,
     "total_advisories": 22,
@@ -2856,11 +2856,35 @@
       "vocab_drift_high": 0
     },
     {
+      "repo": "Piebald-AI/claude-code-system-prompts",
+      "status": "discovered",
+      "stars": 13213,
+      "score": null,
+      "security": null,
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
       "repo": "ReScienceLab/opc-skills",
       "status": "audited",
       "stars": 776,
       "score": 92,
       "security": "BLOCKED",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "Trystan-SA/product-engineer-skills",
+      "status": "discovered",
+      "stars": 2066,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -3341,6 +3365,18 @@
       "stars": 1001,
       "score": 95,
       "security": "CLEAR",
+      "total_findings": 0,
+      "high_findings": 0,
+      "medium_findings": 0,
+      "vocab_drift_count": 0,
+      "vocab_drift_high": 0
+    },
+    {
+      "repo": "kajisho5/ffmpeg-skill",
+      "status": "discovered",
+      "stars": 9859,
+      "score": null,
+      "security": null,
       "total_findings": 0,
       "high_findings": 0,
       "medium_findings": 0,
@@ -6792,6 +6828,15 @@
         "scan_complete": 1,
         "status_check": 6,
         "proposals_prepared": 1,
+        "report_generated": 1,
+        "dashboard_rendered": 1
+      }
+    },
+    {
+      "day": "2026-11-23",
+      "counts": {
+        "status_check": 6,
+        "search_complete": 1,
         "report_generated": 1
       }
     }
